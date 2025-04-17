@@ -18,37 +18,37 @@ const checkIfConfigFileShouldBeProject = (
     return true;
   }
 
-export const createNodes: CreateNodesV2<ApiExtractorExecutorSchema> = [
-    `**/tsconfig.lib.json`,
-    async (paths, options, context) => {
+// export const createNodes: CreateNodesV2<ApiExtractorExecutorSchema> = [
+//     `**/tsconfig.lib.json`,
+//     async (paths, options, context) => {
 
-        const { roots: projectRoots, configFiles: validConfigFiles } =
-        paths.reduce(
-          (acc, configFile) => {
-            const potentialRoot = dirname(configFile);
-            if (checkIfConfigFileShouldBeProject(potentialRoot, context)) {
-              acc.roots.push(potentialRoot);
-              acc.configFiles.push(configFile);
-            }
-            return acc;
-          },
-          {
-            roots: [],
-            configFiles: [],
-          } as {
-            roots: string[];
-            configFiles: string[];
-          }
-        );
+//         const { roots: projectRoots, configFiles: validConfigFiles } =
+//         paths.reduce(
+//           (acc, configFile) => {
+//             const potentialRoot = dirname(configFile);
+//             if (checkIfConfigFileShouldBeProject(potentialRoot, context)) {
+//               acc.roots.push(potentialRoot);
+//               acc.configFiles.push(configFile);
+//             }
+//             return acc;
+//           },
+//           {
+//             roots: [],
+//             configFiles: [],
+//           } as {
+//             roots: string[];
+//             configFiles: string[];
+//           }
+//         );
   
 
-        return await createNodesFromFiles(
-            async (configFile, _, context, index) => {
-                const projectRoot = dirname(configFile);
-            },
-            validConfigFiles,
-            options,
-            context
-        )
-    }
-]
+//         return await createNodesFromFiles(
+//             async (configFile, _, context, index) => {
+//                 const projectRoot = dirname(configFile);
+//             },
+//             validConfigFiles,
+//             options,
+//             context
+//         )
+//     }
+// ]

@@ -5,6 +5,7 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+
     "build": {
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
@@ -15,6 +16,17 @@
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
-    }
+    },
+    "rollup-api": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:api-extractor",      
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/blocks/dist/index.d.ts",
+        "reportFolder": "packages/blocks/api",
+        "projectFolder": "packages/blocks"
+    }      
+  }
+
   }
 }

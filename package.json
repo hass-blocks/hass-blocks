@@ -50,7 +50,15 @@
     }
   },
   "dependencies": {
+    "@nx/devkit": "20.8.0",
+    "@nx/plugin": "20.8.0",
     "@types/react": "^19.1.2",
     "ink-spinner": "^5.0.0"
-  }
+  },
+  "executors": "./executors.json",
+  "files": [
+    "dist",
+    "!**/*.tsbuildinfo",
+    "executors.json"
+  ]
 }

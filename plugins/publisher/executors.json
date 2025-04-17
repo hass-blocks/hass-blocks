@@ -1,0 +1,9 @@
+{
+  "executors": {
+    "api-extractor": {
+      "implementation": "./dist/executors/api-extractor",
+      "schema": "./dist/executors/schema.json",
+      "description": "api-extractor executor"
+    }
+  }
+}

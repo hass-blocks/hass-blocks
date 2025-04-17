@@ -8,6 +8,9 @@
     },
     {
       "path": "./packages/blocks"
+    },
+    {
+      "path": "./plugins/publisher"
     }
   ]
 }

@@ -61,6 +61,7 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    needs: [checks, test]
     steps:
       - uses: actions/checkout@v4
         with:
@@ -77,6 +78,9 @@ jobs:
           cache: 'pnpm'
 
       - run: pnpm install --frozen-lockfile
+      - run: git config --global user.email "bwainwright28@gmail.com"
+      - run: git config --global user.name "Ben Wainwright"
+
       - uses: nrwl/nx-set-shas@v4
       - run: pnpm exec nx affected --target version
         env:

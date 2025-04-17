@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [18, 20, 22, 23, 24]
+        node_version: [18, 20, 22, 23]
         check: [lint, test, build]
     steps:
       - uses: actions/checkout@v4

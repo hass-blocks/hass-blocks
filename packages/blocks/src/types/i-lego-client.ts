@@ -1,4 +1,4 @@
-import { State } from "@hass-blocks/homeassistant-typescript";
+import { State } from "homeassistant-typescript";
 import { CallServiceParams } from "./call-service-params.ts";
 import { HassEntity } from "./hass-events.ts";
 import { IBlock } from "./i-block.ts";

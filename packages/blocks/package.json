@@ -25,7 +25,7 @@
     "@microsoft/api-extractor": "7.52.3",
     "@swc/helpers": "~0.5.11",
     "dotenv": "16.4.7",
-    "@hass-blocks/homeassistant-typescript": "0.0.1",
+    "homeassistant-typescript": "0.0.1",
     "ink": "5.2.0",
     "queue-typescript": "1.0.1",
     "react": "18.3.1",

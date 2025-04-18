@@ -1,4 +1,4 @@
-import { IClient, Event, TriggerEventMessage } from "@hass-blocks/homeassistant-typescript";
+import { IClient, Event, TriggerEventMessage } from "homeassistant-typescript";
 import { Automation } from "../building-blocks/index.ts";
 import { HassEntity, IEventBus } from "../types/index.ts";
 import { Block } from "../core/index.ts";

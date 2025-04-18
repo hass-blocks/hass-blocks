@@ -1,4 +1,4 @@
-import { getConfig, initialiseClient } from "@hass-blocks/homeassistant-typescript";
+import { getConfig, initialiseClient } from "homeassistant-typescript";
 import { ConnectionArgs, LegoConnection } from "../types/index.ts";
 import { LegoClient } from "./lego-client.ts";
 import { EventBus } from "../core/index.ts";

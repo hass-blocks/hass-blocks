@@ -8,6 +8,7 @@ export default defineConfig(() => ({
     watch: false,
     globals: true,
     globalSetup: "src/test-support/e2e-global-setup.ts",
+    setupFiles: "src/test-support/setup-post-release-mock.ts",
     include: ["./src/e2e-tests/*.spec.ts"],
     environment: 'node',
     reporters: ['default'],

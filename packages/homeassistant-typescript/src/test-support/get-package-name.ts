@@ -1,10 +1,14 @@
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { safeJsonParse } from '../lib/utils/index.ts';
-import { PackageJson } from 'type-fest';
+import { IPackageJson } from 'package-jsoVn-type';
 
 export const getPackageName = () => {
   const projectRoot = join(import.meta.dirname, '..', '..');
   const contents = readFileSync(join(projectRoot, './package.json'), 'utf8');
-  return safeJsonParse<PackageJson>(contents)['name'];
+  return safeJsonParse<IPackageJson>(contents)['name'];
 };
+
+class PackageJson {
+  public constructor()
+}

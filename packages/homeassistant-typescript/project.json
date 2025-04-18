@@ -28,6 +28,9 @@
     },
     "e2e-test": {
       "executor": "@nx/vite:test",
+      "configurations": {
+        "post-release": {}
+      },
       "options": {
         "cwd": "packages/homeassistant-typescript",
         "config": "packages/homeassistant-typescript/vite.config.e2e.ts"

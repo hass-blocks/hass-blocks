@@ -51,14 +51,15 @@
   ],
   "release": {
     "changelog": {
-      "projectChangelogs": true
+      "projectChangelogs": true,
+      "automaticFromRef": true
     },
     "projectsRelationship": "independent",
     "projects": ["packages/*"],
     
     "version": {
       "generatorOptions": {
-        "fallbackCurrentVersionResolver":"disk"
+        "fallbackCurrentVersionResolver": "disk"
       },  
       "conventionalCommits": true,
       "preVersionCommand": "npx nx run-many --target rollup-api"

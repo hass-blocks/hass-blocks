@@ -82,7 +82,7 @@ jobs:
       - run: git config --global user.name "Ben Wainwright"
 
       - uses: nrwl/nx-set-shas@v4
-      - run: pnpm exec nx affected --target version
+      - run: pnpm exec nx affected --parallel=1 --target version
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

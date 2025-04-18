@@ -16,6 +16,7 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
   const projectRoot = join(root, options.projectFolder)
   const packageJsonFullPath = join(projectRoot, `package.json`)
   const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`)
+  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`)
   const reportFolder = join(projectRoot, `api`)
 
   logger.info(`Starting API extractor...`)
@@ -36,7 +37,7 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
       },
     
       dtsRollup: {
-        publicTrimmedFilePath: options.mainEntrypointFile,
+        publicTrimmedFilePath,
         enabled: true,
       }
     },

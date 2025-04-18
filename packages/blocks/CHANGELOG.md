@@ -1,3 +1,17 @@
+# 1.0.0 (2025-04-18)
+
+### 🚀 Features
+
+- ⚠️  **blocks:** make the dsl more intuitive ([54e1bac](https://github.com/benwainwright/hass-blocks/commit/54e1bac))
+
+### ⚠️  Breaking Changes
+
+- **blocks:** changes props on the sequence functions
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.1 (2025-04-18)
 
 ### 🧱 Updated Dependencies

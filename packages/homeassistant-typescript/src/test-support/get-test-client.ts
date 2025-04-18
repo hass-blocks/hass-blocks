@@ -1,4 +1,4 @@
-import { initialiseClient } from "../test-support/package-intercept.ts";
+import { initialiseClient } from "./package-intercept.ts";
 import { getConfig } from "../lib/core/index.ts";
 import { inject } from "vitest";
 

@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { getTestClient } from "./get-test-client.ts";
+import { getTestClient } from "../test-support/get-test-client.ts";
 
 describe("The Hass SDK", () => {
   describe("getErrorLog", () => {

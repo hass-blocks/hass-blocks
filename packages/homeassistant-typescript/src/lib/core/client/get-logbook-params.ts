@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export interface GetLogbookParams {
   timestamp?: Date;

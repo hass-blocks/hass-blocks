@@ -1,7 +1,7 @@
 import { Command } from "./command.ts";
 
 /**
- * @alpha
+ * @public
  */
 export interface CallServiceCommand extends Command {
   /**

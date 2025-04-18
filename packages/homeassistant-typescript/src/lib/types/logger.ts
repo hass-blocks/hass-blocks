@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export interface Logger {
   trace: (message: string) => void;

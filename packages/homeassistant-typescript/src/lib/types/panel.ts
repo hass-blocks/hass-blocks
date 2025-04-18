@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export interface Panel {
   component_name: string;

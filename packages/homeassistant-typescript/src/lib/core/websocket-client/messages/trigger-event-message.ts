@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export interface TriggerEventMessage<T = unknown> {
   id: number;

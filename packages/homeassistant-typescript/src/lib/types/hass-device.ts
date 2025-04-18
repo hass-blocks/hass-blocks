@@ -1,7 +1,7 @@
 /**
  * A registered Home Assistant device
  *
- * @alpha
+ * @public
  */
 export interface HassDevice {
   area_id: string | null;

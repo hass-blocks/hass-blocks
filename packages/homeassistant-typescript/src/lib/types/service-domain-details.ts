@@ -1,7 +1,7 @@
 import { Service } from "./services.ts";
 
 /**
- * @alpha
+ * @public
  */
 export interface ServiceDomainDetails {
   domain: string;

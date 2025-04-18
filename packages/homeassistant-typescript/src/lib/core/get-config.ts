@@ -1,4 +1,4 @@
-import { HassConfig } from "../types/index.ts";
+import type { HassConfig } from "../types/index.ts";
 import {
   HASS_HOST_ENV,
   HASS_HTTP_PATH_ENV,

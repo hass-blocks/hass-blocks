@@ -9,7 +9,7 @@ import { RestClient } from "./rest-client/index.ts";
  * to use. Use with {@link getConfig} to get the correct config values
  *
  * @param config - Config for the Home Assistant client
- * @alpha
+ * @public
  *
  * @example
  *

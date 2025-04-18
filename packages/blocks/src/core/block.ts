@@ -1,7 +1,7 @@
 import { BlockOutput, IEventBus, IBlock, ILegoClient } from "../types/index.ts";
 
 /**
- * @alpha
+ * @public
  */
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   public constructor(

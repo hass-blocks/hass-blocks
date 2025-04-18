@@ -11,7 +11,7 @@ import { automation } from "./automation.ts";
 import { Block } from "../core/index.ts";
 
 /**
- * @alpha
+ * @public
  */
 export const sequence = <
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

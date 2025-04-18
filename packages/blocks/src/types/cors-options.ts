@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export interface CorsOptions {
   origin: string;

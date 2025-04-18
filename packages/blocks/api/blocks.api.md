@@ -61,7 +61,7 @@ export interface ConnectionArgs {
     corsOptions: CorsOptions;
 }
 
-// @alpha (undocumented)
+// @public (undocumented)
 export interface CorsOptions {
     // (undocumented)
     methods: string[];
@@ -72,7 +72,7 @@ export interface CorsOptions {
 // @public
 export const getConnection: (args?: ConnectionArgs) => Promise<LegoConnection>;
 
-// @alpha (undocumented)
+// @public (undocumented)
 export type HassLegoEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted;
 
 // @public (undocumented)
@@ -114,7 +114,7 @@ export interface LegoConnection {
     socket: Server;
 }
 
-// @alpha (undocumented)
+// @public (undocumented)
 export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;
 
 // @public (undocumented)

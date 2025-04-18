@@ -1,7 +1,7 @@
 import { HassLegoError } from "./hass-lego-error.ts";
 
 /**
- * @alpha
+ * @public
  */
 export class ExecutionAbortedError extends HassLegoError {
   public constructor(name: string) {

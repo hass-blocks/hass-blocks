@@ -5,7 +5,7 @@ import { v4 } from "uuid";
 const AUTOMATION_EVENT = "AUTOMATION_EVENT";
 
 /**
- * @alpha
+ * @public
  */
 export class EventBus implements IEventBus {
   private bus = new EventEmitter();

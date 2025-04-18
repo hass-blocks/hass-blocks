@@ -25,14 +25,6 @@
         "reportFolder": "packages/blocks/api",
         "projectFolder": "packages/blocks"
       }
-    },
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "baseBranch": "main",
-        "preset": "conventionalcommits"
-      },
-      "postTargets": ["build", "publish"]
     }
   }
 }

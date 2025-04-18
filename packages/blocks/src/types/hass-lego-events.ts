@@ -10,7 +10,7 @@ export interface SerialisedBlock {
 }
 
 /**
- * @alpha
+ * @public
  */
 export type HassLegoEvent =
   | AutomationRegistered
@@ -23,7 +23,7 @@ export type HassLegoEvent =
   | SequenceAborted;
 
 /**
- * @alpha
+ * @public
  */
 export interface StateChanged {
   type: "hass-state-changed";
@@ -39,7 +39,7 @@ interface BaseHassEvent {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface AutomationRegistered {
   type: "automation";
@@ -49,7 +49,7 @@ export interface AutomationRegistered {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface GeneralFailure {
   type: "generalFailure";
@@ -59,7 +59,7 @@ export interface GeneralFailure {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface BlockStarted extends BaseHassEvent {
   type: string;
@@ -69,7 +69,7 @@ export interface BlockStarted extends BaseHassEvent {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface BlockFinished<O = unknown> extends BaseHassEvent {
   type: string;
@@ -79,7 +79,7 @@ export interface BlockFinished<O = unknown> extends BaseHassEvent {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface BlockFailed extends BaseHassEvent {
   type: string;
@@ -90,7 +90,7 @@ export interface BlockFailed extends BaseHassEvent {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface BlockPending extends BaseHassEvent {
   type: string;

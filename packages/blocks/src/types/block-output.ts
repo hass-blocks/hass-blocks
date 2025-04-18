@@ -4,7 +4,7 @@ export type BlockOutput<O> =
   | ConditionResult<O>;
 
 /**
- * @alpha
+ * @public
  */
 export interface ContinueOutput<O> {
   continue: true;
@@ -20,7 +20,7 @@ export interface ConditionResult<O> {
 }
 
 /**
- * @alpha
+ * @public
  */
 export interface StopOutput {
   continue: false;

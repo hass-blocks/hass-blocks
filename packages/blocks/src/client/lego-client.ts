@@ -7,7 +7,7 @@ import { ILegoClient } from "src/types/i-lego-client.ts";
 import { CallServiceParams } from "src/core/lego-client.ts";
 
 /**
- * @alpha
+ * @public
  */
 export class LegoClient implements ILegoClient {
   private states: Map<string, HassEntity> | undefined;

@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export type HassContext = {
   id: string;
@@ -8,7 +8,7 @@ export type HassContext = {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassEventBase = {
   origin: string;
@@ -17,7 +17,7 @@ export type HassEventBase = {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassEvent = HassEventBase & {
   event_type: string;
@@ -26,7 +26,7 @@ export type HassEvent = HassEventBase & {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassStateChangedEvent = HassEventBase & {
   event_type: "state_changed";
@@ -38,7 +38,7 @@ export type HassStateChangedEvent = HassEventBase & {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassEntityBase = {
   entity_id: string;
@@ -50,7 +50,7 @@ export type HassEntityBase = {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassEntityAttributeBase = {
   friendly_name?: string;
@@ -66,7 +66,7 @@ export type HassEntityAttributeBase = {
 };
 
 /**
- * @alpha
+ * @public
  */
 export type HassEntity = HassEntityBase & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

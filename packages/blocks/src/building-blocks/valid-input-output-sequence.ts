@@ -3,7 +3,7 @@ import { Block } from "../core/index.ts";
 /**
  * Given an array of blocks, get the input type from the first block
  *
- * @alpha
+ * @public
  */
 export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
   T extends readonly [infer First, ...unknown[]]
@@ -15,7 +15,7 @@ export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
 /**
  * Given an array of blocks, get the output type from the last block
  *
- * @alpha
+ * @public
  */
 export type GetSequenceOutput<T extends ReadonlyArray<unknown>> =
   T extends readonly [...unknown[], infer Last]
@@ -27,7 +27,7 @@ export type GetSequenceOutput<T extends ReadonlyArray<unknown>> =
 /**
  * Given a block, extract the input type
  *
- * @alpha
+ * @public
  */
 export type InputType<T extends Block<unknown, unknown>> = Exclude<
   T["inputType"],
@@ -37,7 +37,7 @@ export type InputType<T extends Block<unknown, unknown>> = Exclude<
 /**
  * Given a block, extract the output type
  *
- * @alpha
+ * @public
  */
 export type OutputType<T extends Block<unknown, unknown>> =
   Exclude<T["outputType"], undefined> extends Promise<infer T>
@@ -50,7 +50,7 @@ export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<
 >;
 
 /**
- * @alpha
+ * @public
  */
 export type ValidInputOutputSequence<
   I,
@@ -77,7 +77,7 @@ export type ValidInputOutputSequence<
 /**
  * Get all of the outputs of a sequence of blocks
  *
- * @alpha
+ * @public
  */
 export type GetOutputs<T extends readonly Block<unknown, unknown>[]> =
   T extends readonly [
@@ -90,7 +90,7 @@ export type GetOutputs<T extends readonly Block<unknown, unknown>[]> =
 /**
  * Get all of the results of a sequence of blocks
  *
- * @alpha
+ * @public
  */
 export type GetResults<T extends readonly Block<unknown, unknown>[]> =
   T extends readonly [

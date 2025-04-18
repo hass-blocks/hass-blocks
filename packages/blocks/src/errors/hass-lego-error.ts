@@ -1,5 +1,5 @@
 /**
- * @alpha
+ * @public
  */
 export class HassLegoError extends Error {
   public constructor(message: string) {

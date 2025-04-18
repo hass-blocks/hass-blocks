@@ -70,7 +70,7 @@ const turnLivingRoomLights = (onOrOff: "on" | "off") =>
     name: 'Turn on the light in the living room',
     params: {
       domain: 'light',
-      service: 'turn_on',
+      service: onOrOff === "on" ? "on" : "off",
       target: {
         entity_id: 'light.living_room',
       },

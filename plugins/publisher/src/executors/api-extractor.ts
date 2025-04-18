@@ -36,6 +36,7 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
       },
     
       dtsRollup: {
+        publicTrimmedFilePath: options.mainEntrypointFile,
         enabled: true,
       }
     },

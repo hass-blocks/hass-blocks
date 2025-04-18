@@ -27,13 +27,6 @@
           }
         ]
       }
-    },
-    "version": {
-      "executor": "@jscutlery/semver:version",
-      "options": {
-        "push": true,
-        "postTargets": ["build", "release"]
-      }
     }
   }
 }

@@ -31,7 +31,8 @@
       "options": {
         "baseBranch": "main",
         "preset": "conventionalcommits"
-      }
+      },
+      "postTargets": ["build", "publish"]
     }
   }
 }

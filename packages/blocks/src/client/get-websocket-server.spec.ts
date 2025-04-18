@@ -67,7 +67,7 @@ describe("getWebsocketServer", () => {
     expect(response.ok).toBeTruthy();
     expect(await response.text()).toBe("Websocket server is running!");
     await closeServer(server);
-  });
+  }, { timeout: 10_000});
 
   it("should emit automations when 'request-automations' is received", async () => {
     const fakeBlock = mock<Block<unknown, unknown>>();

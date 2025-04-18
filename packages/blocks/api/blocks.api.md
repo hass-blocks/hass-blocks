@@ -25,8 +25,8 @@ export const assertion: <I = void, O = void>(config: AssertionConfig<I, O>) => B
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: {
     name: string;
     id?: string;
-    actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
-    trigger?: ITrigger | ITrigger[];
+    then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+    when?: ITrigger | ITrigger[];
     mode?: ExecutionMode;
 }) => Block<I, O>;
 

@@ -1,3 +1,13 @@
+## 0.3.2 (2025-04-18)
+
+### 🩹 Fixes
+
+- **homeassistant-typescript:** switch log over again ([bd6109a](https://github.com/benwainwright/hass-blocks/commit/bd6109a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.1 (2025-04-18)
 
 ### 🩹 Fixes

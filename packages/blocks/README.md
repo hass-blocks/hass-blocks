@@ -102,7 +102,7 @@ I don't want to switch the light off straight away - so lets implement a 'wait' 
 import { action } from "@hass-blocks/blocks"
 
 export const waitMinutes = (duration: number) =>
-  new Action({
+  action({
     name: `Wait ${duration} minutes`,
     callback: async () => {
       return await new Promise<void>((accept) =>

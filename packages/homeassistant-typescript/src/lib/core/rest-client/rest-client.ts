@@ -73,14 +73,14 @@ export class RestClient {
     this.logger.trace(
       `Request (http): ${method} ${apiPath} body: [${JSON.stringify(
         body,
-      )}] response: (${response.status}) [${text}]`,
+      )}] - response: (${response.status}) [${text}]`,
     );
 
     if (response.ok || response.status === HTTP.statusCodes.notModified) {
       return response.headers.get("content-type")?.includes("json")
         ? safeJsonParse<R>(text)
         : // TODO this is nasty. Should improve this.
-          (text as R);
+        (text as R);
     }
     throw new HassHttpError(response.status, text);
   }

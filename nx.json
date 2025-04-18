@@ -50,8 +50,13 @@
     }
   ],
   "release": {
+   "changelog": {
+      "projectChangelogs": true
+    },
+    "projectsRelationship": "independent",
+    "projects": ["packages/*"],
     "version": {
-      "preVersionCommand": "pnpm dlx nx run-many -t build"
+      "conventionalCommits": true
     }
   },
   "targetDefaults": {

@@ -73,7 +73,7 @@ export class RestClient {
     this.logger.trace(
       `Request (http): ${method} ${apiPath} body: [${JSON.stringify(
         body,
-      )}] response: (${response.status}) [${text}]`,
+      )}] - response: (${response.status}) [${text}]`,
     );
 
     if (response.ok || response.status === HTTP.statusCodes.notModified) {

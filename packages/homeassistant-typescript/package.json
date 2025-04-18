@@ -28,7 +28,7 @@
     "@types/ws": "8.18.1",
     "docker-compose": "0.24.3",
     "file-tree-walker-ts": "2.0.3",
-    "msw": "2.7.4",
+    "msw": "2.0.1",
     "typescript-docs-verifier": "2.5.3"
   }
 }

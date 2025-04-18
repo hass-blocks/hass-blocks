@@ -55,7 +55,11 @@
     },
     "projectsRelationship": "independent",
     "projects": ["packages/*"],
+    
     "version": {
+      "generatorOptions": {
+        "fallbackCurrentVersionResolver":"disk"
+      },  
       "conventionalCommits": true,
       "preVersionCommand": "npx nx run-many --target rollup-api"
     }

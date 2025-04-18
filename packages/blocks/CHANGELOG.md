@@ -1,3 +1,13 @@
+## 1.0.3 (2025-04-18)
+
+### 🩹 Fixes
+
+- **blocks:** was overwriting the result of the parallel execution ([128d15a](https://github.com/benwainwright/hass-blocks/commit/128d15a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 1.0.2 (2025-04-18)
 
 ### 🩹 Fixes

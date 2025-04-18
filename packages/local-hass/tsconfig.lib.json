@@ -9,13 +9,12 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "../local-hass/src/lib/hass-server-credentials.ts"],
+  "include": ["src/**/*.ts"],
   "references": [],
   "exclude": [
-    "dist",
     "vite.config.ts",
     "vite.config.mts",
-    "vite.config.e2e.ts",
+    "vitest.config.ts",
     "vitest.config.mts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",

@@ -4,6 +4,7 @@ import { getTestClient } from "./get-test-client.ts";
 describe("The Hass SDK", () => {
   describe("getErrorLog", () => {
     it("returns a result which is a string", async () => {
+      console.log('start')
       const client = await getTestClient();
 
       const errorLog = await client.getErrorLog();

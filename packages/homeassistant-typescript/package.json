@@ -24,10 +24,11 @@
   "dependencies": {
     "@swc/helpers": "~0.5.11",
     "dotenv": "16.4.7",
-    "ws": "8.18.1",
-    "type-fest": "4.40.0"
+    "type-fest": "4.40.0",
+    "ws": "8.18.1"
   },
   "devDependencies": {
+    "@hass-blocks/local-hass": "workspace:*",
     "@types/ws": "8.18.1",
     "docker-compose": "0.24.3",
     "file-tree-walker-ts": "2.0.3",

@@ -6,7 +6,7 @@ export {
   TEST_HASS_PORT,
 } from './hass-server-credentials.ts';
 
-export { getTestClient } from './get-test-client.ts';
+export { clientBuilder } from './get-test-client.ts';
 
 export { TEST_ERROR_CODE, TEST_ERROR_MESSAGE } from './test-values.ts';
 

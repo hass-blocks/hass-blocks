@@ -130,3 +130,9 @@ export const livingRoomMotionSensor = automation({
   ]
 })
 ```
+
+And now the final part of the puzzle - lets register it with our client!
+
+```TypeScript
+client.registerAutomation(livingRoomMotionSensor)
+```

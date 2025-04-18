@@ -22,5 +22,5 @@ export const sequence = <
   actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>,
   mode: ExecutionMode = ExecutionMode.Restart,
 ): Block<I, O> => {
-  return automation({ name: "Sequence", mode, actions });
+  return automation({ name: "Run in sequence", mode, actions });
 };

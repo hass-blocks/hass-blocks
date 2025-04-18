@@ -1,18 +1,25 @@
-import { Queue } from "queue-typescript";
-import EventEmitter from "events";
-import { v4 } from "uuid";
+import { Queue } from 'queue-typescript';
+import EventEmitter from 'events';
+import { v4 } from 'uuid';
 
-import { BlockOutput, Runnable, ILegoClient, IEventBus } from "../types/index.ts";
-import { ExecutionAbortedError } from "../errors/index.ts";
-import { Block } from "./block.ts";
+import {
+  BlockOutput,
+  Runnable,
+  ILegoClient,
+  IEventBus,
+} from '../types/index.ts';
+import { ExecutionAbortedError } from '../errors/index.ts';
+import { Block } from './block.ts';
 
-const EXECUTOR_FINISHED = "executor-finished";
-const EXECUTOR_ABORTED = "executor-aborted";
+const EXECUTOR_FINISHED = 'executor-finished';
+const EXECUTOR_ABORTED = 'executor-aborted';
 
 export enum BlockExecutionMode {
-  Parallel = "Parallel",
-  Sequence = "Sequence",
+  Parallel = 'Parallel',
+  Sequence = 'Sequence',
 }
+
+type Result = BlockOutput<unknown> & { success: boolean };
 
 type Output<O> = (BlockOutput<O> & { success: boolean }) | undefined;
 
@@ -37,7 +44,7 @@ export class Executor<I, O> implements Runnable {
     public triggerId: string,
     private input?: I,
     private executionMode?: BlockExecutionMode,
-    private parent?: Block<unknown, unknown>,
+    private parent?: Block<unknown, unknown>
   ) {
     const queueItems = sequence.map((item) => ({
       executionId: v4(),
@@ -48,12 +55,12 @@ export class Executor<I, O> implements Runnable {
   }
 
   private async runPromiseOrRejectWhenAborted<T>(
-    promiseFunction: () => Promise<T>,
+    promiseFunction: () => Promise<T>
   ): Promise<T> {
     const result = promiseFunction();
     return await new Promise<T>((accept, reject) => {
       const waitForAbortCallback = () => {
-        reject(new ExecutionAbortedError("Sequence was aborted"));
+        reject(new ExecutionAbortedError('Sequence was aborted'));
         this.bus.off(EXECUTOR_ABORTED, waitForAbortCallback);
       };
 
@@ -88,27 +95,27 @@ export class Executor<I, O> implements Runnable {
   private async executeBlock<Out>(
     executeId: string,
     block: Block<unknown, Out>,
-    input: unknown,
+    input: unknown
   ): Promise<BlockOutput<Out> & { success: boolean }> {
     const eventArgs = this.getEventArgs(executeId, block);
     try {
       if (this.aborted) {
-        throw new ExecutionAbortedError("Sequence was aborted");
+        throw new ExecutionAbortedError('Sequence was aborted');
       }
 
       this.events.emit({
-        status: "started",
+        status: 'started',
         ...eventArgs,
       });
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
-          await block.run(this.client, input, this.events, this.triggerId),
+          await block.run(this.client, input, this.events, this.triggerId)
       );
 
       this.events.emit({
         ...result,
-        status: "finished",
+        status: 'finished',
         output: result,
         ...eventArgs,
       });
@@ -117,7 +124,7 @@ export class Executor<I, O> implements Runnable {
     } catch (error) {
       if (error instanceof Error) {
         this.events.emit({
-          status: error instanceof ExecutionAbortedError ? "aborted" : "failed",
+          status: error instanceof ExecutionAbortedError ? 'aborted' : 'failed',
           error,
           message: error.message,
           ...eventArgs,
@@ -132,53 +139,59 @@ export class Executor<I, O> implements Runnable {
     this.executionQueue.toArray().forEach(({ block, executionId }) => {
       const eventArgs = this.getEventArgs(executionId, block);
       this.events.emit({
-        status: "pending",
+        status: 'pending',
         ...eventArgs,
       });
     });
+  }
+
+  private async waitOrAbort(lastResultPromise: Promise<Result>) {
+    const lastResult = await lastResultPromise;
+    const blockIndicatedToStop = !lastResult.continue;
+
+    const conditionalBlockFailed =
+      lastResult.continue &&
+      lastResult.outputType === 'conditional' &&
+      !lastResult.conditionResult;
+
+    if (blockIndicatedToStop || conditionalBlockFailed) {
+      this.abort();
+    }
+
+    return lastResult;
   }
 
   /**
    * Run blocks associated with this executor. Call `finished()` to get the execution outcome
    */
   public async run(): Promise<void> {
-    let lastResult: (BlockOutput<unknown> & { success: boolean }) | undefined;
-    const resultPromises: Promise<
-      (BlockOutput<unknown> & { success: boolean }) | undefined
-    >[] = [];
+    let lastResult: Result | undefined;
+    const resultPromises: Promise<Result | undefined>[] = [];
     this.emitPendingMessages();
+
     while (this.executionQueue.length > 0) {
       const { block, executionId } = this.executionQueue.dequeue();
 
       const lastResultPromise = this.executeBlock(
         executionId,
         block,
-        (lastResult?.continue && lastResult.output) ?? this.input,
+        (lastResult?.continue && lastResult.output) ?? this.input
       );
 
       resultPromises.push(lastResultPromise);
 
       if (this.executionMode === BlockExecutionMode.Sequence) {
-        lastResult = await lastResultPromise;
-        const blockIndicatedToStop = !lastResult.continue;
-
-        const conditionalBlockFailed =
-          lastResult.continue &&
-          lastResult.outputType === "conditional" &&
-          !lastResult.conditionResult;
-
-        if (blockIndicatedToStop || conditionalBlockFailed) {
-          this.abort();
-        }
+        lastResult = await this.waitOrAbort(lastResultPromise);
       }
     }
 
     if (this.executionMode === BlockExecutionMode.Parallel) {
       const result = await Promise.all(resultPromises);
       this.result = result as Output<O>[];
+    } else {
+      this.result = [{ ...(lastResult as BlockOutput<O>), success: true }];
     }
 
-    this.result = [{ ...(lastResult as BlockOutput<O>), success: true }];
     this.bus.emit(EXECUTOR_FINISHED);
   }
 
@@ -194,15 +207,15 @@ export class Executor<I, O> implements Runnable {
           } else {
             reject(
               new Error(
-                "Sequence finished without a result. This is probably a programming error",
-              ),
+                'Sequence finished without a result. This is probably a programming error'
+              )
             );
           }
         };
 
         const abortedCallback = () => {
           this.bus.off(EXECUTOR_ABORTED, abortedCallback);
-          reject(new ExecutionAbortedError(this.parent?.name ?? ""));
+          reject(new ExecutionAbortedError(this.parent?.name ?? ''));
         };
 
         this.bus.on(EXECUTOR_ABORTED, abortedCallback);

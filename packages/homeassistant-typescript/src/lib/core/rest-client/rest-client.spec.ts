@@ -37,7 +37,7 @@ describe("The REST client", () => {
     expect(logger.trace).toHaveBeenCalledWith(
       `Request (http): POST /api/test body: [${JSON.stringify({
         testArg: "test",
-      })}] - response: (200) [${JSON.stringify({ result: "ok" })}]`,
+      })}] response: (200) [${JSON.stringify({ result: "ok" })}]`,
     );
   });
 
@@ -60,7 +60,7 @@ describe("The REST client", () => {
     expect(logger.trace).toHaveBeenCalledWith(
       `Request (http): POST /api/test body: [${JSON.stringify({
         testArg: "test",
-      })}] - response: (401) [Unauthorized]`,
+      })}] response: (401) [Unauthorized]`,
     );
   });
 

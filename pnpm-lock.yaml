@@ -140,7 +140,7 @@ importers:
         version: 16.4.7
       homeassistant-typescript:
         specifier: 1.6.1
-        version: 1.6.1(@types/node@22.14.1)(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1))
+        version: 1.6.1(@types/node@22.14.1)(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.0)
       ink:
         specifier: 5.2.0
         version: 5.2.0(@types/react@19.1.2)(react@18.3.1)
@@ -158,7 +158,7 @@ importers:
         version: 11.1.0
       vitest-mock-extended:
         specifier: 3.1.0
-        version: 3.1.0(typescript@5.8.2)(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1))
+        version: 3.1.0(typescript@5.8.2)(vitest@3.0.0)
       vitest-when:
         specifier: 0.6.0
         version: 0.6.0(@vitest/expect@3.1.1)(vitest@3.0.0)
@@ -171,6 +171,9 @@ importers:
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
+      type-fest:
+        specifier: 4.40.0
+        version: 4.40.0
       ws:
         specifier: 8.18.1
         version: 8.18.1
@@ -187,9 +190,6 @@ importers:
       msw:
         specifier: 2.7.4
         version: 2.7.4(@types/node@22.14.1)(typescript@5.8.2)
-      type-fest:
-        specifier: 4.40.0
-        version: 4.40.0
       typescript-docs-verifier:
         specifier: 2.5.3
         version: 2.5.3(@swc/core@1.5.29(@swc/helpers@0.5.17))(@types/node@22.14.1)(typescript@5.8.2)
@@ -9164,7 +9164,7 @@ snapshots:
       minimatch: 7.4.6
       semver: 7.6.3
 
-  '@vitest/coverage-v8@2.1.9(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1))':
+  '@vitest/coverage-v8@2.1.9(vitest@3.0.0)':
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@bcoe/v8-coverage': 0.2.3
@@ -11016,11 +11016,11 @@ snapshots:
 
   highlight.js@10.7.3: {}
 
-  homeassistant-typescript@1.6.1(@types/node@22.14.1)(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)):
+  homeassistant-typescript@1.6.1(@types/node@22.14.1)(eslint@9.24.0(jiti@2.4.2))(typescript@5.8.2)(vitest@3.0.0):
     dependencies:
       '@eslint/js': 8.57.1
       '@semantic-release/git': 10.0.1(semantic-release@24.2.3(typescript@5.8.2))
-      '@vitest/coverage-v8': 2.1.9(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1))
+      '@vitest/coverage-v8': 2.1.9(vitest@3.0.0)
       eslint-plugin-jsdoc: 46.10.1(eslint@9.24.0(jiti@2.4.2))
       eslint-plugin-no-relative-import-paths: 1.6.1
       globals: 13.24.0
@@ -13839,7 +13839,7 @@ snapshots:
       typescript: 5.7.3
       vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)
 
-  vitest-mock-extended@3.1.0(typescript@5.8.2)(vitest@3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)):
+  vitest-mock-extended@3.1.0(typescript@5.8.2)(vitest@3.0.0):
     dependencies:
       ts-essentials: 10.0.4(typescript@5.8.2)
       typescript: 5.8.2

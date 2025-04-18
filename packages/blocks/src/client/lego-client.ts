@@ -64,11 +64,11 @@ export class LegoClient implements ILegoClient {
     A extends ReadonlyArray<any>,
   >(automation: Automation<A, unknown, unknown>) {
     this._automations.push(automation);
-    const { trigger } = automation.config;
+    const { when } = automation.config;
 
     await automation.validate(this);
 
-    const triggers = Array.isArray(trigger) ? trigger : [trigger];
+    const triggers = Array.isArray(when) ? when : [when];
 
     await Promise.all(
       triggers.map(async (item) => {

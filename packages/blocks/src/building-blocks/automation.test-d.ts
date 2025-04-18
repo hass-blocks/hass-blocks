@@ -17,7 +17,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction] as const,
+      then: [oneAction] as const,
     });
 
     expectTypeOf(foo).toExtend<Block<string, number>>();
@@ -33,7 +33,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction],
+      then: [oneAction],
     });
 
     expectTypeOf(foo).toExtend<Block>();
@@ -50,7 +50,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction],
+      then: [oneAction],
     });
 
     expectTypeOf(foo).toExtend<Block<string>>();
@@ -67,7 +67,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction],
+      then: [oneAction],
     });
 
     expectTypeOf(foo).toExtend<Block<void, number>>();
@@ -90,7 +90,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction],
+      then: [oneAction, twoAction],
     });
 
     expectTypeOf(foo).toExtend<Block>();
@@ -114,7 +114,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction],
+      then: [oneAction, twoAction],
     });
 
     expectTypeOf(foo).toExtend<Block<string>>();
@@ -138,7 +138,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction],
+      then: [oneAction, twoAction],
     });
 
     expectTypeOf(foo).toExtend<Block<void, number>>();
@@ -163,7 +163,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction],
+      then: [oneAction, twoAction],
     });
 
     expectTypeOf(foo).toExtend<Block<string, number>>();
@@ -202,13 +202,13 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction, threeAction, fourAction] as const,
+      then: [oneAction, twoAction, threeAction, fourAction] as const,
     });
 
     expectTypeOf(foo).toExtend<Block<string, number>>();
   });
 
-  it("should correctly type the object when the types of the actions link together", () => {
+  it("should correctly type the object when the types of the then link together", () => {
     const oneAction = new Action({
       name: "This thing",
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -245,7 +245,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction, threeAction, fourAction],
+      then: [oneAction, twoAction, threeAction, fourAction],
     });
 
     expectTypeOf(foo).toExtend<Block<string, number>>();
@@ -288,7 +288,7 @@ describe("the automation class", () => {
 
     const foo = automation({
       name: "this automation",
-      actions: [oneAction, twoAction, threeAction, fourAction],
+      then: [oneAction, twoAction, threeAction, fourAction],
     });
 
     expectTypeOf(foo).toExtend<Block<string, number>>();
@@ -321,18 +321,18 @@ describe("the automation class", () => {
       },
     });
 
-    const trigger = mock<ITrigger>();
+    const when = mock<ITrigger>();
 
     const foo = automation({
-      trigger,
+      when,
       name: "this automation",
-      actions: [oneAction, twoAction, threeAction] as const,
+      then: [oneAction, twoAction, threeAction] as const,
     });
 
     expectTypeOf(foo).toExtend<Block<number>>();
   });
 
-  it("should produce an error when the types don't link up", () => {
+  it("should produce an error when the types thenn't link up", () => {
     const oneAction = new Action({
       name: "This thing",
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -369,8 +369,8 @@ describe("the automation class", () => {
 
     automation({
       name: "this automation",
-      // @ts-expect-error Expected error - the types don't link!
-      actions: [oneAction, twoAction, threeAction, fourAction],
+      // @ts-expect-error Expected error - the types thenn't link!
+      then: [oneAction, twoAction, threeAction, fourAction],
     });
   });
 });

@@ -22,12 +22,12 @@ afterEach(() => {
 });
 
 describe("automation.validate", () => {
-  it("calls all of the validate actions on its children, passing the client through completing silently if none of them reject", async () => {
+  it("calls all of the validate then on its children, passing the client through completing silently if none of them reject", async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
     const mockClient = mock<ILegoClient>();
 
-    const actions = [mockActionOne, mockActionTwo] as const;
+    const then = [mockActionOne, mockActionTwo] as const;
 
     mockActionOne.validate.mockResolvedValue();
     mockActionTwo.validate.mockResolvedValue();
@@ -37,7 +37,7 @@ describe("automation.validate", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -52,7 +52,7 @@ describe("automation.validate", () => {
 
     const mockClient = mock<ILegoClient>();
 
-    const actions = [mockActionOne, mockActionTwo] as const;
+    const then = [mockActionOne, mockActionTwo] as const;
 
     const error = new Error("Whoops!");
 
@@ -64,7 +64,7 @@ describe("automation.validate", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -74,7 +74,7 @@ describe("automation.validate", () => {
 
 describe("automation.run", () => {
   it("throws an error if there is no event bus", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -84,7 +84,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -94,7 +94,7 @@ describe("automation.run", () => {
   });
 
   it("throws an error if there is no trigger id", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -104,7 +104,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -112,7 +112,7 @@ describe("automation.run", () => {
   });
 
   it("If result is undefined, throw an error", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -126,7 +126,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -134,7 +134,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -154,8 +154,8 @@ describe("automation.run", () => {
     ).rejects.toThrow();
   });
 
-  it("In queue mode passes actions to an executor, enqueues the executor then returns the results when finished", async () => {
-    const actions = [
+  it("In queue mode passes then to an executor, enqueues the executor then returns the results when finished", async () => {
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -169,7 +169,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -177,7 +177,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -207,7 +207,7 @@ describe("automation.run", () => {
   });
 
   it("If the executor throws any other kind of error, rethrow", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -221,7 +221,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -229,7 +229,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -247,7 +247,7 @@ describe("automation.run", () => {
   });
 
   it("If the executor aborts, return a response with continue set to false", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -261,7 +261,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -269,7 +269,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -288,8 +288,8 @@ describe("automation.run", () => {
     expect(result.continue).toBeFalsy();
   });
 
-  it("In restart mode passes actions to an executor, restarts the runqueue, enqueues the executor then returns the results when finished", async () => {
-    const actions = [
+  it("In restart mode passes then to an executor, restarts the runqueue, enqueues the executor then returns the results when finished", async () => {
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -303,7 +303,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Restart,
     });
 
@@ -311,7 +311,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -342,7 +342,7 @@ describe("automation.run", () => {
   });
 
   it("Defaults to the restart behaviour when no execute mode is supplied", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -356,14 +356,14 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
     });
 
     const mockExecutor = mock<Executor<string, string>>();
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -394,7 +394,7 @@ describe("automation.run", () => {
   });
 
   it("In parallel mode calls run() on the executor directly without using the runqueue", async () => {
-    const actions = [
+    const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
@@ -408,7 +408,7 @@ describe("automation.run", () => {
 
     const automation = new Automation({
       name: "Test action",
-      actions,
+      then,
       mode: ExecutionMode.Parallel,
     });
 
@@ -416,7 +416,7 @@ describe("automation.run", () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...actions],
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -447,7 +447,7 @@ describe("automation.run", () => {
   });
 
   //it("when configured in queue mode, executions are queued", async () => {
-  //  const actions = [mock<Action<string, string>>(), mock<Action<string, string>>()] as const
+  //  const then = [mock<Action<string, string>>(), mock<Action<string, string>>()] as const
   //
   //  const mockClient = mock<LegoClient>()
   //  const events = mock<EventBus>()
@@ -459,7 +459,7 @@ describe("automation.run", () => {
   //
   //  const automation = new Automation({
   //    name: "Test action",
-  //    actions,
+  //    then,
   //    mode: ExecutionMode.Queue
   //  })
   //
@@ -481,7 +481,7 @@ describe("automation.run", () => {
   //    return [{ continue: true, outputType: "block", output: "foo", success: true }]
   //  })
   //
-  //  when(vi.mocked(Executor)).calledWith([...actions], mockClient, events, triggerIdOne, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorOne)
+  //  when(vi.mocked(Executor)).calledWith([...then], mockClient, events, triggerIdOne, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorOne)
   //
   //  const mockExecutorTwo = mock<Executor<string, string>>()
   //
@@ -500,7 +500,7 @@ describe("automation.run", () => {
   //    return [{ continue: true, outputType: "block", output: "foo", success: true }]
   //  })
   //
-  //  when(vi.mocked(Executor)).calledWith([...actions], mockClient, events, triggerIdTwo, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorTwo)
+  //  when(vi.mocked(Executor)).calledWith([...then], mockClient, events, triggerIdTwo, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorTwo)
   //
   //
   //  const firstPromise = automation.run(mockClient, input, events, triggerIdOne)

@@ -32,12 +32,12 @@ export class Automation<
     public config: {
       name: string;
       id?: string;
-      actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
-      trigger?: ITrigger | ITrigger[];
+      then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+      when?: ITrigger | ITrigger[];
       mode?: ExecutionMode;
     },
   ) {
-    super(config.id ?? md5(config.name), [...config.actions]);
+    super(config.id ?? md5(config.name), [...config.then]);
     this.name = this.config.name;
   }
 
@@ -59,7 +59,7 @@ export class Automation<
 
     try {
       const executor = new Executor<I, O>(
-        [...this.config.actions],
+        [...this.config.then],
         client,
         events,
         triggerId,
@@ -115,8 +115,8 @@ export const automation = <
 >(config: {
   name: string;
   id?: string;
-  actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
-  trigger?: ITrigger | ITrigger[];
+  then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+  when?: ITrigger | ITrigger[];
   mode?: ExecutionMode;
 }): Block<I, O> => {
   return new Automation<A, I, O>(config);

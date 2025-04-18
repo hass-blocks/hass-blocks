@@ -1,3 +1,15 @@
+## 1.0.2 (2025-04-18)
+
+### 🩹 Fixes
+
+- **blocks:** correct the broken types ([e72f46c](https://github.com/benwainwright/hass-blocks/commit/e72f46c))
+- **blocks:** correct mistake in readme ([bf8788a](https://github.com/benwainwright/hass-blocks/commit/bf8788a))
+- **blocks:** correct typing issue ([6c2bb29](https://github.com/benwainwright/hass-blocks/commit/6c2bb29))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 1.0.1 (2025-04-18)
 
 ### 🧱 Updated Dependencies

@@ -124,7 +124,7 @@ export const serviceCall: (serviceConfig: {
 }) => Block;
 
 // @public (undocumented)
-export const trigger: (name: string, id: string, trigger: Record<string, unknown>) => Trigger;
+export const trigger: (config: TriggerProps) => ITrigger;
 
 // @public (undocumented)
 export const when: <TO = void, EO = void, PO = void, I = void>(config: IfThenElseConditionConfig<TO, EO, PO, I>) => Block<I, TO | EO>;

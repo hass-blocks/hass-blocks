@@ -1,10 +1,11 @@
 import { vi } from "vitest";
-import { getTestClient } from "../test-support/get-test-client.ts";
+import { clientBuilder } from "../test-support/get-test-client.ts";
+
+const { getTestClient } = clientBuilder()
 
 describe("The Hass SDK", () => {
   describe("getErrorLog", () => {
     it("returns a result which is a string", async () => {
-      console.log('start')
       const client = await getTestClient();
 
       const errorLog = await client.getErrorLog();

@@ -27,9 +27,9 @@ import { getConnection } from "@hass-blocks/blocks"
 const { client } = await getConnection()
 ```
 
-### Writing your first automation
+## How it works
 
-Hass-blocks is all about creating blocks that describe what you want to happen. There are a few different kinds of blocks 
+Hass-blocks is all about creating blocks that describe what you want to happen and combining them with triggers to make an automation. There are a few different kinds of blocks 
 
 - **Actions** - a generic block that describes something you *want to happen*
 - **Service Calls** - an action that calls a Home Assistant service
@@ -39,4 +39,94 @@ Hass-blocks is all about creating blocks that describe what you want to happen. 
 
 Since this is a framework, its your job to write a whole bunch of blocks that you can then compose together in order to build your automations, so lets talk a little bit about how to do that.
 
+> [!NOTE]
+> It is very much my intention to write a package containing a whole series of premade blocks that you can use to easily build your automations. Watch this space...
 
+## Creating your automation
+
+A pretty standard action in my flat is to turn on the living room light - lets turn that into a block
+
+```TypeScript
+import { serviceCall } from "@hass-blocks/blocks"
+
+const turnOnLivingRoomLight = serviceCall({
+  name: "Turn on the light in the living room",
+  params: {
+    domain: "light",
+    service: "turn_on",
+    target: {
+      entity_id: "light.living_room"
+    }
+  }
+})
+```
+
+As well as making standalone actions, you can create factory functions that generate actions. So given that I am going to want to turn my light both on and off, lets do some refactoring
+
+
+```TypeScript
+const turnLivingRoomLights = (onOrOff: "on" | "off") =>
+  serviceCall({
+    name: 'Turn on the light in the living room',
+    params: {
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+```
+
+Ideally I want it to turn on when I walk in the room, so lets make a trigger
+
+```TypeScript
+import { trigger } from "@hass-blocks/blocks"
+
+const whenSomeoneWalksInTheLivingRoom = trigger({
+  name: 'When someone walks in the living room',
+  trigger: {
+    platform: 'state',
+    entity_id: 'binary_sensor.motion_occupancy',
+    from: 'off',
+    to: 'on',
+  },
+});
+
+```
+
+I don't want to switch the light off straight away - so lets implement a 'wait' action factory
+
+
+```TypeScript
+import { action } from "@hass-blocks/blocks"
+
+export const waitMinutes = (duration: number) =>
+  new Action({
+    name: `Wait ${duration} minutes`,
+    callback: async () => {
+      return await new Promise<void>((accept) =>
+        setTimeout(
+          () => {
+            accept();
+          },
+          1000 * 60 * duration
+        )
+      );
+    },
+  });
+```
+
+Ok, looks like we are ready to create our first automation! Lets put it all together
+
+```TypeScript
+export const livingRoomMotionSensor = automation({
+  name: "Living room motion sensor",
+  when: someoneWalksInTheLivingRoom,
+  then: [
+    turnLivingRoomLights('on'),
+    waitMinutes(10),
+    turnLivingRoomLights('off')
+  ]
+})
+```

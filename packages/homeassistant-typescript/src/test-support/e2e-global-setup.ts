@@ -10,7 +10,7 @@ export const setup = async () => {
     const packageName = getPackageName();
     console.log(`Installing ${packageName}`);
     const execCommand = promisify(exec);
-    await execCommand(`pnpm install ${packageName}@latest`);
+    await execCommand(`pnpm install npm:${packageName}@latest`);
   }
 
   console.log(" ℹ️  Starting test HASS server...");

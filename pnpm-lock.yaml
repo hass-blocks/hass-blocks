@@ -131,7 +131,7 @@ importers:
     dependencies:
       '@hass-blocks/homeassistant-typescript':
         specifier: 0.3.1
-        version: link:../homeassistant-typescript
+        version: 0.3.1
       '@microsoft/api-extractor':
         specifier: 7.52.3
         version: 7.52.3(@types/node@22.14.1)
@@ -165,6 +165,9 @@ importers:
 
   packages/homeassistant-typescript:
     dependencies:
+      '@hass-blocks/homeassistant-typescript':
+        specifier: npm:@hass-blocks/homeassistant-typescript@^0.3.1
+        version: 0.3.1
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -1093,6 +1096,9 @@ packages:
   '@eslint/object-schema@2.1.6':
     resolution: {integrity: sha512-RBMg5FRL0I0gs51M/guSAj5/e14VQ4tpZnQNWwuDT66P14I43ItmPfIZRhO9fUVIPOAQXU47atlywZ/czoqFPA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@hass-blocks/homeassistant-typescript@0.3.1':
+    resolution: {integrity: sha512-gPJwbeAWP5lvgHYoYAjNra+H7ohyg9flQxn+ttr3O9AkLMvUlJN/BWiJEzxiQy3/SEyFvG4feFf6SAzkeNW6tA==}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -6751,6 +6757,16 @@ snapshots:
 
   '@eslint/object-schema@2.1.6': {}
 
+  '@hass-blocks/homeassistant-typescript@0.3.1':
+    dependencies:
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      type-fest: 4.40.0
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@humanwhocodes/module-importer@1.0.1': {}
 
   '@humanwhocodes/retry@0.3.1': {}
@@ -8071,7 +8087,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.12
       tinyrainbow: 2.0.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)
 
   '@vitest/utils@3.0.0':
     dependencies:
@@ -12054,7 +12070,7 @@ snapshots:
   vitest-when@0.6.0(@vitest/expect@3.1.1)(vitest@3.0.0):
     dependencies:
       pretty-format: 29.7.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)
     optionalDependencies:
       '@vitest/expect': 3.1.1
 

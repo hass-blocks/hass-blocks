@@ -1,5 +1,5 @@
 import { Action } from "./action.ts";
-import { CallServiceCommand } from "homeassistant-typescript";
+import { CallServiceCommand } from "@hass-blocks/homeassistant-typescript";
 import { Block } from "../core/index.ts";
 
 class ServiceCall extends Action {

@@ -4,11 +4,11 @@
 
 ```ts
 
-import { CallServiceCommand } from 'homeassistant-typescript';
-import { Event as Event_2 } from 'homeassistant-typescript';
-import { HassConfig } from 'homeassistant-typescript';
+import { CallServiceCommand } from '@hass-blocks/homeassistant-typescript';
+import { Event as Event_2 } from '@hass-blocks/homeassistant-typescript';
+import { HassConfig } from '@hass-blocks/homeassistant-typescript';
 import { Server } from 'http';
-import { State } from 'homeassistant-typescript';
+import { State } from '@hass-blocks/homeassistant-typescript';
 
 // @public
 export const action: <I = void, O = void>(config: ActionArgs<I, O>) => Block<I, O>;

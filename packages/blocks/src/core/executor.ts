@@ -2,14 +2,13 @@ import { Queue } from "queue-typescript";
 import EventEmitter from "events";
 import { v4 } from "uuid";
 
-import { BlockOutput, Runnable, ILegoClient, IEventBus } from "../types/index.ts";
+import { BlockOutput, Runnable, ILegoClient, IEventBus, IBlock } from "../types/index.ts";
 import { ExecutionAbortedError } from "../errors/index.ts";
-import { Block } from "./block.ts";
 
 const EXECUTOR_FINISHED = "executor-finished";
 const EXECUTOR_ABORTED = "executor-aborted";
 
-export enum BlockExecutionMode {
+export enum IBlockExecutionMode {
   Parallel = "Parallel",
   Sequence = "Sequence",
 }
@@ -23,7 +22,7 @@ type Output<O> = (BlockOutput<O> & { success: boolean }) | undefined;
 export class Executor<I, O> implements Runnable {
   private executionQueue: Queue<{
     executionId: string;
-    block: Block<unknown, unknown>;
+    block: IBlock<unknown, unknown>;
   }>;
   private bus = new EventEmitter();
   private result: Output<O>[] | undefined;
@@ -31,13 +30,13 @@ export class Executor<I, O> implements Runnable {
   private aborted = false;
 
   public constructor(
-    sequence: Block<unknown, unknown>[],
+    sequence: IBlock<unknown, unknown>[],
     private client: ILegoClient,
     private events: IEventBus,
     public triggerId: string,
     private input?: I,
-    private executionMode?: BlockExecutionMode,
-    private parent?: Block<unknown, unknown>,
+    private executionMode?: IBlockExecutionMode,
+    private parent?: IBlock<unknown, unknown>,
   ) {
     const queueItems = sequence.map((item) => ({
       executionId: v4(),
@@ -73,7 +72,7 @@ export class Executor<I, O> implements Runnable {
     });
   }
 
-  private getEventArgs(executeId: string, block: Block<unknown, unknown>) {
+  private getEventArgs(executeId: string, block: IBlock<unknown, unknown>) {
     return {
       executeId,
       triggerId: this.triggerId,
@@ -85,9 +84,9 @@ export class Executor<I, O> implements Runnable {
     };
   }
 
-  private async executeBlock<Out>(
+  private async executeIBlock<Out>(
     executeId: string,
-    block: Block<unknown, Out>,
+    block: IBlock<unknown, Out>,
     input: unknown,
   ): Promise<BlockOutput<Out> & { success: boolean }> {
     const eventArgs = this.getEventArgs(executeId, block);
@@ -150,7 +149,7 @@ export class Executor<I, O> implements Runnable {
     while (this.executionQueue.length > 0) {
       const { block, executionId } = this.executionQueue.dequeue();
 
-      const lastResultPromise = this.executeBlock(
+      const lastResultPromise = this.executeIBlock(
         executionId,
         block,
         (lastResult?.continue && lastResult.output) ?? this.input,
@@ -158,22 +157,22 @@ export class Executor<I, O> implements Runnable {
 
       resultPromises.push(lastResultPromise);
 
-      if (this.executionMode === BlockExecutionMode.Sequence) {
+      if (this.executionMode === IBlockExecutionMode.Sequence) {
         lastResult = await lastResultPromise;
         const blockIndicatedToStop = !lastResult.continue;
 
-        const conditionalBlockFailed =
+        const conditionalIBlockFailed =
           lastResult.continue &&
           lastResult.outputType === "conditional" &&
           !lastResult.conditionResult;
 
-        if (blockIndicatedToStop || conditionalBlockFailed) {
+        if (blockIndicatedToStop || conditionalIBlockFailed) {
           this.abort();
         }
       }
     }
 
-    if (this.executionMode === BlockExecutionMode.Parallel) {
+    if (this.executionMode === IBlockExecutionMode.Parallel) {
       const result = await Promise.all(resultPromises);
       this.result = result as Output<O>[];
     }

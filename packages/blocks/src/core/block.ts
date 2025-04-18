@@ -1,12 +1,16 @@
-import { BlockOutput, IEventBus, IBlock, ILegoClient } from "../types/index.ts";
+import { BlockOutput, IEventBus, IBlock, ILegoClient } from '../types/index.ts';
 
 /**
  * @public
  */
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   public constructor(
-    private _id: string,
-    private children?: Block<unknown, unknown>[],
+    /**
+     * String to identify this particular instance of a block. Must be unique
+     */
+    public readonly id: string,
+
+    private children?: Block<unknown, unknown>[]
   ) {}
   public toJson() {
     return {
@@ -14,13 +18,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
       id: this.id,
       name: this.name,
     };
-  }
-
-  /**
-   * String to identify this particular instance of a block. Must be unique
-   */
-  public get id(): string {
-    return this._id;
   }
 
   public abstract readonly name: string;
@@ -45,7 +42,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     await Promise.all(
       this.children?.map(async (action) => {
         await action.validate(client);
-      }) ?? [],
+      }) ?? []
     );
   }
 
@@ -55,6 +52,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     client: ILegoClient,
     input: I,
     events?: IEventBus,
-    triggerId?: string,
+    triggerId?: string
   ): Promise<BlockOutput<O>> | BlockOutput<O>;
 }

@@ -130,7 +130,7 @@ importers:
   packages/blocks:
     dependencies:
       '@hass-blocks/homeassistant-typescript':
-        specifier: 0.3.0
+        specifier: 0.3.1
         version: link:../homeassistant-typescript
       '@microsoft/api-extractor':
         specifier: 7.52.3

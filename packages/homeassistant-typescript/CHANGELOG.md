@@ -1,3 +1,13 @@
+## 0.3.1 (2025-04-18)
+
+### 🩹 Fixes
+
+- **homeassistant-typescript:** put log back to how it was ([3e9591d](https://github.com/benwainwright/hass-blocks/commit/3e9591d))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.0 (2025-04-18)
 
 ### 🚀 Features

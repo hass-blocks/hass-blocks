@@ -11,6 +11,9 @@
     },
     {
       "path": "./plugins/publisher"
+    },
+    {
+      "path": "./packages/homeassistant-typescript"
     }
   ]
 }

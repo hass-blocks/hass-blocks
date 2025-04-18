@@ -25,7 +25,12 @@
         "reportFolder": "packages/homeassistant-typescript/api",
         "projectFolder": "packages/homeassistant-typescript"
       }
+    },
+    "e2e-tests": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "config": "apps/my-app/vite.config.ts"
+      }
     }
-
   }
 }

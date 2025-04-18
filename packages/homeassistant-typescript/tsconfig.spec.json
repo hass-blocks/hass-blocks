@@ -14,7 +14,7 @@
   "include": [
     "vite.config.ts",
     "vite.config.mts",
-    "vitest.config.ts",
+    "vite.config.e2e.ts",
     "vitest.config.mts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",

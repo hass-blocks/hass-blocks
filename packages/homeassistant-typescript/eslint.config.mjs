@@ -8,10 +8,7 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
-          ignoredDependencies: [
-            "type-fest",
-            ""
-          ],
+          ignoredDependencies: ['type-fest', ''],
           ignoredFiles: [
             '{projectRoot}/eslint.config.{js,cjs,mjs}',
             '{projectRoot}/vite.config.{js,ts,mjs,mts}',

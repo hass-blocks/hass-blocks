@@ -2,6 +2,7 @@ import type { IEventBus, CorsOptions, IBlock } from '../types/index.ts';
 
 import { Server } from 'socket.io';
 import { createServer } from 'http';
+import { EVENT_NAMES } from 'src/core/constants.ts';
 
 interface ServerProps {
   cors: CorsOptions;
@@ -50,7 +51,10 @@ export const getWebsocketServer = ({ cors, client, bus }: ServerProps) => {
     });
 
     bus.subscribe((event) => {
-      socket.emit('hass-lego-event', JSON.parse(stringifyCircularJSON(event)));
+      socket.emit(
+        EVENT_NAMES.HASS_BLOCKS_EVENT,
+        JSON.parse(stringifyCircularJSON(event)),
+      );
     });
   });
 

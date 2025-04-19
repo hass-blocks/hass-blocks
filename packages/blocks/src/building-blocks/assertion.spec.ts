@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 import { Assertion } from './assertion.ts';
 import { md5 } from '../utils/index.ts';
-import { ILegoClient } from '../types/index.ts';
+import { IBlocksClient } from '../types/index.ts';
 
 vi.mock('../utils/index.ts');
 
@@ -12,7 +12,7 @@ beforeEach(() => {
 
 describe('assertion.run', () => {
   it('calls the predicate and extracts the condition result from the object if it returns an object', async () => {
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const predicate = vi.fn();
     const input = 'foo';
     when(predicate)
@@ -35,12 +35,12 @@ describe('assertion.run', () => {
   });
 
   it('awaits promises when async functions are supplied as predicates', async () => {
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const input = 'foo';
 
     const predicate = async (
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      _client: ILegoClient,
+      _client: IBlocksClient,
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       _input: string | undefined,
     ) => true;
@@ -82,7 +82,7 @@ describe('assertion.run', () => {
   });
 
   it('calls the predicate and returns the result as the condition result if it returns a boolean', async () => {
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const predicate = vi.fn();
     const input = 'foo';
     when(predicate).calledWith(mockClient, input).thenReturn(false);

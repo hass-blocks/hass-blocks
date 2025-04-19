@@ -1,10 +1,10 @@
 import { IBlock } from './i-block.ts';
 import { IEventBus } from './i-event-bus.ts';
-import { ILegoClient } from './i-lego-client.ts';
+import { IBlocksClient } from './i-blocks-client.ts';
 
 export interface ITrigger {
   attachToClient: (
-    client: ILegoClient,
+    client: IBlocksClient,
     block: IBlock<unknown, unknown>,
     events: IEventBus,
   ) => Promise<void>;

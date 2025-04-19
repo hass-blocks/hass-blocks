@@ -15,7 +15,7 @@ import {
 import {
   IEventBus,
   BlockOutput,
-  ILegoClient,
+  IBlocksClient,
   ExecutionMode,
   ITrigger,
 } from '../types/index.ts';
@@ -49,7 +49,7 @@ export class Automation<
   public override typeString = 'automation';
 
   public override async run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input?: I,
     events?: IEventBus,
     triggerId?: string,

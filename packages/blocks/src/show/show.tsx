@@ -2,7 +2,7 @@ import { EventBus } from '../core/index.ts';
 import { useState, useEffect } from 'react';
 import { StaticLogView } from './static-log-view.tsx';
 import { Box, Text } from 'ink';
-import { HassLegoEvent } from '../types/index.ts';
+import { HassBlocksEvent } from '../types/index.ts';
 import { SummaryView } from './summary-view.tsx';
 
 interface ShowProps {
@@ -10,7 +10,7 @@ interface ShowProps {
   events: EventBus;
 }
 export const Show = ({ staticLog, events }: ShowProps) => {
-  const [logs, setLogs] = useState<(HassLegoEvent & { id: string })[]>([]);
+  const [logs, setLogs] = useState<(HassBlocksEvent & { id: string })[]>([]);
 
   useEffect(() => {
     events.subscribe((event) => {
@@ -23,7 +23,7 @@ export const Show = ({ staticLog, events }: ShowProps) => {
   return (
     <Box flexDirection="column" margin={1}>
       <Text color="green" bold>
-        Hass Lego started...
+        Hass Blocks started...
       </Text>
       {staticLog ? (
         <StaticLogView events={logs} />

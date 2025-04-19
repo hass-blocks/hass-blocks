@@ -1,6 +1,6 @@
-import { HassLegoError } from './hass-lego-error.ts';
+import { HassBlocksError } from './hass-blocks-error.ts';
 
-export class AssertionError extends HassLegoError {
+export class AssertionError extends HassBlocksError {
   public constructor(details: string) {
     super(details);
   }

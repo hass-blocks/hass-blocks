@@ -1,9 +1,9 @@
-import { HassLegoError } from './hass-lego-error.ts';
+import { HassBlocksError } from './hass-blocks-error.ts';
 
 /**
  * @public
  */
-export class EntityDoesNotExistError extends HassLegoError {
+export class EntityDoesNotExistError extends HassBlocksError {
   public constructor(id: string) {
     super(`Entity '${id}' does not exist`);
   }

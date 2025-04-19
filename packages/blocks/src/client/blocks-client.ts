@@ -4,19 +4,18 @@ import {
   TriggerEventMessage,
 } from '@hass-blocks/homeassistant-typescript';
 import { Automation } from '../building-blocks/index.ts';
-import { HassEntity, IEventBus } from '../types/index.ts';
+import { HassEntity, IEventBus, CallServiceParams } from '../types/index.ts';
 import { Block } from '../core/index.ts';
 import {
   EntityDoesNotExistError,
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
-import { ILegoClient } from 'src/types/i-lego-client.ts';
-import { CallServiceParams } from 'src/core/lego-client.ts';
+import { IBlocksClient } from 'src/types/i-blocks-client.ts';
 
 /**
  * @public
  */
-export class LegoClient implements ILegoClient {
+export class BlocksClient implements IBlocksClient {
   private states: Map<string, HassEntity> | undefined;
   private _automations: Block<unknown, unknown>[] = [];
 

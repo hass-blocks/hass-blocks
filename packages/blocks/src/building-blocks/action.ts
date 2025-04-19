@@ -1,7 +1,7 @@
 import { Block } from '../core/index.ts';
 import {
   BlockOutput,
-  ILegoClient,
+  IBlocksClient,
   IEventBus,
   BaseBlockConfig,
 } from '../types/index.ts';
@@ -17,8 +17,8 @@ export interface ActionArgs<I = void, O = void> extends BaseBlockConfig {
    * This callback will be executed when an automation runs this block
    */
   callback:
-    | ((client: ILegoClient, input: I) => O)
-    | ((client: ILegoClient, input: I) => Promise<O>);
+    | ((client: IBlocksClient, input: I) => O)
+    | ((client: IBlocksClient, input: I) => Promise<O>);
 }
 
 export class Action<I = void, O = void>
@@ -34,7 +34,7 @@ export class Action<I = void, O = void>
   public override readonly typeString: string = 'action';
 
   public override async run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _events?: IEventBus,

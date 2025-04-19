@@ -1,2 +1,2 @@
-export { LegoClient } from './lego-client.ts';
+export { BlocksClient } from './blocks-client.ts';
 export { getConnection } from './get-connection.ts';

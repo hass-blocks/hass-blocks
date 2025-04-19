@@ -2,8 +2,8 @@ import {
   getConfig,
   initialiseClient,
 } from '@hass-blocks/homeassistant-typescript';
-import { ConnectionArgs, LegoConnection } from '../types/index.ts';
-import { LegoClient } from './lego-client.ts';
+import { ConnectionArgs, BlocksConnection } from '../types/index.ts';
+import { BlocksClient } from './blocks-client.ts';
 import { EventBus } from '../core/index.ts';
 import { getWebsocketServer } from './get-websocket-server.ts';
 
@@ -12,7 +12,7 @@ import { getWebsocketServer } from './get-websocket-server.ts';
  */
 export const getConnection = async (
   args?: ConnectionArgs,
-): Promise<LegoConnection> => {
+): Promise<BlocksConnection> => {
   const corsOptions = args
     ? args.corsOptions
     : {
@@ -23,16 +23,16 @@ export const getConnection = async (
   const bus = new EventBus();
   const config = getConfig();
   const client = await initialiseClient(config);
-  const lego = new LegoClient(client, bus);
+  const blocks = new BlocksClient(client, bus);
 
   const websocketServer = getWebsocketServer({
     cors: corsOptions,
-    client: lego,
+    client: blocks,
     bus,
   });
 
   return {
-    client: lego,
+    client: blocks,
     socket: websocketServer,
     hassConfig: config,
     eventBus: bus,

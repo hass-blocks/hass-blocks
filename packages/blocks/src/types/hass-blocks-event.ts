@@ -12,7 +12,7 @@ export interface SerialisedBlock {
 /**
  * @public
  */
-export type HassLegoEvent =
+export type HassBlocksEvent =
   | AutomationRegistered
   | GeneralFailure
   | StateChanged

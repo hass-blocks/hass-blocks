@@ -6,7 +6,7 @@ import {
   Executor,
   Block,
 } from '../core/index.ts';
-import { BlockOutput, ILegoClient } from '../types/index.ts';
+import { BlockOutput, IBlocksClient } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 class ExecuteConcurrently<
@@ -29,7 +29,7 @@ class ExecuteConcurrently<
     this.name = this.config.name;
   }
 
-  public override async validate(client: ILegoClient) {
+  public override async validate(client: IBlocksClient) {
     await Promise.all(
       this.config.actions.map(async (action) => {
         await action.validate(client);
@@ -38,7 +38,7 @@ class ExecuteConcurrently<
   }
 
   public override async run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
     events?: EventBus,
     triggerId?: string,

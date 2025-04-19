@@ -1,11 +1,11 @@
-import { HassLegoEvent } from '../types/index.ts';
+import { HassBlocksEvent } from '../types/index.ts';
 import { Box, Text } from 'ink';
 
 interface StaticLogLineProps {
-  event: HassLegoEvent;
+  event: HassBlocksEvent;
 }
 
-const getIcon = (event: HassLegoEvent) => {
+const getIcon = (event: HassBlocksEvent) => {
   if ('status' in event) {
     switch (event.status) {
       case 'error':

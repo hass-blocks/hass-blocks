@@ -1,10 +1,10 @@
-import { HassLegoEvent } from './hass-lego-events.ts';
+import { HassBlocksEvent } from './hass-blocks-event.ts';
 
 export interface IEventBus {
-  emit: (event: HassLegoEvent) => void;
+  emit: (event: HassBlocksEvent) => void;
   subscribe: (
     callback: (
-      event: HassLegoEvent & { id: string; timestamp: string },
+      event: HassBlocksEvent & { id: string; timestamp: string },
     ) => void,
   ) => void;
 }

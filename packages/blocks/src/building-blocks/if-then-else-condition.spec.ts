@@ -5,7 +5,7 @@ import { when as testWhen } from 'vitest-when';
 import { Block } from '../core/index.ts';
 import { mock } from 'vitest-mock-extended';
 import { EventBus } from '../core/index.ts';
-import { ContinueOutput, ILegoClient } from '../types/index.ts';
+import { ContinueOutput, IBlocksClient } from '../types/index.ts';
 
 vi.mock('../utils/index.ts');
 
@@ -33,7 +33,7 @@ describe('ifThenElseCondition.run', () => {
       else: mockElseBlock,
     });
 
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const result = await condition.run(mockClient, 'foo');
 
     expect(mockThenBlock.run).not.toHaveBeenCalled();
@@ -55,7 +55,7 @@ describe('ifThenElseCondition.run', () => {
     const mockElseBlock = mock<Block<boolean, boolean>>();
 
     const mockEvents = new EventBus();
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const triggerId = 'foo';
 
     const blockOutput: ContinueOutput<boolean> = {
@@ -106,7 +106,7 @@ describe('ifThenElseCondition.run', () => {
     const mockElseBlock = mock<Block<boolean, boolean>>();
 
     const mockEvents = new EventBus();
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const triggerId = 'foo';
 
     const blockOutput: ContinueOutput<boolean> = {

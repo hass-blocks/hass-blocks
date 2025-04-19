@@ -1,4 +1,9 @@
-import { BlockOutput, IEventBus, IBlock, ILegoClient } from '../types/index.ts';
+import {
+  BlockOutput,
+  IEventBus,
+  IBlock,
+  IBlocksClient,
+} from '../types/index.ts';
 
 /**
  * @public
@@ -38,7 +43,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * If any configuration is invalid, an error should be thrown
    */
 
-  public async validate(client: ILegoClient): Promise<void> {
+  public async validate(client: IBlocksClient): Promise<void> {
     await Promise.all(
       this.children?.map(async (action) => {
         await action.validate(client);
@@ -49,7 +54,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   public abstract readonly typeString: string;
 
   public abstract run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
     events?: IEventBus,
     triggerId?: string,

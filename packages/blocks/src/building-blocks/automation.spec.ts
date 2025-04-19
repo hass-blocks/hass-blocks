@@ -11,7 +11,7 @@ import {
 import { Action } from './action.ts';
 import { Automation } from './automation.ts';
 
-import { ILegoClient, ExecutionMode } from '../types/index.ts';
+import { IBlocksClient, ExecutionMode } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
 
 vi.mock('../core/index.ts', async (importOriginal) => {
@@ -30,7 +30,7 @@ describe('automation.validate', () => {
   it('calls all of the validate then on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -55,7 +55,7 @@ describe('automation.validate', () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
 
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -83,7 +83,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
@@ -103,7 +103,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const input = 'foo';
 
@@ -121,7 +121,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -163,7 +163,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -214,7 +214,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -254,7 +254,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -296,7 +296,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -348,7 +348,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -399,7 +399,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -445,75 +445,4 @@ describe('automation.run', () => {
 
     expect.assertions(5);
   });
-
-  //it("when configured in queue mode, executions are queued", async () => {
-  //  const then = [mock<Action<string, string>>(), mock<Action<string, string>>()] as const
-  //
-  //  const mockClient = mock<LegoClient>()
-  //  const events = mock<EventBus>()
-  //  const triggerIdOne = "trigger-id-one"
-  //  const triggerIdTwo = "trigger-id-two"
-  //  const input = "foo"
-  //
-  //  let secondActionRun = false;
-  //
-  //  const automation = new Automation({
-  //    name: "Test action",
-  //    then,
-  //    mode: ExecutionMode.Queue
-  //  })
-  //
-  //  const mockExecutorOne = mock<Executor<string, string>>()
-  //
-  //
-  //  const runPromiseOne = new Promise<void>((accept) => {
-  //    // eslint-disable-next-line @typescript-eslint/require-await
-  //    mockExecutorOne.run.mockImplementation(async () => {
-  //      accept()
-  //      expect(secondActionRun).toEqual(false)
-  //    })
-  //  })
-  //
-  //
-  //  mockExecutorOne.finished.mockImplementation(async () => {
-  //    await runPromiseOne
-  //    expect(secondActionRun).toEqual(false)
-  //    return [{ continue: true, outputType: "block", output: "foo", success: true }]
-  //  })
-  //
-  //  when(vi.mocked(Executor)).calledWith([...then], mockClient, events, triggerIdOne, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorOne)
-  //
-  //  const mockExecutorTwo = mock<Executor<string, string>>()
-  //
-  //
-  //  const runPromiseTwo = new Promise<void>((accept) => {
-  //    // eslint-disable-next-line @typescript-eslint/require-await
-  //    mockExecutorTwo.run.mockImplementation(async () => {
-  //      secondActionRun = true
-  //      accept()
-  //    })
-  //  })
-  //
-  //
-  //  mockExecutorTwo.finished.mockImplementation(async () => {
-  //    await runPromiseTwo
-  //    return [{ continue: true, outputType: "block", output: "foo", success: true }]
-  //  })
-  //
-  //  when(vi.mocked(Executor)).calledWith([...then], mockClient, events, triggerIdTwo, input, BlockExecutionMode.Sequence, automation).thenReturn(mockExecutorTwo)
-  //
-  //
-  //  const firstPromise = automation.run(mockClient, input, events, triggerIdOne)
-  //  void automation.run(mockClient, input, events, triggerIdTwo)
-  //
-  //  const result = await firstPromise
-  //
-  //  if (result.continue) {
-  //    expect(result.output).toEqual("foo")
-  //    expect(result.continue).toEqual(true)
-  //    expect(result.outputType).toEqual("block")
-  //  }
-  //
-  //  expect.assertions(6)
-  //})
 });

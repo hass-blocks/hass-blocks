@@ -4,8 +4,9 @@ import { io as Client } from 'socket.io-client';
 import { getWebsocketServer } from './get-websocket-server.ts';
 import { mock } from 'vitest-mock-extended';
 import { Block, EventBus } from '../core/index.ts';
-import { ILegoClient, BlockStarted } from '../types/index.ts';
-import {} from '../types/hass-lego-events.ts';
+import { IBlocksClient, BlockStarted } from '../types/index.ts';
+import {} from '../types/hass-blocks-event.ts';
+import { EVENT_NAMES } from '../core/constants.ts';
 
 // A helper function to start a server on an ephemeral port.
 const listenServer = (
@@ -51,7 +52,7 @@ describe('getWebsocketServer', () => {
         type: 'type',
       });
 
-      const client = mock<ILegoClient>();
+      const client = mock<IBlocksClient>();
 
       client.getAutomations.mockReturnValue([fakeBlock]);
 
@@ -82,7 +83,7 @@ describe('getWebsocketServer', () => {
       type: 'type',
     });
 
-    const client = mock<ILegoClient>();
+    const client = mock<IBlocksClient>();
 
     client.getAutomations.mockReturnValue([fakeBlock]);
 
@@ -112,7 +113,7 @@ describe('getWebsocketServer', () => {
     await closeServer(server);
   });
 
-  it("should forward bus events as 'hass-lego-event' (excluding hass-state-changed)", async () => {
+  it("should forward bus events as 'hass-blocks-event' (excluding hass-state-changed)", async () => {
     const fakeBlock = mock<Block<unknown, unknown>>();
 
     fakeBlock.toJson.mockReturnValue({
@@ -123,7 +124,7 @@ describe('getWebsocketServer', () => {
 
     const bus = new EventBus();
 
-    const client = mock<ILegoClient>();
+    const client = mock<IBlocksClient>();
 
     const server = getWebsocketServer({
       cors: { origin: 'http://localhost', methods: ['GET', 'POST'] },
@@ -137,7 +138,7 @@ describe('getWebsocketServer', () => {
 
     // Wait for the event forwarded from the bus.
     const eventPromise = new Promise<BlockStarted>((resolve) => {
-      clientSocket.on('hass-lego-event', (data: BlockStarted) => {
+      clientSocket.on(EVENT_NAMES.HASS_BLOCKS_EVENT, (data: BlockStarted) => {
         resolve(data);
       });
     });

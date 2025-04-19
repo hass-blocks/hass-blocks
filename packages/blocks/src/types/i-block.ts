@@ -1,6 +1,6 @@
 import { BlockOutput } from './block-output.ts';
 import { IEventBus } from './i-event-bus.ts';
-import { ILegoClient } from './i-lego-client.ts';
+import { IBlocksClient } from './i-blocks-client.ts';
 import { SerialisedBlock } from './serialised-block.ts';
 
 export interface IBlock<I = void, O = void> {
@@ -14,12 +14,12 @@ export interface IBlock<I = void, O = void> {
 
   outputType: O | undefined;
 
-  validate: (client: ILegoClient) => Promise<void>;
+  validate: (client: IBlocksClient) => Promise<void>;
 
   typeString: string;
 
   run: (
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
     events?: IEventBus,
     triggerId?: string,

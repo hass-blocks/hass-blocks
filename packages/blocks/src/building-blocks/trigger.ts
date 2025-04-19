@@ -1,6 +1,6 @@
 import { md5 } from 'src/utils/md5.ts';
 import { Executor, Block } from '../core/index.ts';
-import { ILegoClient, IEventBus, ITrigger } from '../types/index.ts';
+import { IBlocksClient, IEventBus, ITrigger } from '../types/index.ts';
 import { v4 } from 'uuid';
 
 export interface TriggerProps {
@@ -21,7 +21,7 @@ class Trigger implements ITrigger {
   }
 
   public async attachToClient(
-    client: ILegoClient,
+    client: IBlocksClient,
     block: Block<unknown, unknown>,
     events: IEventBus,
   ) {

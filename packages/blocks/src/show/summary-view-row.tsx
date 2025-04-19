@@ -1,9 +1,9 @@
-import { HassLegoEvent } from '../types/index.ts';
+import { HassBlocksEvent } from '../types/index.ts';
 import { Box, Text } from 'ink';
 
 interface SummaryViewRowProps {
   name: string;
-  events: HassLegoEvent[];
+  events: HassBlocksEvent[];
 }
 
 export const SummaryViewRow = ({ events }: SummaryViewRowProps) => {

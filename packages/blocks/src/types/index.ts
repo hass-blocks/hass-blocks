@@ -8,19 +8,19 @@ export type {
   HassEventBase,
 } from './hass-events.ts';
 
-export type { LegoConnection } from './lego-connection.ts';
+export type { BlocksConnection } from './blocks-connection.ts';
 
 export type { ConnectionArgs } from './connection-args.ts';
 
-export type { ILegoClient } from './i-lego-client.ts';
+export type { IBlocksClient } from './i-blocks-client.ts';
 
 export type {
-  HassLegoEvent,
+  HassBlocksEvent,
   StateChanged,
   AutomationRegistered,
   GeneralFailure,
   BlockStarted,
-} from './hass-lego-events.ts';
+} from './hass-blocks-event.ts';
 
 export type {
   BlockOutput,

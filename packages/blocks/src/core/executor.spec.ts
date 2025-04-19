@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 import { v4 } from 'uuid';
 
-import { ILegoClient } from '../types/index.ts';
+import { IBlocksClient } from '../types/index.ts';
 import { EventBus, Block } from '../core/index.ts';
 
 import { BlockExecutionMode, Executor } from './executor.ts';
@@ -31,7 +31,7 @@ describe('executor', () => {
       toJson: () => ({ type: 'action', id: 'baz', name: 'baz' }),
     });
 
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -234,7 +234,7 @@ describe('executor', () => {
     const actionTwo = mock<Block<string, string>>();
     const actionThree = mock<Block<string, string>>();
 
-    const mockClient = mock<ILegoClient>();
+    const mockClient = mock<IBlocksClient>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';

@@ -1,9 +1,9 @@
-import { HassLegoError } from './hass-lego-error.ts';
+import { HassBlocksError } from './hass-blocks-error.ts';
 
 /**
  * @public
  */
-export class ExecutionAbortedError extends HassLegoError {
+export class ExecutionAbortedError extends HassBlocksError {
   public constructor(name: string) {
     super(`Execution '${name}' was aborted`);
   }

@@ -1,13 +1,13 @@
 import { EventBus, Block } from '../core/index.ts';
 import { AssertionError } from '../errors/index.ts';
-import { BlockOutput, ILegoClient } from '../types/index.ts';
+import { BlockOutput, IBlocksClient } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
  * @public
  */
 export type ConditionPredicate<PO = void, I = void> = (
-  client: ILegoClient,
+  client: IBlocksClient,
   input?: I,
 ) =>
   | Promise<boolean>
@@ -78,7 +78,7 @@ export class IfThenElseCondition<
   }
 
   public override async run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
     events?: EventBus,
     triggerId?: string,

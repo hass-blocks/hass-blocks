@@ -3,11 +3,11 @@ export { getConnection } from './client/index.ts';
 export type {
   CorsOptions,
   ConnectionArgs,
-  LegoConnection,
-  ILegoClient,
+  BlocksConnection,
+  IBlocksClient,
   IEventBus,
   CallServiceParams,
-  HassLegoEvent,
+  HassBlocksEvent,
   BaseBlockConfig,
 } from './types/index.ts';
 

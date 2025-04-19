@@ -1,5 +1,5 @@
 import { Block } from '../core/index.ts';
-import { ILegoClient, BlockOutput, BaseBlockConfig } from '../types/index.ts';
+import { IBlocksClient, BlockOutput, BaseBlockConfig } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
@@ -16,7 +16,7 @@ export interface AssertionConfig<I, O> extends BaseBlockConfig {
    * should finish
    */
   readonly predicate: (
-    client: ILegoClient,
+    client: IBlocksClient,
     input?: I,
   ) =>
     | Promise<boolean>
@@ -35,7 +35,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
   public override typeString = 'assertion';
 
   public override async run(
-    client: ILegoClient,
+    client: IBlocksClient,
     input: I,
   ): Promise<BlockOutput<O>> {
     const callbackResult = this.config.predicate(client, input);

@@ -3,7 +3,7 @@ import { CallServiceParams } from './call-service-params.ts';
 import { HassEntity } from './hass-events.ts';
 import { IBlock } from './i-block.ts';
 
-export interface ILegoClient {
+export interface IBlocksClient {
   loadStates: () => Promise<void>;
   getState: (id: string) => string;
   getEntity: (id: string) => HassEntity;

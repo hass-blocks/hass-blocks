@@ -105,6 +105,9 @@ importers:
       tslib:
         specifier: 2.3.0
         version: 2.3.0
+      type-fest:
+        specifier: 4.40.0
+        version: 4.40.0
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -172,6 +175,9 @@ importers:
 
   packages/homeassistant-typescript:
     dependencies:
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.17
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
@@ -182,9 +188,6 @@ importers:
       '@hass-blocks/local-hass':
         specifier: workspace:*
         version: link:../local-hass
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       '@types/ws':
         specifier: 8.18.1
         version: 8.18.1
@@ -8297,7 +8300,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.12
       tinyrainbow: 2.0.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)
 
   '@vitest/utils@3.0.0':
     dependencies:
@@ -12425,7 +12428,7 @@ snapshots:
   vitest-when@0.6.0(@vitest/expect@3.1.1)(vitest@3.0.0):
     dependencies:
       pretty-format: 29.7.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(yaml@2.7.1)
     optionalDependencies:
       '@vitest/expect': 3.1.1
 

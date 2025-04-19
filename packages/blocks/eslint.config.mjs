@@ -8,6 +8,9 @@ export default [
       '@nx/dependency-checks': [
         'error',
         {
+          ignoredDependencies: [
+            "@microsoft/api-extractor"
+          ],
           ignoredFiles: [
             '{projectRoot}/eslint.config.{js,cjs,mjs}',
             '{projectRoot}/eslint.config.{js,cjs,mjs}',

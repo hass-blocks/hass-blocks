@@ -1,11 +1,16 @@
-import { Executor, BlockExecutionMode, RunQueue, Block } from "../core/index.ts";
+import {
+  Executor,
+  BlockExecutionMode,
+  RunQueue,
+  Block,
+} from '../core/index.ts';
 
 import {
   GetSequenceInput,
   GetSequenceOutput,
   BlockRetainType,
   ValidInputOutputSequence,
-} from "./valid-input-output-sequence.ts";
+} from './valid-input-output-sequence.ts';
 
 import {
   IEventBus,
@@ -13,10 +18,10 @@ import {
   ILegoClient,
   ExecutionMode,
   ITrigger,
-} from "../types/index.ts";
+} from '../types/index.ts';
 
-import { ExecutionAbortedError } from "../errors/index.ts";
-import { md5 } from "../utils/index.ts";
+import { ExecutionAbortedError } from '../errors/index.ts';
+import { md5 } from '../utils/index.ts';
 
 export class Automation<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,7 +46,7 @@ export class Automation<
     this.name = this.config.name;
   }
 
-  public override typeString = "automation";
+  public override typeString = 'automation';
 
   public override async run(
     client: ILegoClient,
@@ -50,11 +55,11 @@ export class Automation<
     triggerId?: string,
   ): Promise<BlockOutput<O>> {
     if (!events) {
-      throw new Error("You must supply an event bus");
+      throw new Error('You must supply an event bus');
     }
 
     if (!triggerId) {
-      throw new Error("You must supply a trigger id");
+      throw new Error('You must supply a trigger id');
     }
 
     try {

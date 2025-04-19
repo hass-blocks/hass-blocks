@@ -1,23 +1,23 @@
-import { md5 } from "../utils/index.ts";
-import { when } from "./if-then-else-condition.ts";
-import { Assertion } from "./assertion.ts";
-import { when as testWhen } from "vitest-when";
-import { Block } from "../core/index.ts";
-import { mock } from "vitest-mock-extended";
-import { EventBus } from "../core/index.ts";
-import { ContinueOutput, ILegoClient } from "../types/index.ts";
+import { md5 } from '../utils/index.ts';
+import { when } from './if-then-else-condition.ts';
+import { Assertion } from './assertion.ts';
+import { when as testWhen } from 'vitest-when';
+import { Block } from '../core/index.ts';
+import { mock } from 'vitest-mock-extended';
+import { EventBus } from '../core/index.ts';
+import { ContinueOutput, ILegoClient } from '../types/index.ts';
 
-vi.mock("../utils/index.ts");
+vi.mock('../utils/index.ts');
 
 beforeEach(() => {
   vi.resetAllMocks();
 });
 
-describe("ifThenElseCondition.run", () => {
-  it("returns continue straight away without running branches when assertionResult.continue is false", async () => {
+describe('ifThenElseCondition.run', () => {
+  it('returns continue straight away without running branches when assertionResult.continue is false', async () => {
     const mockAssertion = mock<Assertion<string, boolean>>();
     mockAssertion.run.mockResolvedValue({
-      outputType: "conditional",
+      outputType: 'conditional',
       continue: false as true,
       conditionResult: false,
       output: false,
@@ -27,14 +27,14 @@ describe("ifThenElseCondition.run", () => {
     const mockElseBlock = mock<Block<boolean>>();
 
     const condition = when({
-      name: "foo",
+      name: 'foo',
       assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
     });
 
     const mockClient = mock<ILegoClient>();
-    const result = await condition.run(mockClient, "foo");
+    const result = await condition.run(mockClient, 'foo');
 
     expect(mockThenBlock.run).not.toHaveBeenCalled();
     expect(mockElseBlock.run).not.toHaveBeenCalled();
@@ -45,7 +45,7 @@ describe("ifThenElseCondition.run", () => {
     const mockAssertion = mock<Assertion<string, boolean>>();
     const mockAssertionOutput = false;
     mockAssertion.run.mockResolvedValue({
-      outputType: "conditional",
+      outputType: 'conditional',
       continue: true,
       conditionResult: true,
       output: mockAssertionOutput,
@@ -56,11 +56,11 @@ describe("ifThenElseCondition.run", () => {
 
     const mockEvents = new EventBus();
     const mockClient = mock<ILegoClient>();
-    const triggerId = "foo";
+    const triggerId = 'foo';
 
     const blockOutput: ContinueOutput<boolean> = {
       continue: true,
-      outputType: "block",
+      outputType: 'block',
       output: true,
     };
 
@@ -69,7 +69,7 @@ describe("ifThenElseCondition.run", () => {
       .thenReturn(blockOutput);
 
     const condition = when({
-      name: "foo",
+      name: 'foo',
       assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
@@ -77,7 +77,7 @@ describe("ifThenElseCondition.run", () => {
 
     const result = await condition.run(
       mockClient,
-      "foo",
+      'foo',
       mockEvents,
       triggerId,
     );
@@ -96,7 +96,7 @@ describe("ifThenElseCondition.run", () => {
     const mockAssertion = mock<Assertion<string, boolean>>();
     const mockAssertionOutput = false;
     mockAssertion.run.mockResolvedValue({
-      outputType: "conditional",
+      outputType: 'conditional',
       continue: true,
       conditionResult: false,
       output: mockAssertionOutput,
@@ -107,11 +107,11 @@ describe("ifThenElseCondition.run", () => {
 
     const mockEvents = new EventBus();
     const mockClient = mock<ILegoClient>();
-    const triggerId = "foo";
+    const triggerId = 'foo';
 
     const blockOutput: ContinueOutput<boolean> = {
       continue: true,
-      outputType: "block",
+      outputType: 'block',
       output: true,
     };
 
@@ -120,7 +120,7 @@ describe("ifThenElseCondition.run", () => {
       .thenReturn(blockOutput);
 
     const condition = when({
-      name: "foo",
+      name: 'foo',
       assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
@@ -128,7 +128,7 @@ describe("ifThenElseCondition.run", () => {
 
     const result = await condition.run(
       mockClient,
-      "foo",
+      'foo',
       mockEvents,
       triggerId,
     );
@@ -144,37 +144,37 @@ describe("ifThenElseCondition.run", () => {
   });
 });
 
-describe("ifThenElseCondition.constructor", () => {
-  it("generates an md5 hash of the name the id if not supplied", () => {
-    testWhen(md5).calledWith("foo").thenReturn("hash");
+describe('ifThenElseCondition.constructor', () => {
+  it('generates an md5 hash of the name the id if not supplied', () => {
+    testWhen(md5).calledWith('foo').thenReturn('hash');
 
     const mockAssertion = mock<Assertion<string, boolean>>();
     const mockThenBlock = mock<Block<boolean, boolean>>();
     const mockElseBlock = mock<Block<boolean, boolean>>();
 
     const assertion = when({
-      name: "foo",
+      name: 'foo',
       assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
     });
 
-    expect(assertion.id).toEqual("hash");
+    expect(assertion.id).toEqual('hash');
   });
 
-  it("configures the id from the constructor input when supplied", () => {
+  it('configures the id from the constructor input when supplied', () => {
     const mockAssertion = mock<Assertion<string, boolean>>();
     const mockThenBlock = mock<Block<boolean, boolean>>();
     const mockElseBlock = mock<Block<boolean, boolean>>();
 
     const assertion = when({
-      name: "foo",
-      id: "foo-id",
+      name: 'foo',
+      id: 'foo-id',
       assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
     });
 
-    expect(assertion.id).toEqual("foo-id");
+    expect(assertion.id).toEqual('foo-id');
   });
 });

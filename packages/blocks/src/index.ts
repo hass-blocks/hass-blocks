@@ -1,4 +1,4 @@
-export { getConnection } from "./client/index.ts";
+export { getConnection } from './client/index.ts';
 
 export type {
   CorsOptions,
@@ -9,7 +9,7 @@ export type {
   CallServiceParams,
   HassLegoEvent,
   BaseBlockConfig,
-} from "./types/index.ts";
+} from './types/index.ts';
 
 export {
   when,
@@ -20,6 +20,6 @@ export {
   assertion,
   trigger,
   automation,
-} from "./building-blocks/index.ts";
+} from './building-blocks/index.ts';
 
-export type { ActionArgs } from "./building-blocks/index.ts";
+export type { ActionArgs } from './building-blocks/index.ts';

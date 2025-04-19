@@ -3,7 +3,7 @@ export type {
   IClient,
   GetHistoryParams,
   GetLogbookParams,
-} from "./client/index.ts";
+} from './client/index.ts';
 
 export type {
   MessageFromServer,
@@ -17,9 +17,9 @@ export type {
   GetPanelsCommand,
   HelloCommand,
   TriggerEventMessage,
-} from "./websocket-client/index.ts";
+} from './websocket-client/index.ts';
 
-export { HTTP } from "./constants.ts";
+export { HTTP } from './constants.ts';
 
-export { initialiseClient } from "./initialise-client.ts";
-export { getConfig } from "./get-config.ts";
+export { initialiseClient } from './initialise-client.ts';
+export { getConfig } from './get-config.ts';

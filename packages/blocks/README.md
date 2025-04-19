@@ -29,9 +29,9 @@ const { client } = await getConnection()
 
 ## How it works
 
-Hass-blocks is all about creating blocks that describe what you want to happen and combining them with triggers to make an automation. There are a few different kinds of blocks 
+Hass-blocks is all about creating blocks that describe what you want to happen and combining them with triggers to make an automation. There are a few different kinds of blocks
 
-- **Actions** - a generic block that describes something you *want to happen*
+- **Actions** - a generic block that describes something you _want to happen_
 - **Service Calls** - an action that calls a Home Assistant service
 - **Assertions** - a block that decides whether a sequence of actions should continue executing
 - **Sequences** - a block that when executed executs a number of different blocks, either in sequence or all at once
@@ -62,7 +62,6 @@ const turnOnLivingRoomLight = serviceCall({
 ```
 
 As well as making standalone actions, you can create factory functions that generate actions. So given that I am going to want to turn my light both on and off, lets do some refactoring
-
 
 ```TypeScript
 const turnLivingRoomLights = (onOrOff: "on" | "off") =>
@@ -96,7 +95,6 @@ const whenSomeoneWalksInTheLivingRoom = trigger({
 ```
 
 I don't want to switch the light off straight away - so lets implement a 'wait' action factory
-
 
 ```TypeScript
 import { action } from "@hass-blocks/blocks"

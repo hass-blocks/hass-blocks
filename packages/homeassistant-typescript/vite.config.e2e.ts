@@ -7,8 +7,8 @@ export default defineConfig(() => ({
   test: {
     watch: false,
     globals: true,
-    globalSetup: "src/test-support/e2e-global-setup.ts",
-    include: ["./src/e2e-tests/*.spec.ts"],
+    globalSetup: 'src/test-support/e2e-global-setup.ts',
+    include: ['./src/e2e-tests/*.spec.ts'],
     environment: 'node',
     reporters: ['default'],
     coverage: {

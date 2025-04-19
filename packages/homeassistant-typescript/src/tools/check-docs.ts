@@ -1,5 +1,5 @@
-import { FileTreeWalker } from "file-tree-walker-ts";
-import { compileSnippets } from "typescript-docs-verifier";
+import { FileTreeWalker } from 'file-tree-walker-ts';
+import { compileSnippets } from 'typescript-docs-verifier';
 
 let returnCode = 0;
 
@@ -9,14 +9,14 @@ const run = async () => {
   const markdownFiles: string[] = [];
 
   await walker
-    .setExcludedFiles(["node_modules", "dist", "coverage", "temp", "api"])
-    .setAllowedFileTypes(["md"])
+    .setExcludedFiles(['node_modules', 'dist', 'coverage', 'temp', 'api'])
+    .setAllowedFileTypes(['md'])
     .onFile((file: string) => {
       markdownFiles.push(file);
     })
     .walk(process.cwd());
 
-  const project = "tsconfig.json";
+  const project = 'tsconfig.json';
   const results = await compileSnippets({ markdownFiles, project });
   results.forEach((result) => {
     if (result.error) {
@@ -25,7 +25,7 @@ const run = async () => {
         `Error compiling example code block ${result.index} in file ${result.file}`,
       );
       console.log(result.error.message);
-      console.log("Original code:");
+      console.log('Original code:');
       console.log(result.snippet);
     }
   });

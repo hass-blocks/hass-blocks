@@ -1,4 +1,4 @@
-import type { HassConfig } from "../types/index.ts";
+import type { HassConfig } from '../types/index.ts';
 import {
   HASS_HOST_ENV,
   HASS_HTTP_PATH_ENV,
@@ -6,10 +6,10 @@ import {
   HASS_TOKEN_ENV,
   HASS_WS_PATH_ENV,
   SUPERVISOR_TOKEN_ENV,
-} from "./constants.ts";
+} from './constants.ts';
 
-import { getEnv } from "../utils/index.ts";
-import dotEnv from "dotenv";
+import { getEnv } from '../utils/index.ts';
+import dotEnv from 'dotenv';
 
 /**
  * @public
@@ -32,18 +32,18 @@ export const getConfig = (): HassConfig => {
 
   const websocketPath = supervisorToken
     ? `/core/websocket`
-    : process.env[HASS_WS_PATH_ENV] ?? `/api/websocket`;
+    : (process.env[HASS_WS_PATH_ENV] ?? `/api/websocket`);
 
   const httpPath = supervisorToken
     ? `/core/api`
-    : process.env[HASS_HTTP_PATH_ENV] ?? `/api`;
+    : (process.env[HASS_HTTP_PATH_ENV] ?? `/api`);
 
   const host = supervisorToken ? `supervisor` : getEnv(HASS_HOST_ENV);
-  const port = supervisorToken ? 80 : process.env[HASS_PORT_ENV] ?? 8123;
+  const port = supervisorToken ? 80 : (process.env[HASS_PORT_ENV] ?? 8123);
   const token = supervisorToken ?? getEnv(HASS_TOKEN_ENV);
 
   if (!port) {
-    throw new Error("Please supply a port!");
+    throw new Error('Please supply a port!');
   }
 
   return {

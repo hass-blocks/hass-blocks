@@ -1,7 +1,7 @@
-import { HTTP } from "../../core/index.ts";
-import { Logger } from "../../types/index.ts";
-import { normalisePath, safeJsonParse } from "../../utils/index.ts";
-import { HassHttpError } from "../../core/errors/index.ts";
+import { HTTP } from '../../core/index.ts';
+import { Logger } from '../../types/index.ts';
+import { normalisePath, safeJsonParse } from '../../utils/index.ts';
+import { HassHttpError } from '../../core/errors/index.ts';
 
 export class RestClient {
   private requestCache = new Map<string, { etag: string; text: string }>();
@@ -17,26 +17,26 @@ export class RestClient {
   }
 
   public async get<R>(path: string): Promise<R> {
-    return await this.request<R>(path, "GET");
+    return await this.request<R>(path, 'GET');
   }
 
   public async post<B extends Record<string, unknown>, R>(
     path: string,
     body: B,
   ): Promise<R> {
-    return await this.request<R>(path, "POST", body);
+    return await this.request<R>(path, 'POST', body);
   }
 
   private async fetchRaw(
     path: string,
-    method: "GET" | "POST",
+    method: 'GET' | 'POST',
     body?: Record<string, unknown>,
   ) {
     const finalUrl = `http://${this.host}:${this.port}${path}`;
     const cache = this.requestCache.get(finalUrl);
 
     const ifNoneMatchObj: Record<string, string> = cache
-      ? { "if-none-match": cache.etag }
+      ? { 'if-none-match': cache.etag }
       : {};
 
     const response = await fetch(finalUrl, {
@@ -44,7 +44,7 @@ export class RestClient {
       method,
       headers: {
         authorization: `Bearer ${this.token}`,
-        "content-type": "application/json",
+        'content-type': 'application/json',
         ...ifNoneMatchObj,
       },
     });
@@ -53,7 +53,7 @@ export class RestClient {
       return { response, text: cache.text };
     }
 
-    const etag = response.headers.get("etag");
+    const etag = response.headers.get('etag');
     const text = await response.text();
     if (response.status === HTTP.statusCodes.ok && etag) {
       this.requestCache.set(finalUrl, { etag, text });
@@ -63,7 +63,7 @@ export class RestClient {
 
   private async request<R>(
     path: string,
-    method: "GET" | "POST",
+    method: 'GET' | 'POST',
     body?: Record<string, unknown>,
   ): Promise<R> {
     const apiPath = `${this.path}${normalisePath(path)}`;
@@ -77,10 +77,10 @@ export class RestClient {
     );
 
     if (response.ok || response.status === HTTP.statusCodes.notModified) {
-      return response.headers.get("content-type")?.includes("json")
+      return response.headers.get('content-type')?.includes('json')
         ? safeJsonParse<R>(text)
         : // TODO this is nasty. Should improve this.
-        (text as R);
+          (text as R);
     }
     throw new HassHttpError(response.status, text);
   }

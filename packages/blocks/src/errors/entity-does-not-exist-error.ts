@@ -1,4 +1,4 @@
-import { HassLegoError } from "./hass-lego-error.ts";
+import { HassLegoError } from './hass-lego-error.ts';
 
 /**
  * @public

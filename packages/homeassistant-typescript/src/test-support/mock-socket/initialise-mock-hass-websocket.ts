@@ -1,6 +1,6 @@
-import { WebSocketServer } from "ws";
-import { handleSocketMessage } from "./handle-socket-message.ts";
-import { send } from "./send.ts";
+import { WebSocketServer } from 'ws';
+import { handleSocketMessage } from './handle-socket-message.ts';
+import { send } from './send.ts';
 
 const ONE_SECOND = 1000;
 
@@ -12,18 +12,18 @@ export const initialiseMockHassWebsocket = (
   const sessionNumber = Math.floor(Math.random() * 1000000);
   const server = new WebSocketServer({ port });
 
-  server.on("connection", (socket) => {
-    socket.send(JSON.stringify({ type: "auth_required", ha_version: version }));
+  server.on('connection', (socket) => {
+    socket.send(JSON.stringify({ type: 'auth_required', ha_version: version }));
 
     setTimeout(() => {
-      send(socket, { type: "test", testMessage: "test" });
+      send(socket, { type: 'test', testMessage: 'test' });
     }, 2 * ONE_SECOND);
 
     setTimeout(() => {
       socket.close();
     }, 5 * ONE_SECOND);
 
-    socket.on("message", (data) => {
+    socket.on('message', (data) => {
       if (data instanceof Buffer) {
         handleSocketMessage(socket, data, token, version, sessionNumber).catch(
           (error) => {

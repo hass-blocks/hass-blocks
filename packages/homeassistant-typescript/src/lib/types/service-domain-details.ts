@@ -1,4 +1,4 @@
-import { Service } from "./services.ts";
+import { Service } from './services.ts';
 
 /**
  * @public

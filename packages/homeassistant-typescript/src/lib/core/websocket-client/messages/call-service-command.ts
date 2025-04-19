@@ -1,4 +1,4 @@
-import { Command } from "./command.ts";
+import { Command } from './command.ts';
 
 /**
  * @public
@@ -7,7 +7,7 @@ export interface CallServiceCommand extends Command {
   /**
    * Type of command on the Websocket API
    */
-  type: "call_service";
+  type: 'call_service';
 
   /**
    * Service domain (e.g. 'light')

@@ -1,1 +1,1 @@
-export { RestClient } from "./rest-client.ts";
+export { RestClient } from './rest-client.ts';

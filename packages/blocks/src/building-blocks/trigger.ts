@@ -1,25 +1,23 @@
-import { md5 } from "src/utils/md5.ts";
-import { Executor, Block } from "../core/index.ts";
-import { ILegoClient, IEventBus, ITrigger } from "../types/index.ts";
-import { v4 } from "uuid";
+import { md5 } from 'src/utils/md5.ts';
+import { Executor, Block } from '../core/index.ts';
+import { ILegoClient, IEventBus, ITrigger } from '../types/index.ts';
+import { v4 } from 'uuid';
 
 export interface TriggerProps {
-  name: string
-  id?: string
-  trigger: Record<string, unknown>
+  name: string;
+  id?: string;
+  trigger: Record<string, unknown>;
 }
 
 class Trigger implements ITrigger {
-    public readonly name: string
-    public readonly id: string
-    public readonly trigger: Record<string, unknown>
+  public readonly name: string;
+  public readonly id: string;
+  public readonly trigger: Record<string, unknown>;
 
-  public constructor(
-    public config: TriggerProps
-  ) {
-    this.name = config.name
-    this.id = config.id ?? md5(this.name)
-    this.trigger = config.trigger
+  public constructor(public config: TriggerProps) {
+    this.name = config.name;
+    this.id = config.id ?? md5(this.name);
+    this.trigger = config.trigger;
   }
 
   public async attachToClient(
@@ -37,9 +35,6 @@ class Trigger implements ITrigger {
   }
 }
 
-
-export const trigger = (
-  config: TriggerProps
-): ITrigger => {
+export const trigger = (config: TriggerProps): ITrigger => {
   return new Trigger(config);
 };

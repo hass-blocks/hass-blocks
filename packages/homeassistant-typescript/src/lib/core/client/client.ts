@@ -1,6 +1,6 @@
-import { convertCamelCaseToUnderscoreCase } from "../../utils/index.ts";
+import { convertCamelCaseToUnderscoreCase } from '../../utils/index.ts';
 
-import { RestClient } from "../rest-client/index.ts";
+import { RestClient } from '../rest-client/index.ts';
 import {
   CallServiceCommand,
   GetAreasCommand,
@@ -12,9 +12,9 @@ import {
   GetStatesCommand,
   MessageFromServer,
   WebsocketClient,
-} from "../websocket-client/index.ts"
+} from '../websocket-client/index.ts';
 
-import { IClient } from "./i-client.ts";
+import { IClient } from './i-client.ts';
 
 import {
   CalendarDetails,
@@ -29,13 +29,13 @@ import {
   HassEntity,
   HassDevice,
   Service,
-} from "../../types/index.ts";
-import { GetHistoryParams } from "./get-history-params.ts";
-import { GetLogbookParams } from "./get-logbook-params.ts";
+} from '../../types/index.ts';
+import { GetHistoryParams } from './get-history-params.ts';
+import { GetLogbookParams } from './get-logbook-params.ts';
 import {
   TriggerEventMessage,
   SubscribeToTriggerMessage,
-} from "../../core/websocket-client/index.ts"
+} from '../../core/websocket-client/index.ts';
 
 export class Client implements IClient {
   constructor(
@@ -48,7 +48,7 @@ export class Client implements IClient {
       GetAreasCommand,
       HassArea[]
     >({
-      type: "config/area_registry/list",
+      type: 'config/area_registry/list',
     });
     return result;
   }
@@ -58,7 +58,7 @@ export class Client implements IClient {
       GetEntitiesCommand,
       HassEntity[]
     >({
-      type: "config/entity_registry/list",
+      type: 'config/entity_registry/list',
     });
     return result;
   }
@@ -68,13 +68,13 @@ export class Client implements IClient {
       GetDevicesCommand,
       HassDevice[]
     >({
-      type: "config/device_registry/list",
+      type: 'config/device_registry/list',
     });
     return result;
   }
 
   public async callService(
-    params: Omit<CallServiceCommand, "type" | "id">,
+    params: Omit<CallServiceCommand, 'type' | 'id'>,
   ): Promise<State[]> {
     const { domain, service, target, service_data } = params;
 
@@ -91,14 +91,14 @@ export class Client implements IClient {
   }
 
   public async registerTrigger<T extends Record<string, unknown>>(
-    trigger: SubscribeToTriggerMessage["trigger"],
+    trigger: SubscribeToTriggerMessage['trigger'],
     callback: (event: T) => void | Promise<void>,
   ) {
     const { id } = await this.websocketClient.sendCommand<
       SubscribeToTriggerMessage,
       null
     >({
-      type: "subscribe_trigger",
+      type: 'subscribe_trigger',
       trigger,
     });
 
@@ -107,7 +107,7 @@ export class Client implements IClient {
         const isTriggerEvent = (
           message: MessageFromServer,
         ): message is TriggerEventMessage<T> => {
-          return message.type === "event" && message.id === id;
+          return message.type === 'event' && message.id === id;
         };
 
         if (isTriggerEvent(message)) {
@@ -129,9 +129,9 @@ export class Client implements IClient {
             value instanceof Date ? value.toISOString() : String(value)
           }`,
       )
-      .join("&");
-    const timestampString = timestamp ? `/${timestamp.toISOString()}` : "";
-    const finalQueryString = queryString ? `?${queryString}` : "";
+      .join('&');
+    const timestampString = timestamp ? `/${timestamp.toISOString()}` : '';
+    const finalQueryString = queryString ? `?${queryString}` : '';
 
     const path = `/logbook${timestampString}${finalQueryString}`;
 
@@ -142,13 +142,14 @@ export class Client implements IClient {
   public async getHistory(params: GetHistoryParams): Promise<State[][]> {
     const { timestamp, ...queryParams } = params;
 
-    const queryString = Object.entries(queryParams).map(
+    const queryString = Object.entries(queryParams)
+      .map(
         ([key, value]) =>
           `${convertCamelCaseToUnderscoreCase(key)}=${String(value)}`,
       )
-      .join("&");
+      .join('&');
 
-    const timestampString = timestamp ? `/${timestamp.toISOString()}` : "";
+    const timestampString = timestamp ? `/${timestamp.toISOString()}` : '';
 
     const path = `/history/period${timestampString}?${queryString}`;
 
@@ -156,15 +157,15 @@ export class Client implements IClient {
   }
 
   public async getEvents(): Promise<EventDetails[]> {
-    return await this.httpClient.get("/events");
+    return await this.httpClient.get('/events');
   }
 
   public async getErrorLog(): Promise<string> {
-    return await this.httpClient.get("/error_log");
+    return await this.httpClient.get('/error_log');
   }
 
   public async getCalendars(): Promise<CalendarDetails> {
-    return await this.httpClient.get("/calendars");
+    return await this.httpClient.get('/calendars');
   }
 
   public async getConfig(): Promise<Config> {
@@ -172,13 +173,13 @@ export class Client implements IClient {
       GetConfigCommand,
       Config
     >({
-      type: "get_config",
+      type: 'get_config',
     });
     return result;
   }
 
   public async getServiceDomains(): Promise<ServiceDomainDetails[]> {
-    return await this.httpClient.get("/services");
+    return await this.httpClient.get('/services');
   }
 
   public async getServices(): Promise<Record<string, Service>> {
@@ -186,7 +187,7 @@ export class Client implements IClient {
       GetServicesCommand,
       Record<string, Service>
     >({
-      type: "get_services",
+      type: 'get_services',
     });
     return result;
   }
@@ -196,7 +197,7 @@ export class Client implements IClient {
       GetPanelsCommand,
       Record<string, Panel>
     >({
-      type: "get_panels",
+      type: 'get_panels',
     });
     return result;
   }
@@ -206,24 +207,24 @@ export class Client implements IClient {
       GetStatesCommand,
       State[]
     >({
-      type: "get_states",
+      type: 'get_states',
     });
     return result;
   }
 
   public async subscribeToEvents(
-    callback: (message: Event | TriggerEventMessage["event"]) => void,
+    callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     type: string,
-    callback: (message: Event | TriggerEventMessage["event"]) => void,
+    callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     typeOrCallback:
       | string
-      | ((message: Event | TriggerEventMessage["event"]) => void),
+      | ((message: Event | TriggerEventMessage['event']) => void),
     callbackIfTypeIsSupplied?: (
-      message: Event | TriggerEventMessage["event"],
+      message: Event | TriggerEventMessage['event'],
     ) => void,
   ): Promise<void> {
     const { type, callback } = this.getTypeAndCallback(
@@ -236,12 +237,12 @@ export class Client implements IClient {
       : {};
 
     const { id } = await this.websocketClient.sendCommand({
-      type: "subscribe_events",
+      type: 'subscribe_events',
       ...typeObj,
     });
 
     this.websocketClient.addMessageListener((message) => {
-      if (message.type === "event" && message.id === id) {
+      if (message.type === 'event' && message.id === id) {
         callback(message.event);
       }
     });
@@ -254,21 +255,21 @@ export class Client implements IClient {
   private getTypeAndCallback(
     typeOrCallback:
       | string
-      | ((message: Event | TriggerEventMessage["event"]) => void),
+      | ((message: Event | TriggerEventMessage['event']) => void),
     callbackIfTypeIsSupplied?: (
-      message: Event | TriggerEventMessage["event"],
+      message: Event | TriggerEventMessage['event'],
     ) => void,
   ) {
     /* istanbul ignore else -- @preserve */
     if (
-      typeof typeOrCallback === "function" &&
+      typeof typeOrCallback === 'function' &&
       callbackIfTypeIsSupplied === undefined
     ) {
       return { type: undefined, callback: typeOrCallback };
     } else {
       if (
-        typeof callbackIfTypeIsSupplied === "function" &&
-        typeof typeOrCallback === "string"
+        typeof callbackIfTypeIsSupplied === 'function' &&
+        typeof typeOrCallback === 'string'
       ) {
         return { type: typeOrCallback, callback: callbackIfTypeIsSupplied };
       }

@@ -9,7 +9,7 @@ class ServiceCall extends Action {
     private readonly serviceConfig: {
       name: string;
       params: Omit<CallServiceCommand, 'id' | 'type'>;
-    }
+    },
   ) {
     super({
       name: serviceConfig.name,

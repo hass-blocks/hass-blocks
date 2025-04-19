@@ -1,14 +1,14 @@
-import { ExecutionMode } from "../types/index.ts";
+import { ExecutionMode } from '../types/index.ts';
 
 import {
   ValidInputOutputSequence,
   BlockRetainType,
   GetSequenceInput,
   GetSequenceOutput,
-} from "./valid-input-output-sequence.ts";
+} from './valid-input-output-sequence.ts';
 
-import { automation } from "./automation.ts";
-import { Block } from "../core/index.ts";
+import { automation } from './automation.ts';
+import { Block } from '../core/index.ts';
 
 /**
  * @public
@@ -22,5 +22,5 @@ export const sequence = <
   actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>,
   mode: ExecutionMode = ExecutionMode.Restart,
 ): Block<I, O> => {
-  return automation({ name: "Sequence", mode, then: actions });
+  return automation({ name: 'Sequence', mode, then: actions });
 };

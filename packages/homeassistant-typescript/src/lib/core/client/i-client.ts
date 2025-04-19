@@ -11,16 +11,16 @@ import {
   HassEntity,
   HassDevice,
   Service,
-} from "../../types/index.ts";
+} from '../../types/index.ts';
 
-import { GetHistoryParams } from "./get-history-params.ts";
-import { GetLogbookParams } from "./get-logbook-params.ts";
+import { GetHistoryParams } from './get-history-params.ts';
+import { GetLogbookParams } from './get-logbook-params.ts';
 
 import {
   CallServiceCommand,
   TriggerEventMessage,
   SubscribeToTriggerMessage,
-} from "../websocket-client/index.ts"
+} from '../websocket-client/index.ts';
 
 /**
  * The Home Assistant client API. Once initialised, the client will make requests via
@@ -76,7 +76,7 @@ export interface IClient {
    * @param params - parameters to send with the service command
    */
   callService(
-    params: Omit<CallServiceCommand, "id" | "type">,
+    params: Omit<CallServiceCommand, 'id' | 'type'>,
   ): Promise<State[]>;
 
   /**
@@ -106,17 +106,17 @@ export interface IClient {
    * Subscribe to a trigger. See https://developers.home-assistant.io/docs/api/websocket/#subscribe-to-trigger
    */
   registerTrigger(
-    trigger: SubscribeToTriggerMessage["trigger"],
+    trigger: SubscribeToTriggerMessage['trigger'],
     callback: (event: unknown) => void | Promise<void>,
   ): Promise<void>;
 
   subscribeToEvents(
-    callback: (message: Event | TriggerEventMessage["event"]) => void,
+    callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
 
   subscribeToEvents(
     type: string,
-    callback: (message: Event | TriggerEventMessage["event"]) => void,
+    callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
 
   close(): Promise<void>;

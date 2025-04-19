@@ -1,13 +1,13 @@
-import * as path from "path";
+import * as path from 'path';
 import {
   Extractor,
   ExtractorConfig,
   ExtractorResult,
-} from "@microsoft/api-extractor";
+} from '@microsoft/api-extractor';
 
 const apiExtractorJsonPath: string = path.join(
   __dirname,
-  "../../api-extractor.json",
+  '../../api-extractor.json',
 );
 
 const extractorConfig: ExtractorConfig =

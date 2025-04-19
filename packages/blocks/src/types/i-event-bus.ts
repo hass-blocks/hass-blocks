@@ -1,4 +1,4 @@
-import { HassLegoEvent } from "./hass-lego-events.ts";
+import { HassLegoEvent } from './hass-lego-events.ts';
 
 export interface IEventBus {
   emit: (event: HassLegoEvent) => void;

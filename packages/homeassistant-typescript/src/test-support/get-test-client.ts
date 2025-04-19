@@ -37,13 +37,13 @@ export const clientBuilder = () => {
           ) {
             accept();
           }
-        })
+        }),
       );
-      started = true
+      started = true;
     }
 
     return client;
   };
 
-  return { getTestClient }
+  return { getTestClient };
 };

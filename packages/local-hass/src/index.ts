@@ -1,1 +1,1 @@
-export { hass } from "./lib/local-hass.ts"
+export { hass } from './lib/local-hass.ts';

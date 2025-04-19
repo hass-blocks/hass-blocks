@@ -1,6 +1,6 @@
-import { render } from "ink";
-import { EventBus } from "./event-bus.ts";
-import { Show } from "../show/index.ts";
+import { render } from 'ink';
+import { EventBus } from './event-bus.ts';
+import { Show } from '../show/index.ts';
 
 /**
  * @public

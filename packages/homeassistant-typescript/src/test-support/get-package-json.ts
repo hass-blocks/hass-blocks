@@ -29,7 +29,7 @@ export class PackageJsonFile {
   public set(key: keyof IPackageJson, value: string) {
     this.update({
       ...this.data,
-      [key]: value
+      [key]: value,
     });
   }
 }

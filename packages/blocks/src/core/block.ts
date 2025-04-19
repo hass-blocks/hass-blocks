@@ -10,7 +10,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
      */
     public readonly id: string,
 
-    private children?: Block<unknown, unknown>[]
+    private children?: Block<unknown, unknown>[],
   ) {}
   public toJson() {
     return {
@@ -42,7 +42,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     await Promise.all(
       this.children?.map(async (action) => {
         await action.validate(client);
-      }) ?? []
+      }) ?? [],
     );
   }
 
@@ -52,6 +52,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     client: ILegoClient,
     input: I,
     events?: IEventBus,
-    triggerId?: string
+    triggerId?: string,
   ): Promise<BlockOutput<O>> | BlockOutput<O>;
 }

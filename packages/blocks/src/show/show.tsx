@@ -1,9 +1,9 @@
-import { EventBus } from "../core/index.ts";
-import { useState, useEffect } from "react";
-import { StaticLogView } from "./static-log-view.tsx";
-import { Box, Text } from "ink";
-import { HassLegoEvent } from "../types/index.ts";
-import { SummaryView } from "./summary-view.tsx";
+import { EventBus } from '../core/index.ts';
+import { useState, useEffect } from 'react';
+import { StaticLogView } from './static-log-view.tsx';
+import { Box, Text } from 'ink';
+import { HassLegoEvent } from '../types/index.ts';
+import { SummaryView } from './summary-view.tsx';
 
 interface ShowProps {
   staticLog: boolean;
@@ -14,7 +14,7 @@ export const Show = ({ staticLog, events }: ShowProps) => {
 
   useEffect(() => {
     events.subscribe((event) => {
-      if (event.type !== "hass-state-changed") {
+      if (event.type !== 'hass-state-changed') {
         setLogs((logs) => [...logs, event]);
       }
     });

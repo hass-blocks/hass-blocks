@@ -1,6 +1,11 @@
-import { Block } from "../core/index.ts";
-import { BlockOutput, ILegoClient, IEventBus, BaseBlockConfig } from "../types/index.ts";
-import { md5 } from "../utils/index.ts";
+import { Block } from '../core/index.ts';
+import {
+  BlockOutput,
+  ILegoClient,
+  IEventBus,
+  BaseBlockConfig,
+} from '../types/index.ts';
+import { md5 } from '../utils/index.ts';
 
 /**
  * @public
@@ -26,7 +31,7 @@ export class Action<I = void, O = void>
     this.name = this.config.name;
   }
 
-  public override readonly typeString: string = "action";
+  public override readonly typeString: string = 'action';
 
   public override async run(
     client: ILegoClient,
@@ -40,7 +45,7 @@ export class Action<I = void, O = void>
     const result =
       callbackResult instanceof Promise ? await callbackResult : callbackResult;
 
-    return { output: result, continue: true, outputType: "block" };
+    return { output: result, continue: true, outputType: 'block' };
   }
 }
 

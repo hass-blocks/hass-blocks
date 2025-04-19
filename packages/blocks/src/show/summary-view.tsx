@@ -1,6 +1,6 @@
-import { HassLegoEvent } from "../types/index.ts";
-import { Box } from "ink";
-import { SummaryViewRow } from "./summary-view-row.tsx";
+import { HassLegoEvent } from '../types/index.ts';
+import { Box } from 'ink';
+import { SummaryViewRow } from './summary-view-row.tsx';
 
 interface SummaryViewProps {
   events: HassLegoEvent[];
@@ -9,7 +9,7 @@ interface SummaryViewProps {
 export const SummaryView = ({ events }: SummaryViewProps) => {
   const data = Object.entries(
     events.reduce<Record<string, HassLegoEvent[]>>((accum, event) => {
-      const id = "triggerId" in event && event.triggerId;
+      const id = 'triggerId' in event && event.triggerId;
       if (id) {
         accum[id] = [...(accum[id] ?? []), event];
       }

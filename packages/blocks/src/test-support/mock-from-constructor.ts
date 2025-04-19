@@ -1,5 +1,5 @@
-import { mock } from "vitest-mock-extended";
-import { when } from "vitest-when";
+import { mock } from 'vitest-mock-extended';
+import { when } from 'vitest-when';
 
 type AnyFunction = (...args: never[]) => unknown;
 

@@ -17,6 +17,6 @@ export type {
   CallServiceResponse,
   TriggerEventMessage,
   SubscribeToTriggerMessage,
-} from "./messages/index.ts";
+} from './messages/index.ts';
 
-export { WebsocketClient } from "./websocket-client.ts";
+export { WebsocketClient } from './websocket-client.ts';

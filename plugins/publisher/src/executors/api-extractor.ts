@@ -5,52 +5,56 @@ import {
   ExtractorConfig,
   ExtractorResult,
   IExtractorConfigPrepareOptions,
-} from "@microsoft/api-extractor";
+} from '@microsoft/api-extractor';
 import { join } from 'path';
 
 const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
-  options, context
+  options,
+  context,
 ) => {
+  const { root } = context;
+  const projectRoot = join(root, options.projectFolder);
+  const packageJsonFullPath = join(projectRoot, `package.json`);
+  const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
+  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
+  const reportFolder = join(projectRoot, `api`);
 
-  const { root } = context
-  const projectRoot = join(root, options.projectFolder)
-  const packageJsonFullPath = join(projectRoot, `package.json`)
-  const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`)
-  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`)
-  const reportFolder = join(projectRoot, `api`)
-
-  logger.info(`Starting API extractor...`)
+  logger.info(`Starting API extractor...`);
 
   const prepareOptions: IExtractorConfigPrepareOptions = {
-    configObjectFullPath: "",
+    configObjectFullPath: '',
     packageJsonFullPath,
     configObject: {
       compiler: {
-        tsconfigFilePath
+        tsconfigFilePath,
       },
       mainEntryPointFilePath: options.mainEntrypointFile,
       projectFolder: root,
-      
+
       apiReport: {
         enabled: true,
-        reportFolder
+        reportFolder,
       },
-    
+
       dtsRollup: {
         publicTrimmedFilePath,
         enabled: true,
-      }
+      },
     },
-  }
+  };
 
-  const config = ExtractorConfig.prepare(prepareOptions)
-  
+  const config = ExtractorConfig.prepare(prepareOptions);
+
   const result: ExtractorResult = Extractor.invoke(config, {
     localBuild: true,
     showVerboseMessages: true,
   });
-  
-  if (result.succeeded && result.warningCount === 0 && result.errorCount === 0) {
+
+  if (
+    result.succeeded &&
+    result.warningCount === 0 &&
+    result.errorCount === 0
+  ) {
     logger.info(`API Extractor completed successfully`);
     return {
       success: true,
@@ -62,10 +66,9 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
       )} errors and ${String(result.warningCount)} warnings`,
     );
     return {
-      success: false
-    }
+      success: false,
+    };
   }
-
 };
 
 export default runExecutor;

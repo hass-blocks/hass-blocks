@@ -1,10 +1,17 @@
-import { IClient, Event, TriggerEventMessage } from "@hass-blocks/homeassistant-typescript";
-import { Automation } from "../building-blocks/index.ts";
-import { HassEntity, IEventBus } from "../types/index.ts";
-import { Block } from "../core/index.ts";
-import { EntityDoesNotExistError, InitialStatesNotLoadedError } from "../errors/index.ts";
-import { ILegoClient } from "src/types/i-lego-client.ts";
-import { CallServiceParams } from "src/core/lego-client.ts";
+import {
+  IClient,
+  Event,
+  TriggerEventMessage,
+} from '@hass-blocks/homeassistant-typescript';
+import { Automation } from '../building-blocks/index.ts';
+import { HassEntity, IEventBus } from '../types/index.ts';
+import { Block } from '../core/index.ts';
+import {
+  EntityDoesNotExistError,
+  InitialStatesNotLoadedError,
+} from '../errors/index.ts';
+import { ILegoClient } from 'src/types/i-lego-client.ts';
+import { CallServiceParams } from 'src/core/lego-client.ts';
 
 /**
  * @public
@@ -77,8 +84,8 @@ export class LegoClient implements ILegoClient {
     );
 
     this.bus.emit({
-      type: "automation",
-      status: "registered",
+      type: 'automation',
+      status: 'registered',
       name: automation.config.name,
       block: automation.toJson(),
     });
@@ -87,7 +94,7 @@ export class LegoClient implements ILegoClient {
   public async onStateChanged(id: string, callback: (event: Event) => void) {
     try {
       if (!this.states) {
-        throw new Error("Initial states not loaded");
+        throw new Error('Initial states not loaded');
       }
 
       if (!this.states.has(id)) {
@@ -97,11 +104,11 @@ export class LegoClient implements ILegoClient {
       }
 
       await this.client.subscribeToEvents(
-        (event: Event | TriggerEventMessage["event"]) => {
-          if (this.states && "data" in event) {
+        (event: Event | TriggerEventMessage['event']) => {
+          if (this.states && 'data' in event) {
             this.states.set(event.data.entity_id, event.data.new_state);
           }
-          if ("data" in event && event.data.entity_id === id) {
+          if ('data' in event && event.data.entity_id === id) {
             callback(event);
           }
         },
@@ -109,9 +116,9 @@ export class LegoClient implements ILegoClient {
     } catch (error) {
       if (error instanceof Error) {
         this.bus.emit({
-          type: "generalFailure",
+          type: 'generalFailure',
           message: error.message,
-          status: "error",
+          status: 'error',
           error,
         });
       }

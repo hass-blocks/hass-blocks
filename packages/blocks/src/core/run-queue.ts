@@ -1,6 +1,6 @@
-import { ExecutionAbortedError } from "../errors/index.ts";
-import { Runnable } from "../types/index.ts";
-import { Queue } from "queue-typescript";
+import { ExecutionAbortedError } from '../errors/index.ts';
+import { Runnable } from '../types/index.ts';
+import { Queue } from 'queue-typescript';
 
 export class RunQueue {
   private queue = new Queue<Runnable>();
@@ -21,7 +21,6 @@ export class RunQueue {
   }
 
   private async startLoop() {
-     
     while (true) {
       while (this.queue.length > 0) {
         try {

@@ -2,10 +2,10 @@
 type Replace<T, O, N extends new (...args: any[]) => any> = T extends O
   ? InstanceType<N>
   : T extends Array<infer U>
-  ? Array<Replace<U, O, N>>
-  : T extends object
-  ? { [K in keyof T]: Replace<T[K], O, N> }
-  : T;
+    ? Array<Replace<U, O, N>>
+    : T extends object
+      ? { [K in keyof T]: Replace<T[K], O, N> }
+      : T;
 
 export type ConvertTypesWithin<
   T,

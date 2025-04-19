@@ -1,6 +1,6 @@
 export interface ErrorResult {
   id: number;
-  type: "result";
+  type: 'result';
   success: false;
   error: {
     code: string;

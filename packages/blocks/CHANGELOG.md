@@ -30,9 +30,9 @@
 
 ### 🚀 Features
 
-- ⚠️  **blocks:** make the dsl more intuitive ([54e1bac](https://github.com/benwainwright/hass-blocks/commit/54e1bac))
+- ⚠️ **blocks:** make the dsl more intuitive ([54e1bac](https://github.com/benwainwright/hass-blocks/commit/54e1bac))
 
-### ⚠️  Breaking Changes
+### ⚠️ Breaking Changes
 
 - **blocks:** changes props on the sequence functions
 

@@ -1,6 +1,6 @@
-import { AuthRequiredMessageResponse } from "../../lib/core/index.ts";
-import { send } from "./send.ts";
-import { Socket } from "./socket.ts";
+import { AuthRequiredMessageResponse } from '../../lib/core/index.ts';
+import { send } from './send.ts';
+import { Socket } from './socket.ts';
 
 let authedSessions: number[] = [];
 
@@ -11,7 +11,7 @@ export const handleAuth = (
   version: string,
   sessionNumber: number,
 ) => {
-  socket.on("close", () => {
+  socket.on('close', () => {
     authedSessions = [];
   });
   if (
@@ -19,14 +19,14 @@ export const handleAuth = (
     !authedSessions.includes(sessionNumber)
   ) {
     send(socket, {
-      type: "auth_ok",
+      type: 'auth_ok',
       ha_version: version,
     });
     authedSessions.push(sessionNumber);
   } else {
     send(socket, {
-      type: "auth_invalid",
-      message: "invalid password",
+      type: 'auth_invalid',
+      message: 'invalid password',
     });
     socket.close();
   }

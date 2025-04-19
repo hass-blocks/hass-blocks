@@ -1,17 +1,22 @@
-import { mock } from "vitest-mock-extended";
-import { when } from "vitest-when";
+import { mock } from 'vitest-mock-extended';
+import { when } from 'vitest-when';
 
-import { RunQueue, BlockExecutionMode, EventBus, Executor } from "../core/index.ts";
+import {
+  RunQueue,
+  BlockExecutionMode,
+  EventBus,
+  Executor,
+} from '../core/index.ts';
 
-import { Action } from "./action.ts";
-import { Automation } from "./automation.ts";
+import { Action } from './action.ts';
+import { Automation } from './automation.ts';
 
-import { ILegoClient, ExecutionMode } from "../types/index.ts";
-import { ExecutionAbortedError } from "../errors/index.ts";
+import { ILegoClient, ExecutionMode } from '../types/index.ts';
+import { ExecutionAbortedError } from '../errors/index.ts';
 
-vi.mock("../core/index.ts", async (importOriginal) => {
+vi.mock('../core/index.ts', async (importOriginal) => {
   return {
-    ...(await importOriginal<typeof import("../core/index.ts")>()),
+    ...(await importOriginal<typeof import('../core/index.ts')>()),
     RunQueue: vi.fn(),
     Executor: vi.fn(),
   };
@@ -21,8 +26,8 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
-describe("automation.validate", () => {
-  it("calls all of the validate then on its children, passing the client through completing silently if none of them reject", async () => {
+describe('automation.validate', () => {
+  it('calls all of the validate then on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
     const mockClient = mock<ILegoClient>();
@@ -36,7 +41,7 @@ describe("automation.validate", () => {
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -46,7 +51,7 @@ describe("automation.validate", () => {
     expect(mockActionTwo.validate).toHaveBeenCalledWith(mockClient);
   });
 
-  it("Rethrows any errors thrown by any of its children", async () => {
+  it('Rethrows any errors thrown by any of its children', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
 
@@ -54,7 +59,7 @@ describe("automation.validate", () => {
 
     const then = [mockActionOne, mockActionTwo] as const;
 
-    const error = new Error("Whoops!");
+    const error = new Error('Whoops!');
 
     mockActionOne.validate.mockResolvedValue();
     mockActionTwo.validate.mockRejectedValue(error);
@@ -63,7 +68,7 @@ describe("automation.validate", () => {
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -72,18 +77,18 @@ describe("automation.validate", () => {
   });
 });
 
-describe("automation.run", () => {
-  it("throws an error if there is no event bus", async () => {
+describe('automation.run', () => {
+  it('throws an error if there is no event bus', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -93,17 +98,17 @@ describe("automation.run", () => {
     ).rejects.toThrow();
   });
 
-  it("throws an error if there is no trigger id", async () => {
+  it('throws an error if there is no trigger id', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const input = "foo";
+    const input = 'foo';
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -111,21 +116,21 @@ describe("automation.run", () => {
     await expect(automation.run(mockClient, input, events)).rejects.toThrow();
   });
 
-  it("If result is undefined, throw an error", async () => {
+  it('If result is undefined, throw an error', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -144,7 +149,6 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-     
     mockExecutor.finished.mockImplementation(async () => {
       return [];
     });
@@ -154,21 +158,21 @@ describe("automation.run", () => {
     ).rejects.toThrow();
   });
 
-  it("In queue mode passes then to an executor, enqueues the executor then returns the results when finished", async () => {
+  it('In queue mode passes then to an executor, enqueues the executor then returns the results when finished', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -187,10 +191,9 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-     
     mockExecutor.finished.mockImplementation(async () => {
       return [
-        { continue: true, outputType: "block", output: "foo", success: true },
+        { continue: true, outputType: 'block', output: 'foo', success: true },
       ];
     });
 
@@ -198,29 +201,29 @@ describe("automation.run", () => {
 
     if (result.continue) {
       expect(mockRunQueue.enqueue).toHaveBeenCalled();
-      expect(result.output).toEqual("foo");
+      expect(result.output).toEqual('foo');
       expect(result.continue).toEqual(true);
-      expect(result.outputType).toEqual("block");
+      expect(result.outputType).toEqual('block');
     }
 
     expect.assertions(4);
   });
 
-  it("If the executor throws any other kind of error, rethrow", async () => {
+  it('If the executor throws any other kind of error, rethrow', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -239,28 +242,28 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-    mockExecutor.finished.mockRejectedValue(new Error("Whoops"));
+    mockExecutor.finished.mockRejectedValue(new Error('Whoops'));
 
     await expect(
       automation.run(mockClient, input, events, triggerId),
     ).rejects.toThrow();
   });
 
-  it("If the executor aborts, return a response with continue set to false", async () => {
+  it('If the executor aborts, return a response with continue set to false', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Queue,
     });
@@ -280,7 +283,7 @@ describe("automation.run", () => {
       .thenReturn(mockExecutor);
 
     mockExecutor.finished.mockRejectedValue(
-      new ExecutionAbortedError("Execution was aborted"),
+      new ExecutionAbortedError('Execution was aborted'),
     );
 
     const result = await automation.run(mockClient, input, events, triggerId);
@@ -288,21 +291,21 @@ describe("automation.run", () => {
     expect(result.continue).toBeFalsy();
   });
 
-  it("In restart mode passes then to an executor, restarts the runqueue, enqueues the executor then returns the results when finished", async () => {
+  it('In restart mode passes then to an executor, restarts the runqueue, enqueues the executor then returns the results when finished', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Restart,
     });
@@ -321,10 +324,9 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-     
     mockExecutor.finished.mockImplementation(async () => {
       return [
-        { continue: true, outputType: "block", output: "foo", success: true },
+        { continue: true, outputType: 'block', output: 'foo', success: true },
       ];
     });
 
@@ -333,29 +335,29 @@ describe("automation.run", () => {
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
       expect(mockRunQueue.enqueue).toHaveBeenCalled();
-      expect(result.output).toEqual("foo");
+      expect(result.output).toEqual('foo');
       expect(result.continue).toEqual(true);
-      expect(result.outputType).toEqual("block");
+      expect(result.outputType).toEqual('block');
     }
 
     expect.assertions(5);
   });
 
-  it("Defaults to the restart behaviour when no execute mode is supplied", async () => {
+  it('Defaults to the restart behaviour when no execute mode is supplied', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
     });
 
@@ -373,10 +375,9 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-     
     mockExecutor.finished.mockImplementation(async () => {
       return [
-        { continue: true, outputType: "block", output: "foo", success: true },
+        { continue: true, outputType: 'block', output: 'foo', success: true },
       ];
     });
 
@@ -385,29 +386,29 @@ describe("automation.run", () => {
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
       expect(mockRunQueue.enqueue).toHaveBeenCalled();
-      expect(result.output).toEqual("foo");
+      expect(result.output).toEqual('foo');
       expect(result.continue).toEqual(true);
-      expect(result.outputType).toEqual("block");
+      expect(result.outputType).toEqual('block');
     }
 
     expect.assertions(5);
   });
 
-  it("In parallel mode calls run() on the executor directly without using the runqueue", async () => {
+  it('In parallel mode calls run() on the executor directly without using the runqueue', async () => {
     const then = [
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
     const mockClient = mock<ILegoClient>();
     const events = mock<EventBus>();
-    const triggerId = "trigger-id";
-    const input = "foo";
+    const triggerId = 'trigger-id';
+    const input = 'foo';
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
-      name: "Test action",
+      name: 'Test action',
       then,
       mode: ExecutionMode.Parallel,
     });
@@ -426,10 +427,9 @@ describe("automation.run", () => {
       )
       .thenReturn(mockExecutor);
 
-     
     mockExecutor.finished.mockImplementation(async () => {
       return [
-        { continue: true, outputType: "block", output: "foo", success: true },
+        { continue: true, outputType: 'block', output: 'foo', success: true },
       ];
     });
 
@@ -438,9 +438,9 @@ describe("automation.run", () => {
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();
       expect(mockRunQueue.enqueue).not.toHaveBeenCalled();
-      expect(result.output).toEqual("foo");
+      expect(result.output).toEqual('foo');
       expect(result.continue).toEqual(true);
-      expect(result.outputType).toEqual("block");
+      expect(result.outputType).toEqual('block');
     }
 
     expect.assertions(5);

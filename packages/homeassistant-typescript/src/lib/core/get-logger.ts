@@ -1,4 +1,4 @@
-import { Logger } from "../types/index.ts";
+import { Logger } from '../types/index.ts';
 
 const defaultLogger: Logger = {
   // eslint-disable-next-line @typescript-eslint/no-empty-function

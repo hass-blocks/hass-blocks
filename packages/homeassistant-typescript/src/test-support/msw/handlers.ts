@@ -1,8 +1,8 @@
-import { HttpResponse, http } from "msw";
-import { HTTP } from "../../lib/core/index.ts";
-import { TEST_HASS_HOST, TEST_HASS_PORT } from "../index.ts";
+import { HttpResponse, http } from 'msw';
+import { HTTP } from '../../lib/core/index.ts';
+import { TEST_HASS_HOST, TEST_HASS_PORT } from '../index.ts';
 
-import { validateCredentials } from "./validate-credentials.ts";
+import { validateCredentials } from './validate-credentials.ts';
 
 type Handler = ReturnType<typeof http.get>;
 
@@ -16,7 +16,7 @@ export const handlers: Handler[] = [
       }
 
       return HttpResponse.json(
-        { result: "ok" },
+        { result: 'ok' },
         { status: HTTP.statusCodes.ok },
       );
     },
@@ -30,7 +30,7 @@ export const handlers: Handler[] = [
         return errorResponse;
       }
 
-      return HttpResponse.text("some text", { status: HTTP.statusCodes.ok });
+      return HttpResponse.text('some text', { status: HTTP.statusCodes.ok });
     },
   ),
 
@@ -41,16 +41,16 @@ export const handlers: Handler[] = [
       if (errorResponse) {
         return errorResponse;
       }
-      const etag = request.headers.get("if-none-match");
-      if (etag === "foo-bar") {
+      const etag = request.headers.get('if-none-match');
+      if (etag === 'foo-bar') {
         return HttpResponse.text(undefined, {
-          headers: { etag: "foo-bar" },
+          headers: { etag: 'foo-bar' },
           status: HTTP.statusCodes.notModified,
         });
       }
 
-      return HttpResponse.text("some text", {
-        headers: { etag: "foo-bar" },
+      return HttpResponse.text('some text', {
+        headers: { etag: 'foo-bar' },
         status: HTTP.statusCodes.ok,
       });
     },
@@ -66,15 +66,15 @@ export const handlers: Handler[] = [
 
       const body = await request.json();
 
-      if (typeof body !== "object" || !body?.testArg) {
+      if (typeof body !== 'object' || !body?.testArg) {
         return HttpResponse.json(
-          { result: "badRequest" },
+          { result: 'badRequest' },
           { status: HTTP.statusCodes.badRequest },
         );
       }
 
       return HttpResponse.json(
-        { result: "ok" },
+        { result: 'ok' },
         { status: HTTP.statusCodes.ok },
       );
     },

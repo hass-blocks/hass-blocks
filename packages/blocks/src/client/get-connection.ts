@@ -1,8 +1,11 @@
-import { getConfig, initialiseClient } from "@hass-blocks/homeassistant-typescript";
-import { ConnectionArgs, LegoConnection } from "../types/index.ts";
-import { LegoClient } from "./lego-client.ts";
-import { EventBus } from "../core/index.ts";
-import { getWebsocketServer } from "./get-websocket-server.ts";
+import {
+  getConfig,
+  initialiseClient,
+} from '@hass-blocks/homeassistant-typescript';
+import { ConnectionArgs, LegoConnection } from '../types/index.ts';
+import { LegoClient } from './lego-client.ts';
+import { EventBus } from '../core/index.ts';
+import { getWebsocketServer } from './get-websocket-server.ts';
 
 /**
  * Initiate a working hass-blocks connection
@@ -13,8 +16,8 @@ export const getConnection = async (
   const corsOptions = args
     ? args.corsOptions
     : {
-        origin: "*",
-        methods: ["GET", "POST"],
+        origin: '*',
+        methods: ['GET', 'POST'],
       };
 
   const bus = new EventBus();

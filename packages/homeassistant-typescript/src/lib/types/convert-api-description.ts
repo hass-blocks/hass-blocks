@@ -6,8 +6,8 @@ type DeepRecord<K extends string, V> = K extends `${infer K0}.${infer KR}`
 type DeepIntersect<T> = [T] extends [Function]
   ? T
   : T extends object
-  ? { [K in keyof T]: DeepIntersect<T[K]> }
-  : T;
+    ? { [K in keyof T]: DeepIntersect<T[K]> }
+    : T;
 
 /**
  * An internal helper type that this package uses to convert a simple typed description of
@@ -23,7 +23,7 @@ export type ConvertApiDescription<
     [K in string & keyof T]: (
       x: DeepRecord<
         K,
-        (arg: T[K]["requestArgs"]) => Promise<T[K]["responseArgs"]>
+        (arg: T[K]['requestArgs']) => Promise<T[K]['responseArgs']>
       >,
     ) => void;
   } extends Record<string, (x: infer I) => void>

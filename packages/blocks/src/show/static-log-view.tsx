@@ -1,6 +1,6 @@
-import { HassLegoEvent } from "../types/index.ts";
-import { StaticLogLine } from "./static-log-line.tsx";
-import { Box } from "ink";
+import { HassLegoEvent } from '../types/index.ts';
+import { StaticLogLine } from './static-log-line.tsx';
+import { Box } from 'ink';
 
 interface StaticLogView {
   events: (HassLegoEvent & {

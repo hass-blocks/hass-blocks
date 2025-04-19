@@ -1,8 +1,8 @@
-import EventEmitter from "events";
-import { HassLegoEvent, IEventBus } from "../types/index.ts";
-import { v4 } from "uuid";
+import EventEmitter from 'events';
+import { HassLegoEvent, IEventBus } from '../types/index.ts';
+import { v4 } from 'uuid';
 
-const AUTOMATION_EVENT = "AUTOMATION_EVENT";
+const AUTOMATION_EVENT = 'AUTOMATION_EVENT';
 
 /**
  * @public

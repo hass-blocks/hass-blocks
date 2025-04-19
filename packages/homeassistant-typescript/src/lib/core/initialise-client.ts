@@ -1,8 +1,8 @@
-import { HassConfig } from "../types/index.ts";
-import { Client, IClient } from "./client/index.ts";
-import { WebsocketClient } from "./websocket-client/index.ts";
-import { getLogger } from "./get-logger.ts";
-import { RestClient } from "./rest-client/index.ts";
+import { HassConfig } from '../types/index.ts';
+import { Client, IClient } from './client/index.ts';
+import { WebsocketClient } from './websocket-client/index.ts';
+import { getLogger } from './get-logger.ts';
+import { RestClient } from './rest-client/index.ts';
 
 /**
  * Initialise the http and websocket connections and return a client that is ready

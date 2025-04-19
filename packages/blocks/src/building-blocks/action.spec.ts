@@ -1,19 +1,19 @@
-import { ILegoClient } from "../types/index.ts";
-import { Action } from "./action.ts";
-import { mock } from "vitest-mock-extended";
+import { ILegoClient } from '../types/index.ts';
+import { Action } from './action.ts';
+import { mock } from 'vitest-mock-extended';
 
-describe("the action block", () => {
-  it("calls the callback when executed and passes the result out as output", async () => {
+describe('the action block', () => {
+  it('calls the callback when executed and passes the result out as output', async () => {
     const client = mock<ILegoClient>();
-    const input = "input";
-    const output = "output";
+    const input = 'input';
+    const output = 'output';
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const callback = (_client: ILegoClient, _input: string | undefined) =>
-      "output";
+      'output';
 
     const action = new Action<string, string>({
-      name: "This is my name",
+      name: 'This is my name',
       callback,
     });
 
@@ -22,21 +22,21 @@ describe("the action block", () => {
     expect(result).toEqual({
       output,
       continue: true,
-      outputType: "block",
+      outputType: 'block',
     });
   });
 
-  it("awaits promises when callback is async", async () => {
+  it('awaits promises when callback is async', async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const callback = async (_client: ILegoClient, _input: string | undefined) =>
-      "output";
+      'output';
 
     const client = mock<ILegoClient>();
-    const input = "input";
-    const output = "output";
+    const input = 'input';
+    const output = 'output';
 
     const action = new Action<string, string>({
-      name: "This is my name",
+      name: 'This is my name',
       callback,
     });
 
@@ -45,7 +45,7 @@ describe("the action block", () => {
     expect(result).toEqual({
       output,
       continue: true,
-      outputType: "block",
+      outputType: 'block',
     });
   });
 });

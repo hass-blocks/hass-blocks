@@ -1,4 +1,4 @@
-import { Block } from "../core/index.ts";
+import { Block } from '../core/index.ts';
 
 /**
  * Given an array of blocks, get the input type from the first block
@@ -30,7 +30,7 @@ export type GetSequenceOutput<T extends ReadonlyArray<unknown>> =
  * @public
  */
 export type InputType<T extends Block<unknown, unknown>> = Exclude<
-  T["inputType"],
+  T['inputType'],
   undefined
 >;
 
@@ -40,12 +40,12 @@ export type InputType<T extends Block<unknown, unknown>> = Exclude<
  * @public
  */
 export type OutputType<T extends Block<unknown, unknown>> =
-  Exclude<T["outputType"], undefined> extends Promise<infer T>
+  Exclude<T['outputType'], undefined> extends Promise<infer T>
     ? T
-    : Exclude<T["outputType"], undefined>;
+    : Exclude<T['outputType'], undefined>;
 
 export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<
-  T["outputType"],
+  T['outputType'],
   undefined
 >;
 

@@ -1,7 +1,4 @@
-export {
-  initialiseClient,
-  getConfig,
-} from "./core/index.ts";
+export { initialiseClient, getConfig } from './core/index.ts';
 
 export type {
   IClient,
@@ -10,7 +7,7 @@ export type {
   CallServiceCommand,
   CallServiceResponse,
   TriggerEventMessage,
-} from "./core/index.ts"
+} from './core/index.ts';
 
 export type {
   HassConfig,
@@ -27,4 +24,4 @@ export type {
   Panel,
   Event,
   HassArea,
-} from "./types/index.ts";
+} from './types/index.ts';

@@ -1,22 +1,27 @@
-import { CreateNodesContext, CreateNodesContextV2, createNodesFromFiles, CreateNodesV2 } from "@nx/devkit";
-import { ApiExtractorExecutorSchema } from "./executors/schema";
-import { dirname, join } from "path";
-import { readdirSync } from "fs";
+import {
+  CreateNodesContext,
+  CreateNodesContextV2,
+  createNodesFromFiles,
+  CreateNodesV2,
+} from '@nx/devkit';
+import { ApiExtractorExecutorSchema } from './executors/schema';
+import { dirname, join } from 'path';
+import { readdirSync } from 'fs';
 
 const checkIfConfigFileShouldBeProject = (
-    projectRoot: string,
-    context: CreateNodesContext | CreateNodesContextV2
-  ) => {
-    const siblingFiles = readdirSync(join(context.workspaceRoot, projectRoot));
-    if (
-      !siblingFiles.includes('package.json') &&
-      !siblingFiles.includes('project.json')
-    ) {
-      return false;
-    }
-  
-    return true;
+  projectRoot: string,
+  context: CreateNodesContext | CreateNodesContextV2,
+) => {
+  const siblingFiles = readdirSync(join(context.workspaceRoot, projectRoot));
+  if (
+    !siblingFiles.includes('package.json') &&
+    !siblingFiles.includes('project.json')
+  ) {
+    return false;
   }
+
+  return true;
+};
 
 // export const createNodes: CreateNodesV2<ApiExtractorExecutorSchema> = [
 //     `**/tsconfig.lib.json`,
@@ -40,7 +45,6 @@ const checkIfConfigFileShouldBeProject = (
 //             configFiles: string[];
 //           }
 //         );
-  
 
 //         return await createNodesFromFiles(
 //             async (configFile, _, context, index) => {

@@ -1,6 +1,6 @@
 export interface Result<T> {
   id: number;
-  type: "result";
+  type: 'result';
   success: true;
   result: T;
 }

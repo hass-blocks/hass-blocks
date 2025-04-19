@@ -7,7 +7,7 @@ type UnionToIntersection<U> = (U extends any ? (k: U) => void : never) extends (
   : never;
 
 // If T is `any` a union of both side of the condition is returned.
-type UnionForAny<T> = T extends never ? "A" : "B";
+type UnionForAny<T> = T extends never ? 'A' : 'B';
 
 // Returns true if type is any, or false for any other type.
 export type IsStrictlyAny<T> =

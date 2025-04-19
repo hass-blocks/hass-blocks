@@ -1,6 +1,6 @@
-import { ITrigger } from "./i-trigger.ts";
-import { Event } from "@hass-blocks/homeassistant-typescript";
-import { BlockOutput } from "./block-output.ts";
+import { ITrigger } from './i-trigger.ts';
+import { Event } from '@hass-blocks/homeassistant-typescript';
+import { BlockOutput } from './block-output.ts';
 
 export interface SerialisedBlock {
   id: string;
@@ -26,7 +26,7 @@ export type HassLegoEvent =
  * @public
  */
 export interface StateChanged {
-  type: "hass-state-changed";
+  type: 'hass-state-changed';
   entity: string;
   hassEvent: Event;
 }
@@ -42,18 +42,18 @@ interface BaseHassEvent {
  * @public
  */
 export interface AutomationRegistered {
-  type: "automation";
+  type: 'automation';
   name: string;
   block: SerialisedBlock;
-  status: "registered";
+  status: 'registered';
 }
 
 /**
  * @public
  */
 export interface GeneralFailure {
-  type: "generalFailure";
-  status: "error";
+  type: 'generalFailure';
+  status: 'error';
   message: string;
   error: Error;
 }
@@ -63,7 +63,7 @@ export interface GeneralFailure {
  */
 export interface BlockStarted extends BaseHassEvent {
   type: string;
-  status: "started";
+  status: 'started';
   parent?: SerialisedBlock;
   triggeredBy?: ITrigger;
 }
@@ -73,7 +73,7 @@ export interface BlockStarted extends BaseHassEvent {
  */
 export interface BlockFinished<O = unknown> extends BaseHassEvent {
   type: string;
-  status: "finished";
+  status: 'finished';
   output: BlockOutput<O>;
   parent?: SerialisedBlock;
 }
@@ -83,7 +83,7 @@ export interface BlockFinished<O = unknown> extends BaseHassEvent {
  */
 export interface BlockFailed extends BaseHassEvent {
   type: string;
-  status: "failed";
+  status: 'failed';
   message: string;
   error: Error;
   parent?: SerialisedBlock;
@@ -94,14 +94,14 @@ export interface BlockFailed extends BaseHassEvent {
  */
 export interface BlockPending extends BaseHassEvent {
   type: string;
-  status: "pending";
+  status: 'pending';
   parent?: SerialisedBlock;
   triggeredBy?: ITrigger;
 }
 
 export interface SequenceAborted extends BaseHassEvent {
   type: string;
-  status: "aborted";
+  status: 'aborted';
   block: SerialisedBlock;
   name: string;
 }

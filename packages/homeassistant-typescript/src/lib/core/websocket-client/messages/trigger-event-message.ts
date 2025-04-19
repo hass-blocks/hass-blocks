@@ -3,7 +3,7 @@
  */
 export interface TriggerEventMessage<T = unknown> {
   id: number;
-  type: "event";
+  type: 'event';
   event: {
     variables: {
       trigger: T;

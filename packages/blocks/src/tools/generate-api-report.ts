@@ -2,13 +2,13 @@ import {
   Extractor,
   ExtractorConfig,
   ExtractorResult,
-} from "@microsoft/api-extractor";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
+} from '@microsoft/api-extractor';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const configFile = join(__dirname, "..", "..", "api-extractor.config.json");
+const configFile = join(__dirname, '..', '..', 'api-extractor.config.json');
 
 const extractorConfig: ExtractorConfig =
   ExtractorConfig.loadFileAndPrepare(configFile);

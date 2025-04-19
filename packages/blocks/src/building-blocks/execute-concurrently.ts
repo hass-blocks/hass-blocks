@@ -1,8 +1,13 @@
-import { GetOutputs } from "./valid-input-output-sequence.ts";
+import { GetOutputs } from './valid-input-output-sequence.ts';
 
-import { EventBus, BlockExecutionMode, Executor, Block } from "../core/index.ts";
-import { BlockOutput, ILegoClient } from "../types/index.ts";
-import { md5 } from "../utils/index.ts";
+import {
+  EventBus,
+  BlockExecutionMode,
+  Executor,
+  Block,
+} from '../core/index.ts';
+import { BlockOutput, ILegoClient } from '../types/index.ts';
+import { md5 } from '../utils/index.ts';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
@@ -11,7 +16,7 @@ class ExecuteConcurrently<
 > extends Block<I, O> {
   public override name: string;
 
-  public override readonly typeString = "execute-concurrently";
+  public override readonly typeString = 'execute-concurrently';
 
   public constructor(
     public config: {
@@ -39,11 +44,11 @@ class ExecuteConcurrently<
     triggerId?: string,
   ): Promise<BlockOutput<O>> {
     if (!events) {
-      throw new Error("Must configure an event bus");
+      throw new Error('Must configure an event bus');
     }
 
     if (!triggerId) {
-      throw new Error("Must pass a triggerId");
+      throw new Error('Must pass a triggerId');
     }
 
     const executor = new Executor<I, O>(
@@ -74,12 +79,11 @@ class ExecuteConcurrently<
       (success) => success.output,
     ) as unknown as GetOutputs<A>;
 
-    return { continue: true, output: outputs as O, outputType: "block" };
+    return { continue: true, output: outputs as O, outputType: 'block' };
   }
 }
 
 export const concurrently = <
-   
   A extends readonly Block<unknown, unknown>[],
   I = void,
   O = void,
@@ -87,7 +91,7 @@ export const concurrently = <
   actions: A,
 ): Block<I, O> => {
   return new ExecuteConcurrently<A, I, O>({
-    name: "Execute Concurrently",
+    name: 'Execute Concurrently',
     actions,
   });
 };

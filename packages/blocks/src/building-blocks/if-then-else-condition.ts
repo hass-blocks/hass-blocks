@@ -1,7 +1,7 @@
-import { EventBus, Block } from "../core/index.ts";
-import { AssertionError } from "../errors/index.ts";
-import { BlockOutput, ILegoClient } from "../types/index.ts";
-import { md5 } from "../utils/index.ts";
+import { EventBus, Block } from '../core/index.ts';
+import { AssertionError } from '../errors/index.ts';
+import { BlockOutput, ILegoClient } from '../types/index.ts';
+import { md5 } from '../utils/index.ts';
 
 /**
  * @public
@@ -64,7 +64,7 @@ export class IfThenElseCondition<
 > extends Block<I, TO | EO> {
   public override name: string;
 
-  public override typeString = "if-then-else";
+  public override typeString = 'if-then-else';
 
   public constructor(
     public readonly config: IfThenElseConditionConfig<TO, EO, PO, I>,
@@ -89,7 +89,7 @@ export class IfThenElseCondition<
       return { continue: false };
     }
 
-    if (assertionResult.outputType !== "conditional") {
+    if (assertionResult.outputType !== 'conditional') {
       throw new AssertionError(
         `Block in the 'assertion' property must return a conditional result`,
       );

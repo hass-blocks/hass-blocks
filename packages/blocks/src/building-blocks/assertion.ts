@@ -1,6 +1,6 @@
-import { Block } from "../core/index.ts";
-import { ILegoClient, BlockOutput, BaseBlockConfig } from "../types/index.ts";
-import { md5 } from "../utils/index.ts";
+import { Block } from '../core/index.ts';
+import { ILegoClient, BlockOutput, BaseBlockConfig } from '../types/index.ts';
+import { md5 } from '../utils/index.ts';
 
 /**
  * @public
@@ -32,7 +32,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
   }
   public readonly name: string;
 
-  public override typeString = "assertion";
+  public override typeString = 'assertion';
 
   public override async run(
     client: ILegoClient,
@@ -43,15 +43,15 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
     const result =
       callbackResult instanceof Promise ? await callbackResult : callbackResult;
 
-    return typeof result === "object"
+    return typeof result === 'object'
       ? {
-          outputType: "conditional",
+          outputType: 'conditional',
           continue: true,
           conditionResult: result.result,
           output: result.output,
         }
       : {
-          outputType: "conditional",
+          outputType: 'conditional',
           continue: true,
           conditionResult: result,
           output: undefined as O,

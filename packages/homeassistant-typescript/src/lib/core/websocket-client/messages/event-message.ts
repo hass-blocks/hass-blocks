@@ -1,7 +1,7 @@
-import { Event } from "../../../types/index.ts";
+import { Event } from '../../../types/index.ts';
 
 export interface EventMessage {
   id: number;
-  type: "event";
+  type: 'event';
   event: Event;
 }

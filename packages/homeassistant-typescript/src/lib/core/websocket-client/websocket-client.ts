@@ -1,18 +1,18 @@
-import WebSocket from "ws";
+import WebSocket from 'ws';
 
-import { normalisePath, safeJsonParse } from "../../utils/index.ts";
+import { normalisePath, safeJsonParse } from '../../utils/index.ts';
 
 import {
   ErrorResult,
   MessageFromServer,
   MessageToServer,
   Result,
-} from "./messages/index.ts";
+} from './messages/index.ts';
 
-import { HassTsError, ErrorResponseError } from "../../core/errors/index.ts";
+import { HassTsError, ErrorResponseError } from '../../core/errors/index.ts';
 
-import { Logger } from "../../types/index.ts";
-import { ERRORS } from "../../core/constants.ts";
+import { Logger } from '../../types/index.ts';
+import { ERRORS } from '../../core/constants.ts';
 
 export class WebsocketClient {
   private socket: WebSocket;
@@ -37,10 +37,10 @@ export class WebsocketClient {
     private readonly logger: Logger,
   ) {
     this.path = normalisePath(path);
-    if (this.token === "") {
+    if (this.token === '') {
       throw new HassTsError(ERRORS.tokenCannotBeAnEmptyString);
     }
-    if (this.host === "") {
+    if (this.host === '') {
       throw new HassTsError(ERRORS.hostCannotBeAnEmptyString);
     }
     if (this.port < 0) {
@@ -51,10 +51,10 @@ export class WebsocketClient {
   }
 
   public async init(): Promise<void> {
-    this.socket.on("open", () => {
-      this.socket.on("message", async (data: Buffer) => {
+    this.socket.on('open', () => {
+      this.socket.on('message', async (data: Buffer) => {
         const message = safeJsonParse<MessageFromServer>(
-          data.toString("utf-8"),
+          data.toString('utf-8'),
         );
         this.logger.trace(`Received (ws): ${JSON.stringify(message)}`);
         await this.handleMessage(message);
@@ -71,7 +71,7 @@ export class WebsocketClient {
   }
 
   public async sendCommand<T extends MessageToServer, R>(
-    command: Omit<T, "id">,
+    command: Omit<T, 'id'>,
   ): Promise<Result<R>> {
     if (!this.connected) {
       throw new HassTsError(ERRORS.notInitialised);
@@ -122,7 +122,7 @@ export class WebsocketClient {
   }
 
   private async waitForAndReturnResponse<T extends MessageToServer, R>(
-    command: Omit<T, "id">,
+    command: Omit<T, 'id'>,
     id: number,
   ): Promise<Result<R>> {
     return await new Promise<Result<R>>((accept, reject) => {
@@ -172,7 +172,7 @@ export class WebsocketClient {
 
   private handleAuthRequired() {
     this.sendToSocket({
-      type: "auth",
+      type: 'auth',
       access_token: this.token,
     });
   }
@@ -191,16 +191,16 @@ export class WebsocketClient {
 
   private async handleMessage(message: MessageFromServer) {
     switch (message.type) {
-      case "auth_required":
+      case 'auth_required':
         this.handleAuthRequired();
         break;
-      case "auth_ok":
+      case 'auth_ok':
         this.handleAuthOk();
         break;
-      case "auth_invalid":
+      case 'auth_invalid':
         this.handleAuthInvalid();
         break;
-      case "result":
+      case 'result':
         this.handleResult(message);
         break;
       default:

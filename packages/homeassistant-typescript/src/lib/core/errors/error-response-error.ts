@@ -1,4 +1,4 @@
-import { HassTsError } from "./hass-ts-error.ts";
+import { HassTsError } from './hass-ts-error.ts';
 
 export class ErrorResponseError extends HassTsError {
   constructor(

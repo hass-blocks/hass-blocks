@@ -1,7 +1,7 @@
-import { BlockOutput } from "./block-output.ts";
-import { IEventBus } from "./i-event-bus.ts";
-import { ILegoClient } from "./i-lego-client.ts";
-import { SerialisedBlock } from "./serialised-block.ts";
+import { BlockOutput } from './block-output.ts';
+import { IEventBus } from './i-event-bus.ts';
+import { ILegoClient } from './i-lego-client.ts';
+import { SerialisedBlock } from './serialised-block.ts';
 
 export interface IBlock<I = void, O = void> {
   toJson(): SerialisedBlock;

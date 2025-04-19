@@ -1,7 +1,7 @@
-import type { IEventBus, CorsOptions, IBlock } from "../types/index.ts";
+import type { IEventBus, CorsOptions, IBlock } from '../types/index.ts';
 
-import { Server } from "socket.io";
-import { createServer } from "http";
+import { Server } from 'socket.io';
+import { createServer } from 'http';
 
 interface ServerProps {
   cors: CorsOptions;
@@ -15,8 +15,8 @@ interface ServerProps {
  */
 export const getWebsocketServer = ({ cors, client, bus }: ServerProps) => {
   const server = createServer((_request, response) => {
-    response.writeHead(200, { "content-type": "text/plain" });
-    response.end("Websocket server is running!");
+    response.writeHead(200, { 'content-type': 'text/plain' });
+    response.end('Websocket server is running!');
   });
 
   const io = new Server(server, {
@@ -29,29 +29,28 @@ export const getWebsocketServer = ({ cors, client, bus }: ServerProps) => {
   const stringifyCircularJSON = (obj: unknown) => {
     const seen = new WeakSet();
     return JSON.stringify(obj, (_key, value) => {
-      if (value !== null && typeof value === "object") {
-         
+      if (value !== null && typeof value === 'object') {
         if (seen.has(value)) return;
-         
+
         seen.add(value);
       }
-       
+
       return value;
     });
   };
 
-  io.on("connection", (socket) => {
-    socket.on("request-automations", () => {
+  io.on('connection', (socket) => {
+    socket.on('request-automations', () => {
       const automations = client.getAutomations();
 
       const serialisedAutomations = automations.map((automation) =>
         automation.toJson(),
       );
-      socket.emit("automations", serialisedAutomations);
+      socket.emit('automations', serialisedAutomations);
     });
 
     bus.subscribe((event) => {
-      socket.emit("hass-lego-event", JSON.parse(stringifyCircularJSON(event)));
+      socket.emit('hass-lego-event', JSON.parse(stringifyCircularJSON(event)));
     });
   });
 

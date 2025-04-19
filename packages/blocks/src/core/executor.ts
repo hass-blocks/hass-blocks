@@ -44,7 +44,7 @@ export class Executor<I, O> implements Runnable {
     public triggerId: string,
     private input?: I,
     private executionMode?: BlockExecutionMode,
-    private parent?: Block<unknown, unknown>
+    private parent?: Block<unknown, unknown>,
   ) {
     const queueItems = sequence.map((item) => ({
       executionId: v4(),
@@ -55,7 +55,7 @@ export class Executor<I, O> implements Runnable {
   }
 
   private async runPromiseOrRejectWhenAborted<T>(
-    promiseFunction: () => Promise<T>
+    promiseFunction: () => Promise<T>,
   ): Promise<T> {
     const result = promiseFunction();
     return await new Promise<T>((accept, reject) => {
@@ -95,7 +95,7 @@ export class Executor<I, O> implements Runnable {
   private async executeBlock<Out>(
     executeId: string,
     block: Block<unknown, Out>,
-    input: unknown
+    input: unknown,
   ): Promise<BlockOutput<Out> & { success: boolean }> {
     const eventArgs = this.getEventArgs(executeId, block);
     try {
@@ -110,7 +110,7 @@ export class Executor<I, O> implements Runnable {
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
-          await block.run(this.client, input, this.events, this.triggerId)
+          await block.run(this.client, input, this.events, this.triggerId),
       );
 
       this.events.emit({
@@ -175,7 +175,7 @@ export class Executor<I, O> implements Runnable {
       const lastResultPromise = this.executeBlock(
         executionId,
         block,
-        (lastResult?.continue && lastResult.output) ?? this.input
+        (lastResult?.continue && lastResult.output) ?? this.input,
       );
 
       resultPromises.push(lastResultPromise);
@@ -207,8 +207,8 @@ export class Executor<I, O> implements Runnable {
           } else {
             reject(
               new Error(
-                'Sequence finished without a result. This is probably a programming error'
-              )
+                'Sequence finished without a result. This is probably a programming error',
+              ),
             );
           }
         };

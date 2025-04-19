@@ -1,7 +1,7 @@
-import { State } from "@hass-blocks/homeassistant-typescript";
-import { CallServiceParams } from "./call-service-params.ts";
-import { HassEntity } from "./hass-events.ts";
-import { IBlock } from "./i-block.ts";
+import { State } from '@hass-blocks/homeassistant-typescript';
+import { CallServiceParams } from './call-service-params.ts';
+import { HassEntity } from './hass-events.ts';
+import { IBlock } from './i-block.ts';
 
 export interface ILegoClient {
   loadStates: () => Promise<void>;

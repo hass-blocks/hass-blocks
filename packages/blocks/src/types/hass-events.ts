@@ -29,7 +29,7 @@ export type HassEvent = HassEventBase & {
  * @public
  */
 export type HassStateChangedEvent = HassEventBase & {
-  event_type: "state_changed";
+  event_type: 'state_changed';
   data: {
     entity_id: string;
     new_state: HassEntity | null;

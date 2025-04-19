@@ -5,8 +5,36 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/public.d.ts",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "homeassistant",
+    "home assistant",
+    "home automation",
+    "hass",
+    "api",
+    "sdk",
+    "http",
+    "websocket"
+  ],
+  "description": "A client for the Home Assistant HTTP and Websocket APIs written in TypeScript",
   "publishConfig": {
     "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/benwainwright/hass-blocks/issues",
+    "email": "bwainwright28@gmail.com"
+  },
+  "author": {
+    "name": "Ben Wainwright",
+    "email": "bwainwright28@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwainwright/hass-blocks.git",
+    "directory": "packages/homeassistant-typescript"
   },
   "exports": {
     "./package.json": "./package.json",

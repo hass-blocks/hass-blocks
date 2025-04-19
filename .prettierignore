@@ -5,3 +5,4 @@
 /.nx/workspace-data
 /.husky
 pnpm-lock.yaml
+*.api.md

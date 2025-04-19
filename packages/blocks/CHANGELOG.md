@@ -1,3 +1,17 @@
+# 2.0.0 (2025-04-19)
+
+### 🚀 Features
+
+- ⚠️ **blocks:** swap lego for blocks ([17f29a4](https://github.com/benwainwright/hass-blocks/commit/17f29a4))
+
+### ⚠️ Breaking Changes
+
+- **blocks:** Changes all symbols that use the word 'Lego' to use
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 1.0.3 (2025-04-18)
 
 ### 🩹 Fixes

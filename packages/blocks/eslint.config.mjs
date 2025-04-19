@@ -14,7 +14,7 @@ export default [
             '{projectRoot}/vite.config.{js,ts,mjs,mts}',
             '{projectRoot}/vite.config.{js,ts,mjs,mts}',
             '**/*test-d.ts',
-            '{projectRoot}/src/test-support/**/*'
+            '{projectRoot}/src/test-support/**/*',
           ],
         },
       ],

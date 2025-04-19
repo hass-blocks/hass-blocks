@@ -51,12 +51,12 @@
   ],
   "dependencies": {
     "dotenv": "16.4.7",
-    "ws": "8.18.1"
+    "ws": "8.18.1",
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
     "type-fest": "4.40.0",
     "@hass-blocks/local-hass": "workspace:*",
-    "@swc/helpers": "~0.5.11",
     "execa": "^9.5.2",
     "@types/ws": "8.18.1",
     "docker-compose": "0.24.3",

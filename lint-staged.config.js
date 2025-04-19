@@ -5,6 +5,7 @@
 const config = {
   '*.{js,jsx,ts,tsx,json,css,md,html}': ['prettier --write'],
   '*.{jsx,ts,tsx}': ['vitest related'],
+  '*.{jsx,ts,tsx}': ['tsc-files --noEmit'],
 };
 
 module.exports = config;

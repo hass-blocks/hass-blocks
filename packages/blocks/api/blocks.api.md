@@ -15,7 +15,7 @@ export const action: <I = void, O = void>(config: ActionArgs<I, O>) => Block<I, 
 
 // @public
 export interface ActionArgs<I = void, O = void> extends BaseBlockConfig {
-    callback: ((client: ILegoClient, input: I) => O) | ((client: ILegoClient, input: I) => Promise<O>);
+    callback: ((client: IBlocksClient, input: I) => O) | ((client: IBlocksClient, input: I) => Promise<O>);
 }
 
 // @public
@@ -34,6 +34,18 @@ export const automation: <const A extends readonly any[], I = GetSequenceInput<A
 export interface BaseBlockConfig {
     readonly id?: string;
     readonly name: string;
+}
+
+// @public (undocumented)
+export interface BlocksConnection {
+    // (undocumented)
+    client: IBlocksClient;
+    // (undocumented)
+    eventBus: IEventBus;
+    // (undocumented)
+    hassConfig: HassConfig;
+    // (undocumented)
+    socket: Server;
 }
 
 // @public (undocumented)
@@ -70,24 +82,13 @@ export interface CorsOptions {
 }
 
 // @public
-export const getConnection: (args?: ConnectionArgs) => Promise<LegoConnection>;
+export const getConnection: (args?: ConnectionArgs) => Promise<BlocksConnection>;
 
 // @public (undocumented)
-export type HassLegoEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted;
+export type HassBlocksEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted;
 
 // @public (undocumented)
-export interface IEventBus {
-    // (undocumented)
-    emit: (event: HassLegoEvent) => void;
-    // (undocumented)
-    subscribe: (callback: (event: HassLegoEvent & {
-        id: string;
-        timestamp: string;
-    }) => void) => void;
-}
-
-// @public (undocumented)
-export interface ILegoClient {
+export interface IBlocksClient {
     // (undocumented)
     callService: (params: CallServiceParams) => Promise<State[]>;
     // (undocumented)
@@ -103,15 +104,14 @@ export interface ILegoClient {
 }
 
 // @public (undocumented)
-export interface LegoConnection {
+export interface IEventBus {
     // (undocumented)
-    client: ILegoClient;
+    emit: (event: HassBlocksEvent) => void;
     // (undocumented)
-    eventBus: IEventBus;
-    // (undocumented)
-    hassConfig: HassConfig;
-    // (undocumented)
-    socket: Server;
+    subscribe: (callback: (event: HassBlocksEvent & {
+        id: string;
+        timestamp: string;
+    }) => void) => void;
 }
 
 // @public (undocumented)

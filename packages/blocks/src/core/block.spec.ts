@@ -1,6 +1,6 @@
 import { BlockOutput } from '../types/index.ts';
 
-import { ILegoClient } from '../types/index.ts';
+import { IBlocksClient } from '../types/index.ts';
 import { Block } from './block.ts';
 
 import { mock } from 'vitest-mock-extended';
@@ -46,7 +46,7 @@ describe('block.validate', () => {
 
     const foo = new Foo();
 
-    const client = mock<ILegoClient>();
+    const client = mock<IBlocksClient>();
 
     await expect(foo.validate(client)).resolves.not.toThrow();
   });

@@ -138,6 +138,9 @@ importers:
       '@hass-blocks/homeassistant-typescript':
         specifier: 0.3.2
         version: link:../homeassistant-typescript
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.17
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
@@ -160,9 +163,6 @@ importers:
       '@microsoft/api-extractor':
         specifier: 7.52.3
         version: 7.52.3(@types/node@22.14.1)
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       vitest-mock-extended:
         specifier: 3.1.0
         version: 3.1.0(typescript@5.8.2)(vitest@3.0.0)

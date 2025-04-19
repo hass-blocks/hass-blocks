@@ -49,11 +49,11 @@
   ],
   "devDependencies": {
     "@microsoft/api-extractor": "7.52.3",
-    "@swc/helpers": "~0.5.11",
     "vitest-mock-extended": "3.1.0",
     "vitest-when": "0.6.0"
   },
   "dependencies": {
+    "@swc/helpers": "~0.5.11",
     "@hass-blocks/homeassistant-typescript": "0.3.2",
     "dotenv": "16.4.7",
     "ink": "5.2.0",

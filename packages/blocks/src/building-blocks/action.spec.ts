@@ -27,9 +27,10 @@ describe('the action block', () => {
   });
 
   it('awaits promises when callback is async', async () => {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const callback = async (
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       _client: IBlocksClient,
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       _input: string | undefined,
     ) => 'output';
 

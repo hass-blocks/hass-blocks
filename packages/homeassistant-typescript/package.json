@@ -50,13 +50,13 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
     "dotenv": "16.4.7",
-    "type-fest": "4.40.0",
     "ws": "8.18.1"
   },
   "devDependencies": {
+    "type-fest": "4.40.0",
     "@hass-blocks/local-hass": "workspace:*",
+    "@swc/helpers": "~0.5.11",
     "execa": "^9.5.2",
     "@types/ws": "8.18.1",
     "docker-compose": "0.24.3",

@@ -17,6 +17,9 @@
     },
     {
       "path": "./packages/local-hass"
+    },
+    {
+      "path": "./packages/websocket-plugin"
     }
   ]
 }

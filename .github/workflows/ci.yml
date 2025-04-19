@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         node_version: [18, 20, 22, 23]
-        target: [test, e2e-test]
+        target: [test, e2e-test, check-style]
 
     steps:
       - uses: actions/checkout@v4
@@ -39,7 +39,7 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
       - uses: nrwl/nx-set-shas@v4
-      - run: pnpm exec nx affected -t ${{ matrix.target }}
+      - run: pnpm run ${{ matrix.target }}
 
   checks:
     runs-on: ubuntu-latest

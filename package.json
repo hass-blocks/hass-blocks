@@ -4,7 +4,10 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "check-style": "prettier --check .",
+    "test": "pnpm exec nx affected -t test",
+    "e2e-test": "pnpm exec nx affected -t e2e-test"
   },
   "private": true,
   "devDependencies": {

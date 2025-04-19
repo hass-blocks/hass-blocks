@@ -10,7 +10,7 @@ import {
   EntityDoesNotExistError,
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
-import { IBlocksClient } from 'src/types/i-blocks-client.ts';
+import { IBlocksClient } from '../types/index.ts';
 
 /**
  * @public

@@ -18,12 +18,12 @@ Before you can build automations, you first need to configure the connection to 
 - `HASS_PORT` - the port your Home Assistant installation is available on (defaults to 8123 if not provided)
 - `HASS_TOKEN` - a [long lived access token](https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token) you've configured
 
-Once this is done, the below code will bootstrap the connection and give you a client you can register automations with
+Once this is done, the below code will bootstrap the connection and give you a registry object that you can register automations with
 
 ```TypeScript
-import { getConnection } from "@hass-blocks/blocks"
+import { initialiseBlocks} from "@hass-blocks/blocks"
 
-const { client } = await getConnection()
+const { registry } = await initialiseBlocks()
 ```
 
 ## How it works
@@ -130,5 +130,5 @@ export const livingRoomMotionSensor = automation({
 And now the final part of the puzzle - lets register it with our client!
 
 ```TypeScript
-client.registerAutomation(livingRoomMotionSensor)
+registry.registerAutomation(livingRoomMotionSensor)
 ```

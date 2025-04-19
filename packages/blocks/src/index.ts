@@ -1,11 +1,11 @@
-export { getConnection } from './client/index.ts';
+export { initialiseBlocks } from './client/index.ts';
 
 export type {
-  CorsOptions,
-  ConnectionArgs,
   BlocksConnection,
   IBlocksClient,
   IEventBus,
+  IBlocksPlugin,
+  IBlock,
   CallServiceParams,
   HassBlocksEvent,
   BaseBlockConfig,

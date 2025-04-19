@@ -7,7 +7,6 @@
 import { CallServiceCommand } from '@hass-blocks/homeassistant-typescript';
 import { Event as Event_2 } from '@hass-blocks/homeassistant-typescript';
 import { HassConfig } from '@hass-blocks/homeassistant-typescript';
-import { Server } from 'http';
 import { State } from '@hass-blocks/homeassistant-typescript';
 
 // @public
@@ -39,13 +38,7 @@ export interface BaseBlockConfig {
 // @public (undocumented)
 export interface BlocksConnection {
     // (undocumented)
-    client: IBlocksClient;
-    // (undocumented)
-    eventBus: IEventBus;
-    // (undocumented)
-    hassConfig: HassConfig;
-    // (undocumented)
-    socket: Server;
+    registry: IBlocksRegistry;
 }
 
 // @public (undocumented)
@@ -68,24 +61,27 @@ export interface CallServiceParams {
 export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(actions: A) => Block<I, O>;
 
 // @public (undocumented)
-export interface ConnectionArgs {
-    // (undocumented)
-    corsOptions: CorsOptions;
-}
-
-// @public (undocumented)
-export interface CorsOptions {
-    // (undocumented)
-    methods: string[];
-    // (undocumented)
-    origin: string;
-}
-
-// @public
-export const getConnection: (args?: ConnectionArgs) => Promise<BlocksConnection>;
-
-// @public (undocumented)
 export type HassBlocksEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted;
+
+// @public (undocumented)
+export interface IBlock<I = void, O = void> {
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    inputType: I | undefined;
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    outputType: O | undefined;
+    // (undocumented)
+    run: (client: IBlocksClient, input: I, events?: IEventBus, triggerId?: string) => Promise<BlockOutput<O>> | BlockOutput<O>;
+    // (undocumented)
+    toJson(): SerialisedBlock;
+    // (undocumented)
+    typeString: string;
+    // (undocumented)
+    validate: (client: IBlocksClient) => Promise<void>;
+}
 
 // @public (undocumented)
 export interface IBlocksClient {
@@ -104,6 +100,14 @@ export interface IBlocksClient {
 }
 
 // @public (undocumented)
+export interface IBlocksPlugin {
+    // (undocumented)
+    load: (args: PluginArgs) => Promise<void>;
+    // (undocumented)
+    readonly name: string;
+}
+
+// @public (undocumented)
 export interface IEventBus {
     // (undocumented)
     emit: (event: HassBlocksEvent) => void;
@@ -113,6 +117,9 @@ export interface IEventBus {
         timestamp: string;
     }) => void) => void;
 }
+
+// @public
+export const initialiseBlocks: (args?: BlocksConfig) => Promise<BlocksConnection>;
 
 // @public (undocumented)
 export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;

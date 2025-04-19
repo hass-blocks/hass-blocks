@@ -7,7 +7,11 @@
     "format": "prettier --write .",
     "check-style": "prettier --check .",
     "test": "pnpm exec nx affected -t test",
-    "e2e-test": "pnpm exec nx affected -t e2e-test"
+    "lint": "pnpm exec nx affected -t lint",
+    "build": "pnpm exec nx affected -t build",
+    "e2e-test": "pnpm exec nx affected -t e2e-test",
+    "typecheck": "pnpm exec nx affected typecheck",
+    "api": "pnpm exec nx affected rollup-api"
   },
   "private": true,
   "devDependencies": {

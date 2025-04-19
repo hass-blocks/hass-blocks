@@ -4,6 +4,7 @@
  */
 const config = {
   '*.{js,jsx,ts,tsx,json,css,md,html}': ['prettier --write'],
+  '*.{jsx,ts,tsx}': ['vitest related'],
 };
 
 module.exports = config;

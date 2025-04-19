@@ -4,7 +4,33 @@
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
   "types": "./dist/public.d.ts",
+  "keywords": [
+    "automation",
+    "blocks",
+    "homeassistant",
+    "home assistant",
+    "home automation",
+    "hass"
+  ],
+  "description": "A strongly typed declarative framework for configuring Home Assistant automations",
+  "bugs": {
+    "url": "https://github.com/benwainwright/hass-blocks/issues",
+    "email": "bwainwright28@gmail.com"
+  },
+  "author": {
+    "name": "Ben Wainwright",
+    "email": "bwainwright28@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwainwright/hass-blocks.git",
+    "directory": "packages/blocks"
+  },
   "publishConfig": {
     "access": "public"
   },

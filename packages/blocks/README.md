@@ -1,5 +1,4 @@
-> [!CAUTION]
-> This project is still currently in development. It may be buggy and is certainly not feature complete. I could definitely do with additional contributors so do get in touch!
+> **This project is still currently in development. It may be buggy and is certainly not feature complete. I could definitely do with additional contributors so do get in touch!**
 
 # Hass Blocks
 
@@ -39,8 +38,7 @@ Hass-blocks is all about creating blocks that describe what you want to happen a
 
 Since this is a framework, its your job to write a whole bunch of blocks that you can then compose together in order to build your automations, so lets talk a little bit about how to do that.
 
-> [!NOTE]
-> It is very much my intention to write a package containing a whole series of premade blocks that you can use to easily build your automations. Watch this space...
+> **It is very much my intention to write a package containing a whole series of premade blocks that you can use to easily build your automations. If this feels useless right now, its because its in its very early stages. Watch this space...**
 
 ## Creating your automation
 

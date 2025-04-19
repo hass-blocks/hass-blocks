@@ -1,5 +1,5 @@
 import { PromiseExecutor, logger } from '@nx/devkit';
-import { ApiExtractorExecutorSchema } from './schema';
+import type { ApiExtractorExecutorSchema } from './schema.d.ts';
 import {
   Extractor,
   ExtractorConfig,

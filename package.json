@@ -10,8 +10,8 @@
     "lint": "pnpm exec nx affected -t lint",
     "build": "pnpm exec nx affected -t build",
     "e2e-test": "pnpm exec nx affected -t e2e-test",
-    "typecheck": "pnpm exec nx affected typecheck",
-    "api": "pnpm exec nx affected rollup-api"
+    "typecheck": "pnpm exec nx affected -t typecheck",
+    "api": "pnpm exec nx affected -t rollup-api"
   },
   "private": true,
   "devDependencies": {

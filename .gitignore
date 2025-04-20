@@ -45,3 +45,9 @@ vite.config.*.timestamp*
 vitest.config.*.timestamp*.verdaccio
 
 vitest.config.*.timestamp*
+
+.vitepress/cache
+
+# Generated Docusaurus files
+.docusaurus/
+.cache-loader/

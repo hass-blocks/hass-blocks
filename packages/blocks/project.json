@@ -25,6 +25,17 @@
         "reportFolder": "packages/blocks/api",
         "projectFolder": "packages/blocks"
       }
+    },
+    "generate-docs": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:api-documenter",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/blocks/dist/index.d.ts",
+        "outputDir": "apps/docs/docs/api-docs/blocks",
+        "projectFolder": "packages/blocks",
+        "docModelFolder": "packages/blocks/api"
+      }
     }
   }
 }

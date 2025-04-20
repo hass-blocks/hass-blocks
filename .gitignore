@@ -51,3 +51,4 @@ vitest.config.*.timestamp*
 # Generated Docusaurus files
 .docusaurus/
 .cache-loader/
+/cdk.out

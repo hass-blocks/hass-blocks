@@ -9,9 +9,17 @@
       "type": "string",
       "description": "The main entrypoint for your package API"
     },
-    "projectFOlder": {
+    "projectFolder": {
       "type": "string",
       "description": "Folder containing the package"
+    },
+    "docModelFolder": {
+      "type": "string",
+      "description": "Folder doc model json file is generated in. Will be created if it doesn't exist"
+    },
+    "outputDir": {
+      "type": "string",
+      "description": "Folder to generate Markdown output in"
     }
   },
   "required": []

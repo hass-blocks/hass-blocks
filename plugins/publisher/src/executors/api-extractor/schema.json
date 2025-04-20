@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "ApiExtractor executor",
+  "description": "",
+  "type": "object",
+  "properties": {
+    "mainEntrypointFile": {
+      "type": "string",
+      "description": "The main entrypoint for your package API"
+    },
+    "projectFolder": {
+      "type": "string",
+      "description": "Folder containing the package"
+    },
+    "reportFolder": {
+      "type": "string",
+      "description": "Folder to put the API report in"
+    }
+  },
+  "required": []
+}

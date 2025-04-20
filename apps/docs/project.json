@@ -3,11 +3,12 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "sourceRoot": "apps/docs/src",
+  "tags": [],
   "targets": {
     "build": {
       "executor": "@nx-extend/docusaurus:browser",
       "options": {
-        "outputPath": "dist/apps/docs"
+        "outputPath": "apps/docs/dist"
       }
     },
     "serve": {
@@ -15,7 +16,40 @@
       "options": {
         "port": 3000
       }
+    },
+    "package": {
+      "executor": "@nx-iac/aws-cdk:synthesize",
+      "dependsOn": ["build"],
+      "outputs": ["{options.output}"],
+      "options": {
+        "output": "cdk.out/apps/docs",
+        "quiet": true
+      }
+    },
+    "deploy": {
+      "executor": "@nx-iac/aws-cdk:deploy",
+      "dependsOn": ["package"],
+      "defaultConfiguration": "normal",
+      "options": {
+        "app": "cdk.out/apps/docs",
+        "stacks": "--all"
+      },
+      "configurations": {
+        "normal": {},
+        "quick": {
+          "hotswapFallback": true,
+          "noRollback": true
+        }
+      }
+    },
+    "destroy": {
+      "executor": "@nx-iac/aws-cdk:destroy",
+      "dependsOn": ["package"],
+      "options": {
+        "app": "cdk.out/apps/docs",
+        "stacks": "--all",
+        "force": true
+      }
     }
-  },
-  "tags": []
+  }
 }

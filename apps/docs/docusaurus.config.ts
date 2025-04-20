@@ -3,6 +3,9 @@ import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
+  markdown: {
+    format: 'detect',
+  },
   title: 'Hass Blocks',
   tagline:
     'A declarative framework for Home Assistant automations written in TypeScript',
@@ -56,7 +59,7 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     navbar: {
-      title: 'My Site',
+      title: 'Hass Blocks',
       logo: {
         alt: 'My Site Logo',
         src: 'img/logo.svg',
@@ -66,7 +69,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'About',
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {

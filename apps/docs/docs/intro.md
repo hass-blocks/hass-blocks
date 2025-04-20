@@ -2,46 +2,17 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# About Hass Blocks
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## Why?
 
-## Getting Started
+In my years of automating my home with Home Assistant, I've built up an array of automations for my home that have increasingly become critical to my quality of life. Over time, I've switched between native Home Assistant automations and Node Red (where my automations currently live), however I've never been properly satisified.
 
-Get started by **creating a new site**.
+Node Red is incredibly powerful, but because of its power and flexibility it is _extremely_ fragile and very hard to test in any other way than manually. Home Assistant native automations are less fragile, but probably less powerful and I'm either stuck with using a UI that I dislike, or a cumbersome YAML configuration language that is extremely hard to read with complex automations.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Enter Hass-Blocks
 
-### What you'll need
+The goal of this project is to take inspiration from the things I like about the tools I'm currently using and combine it with the power of a strongly Typed programming language, in order to build that is easy to build and understand, hard to get wrong, and easy to test. With that in mind, the things I don't want to throw out were:
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- The _declarative_ nature of YAML configuration, though it should be much more readable than Hass YAML
+- The ability to compose together blocks and have data flow from one to the next as my automation is triggered

@@ -21,19 +21,9 @@
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
-        "reportFolder": "packages/homeassistant-typescript/api",
-        "projectFolder": "packages/homeassistant-typescript"
-      }
-    },
-    "e2e-test": {
-      "executor": "@nx/vite:test",
-      "configurations": {
-        "post-release": {}
-      },
-      "options": {
-        "cwd": "packages/homeassistant-typescript",
-        "config": "packages/homeassistant-typescript/vite.config.e2e.ts"
+        "mainEntrypointFile": "packages/websocket-plugin/dist/index.d.ts",
+        "reportFolder": "packages/websocket-plugin/api",
+        "projectFolder": "packages/websocket-plugin"
       }
     }
   }

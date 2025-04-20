@@ -1,4 +1,4 @@
-import { md5 } from 'src/utils/md5.ts';
+import { md5 } from '../utils/md5.ts';
 import { Executor, Block } from '../core/index.ts';
 import { IBlocksClient, IEventBus, ITrigger } from '../types/index.ts';
 import { v4 } from 'uuid';

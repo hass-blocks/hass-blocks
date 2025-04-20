@@ -139,8 +139,8 @@ importers:
   packages/blocks:
     dependencies:
       '@hass-blocks/homeassistant-typescript':
-        specifier: 0.4.0
-        version: link:../homeassistant-typescript
+        specifier: 0.3.2
+        version: 0.3.2
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -233,7 +233,7 @@ importers:
     dependencies:
       '@hass-blocks/blocks':
         specifier: 3.0.0
-        version: link:../blocks
+        version: 3.0.0(@types/react@19.1.2)
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -1146,6 +1146,17 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
+
+  '@hass-blocks/blocks@3.0.0':
+    resolution: {integrity: sha512-IgikhgTwF3MJeBvEGRFAAuukLwbhZvXvzXmsAMijytd0dVJoSaZZCl9Mlg/vT3F2AAd4gc5d8kpp4Fgimy2+Kw==}
+    engines: {node: '>=18'}
+
+  '@hass-blocks/homeassistant-typescript@0.3.2':
+    resolution: {integrity: sha512-ljgw467ssEyDOuNeF/LYvkbZjXkS05W3rA/y9aEEQMxI4alBXDKiSgDFxlI1pnTl/KjdqDLT6TsRmYhBtuBJ6A==}
+
+  '@hass-blocks/homeassistant-typescript@0.4.0':
+    resolution: {integrity: sha512-+5/nVIQWhsh7s2/eeszai2hVu26C5fIXItTxVUoMpZxTwAfB0PHlv4hT5iA1XT0xgpKO4Ptpbi2IFwyVyc+A/w==}
+    engines: {node: '>=18'}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -6975,6 +6986,40 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
+
+  '@hass-blocks/blocks@3.0.0(@types/react@19.1.2)':
+    dependencies:
+      '@hass-blocks/homeassistant-typescript': 0.4.0
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      ink: 5.2.0(@types/react@19.1.2)(react@18.3.1)
+      queue-typescript: 1.0.1
+      react: 18.3.1
+      uuid: 11.1.0
+    transitivePeerDependencies:
+      - '@types/react'
+      - bufferutil
+      - react-devtools-core
+      - utf-8-validate
+
+  '@hass-blocks/homeassistant-typescript@0.3.2':
+    dependencies:
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      type-fest: 4.40.0
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@hass-blocks/homeassistant-typescript@0.4.0':
+    dependencies:
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@humanwhocodes/module-importer@1.0.1': {}
 

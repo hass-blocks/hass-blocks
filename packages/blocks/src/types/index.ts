@@ -12,7 +12,7 @@ export type { BlocksConnection } from './blocks-connection.ts';
 
 export type { IBlocksClient } from './i-blocks-client.ts';
 
-export type { IBlocksPlugin } from './i-blocks-plugin.ts';
+export type { IBlocksPlugin, PluginArgs } from './i-blocks-plugin.ts';
 
 export type {
   HassBlocksEvent,

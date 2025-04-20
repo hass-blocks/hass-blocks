@@ -20,7 +20,42 @@ export type HassBlocksEvent =
   | BlockFinished
   | BlockPending
   | BlockStarted
-  | SequenceAborted;
+  | SequenceAborted
+  | LoadPluginsStart
+  | LoadPluginStart
+  | LoadPluginsFinished
+  | LoadPluginFinished;
+
+/**
+ * @public
+ */
+interface LoadPluginsStart {
+  type: 'load-plugins-started';
+}
+
+/**
+ * @public
+ */
+interface LoadPluginStart {
+  type: 'load-plugin-started';
+  name: string;
+}
+
+/**
+ * @public
+ */
+interface LoadPluginFinished {
+  type: 'load-plugin-finished';
+  name: string;
+}
+
+/**
+ * @public
+ */
+interface LoadPluginsFinished {
+  type: 'load-plugins-finished';
+  plugins: string[];
+}
 
 /**
  * @public

@@ -4,7 +4,7 @@ import {
 } from '@hass-blocks/homeassistant-typescript';
 import { BlocksConnection, IBlocksPlugin } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
-import { EventBus } from '../core/index.ts';
+import { EventBus, loadPlugins } from '../core/index.ts';
 
 interface BlocksConfig {
   plugins?: IBlocksPlugin[];
@@ -24,10 +24,12 @@ export const initialiseBlocks = async (
   if (args && args.plugins) {
     const { plugins } = args;
 
-    await plugins.reduce(async (lastPromise, plugin) => {
-      await lastPromise;
-      await plugin.load({ client: blocks, config, events: bus });
-    }, Promise.resolve());
+    await loadPlugins({
+      plugins,
+      events: bus,
+      client: blocks,
+      config,
+    });
   }
 
   return {

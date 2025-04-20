@@ -61,7 +61,7 @@ export interface CallServiceParams {
 export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(actions: A) => Block<I, O>;
 
 // @public (undocumented)
-export type HassBlocksEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted;
+export type HassBlocksEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted | LoadPluginsStart | LoadPluginStart | LoadPluginsFinished | LoadPluginFinished;
 
 // @public (undocumented)
 export interface IBlock<I = void, O = void> {

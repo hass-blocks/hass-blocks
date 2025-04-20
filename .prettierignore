@@ -1,3 +1,10 @@
-.prettierignore
+# Add files here to ignore them from prettier formatting
+/dist
+/coverage
+/.nx/cache
+/.nx/workspace-data
+/.husky
 .docusaurus/
-/cdk.out
+.cdk.out
+pnpm-lock.yaml
+*.api.md

@@ -1,3 +1,13 @@
+## 2.1.0 (2025-04-20)
+
+### 🚀 Features
+
+- **blocks:** add plugin loading ([eb1f19a](https://github.com/benwainwright/hass-blocks/commit/eb1f19a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 # 2.0.0 (2025-04-19)
 
 ### 🚀 Features

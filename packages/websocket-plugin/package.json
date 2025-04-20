@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/websocket-plugin",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -50,7 +50,7 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/blocks": "workspace:^",
+    "@hass-blocks/blocks": "3.0.0",
     "@swc/helpers": "~0.5.11",
     "socket.io": "^4.8.1"
   }

@@ -139,7 +139,7 @@ importers:
   packages/blocks:
     dependencies:
       '@hass-blocks/homeassistant-typescript':
-        specifier: 0.3.2
+        specifier: 0.4.0
         version: link:../homeassistant-typescript
       '@swc/helpers':
         specifier: ~0.5.11
@@ -232,7 +232,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: workspace:^
+        specifier: 3.0.0
         version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11
@@ -4415,6 +4415,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-fetch@2.6.7:
     resolution: {integrity: sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ==}

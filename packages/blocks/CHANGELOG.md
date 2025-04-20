@@ -1,3 +1,13 @@
+## 2.1.1 (2025-04-20)
+
+### 🩹 Fixes
+
+- **blocks:** export PluginArgs ([bad873a](https://github.com/benwainwright/hass-blocks/commit/bad873a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 2.1.0 (2025-04-20)
 
 ### 🚀 Features

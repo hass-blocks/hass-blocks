@@ -183,7 +183,7 @@ importers:
         version: 8.18.1
     devDependencies:
       '@hass-blocks/local-hass':
-        specifier: workspace:*
+        specifier: 0.1.0
         version: link:../local-hass
       '@types/ws':
         specifier: 8.18.1

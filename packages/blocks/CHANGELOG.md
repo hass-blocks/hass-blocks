@@ -1,3 +1,13 @@
+## 3.0.1 (2025-04-20)
+
+### 🩹 Fixes
+
+- **blocks:** correct name of package ([8a5945b](https://github.com/benwainwright/hass-blocks/commit/8a5945b))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 # 3.0.0 (2025-04-20)
 
 ### 🚀 Features

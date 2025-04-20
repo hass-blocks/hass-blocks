@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/blocks",
-  "version": "2.1.2",
+  "version": "3.0.1",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

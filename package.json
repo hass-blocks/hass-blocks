@@ -19,6 +19,7 @@
     "@commitlint/cli": "18.0.0",
     "@commitlint/config-conventional": "18.0.0",
     "@docusaurus/module-type-aliases": "3.4.0",
+    "@docusaurus/theme-classic": "^3.7.0",
     "@docusaurus/tsconfig": "3.4.0",
     "@docusaurus/types": "3.4.0",
     "@eslint/js": "9.8.0",
@@ -85,7 +86,7 @@
     "clsx": "^2.0.0",
     "ink-spinner": "5.0.0",
     "prism-react-renderer": "^2.3.0",
-    "react": "^18.0.0",
+    "react": "^18.3.1",
     "react-dom": "^18.0.0",
     "vitepress": "^1.0.0-alpha.33",
     "vue": "^3.2.45"

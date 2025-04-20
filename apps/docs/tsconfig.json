@@ -3,10 +3,10 @@
   "compilerOptions": {
     "allowJs": true,
     "esModuleInterop": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": ["DOM"],
     "noEmit": true,
-    "noImplicitAny": false,
+    "strict": true,
     "types": [
       "node",
       "@docusaurus/module-type-aliases",
@@ -16,5 +16,6 @@
     "paths": {
       "@site/*": ["./*"]
     }
-  }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

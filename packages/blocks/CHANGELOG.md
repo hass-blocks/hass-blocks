@@ -1,3 +1,13 @@
+## 2.1.2 (2025-04-20)
+
+### 🩹 Fixes
+
+- **blocks:** export some types and logging event ([0d1b314](https://github.com/benwainwright/hass-blocks/commit/0d1b314))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 2.1.1 (2025-04-20)
 
 ### 🩹 Fixes

@@ -1,5 +1,5 @@
 {
-  "name": "@hass-blocks/local-hass",
+  "name": "local-hass",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/local-hass/src",
   "projectType": "library",

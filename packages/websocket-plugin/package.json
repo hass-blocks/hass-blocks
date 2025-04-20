@@ -2,6 +2,20 @@
   "name": "@hass-blocks/websocket-plugin",
   "version": "0.0.1",
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "automation",
+    "blocks",
+    "homeassistant",
+    "home assistant",
+    "home automation",
+    "hass",
+    "websocket",
+    "ws"
+  ],
+  "description": "A websocket server for the hass-blocks framework",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -13,6 +27,23 @@
       "import": "./dist/index.js",
       "default": "./dist/index.js"
     }
+  },
+  "bugs": {
+    "url": "https://github.com/benwainwright/hass-blocks/issues",
+    "email": "bwainwright28@gmail.com"
+  },
+  "author": {
+    "name": "Ben Wainwright",
+    "email": "bwainwright28@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwainwright/hass-blocks.git",
+    "directory": "packages/websocket-plugin"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "files": [
     "dist",

@@ -10,6 +10,7 @@ export type {
   CallServiceParams,
   HassBlocksEvent,
   BaseBlockConfig,
+  BlockStarted,
 } from './types/index.ts';
 
 export {

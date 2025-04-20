@@ -15,6 +15,7 @@ export interface SerialisedBlock {
 export type HassBlocksEvent =
   | AutomationRegistered
   | GeneralFailure
+  | LogEvent
   | StateChanged
   | BlockFailed
   | BlockFinished
@@ -25,6 +26,17 @@ export type HassBlocksEvent =
   | LoadPluginStart
   | LoadPluginsFinished
   | LoadPluginFinished;
+
+/**
+ * @public
+ */
+
+interface LogEvent {
+  message: string;
+  module: string;
+  type: 'log-event';
+  level: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
+}
 
 /**
  * @public

@@ -42,6 +42,18 @@ export interface BlocksConnection {
 }
 
 // @public (undocumented)
+export interface BlockStarted extends BaseHassEvent {
+    // (undocumented)
+    parent?: SerialisedBlock_2;
+    // (undocumented)
+    status: 'started';
+    // (undocumented)
+    triggeredBy?: ITrigger;
+    // (undocumented)
+    type: string;
+}
+
+// @public (undocumented)
 export interface CallServiceParams {
     // (undocumented)
     data?: Record<string, unknown>;
@@ -61,7 +73,7 @@ export interface CallServiceParams {
 export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(actions: A) => Block<I, O>;
 
 // @public (undocumented)
-export type HassBlocksEvent = AutomationRegistered | GeneralFailure | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted | LoadPluginsStart | LoadPluginStart | LoadPluginsFinished | LoadPluginFinished;
+export type HassBlocksEvent = AutomationRegistered | GeneralFailure | LogEvent | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted | LoadPluginsStart | LoadPluginStart | LoadPluginsFinished | LoadPluginFinished;
 
 // @public (undocumented)
 export interface IBlock<I = void, O = void> {

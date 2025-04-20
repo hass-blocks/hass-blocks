@@ -5,6 +5,7 @@ export type {
   IBlocksClient,
   IEventBus,
   IBlocksPlugin,
+  PluginArgs,
   IBlock,
   CallServiceParams,
   HassBlocksEvent,

@@ -122,6 +122,16 @@ export interface IEventBus {
 export const initialiseBlocks: (args?: BlocksConfig) => Promise<BlocksConnection>;
 
 // @public (undocumented)
+export interface PluginArgs {
+    // (undocumented)
+    client: IBlocksClient;
+    // (undocumented)
+    config: HassConfig;
+    // (undocumented)
+    events: IEventBus;
+}
+
+// @public (undocumented)
 export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;
 
 // @public (undocumented)

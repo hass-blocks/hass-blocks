@@ -1,3 +1,40 @@
+# 3.0.0 (2025-04-20)
+
+### 🚀 Features
+
+- **blocks:** add plugin loading ([eb1f19a](https://github.com/benwainwright/hass-blocks/commit/eb1f19a))
+- ⚠️ **blocks:** swap lego for blocks ([17f29a4](https://github.com/benwainwright/hass-blocks/commit/17f29a4))
+- ⚠️ **blocks:** make the dsl more intuitive ([54e1bac](https://github.com/benwainwright/hass-blocks/commit/54e1bac))
+- **blocks:** update blocks to reference the monorepo version of hass-ts ([7afd53d](https://github.com/benwainwright/hass-blocks/commit/7afd53d))
+- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+
+### 🩹 Fixes
+
+- **ci:** sort out names and add api report for plugin ([3549d7e](https://github.com/benwainwright/hass-blocks/commit/3549d7e))
+- **blocks:** fix broken import ([3df941e](https://github.com/benwainwright/hass-blocks/commit/3df941e))
+- **blocks:** export some types and logging event ([0d1b314](https://github.com/benwainwright/hass-blocks/commit/0d1b314))
+- **blocks:** export PluginArgs ([bad873a](https://github.com/benwainwright/hass-blocks/commit/bad873a))
+- **blocks:** was overwriting the result of the parallel execution ([128d15a](https://github.com/benwainwright/hass-blocks/commit/128d15a))
+- **blocks:** correct the broken types ([e72f46c](https://github.com/benwainwright/hass-blocks/commit/e72f46c))
+- **blocks:** correct mistake in readme ([bf8788a](https://github.com/benwainwright/hass-blocks/commit/bf8788a))
+- **blocks:** correct typing issue ([6c2bb29](https://github.com/benwainwright/hass-blocks/commit/6c2bb29))
+- **blocks:** stuff ([39118bf](https://github.com/benwainwright/hass-blocks/commit/39118bf))
+- **blocks:** put old hass back for now ([957a7fc](https://github.com/benwainwright/hass-blocks/commit/957a7fc))
+- **blocks:** modify release ([c736a43](https://github.com/benwainwright/hass-blocks/commit/c736a43))
+
+### ⚠️ Breaking Changes
+
+- **blocks:** Changes all symbols that use the word 'Lego' to use
+- **blocks:** changes props on the sequence functions
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/homeassistant-typescript to 0.4.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 2.1.2 (2025-04-20)
 
 ### 🩹 Fixes

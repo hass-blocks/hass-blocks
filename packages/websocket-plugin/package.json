@@ -19,6 +19,8 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@swc/helpers": "~0.5.11"
+    "@hass-blocks/blocks": "workspace:^",
+    "@swc/helpers": "~0.5.11",
+    "socket.io": "^4.8.1"
   }
 }

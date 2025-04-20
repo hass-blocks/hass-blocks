@@ -1,1 +1,1 @@
-export * from './lib/websocket-plugin.js';
+export { WebsocketServerPlugin } from './websocket-server-plugin.ts';

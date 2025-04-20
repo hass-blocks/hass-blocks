@@ -1,3 +1,13 @@
+## 3.1.0 (2025-04-20)
+
+### 🚀 Features
+
+- **docs:** add deployable docs site ([1b22b4a](https://github.com/benwainwright/hass-blocks/commit/1b22b4a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.0.1 (2025-04-20)
 
 ### 🩹 Fixes

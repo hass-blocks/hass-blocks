@@ -1,5 +1,5 @@
 {
-  "name": "homeassistant-typescript",
+  "name": "@hass-blocks/homeassistant-typescript",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/homeassistant-typescript/src",
   "projectType": "library",

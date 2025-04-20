@@ -5,6 +5,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 const config: Config = {
   markdown: {
     format: 'detect',
+    preprocessor: ({ fileContent }) => {
+      return fileContent.replaceAll(/\*\*Returns:\*\*/g, '\n**Returns:**');
+    },
   },
   title: 'Hass Blocks',
   tagline:

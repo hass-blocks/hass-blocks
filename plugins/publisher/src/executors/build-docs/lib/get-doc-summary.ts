@@ -1,12 +1,13 @@
 import { ApiDocumentedItem, ApiItem } from '@microsoft/api-extractor-model';
 import { DocLinkTag, DocNode, DocNodeKind } from '@microsoft/tsdoc';
 import { link, RichTextEntry } from 'ts-markdown';
+import { trimLinebreak } from './trim-line-breaks.ts';
 
 export const getDocSummary = (item: ApiItem) => {
   if (item instanceof ApiDocumentedItem) {
     const summary = item.tsdocComment?.summarySection;
     if (summary) {
-      const result = extractTextFromDocNodes(summary);
+      const result = trimLinebreak(extractTextFromDocNodes(summary));
       if (result.every((item) => typeof item === 'string')) {
         return result.join('');
       }

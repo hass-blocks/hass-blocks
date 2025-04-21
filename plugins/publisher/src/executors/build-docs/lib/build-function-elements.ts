@@ -1,4 +1,4 @@
-import { codeblock, h2, p } from 'ts-markdown';
+import { codeblock, h2 } from 'ts-markdown';
 import { paramsTable } from './build-params-table.ts';
 import { ApiFunction, ApiItem } from '@microsoft/api-extractor-model';
 import { getCode } from './get-code.ts';

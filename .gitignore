@@ -52,5 +52,5 @@ vitest.config.*.timestamp*
 .docusaurus/
 .cache-loader/
 /cdk.outapps/docs/docs
-apps/docs/docs/api-docs
+apps/docs/docs/03-api-docs
 cdk.out

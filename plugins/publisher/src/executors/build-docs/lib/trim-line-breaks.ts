@@ -15,7 +15,7 @@ const removeLinebreaksFromStart = (entry: RichTextEntry) => {
   }
 };
 
-export const trimLinebreak = (entry: RichTextEntry) => {
+export const trimLinebreak = <T extends RichTextEntry>(entry: T): T => {
   if (!Array.isArray(entry)) {
     return entry;
   }

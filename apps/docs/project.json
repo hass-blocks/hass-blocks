@@ -9,7 +9,7 @@
       "executor": "@hass-blocks/publisher:build-docs",
       "options": {
         "modelFolder": "apps/docs/models",
-        "outputFolder": "apps/docs/docs/api-docs"
+        "outputFolder": "apps/docs/docs/03-api-docs"
       }
     },
 

@@ -9,9 +9,12 @@ import { importStatement } from './components.ts';
 import { getDocSummary } from './get-doc-summary.ts';
 
 export const buildMemberPage = async (item: ApiItem, folder: string) => {
+  const title = item.displayName.charAt(0).match(/[a-z]/)
+    ? toTitleCase(item.displayName)
+    : item.displayName;
   const markdownDocument = [
     frontmatter({
-      title: toTitleCase(item.displayName),
+      title,
     }),
     importStatement(),
     h1(item.displayName),

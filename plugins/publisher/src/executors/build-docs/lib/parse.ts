@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import { frontmatter } from 'micromark-extension-frontmatter';
 import { mdxjs } from 'micromark-extension-mdxjs';
 import { fromMarkdown } from 'mdast-util-from-markdown';
-import { mdxFromMarkdown, mdxToMarkdown } from 'mdast-util-mdx';
+import { mdxFromMarkdown } from 'mdast-util-mdx';
 import { frontmatterFromMarkdown } from 'mdast-util-frontmatter';
 import { join } from 'node:path';
 

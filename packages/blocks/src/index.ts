@@ -1,3 +1,12 @@
+/**
+ * A declarative framework for building Home Assistant automations
+ *
+ * @remarks
+ * This package contains everything you needed to get started building a hass-blocks automation
+ *
+ * @packageDocumentation
+ */
+
 export { initialiseBlocks } from './client/index.ts';
 
 export type {

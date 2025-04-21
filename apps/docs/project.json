@@ -5,6 +5,14 @@
   "sourceRoot": "apps/docs/src",
   "tags": [],
   "targets": {
+    "gen-docs": {
+      "executor": "@hass-blocks/publisher:build-docs",
+      "options": {
+        "modelFolder": "apps/docs/models",
+        "outputFolder": "apps/docs/docs/api-docs"
+      }
+    },
+
     "build": {
       "executor": "@nx-extend/docusaurus:browser",
       "options": {

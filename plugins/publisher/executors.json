@@ -5,10 +5,15 @@
       "schema": "./dist/executors/api-extractor/schema.json",
       "description": "api-extractor executor"
     },
-    "api-documenter": {
-      "implementation": "./dist/executors/api-documenter/executor",
-      "schema": "./dist/executors/api-documenter/schema.json",
-      "description": "api-documentor executor"
+    "doc-model": {
+      "implementation": "./dist/executors/doc-model/executor",
+      "schema": "./dist/executors/doc-model/schema.json",
+      "description": "doc-model executor"
+    },
+    "build-docs": {
+      "implementation": "./dist/executors/build-docs/executor",
+      "schema": "./dist/executors/build-docs/schema.json",
+      "description": "build-docs executor"
     }
   }
 }

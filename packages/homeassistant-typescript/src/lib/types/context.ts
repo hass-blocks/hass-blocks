@@ -1,7 +1,7 @@
 /**
  * @public
  *
- * Used to tie events and states together. See {@link https://data.home-assistant.io/docs/context/}
+ * Used to tie events and states together. See {@link https://data.home-assistant.io/docs/context/ | Home Assistant Website}
  */
 export interface Context {
   /**

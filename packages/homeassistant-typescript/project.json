@@ -26,15 +26,14 @@
         "projectFolder": "packages/homeassistant-typescript"
       }
     },
-    "generate-docs": {
+    "doc-model": {
       "dependsOn": ["typecheck"],
-      "executor": "@hass-blocks/publisher:api-documenter",
+      "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
         "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
-        "outputDir": "apps/docs/docs/api-docs/homeassistant-typescript",
         "projectFolder": "packages/homeassistant-typescript",
-        "docModelFolder": "packages/homeassistant-typescript/api"
+        "docModelFolder": "apps/docs/models"
       }
     },
     "e2e-test": {

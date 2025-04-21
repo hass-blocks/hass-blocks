@@ -26,16 +26,14 @@
         "projectFolder": "packages/websocket-plugin"
       }
     },
-
-    "generate-docs": {
+    "doc-model": {
       "dependsOn": ["typecheck"],
-      "executor": "@hass-blocks/publisher:api-documenter",
+      "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
         "mainEntrypointFile": "packages/websocket-plugin/dist/index.d.ts",
-        "outputDir": "apps/docs/docs/api-docs/websocket-plugin",
         "projectFolder": "packages/websocket-plugin",
-        "docModelFolder": "packages/websocket-plugin/api"
+        "docModelFolder": "apps/docs/models"
       }
     }
   }

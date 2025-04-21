@@ -8,18 +8,47 @@
  */
 
 export { initialiseBlocks } from './client/index.ts';
+export type { IBlocksConfig } from "./client/index.ts"
+
+export { Block } from "./core/index.ts"
 
 export type {
-  BlocksConnection,
-  IBlocksClient,
+  IBlocksConnection,
+  IHass,
+  ITrigger,
+  BlockOutput,
   IEventBus,
   IBlocksPlugin,
-  PluginArgs,
+  IPluginArgs,
   IBlock,
-  CallServiceParams,
-  HassBlocksEvent,
-  BaseBlockConfig,
+  ICallServiceParams,
+  ContinueOutput,
+  StopOutput,
+  IBaseBlockConfig,
+  BaseHassEvent,
   BlockStarted,
+  ExecutionMode,
+  HassBlocksEvent,
+  AutomationRegistered,
+  GeneralFailure,
+  LogEvent,
+  BlockFinished,
+  ConditionResult,
+  BlockPending,
+  IBlocksRegistry,
+  HassEntityBase,
+  SequenceAborted,
+  LoadPluginFinished,
+  LoadPluginStart,
+  LoadPluginsFinished,
+  LoadPluginsStart,
+  StateChanged,
+  HassContext,
+  BlockFailed,
+  IFullBlocksClient,
+  HassEntity,
+  HassEntityAttributeBase,
+  SerialisedBlock
 } from './types/index.ts';
 
 export {
@@ -33,4 +62,17 @@ export {
   automation,
 } from './building-blocks/index.ts';
 
-export type { ActionArgs } from './building-blocks/index.ts';
+export type {
+  ITriggerConfig,
+  IActionConfig,
+  IAutomationConfig,
+  IAssertionConfig,
+  IfThenElseConditionConfig,
+  BlockRetainType,
+  ValidInputOutputSequence,
+  GetSequenceInput,
+  GetSequenceOutput,
+  OutputType,
+  InputType,
+  OutputTypeKeepPromise
+} from './building-blocks/index.ts';

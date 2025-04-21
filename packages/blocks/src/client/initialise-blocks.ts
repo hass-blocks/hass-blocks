@@ -2,20 +2,31 @@ import {
   getConfig,
   initialiseClient,
 } from '@hass-blocks/homeassistant-typescript';
-import { BlocksConnection, IBlocksPlugin } from '../types/index.ts';
+import { IBlocksConnection, IBlocksPlugin } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
 import { EventBus, loadPlugins } from '../core/index.ts';
 
-interface BlocksConfig {
+/**
+ * @public
+ * 
+ * Configuration object for Hass Blocks
+ */
+export interface IBlocksConfig {
+
+  /**
+   * A list of plugins to be loaded by Hass Blocks
+   */
   plugins?: IBlocksPlugin[];
 }
 
 /**
+ * @public
+ * 
  * Bootstrap the connection with Home Assistant and initialise Hass Blocks
  */
 export const initialiseBlocks = async (
-  args?: BlocksConfig,
-): Promise<BlocksConnection> => {
+  args?: IBlocksConfig,
+): Promise<IBlocksConnection> => {
   const bus = new EventBus();
   const config = getConfig();
   const client = await initialiseClient(config);

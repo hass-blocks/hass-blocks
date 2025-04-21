@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import {
   BlockOutput,
   Runnable,
-  IBlocksClient,
+  IHass,
   IEventBus,
 } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
@@ -39,7 +39,7 @@ export class Executor<I, O> implements Runnable {
 
   public constructor(
     sequence: Block<unknown, unknown>[],
-    private client: IBlocksClient,
+    private client: IHass,
     private events: IEventBus,
     public triggerId: string,
     private input?: I,

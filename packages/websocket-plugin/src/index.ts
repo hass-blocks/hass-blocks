@@ -1,1 +1,2 @@
-export { WebsocketServerPlugin } from './websocket-server-plugin.ts';
+export { websocketServer } from './websocket-server-plugin.ts';
+export type { WebsocketServerPluginConfig } from "./websocket-server-plugin.ts"

@@ -15,13 +15,42 @@ import {
 import {
   IEventBus,
   BlockOutput,
-  IBlocksClient,
+  IHass,
   ExecutionMode,
   ITrigger,
+  IBaseBlockConfig,
 } from '../types/index.ts';
 
 import { ExecutionAbortedError } from '../errors/index.ts';
 import { md5 } from '../utils/index.ts';
+
+/**
+ * @public
+ *
+ * Configuration object for automation blocks
+ */
+export interface IAutomationConfig<
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  A extends readonly any[],
+  I = GetSequenceInput<A>,
+  O = GetSequenceOutput<A>,
+> extends IBaseBlockConfig {
+
+  /**
+   * Sequence of blocks to execute when the trigger is fired
+   */
+  then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+
+  /**
+   * Trigger will result in this block being executed
+   */
+  when?: ITrigger | ITrigger[];
+
+  /**
+   * Whether to execute the blocks in sequnce or in parallel
+   */
+  mode?: ExecutionMode;
+}
 
 export class Automation<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -33,23 +62,18 @@ export class Automation<
 
   private runQueue = new RunQueue();
 
-  public constructor(
-    public config: {
-      name: string;
-      id?: string;
-      then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
-      when?: ITrigger | ITrigger[];
-      mode?: ExecutionMode;
-    },
-  ) {
+  public constructor(public config: IAutomationConfig<A, I, O>) {
     super(config.id ?? md5(config.name), [...config.then]);
     this.name = this.config.name;
+    if(config.when) {
+      this.trigger = config.when
+    }
   }
 
   public override typeString = 'automation';
 
   public override async run(
-    client: IBlocksClient,
+    client: IHass,
     input?: I,
     events?: IEventBus,
     triggerId?: string,
@@ -117,12 +141,8 @@ export const automation = <
   const A extends readonly any[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
->(config: {
-  name: string;
-  id?: string;
-  then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
-  when?: ITrigger | ITrigger[];
-  mode?: ExecutionMode;
-}): Block<I, O> => {
+>(
+  config: IAutomationConfig<A, I, O>,
+): Block<I, O> => {
   return new Automation<A, I, O>(config);
 };

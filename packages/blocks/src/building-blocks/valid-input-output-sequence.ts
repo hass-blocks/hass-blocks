@@ -44,12 +44,24 @@ export type OutputType<T extends Block<unknown, unknown>> =
     ? T
     : Exclude<T['outputType'], undefined>;
 
+/**
+ * @public
+ * 
+ * Block output type without undefined
+ */
 export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<
   T['outputType'],
   undefined
 >;
 
 /**
+ * Given an Input and Ouput type and an array of block types, this type
+ * validates that they are a compatible sequence of blocks.
+ * 
+ * So for input I, output O and blocks A and B, this type will produce compiler
+ * errors unless I is compatible with A<I>, A<O> is compatible with B<I> and B<O>
+ * is compatible with O
+ * 
  * @public
  */
 export type ValidInputOutputSequence<
@@ -104,7 +116,9 @@ export type GetResults<T extends readonly Block<unknown, unknown>[]> =
     : readonly [];
 
 /**
- * Rehyrdate a sequence of blocks with its in and out types
+ * @public
+ * 
+ * Rehydrate a sequence of blocks with its input and output types
  */
 export type BlockRetainType<A extends readonly Block<unknown, unknown>[]> =
   A extends readonly [

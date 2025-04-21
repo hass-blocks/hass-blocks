@@ -11,7 +11,7 @@ import {
 import { Action } from './action.ts';
 import { Automation } from './automation.ts';
 
-import { IBlocksClient, ExecutionMode } from '../types/index.ts';
+import { IHass, ExecutionMode } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
 
 vi.mock('../core/index.ts', async (importOriginal) => {
@@ -30,7 +30,7 @@ describe('automation.validate', () => {
   it('calls all of the validate then on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -55,7 +55,7 @@ describe('automation.validate', () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
 
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -83,7 +83,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
@@ -103,7 +103,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const input = 'foo';
 
@@ -121,7 +121,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -163,7 +163,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -214,7 +214,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -254,7 +254,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -296,7 +296,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -348,7 +348,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -399,7 +399,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IBlocksClient>();
+    const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';

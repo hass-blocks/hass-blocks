@@ -17,9 +17,6 @@ export const MemberTable = ({ members }: MemberTableProps) => {
       <tbody>
         {members.map((member) => (
           <tr>
-            <td>
-              <strong>{member.kind}</strong>
-            </td>
             <td>{member.name}</td>
             <td>
               <RichText>{member.description}</RichText>

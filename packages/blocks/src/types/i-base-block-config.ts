@@ -2,7 +2,7 @@
  * @public
  * Configuration that is common for all blocks
  */
-export interface BaseBlockConfig {
+export interface IBaseBlockConfig {
   /**
    * Name of the block
    */

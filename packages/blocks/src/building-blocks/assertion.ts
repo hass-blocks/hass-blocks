@@ -1,13 +1,14 @@
 import { Block } from '../core/index.ts';
-import { IBlocksClient, BlockOutput, BaseBlockConfig } from '../types/index.ts';
+import { IHass, BlockOutput, IBaseBlockConfig } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
  * @public
  *
- * Configuration for an assertion block
+ * Configuration object for an assertion block
  */
-export interface AssertionConfig<I, O> extends BaseBlockConfig {
+export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
+
   /**
    * When this block is executed by an automation it should return a boolean
    * either as the direct return value, or as the 'result' property on an object.
@@ -16,7 +17,7 @@ export interface AssertionConfig<I, O> extends BaseBlockConfig {
    * should finish
    */
   readonly predicate: (
-    client: IBlocksClient,
+    client: IHass,
     input?: I,
   ) =>
     | Promise<boolean>
@@ -26,7 +27,7 @@ export interface AssertionConfig<I, O> extends BaseBlockConfig {
 }
 
 export class Assertion<I = void, O = void> extends Block<I, O> {
-  public constructor(public config: AssertionConfig<I, O>) {
+  public constructor(public config: IAssertionConfig<I, O>) {
     super(config.id ?? md5(config.name));
     this.name = this.config.name;
   }
@@ -35,7 +36,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
   public override typeString = 'assertion';
 
   public override async run(
-    client: IBlocksClient,
+    client: IHass,
     input: I,
   ): Promise<BlockOutput<O>> {
     const callbackResult = this.config.predicate(client, input);
@@ -66,7 +67,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
  * an automation should continue based on the result of a predicate
  */
 export const assertion = <I = void, O = void>(
-  config: AssertionConfig<I, O>,
+  config: IAssertionConfig<I, O>,
 ): Block<I, O> => {
   return new Assertion(config);
 };

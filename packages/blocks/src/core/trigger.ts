@@ -1,27 +1,43 @@
 import { md5 } from '../utils/md5.ts';
-import { Executor, Block } from '../core/index.ts';
-import { IBlocksClient, IEventBus, ITrigger } from '../types/index.ts';
+import { Executor, Block } from './index.ts';
+import { IEventBus, IFullBlocksClient, ITrigger } from '../types/index.ts';
 import { v4 } from 'uuid';
 
-export interface TriggerProps {
+/**
+ * @public
+ * 
+ * The configuration object for a trigger
+ */
+export interface ITriggerConfig {
+  /**
+   * The name of the trigger
+   */
   name: string;
+
+  /**
+   * A id string for the trigger (must be unique)
+   */
   id?: string;
+  
+  /**
+   * The Home Assistant trigger parameters (See {@link https://www.home-assistant.io/docs/automation/trigger/})
+   */
   trigger: Record<string, unknown>;
 }
 
-class Trigger implements ITrigger {
+export class Trigger implements ITrigger {
   public readonly name: string;
   public readonly id: string;
   public readonly trigger: Record<string, unknown>;
 
-  public constructor(public config: TriggerProps) {
+  public constructor(public config: ITriggerConfig) {
     this.name = config.name;
     this.id = config.id ?? md5(this.name);
     this.trigger = config.trigger;
   }
 
   public async attachToClient(
-    client: IBlocksClient,
+    client: IFullBlocksClient,
     block: Block<unknown, unknown>,
     events: IEventBus,
   ) {
@@ -36,8 +52,10 @@ class Trigger implements ITrigger {
 }
 
 /**
+ * @public
+ * 
  * Associate the automation with a Home Assistant trigger. For more details, see {@link https://www.home-assistant.io/docs/automation/trigger/ | the Home Assistant docs}
  */
-export const trigger = (config: TriggerProps): ITrigger => {
+export const trigger = (config: ITriggerConfig): ITrigger => {
   return new Trigger(config);
 };

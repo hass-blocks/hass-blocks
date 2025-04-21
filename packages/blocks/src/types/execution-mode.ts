@@ -1,5 +1,7 @@
 /**
  * @public
+ * 
+ * The execution mode for an automation
  */
 export enum ExecutionMode {
   /**

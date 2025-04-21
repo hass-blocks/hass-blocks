@@ -5,15 +5,18 @@
 ```ts
 
 import { IBlocksPlugin } from '@hass-blocks/blocks';
-import { PluginArgs } from '@hass-blocks/blocks';
 
-// @public (undocumented)
-export class WebsocketServerPlugin implements IBlocksPlugin {
-    constructor(config: WebsocketServerPluginConfig);
-    // (undocumented)
-    load({ client, events }: PluginArgs): Promise<void>;
-    // (undocumented)
-    readonly name = "websocket";
+// @public
+export const websocketServer: (config: WebsocketServerPluginConfig) => IBlocksPlugin;
+
+// @public
+export interface WebsocketServerPluginConfig {
+    cors: {
+        origin: string;
+        methods: string[];
+    };
+    host: string;
+    port: number;
 }
 
 // (No @packageDocumentation comment for this package)

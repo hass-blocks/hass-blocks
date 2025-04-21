@@ -6,9 +6,9 @@ import { mock } from 'vitest-mock-extended';
 
 import {
   IBlocksClient,
-  BlockStarted,
   IBlock,
   IEventBus,
+  HassBlocksEvent,
 } from '@hass-blocks/blocks';
 import { SOCKET_EVENT_NAME } from './constants.ts';
 
@@ -151,15 +151,15 @@ describe('getWebsocketServer', () => {
     const clientSocket = createTestClient(port);
 
     // Wait for the event forwarded from the bus.
-    const eventPromise = new Promise<BlockStarted>((resolve) => {
-      clientSocket.on(SOCKET_EVENT_NAME, (data: BlockStarted) => {
+    const eventPromise = new Promise<HassBlocksEvent>((resolve) => {
+      clientSocket.on(SOCKET_EVENT_NAME, (data: HassBlocksEvent) => {
         resolve(data);
       });
     });
 
     await new Promise<void>((resolve) => clientSocket.on('connect', resolve));
 
-    const testEvent: BlockStarted = {
+    const testEvent: HassBlocksEvent = {
       status: 'started',
       type: 'foo',
       triggerId: 'foo',

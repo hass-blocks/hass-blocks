@@ -1,5 +1,7 @@
 /**
  * @public
+ * 
+ * The Home Assistant context (See {@link https://data.home-assistant.io/docs/context/})
  */
 export type HassContext = {
   id: string;
@@ -9,6 +11,8 @@ export type HassContext = {
 
 /**
  * @public
+ * 
+ * The base Home Assistant event
  */
 export type HassEventBase = {
   origin: string;
@@ -18,6 +22,8 @@ export type HassEventBase = {
 
 /**
  * @public
+ * 
+ * A home assistant entity
  */
 export type HassEvent = HassEventBase & {
   event_type: string;
@@ -39,6 +45,8 @@ export type HassStateChangedEvent = HassEventBase & {
 
 /**
  * @public
+ * 
+ * The core attributes shared by all Home Assistant entities
  */
 export type HassEntityBase = {
   entity_id: string;
@@ -51,6 +59,8 @@ export type HassEntityBase = {
 
 /**
  * @public
+ * 
+ * The core entity attributes shared by all Home Assistant entities
  */
 export type HassEntityAttributeBase = {
   friendly_name?: string;
@@ -67,6 +77,8 @@ export type HassEntityAttributeBase = {
 
 /**
  * @public
+ * 
+ * A Home Assistant entity
  */
 export type HassEntity = HassEntityBase & {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

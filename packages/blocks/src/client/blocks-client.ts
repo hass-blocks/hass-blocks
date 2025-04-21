@@ -3,21 +3,19 @@ import {
   Event,
   TriggerEventMessage,
 } from '@hass-blocks/homeassistant-typescript';
-import { Automation } from '../building-blocks/index.ts';
-import { HassEntity, IEventBus, CallServiceParams } from '../types/index.ts';
-import { Block } from '../core/index.ts';
+import { HassEntity, IEventBus, ICallServiceParams, IBlock } from '../types/index.ts';
 import {
   EntityDoesNotExistError,
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
-import { IBlocksClient } from '../types/index.ts';
+import { IFullBlocksClient } from '../types/index.ts';
 
 /**
  * @public
  */
-export class BlocksClient implements IBlocksClient {
+export class BlocksClient implements IFullBlocksClient {
   private states: Map<string, HassEntity> | undefined;
-  private _automations: Block<unknown, unknown>[] = [];
+  private _automations: IBlock<unknown, unknown>[] = [];
 
   public constructor(
     private client: IClient,
@@ -50,7 +48,7 @@ export class BlocksClient implements IBlocksClient {
     return state;
   }
 
-  public getAutomations(): Block<unknown, unknown>[] {
+  public getAutomations(): IBlock<unknown, unknown>[] {
     return this._automations;
   }
 
@@ -61,20 +59,17 @@ export class BlocksClient implements IBlocksClient {
     await this.client.registerTrigger(trigger, callback);
   }
 
-  public async callService(params: CallServiceParams) {
+  public async callService(params: ICallServiceParams) {
     return await this.client.callService(params);
   }
 
-  public async registerAutomation<
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    A extends ReadonlyArray<any>,
-  >(automation: Automation<A, unknown, unknown>) {
+  public async registerAutomation(automation: IBlock<unknown, unknown>) {
     this._automations.push(automation);
-    const { when } = automation.config;
+    const { trigger } = automation
 
     await automation.validate(this);
 
-    const triggers = Array.isArray(when) ? when : [when];
+    const triggers = Array.isArray(trigger) ? trigger : [trigger];
 
     await Promise.all(
       triggers.map(async (item) => {
@@ -85,7 +80,7 @@ export class BlocksClient implements IBlocksClient {
     this.bus.emit({
       type: 'automation',
       status: 'registered',
-      name: automation.config.name,
+      name: automation.name,
       block: automation.toJson(),
     });
   }

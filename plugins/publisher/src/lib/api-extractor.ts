@@ -1,6 +1,7 @@
 import {
   Extractor,
   ExtractorConfig,
+  ExtractorLogLevel,
   IConfigFile,
   IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';
@@ -62,6 +63,25 @@ export const apiExtractor = (options: ApiExractorArgs) => {
       apiReport: {
         enabled: true,
         reportFolder: options.outputDir,
+      },
+      messages: {
+        compilerMessageReporting: {
+          default: {
+            logLevel: ExtractorLogLevel.Warning,
+          },
+        },
+
+        extractorMessageReporting: {
+          default: {
+            logLevel: ExtractorLogLevel.Warning,
+          },
+        },
+
+        tsdocMessageReporting: {
+          default: {
+            logLevel: ExtractorLogLevel.Warning,
+          },
+        },
       },
 
       ...withDtsRollup,

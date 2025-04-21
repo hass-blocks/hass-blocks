@@ -1,13 +1,13 @@
 import { EventBus, Block } from '../core/index.ts';
 import { AssertionError } from '../errors/index.ts';
-import { BlockOutput, IBlocksClient } from '../types/index.ts';
+import { BlockOutput, IHass } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
  * @public
  */
-export type ConditionPredicate<PO = void, I = void> = (
-  client: IBlocksClient,
+export type IConditionPredicate<PO = void, I = void> = (
+  client: IHass,
   input?: I,
 ) =>
   | Promise<boolean>
@@ -17,8 +17,10 @@ export type ConditionPredicate<PO = void, I = void> = (
 
 /**
  * @public
+ * 
+ * Configuration object for a condition block
  */
-export interface IfThenElseConditionConfig<
+export interface IIfThenElseConditionConfig<
   TO = void,
   EO = void,
   PO = void,
@@ -67,7 +69,7 @@ export class IfThenElseCondition<
   public override typeString = 'if-then-else';
 
   public constructor(
-    public readonly config: IfThenElseConditionConfig<TO, EO, PO, I>,
+    public readonly config: IIfThenElseConditionConfig<TO, EO, PO, I>,
   ) {
     super(config.id ?? md5(config.name), [
       config.assertion,
@@ -78,7 +80,7 @@ export class IfThenElseCondition<
   }
 
   public override async run(
-    client: IBlocksClient,
+    client: IHass,
     input: I,
     events?: EventBus,
     triggerId?: string,
@@ -113,8 +115,14 @@ export class IfThenElseCondition<
   }
 }
 
+/**
+ * @public
+ *
+ * Use in combination with an {@link assertion} block to implement branching logic in your automations.
+ * Supply two blocks and execute either one of them depending on the result of the assertion
+ */
 export const when = <TO = void, EO = void, PO = void, I = void>(
-  config: IfThenElseConditionConfig<TO, EO, PO, I>,
+  config: IIfThenElseConditionConfig<TO, EO, PO, I>,
 ): Block<I, TO | EO> => {
   return new IfThenElseCondition(config);
 };

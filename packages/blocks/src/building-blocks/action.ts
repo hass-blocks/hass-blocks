@@ -1,24 +1,24 @@
 import { Block } from '../core/index.ts';
 import {
   BlockOutput,
-  IBlocksClient,
+  IHass,
   IEventBus,
-  BaseBlockConfig,
+  IBaseBlockConfig,
 } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
  * @public
  *
- * Parameters configure an action Block
+ * Configuration object for action blocks
  */
-export interface ActionArgs<I = void, O = void> extends BaseBlockConfig {
+export interface IActionConfig<I = void, O = void> extends IBaseBlockConfig {
   /**
    * This callback will be executed when an automation runs this block
    */
   callback:
-    | ((client: IBlocksClient, input: I) => O)
-    | ((client: IBlocksClient, input: I) => Promise<O>);
+    | ((client: IHass, input: I) => O)
+    | ((client: IHass, input: I) => Promise<O>);
 }
 
 export class Action<I = void, O = void>
@@ -26,7 +26,7 @@ export class Action<I = void, O = void>
   implements Block<I, O>
 {
   public readonly name: string;
-  public constructor(public readonly config: ActionArgs<I, O>) {
+  public constructor(public readonly config: IActionConfig<I, O>) {
     super(config.id ?? md5(config.name));
     this.name = this.config.name;
   }
@@ -34,7 +34,7 @@ export class Action<I = void, O = void>
   public override readonly typeString: string = 'action';
 
   public override async run(
-    client: IBlocksClient,
+    client: IHass,
     input: I,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _events?: IEventBus,
@@ -55,7 +55,7 @@ export class Action<I = void, O = void>
  * A generic block that represents some kind of action
  */
 export const action = <I = void, O = void>(
-  config: ActionArgs<I, O>,
+  config: IActionConfig<I, O>,
 ): Block<I, O> => {
   return new Action(config);
 };

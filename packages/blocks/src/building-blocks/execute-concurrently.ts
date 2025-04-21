@@ -83,6 +83,12 @@ class ExecuteConcurrently<
   }
 }
 
+/**
+ * @public
+ *
+ * When executed, this block will execute all the blocks passed in as the first argument concurrently. Once complete
+ * the outputs from all the blocks will be returned as an array
+ */
 export const concurrently = <
   A extends readonly Block<unknown, unknown>[],
   I = void,

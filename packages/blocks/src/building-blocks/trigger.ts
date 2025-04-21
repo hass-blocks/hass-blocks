@@ -35,6 +35,9 @@ class Trigger implements ITrigger {
   }
 }
 
+/**
+ * Associate the automation with a Home Assistant trigger. For more details, see {@link https://www.home-assistant.io/docs/automation/trigger/ | the Home Assistant docs}
+ */
 export const trigger = (config: TriggerProps): ITrigger => {
   return new Trigger(config);
 };

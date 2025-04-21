@@ -69,7 +69,7 @@ export interface CallServiceParams {
     };
 }
 
-// @public (undocumented)
+// @public
 export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(actions: A) => Block<I, O>;
 
 // @public (undocumented)
@@ -146,13 +146,13 @@ export interface PluginArgs {
 // @public (undocumented)
 export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;
 
-// @public (undocumented)
+// @public
 export const serviceCall: (serviceConfig: {
     name: string;
     params: Omit<CallServiceCommand, "id" | "type">;
 }) => Block;
 
-// @public (undocumented)
+// @public
 export const trigger: (config: TriggerProps) => ITrigger;
 
 // @public (undocumented)

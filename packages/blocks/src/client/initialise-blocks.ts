@@ -11,7 +11,7 @@ interface BlocksConfig {
 }
 
 /**
- * Initiate a working hass-blocks connection
+ * Bootstrap the connection with Home Assistant and initialise Hass Blocks
  */
 export const initialiseBlocks = async (
   args?: BlocksConfig,

@@ -29,6 +29,10 @@ class ServiceCall extends Action {
   }
 }
 
+/**
+ * A specialised action block that will call a service on your configured Home Assistant
+ * instance
+ */
 export const serviceCall = (serviceConfig: {
   name: string;
   params: Omit<CallServiceCommand, 'id' | 'type'>;

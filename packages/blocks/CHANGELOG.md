@@ -1,3 +1,13 @@
+## 3.2.0 (2025-04-21)
+
+### 🚀 Features
+
+- **docs:** build custom mdx docs pages ([a8ea1e9](https://github.com/benwainwright/hass-blocks/commit/a8ea1e9))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.1.0 (2025-04-20)
 
 ### 🚀 Features

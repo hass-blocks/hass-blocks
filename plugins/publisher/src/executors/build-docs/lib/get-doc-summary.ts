@@ -6,9 +6,11 @@ export const getDocSummary = (item: ApiItem) => {
   if (item instanceof ApiDocumentedItem) {
     const summary = item.tsdocComment?.summarySection;
     if (summary) {
-      return {
-        text: extractTextFromDocNodes(summary),
-      };
+      const result = extractTextFromDocNodes(summary);
+      if (result.every((item) => typeof item === 'string')) {
+        return result.join('');
+      }
+      return result;
     }
   }
 
@@ -29,6 +31,14 @@ const extractTextFromDocNodes = (node: DocNode): RichTextEntry[] => {
         href: linkNode.urlDestination ?? '(unknown)',
         text: linkNode.linkText ?? linkNode.urlDestination ?? '(unknown)',
       }),
+    ];
+  }
+
+  if (node.kind === DocNodeKind.SoftBreak) {
+    return [
+      {
+        linebreak: true,
+      },
     ];
   }
 

@@ -1,25 +1,25 @@
 import { getRenderers, MarkdownEntry, tsMarkdown } from 'ts-markdown';
 import { componentRenderer, importRenderer } from './components.ts';
-import { kebabize } from './kebabize.ts';
 import { join } from 'path';
 import { createDirIfNotExists } from '../../../lib/create-dir-if-not-exists.ts';
 import { writeFile } from 'fs/promises';
-import { ApiItem } from '@microsoft/api-extractor-model';
+import { lineBreakRenderer } from './soft-break-renderer.ts';
 
 export const configureAndRender = async (
-  item: ApiItem,
   folder: string,
+  fileName: string,
   document: MarkdownEntry[],
 ) => {
   const markdownString = tsMarkdown(document, {
     renderers: getRenderers({
       import: importRenderer,
       component: componentRenderer,
+      linebreak: lineBreakRenderer,
     }),
   });
 
-  const fileName = join(folder, `${kebabize(item.displayName)}.md`);
+  const fullFilePath = join(folder, fileName);
 
   createDirIfNotExists(folder);
-  await writeFile(fileName, markdownString);
+  await writeFile(fullFilePath, markdownString);
 };

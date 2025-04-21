@@ -3,10 +3,12 @@ import { h1, p, frontmatter, h2 } from 'ts-markdown';
 import { toTitleCase } from './to-title-case.ts';
 import { buildExcerpt } from './build-excerpt.ts';
 import { summary } from './build-summary-table.ts';
-import { paramsTable } from './build-params-table.ts';
 import { configureAndRender } from './configure-and-render.ts';
 import { importStatement } from './components.ts';
 import { getDocSummary } from './get-doc-summary.ts';
+import { kebabize } from './kebabize.ts';
+import { trimLinebreak } from './trim-line-breaks.ts';
+import { buildFunctionElements } from './build-function-elements.ts';
 
 export const buildMemberPage = async (item: ApiItem, folder: string) => {
   const title = item.displayName.charAt(0).match(/[a-z]/)
@@ -18,13 +20,18 @@ export const buildMemberPage = async (item: ApiItem, folder: string) => {
     }),
     importStatement(),
     h1(item.displayName),
-    p(getDocSummary(item)),
+    p(trimLinebreak(getDocSummary(item))),
     summary(item),
     h2('Signature'),
     await buildExcerpt(item),
-    h2('Parameters'),
-    paramsTable(item),
+    ...(await buildFunctionElements(item)),
   ];
 
-  await configureAndRender(item, folder, markdownDocument);
+  console.log(markdownDocument);
+
+  await configureAndRender(
+    folder,
+    `${kebabize(item.displayName)}.md`,
+    markdownDocument,
+  );
 };

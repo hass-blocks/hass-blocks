@@ -14,12 +14,14 @@
     },
 
     "build": {
+      "dependsOn": ["gen-docs"],
       "executor": "@nx-extend/docusaurus:browser",
       "options": {
         "outputPath": "apps/docs/dist"
       }
     },
     "serve": {
+      "dependsOn": ["gen-docs"],
       "executor": "@nx-extend/docusaurus:dev-server",
       "options": {
         "port": 3000

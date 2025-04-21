@@ -1,7 +1,7 @@
 import { jsx } from './jsx.ts';
 
 const { importStatement, importRenderer, componentRenderer, component } = jsx(
-  ['ParamsTable', 'SummaryTable'],
+  ['ParamsTable', 'SummaryTable', 'MemberTable'],
   '@site/src/components',
 );
 

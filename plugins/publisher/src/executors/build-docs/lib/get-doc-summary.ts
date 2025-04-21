@@ -29,7 +29,7 @@ const extractTextFromDocNodes = (node: DocNode): RichTextEntry[] => {
     const linkNode = node as DocLinkTag;
     return [
       link({
-        href: linkNode.urlDestination ?? '(unknown)',
+        href: linkNode.urlDestination ?? 'https://www.google.com',
         text: linkNode.linkText ?? linkNode.urlDestination ?? '(unknown)',
       }),
     ];

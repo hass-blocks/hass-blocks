@@ -64,25 +64,25 @@ export const apiExtractor = (options: ApiExractorArgs) => {
         enabled: true,
         reportFolder: options.outputDir,
       },
-      messages: {
-        compilerMessageReporting: {
-          default: {
-            logLevel: ExtractorLogLevel.Warning,
-          },
-        },
+      // messages: {
+      //   compilerMessageReporting: {
+      //     default: {
+      //       logLevel: ExtractorLogLevel.Warning,
+      //     },
+      //   },
 
-        extractorMessageReporting: {
-          default: {
-            logLevel: ExtractorLogLevel.Warning,
-          },
-        },
+      //   extractorMessageReporting: {
+      //     default: {
+      //       logLevel: ExtractorLogLevel.Warning,
+      //     },
+      //   },
 
-        tsdocMessageReporting: {
-          default: {
-            logLevel: ExtractorLogLevel.Warning,
-          },
-        },
-      },
+      //   tsdocMessageReporting: {
+      //     default: {
+      //       logLevel: ExtractorLogLevel.Warning,
+      //     },
+      //   },
+      // },
 
       ...withDtsRollup,
       ...withDocModel,

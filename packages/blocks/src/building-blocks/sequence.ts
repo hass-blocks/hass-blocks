@@ -12,7 +12,7 @@ import { Block } from '../core/index.ts';
 
 /**
  * @public
- * 
+ *
  * Block that takes a series of blocks and executes them either in sequence or
  * in parallel
  */

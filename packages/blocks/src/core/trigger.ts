@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 
 /**
  * @public
- * 
+ *
  * The configuration object for a trigger
  */
 export interface ITriggerConfig {
@@ -18,7 +18,7 @@ export interface ITriggerConfig {
    * A id string for the trigger (must be unique)
    */
   id?: string;
-  
+
   /**
    * The Home Assistant trigger parameters (See {@link https://www.home-assistant.io/docs/automation/trigger/})
    */
@@ -53,7 +53,7 @@ export class Trigger implements ITrigger {
 
 /**
  * @public
- * 
+ *
  * Associate the automation with a Home Assistant trigger. For more details, see {@link https://www.home-assistant.io/docs/automation/trigger/ | the Home Assistant docs}
  */
 export const trigger = (config: ITriggerConfig): ITrigger => {

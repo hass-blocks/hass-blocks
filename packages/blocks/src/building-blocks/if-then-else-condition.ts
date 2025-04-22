@@ -17,7 +17,7 @@ export type IConditionPredicate<PO = void, I = void> = (
 
 /**
  * @public
- * 
+ *
  * Configuration object for a condition block
  */
 export interface IIfThenElseConditionConfig<

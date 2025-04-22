@@ -35,7 +35,6 @@ export interface IAutomationConfig<
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 > extends IBaseBlockConfig {
-
   /**
    * Sequence of blocks to execute when the trigger is fired
    */
@@ -65,8 +64,8 @@ export class Automation<
   public constructor(public config: IAutomationConfig<A, I, O>) {
     super(config.id ?? md5(config.name), [...config.then]);
     this.name = this.config.name;
-    if(config.when) {
-      this.trigger = config.when
+    if (config.when) {
+      this.trigger = config.when;
     }
   }
 

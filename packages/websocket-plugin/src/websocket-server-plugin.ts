@@ -3,11 +3,10 @@ import { getWebsocketServer } from './get-websocket-server.ts';
 
 /**
  * @public
- * 
+ *
  * Configuration object for the plugin
  */
 export interface WebsocketServerPluginConfig {
-
   /**
    * Port to start the server on
    */
@@ -55,12 +54,14 @@ class WebsocketServerPlugin implements IBlocksPlugin {
 
 /**
  * @public
- * 
+ *
  * When this plugin is registered, it will start a websocket server that
- * 
+ *
  * - Fires a list of registered automations once Hass has loaded
  * - Forwards events from the internal event bus over the websocket
  */
-export const websocketServer = (config: WebsocketServerPluginConfig): IBlocksPlugin => {
-  return new WebsocketServerPlugin(config)
-}
+export const websocketServer = (
+  config: WebsocketServerPluginConfig,
+): IBlocksPlugin => {
+  return new WebsocketServerPlugin(config);
+};

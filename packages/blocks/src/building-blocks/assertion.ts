@@ -8,7 +8,6 @@ import { md5 } from '../utils/index.ts';
  * Configuration object for an assertion block
  */
 export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
-
   /**
    * When this block is executed by an automation it should return a boolean
    * either as the direct return value, or as the 'result' property on an object.
@@ -35,10 +34,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
 
   public override typeString = 'assertion';
 
-  public override async run(
-    client: IHass,
-    input: I,
-  ): Promise<BlockOutput<O>> {
+  public override async run(client: IHass, input: I): Promise<BlockOutput<O>> {
     const callbackResult = this.config.predicate(client, input);
 
     const result =

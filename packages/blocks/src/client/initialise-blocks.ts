@@ -8,11 +8,10 @@ import { EventBus, loadPlugins } from '../core/index.ts';
 
 /**
  * @public
- * 
+ *
  * Configuration object for Hass Blocks
  */
 export interface IBlocksConfig {
-
   /**
    * A list of plugins to be loaded by Hass Blocks
    */
@@ -21,7 +20,7 @@ export interface IBlocksConfig {
 
 /**
  * @public
- * 
+ *
  * Bootstrap the connection with Home Assistant and initialise Hass Blocks
  */
 export const initialiseBlocks = async (

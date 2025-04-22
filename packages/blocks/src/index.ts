@@ -8,9 +8,9 @@
  */
 
 export { initialiseBlocks } from './client/index.ts';
-export type { IBlocksConfig } from "./client/index.ts"
+export type { IBlocksConfig } from './client/index.ts';
 
-export { Block } from "./core/index.ts"
+export { Block } from './core/index.ts';
 
 export type {
   IBlocksConnection,
@@ -48,7 +48,7 @@ export type {
   IFullBlocksClient,
   HassEntity,
   HassEntityAttributeBase,
-  SerialisedBlock
+  SerialisedBlock,
 } from './types/index.ts';
 
 export {
@@ -74,5 +74,5 @@ export type {
   GetSequenceOutput,
   OutputType,
   InputType,
-  OutputTypeKeepPromise
+  OutputTypeKeepPromise,
 } from './building-blocks/index.ts';

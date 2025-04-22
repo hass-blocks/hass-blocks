@@ -10,7 +10,6 @@ import { SerialisedBlock } from './serialised-block.ts';
  * The abstract base class that all blocks inherit from
  */
 export interface IBlock<I = void, O = void> {
-
   /**
    * A JSON representation of the block. Used for websocket and rest serialisation
    */
@@ -41,7 +40,7 @@ export interface IBlock<I = void, O = void> {
   /**
    * Triggers that are currently registered with this block
    */
-  trigger: ITrigger | ITrigger[]
+  trigger: ITrigger | ITrigger[];
 
   /**
    * If defined, this method will be called when the parent automation is registered.
@@ -56,8 +55,8 @@ export interface IBlock<I = void, O = void> {
 
   /**
    * Called by the framework when the block is executed
-   * 
-   * @param client - An initialised blocks client, 
+   *
+   * @param client - An initialised blocks client,
    * @param input - The input for this block - usually the output from the last one
    * @param events - An initialised event bus
    * @param triggerId - a uuid trigger id, unique to this particular trigger sequence

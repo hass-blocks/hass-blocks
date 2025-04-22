@@ -4,15 +4,14 @@ import { IFullBlocksClient } from './i-full-blocks-client.ts';
 
 /**
  * @public
- * 
+ *
  * An object representing a Home Assistant trigger
  */
 export interface ITrigger {
-
   /**
-   * Register the trigger with a Home Assistant client so that it actually fires when 
+   * Register the trigger with a Home Assistant client so that it actually fires when
    * the conditions are met
-   * 
+   *
    * @param client - An initialied blocks client
    * @param block - The block that will be executed when the trigger is fired
    * @param events - The internal event bus

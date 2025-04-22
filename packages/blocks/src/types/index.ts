@@ -5,18 +5,18 @@ export type {
   HassEntityAttributeBase,
   HassEvent,
   HassEventBase,
-  HassEntityBase
+  HassEntityBase,
 } from './hass-events.ts';
 
 export type { IBlocksConnection } from './i-blocks-connection.ts';
 
 export type { IFullBlocksClient } from './i-full-blocks-client.ts';
 
-export type { IBlocksRegistry } from "./i-blocks-registry.ts";
+export type { IBlocksRegistry } from './i-blocks-registry.ts';
 
 export type { IBlocksPlugin, IPluginArgs } from './i-blocks-plugin.ts';
 
-export type { SerialisedBlock } from "./serialised-block.ts"
+export type { SerialisedBlock } from './serialised-block.ts';
 
 export type {
   HassBlocksEvent,
@@ -33,10 +33,10 @@ export type {
   LoadPluginStart,
   LoadPluginsFinished,
   LoadPluginsStart,
-  BaseHassEvent
+  BaseHassEvent,
 } from './hass-blocks-event.ts';
 
-export type { IHass } from "./i-hass.ts"
+export type { IHass } from './i-hass.ts';
 
 export type {
   BlockOutput,

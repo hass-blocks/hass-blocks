@@ -5,22 +5,22 @@ import {
   IHass,
   ITrigger,
 } from '../types/index.ts';
-import { HassBlocksError } from "src/errors/hass-blocks-error.ts";
+import { HassBlocksError } from 'src/errors/hass-blocks-error.ts';
 
 /**
  * @public
- * 
+ *
  * The core Hass Blocks abstraction - all Blocks must extend from this class for
  * the framework to be able to execute them
  */
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   public constructor(
-  /**
-   * String to identify this particular instance of a block. Must be unique
-   */
+    /**
+     * String to identify this particular instance of a block. Must be unique
+     */
     public readonly id: string,
     private children?: Block<unknown, unknown>[],
-    private _trigger?: ITrigger | ITrigger[]
+    private _trigger?: ITrigger | ITrigger[],
   ) {}
 
   /**
@@ -37,15 +37,15 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   /**
    * Triggers that are currently registered with this block
    */
-  public get trigger(): ITrigger | ITrigger[]{
-    if(!this._trigger) {
-      throw new HassBlocksError("No trigger has been set")
+  public get trigger(): ITrigger | ITrigger[] {
+    if (!this._trigger) {
+      throw new HassBlocksError('No trigger has been set');
     }
-    return this._trigger
+    return this._trigger;
   }
 
   public set trigger(trigger: ITrigger | ITrigger[]) {
-    this._trigger = trigger
+    this._trigger = trigger;
   }
 
   /**
@@ -83,8 +83,8 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
 
   /**
    * Called by the framework when the block is executed
-   * 
-   * @param client - An initialised blocks client, 
+   *
+   * @param client - An initialised blocks client,
    * @param input - The input for this block - usually the output from the last one
    * @param events - An initialised event bus
    * @param triggerId - a uuid trigger id, unique to this particular trigger sequence

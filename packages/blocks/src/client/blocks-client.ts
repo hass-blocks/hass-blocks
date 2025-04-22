@@ -3,7 +3,12 @@ import {
   Event,
   TriggerEventMessage,
 } from '@hass-blocks/homeassistant-typescript';
-import { HassEntity, IEventBus, ICallServiceParams, IBlock } from '../types/index.ts';
+import {
+  HassEntity,
+  IEventBus,
+  ICallServiceParams,
+  IBlock,
+} from '../types/index.ts';
 import {
   EntityDoesNotExistError,
   InitialStatesNotLoadedError,
@@ -65,7 +70,7 @@ export class BlocksClient implements IFullBlocksClient {
 
   public async registerAutomation(automation: IBlock<unknown, unknown>) {
     this._automations.push(automation);
-    const { trigger } = automation
+    const { trigger } = automation;
 
     await automation.validate(this);
 

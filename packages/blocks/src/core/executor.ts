@@ -2,12 +2,7 @@ import { Queue } from 'queue-typescript';
 import EventEmitter from 'events';
 import { v4 } from 'uuid';
 
-import {
-  BlockOutput,
-  Runnable,
-  IHass,
-  IEventBus,
-} from '../types/index.ts';
+import { BlockOutput, Runnable, IHass, IEventBus } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
 import { Block } from './block.ts';
 

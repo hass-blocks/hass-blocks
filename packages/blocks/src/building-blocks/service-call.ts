@@ -31,7 +31,7 @@ class ServiceCall extends Action {
 
 /**
  * @public
- * 
+ *
  * A specialised action block that will call a service on your configured Home Assistant
  * instance
  */

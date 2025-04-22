@@ -9,8 +9,7 @@ describe('the action block', () => {
     const output = 'output';
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const callback = (_client: IHass, _input: string | undefined) =>
-      'output';
+    const callback = (_client: IHass, _input: string | undefined) => 'output';
 
     const action = new Action<string, string>({
       name: 'This is my name',

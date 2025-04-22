@@ -1,10 +1,9 @@
 /**
  * @public
- * 
+ *
  * A serialised version of a block - used for transmission purposes
  */
 export interface SerialisedBlock {
-
   /**
    * The type of block
    */

@@ -1,12 +1,12 @@
 /**
  * @public
- * 
+ *
  * Parameters for calling Home Assistant services
  */
 export interface ICallServiceParams {
   /**
    * The service domain (e.g. 'light')
-   */ 
+   */
   domain: string;
 
   /**

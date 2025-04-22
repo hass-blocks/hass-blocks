@@ -5,7 +5,7 @@ import { SerialisedBlock } from './serialised-block.ts';
 
 /**
  * @public
- * 
+ *
  * Events published by the framework on the event bus
  */
 export type HassBlocksEvent =
@@ -25,7 +25,7 @@ export type HassBlocksEvent =
 
 /**
  * @public
- * 
+ *
  * An event emitted whenever you want to log information. Will be picked up by
  * logging clients
  */
@@ -53,7 +53,7 @@ export interface LogEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted just before all plugins start loading
  */
 export interface LoadPluginsStart {
@@ -65,11 +65,10 @@ export interface LoadPluginsStart {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted just before a specific plugin starts loading
  */
 export interface LoadPluginStart {
-
   /**
    * The type of the event
    */
@@ -83,7 +82,7 @@ export interface LoadPluginStart {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted just after a specific plugin finishes loading
  */
 export interface LoadPluginFinished {
@@ -100,7 +99,7 @@ export interface LoadPluginFinished {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted after all plugins have finished loading
  */
 export interface LoadPluginsFinished {
@@ -117,7 +116,7 @@ export interface LoadPluginsFinished {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when the websocket client recieves a state change from Hass
  */
 export interface StateChanged {
@@ -139,13 +138,12 @@ export interface StateChanged {
 
 /**
  * @public
- * 
+ *
  * The base event for all events related to automations emitted by this framework
  */
 export interface BaseHassEvent {
-
   /**
-   * A unique uuid generated each time a trigger is fired. All blocks that are executed 
+   * A unique uuid generated each time a trigger is fired. All blocks that are executed
    * as a result of that trigger will get the same triggerId
    */
   triggerId: string;
@@ -156,7 +154,7 @@ export interface BaseHassEvent {
    * events associated with that execution
    */
   executeId: string;
-  
+
   /**
    * The name of the block being executed
    */
@@ -170,7 +168,7 @@ export interface BaseHassEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when an automation has been registered
  */
 export interface AutomationRegistered {
@@ -197,7 +195,7 @@ export interface AutomationRegistered {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when there is some kind of error
  */
 export interface GeneralFailure {
@@ -224,7 +222,7 @@ export interface GeneralFailure {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when a block starts executing
  */
 export interface BlockStarted extends BaseHassEvent {
@@ -251,7 +249,7 @@ export interface BlockStarted extends BaseHassEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when a block finishes successfully
  */
 export interface BlockFinished<O = unknown> extends BaseHassEvent {
@@ -278,7 +276,7 @@ export interface BlockFinished<O = unknown> extends BaseHassEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when a block fails for some reason
  */
 export interface BlockFailed extends BaseHassEvent {
@@ -310,7 +308,7 @@ export interface BlockFailed extends BaseHassEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when a block is queued for execution
  */
 export interface BlockPending extends BaseHassEvent {
@@ -337,7 +335,7 @@ export interface BlockPending extends BaseHassEvent {
 
 /**
  * @public
- * 
+ *
  * An event that is emitted when a sequence is aborted for some reason
  */
 export interface SequenceAborted extends BaseHassEvent {

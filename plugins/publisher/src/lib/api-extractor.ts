@@ -1,7 +1,6 @@
 import {
   Extractor,
   ExtractorConfig,
-  ExtractorLogLevel,
   IConfigFile,
   IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';

@@ -24,7 +24,7 @@ interface DocsStackProps {
 
 export class DocsStack extends Stack {
   constructor(scope: Construct, id: string, props: DocsStackProps) {
-    super(scope, id, props);
+    super(scope, id, { ...props, crossRegionReferences: true });
 
     const { domainName, certificate } = props;
 

@@ -25,6 +25,7 @@ export class CertificateStack extends Stack {
     super(context, id, {
       ...props,
       env: { ...props.env, region: 'eu-west-1' },
+      crossRegionReferences: true,
     });
 
     const { domainName } = props;

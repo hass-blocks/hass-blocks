@@ -3,12 +3,15 @@ import { component } from './components.ts';
 
 export const paramsTable = (item: ApiItem) => {
   if (item instanceof ApiFunction) {
-    const data = item.parameters.map((param) => ({
-      name: param.name,
-      type: param.parameterTypeExcerpt.text,
-    }));
+    const data = item.parameters.map((param) => {
+      return ({
+        name: param.name,
+        type: param.parameterTypeExcerpt.text,
+      });
+    });
 
-    return component('ParamsTable', { params: data });
+    const { openingTag: theComponent } = component('ParamsTable', { params: data });
+    return theComponent(true)
   }
   return {};
 };

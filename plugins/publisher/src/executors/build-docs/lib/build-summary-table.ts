@@ -3,11 +3,13 @@ import { component } from './components.ts';
 
 export const summary = (item: ApiItem) => {
   if (item instanceof ApiDeclaredItem) {
-    return component('SummaryTable', {
+    const { openingTag: theComponent } = component('SummaryTable', {
       name: item.displayName,
       type: item.kind,
       path: item.fileUrlPath,
     });
+
+    return theComponent(true)
   }
 
   return {};

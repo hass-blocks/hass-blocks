@@ -8,7 +8,7 @@ import { writeFile } from 'fs/promises';
 import { buildIndexPage } from './lib/build-index.page.ts';
 
 const runExecutor: PromiseExecutor<BuildDocsSchema> = async (options) => {
-  const { packages } = await loadModels(options.modelFolder);
+  const { packages, model } = await loadModels(options.modelFolder);
 
   await Promise.all(
     packages.map(async (packageModel) => {

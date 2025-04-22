@@ -4,7 +4,7 @@ import { toTitleCase } from './to-title-case.ts';
 import { buildExcerpt } from './build-excerpt.ts';
 import { summary } from './build-summary-table.ts';
 import { configureAndRender } from './configure-and-render.ts';
-import { importStatement } from './components.ts';
+import { importLocalComponents } from './components.ts';
 import { getDocSummary } from './get-doc-summary.ts';
 import { kebabize } from './kebabize.ts';
 import { trimLinebreak } from './trim-line-breaks.ts';
@@ -19,7 +19,7 @@ export const buildMemberPage = async (item: ApiItem, folder: string) => {
     frontmatter({
       title,
     }),
-    importStatement(),
+    importLocalComponents(),
     h1(item.displayName),
     p(trimLinebreak(getDocSummary(item))),
     summary(item),

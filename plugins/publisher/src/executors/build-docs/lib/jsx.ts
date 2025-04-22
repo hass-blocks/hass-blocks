@@ -1,4 +1,4 @@
-import { MarkdownRenderer } from 'ts-markdown';
+import { getRenderers, MarkdownEntry, MarkdownRenderer, tsMarkdown } from 'ts-markdown';
 
 export interface ImportEntry<E extends readonly string[], M extends string> {
   import: {
@@ -22,6 +22,22 @@ export const jsx = <const E extends readonly string[], M extends string>(
     component: {
       name: E[number];
       props: P;
+      selfClosing?: boolean
+    };
+  }
+
+  interface ClosingTagEntry {
+    closingTag: {
+      name: E[number]
+    }
+  }
+
+  const closingTagRenderer: MarkdownRenderer = (
+    entry: ClosingTagEntry
+  ) => {
+    return {
+      markdown: `</ ${entry.closingTag.name}>`,
+      blockLevel: true,
     };
   }
 
@@ -33,8 +49,16 @@ export const jsx = <const E extends readonly string[], M extends string>(
     const markdown = `<${entry.component.name}\n${Object.entries(
       entry.component.props,
     )
-      .map(([key, value]) => `${key}={${JSON.stringify(value)}}`)
-      .join('\n')} />`;
+      .map(([key, value]) => {
+        const newValue = typeof value === 'string' ? JSON.stringify(value) : tsMarkdown([value as MarkdownEntry], {
+          renderers: getRenderers({
+            component: componentRenderer,
+            closingTag: closingTagRenderer
+          })
+        })
+        return `${key}={${JSON.stringify(newValue)}}`
+      })
+      .join('\n')} ${entry.component.selfClosing ? "/" : ""}>`;
 
     return {
       markdown,
@@ -47,11 +71,24 @@ export const jsx = <const E extends readonly string[], M extends string>(
     props: ComponentEntry<P>['component']['props'],
   ) => {
     return {
-      component: {
-        name,
-        props,
+      openingTag: (selfClosing: boolean) => {
+        return {
+          component: {
+            name,
+            props,
+            selfClosing
+          },
+        };
       },
-    };
+
+      closingTag: () => {
+        return {
+          closingTag: {
+            name,
+          }
+        }
+      }
+    }
   };
 
   const importStatement = (): ImportEntry<E, M> => {
@@ -63,5 +100,5 @@ export const jsx = <const E extends readonly string[], M extends string>(
     };
   };
 
-  return { importRenderer, componentRenderer, importStatement, component };
+  return { importRenderer, componentRenderer, importStatement, component, closingTagRenderer };
 };

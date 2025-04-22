@@ -2,6 +2,7 @@ import { ApiItem, ApiItemKind } from '@microsoft/api-extractor-model';
 import { h2 } from 'ts-markdown';
 import { component } from './components.ts';
 import { getDocSummary } from './get-doc-summary.ts';
+import { getItemLink } from './get-item-link.ts';
 
 export const buildTypeSection = (
   title: string,
@@ -16,6 +17,7 @@ export const buildTypeSection = (
         component('MemberTable', {
           members: things.map((member) => ({
             name: member.displayName,
+            url: getItemLink(member),
             kind: member.kind.toString(),
             description: getDocSummary(member),
           })),

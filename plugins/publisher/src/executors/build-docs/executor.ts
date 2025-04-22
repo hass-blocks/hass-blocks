@@ -15,6 +15,7 @@ const runExecutor: PromiseExecutor<BuildDocsSchema> = async (options) => {
       const entryPoint = packageModel.members[0];
 
       const nameParts = packageModel.name.split('/');
+
       const packageFolder = join(
         options.outputFolder,
         nameParts[nameParts.length - 1],

@@ -3,6 +3,7 @@ import { RichText } from '../RichText';
 
 interface Member {
   name: string;
+  url: string;
   kind: string;
   description: RichTextEntry;
 }
@@ -17,7 +18,9 @@ export const MemberTable = ({ members }: MemberTableProps) => {
       <tbody>
         {members.map((member) => (
           <tr>
-            <td>{member.name}</td>
+            <td>
+              <a href={member.url}>{member.name}</a>
+            </td>
             <td>
               <RichText>{member.description}</RichText>
             </td>

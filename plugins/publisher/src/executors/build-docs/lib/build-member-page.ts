@@ -14,6 +14,7 @@ export const buildMemberPage = async (item: ApiItem, folder: string) => {
   const title = item.displayName.charAt(0).match(/[a-z]/)
     ? toTitleCase(item.displayName)
     : item.displayName;
+
   const markdownDocument = [
     frontmatter({
       title,
@@ -26,8 +27,6 @@ export const buildMemberPage = async (item: ApiItem, folder: string) => {
     await buildExcerpt(item),
     ...(await buildFunctionElements(item)),
   ];
-
-  console.log(markdownDocument);
 
   await configureAndRender(
     folder,

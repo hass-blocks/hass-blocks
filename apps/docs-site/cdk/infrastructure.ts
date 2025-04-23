@@ -4,7 +4,7 @@ import { CertificateStack } from './certificate-stack';
 
 const app = new App();
 
-const domainName = 'www.hass-blocks.com';
+const domainName = 'hass-blocks.com';
 const region = `eu-west-2`;
 const account = `688567288532`;
 

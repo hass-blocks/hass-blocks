@@ -33,7 +33,7 @@
       "options": {
         "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
         "projectFolder": "packages/homeassistant-typescript",
-        "docModelFolder": "apps/docs/models"
+        "docModelFolder": "apps/docs-site/models"
       }
     },
     "e2e-test": {

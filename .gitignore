@@ -54,3 +54,4 @@ vitest.config.*.timestamp*
 /cdk.outapps/docs/docs
 apps/docs/docs/03-api-docs
 cdk.out
+*.api.json

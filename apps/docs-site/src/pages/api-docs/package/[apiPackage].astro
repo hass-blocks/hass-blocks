@@ -1,0 +1,40 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { loadModels } from '../../../lib/doc-model/load-models';
+import { getUnscopedPackageName } from '../../../lib/doc-model/get-unscoped-package-name';
+import { modelsPath } from '../../../lib/doc-model/models-path';
+import  TypeList  from '../../../components/type-list/type-list.astro'
+import { ApiItemKind } from '@microsoft/api-extractor-model';
+import { getDocSummary } from '../../../lib/doc-model/get-doc-summary';
+import BaseLayout from '../../../layouts/base-layout.astro';
+
+export const getStaticPaths = (async () => {
+  const { packages: apiPackages } = await loadModels(modelsPath);
+
+  return apiPackages.map((apiPackage) => ({
+    params: { apiPackage: getUnscopedPackageName(apiPackage) },
+    props: {
+      members: apiPackage.members[0].members.map(item => ({
+        name: item.displayName,
+        kind: item.kind,
+        description: getDocSummary(item)
+      }))
+    }
+  }));
+
+}) satisfies GetStaticPaths;
+
+const { apiPackage } = Astro.params;
+const { members } = Astro.props
+
+---
+
+<BaseLayout>
+<h2>@hass-blocks/{apiPackage}</h1>
+  <TypeList members={members} kind={ApiItemKind.Function} />
+  <TypeList members={members} kind={ApiItemKind.Class} />
+  <TypeList members={members} kind={ApiItemKind.Enum} />
+  <TypeList members={members} kind={ApiItemKind.Interface} />
+  <TypeList members={members} kind={ApiItemKind.TypeAlias} />
+</BaseLayout>
+

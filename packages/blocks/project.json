@@ -33,7 +33,7 @@
       "options": {
         "mainEntrypointFile": "packages/blocks/dist/index.d.ts",
         "projectFolder": "packages/blocks",
-        "docModelFolder": "apps/docs/models"
+        "docModelFolder": "apps/docs-site/models"
       }
     }
   }

@@ -33,7 +33,7 @@
       "options": {
         "mainEntrypointFile": "packages/websocket-plugin/dist/index.d.ts",
         "projectFolder": "packages/websocket-plugin",
-        "docModelFolder": "apps/docs/models"
+        "docModelFolder": "apps/docs-site/models"
       }
     }
   }

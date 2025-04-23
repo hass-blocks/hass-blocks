@@ -1,3 +1,13 @@
+## 0.4.0 (2025-04-23)
+
+### 🚀 Features
+
+- **docs-site:** add astro ([bf48ce4](https://github.com/benwainwright/hass-blocks/commit/bf48ce4))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.0 (2025-04-21)
 
 ### 🚀 Features

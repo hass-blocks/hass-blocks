@@ -2,7 +2,12 @@ import { Stack } from 'aws-cdk-lib';
 import { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
 import { S3StaticWebsiteOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
-import { ARecord, HostedZone, RecordTarget } from 'aws-cdk-lib/aws-route53';
+import {
+  ARecord,
+  CnameRecord,
+  HostedZone,
+  RecordTarget,
+} from 'aws-cdk-lib/aws-route53';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
@@ -62,6 +67,12 @@ export class DocsStack extends Stack {
       zone: hostedZone,
       recordName: domainName,
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
+    });
+
+    new CnameRecord(this, 'FrontendCNameRecord', {
+      zone: hostedZone,
+      domainName,
+      recordName: `www.${domainName}`,
     });
   }
 }

@@ -4,6 +4,7 @@ import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
 import { S3StaticWebsiteOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import {
   ARecord,
+  HostedZone,
   PublicHostedZone,
   RecordTarget,
 } from 'aws-cdk-lib/aws-route53';
@@ -40,9 +41,9 @@ export class DocsStack extends Stack {
       },
     });
 
-    const hostedZone = new PublicHostedZone(this, 'HostedZone', {
-      zoneName: domainName,
-    });
+    const hostedZone = HostedZone.fromLookup(this, `docs-stack-hosted-zone`, {
+      domainName
+    })
 
     const distribution = new Distribution(
       this,

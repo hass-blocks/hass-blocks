@@ -6,7 +6,7 @@ interface Props {
   members: {
     name: string;
     type: ExcerptToken[];
-    description: string
+    description: string;
   }[];
 }
 
@@ -14,9 +14,9 @@ const { members } = Astro.props;
 ---
 
 <style>
-    .type {
-        text-align: center;
-    }
+  .type {
+    text-align: center;
+  }
 </style>
 
 <h3>Properties</h3>
@@ -28,11 +28,9 @@ const { members } = Astro.props;
           <>
             <th>{member.name}</th>
             <td class="type">
-              <CodeExcerpt  excerpt={member.type} />
+              <CodeExcerpt excerpt={member.type} />
             </td>
-            <td>
-                {member.description}
-            </td>
+            <td>{member.description}</td>
           </>
         </tr>
       ))

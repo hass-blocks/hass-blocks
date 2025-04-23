@@ -6,7 +6,9 @@ const path = require('path');
  */
 const config = {
   '*': () => `pnpm install --lockfile-only`,
-  '*.{js,jsx,ts,tsx,json,css,md,html,mts,mjs,cts,cjs}': ['prettier --write'],
+  '*.{js,jsx,ts,tsx,json,css,md,html,mts,mjs,cts,cjs,astro}': [
+    'prettier --write',
+  ],
   '*.{js,jsx,ts,tsx,mts,mjs,cts,cjs}': [
     'vitest related',
     (paths) => {

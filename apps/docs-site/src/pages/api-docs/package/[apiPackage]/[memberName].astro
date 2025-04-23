@@ -6,10 +6,7 @@ import { modelsPath } from '../../../../lib/doc-model/models-path';
 import BaseLayout from '../../../../layouts/base-layout.astro';
 import { kebabize } from '../../../../lib/kebabize';
 import { getDocSummary } from '../../../../lib/doc-model/get-doc-summary';
-import {
-  ApiDeclaredItem,
-  ApiItemKind,
-} from '@microsoft/api-extractor-model';
+import { ApiDeclaredItem, ApiItemKind } from '@microsoft/api-extractor-model';
 import SummaryTable from '../../../../components/summary-table/summary-table.astro';
 import FunctionDetails from '../../../../components/function-details/function-details.astro';
 import { getFunctionArgs } from '../../../../lib/doc-model/get-function-args';
@@ -22,9 +19,8 @@ export const getStaticPaths = (async () => {
   return apiPackages.flatMap((apiPackage) =>
     apiPackage.members[0].members.flatMap((member) => {
       if (member instanceof ApiDeclaredItem) {
-
-        const withFunctionArgs = getFunctionArgs(member)
-        const withInterfaceArgs = getInterfaceArgs(member)
+        const withFunctionArgs = getFunctionArgs(member);
+        const withInterfaceArgs = getInterfaceArgs(member);
 
         return {
           params: {
@@ -37,18 +33,25 @@ export const getStaticPaths = (async () => {
             type: member.kind,
             path: member.fileUrlPath,
             ...withFunctionArgs,
-            ...withInterfaceArgs
+            ...withInterfaceArgs,
           },
         };
       }
       return [];
-    })
+    }),
   );
 }) satisfies GetStaticPaths;
 
 const { memberName } = Astro.params;
-const { description, fullPackageName, type, path, params, returnValue, members } =
-  Astro.props;
+const {
+  description,
+  fullPackageName,
+  type,
+  path,
+  params,
+  returnValue,
+  members,
+} = Astro.props;
 ---
 
 <style>
@@ -66,9 +69,5 @@ const { description, fullPackageName, type, path, params, returnValue, members }
       <FunctionDetails {returnValue} {params} />
     )
   }
-  {
-    type === ApiItemKind.Interface && members && (
-      <InterfaceDetails {members} />
-    )
-  }
+  {type === ApiItemKind.Interface && members && <InterfaceDetails {members} />}
 </BaseLayout>

@@ -1,10 +1,11 @@
 ---
-const pageTitle = "Home Page";
+const pageTitle = 'Home Page';
 ---
+
 <style>
-    body {
-        padding: 1rem;
-    }
+  body {
+    padding: 1rem;
+  }
 </style>
 <html lang="en">
   <head>
@@ -13,17 +14,17 @@ const pageTitle = "Home Page";
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.classless.min.css"
+    />
     <title>{pageTitle}</title>
   </head>
   <body>
     <header>
-        <h1>{pageTitle}</h1>
+      <h1>{pageTitle}</h1>
     </header>
     <main>
-        <slot />
+      <slot />
     </main>
   </body>
 </html>

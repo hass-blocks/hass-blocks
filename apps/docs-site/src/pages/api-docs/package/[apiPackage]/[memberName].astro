@@ -1,0 +1,27 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getUnscopedPackageName } from '../../../../lib/doc-model/get-unscoped-package-name';
+import { loadModels } from '../../../../lib/doc-model/load-models';
+import { modelsPath } from '../../../../lib/doc-model/models-path';
+import BaseLayout from '../../../../layouts/base-layout.astro';
+import { kebabize } from '../../../../lib/kebabize';
+
+export const getStaticPaths = (async () => {
+  const { packages: apiPackages } = await loadModels(modelsPath);
+
+  return apiPackages.flatMap((apiPackage) =>
+    apiPackage.members[0].members.map((member) => ({
+      params: {
+        apiPackage: getUnscopedPackageName(apiPackage),
+        memberName: kebabize(member.displayName),
+      },
+    })),
+  );
+}) satisfies GetStaticPaths;
+
+const { memberName } = Astro.params;
+---
+
+<BaseLayout>
+  <h2>{memberName}</h2>
+</BaseLayout>

@@ -7,14 +7,18 @@ import { modelsPath } from '../lib/doc-model/models-path';
 const { packages: apiPackages } = await loadModels(modelsPath);
 
 const packages = apiPackages.map((apiPackage) =>
-  getUnscopedPackageName(apiPackage)
+  getUnscopedPackageName(apiPackage),
 );
-
 ---
 
 <BaseLayout>
-    <ul>
-      {packages.map(item => <li><a href={`api-docs/package/${item}`}>{item}</a></li>)}
-    </ul>
+  <ul>
+    {
+      packages.map((item) => (
+        <li>
+          <a href={`api-docs/package/${item}`}>{item}</a>
+        </li>
+      ))
+    }
+  </ul>
 </BaseLayout>
-

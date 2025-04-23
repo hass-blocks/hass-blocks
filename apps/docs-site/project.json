@@ -23,6 +23,16 @@
         "command": "astro --root apps/docs-site/ preview"
       }
     },
+    "package": {
+      "executor": "@nx-iac/aws-cdk:synthesize",
+      "dependsOn": ["build"],
+      "outputs": ["{options.output}"],
+      "options": {
+        "output": "cdk.out/apps/docs-site",
+        "quiet": true
+      }
+    },
+
     "deploy": {
       "executor": "@nx-iac/aws-cdk:deploy",
       "dependsOn": ["package"],

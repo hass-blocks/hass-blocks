@@ -1,38 +1,47 @@
 ---
-import type { ApiItemKind } from '@microsoft/api-extractor-model'
+import type { ApiItemKind } from '@microsoft/api-extractor-model';
+import { kebabize } from '../../lib/kebabize';
 
 interface Member {
-    name: string
-    kind: ApiItemKind
-    description: string
+  name: string;
+  kind: ApiItemKind;
+  description: string;
 }
 
 interface Props {
-    kind: ApiItemKind
-    members: Member[]
+  packageName: string;
+  kind: ApiItemKind;
+  members: Member[];
 }
 
-
-const { kind,  members } = Astro.props
-const filteredMembers = members.filter(member => member.kind === kind)
+const { kind, members, packageName } = Astro.props;
+const filteredMembers = members.filter((member) => member.kind === kind);
 ---
 
-{filteredMembers.length > 0 &&<>
-<h3>{kind}</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    {filteredMembers.map(member =>
-    <tr>
-        <td>{member.name}</td>
-        <td>{member.description}</td>
-    </tr>)}
-  </tbody>
-</table>
-</>}
-
+{
+  filteredMembers.length > 0 && (
+    <>
+      <h3>{kind}</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredMembers.map((member) => (
+            <tr>
+              <td>
+                <a href={`${kebabize(packageName)}/${kebabize(member.name)}`}>
+                  {member.name}
+                </a>
+              </td>
+              <td>{member.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
+  )
+}

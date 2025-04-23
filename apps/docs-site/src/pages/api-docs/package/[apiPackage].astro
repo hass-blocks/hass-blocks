@@ -31,10 +31,14 @@ const { members } = Astro.props
 
 <BaseLayout>
 <h2>@hass-blocks/{apiPackage}</h1>
-  <TypeList members={members} kind={ApiItemKind.Function} />
-  <TypeList members={members} kind={ApiItemKind.Class} />
-  <TypeList members={members} kind={ApiItemKind.Enum} />
-  <TypeList members={members} kind={ApiItemKind.Interface} />
-  <TypeList members={members} kind={ApiItemKind.TypeAlias} />
+{
+  [
+    ApiItemKind.Function,
+    ApiItemKind.Class,
+    ApiItemKind.Enum,
+    ApiItemKind.Interface,
+    ApiItemKind.TypeAlias,
+  ].map(kind => <TypeList packageName={apiPackage} members={members} kind={kind}) />)
+}
 </BaseLayout>
 

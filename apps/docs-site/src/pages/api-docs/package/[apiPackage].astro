@@ -3,7 +3,7 @@ import type { GetStaticPaths } from 'astro';
 import { loadModels } from '../../../lib/doc-model/load-models';
 import { getUnscopedPackageName } from '../../../lib/doc-model/get-unscoped-package-name';
 import { modelsPath } from '../../../lib/doc-model/models-path';
-import  TypeList  from '../../../components/type-list/type-list.astro'
+import TypeList from '../../../components/type-list/type-list.astro';
 import { ApiItemKind } from '@microsoft/api-extractor-model';
 import { getDocSummary } from '../../../lib/doc-model/get-doc-summary';
 import BaseLayout from '../../../layouts/base-layout.astro';
@@ -14,31 +14,33 @@ export const getStaticPaths = (async () => {
   return apiPackages.map((apiPackage) => ({
     params: { apiPackage: getUnscopedPackageName(apiPackage) },
     props: {
-      members: apiPackage.members[0].members.map(item => ({
+      packageDescription: getDocSummary(apiPackage),
+      members: apiPackage.members[0].members.map((item) => ({
         name: item.displayName,
         kind: item.kind,
-        description: getDocSummary(item)
-      }))
-    }
+        description: getDocSummary(item),
+      })),
+    },
   }));
-
 }) satisfies GetStaticPaths;
 
 const { apiPackage } = Astro.params;
-const { members } = Astro.props
-
+const { members, packageDescription } = Astro.props;
 ---
 
 <BaseLayout>
-<h2>@hass-blocks/{apiPackage}</h1>
-{
-  [
-    ApiItemKind.Function,
-    ApiItemKind.Class,
-    ApiItemKind.Enum,
-    ApiItemKind.Interface,
-    ApiItemKind.TypeAlias,
-  ].map(kind => <TypeList packageName={apiPackage} members={members} kind={kind}) />)
-}
-</BaseLayout>
+  <h2>@hass-blocks/{apiPackage}</h2>
+  <p>{packageDescription}</p>
+  {
+    [
+      ApiItemKind.Function,
+      ApiItemKind.Class,
+      ApiItemKind.Enum,
+      ApiItemKind.Interface,
+      ApiItemKind.TypeAlias,
+    ].map((kind) => (
+      <TypeList packageName={apiPackage} members={members} kind={kind} />
+    ))
+  }</BaseLayout
+>>
 

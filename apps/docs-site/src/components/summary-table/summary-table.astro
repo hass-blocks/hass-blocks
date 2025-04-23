@@ -1,0 +1,33 @@
+---
+import type { ApiItemKind } from '@microsoft/api-extractor-model';
+
+interface Props {
+  memberName: string;
+  type: ApiItemKind;
+  path: string | undefined;
+}
+
+const { memberName, type, path } = Astro.props;
+---
+
+<table>
+  <tbody>
+    <tr>
+      <th>Name</th>
+      <td>{memberName}</td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td>{type}</td>
+    </tr>
+    <tr>
+      <th>Path</th>
+      <td
+        ><a
+          href={`https://github.com/benwainwright/hass-blocks/tree/main/${path}`}
+          >{path}</a
+        ></td
+      >
+    </tr>
+  </tbody>
+</table>

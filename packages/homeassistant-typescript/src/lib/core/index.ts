@@ -17,6 +17,7 @@ export type {
   GetPanelsCommand,
   HelloCommand,
   TriggerEventMessage,
+  Command,
 } from './websocket-client/index.ts';
 
 export { HTTP } from './constants.ts';

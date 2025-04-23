@@ -1,6 +1,7 @@
 import {
   Extractor,
   ExtractorConfig,
+  ExtractorLogLevel,
   IConfigFile,
   IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';
@@ -15,6 +16,7 @@ interface ApiExractorArgs {
   outputDir: string;
   docModel?: boolean;
   dtsRollup?: boolean;
+  strictChecks?: boolean;
 }
 
 export const apiExtractor = (options: ApiExractorArgs) => {
@@ -49,6 +51,30 @@ export const apiExtractor = (options: ApiExractorArgs) => {
       }
     : {};
 
+  const withStrictChecks = options.strictChecks
+    ? {
+        messages: {
+          compilerMessageReporting: {
+            default: {
+              logLevel: ExtractorLogLevel.Warning,
+            },
+          },
+
+          extractorMessageReporting: {
+            default: {
+              logLevel: ExtractorLogLevel.Warning,
+            },
+          },
+
+          tsdocMessageReporting: {
+            default: {
+              logLevel: ExtractorLogLevel.Warning,
+            },
+          },
+        },
+      }
+    : {};
+
   const prepareOptions: IExtractorConfigPrepareOptions = {
     configObjectFullPath: '',
     packageJsonFullPath,
@@ -63,26 +89,7 @@ export const apiExtractor = (options: ApiExractorArgs) => {
         enabled: true,
         reportFolder: options.outputDir,
       },
-      // messages: {
-      //   compilerMessageReporting: {
-      //     default: {
-      //       logLevel: ExtractorLogLevel.Warning,
-      //     },
-      //   },
-
-      //   extractorMessageReporting: {
-      //     default: {
-      //       logLevel: ExtractorLogLevel.Warning,
-      //     },
-      //   },
-
-      //   tsdocMessageReporting: {
-      //     default: {
-      //       logLevel: ExtractorLogLevel.Warning,
-      //     },
-      //   },
-      // },
-
+      ...withStrictChecks,
       ...withDtsRollup,
       ...withDocModel,
     },

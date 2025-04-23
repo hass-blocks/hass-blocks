@@ -23,7 +23,8 @@
       "options": {
         "mainEntrypointFile": "packages/blocks/dist/index.d.ts",
         "reportFolder": "packages/blocks/api",
-        "projectFolder": "packages/blocks"
+        "projectFolder": "packages/blocks",
+        "strictChecks": true
       }
     },
     "doc-model": {

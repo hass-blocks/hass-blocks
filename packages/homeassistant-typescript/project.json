@@ -23,6 +23,7 @@
       "options": {
         "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
         "reportFolder": "packages/homeassistant-typescript/api",
+        "strictChecks": false,
         "projectFolder": "packages/homeassistant-typescript"
       }
     },

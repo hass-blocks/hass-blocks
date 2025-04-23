@@ -15,6 +15,7 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
     ...options,
     outputDir: options.reportFolder,
     dtsRollup: true,
+    strictChecks: options.strictChecks,
   });
 
   if (

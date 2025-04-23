@@ -17,3 +17,4 @@ export type { CallServiceResponse } from './call-service-response.ts';
 export type { GetEntitiesCommand } from './get-entities-command.ts';
 export type { GetDevicesCommand } from './get-devices-command.ts';
 export type { GetAreasCommand } from './get-areas-command.ts';
+export type { Command } from './command.ts';

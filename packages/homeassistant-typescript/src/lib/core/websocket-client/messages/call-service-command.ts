@@ -2,6 +2,8 @@ import { Command } from './command.ts';
 
 /**
  * @public
+ *
+ * Websocket command to call a Home Assistant service
  */
 export interface CallServiceCommand extends Command {
   /**

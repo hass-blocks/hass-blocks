@@ -90,16 +90,28 @@ export interface IClient {
   getServices(): Promise<Record<string, Service>>;
 
   /**
-   * Get a list of
+   * Get a list of possible domains for services
    */
   getServiceDomains(): Promise<ServiceDomainDetails[]>;
 
+  /**
+   * Get a list of all registered panels
+   */
   getPanels(): Promise<Record<string, Panel>>;
 
+  /**
+   * Get a list of all registered calendars
+   */
   getCalendars(): Promise<CalendarDetails>;
 
+  /**
+   * Get the complete list of events that can be listened to and the number of subscribers
+   */
   getEvents(): Promise<EventDetails[]>;
 
+  /**
+   * Retrieve all errors logged during the current session of Home Assistant as a plaintext response.
+   */
   getErrorLog(): Promise<string>;
 
   /**
@@ -110,14 +122,28 @@ export interface IClient {
     callback: (event: unknown) => void | Promise<void>,
   ): Promise<void>;
 
+  /**
+   * Subscribe to events
+   *
+   * @param callback - Fire this callback when any Home Assistant events are triggered
+   */
   subscribeToEvents(
     callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
 
+  /**
+   * Subscribe to events of a specific type
+   *
+   * @param type - type of the event to listen for
+   * @param callback - Fire this callback when the Home Assistant events are triggered
+   */
   subscribeToEvents(
     type: string,
     callback: (message: Event | TriggerEventMessage['event']) => void,
   ): Promise<void>;
 
+  /**
+   * Close the websocket connection
+   */
   close(): Promise<void>;
 }

@@ -5,6 +5,10 @@
   "description": "",
   "type": "object",
   "properties": {
+    "strictChecks": {
+      "type": "boolean",
+      "description": "Whether or not to check for missing documentation and exports"
+    },
     "mainEntrypointFile": {
       "type": "string",
       "description": "The main entrypoint for your package API"

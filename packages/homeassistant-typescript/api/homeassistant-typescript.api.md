@@ -8,7 +8,7 @@
 export interface CalendarDetails {
 }
 
-// @public (undocumented)
+// @public
 export interface CallServiceCommand extends Command {
     domain: string;
     return_response?: boolean;
@@ -22,9 +22,8 @@ export interface CallServiceCommand extends Command {
     type: 'call_service';
 }
 
-// @public (undocumented)
+// @public
 export interface CallServiceResponse {
-    // (undocumented)
     context: {
         id: string;
         parent_id: null | string;
@@ -133,13 +132,10 @@ export interface GetHistoryParams {
     timestamp?: Date;
 }
 
-// @public (undocumented)
+// @public
 export interface GetLogbookParams {
-    // (undocumented)
     endTime?: Date;
-    // (undocumented)
     entity?: string;
-    // (undocumented)
     timestamp?: Date;
 }
 
@@ -211,33 +207,70 @@ export interface HassDevice {
     via_device_id: string | null;
 }
 
+// @public (undocumented)
+export interface HassEntity {
+    // (undocumented)
+    area_id: string | null;
+    // (undocumented)
+    categories: Record<string, unknown>;
+    // (undocumented)
+    config_entry_id: string | null;
+    // (undocumented)
+    created_at: number;
+    // (undocumented)
+    device_id: string | null;
+    // (undocumented)
+    disabled_by: string | null;
+    // (undocumented)
+    entity_category: string | null;
+    // (undocumented)
+    entity_id: string;
+    // (undocumented)
+    has_entity_name: boolean;
+    // (undocumented)
+    hidden_by: string | null;
+    // (undocumented)
+    icon: string | null;
+    // (undocumented)
+    id: string;
+    // (undocumented)
+    labels: string[];
+    // (undocumented)
+    modified_at: number;
+    // (undocumented)
+    name: string | null;
+    // (undocumented)
+    options: Record<string, Record<string, unknown>>;
+    // (undocumented)
+    original_name: string | null;
+    // (undocumented)
+    platform: string;
+    // (undocumented)
+    translation_key: string | null;
+    // (undocumented)
+    unique_id: string;
+}
+
 // @public
 export interface IClient {
     callService(params: Omit<CallServiceCommand, 'id' | 'type'>): Promise<State[]>;
-    // (undocumented)
     close(): Promise<void>;
     getAreas(): Promise<HassArea[]>;
-    // (undocumented)
     getCalendars(): Promise<CalendarDetails>;
     getConfig(): Promise<Config>;
     getDevices(): Promise<HassDevice[]>;
     getEntities(): Promise<HassEntity[]>;
-    // (undocumented)
     getErrorLog(): Promise<string>;
-    // (undocumented)
     getEvents(): Promise<EventDetails[]>;
     getHistory(params: GetHistoryParams): Promise<State[][]>;
     getLogbook(params?: GetLogbookParams): Promise<LogBookEntry[]>;
-    // (undocumented)
     getPanels(): Promise<Record<string, Panel>>;
     getServiceDomains(): Promise<ServiceDomainDetails[]>;
     getServices(): Promise<Record<string, Service>>;
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
-    // (undocumented)
     subscribeToEvents(callback: (message: Event_2 | TriggerEventMessage['event']) => void): Promise<void>;
-    // (undocumented)
     subscribeToEvents(type: string, callback: (message: Event_2 | TriggerEventMessage['event']) => void): Promise<void>;
 }
 

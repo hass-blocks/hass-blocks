@@ -1,7 +1,12 @@
 /**
  * @public
+ *
+ * Response from the websocket API when a service is called
  */
 export interface CallServiceResponse {
+  /**
+   * The Home Assistant context (See {@link https://data.home-assistant.io/docs/context/})
+   */
   context: {
     id: string;
     parent_id: null | string;

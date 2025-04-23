@@ -31,8 +31,8 @@ export class CertificateStack extends Stack {
     const { domainName } = props;
 
     const hostedZone = HostedZone.fromLookup(this, `cert-stack-hosted-zone`, {
-      domainName
-    })
+      domainName,
+    });
 
     this.certificate = new Certificate(this, 'cert', {
       domainName,

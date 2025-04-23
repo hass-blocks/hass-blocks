@@ -5,7 +5,7 @@ export const getDocSummary = (item: ApiItem) => {
   if (item instanceof ApiDocumentedItem) {
     const summary = item.tsdocComment?.summarySection;
     if (summary) {
-      return extractTextFromDocNodes(summary).join()
+      return extractTextFromDocNodes(summary).join();
     }
   }
 

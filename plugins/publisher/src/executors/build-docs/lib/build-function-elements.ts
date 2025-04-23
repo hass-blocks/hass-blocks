@@ -5,7 +5,7 @@ import { renderTokens } from './render-tokens.ts';
 import { component } from './components.ts';
 
 export const buildFunctionElements = async (item: ApiItem) => {
-  const { openingTag, closingTag } = component("CodeBlock", {})
+  const { openingTag, closingTag } = component('CodeBlock', {});
   if (item instanceof ApiFunction) {
     return [
       h2('Parameters'),
@@ -13,7 +13,7 @@ export const buildFunctionElements = async (item: ApiItem) => {
       h2('Return Type'),
       openingTag(false),
       ...renderTokens(item, item.returnTypeExcerpt),
-      closingTag()
+      closingTag(),
     ];
   }
 

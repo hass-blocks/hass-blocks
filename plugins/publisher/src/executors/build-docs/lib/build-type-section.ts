@@ -18,12 +18,7 @@ export const buildTypeSection = (
       kind: member.kind.toString(),
       description: getDocSummary(member),
     })),
-  })
+  });
 
-  return things.length > 0
-    ? [
-      h2(title),
-      theComponent(true)
-    ]
-    : [];
+  return things.length > 0 ? [h2(title), theComponent(true)] : [];
 };

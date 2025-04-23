@@ -1,4 +1,9 @@
-import { getRenderers, MarkdownEntry, MarkdownRenderer, tsMarkdown } from 'ts-markdown';
+import {
+  getRenderers,
+  MarkdownEntry,
+  MarkdownRenderer,
+  tsMarkdown,
+} from 'ts-markdown';
 
 export interface ImportEntry<E extends readonly string[], M extends string> {
   import: {
@@ -22,24 +27,22 @@ export const jsx = <const E extends readonly string[], M extends string>(
     component: {
       name: E[number];
       props: P;
-      selfClosing?: boolean
+      selfClosing?: boolean;
     };
   }
 
   interface ClosingTagEntry {
     closingTag: {
-      name: E[number]
-    }
+      name: E[number];
+    };
   }
 
-  const closingTagRenderer: MarkdownRenderer = (
-    entry: ClosingTagEntry
-  ) => {
+  const closingTagRenderer: MarkdownRenderer = (entry: ClosingTagEntry) => {
     return {
       markdown: `</ ${entry.closingTag.name}>`,
       blockLevel: true,
     };
-  }
+  };
 
   const componentRenderer: MarkdownRenderer = <
     P extends Record<string, unknown>,
@@ -50,15 +53,18 @@ export const jsx = <const E extends readonly string[], M extends string>(
       entry.component.props,
     )
       .map(([key, value]) => {
-        const newValue = typeof value === 'string' ? JSON.stringify(value) : tsMarkdown([value as MarkdownEntry], {
-          renderers: getRenderers({
-            component: componentRenderer,
-            closingTag: closingTagRenderer
-          })
-        })
-        return `${key}={${JSON.stringify(newValue)}}`
+        const newValue =
+          typeof value === 'string'
+            ? JSON.stringify(value)
+            : tsMarkdown([value as MarkdownEntry], {
+                renderers: getRenderers({
+                  component: componentRenderer,
+                  closingTag: closingTagRenderer,
+                }),
+              });
+        return `${key}={${JSON.stringify(newValue)}}`;
       })
-      .join('\n')} ${entry.component.selfClosing ? "/" : ""}>`;
+      .join('\n')} ${entry.component.selfClosing ? '/' : ''}>`;
 
     return {
       markdown,
@@ -76,7 +82,7 @@ export const jsx = <const E extends readonly string[], M extends string>(
           component: {
             name,
             props,
-            selfClosing
+            selfClosing,
           },
         };
       },
@@ -85,10 +91,10 @@ export const jsx = <const E extends readonly string[], M extends string>(
         return {
           closingTag: {
             name,
-          }
-        }
-      }
-    }
+          },
+        };
+      },
+    };
   };
 
   const importStatement = (): ImportEntry<E, M> => {
@@ -100,5 +106,11 @@ export const jsx = <const E extends readonly string[], M extends string>(
     };
   };
 
-  return { importRenderer, componentRenderer, importStatement, component, closingTagRenderer };
+  return {
+    importRenderer,
+    componentRenderer,
+    importStatement,
+    component,
+    closingTagRenderer,
+  };
 };

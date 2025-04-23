@@ -4,14 +4,16 @@ import { component } from './components.ts';
 export const paramsTable = (item: ApiItem) => {
   if (item instanceof ApiFunction) {
     const data = item.parameters.map((param) => {
-      return ({
+      return {
         name: param.name,
         type: param.parameterTypeExcerpt.text,
-      });
+      };
     });
 
-    const { openingTag: theComponent } = component('ParamsTable', { params: data });
-    return theComponent(true)
+    const { openingTag: theComponent } = component('ParamsTable', {
+      params: data,
+    });
+    return theComponent(true);
   }
   return {};
 };

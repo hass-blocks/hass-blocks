@@ -1,5 +1,9 @@
 import { getRenderers, MarkdownEntry, tsMarkdown } from 'ts-markdown';
-import { closingTagRenderer, componentRenderer, importRenderer } from './components.ts';
+import {
+  closingTagRenderer,
+  componentRenderer,
+  importRenderer,
+} from './components.ts';
 import { join } from 'path';
 import { createDirIfNotExists } from '../../../lib/create-dir-if-not-exists.ts';
 import { writeFile } from 'fs/promises';
@@ -15,7 +19,7 @@ export const configureAndRender = async (
       import: importRenderer,
       component: componentRenderer,
       linebreak: lineBreakRenderer,
-      closingTag: closingTagRenderer
+      closingTag: closingTagRenderer,
     }),
   });
 

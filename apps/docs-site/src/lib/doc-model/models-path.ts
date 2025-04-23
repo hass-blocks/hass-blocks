@@ -1,8 +1,3 @@
-import { join } from "path";
+import { join } from 'path';
 
-export const modelsPath = join(
-import.meta.dirname,
-'..',
-'..',
-'models'
-);
+export const modelsPath = join(import.meta.dirname, '..', '..', 'models');

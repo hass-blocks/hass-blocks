@@ -9,7 +9,7 @@ export const summary = (item: ApiItem) => {
       path: item.fileUrlPath,
     });
 
-    return theComponent(true)
+    return theComponent(true);
   }
 
   return {};

@@ -28,7 +28,7 @@
       "dependsOn": ["package"],
       "defaultConfiguration": "normal",
       "options": {
-        "app": "cdk.out/apps/docs",
+        "app": "cdk.out/apps/docs-site",
         "stacks": "--all"
       },
       "configurations": {

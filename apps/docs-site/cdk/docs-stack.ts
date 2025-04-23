@@ -52,7 +52,7 @@ export class DocsStack extends Stack {
           origin: new S3StaticWebsiteOrigin(assetsBucket),
         },
         certificate,
-        domainNames: [domainName],
+        domainNames: [domainName, `www.${domainName}`],
       },
     );
 

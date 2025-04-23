@@ -36,6 +36,7 @@ export class CertificateStack extends Stack {
 
     this.certificate = new Certificate(this, 'cert', {
       domainName,
+      subjectAlternativeNames: [`www.${domainName}`],
       validation: CertificateValidation.fromDns(hostedZone),
     });
   }

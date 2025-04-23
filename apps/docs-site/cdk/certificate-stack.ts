@@ -5,7 +5,6 @@ import {
   ICertificate,
 } from 'aws-cdk-lib/aws-certificatemanager';
 import { HostedZone } from 'aws-cdk-lib/aws-route53';
-import { PublicHostedZone } from 'aws-cdk-lib/aws-route53';
 import { Construct } from 'constructs';
 
 interface CertificateStackProps {

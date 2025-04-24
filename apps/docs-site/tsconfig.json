@@ -28,6 +28,7 @@
       "@pages": ["./src/pages/index.ts"],
       "@doc-model": ["./src/lib/doc-model/index.ts"],
       "@types": ["./src/types/index.ts"],
+      "@images": ["./src/images/*"],
       "@utils": ["./src/lib/utils/index.ts"]
     }
   },

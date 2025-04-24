@@ -11,12 +11,19 @@ const { entries } = Astro.props;
 
 <nav>
   <ul>
+    <li><strong>Hass Blocks</strong></li>
+  </ul>
+
+  <ul>
     {
       entries.map((entry) => (
         <li>
           <a
             href={entry.link}
-            class={currentPath === entry.link ? 'current' : ''}
+            class:list={[
+              currentPath === entry.link ? 'current' : '',
+              'navigation-link',
+            ]}
           >
             {entry.name}
           </a>

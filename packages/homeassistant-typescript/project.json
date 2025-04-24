@@ -17,7 +17,7 @@
       }
     },
     "rollup-api": {
-      "dependsOn": ["typecheck"],
+      "dependsOn": ["build"],
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {

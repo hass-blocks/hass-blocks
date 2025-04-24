@@ -8,14 +8,19 @@ const pageTitle = 'Hass Blocks';
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+    />
+
     <title>{pageTitle}</title>
   </head>
   <body>
-    <header>
+    <header class="container">
       <h1>{pageTitle}</h1>
+
       <NavBar
         entries={[
           {
@@ -27,13 +32,17 @@ const pageTitle = 'Hass Blocks';
             link: '/about',
           },
           {
+            name: 'Getting Started',
+            link: '/getting-started',
+          },
+          {
             name: 'Documentation',
             link: '/api-docs',
           },
         ]}
       />
     </header>
-    <main>
+    <main class="container">
       <slot />
     </main>
   </body>

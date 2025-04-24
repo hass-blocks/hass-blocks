@@ -1,0 +1,77 @@
+---
+import { CodeExcerpt } from '@components';
+import { BaseLayout } from '@layouts';
+---
+
+<BaseLayout>
+  <h2 id="getting-started">Getting Started</h2>
+  <h3 id="installing">Installing</h3>
+  <p><CodeExcerpt code=`npm install @hass-blocks/blocks` } /></p>
+  <h3 id="bootstrapping">Bootstrapping</h3>
+  <p>
+    Before you can build automations, you first need to configure the connection
+    to Home Assistant. To do this, ensure you have populated the following
+    environment variables:
+  </p>
+  <ul>
+    <li>
+      <code>HASS_HOST</code> - the hostname of your Home Assistant installation
+    </li>
+    <li>
+      <code>HASS_PORT</code> - the port your Home Assistant installation is available
+      on (defaults to 8123 if not provided)
+    </li>
+    <li>
+      <code>HASS_TOKEN</code> - a <a
+        href="https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token"
+        >long lived access token</a
+      > you’ve configured
+    </li>
+  </ul>
+  <p>
+    Once this is done, the below code will bootstrap the connection and give you
+    a registry object that you can register automations with
+  </p>
+  <p>
+    Hass-blocks is all about creating blocks that describe what you want to
+    happen and combining them with triggers to make an automation. There are a
+    few different kinds of blocks
+  </p>
+  <ul>
+    <li>
+      <strong>Actions</strong> - a generic block that describes something you <em
+        >want to happen</em
+      >
+    </li>
+    <li>
+      <strong>Service Calls</strong> - an action that calls a Home Assistant service
+    </li>
+    <li>
+      <strong>Assertions</strong> - a block that decides whether a sequence of actions
+      should continue executing
+    </li>
+    <li>
+      <strong>Sequences</strong> - a block that when executed executs a number of
+      different blocks, either in sequence or all at once
+    </li>
+    <li>
+      <strong>Conditions</strong> - a block that decides which block to execute based
+      on a condition
+    </li>
+  </ul>
+  <p>
+    Since this is a framework, its your job to write a whole bunch of blocks
+    that you can then compose together in order to build your automations, so
+    lets talk a little bit about how to do that.
+  </p>
+  <blockquote>
+    <p>
+      <strong
+        >It is very much my intention to write a package containing a whole
+        series of premade blocks that you can use to easily build your
+        automations. If this feels useless right now, its because its in its
+        very early stages. Watch this space…</strong
+      >
+    </p>
+  </blockquote>
+</BaseLayout>

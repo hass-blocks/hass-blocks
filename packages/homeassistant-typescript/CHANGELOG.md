@@ -1,3 +1,13 @@
+## 0.9.0 (2025-04-24)
+
+### 🚀 Features
+
+- **docs-site:** got docs working ([6659982](https://github.com/benwainwright/hass-blocks/commit/6659982))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.8.0 (2025-04-23)
 
 ### 🚀 Features

@@ -4,18 +4,10 @@ import {
   type Excerpt,
 } from '@microsoft/api-extractor-model';
 import { getOriginalApiItemFromExcerptToken } from './get-original-api-item-from-excerpt-token';
-import { kebabize } from '../kebabize';
 
-export type ExcerptToken = ExcerptTokenWithLink | ExcerptTokenWithoutLink;
+import { kebabize } from '../utils/kebabize';
 
-interface ExcerptTokenWithLink {
-  text: string;
-  url: string;
-}
-
-interface ExcerptTokenWithoutLink {
-  text: string;
-}
+import type { ExcerptToken } from '@types';
 
 export const renderExcerptToTokens = (
   context: ApiItem,

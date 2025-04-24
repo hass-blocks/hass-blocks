@@ -1,17 +1,25 @@
 ---
 import type { GetStaticPaths } from 'astro';
-import { getUnscopedPackageName } from '../../../../lib/doc-model/get-unscoped-package-name';
-import { loadModels } from '../../../../lib/doc-model/load-models';
-import { modelsPath } from '../../../../lib/doc-model/models-path';
-import BaseLayout from '../../../../layouts/base-layout.astro';
-import { kebabize } from '../../../../lib/kebabize';
-import { getDocSummary } from '../../../../lib/doc-model/get-doc-summary';
 import { ApiDeclaredItem, ApiItemKind } from '@microsoft/api-extractor-model';
-import SummaryTable from '../../../../components/summary-table/summary-table.astro';
-import FunctionDetails from '../../../../components/function-details/function-details.astro';
-import { getFunctionArgs } from '../../../../lib/doc-model/get-function-args';
-import { getInterfaceArgs } from '../../../../lib/doc-model/get-interface-args';
-import InterfaceDetails from '../../../../components/interface-details/interface-details.astro';
+
+import {
+  FunctionDetails,
+  InterfaceDetails,
+  SummaryTable,
+  TsDocSection,
+} from '@components';
+
+import {
+  getMemberArgs,
+  getTsDocFromNode,
+  getUnscopedPackageName,
+  loadModels,
+  modelsPath,
+} from '@doc-model';
+import { kebabize } from '@utils';
+
+import { BaseLayout } from '@layouts';
+import EnumDetails from 'src/components/enum-details/enum-details.astro';
 
 export const getStaticPaths = (async () => {
   const { packages: apiPackages } = await loadModels(modelsPath);
@@ -19,8 +27,7 @@ export const getStaticPaths = (async () => {
   return apiPackages.flatMap((apiPackage) =>
     apiPackage.members[0].members.flatMap((member) => {
       if (member instanceof ApiDeclaredItem) {
-        const withFunctionArgs = getFunctionArgs(member);
-        const withInterfaceArgs = getInterfaceArgs(member);
+        const withInterfaceArgs = getMemberArgs(member);
 
         return {
           params: {
@@ -29,10 +36,9 @@ export const getStaticPaths = (async () => {
           },
           props: {
             fullPackageName: apiPackage.displayName,
-            description: getDocSummary(member),
+            tsDoc: getTsDocFromNode(member),
             type: member.kind,
             path: member.fileUrlPath,
-            ...withFunctionArgs,
             ...withInterfaceArgs,
           },
         };
@@ -44,13 +50,14 @@ export const getStaticPaths = (async () => {
 
 const { memberName } = Astro.params;
 const {
-  description,
-  fullPackageName,
+  tsDoc,
   type,
   path,
   params,
   returnValue,
+  signature,
   members,
+  enumMembers,
 } = Astro.props;
 ---
 
@@ -61,13 +68,28 @@ const {
 </style>
 
 <BaseLayout>
-  <h2>{fullPackageName}.{memberName}</h2>
-  <p>{description}</p>
+  <h2>{memberName}</h2>
+  {tsDoc?.summary && <TsDocSection sections={tsDoc?.summary} />}
+  {tsDoc?.remarks && <TsDocSection sections={tsDoc?.remarks} />}
   <SummaryTable {memberName} {type} {path} />
   {
-    type === ApiItemKind.Function && params && (
-      <FunctionDetails {returnValue} {params} />
+    tsDoc?.example && (
+      <>
+        <h3>Example</h3>
+        <TsDocSection sections={tsDoc?.example} />
+      </>
+    )
+  }
+  {
+    type === ApiItemKind.Function && params && returnValue && signature && (
+      <FunctionDetails {returnValue} {params} {signature} headingLevel="h3" />
     )
   }
   {type === ApiItemKind.Interface && members && <InterfaceDetails {members} />}
+  {
+    type === ApiItemKind.Enum && enumMembers && (
+      <EnumDetails members={enumMembers} />
+    )
+  }
+  {type === ApiItemKind.Class && members && <InterfaceDetails {members} />}
 </BaseLayout>

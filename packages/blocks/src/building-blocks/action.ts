@@ -53,6 +53,26 @@ export class Action<I = void, O = void>
  * @public
  *
  * A generic block that represents some kind of action
+ *
+ * @example
+ *
+ * ```TypeScript
+ *
+ * import { action } from "@hass-blocks/blocks"
+ *
+ * const turnOnLivingRoomLights = action({
+ *   name: `Turn on lights`,
+ *   callback: async (hass) => {
+ *      await hass.callService({
+ *        domain: 'light',
+ *        service: 'turn_on',
+ *        target: {
+ *          entity_id: 'light.living_room'
+ *        }
+ *      })
+ *   },
+ * });
+ * ```
  */
 export const action = <I = void, O = void>(
   config: IActionConfig<I, O>,

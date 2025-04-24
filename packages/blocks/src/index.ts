@@ -27,7 +27,6 @@ export type {
   IBaseBlockConfig,
   BaseHassEvent,
   BlockStarted,
-  ExecutionMode,
   HassBlocksEvent,
   AutomationRegistered,
   GeneralFailure,
@@ -50,6 +49,8 @@ export type {
   HassEntityAttributeBase,
   SerialisedBlock,
 } from './types/index.ts';
+
+export { ExecutionMode } from './types/index.ts';
 
 export {
   when,

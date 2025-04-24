@@ -1,11 +1,13 @@
 ---
 import type { ApiItemKind } from '@microsoft/api-extractor-model';
-import { kebabize } from '../../lib/kebabize';
+import type { ParsedTsdoc } from '@types';
+import { kebabize } from '@utils';
+import { TsDocSection } from '../ts-doc-section';
 
 interface Member {
   name: string;
   kind: ApiItemKind;
-  description: string;
+  tsDoc: ParsedTsdoc | undefined;
 }
 
 interface Props {
@@ -17,6 +19,19 @@ interface Props {
 const { kind, members, packageName } = Astro.props;
 const filteredMembers = members.filter((member) => member.kind === kind);
 ---
+
+<style>
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  table td:first-child,
+  th:first-child {
+    width: 35%;
+    overflow: hidden;
+  }
+</style>
 
 {
   filteredMembers.length > 0 && (
@@ -37,7 +52,12 @@ const filteredMembers = members.filter((member) => member.kind === kind);
                   {member.name}
                 </a>
               </td>
-              <td>{member.description}</td>
+              <td>
+                <TsDocSection
+                  sections={member.tsDoc?.summary}
+                  containingTags="Fragment"
+                />
+              </td>
             </tr>
           ))}
         </tbody>

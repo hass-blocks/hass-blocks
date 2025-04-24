@@ -1,0 +1,19 @@
+---
+import type { EnumArgs } from '@types';
+import { PropertiesTable } from '../properties-table';
+
+interface Props {
+  members: EnumArgs['enumMembers'];
+}
+
+const { members } = Astro.props;
+---
+
+<style>
+  .type {
+    text-align: center;
+  }
+</style>
+
+<h3>Members</h3>
+<PropertiesTable properties={members} />

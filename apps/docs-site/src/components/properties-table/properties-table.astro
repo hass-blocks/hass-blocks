@@ -1,0 +1,37 @@
+---
+import { CodeExcerpt, TsDocSection } from '@components';
+import type { PropertyArgs } from '@types';
+import type { EnumMemberArgs } from 'src/types/enum-member-args';
+
+interface Props {
+  properties: (PropertyArgs | EnumMemberArgs)[];
+}
+
+const { properties } = Astro.props;
+---
+
+<table>
+  <tbody>
+    {
+      properties.map((member) => (
+        <tr>
+          <>
+            <th>{member.name}</th>
+
+            {'type' in member && (
+              <td class="type">
+                <CodeExcerpt code={member.type} />
+              </td>
+            )}
+            <td>
+              <TsDocSection
+                sections={member.tsDoc?.summary}
+                containingTags="Fragment"
+              />
+            </td>
+          </>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>

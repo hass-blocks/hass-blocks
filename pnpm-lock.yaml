@@ -75,6 +75,9 @@ importers:
       '@eslint/js':
         specifier: 9.8.0
         version: 9.8.0
+      '@highlightjs/cdn-assets':
+        specifier: ^11.11.1
+        version: 11.11.1
       '@joggr/tempo':
         specifier: ^0.13.4
         version: 0.13.4
@@ -2508,6 +2511,10 @@ packages:
   '@hass-blocks/homeassistant-typescript@0.4.0':
     resolution: {integrity: sha512-+5/nVIQWhsh7s2/eeszai2hVu26C5fIXItTxVUoMpZxTwAfB0PHlv4hT5iA1XT0xgpKO4Ptpbi2IFwyVyc+A/w==}
     engines: {node: '>=18'}
+
+  '@highlightjs/cdn-assets@11.11.1':
+    resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
+    engines: {node: '>=12.0.0'}
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -14005,6 +14012,8 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  '@highlightjs/cdn-assets@11.11.1': {}
 
   '@humanwhocodes/module-importer@1.0.1': {}
 

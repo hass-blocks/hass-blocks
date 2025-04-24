@@ -46,7 +46,7 @@ export interface IBlock<I = void, O = void> {
    * If defined, this method will be called when the parent automation is registered.
    * If any configuration is invalid, an error should be thrown
    */
-  validate: (client: IHass) => Promise<void>;
+  validate(client: IHass): Promise<void>;
 
   /**
    * String that identifies the kind of block
@@ -61,10 +61,10 @@ export interface IBlock<I = void, O = void> {
    * @param events - An initialised event bus
    * @param triggerId - a uuid trigger id, unique to this particular trigger sequence
    */
-  run: (
+  run(
     hass: IHass,
     input: I,
     events?: IEventBus,
     triggerId?: string,
-  ) => Promise<BlockOutput<O>> | BlockOutput<O>;
+  ): Promise<BlockOutput<O>> | BlockOutput<O>;
 }

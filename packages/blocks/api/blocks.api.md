@@ -214,11 +214,11 @@ export interface IBlock<I = void, O = void> {
     inputType: I | undefined;
     name: string;
     outputType: O | undefined;
-    run: (hass: IHass, input: I, events?: IEventBus, triggerId?: string) => Promise<BlockOutput<O>> | BlockOutput<O>;
+    run(hass: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): SerialisedBlock;
     trigger: ITrigger | ITrigger[];
     typeString: string;
-    validate: (client: IHass) => Promise<void>;
+    validate(client: IHass): Promise<void>;
 }
 
 // @public

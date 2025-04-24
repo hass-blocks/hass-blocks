@@ -14,8 +14,9 @@ import dotEnv from 'dotenv';
 /**
  * @public
  *
- * Parse Home Assistant config from environment variables
+ * Parse Home Assistant configuration from environment variables
  *
+ * @remarks
  * HASS_TOKEN - access token
  * HASS_WS_PATH - url path portion for the websocket API
  * HASS_HTTP_PATH - url path portion for the HTTP API

@@ -1,0 +1,25 @@
+---
+import type { ExcerptToken } from '@types';
+import { CodeExcerpt } from '../excerpt';
+
+interface Props {
+  code: ExcerptToken[] | string;
+}
+const { code } = Astro.props;
+---
+
+<style>
+  pre {
+    padding: 0 1rem;
+    margin: 0;
+  }
+
+  pre code {
+    margin: 0;
+    margin: 0;
+  }
+</style>
+
+<pre>
+    <CodeExcerpt code={code} />
+</pre>

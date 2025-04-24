@@ -1,5 +1,5 @@
 ---
-import type { ExcerptToken } from '../../lib/doc-model/render-excerpt-tokens';
+import type { ExcerptToken } from '@types';
 import CodeExcerpt from '../excerpt/code-excerpt.astro';
 
 interface Param {
@@ -10,22 +10,45 @@ interface Param {
 interface Props {
   params: Param[];
   returnValue: ExcerptToken[];
+  signature: string;
+  headingLevel: string;
 }
 
-const { params, returnValue } = Astro.props;
+const { params, returnValue, signature, headingLevel } = Astro.props;
+const Heading = headingLevel;
 ---
 
+<style>
+  pre {
+    padding: 1rem 0;
+  }
+  table {
+    width: 100%;
+    table-layout: fixed;
+  }
+
+  table td:first-child,
+  th:first-child {
+    width: 15%;
+    overflow: hidden;
+  }
+</style>
+
+<Heading>Signature</Heading>
+<pre>
+  <CodeExcerpt code={signature} />
+</pre>
 {
   params.length > 0 && (
     <>
-      <h3>Parameters</h3>
+      <Heading>Parameters</Heading>
       <table>
         <tbody>
           {params.map((param) => (
             <tr>
               <td>{param.name}</td>
               <td>
-                <CodeExcerpt client:load excerpt={param.excerptTokens} />
+                <CodeExcerpt code={param.excerptTokens} />
               </td>
             </tr>
           ))}
@@ -34,5 +57,5 @@ const { params, returnValue } = Astro.props;
     </>
   )
 }
-<h3>Return Value</h3>
-<CodeExcerpt client:load excerpt={returnValue} />
+<Heading>Return Value</Heading>
+<CodeExcerpt code={returnValue} />

@@ -4,33 +4,44 @@ import { loadModels } from '../../../lib/doc-model/load-models';
 import { getUnscopedPackageName } from '../../../lib/doc-model/get-unscoped-package-name';
 import { modelsPath } from '../../../lib/doc-model/models-path';
 import TypeList from '../../../components/type-list/type-list.astro';
-import { ApiItemKind } from '@microsoft/api-extractor-model';
+import { ApiDocumentedItem, ApiItemKind } from '@microsoft/api-extractor-model';
 import { getDocSummary } from '../../../lib/doc-model/get-doc-summary';
 import BaseLayout from '../../../layouts/base-layout.astro';
+import { TsDocSection } from '@components';
+import { parseTsDoc } from 'src/lib/doc-model/parse-ts-doc';
 
 export const getStaticPaths = (async () => {
   const { packages: apiPackages } = await loadModels(modelsPath);
 
-  return apiPackages.map((apiPackage) => ({
-    params: { apiPackage: getUnscopedPackageName(apiPackage) },
-    props: {
-      packageDescription: getDocSummary(apiPackage),
-      members: apiPackage.members[0].members.map((item) => ({
-        name: item.displayName,
-        kind: item.kind,
-        description: getDocSummary(item),
-      })),
-    },
-  }));
+  return apiPackages.map((apiPackage) => {
+    console.log(getDocSummary(apiPackage));
+    return {
+      params: { apiPackage: getUnscopedPackageName(apiPackage) },
+      props: {
+        docComments:
+          apiPackage.tsdocComment && parseTsDoc(apiPackage.tsdocComment),
+        members: apiPackage.members[0].members.map((item) => ({
+          name: item.displayName,
+          kind: item.kind,
+          tsDoc:
+            (item instanceof ApiDocumentedItem &&
+              item.tsdocComment &&
+              parseTsDoc(item.tsdocComment)) ||
+            undefined,
+        })),
+      },
+    };
+  });
 }) satisfies GetStaticPaths;
 
 const { apiPackage } = Astro.params;
-const { members, packageDescription } = Astro.props;
+const { members, docComments } = Astro.props;
 ---
 
 <BaseLayout>
   <h2>@hass-blocks/{apiPackage}</h2>
-  <p>{packageDescription}</p>
+  {docComments?.summary && <TsDocSection sections={docComments?.summary} />}
+  {docComments?.remarks && <TsDocSection sections={docComments?.remarks} />}
   {
     [
       ApiItemKind.Function,
@@ -41,5 +52,5 @@ const { members, packageDescription } = Astro.props;
     ].map((kind) => (
       <TypeList packageName={apiPackage} members={members} kind={kind} />
     ))
-  }</BaseLayout
->
+  }
+</BaseLayout>

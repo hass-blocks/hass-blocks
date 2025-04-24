@@ -1,0 +1,33 @@
+---
+import type { FunctionArgs } from '@types';
+import { FunctionDetails } from '../function-details';
+import { TsDocSection } from '@components';
+
+interface Props {
+  methods: FunctionArgs[];
+}
+
+const { methods } = Astro.props;
+---
+
+<h3>Methods</h3>
+{
+  methods.map((method) => (
+    <section>
+      <h4>{method.name}</h4>
+
+      {method.tsDoc?.summary && (
+        <TsDocSection sections={method.tsDoc.summary} />
+      )}
+      {method.tsDoc?.remarks && (
+        <TsDocSection sections={method.tsDoc.remarks} />
+      )}
+      <FunctionDetails
+        headingLevel="h5"
+        params={method.params}
+        returnValue={method.returnValue}
+        signature={method.signature}
+      />
+    </section>
+  ))
+}

@@ -22,6 +22,15 @@ export interface IBlocksConfig {
  * @public
  *
  * Bootstrap the connection with Home Assistant and initialise Hass Blocks
+ *
+ * @remarks
+ * Uses {@link homeassistant-typescript#getConfig} under the hood, so will read the same environment variables
+ *
+ * @example
+ * ```TypeScript
+ *
+ * const { registry } = await initialiseBlocks()
+ * ```
  */
 export const initialiseBlocks = async (
   args?: IBlocksConfig,

@@ -1,16 +1,16 @@
 ---
-import type { ExcerptToken } from '../../lib/doc-model/render-excerpt-tokens';
-import CodeExcerpt from '../excerpt/code-excerpt.astro';
+import type { InterfaceArgs } from '@types';
+import { PropertiesTable } from '../properties-table';
+import { MethodsList } from '@components';
 
 interface Props {
-  members: {
-    name: string;
-    type: ExcerptToken[];
-    description: string;
-  }[];
+  members: InterfaceArgs['members'];
 }
 
 const { members } = Astro.props;
+
+const properties = members.filter((member) => 'type' in member);
+const methods = members.filter((member) => 'returnValue' in member);
 ---
 
 <style>
@@ -19,21 +19,14 @@ const { members } = Astro.props;
   }
 </style>
 
-<h3>Properties</h3>
-<table>
-  <tbody>
-    {
-      members.map((member) => (
-        <tr>
-          <>
-            <th>{member.name}</th>
-            <td class="type">
-              <CodeExcerpt excerpt={member.type} />
-            </td>
-            <td>{member.description}</td>
-          </>
-        </tr>
-      ))
-    }
-  </tbody>
-</table>
+<h2>Test</h2>
+{members.length}
+{
+  properties.length > 0 && (
+    <>
+      <h3>Properties</h3>
+      <PropertiesTable {properties} />
+    </>
+  )
+}
+{methods.length > 0 && <MethodsList {methods} />}

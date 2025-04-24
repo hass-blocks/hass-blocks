@@ -1,6 +1,7 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -13,7 +14,22 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "strict": true
+    "strict": true,
+    "types": [
+      "vitest/globals",
+      "vitest/importMeta",
+      "vite/client",
+      "node",
+      "vitest"
+    ],
+    "paths": {
+      "@components": ["./src/components/index.ts"],
+      "@layouts": ["./src/layouts/index.ts"],
+      "@pages": ["./src/pages/index.ts"],
+      "@doc-model": ["./src/lib/doc-model/index.ts"],
+      "@types": ["./src/types/index.ts"],
+      "@utils": ["./src/lib/utils/index.ts"]
+    }
   },
   "include": ["src"]
 }

@@ -1,15 +1,15 @@
 ---
-import type { ExcerptToken } from '../../lib/doc-model/render-excerpt-tokens';
+import type { ExcerptToken } from '@types';
 
 interface Props {
-  excerpt: ExcerptToken[];
+  code: ExcerptToken[] | string;
 }
 
-const { excerpt } = Astro.props;
+const { code } = Astro.props;
 ---
 
 <script>
-  import hljs from 'highlight.js/lib/core';
+  import hljs from 'highlight.js';
   import typescript from 'highlight.js/lib/languages/typescript';
 
   hljs.registerLanguage('typescript', typescript);
@@ -18,8 +18,10 @@ const { excerpt } = Astro.props;
 
 <code class="language-ts">
   {
-    excerpt.map((token) =>
-      'url' in token ? <a href={token.url}>{token.text}</a> : token.text,
-    )
+    typeof code === 'string'
+      ? code
+      : code.map((token) =>
+          'url' in token ? <a href={token.url}>{token.text}</a> : token.text,
+        )
   }
 </code>

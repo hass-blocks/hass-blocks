@@ -1,0 +1,27 @@
+---
+import type { TsDocSection } from '@types';
+import { RichText } from '../rich-text';
+import { CodeBlock } from '../code-block';
+
+interface Props {
+  sections: TsDocSection[] | undefined;
+  containingTags?: string;
+}
+
+const { sections, containingTags = 'p' } = Astro.props;
+const ContainerTag = containingTags;
+---
+
+{
+  sections?.map((section) => {
+    if (section.type === 'paragraph') {
+      return (
+        <ContainerTag>
+          <RichText text={section.text} />
+        </ContainerTag>
+      );
+    }
+
+    return <CodeBlock code={section.code} />;
+  })
+}

@@ -1,0 +1,44 @@
+---
+import type { RichText } from '@types';
+import { CodeExcerpt } from '../excerpt';
+import { loadModels, modelsPath } from '@doc-model';
+import { buildLink } from './build-link';
+
+interface Props {
+  text: RichText;
+}
+
+const { model } = await loadModels(modelsPath);
+
+model.members;
+
+const { text } = Astro.props;
+---
+
+<Fragment
+  >{
+    typeof text !== 'object'
+      ? text
+      : text.map((textItem) => {
+          if (typeof textItem === 'string') {
+            return textItem;
+          }
+
+          if (textItem.type === 'code') {
+            return <CodeExcerpt code={textItem.code} />;
+          }
+
+          if (textItem.type === 'link') {
+            if (typeof textItem.link === 'string') {
+              return [' ', <a href={textItem.link}>{textItem.text}</a>, ' '];
+            }
+            const builtLink = buildLink(textItem.link, model);
+            return [
+              ' ',
+              <a href={builtLink.link}>{textItem.text || builtLink.text}</a>,
+              ' ',
+            ];
+          }
+        })
+  }
+</Fragment>

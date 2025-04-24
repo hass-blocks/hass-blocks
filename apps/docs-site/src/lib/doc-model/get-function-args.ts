@@ -8,6 +8,7 @@ import { renderExcerptToTokens } from './render-excerpt-to-tokens';
 
 import type { FunctionArgs } from '@types';
 import { getTsDocFromNode } from './get-tsdoc-from-node';
+import { parseTsDoc } from './parse-ts-doc';
 
 export const getFunctionArgs = (member: ApiItem): FunctionArgs | undefined =>
   member instanceof ApiFunction || member instanceof ApiMethodSignature
@@ -18,6 +19,7 @@ export const getFunctionArgs = (member: ApiItem): FunctionArgs | undefined =>
         tsDoc: getTsDocFromNode(member),
         params: member.parameters.map((param) => ({
           name: param.name,
+          tsDoc: param.tsdocParamBlock && parseTsDoc(param.tsdocParamBlock),
           excerptTokens: renderExcerptToTokens(
             member,
             param.parameterTypeExcerpt,

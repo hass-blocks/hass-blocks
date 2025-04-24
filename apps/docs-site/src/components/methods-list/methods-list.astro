@@ -13,8 +13,10 @@ const { methods } = Astro.props;
 <h3>Methods</h3>
 {
   methods.map((method) => (
-    <section>
-      <h4>{method.name}</h4>
+    <article>
+      <header>
+        <h4>{method.name}</h4>
+      </header>
 
       {method.tsDoc?.summary && (
         <TsDocSection sections={method.tsDoc.summary} />
@@ -28,6 +30,6 @@ const { methods } = Astro.props;
         returnValue={method.returnValue}
         signature={method.signature}
       />
-    </section>
+    </article>
   ))
 }

@@ -1,10 +1,12 @@
 ---
-import type { ExcerptToken } from '@types';
+import type { ExcerptToken, ParsedTsdoc } from '@types';
 import CodeExcerpt from '../excerpt/code-excerpt.astro';
+import { TsDocSection } from '@components';
 
 interface Param {
   name: string;
   excerptTokens: ExcerptToken[];
+  tsDoc: ParsedTsdoc | undefined;
 }
 
 interface Props {
@@ -18,22 +20,6 @@ const { params, returnValue, signature, headingLevel } = Astro.props;
 const Heading = headingLevel;
 ---
 
-<style>
-  pre {
-    padding: 1rem 0;
-  }
-  table {
-    width: 100%;
-    table-layout: fixed;
-  }
-
-  table td:first-child,
-  th:first-child {
-    width: 15%;
-    overflow: hidden;
-  }
-</style>
-
 <Heading>Signature</Heading>
 <pre>
   <CodeExcerpt code={signature} />
@@ -43,12 +29,25 @@ const Heading = headingLevel;
     <>
       <Heading>Parameters</Heading>
       <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Description</th>
+          </tr>
+        </thead>
         <tbody>
           {params.map((param) => (
             <tr>
               <td>{param.name}</td>
               <td>
                 <CodeExcerpt code={param.excerptTokens} />
+              </td>
+              <td>
+                <TsDocSection
+                  sections={param.tsDoc?.summary}
+                  containingTags="Fragment"
+                />
               </td>
             </tr>
           ))}

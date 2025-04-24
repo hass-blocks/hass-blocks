@@ -10,7 +10,14 @@ interface Props {
 const { properties } = Astro.props;
 ---
 
-<table>
+<table class="striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      {'type' in properties[0] && <th>Type</th>}
+      <th>Description</th>
+    </tr>
+  </thead>
   <tbody>
     {
       properties.map((member) => (

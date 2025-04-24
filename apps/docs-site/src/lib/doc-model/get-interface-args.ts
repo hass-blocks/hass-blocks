@@ -36,10 +36,7 @@ export const getMemberArgs = (
           ];
         }
 
-        if (
-          item instanceof ApiMethodSignature ||
-          item instanceof ApiEnumMember
-        ) {
+        if (item instanceof ApiMethodSignature) {
           const args = getFunctionArgs(item);
           return args ? [args] : [];
         }
@@ -67,19 +64,7 @@ export const getMemberArgs = (
   }
 
   if (member instanceof ApiFunction || member instanceof ApiMethodSignature) {
-    return {
-      name: member.displayName,
-      signature: member.excerpt.text,
-      returnValue: renderExcerptToTokens(member, member.returnTypeExcerpt),
-      tsDoc: getTsDocFromNode(member),
-      params: member.parameters.map((param) => ({
-        name: param.name,
-        excerptTokens: renderExcerptToTokens(
-          member,
-          param.parameterTypeExcerpt,
-        ),
-      })),
-    };
+    return getFunctionArgs(member);
   }
 
   return undefined;

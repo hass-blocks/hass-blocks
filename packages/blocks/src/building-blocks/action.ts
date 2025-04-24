@@ -55,7 +55,6 @@ export class Action<I = void, O = void>
  * A generic block that represents some kind of action
  *
  * @example
- *
  * ```TypeScript
  *
  * import { action } from "@hass-blocks/blocks"
@@ -73,6 +72,8 @@ export class Action<I = void, O = void>
  *   },
  * });
  * ```
+ *
+ * @param config - configuration for the action
  */
 export const action = <I = void, O = void>(
   config: IActionConfig<I, O>,

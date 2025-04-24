@@ -1,3 +1,13 @@
+## 3.4.1 (2025-04-24)
+
+### 🩹 Fixes
+
+- **docs:** tweak layout ([fc84331](https://github.com/benwainwright/hass-blocks/commit/fc84331))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.4.0 (2025-04-24)
 
 ### 🚀 Features

@@ -1,0 +1,46 @@
+---
+import { TsDocSection } from '@components';
+import {
+  getTsDocFromNode,
+  getUnscopedPackageName,
+  loadModels,
+  modelsPath,
+} from '@doc-model';
+import { BaseLayout } from '@layouts';
+
+const { packages: apiPackages } = await loadModels(modelsPath);
+
+const packages = apiPackages.map((apiPackage) => ({
+  fullName: apiPackage.displayName,
+  name: getUnscopedPackageName(apiPackage),
+  tsdoc: getTsDocFromNode(apiPackage),
+}));
+---
+
+<BaseLayout>
+  <h2>API Documentation</h2>
+  <p>
+    Follow the links below to get comprehensive documentation for all the
+    packages distributed as part of Hass Blocks
+  </p>
+  <table>
+    <tbody>
+      {
+        packages.map((item) => (
+          <tr>
+            <td>
+              <a href={`api-docs/package/${item.name}`}>{item.fullName}</a>
+            </td>
+            <td>
+              <TsDocSection
+                sections={item.tsdoc?.summary}
+                containingTags="Fragment"
+              />
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  <ul></ul>
+</BaseLayout>

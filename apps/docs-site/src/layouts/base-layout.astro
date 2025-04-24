@@ -1,4 +1,6 @@
 ---
+import { NavBar } from '@components';
+
 const pageTitle = 'Hass Blocks';
 ---
 
@@ -14,6 +16,22 @@ const pageTitle = 'Hass Blocks';
   <body>
     <header>
       <h1>{pageTitle}</h1>
+      <NavBar
+        entries={[
+          {
+            name: 'Home',
+            link: '/',
+          },
+          {
+            name: 'About',
+            link: '/about',
+          },
+          {
+            name: 'Documentation',
+            link: '/api-docs',
+          },
+        ]}
+      />
     </header>
     <main>
       <slot />

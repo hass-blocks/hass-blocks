@@ -8,3 +8,4 @@ export { MethodsList } from './methods-list/index.ts';
 export { TsDocSection } from './ts-doc-section/index.ts';
 export { CodeBlock } from './code-block/index.ts';
 export { RichText } from './rich-text/index.ts';
+export { NavBar } from './nav-bar/index.ts';

@@ -1,24 +1,12 @@
 ---
-import BaseLayout from '../layouts/base-layout.astro';
-import { getUnscopedPackageName } from '../lib/doc-model/get-unscoped-package-name';
-import { loadModels } from '../lib/doc-model/load-models';
-import { modelsPath } from '../lib/doc-model/models-path';
-
-const { packages: apiPackages } = await loadModels(modelsPath);
-
-const packages = apiPackages.map((apiPackage) =>
-  getUnscopedPackageName(apiPackage),
-);
+import { BaseLayout } from '@layouts';
 ---
 
 <BaseLayout>
-  <ul>
-    {
-      packages.map((item) => (
-        <li>
-          <a href={`api-docs/package/${item}`}>{item}</a>
-        </li>
-      ))
-    }
-  </ul>
+  <h2>Welcome</h2>
+  <p>
+    Welcome to Hass Blocks - a declarative framework for writing Home Assistant
+    automations. Click on the links above to learn more about the project or to
+    learn how to get started
+  </p>
 </BaseLayout>

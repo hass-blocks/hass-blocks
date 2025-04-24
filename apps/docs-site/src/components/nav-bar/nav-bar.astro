@@ -1,0 +1,27 @@
+---
+interface Props {
+  entries: {
+    name: string;
+    link: string;
+  }[];
+}
+const currentPath = Astro.url.pathname;
+const { entries } = Astro.props;
+---
+
+<nav>
+  <ul>
+    {
+      entries.map((entry) => (
+        <li>
+          <a
+            href={entry.link}
+            class={currentPath === entry.link ? 'current' : ''}
+          >
+            {entry.name}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

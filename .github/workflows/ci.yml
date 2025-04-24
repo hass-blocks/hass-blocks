@@ -88,7 +88,7 @@ jobs:
       - run: git config --global user.email "bwainwright28@gmail.com"
       - run: git config --global user.name "Ben Wainwright"
 
-      - run: npx nx release --yes
+      - run: npx nx release --yes --verbose
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

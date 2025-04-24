@@ -13,7 +13,7 @@ import {
 } from '@microsoft/tsdoc';
 
 import type { FencedCode, Paragraph, ParsedTsdoc, TsDocSection } from '@types';
-import { condenseParagraphs } from './condense-paragraphs';
+import { cleanParagraphs } from './clean-paragraphs';
 
 export const parseTsDoc = (node: DocNode): ParsedTsdoc => {
   const [summarySection] = node
@@ -77,7 +77,7 @@ const parseSection = (sectionNode: DocSection): TsDocSection[] => {
     )
     .map((item) => {
       if (item instanceof DocParagraph) {
-        return condenseParagraphs(parseParagraph(item));
+        return cleanParagraphs(parseParagraph(item));
       }
       return parseFencedCodeBlock(item);
     });
@@ -107,7 +107,9 @@ const parseParagraph = (paragraphNode: DocParagraph): Paragraph => {
     type: 'paragraph',
     text: relevantChildNodes.map((node) => {
       if (node instanceof DocSoftBreak) {
-        return ' ';
+        return {
+          type: 'linebreak',
+        };
       }
 
       if (node instanceof DocCodeSpan) {

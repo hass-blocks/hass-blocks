@@ -9,11 +9,29 @@ const currentPath = Astro.url.pathname;
 const { entries } = Astro.props;
 ---
 
-<nav>
-  <ul>
-    <li><strong>Hass Blocks</strong></li>
-  </ul>
+<style>
+  nav {
+    display: flex;
+  }
 
+  nav li {
+    list-style: none;
+    margin: 0 1rem;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav .brand {
+    flex-grow: 2;
+  }
+</style>
+
+<nav>
+  <div class="brand">
+    <a href="/">Hass Blocks</a>
+  </div>
   <ul>
     {
       entries.map((entry) => (

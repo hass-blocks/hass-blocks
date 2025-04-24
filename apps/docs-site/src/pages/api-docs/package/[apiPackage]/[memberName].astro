@@ -59,6 +59,12 @@ const {
   members,
   enumMembers,
 } = Astro.props;
+
+console.log(memberName);
+if (memberName === 'get-config') {
+  console.log(tsDoc?.remarks);
+  console.log('foo');
+}
 ---
 
 <style>

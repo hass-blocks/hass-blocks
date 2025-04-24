@@ -4,8 +4,7 @@ import { parseTsDoc } from './parse-ts-doc.ts';
 describe('parse ts doc', () => {
   it('found the summary section at the top', () => {
     const rawTsDoc = `/**
- * Returns the average of two
- * numbers.
+ * Returns the average of two numbers.
  *
  * @remarks
  * foo bar baz, bash bip
@@ -34,8 +33,7 @@ describe('parse ts doc', () => {
  * numbers.
  *
  * @remarks
- * foo bar baz, bash bip
- * bop
+ * foo bar baz, bash bip bop
  */`;
     const parser = new TSDocParser();
     const node = parser.parseString(rawTsDoc);

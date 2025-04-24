@@ -24,6 +24,10 @@ const { text } = Astro.props;
             return textItem;
           }
 
+          if (textItem.type === 'linebreak') {
+            return <br />;
+          }
+
           if (textItem.type === 'code') {
             return <CodeExcerpt code={textItem.code} />;
           }

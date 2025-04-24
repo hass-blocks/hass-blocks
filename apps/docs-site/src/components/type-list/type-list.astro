@@ -48,7 +48,9 @@ const filteredMembers = members.filter((member) => member.kind === kind);
           {filteredMembers.map((member) => (
             <tr>
               <td>
-                <a href={`${kebabize(packageName)}/${kebabize(member.name)}`}>
+                <a
+                  href={`/api-docs/package/${kebabize(packageName)}/${kebabize(member.name)}`}
+                >
                   {member.name}
                 </a>
               </td>

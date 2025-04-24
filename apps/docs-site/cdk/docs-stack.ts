@@ -1,6 +1,6 @@
 import { Stack } from 'aws-cdk-lib';
 import { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
-import { Distribution } from 'aws-cdk-lib/aws-cloudfront';
+import { Distribution, ViewerProtocolPolicy } from 'aws-cdk-lib/aws-cloudfront';
 import { S3StaticWebsiteOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import {
   ARecord,
@@ -51,6 +51,7 @@ export class DocsStack extends Stack {
       {
         defaultBehavior: {
           origin: new S3StaticWebsiteOrigin(assetsBucket),
+          viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
         },
         certificate,
         domainNames: [domainName, `www.${domainName}`],

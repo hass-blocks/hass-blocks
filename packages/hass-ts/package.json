@@ -40,9 +40,9 @@
     "./package.json": "./package.json",
     ".": {
       "import": "./dist/index.js",
-      "default": "./dist/index.js",
+      "types": "./dist/public.d.ts",
       "development": "./src/index.ts",
-      "types": "./dist/public.d.ts"
+      "default": "./dist/index.js"
     }
   },
   "files": [

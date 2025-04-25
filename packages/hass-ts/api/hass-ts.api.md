@@ -123,7 +123,7 @@ export interface EventDetails {
 // @public
 export const getConfig: () => HassConfig;
 
-// @public (undocumented)
+// @public
 export interface GetHistoryParams {
     filterEntityId: string[];
     minimalResponse?: boolean;

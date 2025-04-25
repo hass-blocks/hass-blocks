@@ -1,5 +1,8 @@
 /**
  * @public
+ *
+ * Configuration parameters for a request to the `/api/history` endpoint
+ * @see {@link https://developers.home-assistant.io/docs/api/rest/} for more information
  */
 export interface GetHistoryParams {
   /**

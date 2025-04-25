@@ -352,7 +352,7 @@ export interface State {
     state: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TriggerEventMessage<T = unknown> {
     // (undocumented)
     event: {

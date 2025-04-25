@@ -12,10 +12,15 @@
     },
     "keepClassNames": true,
     "externalHelpers": true,
-    "loose": true
+    "loose": true,
+    "experimental": {
+      "plugins": [["swc-plugin-allow-importing-ts-extensions", {}]]
+    }
   },
   "module": {
-    "type": "es6"
+    "type": "es6",
+    "resolveFully": true,
+    "outFileExtension": "js"
   },
   "sourceMaps": true,
   "exclude": [

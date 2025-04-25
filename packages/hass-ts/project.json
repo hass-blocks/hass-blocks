@@ -1,7 +1,7 @@
 {
-  "name": "@hass-blocks/homeassistant-typescript",
+  "name": "@hass-blocks/hass-ts",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/homeassistant-typescript/src",
+  "sourceRoot": "packages/hass-ts/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,9 +9,9 @@
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "packages/homeassistant-typescript/dist",
-        "main": "packages/homeassistant-typescript/src/index.ts",
-        "tsConfig": "packages/homeassistant-typescript/tsconfig.lib.json",
+        "outputPath": "packages/hass-ts/dist",
+        "main": "packages/hass-ts/src/index.ts",
+        "tsConfig": "packages/hass-ts/tsconfig.lib.json",
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
@@ -21,10 +21,10 @@
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
-        "reportFolder": "packages/homeassistant-typescript/api",
+        "mainEntrypointFile": "packages/hass-ts/dist/index.d.ts",
+        "reportFolder": "packages/hass-ts/api",
         "strictChecks": false,
-        "projectFolder": "packages/homeassistant-typescript"
+        "projectFolder": "packages/hass-ts"
       }
     },
     "doc-model": {
@@ -32,8 +32,8 @@
       "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/homeassistant-typescript/dist/index.d.ts",
-        "projectFolder": "packages/homeassistant-typescript",
+        "mainEntrypointFile": "packages/hass-ts/dist/index.d.ts",
+        "projectFolder": "packages/hass-ts",
         "docModelFolder": "apps/docs-site/models"
       }
     },
@@ -43,8 +43,8 @@
         "post-release": {}
       },
       "options": {
-        "cwd": "packages/homeassistant-typescript",
-        "config": "packages/homeassistant-typescript/vite.config.e2e.ts"
+        "cwd": "packages/hass-ts",
+        "config": "packages/hass-ts/vite.config.e2e.ts"
       }
     }
   }

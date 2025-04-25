@@ -1,5 +1,5 @@
 {
-  "name": "@hass-blocks/homeassistant-typescript",
+  "name": "@hass-blocks/hass-ts",
   "version": "0.9.0",
   "type": "module",
   "main": "./dist/index.js",
@@ -34,7 +34,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/benwainwright/hass-blocks.git",
-    "directory": "packages/homeassistant-typescript"
+    "directory": "packages/hass-ts"
   },
   "exports": {
     "./package.json": "./package.json",

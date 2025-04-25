@@ -35,7 +35,7 @@ import { GetLogbookParams } from './get-logbook-params.ts';
 import {
   TriggerEventMessage,
   SubscribeToTriggerMessage,
-} from '../../core/websocket-client/index.ts';
+} from '../websocket-client/index.ts';
 
 export class Client implements IClient {
   constructor(

@@ -7,7 +7,7 @@ import {
   TEST_ERROR_MESSAGE,
   initialiseMockHassWebsocket,
 } from '../../../test-support/index.ts';
-import { ErrorResponseError, HassTsError } from '../../core/errors/index.ts';
+import { ErrorResponseError, HassTsError } from '../errors/index.ts';
 import { ERRORS } from '../constants.ts';
 
 import { WebsocketClient } from './websocket-client.ts';

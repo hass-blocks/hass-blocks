@@ -10,7 +10,7 @@
       "path": "./plugins/publisher"
     },
     {
-      "path": "./packages/homeassistant-typescript"
+      "path": "./packages/hass-ts"
     },
     {
       "path": "./packages/local-hass"

@@ -1,7 +1,7 @@
-import { HTTP } from '../../core/index.ts';
+import { HTTP } from '../index.ts';
 import { Logger } from '../../types/index.ts';
 import { normalisePath, safeJsonParse } from '../../utils/index.ts';
-import { HassHttpError } from '../../core/errors/index.ts';
+import { HassHttpError } from '../errors/index.ts';
 
 export class RestClient {
   private requestCache = new Map<string, { etag: string; text: string }>();

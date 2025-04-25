@@ -56,15 +56,15 @@
 
 ### 🚀 Features
 
-- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+- **hass-ts:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
 
 ### 🩹 Fixes
 
 - **ci:** sort out names and add api report for plugin ([3549d7e](https://github.com/benwainwright/hass-blocks/commit/3549d7e))
-- **homeassistant-typescript:** switch log over again ([bd6109a](https://github.com/benwainwright/hass-blocks/commit/bd6109a))
-- **homeassistant-typescript:** put log back to how it was ([3e9591d](https://github.com/benwainwright/hass-blocks/commit/3e9591d))
+- **hass-ts:** switch log over again ([bd6109a](https://github.com/benwainwright/hass-blocks/commit/bd6109a))
+- **hass-ts:** put log back to how it was ([3e9591d](https://github.com/benwainwright/hass-blocks/commit/3e9591d))
 - **blocks:** stuff ([39118bf](https://github.com/benwainwright/hass-blocks/commit/39118bf))
-- **homeassistant-typescript:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
+- **hass-ts:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
 
 ### ❤️ Thank You
 
@@ -74,7 +74,7 @@
 
 ### 🩹 Fixes
 
-- **homeassistant-typescript:** switch log over again ([bd6109a](https://github.com/benwainwright/hass-blocks/commit/bd6109a))
+- **hass-ts:** switch log over again ([bd6109a](https://github.com/benwainwright/hass-blocks/commit/bd6109a))
 
 ### ❤️ Thank You
 
@@ -84,7 +84,7 @@
 
 ### 🩹 Fixes
 
-- **homeassistant-typescript:** put log back to how it was ([3e9591d](https://github.com/benwainwright/hass-blocks/commit/3e9591d))
+- **hass-ts:** put log back to how it was ([3e9591d](https://github.com/benwainwright/hass-blocks/commit/3e9591d))
 
 ### ❤️ Thank You
 
@@ -94,12 +94,12 @@
 
 ### 🚀 Features
 
-- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+- **hass-ts:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
 
 ### 🩹 Fixes
 
 - **blocks:** stuff ([39118bf](https://github.com/benwainwright/hass-blocks/commit/39118bf))
-- **homeassistant-typescript:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
+- **hass-ts:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
 
 ### ❤️ Thank You
 
@@ -109,12 +109,12 @@
 
 ### 🚀 Features
 
-- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+- **hass-ts:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
 
 ### 🩹 Fixes
 
 - **blocks:** stuff ([39118bf](https://github.com/benwainwright/hass-blocks/commit/39118bf))
-- **homeassistant-typescript:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
+- **hass-ts:** change log message ([27cf1b5](https://github.com/benwainwright/hass-blocks/commit/27cf1b5))
 
 ### ❤️ Thank You
 

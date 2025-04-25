@@ -9,7 +9,7 @@ import {
 } from '../../../test-support/index.ts';
 
 import { RestClient } from './rest-client.ts';
-import { HassHttpError } from '../../core/errors/index.ts';
+import { HassHttpError } from '../errors/index.ts';
 import { HTTP } from '../constants.ts';
 
 beforeEach(() => {

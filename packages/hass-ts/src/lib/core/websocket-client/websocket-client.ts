@@ -9,10 +9,10 @@ import {
   Result,
 } from './messages/index.ts';
 
-import { HassTsError, ErrorResponseError } from '../../core/errors/index.ts';
+import { HassTsError, ErrorResponseError } from '../errors/index.ts';
 
 import { Logger } from '../../types/index.ts';
-import { ERRORS } from '../../core/constants.ts';
+import { ERRORS } from '../constants.ts';
 
 export class WebsocketClient {
   private socket: WebSocket;

@@ -1,3 +1,9 @@
+## 3.4.4 (2025-04-25)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.10.2
+
 ## 3.4.3 (2025-04-25)
 
 ### 🩹 Fixes

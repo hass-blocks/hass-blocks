@@ -1,3 +1,13 @@
+## 0.10.2 (2025-04-25)
+
+### 🩹 Fixes
+
+- **hass-ts:** force an update of the package ([e46176f](https://github.com/benwainwright/hass-blocks/commit/e46176f))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.1 (2025-04-25)
 
 ### 🩹 Fixes

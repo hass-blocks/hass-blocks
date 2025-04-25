@@ -1,3 +1,13 @@
+## 0.10.3 (2025-04-25)
+
+### 🩹 Fixes
+
+- **hass-ts:** update docs ([20e75e1](https://github.com/benwainwright/hass-blocks/commit/20e75e1))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.2 (2025-04-25)
 
 ### 🩹 Fixes

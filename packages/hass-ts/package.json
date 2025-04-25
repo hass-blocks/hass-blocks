@@ -39,10 +39,10 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/public.d.ts",
       "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "default": "./dist/index.js",
+      "development": "./src/index.ts",
+      "types": "./dist/public.d.ts"
     }
   },
   "files": [

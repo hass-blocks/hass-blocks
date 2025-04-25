@@ -56,3 +56,4 @@ apps/docs/docs/03-api-docs
 cdk.out
 *.api.json
 .astro
+.api-extractor

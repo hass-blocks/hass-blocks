@@ -91,6 +91,12 @@ export const apiExtractor = (options: ApiExractorArgs) => {
       apiReport: {
         enabled: true,
         reportFolder: options.outputDir,
+        reportTempFolder: join(
+          projectRoot,
+          `.api-extractor`,
+          `temp`,
+          options.outputDir,
+        ),
       },
       ...withStrictChecks,
       ...withDtsRollup,

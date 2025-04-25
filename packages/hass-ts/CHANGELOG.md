@@ -1,3 +1,13 @@
+## 0.10.1 (2025-04-25)
+
+### 🩹 Fixes
+
+- **hass-ts:** update the docs for get-history-params ([502c093](https://github.com/benwainwright/hass-blocks/commit/502c093))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.0 (2025-04-25)
 
 ### 🚀 Features

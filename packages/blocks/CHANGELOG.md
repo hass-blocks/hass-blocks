@@ -1,3 +1,13 @@
+## 3.4.5 (2025-04-25)
+
+### 🩹 Fixes
+
+- **blocks:** fixed broken import ([aa45287](https://github.com/benwainwright/hass-blocks/commit/aa45287))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.4.4 (2025-04-25)
 
 ### 🧱 Updated Dependencies

@@ -1,3 +1,13 @@
+## 0.4.1 (2025-04-25)
+
+### 🩹 Fixes
+
+- **blocks:** actually compile to js ([544316b](https://github.com/benwainwright/hass-blocks/commit/544316b))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.0 (2025-04-23)
 
 ### 🚀 Features

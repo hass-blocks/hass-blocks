@@ -1,3 +1,13 @@
+## 0.10.0 (2025-04-25)
+
+### 🚀 Features
+
+- **hass-ts:** rename ([68106f6](https://github.com/benwainwright/hass-blocks/commit/68106f6))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.9.0 (2025-04-24)
 
 ### 🚀 Features

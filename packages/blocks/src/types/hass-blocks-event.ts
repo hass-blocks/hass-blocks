@@ -1,5 +1,5 @@
 import { ITrigger } from './i-trigger.ts';
-import { Event } from '@hass-blocks/homeassistant-typescript';
+import { Event } from '@hass-blocks/hass-ts';
 import { BlockOutput } from './block-output.ts';
 import { SerialisedBlock } from './serialised-block.ts';
 

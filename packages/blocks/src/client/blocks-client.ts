@@ -1,8 +1,4 @@
-import {
-  IClient,
-  Event,
-  TriggerEventMessage,
-} from '@hass-blocks/homeassistant-typescript';
+import { IClient, Event, TriggerEventMessage } from '@hass-blocks/hass-ts';
 import {
   HassEntity,
   IEventBus,

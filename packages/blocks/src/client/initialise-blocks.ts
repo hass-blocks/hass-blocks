@@ -1,7 +1,4 @@
-import {
-  getConfig,
-  initialiseClient,
-} from '@hass-blocks/homeassistant-typescript';
+import { getConfig, initialiseClient } from '@hass-blocks/hass-ts';
 import { IBlocksConnection, IBlocksPlugin } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
 import { EventBus, loadPlugins } from '../core/index.ts';
@@ -24,7 +21,7 @@ export interface IBlocksConfig {
  * Bootstrap the connection with Home Assistant and initialise Hass Blocks
  *
  * @remarks
- * Uses {@link homeassistant-typescript#getConfig} under the hood, so will read the same environment variables
+ * Uses {@link hass-ts#getConfig} under the hood, so will read the same environment variables
  *
  * @example
  * ```TypeScript

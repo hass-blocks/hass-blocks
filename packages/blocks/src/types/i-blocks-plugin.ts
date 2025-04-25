@@ -1,4 +1,4 @@
-import { HassConfig } from '@hass-blocks/homeassistant-typescript';
+import { HassConfig } from '@hass-blocks/hass-ts';
 import { IFullBlocksClient } from './i-full-blocks-client.ts';
 import { IEventBus } from './i-event-bus.ts';
 

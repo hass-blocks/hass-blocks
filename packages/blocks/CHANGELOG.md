@@ -66,7 +66,7 @@
 - ⚠️ **blocks:** swap lego for blocks ([17f29a4](https://github.com/benwainwright/hass-blocks/commit/17f29a4))
 - ⚠️ **blocks:** make the dsl more intuitive ([54e1bac](https://github.com/benwainwright/hass-blocks/commit/54e1bac))
 - **blocks:** update blocks to reference the monorepo version of hass-ts ([7afd53d](https://github.com/benwainwright/hass-blocks/commit/7afd53d))
-- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+- **hass-ts:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
 
 ### 🩹 Fixes
 
@@ -89,7 +89,7 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/homeassistant-typescript to 0.4.0
+- Updated @hass-blocks/hass-ts to 0.4.0
 
 ### ❤️ Thank You
 
@@ -165,7 +165,7 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated homeassistant-typescript to 0.3.2
+- Updated hass-ts to 0.3.2
 
 # 1.0.0 (2025-04-18)
 
@@ -185,14 +185,14 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated homeassistant-typescript to 0.3.1
+- Updated hass-ts to 0.3.1
 
 ## 0.1.0 (2025-04-18)
 
 ### 🚀 Features
 
 - **blocks:** update blocks to reference the monorepo version of hass-ts ([7afd53d](https://github.com/benwainwright/hass-blocks/commit/7afd53d))
-- **homeassistant-typescript:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
+- **hass-ts:** add hass-ts to monorepo ([94599e4](https://github.com/benwainwright/hass-blocks/commit/94599e4))
 
 ### 🩹 Fixes
 
@@ -202,7 +202,7 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated homeassistant-typescript to 0.3.0
+- Updated hass-ts to 0.3.0
 
 ### ❤️ Thank You
 

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "$id": "CreateLibrary",
+  "title": "Create Library",
+  "type": "object",
+  "description": "Create a library",
+  "properties": {
+    "publishable": {
+      "type": "boolean",
+      "description": "Should this be a publishable library",
+      "x-priority": "important",
+      "default": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the library"
+    }
+  }
+}

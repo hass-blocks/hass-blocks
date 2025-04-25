@@ -64,6 +64,9 @@ export const apiExtractor = (options: ApiExractorArgs) => {
             default: {
               logLevel: ExtractorLogLevel.Warning,
             },
+            'ae-wrong-input-file-type': {
+              logLevel: ExtractorLogLevel.None,
+            },
           },
 
           tsdocMessageReporting: {

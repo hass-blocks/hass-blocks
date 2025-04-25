@@ -5,7 +5,8 @@ import {
   IHass,
   ITrigger,
 } from '../types/index.ts';
-import { HassBlocksError } from 'src/errors/hass-blocks-error.ts';
+
+import { HassBlocksError } from '../errors/index.ts';
 
 /**
  * @public

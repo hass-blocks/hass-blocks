@@ -57,3 +57,4 @@ cdk.out
 *.api.json
 .astro
 .api-extractor
+.swc/

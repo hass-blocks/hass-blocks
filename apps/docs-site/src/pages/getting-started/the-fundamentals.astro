@@ -1,37 +1,9 @@
 ---
-import { CodeExcerpt } from '@components';
 import { BaseLayout } from '@layouts';
 ---
 
 <BaseLayout>
   <h2 id="getting-started">Getting Started</h2>
-  <h3 id="installing">Installing</h3>
-  <p><CodeExcerpt code=`npm install @hass-blocks/blocks` } /></p>
-  <h3 id="bootstrapping">Bootstrapping</h3>
-  <p>
-    Before you can build automations, you first need to configure the connection
-    to Home Assistant. To do this, ensure you have populated the following
-    environment variables:
-  </p>
-  <ul>
-    <li>
-      <code>HASS_HOST</code> - the hostname of your Home Assistant installation
-    </li>
-    <li>
-      <code>HASS_PORT</code> - the port your Home Assistant installation is available
-      on (defaults to 8123 if not provided)
-    </li>
-    <li>
-      <code>HASS_TOKEN</code> - a <a
-        href="https://developers.home-assistant.io/docs/auth_api/#long-lived-access-token"
-        >long lived access token</a
-      > you’ve configured
-    </li>
-  </ul>
-  <p>
-    Once this is done, the below code will bootstrap the connection and give you
-    a registry object that you can register automations with
-  </p>
   <p>
     Hass-blocks is all about creating blocks that describe what you want to
     happen and combining them with triggers to make an automation. There are a

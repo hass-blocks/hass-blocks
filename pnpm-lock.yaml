@@ -277,7 +277,7 @@ importers:
   packages/blocks:
     dependencies:
       '@hass-blocks/hass-ts':
-        specifier: 0.10.
+        specifier: 0.10.0
         version: link:../hass-ts
       '@swc/helpers':
         specifier: ~0.5.11

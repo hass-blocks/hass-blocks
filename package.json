@@ -39,6 +39,7 @@
     "@nx/js": "20.8.0",
     "@nx/vite": "20.8.0",
     "@nx/web": "20.8.0",
+    "@nx/workspace": "21.0.0-canary.20250425-ee097a8",
     "@swc-node/register": "~1.9.1",
     "@swc/cli": "~0.6.0",
     "@swc/core": "~1.5.7",

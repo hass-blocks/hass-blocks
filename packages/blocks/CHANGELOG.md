@@ -1,3 +1,18 @@
+## 3.4.7 (2025-04-25)
+
+### 🩹 Fixes
+
+- **blocks:** corrected export property again ([e4578e6](https://github.com/benwainwright/hass-blocks/commit/e4578e6))
+- **blocks:** corrected export property ([a3f28cb](https://github.com/benwainwright/hass-blocks/commit/a3f28cb))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.10.4
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.4.6 (2025-04-25)
 
 ### 🧱 Updated Dependencies

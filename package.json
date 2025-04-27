@@ -122,6 +122,7 @@
   },
   "executors": "./executors.json",
   "files": [
+    "src",
     "dist",
     "!**/*.tsbuildinfo",
     "executors.json"

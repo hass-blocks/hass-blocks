@@ -47,7 +47,8 @@
   },
   "files": [
     "dist",
-    "!**/*.tsbuildinfo"
+    "!**/*.tsbuildinfo",
+    "src"
   ],
   "dependencies": {
     "@hass-blocks/blocks": "3.0.0",

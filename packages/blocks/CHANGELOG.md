@@ -1,3 +1,13 @@
+## 3.6.0 (2025-04-27)
+
+### 🚀 Features
+
+- **blocks:** add initialisation block message ([afc8e63](https://github.com/benwainwright/hass-blocks/commit/afc8e63))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.5.0 (2025-04-27)
 
 ### 🚀 Features

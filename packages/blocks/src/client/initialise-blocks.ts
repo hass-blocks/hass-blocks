@@ -74,6 +74,12 @@ export const initialiseBlocks = async (
     });
   }
 
+  const { default: packageJson } = await import('../../package.json', {
+    with: { type: 'json' },
+  });
+
+  logger?.info(`Initialised Hass Blocks version ${packageJson.version}`);
+
   return {
     registry: blocks,
   };

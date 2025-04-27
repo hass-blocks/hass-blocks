@@ -39,9 +39,6 @@ export const ExecutionLine = ({ event }: ExecutionLineProps) => {
       <Box width={40}>
         <Text>{event.name}</Text>
       </Box>
-      <Box>
-        <Text>{event.triggerId}</Text>
-      </Box>
     </Box>
   );
 };

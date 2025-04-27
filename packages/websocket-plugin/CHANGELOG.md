@@ -1,3 +1,15 @@
+## 0.4.4 (2025-04-27)
+
+### 🩹 Fixes
+
+- **websocket-plugin:** fixed ts error ([630fee62](https://github.com/benwainwright/hass-blocks/commit/630fee62))
+- **websocket-plugin:** update to latest version of blocks ([3389b33d](https://github.com/benwainwright/hass-blocks/commit/3389b33d))
+- **multi:** update dependency versions ([57bf25dd](https://github.com/benwainwright/hass-blocks/commit/57bf25dd))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.3 (2025-04-27)
 
 ### 🩹 Fixes

@@ -7,7 +7,6 @@ export const updatePackageJson = (
   tree: Tree,
 ) => {
   const packageJsonPath = join(packageFolder, `package.json`);
-
   const packageJson = JSON.parse(tree.read(packageJsonPath, 'utf8') ?? '{}');
 
   const newPackageJson = {

@@ -1,4 +1,11 @@
-import { Tree, formatFiles, installPackagesTask } from '@nx/devkit';
+import {
+  Tree,
+  formatFiles,
+  generateFiles,
+  installPackagesTask,
+  joinPathFragments,
+  readProjectConfiguration,
+} from '@nx/devkit';
 import { libraryGenerator } from '@nx/js';
 import { CreateLibrarySchema } from './schema.js';
 import { join } from 'node:path';
@@ -23,11 +30,12 @@ const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
     useProjectJson: true,
   });
 
-  const packageFolder = join(tree.root, directory);
+  const libraryRoot = readProjectConfiguration(tree, schema.name).root;
 
-  updateSwcRc(packageFolder, tree);
-  updateProjectJson(directory, packageFolder, tree);
-  updatePackageJson(packageFolder, directory, tree);
+  generateFiles(tree, joinPathFragments(__dirname, './files'), libraryRoot, {
+    ...schema,
+    packageDir: libraryRoot,
+  });
 
   tree.write(`${directory}/api/.gitkeep`, '');
 

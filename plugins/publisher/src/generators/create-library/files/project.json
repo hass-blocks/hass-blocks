@@ -1,0 +1,40 @@
+{
+  "name": "<%= name %>",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "<%= packageDir %>/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "<%= packageDir %>/dist",
+        "main": "<%= packageDir %>/src/index.ts",
+        "tsConfig": "<%= packageDir %>/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "rollup-api": {
+      "executor": "@hass-blocks/publisher:api-extractor",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "<%= packageDir %>/dist/index.d.ts",
+        "reportFolder": "<%= packageDir %>/api",
+        "projectFolder": "<%= packageDir %>",
+        "strictChecks": true
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "<%= packageDir %>/dist/index.d.ts",
+        "projectFolder": "<%= packageDir %>",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

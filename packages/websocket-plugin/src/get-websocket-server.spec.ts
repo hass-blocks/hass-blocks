@@ -150,17 +150,9 @@ describe('getWebsocketServer', () => {
       subscribeCallback({
         id: 'foo',
         timestamp: 'bar',
-        name: 'baz',
-        eventType: 'block-finished',
         type: 'foo',
-        triggerId: 'foo',
-        executeId: 'foo',
         output: { continue: false },
-        block: {
-          id: 'baz',
-          name: 'bip',
-          type: 'bang',
-        },
+        ...defaultEvent,
         ...event,
       }),
     );

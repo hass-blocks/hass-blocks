@@ -1,3 +1,13 @@
+## 3.5.0 (2025-04-27)
+
+### 🚀 Features
+
+- **blocks:** add logging ([e5d68af](https://github.com/benwainwright/hass-blocks/commit/e5d68af))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.4.7 (2025-04-25)
 
 ### 🩹 Fixes

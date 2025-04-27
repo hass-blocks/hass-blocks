@@ -33,6 +33,8 @@ const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
     packageDir: libraryRoot,
   });
 
+  tree.rename(`${libraryRoot}/_project.json`, `${libraryRoot}/project.json`);
+
   tree.write(`${directory}/api/.gitkeep`, '');
 
   await formatFiles(tree);

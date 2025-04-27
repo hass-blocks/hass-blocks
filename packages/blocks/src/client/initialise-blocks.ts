@@ -2,6 +2,8 @@ import { getConfig, initialiseClient } from '@hass-blocks/hass-ts';
 import { IBlocksConnection, IBlocksPlugin, ILogger } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
 import { EventBus, loadPlugins } from '../core/index.ts';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 
 /**
  * @public
@@ -74,11 +76,14 @@ export const initialiseBlocks = async (
     });
   }
 
-  const { default: packageJson } = await import('../../package.json', {
-    with: { type: 'json' },
-  });
+  const { default: packageJson } = JSON.parse(
+    await readFile(
+      join((import.meta.dirname, '..', '..', '..', 'package.json')),
+      'utf8',
+    ),
+  );
 
-  logger?.info(`Initialised Hass Blocks version ${packageJson.version}`);
+  theLogger.info(`Initialised Hass Blocks version ${packageJson.version}`);
 
   return {
     registry: blocks,

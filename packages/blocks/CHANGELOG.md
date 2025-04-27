@@ -1,3 +1,13 @@
+## 3.7.0 (2025-04-27)
+
+### 🚀 Features
+
+- **blocks:** add icons to default logger ([6df287e](https://github.com/benwainwright/hass-blocks/commit/6df287e))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.6.2 (2025-04-27)
 
 ### 🩹 Fixes

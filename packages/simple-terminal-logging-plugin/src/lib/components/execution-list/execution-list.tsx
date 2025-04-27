@@ -29,7 +29,7 @@ export const ExecutionList = ({ eventBus }: ExecutionListProps) => {
       (accum, event) => ({
         ...accum,
         [event.executeId]: [...(accum[event.executeId] ?? []), event].toSorted(
-          (a, b) => (new Date(a.timestamp) > new Date(b.timestamp) ? 1 : 0),
+          (a, b) => (new Date(a.timestamp) > new Date(b.timestamp) ? 0 : 1),
         ),
       }),
       {},

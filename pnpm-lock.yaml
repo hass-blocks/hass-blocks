@@ -388,8 +388,8 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: 3.0.0
-        version: 3.0.0(@types/react@19.1.2)
+        specifier: 3.8.3
+        version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -2521,14 +2521,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/blocks@3.0.0':
-    resolution: {integrity: sha512-IgikhgTwF3MJeBvEGRFAAuukLwbhZvXvzXmsAMijytd0dVJoSaZZCl9Mlg/vT3F2AAd4gc5d8kpp4Fgimy2+Kw==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/homeassistant-typescript@0.4.0':
-    resolution: {integrity: sha512-+5/nVIQWhsh7s2/eeszai2hVu26C5fIXItTxVUoMpZxTwAfB0PHlv4hT5iA1XT0xgpKO4Ptpbi2IFwyVyc+A/w==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -14084,30 +14076,6 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hass-blocks/blocks@3.0.0(@types/react@19.1.2)':
-    dependencies:
-      '@hass-blocks/homeassistant-typescript': 0.4.0
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ink: 5.2.0(@types/react@19.1.2)(react@18.3.1)
-      queue-typescript: 1.0.1
-      react: 18.3.1
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - '@types/react'
-      - bufferutil
-      - react-devtools-core
-      - utf-8-validate
-
-  '@hass-blocks/homeassistant-typescript@0.4.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   '@highlightjs/cdn-assets@11.11.1': {}
 
   '@humanwhocodes/module-importer@1.0.1': {}
@@ -16083,7 +16051,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.12
       tinyrainbow: 2.0.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
 
   '@vitest/utils@3.0.0':
     dependencies:
@@ -24199,7 +24167,7 @@ snapshots:
   vitest-when@0.6.0(@vitest/expect@3.1.1)(vitest@3.0.0):
     dependencies:
       pretty-format: 29.7.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
     optionalDependencies:
       '@vitest/expect': 3.1.1
 

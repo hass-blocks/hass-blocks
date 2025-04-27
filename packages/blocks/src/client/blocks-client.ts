@@ -57,6 +57,9 @@ export class BlocksClient implements IFullBlocksClient {
     trigger: Record<string, unknown>,
     callback: (event: unknown) => void | Promise<void>,
   ) {
+    if (!this.states) {
+      await this.loadStates();
+    }
     await this.client.registerTrigger(trigger, callback);
   }
 
@@ -65,6 +68,9 @@ export class BlocksClient implements IFullBlocksClient {
   }
 
   public async registerAutomation(automation: IBlock<unknown, unknown>) {
+    if (!this.states) {
+      await this.loadStates();
+    }
     this._automations.push(automation);
     const { trigger } = automation;
 
@@ -87,10 +93,10 @@ export class BlocksClient implements IFullBlocksClient {
   public async onStateChanged(id: string, callback: (event: Event) => void) {
     try {
       if (!this.states) {
-        throw new Error('Initial states not loaded');
+        await this.loadStates();
       }
 
-      if (!this.states.has(id)) {
+      if (this.states && !this.states.has(id)) {
         throw new Error(
           "You tried to subscribe to an entity that doesn't exist",
         );

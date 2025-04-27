@@ -1,3 +1,13 @@
+## 3.8.0 (2025-04-27)
+
+### 🚀 Features
+
+- **blocks:** convert all function properties to methods ([5a3885a](https://github.com/benwainwright/hass-blocks/commit/5a3885a))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.7.0 (2025-04-27)
 
 ### 🚀 Features

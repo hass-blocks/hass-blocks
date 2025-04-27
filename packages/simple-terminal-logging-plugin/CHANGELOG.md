@@ -1,3 +1,13 @@
+## 0.1.2 (2025-04-27)
+
+### 🩹 Fixes
+
+- **logging-plugin:** output react code ([564e7b4](https://github.com/benwainwright/hass-blocks/commit/564e7b4))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.1 (2025-04-27)
 
 ### 🩹 Fixes

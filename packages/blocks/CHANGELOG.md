@@ -1,3 +1,13 @@
+## 3.8.3 (2025-04-27)
+
+### 🩹 Fixes
+
+- **blocks:** include source in blocks ([f8a9ba9](https://github.com/benwainwright/hass-blocks/commit/f8a9ba9))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.8.2 (2025-04-27)
 
 ### 🧱 Updated Dependencies

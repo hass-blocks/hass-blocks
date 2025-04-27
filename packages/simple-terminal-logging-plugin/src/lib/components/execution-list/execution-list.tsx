@@ -37,5 +37,5 @@ export const ExecutionList = ({ eventBus }: ExecutionListProps) => {
   )
     .map((events) => events[events.length - 1])
     .flatMap((event) => (event ? [event] : []))
-    .map((event) => <ExecutionLine event={event} />);
+    .map((event) => <ExecutionLine key={event.id} event={event} />);
 };

@@ -1,3 +1,13 @@
+## 3.6.2 (2025-04-27)
+
+### 🩹 Fixes
+
+- **blocks:** correct broken log message ([a8e8597](https://github.com/benwainwright/hass-blocks/commit/a8e8597))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.6.1 (2025-04-27)
 
 ### 🩹 Fixes

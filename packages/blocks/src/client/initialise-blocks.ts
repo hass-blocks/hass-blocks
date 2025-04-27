@@ -51,10 +51,10 @@ export const initialiseBlocks = async (
     trace: () => {},
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     debug: () => {},
-    info: console.log,
-    warn: console.log,
-    error: console.log,
-    fatal: console.log,
+    info: (message) => console.log(`😀 ${message}`),
+    warn: (message) => console.log(`😔 ${message}`),
+    error: (message) => console.log(`😡 ${message}`),
+    fatal: (message) => console.log(`💀 ${message}`),
   };
 
   bus.subscribe((event) => {

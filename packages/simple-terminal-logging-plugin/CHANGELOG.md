@@ -1,3 +1,13 @@
+## 0.1.3 (2025-04-27)
+
+### 🩹 Fixes
+
+- **logging-plugin:** use new react runtime ([7dcea69](https://github.com/benwainwright/hass-blocks/commit/7dcea69))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.2 (2025-04-27)
 
 ### 🩹 Fixes

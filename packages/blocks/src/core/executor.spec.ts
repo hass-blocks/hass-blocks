@@ -89,6 +89,7 @@ describe('executor', () => {
     const calls = events.emit.mock.calls;
 
     expect(calls[0]).toEqual([
+      'block-pending',
       {
         executeId: 'one',
         triggerId,
@@ -97,11 +98,11 @@ describe('executor', () => {
         block: { type: 'action', id: 'foo', name: 'foo' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'pending',
       },
     ]);
 
     expect(calls[1]).toEqual([
+      'block-pending',
       {
         executeId: 'two',
         triggerId,
@@ -110,11 +111,11 @@ describe('executor', () => {
         block: { type: 'action', id: 'bar', name: 'bar' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'pending',
       },
     ]);
 
     expect(calls[2]).toEqual([
+      'block-pending',
       {
         executeId: 'three',
         triggerId,
@@ -123,13 +124,13 @@ describe('executor', () => {
         block: { type: 'action', id: 'baz', name: 'baz' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'pending',
       },
     ]);
 
     await executor.finished();
 
     expect(calls[3]).toEqual([
+      'block-started',
       {
         executeId: 'one',
         triggerId,
@@ -138,11 +139,11 @@ describe('executor', () => {
         block: { type: 'action', id: 'foo', name: 'foo' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'started',
       },
     ]);
 
     expect(calls[4]).toEqual([
+      'block-finished',
       {
         executeId: 'one',
         triggerId,
@@ -151,7 +152,6 @@ describe('executor', () => {
         block: { type: 'action', id: 'foo', name: 'foo' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'finished',
         continue: true,
         outputType: 'block',
         output: {
@@ -163,6 +163,7 @@ describe('executor', () => {
     ]);
 
     expect(calls[5]).toEqual([
+      'block-started',
       {
         executeId: 'two',
         triggerId,
@@ -171,11 +172,11 @@ describe('executor', () => {
         block: { type: 'action', id: 'bar', name: 'bar' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'started',
       },
     ]);
 
     expect(calls[6]).toEqual([
+      'block-finished',
       {
         executeId: 'two',
         triggerId,
@@ -184,7 +185,6 @@ describe('executor', () => {
         block: { type: 'action', id: 'bar', name: 'bar' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'finished',
         continue: true,
         outputType: 'block',
         output: {
@@ -196,6 +196,7 @@ describe('executor', () => {
     ]);
 
     expect(calls[7]).toEqual([
+      'block-started',
       {
         executeId: 'three',
         triggerId,
@@ -204,11 +205,11 @@ describe('executor', () => {
         block: { type: 'action', id: 'baz', name: 'baz' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'started',
       },
     ]);
 
     expect(calls[8]).toEqual([
+      'block-finished',
       {
         executeId: 'three',
         triggerId,
@@ -217,7 +218,6 @@ describe('executor', () => {
         block: { type: 'action', id: 'baz', name: 'baz' },
         triggeredBy: undefined,
         parent: undefined,
-        status: 'finished',
         continue: true,
         outputType: 'block',
         output: {

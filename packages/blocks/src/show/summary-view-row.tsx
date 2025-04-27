@@ -40,10 +40,10 @@ export const SummaryViewRow = ({ events }: SummaryViewRowProps) => {
         {events.map((event) => (
           <Box key={`${'id' in event && event.id}-row`} flexDirection="row">
             <Box width={11}>
-              <Text>{event.type}</Text>
+              <Text>{event.eventType}</Text>
             </Box>
             <Box width={11}>
-              <Text>{'status' in event && event.status}</Text>
+              <Text>{event.eventType}</Text>
             </Box>
             <Box width={40}>
               <Text>{'name' in event && event.name}</Text>

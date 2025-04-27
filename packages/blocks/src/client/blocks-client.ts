@@ -78,9 +78,7 @@ export class BlocksClient implements IFullBlocksClient {
       }),
     );
 
-    this.bus.emit({
-      type: 'automation',
-      status: 'registered',
+    this.bus.emit('automation-registered', {
       name: automation.name,
       block: automation.toJson(),
     });
@@ -110,10 +108,8 @@ export class BlocksClient implements IFullBlocksClient {
       );
     } catch (error) {
       if (error instanceof Error) {
-        this.bus.emit({
-          type: 'generalFailure',
+        this.bus.emit('generalFailure', {
           message: error.message,
-          status: 'error',
           error,
         });
       }

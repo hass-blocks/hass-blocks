@@ -37,12 +37,9 @@ export const StaticLogLine = ({ event }: StaticLogLineProps) => {
         <Text>{getIcon(event)}</Text>
       </Box>
       <Box width={12}>
-        <Text>{'status' in event && event.status}</Text>
+        <Text>{event.eventType}</Text>
       </Box>
 
-      <Box width={12}>
-        <Text>{event.type}</Text>
-      </Box>
       <Box width={35}>
         <Text>{'parent' in event && event.parent?.name}</Text>
       </Box>

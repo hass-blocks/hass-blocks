@@ -14,7 +14,7 @@ export const Show = ({ staticLog, events }: ShowProps) => {
 
   useEffect(() => {
     events.subscribe((event) => {
-      if (event.type !== 'hass-state-changed') {
+      if (event.eventType !== 'hass-state-changed') {
         setLogs((logs) => [...logs, event]);
       }
     });

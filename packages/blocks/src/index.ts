@@ -14,9 +14,13 @@ export { Block } from './core/index.ts';
 
 export type {
   IBlocksConnection,
+  ILogger,
   IHass,
+  BaseHassBlocksEvent,
   ITrigger,
+  HassEventBase,
   BlockOutput,
+  LifeCycleEvent,
   IEventBus,
   IBlocksPlugin,
   IPluginArgs,

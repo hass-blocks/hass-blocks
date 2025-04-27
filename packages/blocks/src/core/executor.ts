@@ -98,32 +98,33 @@ export class Executor<I, O> implements Runnable {
         throw new ExecutionAbortedError('Sequence was aborted');
       }
 
-      this.events.emit({
-        status: 'started',
-        ...eventArgs,
-      });
+      this.events.emit('block-started', eventArgs);
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
           await block.run(this.client, input, this.events, this.triggerId),
       );
 
-      this.events.emit({
+      this.events.emit('block-finished', {
         ...result,
-        status: 'finished',
-        output: result,
         ...eventArgs,
+        output: result,
       });
 
       return { ...result, success: true };
     } catch (error) {
       if (error instanceof Error) {
-        this.events.emit({
-          status: error instanceof ExecutionAbortedError ? 'aborted' : 'failed',
-          error,
-          message: error.message,
-          ...eventArgs,
-        });
+        if (error instanceof ExecutionAbortedError) {
+          this.events.emit('sequence-aborted', {
+            ...eventArgs,
+          });
+        } else {
+          this.events.emit('block-failed', {
+            ...eventArgs,
+            error,
+            message: error.message,
+          });
+        }
         return { continue: false, success: false };
       }
       throw error;
@@ -133,10 +134,7 @@ export class Executor<I, O> implements Runnable {
   public emitPendingMessages() {
     this.executionQueue.toArray().forEach(({ block, executionId }) => {
       const eventArgs = this.getEventArgs(executionId, block);
-      this.events.emit({
-        status: 'pending',
-        ...eventArgs,
-      });
+      this.events.emit('block-pending', eventArgs);
     });
   }
 

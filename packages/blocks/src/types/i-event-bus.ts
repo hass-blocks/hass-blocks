@@ -11,16 +11,18 @@ export interface IEventBus {
    *
    * @param event - the event to be emitted
    */
-  emit: (event: HassBlocksEvent) => void;
+  emit<
+    ET extends HassBlocksEvent['eventType'],
+    T extends HassBlocksEvent & { eventType: ET },
+  >(
+    type: ET,
+    event?: Omit<T, 'id' | 'timestamp' | 'eventType'>,
+  ): void;
 
   /**
    * Subscribe to the event bus
    *
    * @param callback - callback that is executed when an event is received
    */
-  subscribe: (
-    callback: (
-      event: HassBlocksEvent & { id: string; timestamp: string },
-    ) => void,
-  ) => void;
+  subscribe: (callback: (event: HassBlocksEvent) => void) => void;
 }

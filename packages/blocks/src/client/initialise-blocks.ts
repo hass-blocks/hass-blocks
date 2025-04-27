@@ -1,5 +1,5 @@
 import { getConfig, initialiseClient } from '@hass-blocks/hass-ts';
-import { IBlocksConnection, IBlocksPlugin } from '../types/index.ts';
+import { IBlocksConnection, IBlocksPlugin, ILogger } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
 import { EventBus, loadPlugins } from '../core/index.ts';
 
@@ -13,6 +13,12 @@ export interface IBlocksConfig {
    * A list of plugins to be loaded by Hass Blocks
    */
   plugins?: IBlocksPlugin[];
+
+  /**
+   * A logger - if not supplied, will fall back to a default logger that uses console.log
+   * and doesn't log trace or debug messages
+   */
+  logger?: ILogger;
 }
 
 /**
@@ -33,13 +39,33 @@ export const initialiseBlocks = async (
   args?: IBlocksConfig,
 ): Promise<IBlocksConnection> => {
   const bus = new EventBus();
+
+  const theArgs = args ?? {};
+
+  const { logger, plugins } = theArgs;
+
+  const theLogger: ILogger = logger ?? {
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    trace: () => {},
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    debug: () => {},
+    info: console.log,
+    warn: console.log,
+    error: console.log,
+    fatal: console.log,
+  };
+
+  bus.subscribe((event) => {
+    if (event.eventType === 'log-event') {
+      theLogger[event.level](event.message);
+    }
+  });
+
   const config = getConfig();
   const client = await initialiseClient(config);
   const blocks = new BlocksClient(client, bus);
 
-  if (args && args.plugins) {
-    const { plugins } = args;
-
+  if (plugins) {
     await loadPlugins({
       plugins,
       events: bus,

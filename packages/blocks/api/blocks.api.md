@@ -19,19 +19,16 @@ export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => 
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
 
 // @public
-export interface AutomationRegistered {
+export interface AutomationRegistered extends BaseHassBlocksEvent<'automation-registered'> {
     block: SerialisedBlock;
     name: string;
-    status: 'registered';
-    type: 'automation';
 }
 
 // @public
-export interface BaseHassEvent {
-    block: SerialisedBlock;
-    executeId: string;
-    name: string;
-    triggerId: string;
+export interface BaseHassBlocksEvent<T extends string> {
+    eventType: T;
+    id: string;
+    timestamp: string;
 }
 
 // @public
@@ -55,19 +52,17 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
 }
 
 // @public
-export interface BlockFailed extends BaseHassEvent {
+export interface BlockFailed extends LifeCycleEvent<'block-failed'> {
     error: Error;
     message: string;
     parent?: SerialisedBlock;
-    status: 'failed';
     type: string;
 }
 
 // @public
-export interface BlockFinished<O = unknown> extends BaseHassEvent {
+export interface BlockFinished<O = unknown> extends LifeCycleEvent<'block-finished'> {
     output: BlockOutput<O>;
     parent?: SerialisedBlock;
-    status: 'finished';
     type: string;
 }
 
@@ -75,9 +70,8 @@ export interface BlockFinished<O = unknown> extends BaseHassEvent {
 export type BlockOutput<O> = ContinueOutput<O> | StopOutput | ConditionResult<O>;
 
 // @public
-export interface BlockPending extends BaseHassEvent {
+export interface BlockPending extends LifeCycleEvent<'block-pending'> {
     parent?: SerialisedBlock;
-    status: 'pending';
     triggeredBy?: ITrigger;
     type: string;
 }
@@ -92,9 +86,8 @@ Block<InputType<First>, OutputTypeKeepPromise<First>>,
 ] : readonly [];
 
 // @public
-export interface BlockStarted extends BaseHassEvent {
+export interface BlockStarted extends LifeCycleEvent<'block-started'> {
     parent?: SerialisedBlock;
-    status: 'started';
     triggeredBy?: ITrigger;
     type: string;
 }
@@ -125,11 +118,9 @@ export enum ExecutionMode {
 }
 
 // @public
-export interface GeneralFailure {
+export interface GeneralFailure extends BaseHassBlocksEvent<'generalFailure'> {
     error: Error;
     message: string;
-    status: 'error';
-    type: 'generalFailure';
 }
 
 // @public
@@ -180,6 +171,13 @@ export type HassEntityBase = {
 };
 
 // @public
+export type HassEventBase = {
+    origin: string;
+    time_fired: string;
+    context: HassContext;
+};
+
+// @public
 export interface IActionConfig<I = void, O = void> extends IBaseBlockConfig {
     callback: ((client: IHass, input: I) => O) | ((client: IHass, input: I) => Promise<O>);
 }
@@ -223,6 +221,7 @@ export interface IBlock<I = void, O = void> {
 
 // @public
 export interface IBlocksConfig {
+    logger?: ILogger;
     plugins?: IBlocksPlugin[];
 }
 
@@ -256,11 +255,10 @@ export interface ICallServiceParams {
 
 // @public
 export interface IEventBus {
-    emit: (event: HassBlocksEvent) => void;
-    subscribe: (callback: (event: HassBlocksEvent & {
-        id: string;
-        timestamp: string;
-    }) => void) => void;
+    emit<ET extends HassBlocksEvent['eventType'], T extends HassBlocksEvent & {
+        eventType: ET;
+    }>(type: ET, event?: Omit<T, 'id' | 'timestamp' | 'eventType'>): void;
+    subscribe: (callback: (event: HassBlocksEvent) => void) => void;
 }
 
 // @public
@@ -285,6 +283,16 @@ export interface IHass {
     callService: (params: ICallServiceParams) => Promise<State[]>;
     getEntity: (id: string) => HassEntity;
     getState: (id: string) => string;
+}
+
+// @public
+export interface ILogger {
+    debug: (message: string) => void;
+    error: (message: string) => void;
+    fatal: (message: string) => void;
+    info: (message: string) => void;
+    trace: (message: string) => void;
+    warn: (message: string) => void;
 }
 
 // @public
@@ -313,34 +321,38 @@ export interface ITriggerConfig {
 }
 
 // @public
-export interface LoadPluginFinished {
+interface LifeCycleEvent<T extends string> extends BaseHassBlocksEvent<T> {
+    block: SerialisedBlock;
+    executeId: string;
     name: string;
-    type: 'load-plugin-finished';
+    triggerId: string;
+}
+export { LifeCycleEvent as BaseHassEvent }
+export { LifeCycleEvent }
+
+// @public
+export interface LoadPluginFinished extends BaseHassBlocksEvent<'load-plugin-finished'> {
+    name: string;
 }
 
 // @public
-export interface LoadPluginsFinished {
+export interface LoadPluginsFinished extends BaseHassBlocksEvent<'load-plugins-finished'> {
     plugins: string[];
-    type: 'load-plugins-finished';
 }
 
 // @public
-export interface LoadPluginsStart {
-    type: 'load-plugins-started';
-}
+export type LoadPluginsStart = BaseHassBlocksEvent<'load-plugins-started'>;
 
 // @public
-export interface LoadPluginStart {
+export interface LoadPluginStart extends BaseHassBlocksEvent<'load-plugin-started'> {
     name: string;
-    type: 'load-plugin-started';
 }
 
 // @public
-export interface LogEvent {
+export interface LogEvent extends BaseHassBlocksEvent<'log-event'> {
     level: 'trace' | 'debug' | 'info' | 'warn' | 'error' | 'fatal';
     message: string;
     module: string;
-    type: 'log-event';
 }
 
 // @public
@@ -353,10 +365,9 @@ export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<T
 export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;
 
 // @public
-export interface SequenceAborted extends BaseHassEvent {
+export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {
     block: SerialisedBlock;
     name: string;
-    status: 'aborted';
     type: string;
 }
 
@@ -375,10 +386,9 @@ export const serviceCall: (serviceConfig: {
 }) => Block;
 
 // @public
-export interface StateChanged {
+export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> {
     entity: string;
     hassEvent: Event_2;
-    type: 'hass-state-changed';
 }
 
 // @public

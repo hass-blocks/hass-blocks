@@ -9,20 +9,16 @@ export const loadPlugins = async (args: LoadPluginsConfig) => {
 
   const { events } = pluginConfig;
 
-  events.emit({
-    type: 'load-plugins-started',
-  });
+  events.emit('load-plugins-started');
 
   const loadedPlugins = await plugins.reduce<Promise<string[]>>(
     async (loadedPluginsPromise, plugin) => {
       const loadedPlugins = await loadedPluginsPromise;
-      events.emit({
-        type: 'load-plugin-started',
+      events.emit('load-plugin-started', {
         name: plugin.name,
       });
       await plugin.load(pluginConfig);
-      events.emit({
-        type: 'load-plugin-finished',
+      events.emit('load-plugin-finished', {
         name: plugin.name,
       });
       return [...loadedPlugins, plugin.name];
@@ -30,8 +26,7 @@ export const loadPlugins = async (args: LoadPluginsConfig) => {
     Promise.resolve([]),
   );
 
-  events.emit({
-    type: 'load-plugins-finished',
+  events.emit('load-plugins-finished', {
     plugins: loadedPlugins,
   });
 };

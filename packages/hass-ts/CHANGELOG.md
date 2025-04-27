@@ -1,3 +1,13 @@
+## 0.10.5 (2025-04-27)
+
+### 🩹 Fixes
+
+- **all:** make typescript as strict as possible ([b5471ef](https://github.com/benwainwright/hass-blocks/commit/b5471ef))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.4 (2025-04-25)
 
 ### 🩹 Fixes

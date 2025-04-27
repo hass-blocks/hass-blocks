@@ -1,3 +1,17 @@
+## 3.8.1 (2025-04-27)
+
+### 🩹 Fixes
+
+- **all:** make typescript as strict as possible ([b5471ef](https://github.com/benwainwright/hass-blocks/commit/b5471ef))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.10.5
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.8.0 (2025-04-27)
 
 ### 🚀 Features

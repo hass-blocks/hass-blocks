@@ -1,3 +1,15 @@
+## 0.1.5 (2025-04-27)
+
+### 🩹 Fixes
+
+- **line-plugin:** remove missing key prop error from line plugin ([6e1a511](https://github.com/benwainwright/hass-blocks/commit/6e1a511))
+- **line-plugin:** change emoji ([862188c](https://github.com/benwainwright/hass-blocks/commit/862188c))
+- **line-plugin:** correct sort order of the terminal output ([1cd87ba](https://github.com/benwainwright/hass-blocks/commit/1cd87ba))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.4 (2025-04-27)
 
 ### 🩹 Fixes

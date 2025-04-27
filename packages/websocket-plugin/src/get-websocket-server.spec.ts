@@ -5,10 +5,11 @@ import { getWebsocketServer } from './get-websocket-server.ts';
 import { mock } from 'vitest-mock-extended';
 
 import {
-  IBlocksClient,
+  IFullBlocksClient,
   IBlock,
   IEventBus,
   HassBlocksEvent,
+  LifeCycleEvent,
 } from '@hass-blocks/blocks';
 import { SOCKET_EVENT_NAME } from './constants.ts';
 
@@ -56,7 +57,7 @@ describe('getWebsocketServer', () => {
         type: 'type',
       });
 
-      const client = mock<IBlocksClient>();
+      const client = mock<IFullBlocksClient>();
 
       client.getAutomations.mockReturnValue([fakeBlock]);
 
@@ -87,7 +88,7 @@ describe('getWebsocketServer', () => {
       type: 'type',
     });
 
-    const client = mock<IBlocksClient>();
+    const client = mock<IFullBlocksClient>();
 
     client.getAutomations.mockReturnValue([fakeBlock]);
 
@@ -134,11 +135,37 @@ describe('getWebsocketServer', () => {
       subscribeCallback = callback;
     });
 
-    bus.emit.mockImplementation((event) =>
-      subscribeCallback({ ...event, id: 'foo', timestamp: 'bar' }),
+    const defaultEvent: Omit<
+      LifeCycleEvent<'block-finished'>,
+      'id' | 'timestamp'
+    > = {
+      eventType: 'block-finished',
+      triggerId: 'bar',
+      name: 'bar',
+      executeId: 'bar',
+      block: { id: 'baz', name: 'bip', type: 'bang' },
+    };
+
+    bus.emit.mockImplementation((_type, event) =>
+      subscribeCallback({
+        id: 'foo',
+        timestamp: 'bar',
+        name: 'baz',
+        eventType: 'block-finished',
+        type: 'foo',
+        triggerId: 'foo',
+        executeId: 'foo',
+        output: { continue: false },
+        block: {
+          id: 'baz',
+          name: 'bip',
+          type: 'bang',
+        },
+        ...event,
+      }),
     );
 
-    const client = mock<IBlocksClient>();
+    const client = mock<IFullBlocksClient>();
 
     const server = getWebsocketServer({
       cors: { origin: 'http://localhost', methods: ['GET', 'POST'] },
@@ -159,21 +186,25 @@ describe('getWebsocketServer', () => {
 
     await new Promise<void>((resolve) => clientSocket.on('connect', resolve));
 
-    const testEvent: HassBlocksEvent = {
-      status: 'started',
-      type: 'foo',
+    const testEvent: Omit<
+      LifeCycleEvent<'block-started'>,
+      'id' | 'timestamp'
+    > = {
+      eventType: 'block-started',
       triggerId: 'foo',
       name: 'foo',
       executeId: 'foo',
       block: { id: 'foo', name: 'foo', type: 'foo' },
     };
 
-    bus.emit(testEvent);
+    bus.emit('block-started', testEvent);
 
     expect(await eventPromise).toEqual({
       ...testEvent,
       id: expect.any(String),
+      output: { continue: false },
       timestamp: expect.any(String),
+      type: 'foo',
     });
   });
 });

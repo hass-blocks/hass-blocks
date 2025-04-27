@@ -1,4 +1,4 @@
-import { IBlocksPlugin, PluginArgs } from '@hass-blocks/blocks';
+import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/blocks';
 import { getWebsocketServer } from './get-websocket-server.ts';
 
 /**
@@ -31,7 +31,7 @@ class WebsocketServerPlugin implements IBlocksPlugin {
 
   public readonly name = 'websocket';
 
-  public async load({ client, events }: PluginArgs) {
+  public async load({ client, events }: IPluginArgs) {
     const server = getWebsocketServer({
       client,
       bus: events,
@@ -40,8 +40,7 @@ class WebsocketServerPlugin implements IBlocksPlugin {
 
     await new Promise<void>((accept) => {
       server.listen(this.config.port, this.config.host, () => {
-        events.emit({
-          type: `log-event`,
+        events.emit('log-event', {
           message: `Websocket server started on port ${this.config.port}`,
           level: `info`,
           module: this.name,

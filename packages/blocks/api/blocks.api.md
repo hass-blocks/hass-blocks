@@ -232,7 +232,7 @@ export interface IBlocksConnection {
 
 // @public
 export interface IBlocksPlugin {
-    load: (args: IPluginArgs) => Promise<void>;
+    load(args: IPluginArgs): Promise<void>;
     readonly name: string;
 }
 
@@ -258,7 +258,7 @@ export interface IEventBus {
     emit<ET extends HassBlocksEvent['eventType'], T extends HassBlocksEvent & {
         eventType: ET;
     }>(type: ET, event?: Omit<T, 'id' | 'timestamp' | 'eventType'>): void;
-    subscribe: (callback: (event: HassBlocksEvent) => void) => void;
+    subscribe(callback: (event: HassBlocksEvent) => void): void;
 }
 
 // @public
@@ -272,27 +272,27 @@ export interface IfThenElseConditionConfig<TO = void, EO = void, PO = void, I = 
 
 // @public
 export interface IFullBlocksClient extends IHass {
-    getAutomations: () => IBlock<unknown, unknown>[];
-    loadStates: () => Promise<void>;
+    getAutomations(): IBlock<unknown, unknown>[];
+    loadStates(): Promise<void>;
     registerAutomation(automation: IBlock<unknown, unknown>): Promise<void>;
-    registerTrigger: (trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>) => Promise<void>;
+    registerTrigger(trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 
 // @public
 export interface IHass {
-    callService: (params: ICallServiceParams) => Promise<State[]>;
-    getEntity: (id: string) => HassEntity;
-    getState: (id: string) => string;
+    callService(params: ICallServiceParams): Promise<State[]>;
+    getEntity(id: string): HassEntity;
+    getState(id: string): string;
 }
 
 // @public
 export interface ILogger {
-    debug: (message: string) => void;
-    error: (message: string) => void;
+    debug(message: string): void;
+    error(message: string): void;
     fatal: (message: string) => void;
-    info: (message: string) => void;
-    trace: (message: string) => void;
-    warn: (message: string) => void;
+    info(message: string): void;
+    trace(message: string): void;
+    warn(message: string): void;
 }
 
 // @public
@@ -310,7 +310,7 @@ export interface IPluginArgs {
 
 // @public
 export interface ITrigger {
-    attachToClient: (client: IFullBlocksClient, block: IBlock<unknown, unknown>, events: IEventBus) => Promise<void>;
+    attachToClient(client: IFullBlocksClient, block: IBlock<unknown, unknown>, events: IEventBus): Promise<void>;
 }
 
 // @public

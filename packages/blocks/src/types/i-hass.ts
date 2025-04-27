@@ -14,19 +14,19 @@ export interface IHass {
    *
    * @param id - The entity id
    */
-  getState: (id: string) => string;
+  getState(id: string): string;
 
   /**
    * Get the full entity description of a given entity
    *
    * @param id - The entity id
    */
-  getEntity: (id: string) => HassEntity;
+  getEntity(id: string): HassEntity;
 
   /**
    * Call a service on the Home Assistant API
    *
    * @param params - Service parameters
    */
-  callService: (params: ICallServiceParams) => Promise<State[]>;
+  callService(params: ICallServiceParams): Promise<State[]>;
 }

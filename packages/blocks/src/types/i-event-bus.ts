@@ -24,5 +24,5 @@ export interface IEventBus {
    *
    * @param callback - callback that is executed when an event is received
    */
-  subscribe: (callback: (event: HassBlocksEvent) => void) => void;
+  subscribe(callback: (event: HassBlocksEvent) => void): void;
 }

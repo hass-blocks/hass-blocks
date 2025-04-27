@@ -16,9 +16,9 @@ export interface ITrigger {
    * @param block - The block that will be executed when the trigger is fired
    * @param events - The internal event bus
    */
-  attachToClient: (
+  attachToClient(
     client: IFullBlocksClient,
     block: IBlock<unknown, unknown>,
     events: IEventBus,
-  ) => Promise<void>;
+  ): Promise<void>;
 }

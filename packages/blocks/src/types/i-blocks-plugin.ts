@@ -45,5 +45,5 @@ export interface IBlocksPlugin {
    * @param args - hass blocks internals passed in by the framework
    * @returns
    */
-  load: (args: IPluginArgs) => Promise<void>;
+  load(args: IPluginArgs): Promise<void>;
 }

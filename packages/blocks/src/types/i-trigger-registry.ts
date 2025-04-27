@@ -1,6 +1,6 @@
 export interface ITriggerRegistry {
-  registerTrigger: (
+  registerTrigger(
     trigger: Record<string, unknown>,
     callback: (event: unknown) => void | Promise<void>,
-  ) => Promise<void>;
+  ): Promise<void>;
 }

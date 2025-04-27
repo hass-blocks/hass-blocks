@@ -4,6 +4,7 @@ import { CreateLibrarySchema } from './schema.js';
 import { join } from 'node:path';
 import { updateSwcRc } from './update-swc-rc.ts';
 import { updateProjectJson } from './update-project-json.ts';
+import { updatePackageJson } from './update-package-json.ts';
 
 const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
   const directory = `packages/${schema.name}`;
@@ -26,6 +27,7 @@ const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
 
   updateSwcRc(packageFolder, tree);
   updateProjectJson(directory, packageFolder, tree);
+  updatePackageJson(packageFolder, directory, tree);
 
   tree.write(`${directory}/api/.gitkeep`, '');
 

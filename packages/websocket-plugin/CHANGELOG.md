@@ -1,3 +1,13 @@
+## 0.4.3 (2025-04-27)
+
+### 🩹 Fixes
+
+- **all:** include source code in packages ([a590b6c](https://github.com/benwainwright/hass-blocks/commit/a590b6c))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.2 (2025-04-25)
 
 ### 🩹 Fixes

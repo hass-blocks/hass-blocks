@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/blocks",
-  "version": "3.8.1",
+  "version": "3.8.2",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -54,7 +54,7 @@
     "vitest-when": "0.6.0"
   },
   "dependencies": {
-    "@hass-blocks/hass-ts": "0.10.5",
+    "@hass-blocks/hass-ts": "0.10.6",
     "@swc/helpers": "~0.5.11",
     "dotenv": "16.4.7",
     "ink": "5.2.0",

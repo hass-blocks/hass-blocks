@@ -1,3 +1,13 @@
+## 0.1.1 (2025-04-27)
+
+### 🩹 Fixes
+
+- **logging-plugin:** actually build the source code ([5eb41a1](https://github.com/benwainwright/hass-blocks/commit/5eb41a1))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.0 (2025-04-27)
 
 ### 🚀 Features

@@ -1,3 +1,13 @@
+## 3.6.1 (2025-04-27)
+
+### 🩹 Fixes
+
+- **blocks:** corrected initial log message ([ed4b670](https://github.com/benwainwright/hass-blocks/commit/ed4b670))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.6.0 (2025-04-27)
 
 ### 🚀 Features

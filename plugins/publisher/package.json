@@ -6,6 +6,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "type": "module",
+  "generators": "./generators.json",
   "exports": {
     "./package.json": "./package.json",
     ".": {
@@ -23,6 +24,7 @@
   "files": [
     "dist",
     "!**/*.tsbuildinfo",
-    "executors.json"
+    "executors.json",
+    "generators.json"
   ]
 }

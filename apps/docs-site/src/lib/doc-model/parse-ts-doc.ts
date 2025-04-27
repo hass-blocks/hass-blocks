@@ -23,13 +23,18 @@ export const parseTsDoc = (node: DocNode): ParsedTsdoc => {
   const remarks = findBlocks(node, 'remarks');
   const example = findBlocks(node, 'example');
   const blocks = getAllBlocks(node);
+  const params = getParams(node);
 
   return {
-    summary: parseSection(summarySection),
-    remarks: remarks.length > 0 ? parseSection(remarks[0].content) : undefined,
-    params: getParams(node),
+    summary: summarySection ? parseSection(summarySection) : [],
+    ...(typeof remarks[0] !== 'undefined'
+      ? { remarks: parseSection(remarks[0].content) }
+      : {}),
+    params: params ?? [],
     blocks,
-    example: example.length > 0 ? parseSection(example[0].content) : undefined,
+    ...(typeof example[0] !== 'undefined'
+      ? { example: parseSection(example[0].content) }
+      : {}),
   };
 };
 

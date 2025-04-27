@@ -8,10 +8,6 @@ import {
 } from '@nx/devkit';
 import { libraryGenerator } from '@nx/js';
 import { CreateLibrarySchema } from './schema.js';
-import { join } from 'node:path';
-import { updateSwcRc } from './update-swc-rc.ts';
-import { updateProjectJson } from './update-project-json.ts';
-import { updatePackageJson } from './update-package-json.ts';
 
 const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
   const directory = `packages/${schema.name}`;

@@ -66,7 +66,7 @@ export const handlers: Handler[] = [
 
       const body = await request.json();
 
-      if (typeof body !== 'object' || !body?.testArg) {
+      if (typeof body !== 'object' || !body?.['testArg']) {
         return HttpResponse.json(
           { result: 'badRequest' },
           { status: HTTP.statusCodes.badRequest },

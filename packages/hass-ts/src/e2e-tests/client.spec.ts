@@ -134,7 +134,7 @@ describe('The Hass SDK', () => {
       const state = await client.getState('person.test_hass');
 
       expect(state.entity_id).toEqual('person.test_hass');
-      expect(state.attributes.id).toEqual('test_hass');
+      expect(state.attributes['id']).toEqual('test_hass');
       await client.close();
     });
   });

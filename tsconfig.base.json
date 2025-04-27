@@ -10,15 +10,21 @@
     "module": "nodenext",
     "moduleResolution": "nodenext",
     "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noUnusedLocals": true,
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["development"],
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false
   }
 }

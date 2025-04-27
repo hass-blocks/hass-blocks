@@ -9,7 +9,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, input: string) => {
+      callback: (_client, _input: string) => {
         const foo = 3;
         return foo;
       },
@@ -43,7 +43,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
       },
     });
@@ -100,7 +100,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
       },
     });
@@ -148,7 +148,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
       },
     });
@@ -173,7 +173,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
       },
     });
@@ -212,7 +212,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 'string';
       },
@@ -221,7 +221,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 2;
       },
@@ -230,7 +230,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, inpput: number) => {
+      callback: (_client, _input: number) => {
         console.log('something');
       },
     });
@@ -255,7 +255,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 'string';
       },
@@ -264,7 +264,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: async (client, input: string) => {
+      callback: async (_client, _input: string) => {
         console.log('something');
         return 2;
       },
@@ -273,7 +273,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: number) => {
+      callback: (_client, _input: number) => {
         console.log('something');
       },
     });
@@ -298,7 +298,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: number) => {
+      callback: (_client, _input: number) => {
         console.log('something');
         return 'string';
       },
@@ -307,7 +307,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 2;
       },
@@ -316,7 +316,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: number) => {
+      callback: (_client, _input: number) => {
         console.log('something');
       },
     });
@@ -336,7 +336,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 'string';
       },
@@ -345,7 +345,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
         return 2;
       },
@@ -354,7 +354,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (client, input: string) => {
+      callback: (_client, _input: string) => {
         console.log('something');
       },
     });

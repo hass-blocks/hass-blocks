@@ -8,8 +8,8 @@ interface SummaryViewRowProps {
 
 export const SummaryViewRow = ({ events }: SummaryViewRowProps) => {
   const parent = events.flatMap((item) => ('parent' in item ? [item] : []))[0];
-  const id = events.flatMap((item) => ('triggerId' in item ? [item] : []))[0]
-    .triggerId;
+  const id = events.flatMap((item) => ('triggerId' in item ? [item] : []))?.[0]
+    ?.triggerId;
   return (
     <Box
       borderStyle="double"

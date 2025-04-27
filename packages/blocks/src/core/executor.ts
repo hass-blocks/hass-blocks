@@ -82,8 +82,7 @@ export class Executor<I, O> implements Runnable {
       type: block.typeString,
       name: block.name,
       block: block.toJson(),
-      triggeredBy: undefined,
-      parent: this.parent?.toJson(),
+      ...(this.parent ? { parent: this.parent.toJson() } : {}),
     };
   }
 

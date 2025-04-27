@@ -5,7 +5,7 @@ import { kebabize } from '@utils';
 
 export const buildLink = (link: DocDeclarationReference, model: ApiModel) => {
   const identifier =
-    link.memberReferences[link.memberReferences.length - 1].memberIdentifier
+    link.memberReferences[link.memberReferences.length - 1]?.memberIdentifier
       ?.identifier;
 
   if (link.packageName) {
@@ -21,7 +21,7 @@ export const buildLink = (link: DocDeclarationReference, model: ApiModel) => {
         return found;
       }
 
-      return thePackage.members[0].members.find(
+      return thePackage.members[0]?.members.find(
         (member) => member.displayName === identifier,
       );
     },

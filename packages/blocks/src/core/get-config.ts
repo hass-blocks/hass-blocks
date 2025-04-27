@@ -58,9 +58,9 @@ export const getConfig = (): HassConfig => {
 
   return {
     host,
-    port: port ? Number(port) : undefined,
     token,
     websocketPath,
     httpPath,
+    ...(port ? { port: Number(port) } : {}),
   };
 };

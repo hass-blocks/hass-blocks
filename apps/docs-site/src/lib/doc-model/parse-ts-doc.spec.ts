@@ -18,9 +18,9 @@ describe('parse ts doc', () => {
     const result = parseTsDoc(comment);
 
     expect(result.summary).toHaveLength(1);
-    expect(result.summary[0].type).toEqual('paragraph');
-    if (result.summary[0].type === 'paragraph') {
-      expect(result.summary[0].text);
+    expect(result.summary[0]?.type).toEqual('paragraph');
+    if (result.summary[0]?.type === 'paragraph') {
+      expect(result.summary[0]?.text);
       expect(result.summary[0].text).toEqual(
         'Returns the average of two numbers.',
       );
@@ -42,7 +42,7 @@ describe('parse ts doc', () => {
     const result = parseTsDoc(comment);
 
     expect(result.remarks).toBeDefined();
-    if (result.remarks?.[0].type === 'paragraph') {
+    if (result.remarks?.[0]?.type === 'paragraph') {
       expect(result.remarks?.[0].type).toEqual('paragraph');
       expect(result.remarks?.[0].text).toEqual('foo bar baz, bash bip bop');
     }
@@ -70,13 +70,13 @@ describe('parse ts doc', () => {
     const result = parseTsDoc(comment);
 
     expect(result.params).toBeDefined();
-    expect(result.params?.[0].name).toEqual('x');
-    if (result.params?.[0].description[0].type === 'paragraph') {
+    expect(result.params?.[0]?.name).toEqual('x');
+    if (result.params?.[0]?.description[0]?.type === 'paragraph') {
       expect(result.params?.[0].description[0].text).toEqual(
         'The first input number',
       );
     }
-    if (result.params?.[1].description[0].type === 'paragraph') {
+    if (result.params?.[1]?.description[0]?.type === 'paragraph') {
       expect(result.params?.[1].name).toEqual('y');
       expect(result.params?.[1].description[0].text).toEqual(
         'The second input number',
@@ -110,7 +110,7 @@ describe('parse ts doc', () => {
     const returnVal = result.blocks.find((block) => block.type === '@returns');
 
     expect(returnVal).toBeDefined();
-    if (returnVal?.text[0].type === 'paragraph') {
+    if (returnVal?.text[0]?.type === 'paragraph') {
       expect(returnVal?.text[0].text).toEqual('foo bar');
     }
   });

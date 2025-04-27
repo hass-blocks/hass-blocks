@@ -17,7 +17,7 @@ const { startHass, stopHass } = hass();
 const projectRoot = join(__dirname, '..', '..');
 
 export const setup = async (project: TestProject) => {
-  if (process.env.POST_RELEASE === 'true') {
+  if (process.env['POST_RELEASE'] === 'true') {
     const packageName = getPackageName() ?? '';
     console.log(`Installing npm:${packageName}`);
     const log = await $({

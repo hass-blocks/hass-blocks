@@ -13,7 +13,7 @@ export const condenseRichText = (text: RichText): RichText => {
     return text.join('').trim();
   }
 
-  if (typeof text[0] !== 'string') {
+  if (typeof text[0] === 'object') {
     const condensed = condenseRichText(text.slice(1));
     return [text[0], ...convertToArray(condensed)];
   }

@@ -4,7 +4,7 @@ import { vi } from 'vitest';
 // @ts-expect-error
 import * as hassTs from '@hass-blocks/hass-ts-local';
 
-if (process.env.POST_RELEASE === 'true') {
+if (process.env['POST_RELEASE'] === 'true') {
   console.log('stubbing out local package');
   vi.doMock('./package-intercept.ts', () => hassTs);
 }

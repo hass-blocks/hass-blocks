@@ -1,3 +1,17 @@
+## 0.1.4 (2025-04-27)
+
+### 🩹 Fixes
+
+- **line-plugin:** tweaked layout ([d94bce2](https://github.com/benwainwright/hass-blocks/commit/d94bce2))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/blocks to 3.8.4
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.3 (2025-04-27)
 
 ### 🩹 Fixes

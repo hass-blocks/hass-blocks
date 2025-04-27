@@ -1,3 +1,13 @@
+## 3.8.4 (2025-04-27)
+
+### 🩹 Fixes
+
+- **blocks:** fix error because states are not being loaded ([09901d3](https://github.com/benwainwright/hass-blocks/commit/09901d3))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.8.3 (2025-04-27)
 
 ### 🩹 Fixes

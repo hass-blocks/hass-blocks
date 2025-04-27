@@ -19,7 +19,7 @@ const getIcon = (event: LifeCycleEvent) => {
       return '🏁';
 
     case 'block-pending':
-      return '⌛';
+      return '⏰';
   }
 };
 

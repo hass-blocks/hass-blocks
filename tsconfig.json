@@ -17,6 +17,9 @@
     },
     {
       "path": "./packages/websocket-plugin"
+    },
+    {
+      "path": "./packages/simple-terminal-logging-plugin"
     }
   ]
 }

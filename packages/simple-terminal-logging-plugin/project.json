@@ -1,7 +1,7 @@
 {
-  "name": "@hass-blocks/<%= name %>",
+  "name": "@hass-blocks/simple-terminal-logging-plugin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "<%= packageDir %>/src",
+  "sourceRoot": "packages/simple-terminal-logging-plugin/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,9 +9,9 @@
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "<%= packageDir %>/dist",
-        "main": "<%= packageDir %>/src/index.ts",
-        "tsConfig": "<%= packageDir %>/tsconfig.lib.json",
+        "outputPath": "packages/simple-terminal-logging-plugin/dist",
+        "main": "packages/simple-terminal-logging-plugin/src/index.ts",
+        "tsConfig": "packages/simple-terminal-logging-plugin/tsconfig.lib.json",
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
@@ -20,9 +20,9 @@
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "<%= packageDir %>/dist/index.d.ts",
-        "reportFolder": "<%= packageDir %>/api",
-        "projectFolder": "<%= packageDir %>",
+        "mainEntrypointFile": "packages/simple-terminal-logging-plugin/dist/index.d.ts",
+        "reportFolder": "packages/simple-terminal-logging-plugin/api",
+        "projectFolder": "packages/simple-terminal-logging-plugin",
         "strictChecks": true
       }
     },
@@ -31,8 +31,8 @@
       "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "<%= packageDir %>/dist/index.d.ts",
-        "projectFolder": "<%= packageDir %>",
+        "mainEntrypointFile": "packages/simple-terminal-logging-plugin/dist/index.d.ts",
+        "projectFolder": "packages/simple-terminal-logging-plugin",
         "docModelFolder": "apps/docs-site/models"
       }
     }

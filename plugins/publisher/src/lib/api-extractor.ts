@@ -109,6 +109,5 @@ export const apiExtractor = (options: ApiExractorArgs) => {
   return Extractor.invoke(config, {
     localBuild: true,
     showVerboseMessages: true,
-    showDiagnostics: true,
   });
 };

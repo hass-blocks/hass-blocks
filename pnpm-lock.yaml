@@ -370,6 +370,18 @@ importers:
         specifier: ^5.3.4
         version: 5.3.4
 
+  packages/simple-terminal-logging-plugin:
+    dependencies:
+      '@hass-blocks/blocks':
+        specifier: 3.8.3
+        version: link:../blocks
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.17
+      ink:
+        specifier: 5.2.0
+        version: 5.2.0(@types/react@19.1.2)(react@18.3.1)
+
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/blocks':

@@ -1,3 +1,13 @@
+## 0.1.6 (2025-04-28)
+
+### 🩹 Fixes
+
+- **line-plugin:** change hourglass to utf-16 char encoding ([397b4aa](https://github.com/benwainwright/hass-blocks/commit/397b4aa))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.5 (2025-04-27)
 
 ### 🩹 Fixes

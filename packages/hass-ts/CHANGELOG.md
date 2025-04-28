@@ -1,3 +1,13 @@
+## 0.11.0 (2025-04-28)
+
+### 🚀 Features
+
+- **hass-ts:** do a thing ([f214bb6](https://github.com/benwainwright/hass-blocks/commit/f214bb6))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.6 (2025-04-27)
 
 ### 🩹 Fixes

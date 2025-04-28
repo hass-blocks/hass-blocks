@@ -1,3 +1,17 @@
+## 3.9.0 (2025-04-28)
+
+### 🚀 Features
+
+- **blocks:** test release ([93996e7](https://github.com/benwainwright/hass-blocks/commit/93996e7))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.11.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.8.4 (2025-04-27)
 
 ### 🩹 Fixes

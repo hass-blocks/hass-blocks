@@ -11,7 +11,7 @@ import { HassBlocksError } from '../errors/index.ts';
 /**
  * @public
  *
- * The core Hass Blocks abstraction - all Blocks must extend from this class for
+ * The core Hass Blocks abstraction! - all Blocks must extend from this class for
  * the framework to be able to execute them
  */
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {

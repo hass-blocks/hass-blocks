@@ -60,6 +60,7 @@ export class Client implements IClient {
     >({
       type: 'config/entity_registry/list',
     });
+    console.log('Do a thing');
     return result;
   }
 

@@ -60,7 +60,7 @@ export class DocsStack extends Stack {
 
     new BucketDeployment(this, 'AssetsDeployment', {
       destinationBucket: assetsBucket,
-      sources: [Source.asset(join(__dirname, '..', 'dist'))],
+      sources: [Source.asset(join(__dirname, '..', '..', '..', '..', 'docs'))],
       distribution,
     });
 

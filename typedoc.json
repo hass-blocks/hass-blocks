@@ -1,0 +1,26 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["packages/*"],
+  "searchInComments": true,
+  "searchInDocuments": true,
+  "navigationLinks": { "Home": "https://www.google.com" },
+  "navigation": {
+    "includeCategories": false,
+    "includeGroups": false,
+    "includeFolders": false,
+    "compactFolders": false,
+    "excludeReferences": true
+  },
+  "name": "Hass Blocks",
+  "entryPointStrategy": "packages",
+  "includeVersion": false,
+  "plugin": ["typedoc-material-theme"],
+  "treatWarningsAsErrors": false,
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "rewrittenLink": true,
+    "notDocumented": true,
+    "unusedMergeModuleWith": true
+  }
+}

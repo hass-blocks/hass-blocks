@@ -238,7 +238,7 @@ export interface IBlocksPlugin {
 
 // @public
 export interface IBlocksRegistry {
-    registerAutomation(automation: IBlock<unknown, unknown>): Promise<void>;
+    registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
 }
 
 // @public
@@ -274,7 +274,7 @@ export interface IfThenElseConditionConfig<TO = void, EO = void, PO = void, I = 
 export interface IFullBlocksClient extends IHass {
     getAutomations(): IBlock<unknown, unknown>[];
     loadStates(): Promise<void>;
-    registerAutomation(automation: IBlock<unknown, unknown>): Promise<void>;
+    registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
     registerTrigger(trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 

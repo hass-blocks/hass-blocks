@@ -67,27 +67,31 @@ export class BlocksClient implements IFullBlocksClient {
     return await this.client.callService(params);
   }
 
-  public async registerAutomation(automation: IBlock<unknown, unknown>) {
-    if (!this.states) {
-      await this.loadStates();
-    }
-    this._automations.push(automation);
-    const { trigger } = automation;
-
-    await automation.validate(this);
-
-    const triggers = Array.isArray(trigger) ? trigger : [trigger];
-
+  public async registerAutomation(...automation: IBlock<unknown, unknown>[]) {
     await Promise.all(
-      triggers.map(async (item) => {
-        await item?.attachToClient(this, automation, this.bus);
+      automation.map(async (automation) => {
+        if (!this.states) {
+          await this.loadStates();
+        }
+        this._automations.push(automation);
+        const { trigger } = automation;
+
+        await automation.validate(this);
+
+        const triggers = Array.isArray(trigger) ? trigger : [trigger];
+
+        await Promise.all(
+          triggers.map(async (item) => {
+            await item?.attachToClient(this, automation, this.bus);
+          }),
+        );
+
+        this.bus.emit('automation-registered', {
+          name: automation.name,
+          block: automation.toJson(),
+        });
       }),
     );
-
-    this.bus.emit('automation-registered', {
-      name: automation.name,
-      block: automation.toJson(),
-    });
   }
 
   public async onStateChanged(id: string, callback: (event: Event) => void) {

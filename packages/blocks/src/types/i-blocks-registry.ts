@@ -11,5 +11,5 @@ export interface IBlocksRegistry {
    *
    * @param automation - The automation to be registered
    */
-  registerAutomation(automation: IBlock<unknown, unknown>): Promise<void>;
+  registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
 }

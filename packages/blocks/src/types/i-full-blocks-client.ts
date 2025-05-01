@@ -31,5 +31,5 @@ export interface IFullBlocksClient extends IHass {
   /**
    * Register an automation
    */
-  registerAutomation(automation: IBlock<unknown, unknown>): Promise<void>;
+  registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
 }

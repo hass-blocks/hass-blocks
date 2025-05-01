@@ -1,5 +1,6 @@
 import { Box, Text } from 'ink';
 import { LifeCycleEvent } from '../..//types/life-cycle-events.ts';
+import Spinner from 'ink-spinner';
 
 interface ExecutionLineProps {
   event: LifeCycleEvent;
@@ -13,13 +14,10 @@ const getIcon = (event: LifeCycleEvent) => {
       return '🛑';
 
     case 'block-started':
-      return '🚀';
+      return <Spinner type="dots" />;
 
     case 'block-finished':
-      return '🏁';
-
-    case 'block-pending':
-      return '\u231B';
+      return '👍';
   }
 };
 
@@ -30,10 +28,10 @@ export const ExecutionLine = ({ event }: ExecutionLineProps) => {
         <Text> {getIcon(event)}</Text>
       </Box>
       <Box width={35}>
-        <Text>{'parent' in event && event.parent?.name}</Text>
+        <Text>{('parent' in event && event.parent?.name) || event.name}</Text>
       </Box>
       <Box width={30}>
-        <Text>{event.eventType}</Text>
+        <Text>{event.type}</Text>
       </Box>
       <Box width={40}>
         <Text>{event.name}</Text>

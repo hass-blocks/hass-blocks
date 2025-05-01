@@ -1,12 +1,12 @@
 import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/blocks';
 import { render } from 'ink';
-import { ExecutionList } from './components/index.ts';
+import { ExecutionLines } from './components/execution-lines/execution-lines.tsx';
 
 class SimpleTerminalLoggingPlugin implements IBlocksPlugin {
   name = 'simple-terminal-view-plugin';
 
   public async load({ events }: IPluginArgs) {
-    render(<ExecutionList eventBus={events} />);
+    render(<ExecutionLines eventBus={events} />);
   }
 }
 

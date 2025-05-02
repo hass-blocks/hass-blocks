@@ -68,11 +68,11 @@ export class BlocksClient implements IFullBlocksClient {
   }
 
   public async registerAutomation(...automation: IBlock<unknown, unknown>[]) {
+    if (!this.states) {
+      await this.loadStates();
+    }
     await Promise.all(
       automation.map(async (automation) => {
-        if (!this.states) {
-          await this.loadStates();
-        }
         this._automations.push(automation);
         const { trigger } = automation;
 

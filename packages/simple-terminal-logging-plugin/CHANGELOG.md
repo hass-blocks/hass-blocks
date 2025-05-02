@@ -1,3 +1,17 @@
+## 0.2.0 (2025-05-02)
+
+### 🚀 Features
+
+- **logging-plugin:** improved rendering of logging plugin ([01d0051](https://github.com/hass-blocks/hass-blocks/commit/01d0051))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/blocks to 3.10.0
+
+### ❤️ Thank You
+
+- Ben Wainwright
+
 ## 0.1.7 (2025-04-28)
 
 ### 🧱 Updated Dependencies

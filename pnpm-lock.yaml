@@ -385,7 +385,7 @@ importers:
   packages/simple-terminal-logging-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: 3.9.0
+        specifier: 3.10.0
         version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11
@@ -403,7 +403,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: 3.9.0
+        specifier: 3.10.0
         version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11

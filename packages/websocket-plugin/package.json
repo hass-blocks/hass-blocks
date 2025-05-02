@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/websocket-plugin",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -51,7 +51,7 @@
     "src"
   ],
   "dependencies": {
-    "@hass-blocks/blocks": "3.9.0",
+    "@hass-blocks/blocks": "3.10.0",
     "@swc/helpers": "~0.5.11",
     "socket.io": "^4.8.1"
   }

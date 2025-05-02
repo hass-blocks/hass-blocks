@@ -1,3 +1,13 @@
+## 3.10.0 (2025-05-02)
+
+### 🚀 Features
+
+- **blocks:** accept multiple automations ([c2c8bb5](https://github.com/hass-blocks/hass-blocks/commit/c2c8bb5))
+
+### ❤️ Thank You
+
+- Ben Wainwright
+
 ## 3.9.0 (2025-04-28)
 
 ### 🚀 Features

@@ -1,3 +1,13 @@
+## 3.10.1 (2025-05-02)
+
+### 🩹 Fixes
+
+- **blocks:** only check for states at the start of register automations ([49b1dca](https://github.com/hass-blocks/hass-blocks/commit/49b1dca))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.10.0 (2025-05-02)
 
 ### 🚀 Features

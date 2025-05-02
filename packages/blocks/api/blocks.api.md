@@ -7,6 +7,7 @@
 import { CallServiceCommand } from '@hass-blocks/hass-ts';
 import { Event as Event_2 } from '@hass-blocks/hass-ts';
 import { HassConfig } from '@hass-blocks/hass-ts';
+import { IClient } from '@hass-blocks/hass-ts';
 import { State } from '@hass-blocks/hass-ts';
 
 // @public
@@ -221,6 +222,7 @@ export interface IBlock<I = void, O = void> {
 
 // @public
 export interface IBlocksConfig {
+    client?: IClient;
     logger?: ILogger;
     plugins?: IBlocksPlugin[];
 }

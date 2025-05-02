@@ -60,7 +60,10 @@ export class BlocksClient implements IFullBlocksClient {
     if (!this.states) {
       await this.loadStates();
     }
-    await this.client.registerTrigger(trigger, callback);
+    const newCallback = (event: unknown) => {
+      callback(event);
+    };
+    await this.client.registerTrigger(trigger, newCallback);
   }
 
   public async callService(params: ICallServiceParams) {

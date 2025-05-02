@@ -1,4 +1,4 @@
-import { getConfig, initialiseClient } from '@hass-blocks/hass-ts';
+import { getConfig, IClient, initialiseClient } from '@hass-blocks/hass-ts';
 import { IBlocksConnection, IBlocksPlugin, ILogger } from '../types/index.ts';
 import { BlocksClient } from './blocks-client.ts';
 import { EventBus, loadPlugins } from '../core/index.ts';
@@ -21,6 +21,11 @@ export interface IBlocksConfig {
    * and doesn't log trace or debug messages
    */
   logger?: ILogger;
+
+  /**
+   * An already instantiated version of the Hass client. Used for testing
+   */
+  client?: IClient;
 }
 
 /**
@@ -44,7 +49,7 @@ export const initialiseBlocks = async (
 
   const theArgs = args ?? {};
 
-  const { logger, plugins } = theArgs;
+  const { logger, plugins, client } = theArgs;
 
   const theLogger: ILogger = logger ?? {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -64,8 +69,8 @@ export const initialiseBlocks = async (
   });
 
   const config = getConfig();
-  const client = await initialiseClient(config);
-  const blocks = new BlocksClient(client, bus);
+  const hassClient = client ?? (await initialiseClient(config));
+  const blocks = new BlocksClient(hassClient, bus);
 
   if (plugins) {
     await loadPlugins({

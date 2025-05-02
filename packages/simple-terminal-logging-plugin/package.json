@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/simple-terminal-logging-plugin",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -40,7 +40,7 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/blocks": "3.10.1",
+    "@hass-blocks/blocks": "3.11.0",
     "@swc/helpers": "~0.5.11",
     "ink": "5.2.0",
     "ink-spinner": "5.0.0",

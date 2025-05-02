@@ -1,3 +1,13 @@
+## 3.11.0 (2025-05-02)
+
+### 🚀 Features
+
+- **blocks:** export a function that makes it easier to add tests ([ef2ce01](https://github.com/hass-blocks/hass-blocks/commit/ef2ce01))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.10.1 (2025-05-02)
 
 ### 🩹 Fixes

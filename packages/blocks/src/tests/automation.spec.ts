@@ -69,23 +69,17 @@ test('test a simple automation with just a series of actions', async () => {
   await blocks.registry.registerAutomation(livingRoomLights);
   hass.fireTrigger(triggerParams);
 
-  await vi.waitFor(() => {
-    expect(hass.getServiceCalls()).toHaveLength(1);
-    expect(hass.getServiceCalls()[0]).toEqual({
-      domain: 'light',
-      service: 'turn_on',
-      target: { entity_id: 'light.living_room' },
-    });
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: { entity_id: 'light.living_room' },
   });
 
   await advanceTimersByTime(1_000 * 60 * 11);
 
-  await vi.waitFor(() => {
-    expect(hass.getServiceCalls()).toHaveLength(2);
-    expect(hass.getServiceCalls()[1]).toEqual({
-      domain: 'light',
-      service: 'turn_off',
-      target: { entity_id: 'light.living_room' },
-    });
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_off',
+    target: { entity_id: 'light.living_room' },
   });
 });

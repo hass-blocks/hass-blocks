@@ -20,6 +20,9 @@
     },
     {
       "path": "./packages/simple-terminal-logging-plugin"
+    },
+    {
+      "path": "./packages/blocks"
     }
   ]
 }

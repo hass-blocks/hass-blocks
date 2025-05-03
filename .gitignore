@@ -58,3 +58,4 @@ cdk.out
 .astro
 .api-extractor
 .swc/
+.env

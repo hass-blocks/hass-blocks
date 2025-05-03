@@ -1,0 +1,8 @@
+{
+  "name": "bens-flat",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/bens-flat/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {}
+}

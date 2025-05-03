@@ -55,7 +55,7 @@
       "automaticFromRef": true
     },
     "projectsRelationship": "independent",
-    "projects": ["packages/*"],
+    "projects": ["packages/*", "!packages/blocks"],
     "version": {
       "preVersionCommand": "npx nx run-many --targets rollup-api",
       "generatorOptions": {

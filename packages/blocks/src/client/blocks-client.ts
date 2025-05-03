@@ -130,9 +130,6 @@ export class BlocksClient implements IFullBlocksClient {
 
       await this.client.subscribeToEvents(
         (event: Event | TriggerEventMessage['event']) => {
-          if (this.states && 'data' in event) {
-            this.states.set(event.data.entity_id, event.data.new_state);
-          }
           if ('data' in event && event.data.entity_id === id) {
             callback(event);
           }

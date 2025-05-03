@@ -11,12 +11,17 @@ import {
 } from '../errors/index.ts';
 import { IFullBlocksClient } from '../types/index.ts';
 
+type StateChangedCallback = (
+  event: Event | TriggerEventMessage['event'],
+) => void;
+
 /**
  * @public
  */
 export class BlocksClient implements IFullBlocksClient {
   private states: Map<string, HassEntity> | undefined;
   private _automations: IBlock<unknown, unknown>[] = [];
+  private stateChangedCallback: StateChangedCallback | undefined;
 
   public constructor(
     private client: IClient,
@@ -32,6 +37,7 @@ export class BlocksClient implements IFullBlocksClient {
     const statesMap = new Map<string, HassEntity>();
     states.forEach((state) => statesMap.set(state.entity_id, state));
     this.states = statesMap;
+    await this.attachStateChangeListenerIfNotAttached();
   }
 
   public getState(id: string) {
@@ -95,6 +101,19 @@ export class BlocksClient implements IFullBlocksClient {
         });
       }),
     );
+  }
+
+  private async attachStateChangeListenerIfNotAttached() {
+    if (!this.stateChangedCallback) {
+      this.stateChangedCallback = (
+        event: Event | TriggerEventMessage['event'],
+      ) => {
+        if (this.states && 'data' in event) {
+          this.states.set(event.data.entity_id, event.data.new_state);
+        }
+      };
+    }
+    await this.client.subscribeToEvents(this.stateChangedCallback);
   }
 
   public async onStateChanged(id: string, callback: (event: Event) => void) {

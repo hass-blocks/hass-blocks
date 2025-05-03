@@ -1,6 +1,8 @@
 import { initialiseTestBlocks } from '../test-support/index.ts';
+import { mock } from 'vitest-mock-extended';
 import {
   action,
+  assertion,
   automation,
   serviceCall,
   trigger,
@@ -81,5 +83,284 @@ test('test a simple automation with just a series of actions', async () => {
     domain: 'light',
     service: 'turn_off',
     target: { entity_id: 'light.living_room' },
+  });
+});
+
+test('assertions that return true does not block the rest of the sequence', async () => {
+  const { blocks, hass } = await initialiseTestBlocks({
+    states: [
+      mock({
+        entity_id: 'switch.living_room',
+        state: 'on',
+      }),
+    ],
+  });
+
+  const triggerParams = {
+    foo: 'bar',
+  };
+
+  const turnLightsOn = serviceCall({
+    name: 'Turn on living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const turnLightsOff = serviceCall({
+    name: 'Turn off living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_off',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const thereIsMotionInTheLivingRoom = trigger({
+    name: 'There is motion in the livdng room',
+    trigger: triggerParams,
+  });
+
+  const livingRoomMotionSensorIsOn = assertion({
+    name: 'Living room motion sensor is off',
+    predicate: (client) => {
+      const state = client.getState('switch.living_room');
+      return state === 'on';
+    },
+  });
+
+  const livingRoomLights = automation({
+    name: 'Living room lights',
+    when: thereIsMotionInTheLivingRoom,
+    then: [turnLightsOn, livingRoomMotionSensorIsOn, turnLightsOff],
+  });
+
+  await blocks.registry.registerAutomation(livingRoomLights);
+  hass.fireTrigger(triggerParams);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: {
+      entity_id: 'light.living_room',
+    },
+  });
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_off',
+    target: {
+      entity_id: 'light.living_room',
+    },
+  });
+});
+
+test('assertions that return false does block the rest of the sequence', async () => {
+  const { blocks, hass } = await initialiseTestBlocks({
+    states: [
+      mock({
+        entity_id: 'switch.living_room',
+        state: 'off',
+      }),
+    ],
+  });
+
+  const triggerParams = {
+    foo: 'bar',
+  };
+
+  const turnLightsOn = serviceCall({
+    name: 'Turn on living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const turnLightsOff = serviceCall({
+    name: 'Turn off living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_off',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const thereIsMotionInTheLivingRoom = trigger({
+    name: 'There is motion in the livdng room',
+    trigger: triggerParams,
+  });
+
+  const livingRoomMotionSensorIsOn = assertion({
+    name: 'Living room motion sensor is off',
+    predicate: (client) => {
+      const state = client.getState('switch.living_room');
+      return state === 'on';
+    },
+  });
+
+  const livingRoomLights = automation({
+    name: 'Living room lights',
+    when: thereIsMotionInTheLivingRoom,
+    then: [turnLightsOn, livingRoomMotionSensorIsOn, turnLightsOff],
+  });
+
+  await blocks.registry.registerAutomation(livingRoomLights);
+  hass.fireTrigger(triggerParams);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: {
+      entity_id: 'light.living_room',
+    },
+  });
+
+  await expect(hass).not.toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_off',
+    target: {
+      entity_id: 'light.living_room',
+    },
+  });
+});
+
+test('state change part way through sequence is registered by assertions', async () => {
+  const { blocks, hass } = await initialiseTestBlocks({
+    states: [
+      mock({
+        entity_id: 'switch.living_room',
+        state: 'off',
+      }),
+    ],
+  });
+
+  const triggerParams = {
+    foo: 'bar',
+  };
+
+  const turnLightsOn = serviceCall({
+    name: 'Turn on living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const turnLightsOff = serviceCall({
+    name: 'Turn off living room lights',
+    params: {
+      domain: 'light',
+      service: 'turn_off',
+      target: {
+        entity_id: 'light.living_room',
+      },
+    },
+  });
+
+  const thereIsMotionInTheLivingRoom = trigger({
+    name: 'There is motion in the livdng room',
+    trigger: triggerParams,
+  });
+
+  const livingRoomMotionSensorIsOn = assertion({
+    name: 'Living room motion sensor is off',
+    predicate: (client) => {
+      const state = client.getState('switch.living_room');
+      return state === 'on';
+    },
+  });
+
+  const waitForTenMinutes = action({
+    name: 'Wait for 10 minutes',
+    callback: async () => {
+      await new Promise((accept) => setInterval(accept, 1_000 * 60 * 10));
+    },
+  });
+
+  const livingRoomLights = automation({
+    name: 'Living room lights',
+    when: thereIsMotionInTheLivingRoom,
+    then: [
+      turnLightsOn,
+      waitForTenMinutes,
+      livingRoomMotionSensorIsOn,
+      turnLightsOff,
+    ],
+  });
+
+  await blocks.registry.registerAutomation(livingRoomLights);
+  hass.fireTrigger(triggerParams);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: {
+      entity_id: 'light.living_room',
+    },
+  });
+
+  hass.fireEvent({
+    data: {
+      entity_id: 'switch.living_room',
+      new_state: {
+        entity_id: 'switch.living_room',
+        last_changed: 'foo',
+        last_reported: 'foo',
+        state: 'on',
+        attributes: {},
+        last_updated: 'foo',
+        context: {
+          id: 'foo',
+          parent_id: null,
+          user_id: 'foo',
+        },
+      },
+      old_state: {
+        entity_id: 'switch.living_room',
+        last_changed: 'foo',
+        last_reported: 'foo',
+        state: 'of',
+        attributes: {},
+        last_updated: 'foo',
+        context: {
+          id: 'foo',
+          parent_id: null,
+          user_id: 'foo',
+        },
+      },
+    },
+    event_type: 'event',
+    time_fired: 'foo',
+    origin: 'foo',
+    context: {
+      id: 'foo',
+      parent_id: null,
+      user_id: 'foo',
+    },
+  });
+
+  await advanceTimersByTime(1_000 * 60 * 11);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_off',
+    target: {
+      entity_id: 'light.living_room',
+    },
   });
 });

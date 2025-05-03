@@ -1,4 +1,3 @@
-import { md5 } from '../utils/index.ts';
 import { when } from './if-then-else-condition.ts';
 import { Assertion } from './assertion.ts';
 import { when as testWhen } from 'vitest-when';

@@ -2,7 +2,13 @@ import { Queue } from 'queue-typescript';
 import EventEmitter from 'events';
 import { v4 } from 'uuid';
 
-import { BlockOutput, Runnable, IHass, IEventBus } from '../types/index.ts';
+import {
+  BlockOutput,
+  Runnable,
+  IHass,
+  IEventBus,
+  HassBlocksEvent,
+} from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
 import { Block } from './block.ts';
 
@@ -86,6 +92,18 @@ export class Executor<I, O> implements Runnable {
     };
   }
 
+  private emit<
+    ET extends HassBlocksEvent['eventType'],
+    T extends HassBlocksEvent & { eventType: ET },
+  >(type: ET, event: Omit<T, 'id' | 'timestamp' | 'eventType'>) {
+    this.events.emit(type, event);
+    this.events.emit('log-event', {
+      level: 'trace',
+      module: 'executor',
+      message: JSON.stringify(event),
+    });
+  }
+
   private async executeBlock<Out>(
     executeId: string,
     block: Block<unknown, Out>,
@@ -97,14 +115,14 @@ export class Executor<I, O> implements Runnable {
         throw new ExecutionAbortedError('Sequence was aborted');
       }
 
-      this.events.emit('block-started', eventArgs);
+      this.emit('block-started', eventArgs);
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
           await block.run(this.client, input, this.events, this.triggerId),
       );
 
-      this.events.emit('block-finished', {
+      this.emit('block-finished', {
         ...result,
         ...eventArgs,
         output: result,
@@ -114,11 +132,11 @@ export class Executor<I, O> implements Runnable {
     } catch (error) {
       if (error instanceof Error) {
         if (error instanceof ExecutionAbortedError) {
-          this.events.emit('sequence-aborted', {
+          this.emit('sequence-aborted', {
             ...eventArgs,
           });
         } else {
-          this.events.emit('block-failed', {
+          this.emit('block-failed', {
             ...eventArgs,
             error,
             message: error.message,
@@ -133,7 +151,7 @@ export class Executor<I, O> implements Runnable {
   public emitPendingMessages() {
     this.executionQueue.toArray().forEach(({ block, executionId }) => {
       const eventArgs = this.getEventArgs(executionId, block);
-      this.events.emit('block-pending', eventArgs);
+      this.emit('block-pending', eventArgs);
     });
   }
 

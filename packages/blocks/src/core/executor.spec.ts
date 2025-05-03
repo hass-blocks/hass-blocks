@@ -101,7 +101,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[1]).toEqual([
+    expect(calls[2]).toEqual([
       'block-pending',
       {
         executeId: 'two',
@@ -114,7 +114,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[2]).toEqual([
+    expect(calls[4]).toEqual([
       'block-pending',
       {
         executeId: 'three',
@@ -129,7 +129,7 @@ describe('executor', () => {
 
     await executor.finished();
 
-    expect(calls[3]).toEqual([
+    expect(calls[6]).toEqual([
       'block-started',
       {
         executeId: 'one',
@@ -142,7 +142,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[4]).toEqual([
+    expect(calls[8]).toEqual([
       'block-finished',
       {
         executeId: 'one',
@@ -162,7 +162,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[5]).toEqual([
+    expect(calls[10]).toEqual([
       'block-started',
       {
         executeId: 'two',
@@ -175,7 +175,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[6]).toEqual([
+    expect(calls[12]).toEqual([
       'block-finished',
       {
         executeId: 'two',
@@ -195,7 +195,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[7]).toEqual([
+    expect(calls[14]).toEqual([
       'block-started',
       {
         executeId: 'three',
@@ -208,7 +208,7 @@ describe('executor', () => {
       },
     ]);
 
-    expect(calls[8]).toEqual([
+    expect(calls[16]).toEqual([
       'block-finished',
       {
         executeId: 'three',

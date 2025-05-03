@@ -1,3 +1,13 @@
+## 3.12.0 (2025-05-03)
+
+### 🚀 Features
+
+- **blocks:** add trace logging of events ([dc25848](https://github.com/hass-blocks/hass-blocks/commit/dc25848))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.11.1 (2025-05-03)
 
 ### 🩹 Fixes

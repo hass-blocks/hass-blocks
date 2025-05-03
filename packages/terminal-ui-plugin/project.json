@@ -1,7 +1,7 @@
 {
-  "name": "@hass-blocks/simple-terminal-logging-plugin",
+  "name": "@hass-blocks/terminal-ui-plugin",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "packages/simple-terminal-logging-plugin/src",
+  "sourceRoot": "packages/terminal-ui-plugin/src",
   "projectType": "library",
   "tags": [],
   "targets": {
@@ -9,9 +9,9 @@
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "packages/simple-terminal-logging-plugin/dist",
-        "main": "packages/simple-terminal-logging-plugin/src/index.ts",
-        "tsConfig": "packages/simple-terminal-logging-plugin/tsconfig.lib.json",
+        "outputPath": "packages/terminal-ui-plugin/dist",
+        "main": "packages/terminal-ui-plugin/src/index.ts",
+        "tsConfig": "packages/terminal-ui-plugin/tsconfig.lib.json",
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
@@ -21,9 +21,9 @@
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/simple-terminal-logging-plugin/dist/index.d.ts",
-        "reportFolder": "packages/simple-terminal-logging-plugin/api",
-        "projectFolder": "packages/simple-terminal-logging-plugin",
+        "mainEntrypointFile": "packages/terminal-ui-plugin/dist/index.d.ts",
+        "reportFolder": "packages/terminal-ui-plugin/api",
+        "projectFolder": "packages/terminal-ui-plugin",
         "strictChecks": true
       }
     },
@@ -32,8 +32,8 @@
       "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/simple-terminal-logging-plugin/dist/index.d.ts",
-        "projectFolder": "packages/simple-terminal-logging-plugin",
+        "mainEntrypointFile": "packages/terminal-ui-plugin/dist/index.d.ts",
+        "projectFolder": "packages/terminal-ui-plugin",
         "docModelFolder": "apps/docs-site/models"
       }
     }

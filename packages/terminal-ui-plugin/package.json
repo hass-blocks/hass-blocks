@@ -1,5 +1,5 @@
 {
-  "name": "@hass-blocks/simple-terminal-logging-plugin",
+  "name": "@hass-blocks/terminal-ui-plugin",
   "version": "0.3.0",
   "type": "module",
   "main": "./dist/index.js",

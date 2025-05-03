@@ -19,7 +19,7 @@
       "path": "./packages/websocket-plugin"
     },
     {
-      "path": "./packages/simple-terminal-logging-plugin"
+      "path": "./packages/terminal-ui-plugin"
     },
     {
       "path": "./packages/blocks"

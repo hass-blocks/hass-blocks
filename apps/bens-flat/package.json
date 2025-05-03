@@ -9,7 +9,7 @@
   "private": true,
   "dependencies": {
     "@hass-blocks/blocks": "workspace:*",
-    "@hass-blocks/simple-terminal-logging-plugin": "workspace:*",
+    "@hass-blocks/terminal-ui-plugin": "workspace:*",
     "@hass-blocks/core": "3.13.2"
   }
 }

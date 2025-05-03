@@ -306,9 +306,9 @@ importers:
       '@hass-blocks/core':
         specifier: 3.13.2
         version: link:../../packages/core
-      '@hass-blocks/simple-terminal-logging-plugin':
+      '@hass-blocks/terminal-ui-plugin':
         specifier: workspace:*
-        version: link:../../packages/simple-terminal-logging-plugin
+        version: link:../../packages/terminal-ui-plugin
 
   packages/blocks:
     dependencies:
@@ -412,7 +412,7 @@ importers:
         specifier: ^5.3.4
         version: 5.3.4
 
-  packages/simple-terminal-logging-plugin:
+  packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
         specifier: 3.13.2

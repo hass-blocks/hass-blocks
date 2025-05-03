@@ -1,5 +1,3 @@
-const path = require('path');
-
 /**
  * @filename: lint-staged.config.js
  * @type {import('lint-staged').Configuration}

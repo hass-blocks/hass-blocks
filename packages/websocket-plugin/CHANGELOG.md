@@ -2,55 +2,55 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.13.1
+- Updated @hass-blocks/core to 3.13.1
 
 ## 0.4.12 (2025-05-03)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.13.0
+- Updated @hass-blocks/core to 3.13.0
 
 ## 0.4.11 (2025-05-03)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.12.0
+- Updated @hass-blocks/core to 3.12.0
 
 ## 0.4.10 (2025-05-03)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.11.1
+- Updated @hass-blocks/core to 3.11.1
 
 ## 0.4.9 (2025-05-02)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.11.0
+- Updated @hass-blocks/core to 3.11.0
 
 ## 0.4.8 (2025-05-02)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.10.1
+- Updated @hass-blocks/core to 3.10.1
 
 ## 0.4.7 (2025-05-02)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.10.0
+- Updated @hass-blocks/core to 3.10.0
 
 ## 0.4.6 (2025-04-28)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.9.0
+- Updated @hass-blocks/core to 3.9.0
 
 ## 0.4.5 (2025-04-27)
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.8.4
+- Updated @hass-blocks/core to 3.8.4
 
 ## 0.4.4 (2025-04-27)
 
@@ -144,7 +144,7 @@
 
 ### 🧱 Updated Dependencies
 
-- Updated @hass-blocks/blocks to 3.0.0
+- Updated @hass-blocks/core to 3.0.0
 
 ### ❤️ Thank You
 

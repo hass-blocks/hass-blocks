@@ -51,7 +51,7 @@
     "src"
   ],
   "dependencies": {
-    "@hass-blocks/blocks": "3.13.1",
+    "@hass-blocks/core": "3.13.1",
     "@swc/helpers": "~0.5.11",
     "socket.io": "^4.8.1"
   }

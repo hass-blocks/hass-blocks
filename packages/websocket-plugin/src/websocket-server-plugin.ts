@@ -1,4 +1,4 @@
-import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/blocks';
+import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
 import { getWebsocketServer } from './get-websocket-server.ts';
 
 /**

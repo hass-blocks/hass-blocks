@@ -1,4 +1,4 @@
-import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/blocks';
+import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
 import { render } from 'ink';
 import { ExecutionLines } from './components/execution-lines/execution-lines.tsx';
 

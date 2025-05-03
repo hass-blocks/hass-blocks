@@ -57,7 +57,7 @@ export class Action<I = void, O = void>
  * @example
  * ```TypeScript
  *
- * import { action } from "@hass-blocks/blocks"
+ * import { action } from "@hass-blocks/core"
  *
  * const turnOnLivingRoomLights = action({
  *   name: `Turn on lights`,

@@ -8,7 +8,7 @@ A strongly-typed declarative framework for configuring Home Assistant automation
 
 ### Installing
 
-`npm install @hass-blocks/blocks`
+`npm install @hass-blocks/core`
 
 ### Bootstrapping
 
@@ -21,7 +21,7 @@ Before you can build automations, you first need to configure the connection to 
 Once this is done, the below code will bootstrap the connection and give you a registry object that you can register automations with
 
 ```TypeScript
-import { initialiseBlocks} from "@hass-blocks/blocks"
+import { initialiseBlocks} from "@hass-blocks/core"
 
 const { registry } = await initialiseBlocks()
 ```
@@ -45,7 +45,7 @@ Since this is a framework, its your job to write a whole bunch of blocks that yo
 A pretty standard action in my flat is to turn on the living room light - lets turn that into a block
 
 ```TypeScript
-import { serviceCall } from "@hass-blocks/blocks"
+import { serviceCall } from "@hass-blocks/core"
 
 const turnOnLivingRoomLight = serviceCall({
   name: "Turn on the light in the living room",
@@ -78,7 +78,7 @@ const turnLivingRoomLights = (onOrOff: "on" | "off") =>
 Ideally I want it to turn on when I walk in the room, so lets make a trigger
 
 ```TypeScript
-import { trigger } from "@hass-blocks/blocks"
+import { trigger } from "@hass-blocks/core"
 
 const whenSomeoneWalksInTheLivingRoom = trigger({
   name: 'When someone walks in the living room',
@@ -95,7 +95,7 @@ const whenSomeoneWalksInTheLivingRoom = trigger({
 I don't want to switch the light off straight away - so lets implement a 'wait' action factory
 
 ```TypeScript
-import { action } from "@hass-blocks/blocks"
+import { action } from "@hass-blocks/core"
 
 export const waitMinutes = (duration: number) =>
   action({

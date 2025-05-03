@@ -3,7 +3,7 @@ import {
   BlockFinished,
   SequenceAborted,
   BlockFailed,
-} from '@hass-blocks/blocks';
+} from '@hass-blocks/core';
 
 export type LifeCycleEvent =
   | BlockFailed

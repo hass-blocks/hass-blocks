@@ -10,7 +10,7 @@ import {
   IEventBus,
   HassBlocksEvent,
   LifeCycleEvent,
-} from '@hass-blocks/blocks';
+} from '@hass-blocks/core';
 import { SOCKET_EVENT_NAME } from './constants.ts';
 
 // A helper function to start a server on an ephemeral port.

@@ -5,6 +5,8 @@ import { Queue } from 'queue-typescript';
 export class RunQueue {
   private queue = new Queue<Runnable>();
 
+  private current: { abort: () => void } | undefined;
+
   public constructor() {
     void this.startLoop();
   }
@@ -14,6 +16,7 @@ export class RunQueue {
   }
 
   public abortAll() {
+    this.current?.abort();
     while (this.queue.length > 0) {
       const runnable = this.queue.dequeue();
       runnable.abort();
@@ -24,13 +27,15 @@ export class RunQueue {
     while (true) {
       while (this.queue.length > 0) {
         try {
-          const runnable = this.queue.front;
+          const runnable = this.queue.dequeue();
+          this.current = runnable;
           await runnable.run();
-          this.queue.dequeue();
         } catch (error) {
           if (!(error instanceof ExecutionAbortedError)) {
             throw error;
           }
+        } finally {
+          this.current = undefined;
         }
       }
 

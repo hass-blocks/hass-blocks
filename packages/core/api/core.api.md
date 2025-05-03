@@ -94,7 +94,7 @@ export interface BlockStarted extends LifeCycleEvent<'block-started'> {
 }
 
 // @public
-export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(actions: A) => Block<I, O>;
+export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(...actions: A) => Block<I, O>;
 
 // @public
 export interface ConditionResult<O> {
@@ -364,7 +364,7 @@ export type OutputType<T extends Block<unknown, unknown>> = Exclude<T['outputTyp
 export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<T['outputType'], undefined>;
 
 // @public
-export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>, mode?: ExecutionMode) => Block<I, O>;
+export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(...actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>) => Block<I, O>;
 
 // @public
 export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {

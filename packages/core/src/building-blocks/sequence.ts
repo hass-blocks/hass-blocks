@@ -22,8 +22,11 @@ export const sequence = <
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 >(
-  actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>,
-  mode: ExecutionMode = ExecutionMode.Restart,
+  ...actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>
 ): Block<I, O> => {
-  return automation({ name: 'Sequence', mode, then: actions });
+  return automation({
+    name: 'Sequence',
+    mode: ExecutionMode.Parallel,
+    then: actions,
+  });
 };

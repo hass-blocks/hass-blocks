@@ -10,7 +10,7 @@ export const ExecutionList = ({ events }: ExecutionListProps) =>
     events.reduce<Record<string, LifeCycleEvent[]>>(
       (accum, event) => ({
         ...accum,
-        [event.executeId]: [...(accum[event.executeId] ?? []), event].toSorted(
+        [event.triggerId]: [...(accum[event.triggerId] ?? []), event].toSorted(
           (a, b) => (new Date(a.timestamp) > new Date(b.timestamp) ? 0 : 1),
         ),
       }),

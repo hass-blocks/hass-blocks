@@ -8,3 +8,5 @@ export {
   switchLivingRoomLightsOn,
   switchLivingRoomLightsOff,
 } from './lights.ts';
+
+export { turnHomeModeOn, turnHomeModeOff } from './switches.ts';

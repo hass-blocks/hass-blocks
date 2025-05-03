@@ -4,6 +4,7 @@ import { entities } from '../constants.ts';
 const {
   livingRoomMotionSensor,
   bedroomMotionSensor,
+  homeMode,
   bathroomMotionSensor,
   hallwayMotionSensor,
   sleepMode,
@@ -44,3 +45,4 @@ export const ifBathroomMotionSensorIsOff = ifStateIs(
 
 export const ifSleepModeIsOff = ifStateIs(sleepMode.id, 'off');
 export const ifTvModeIsOff = ifStateIs(tvMode.id, 'off');
+export const ifHomeModeIsOff = ifStateIs(homeMode.id, 'off');

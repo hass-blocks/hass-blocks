@@ -305,13 +305,16 @@ importers:
         version: link:../../packages/blocks
       '@hass-blocks/core':
         specifier: 3.13.2
-        version: 3.13.2(@types/react@19.1.2)
+        version: link:../../packages/core
+      '@hass-blocks/simple-terminal-logging-plugin':
+        specifier: workspace:*
+        version: link:../../packages/simple-terminal-logging-plugin
 
   packages/blocks:
     dependencies:
       '@hass-blocks/core':
         specifier: 3.13.2
-        version: 3.13.2(@types/react@19.1.2)
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -2563,14 +2566,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/core@3.13.2':
-    resolution: {integrity: sha512-SJe0/KcqgrSN62A7fJWAVwmvgfMfqpjnHpST2XZTVHiwWlzWBdGbqeDi4GgwDF8LcBNhMCCpMmSs4bEjBfMw4A==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.11.0':
-    resolution: {integrity: sha512-yI6/scN01YsSZDAHMPGdVnBsssxY0MvuQOrjc+s6YVAX/TyMgHWRgsoLAa9jnmelWG0jnanDuJOnm2Ke5QzU7A==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -14305,30 +14300,6 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
-
-  '@hass-blocks/core@3.13.2(@types/react@19.1.2)':
-    dependencies:
-      '@hass-blocks/hass-ts': 0.11.0
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ink: 5.2.0(@types/react@19.1.2)(react@18.3.1)
-      queue-typescript: 1.0.1
-      react: 18.3.1
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - '@types/react'
-      - bufferutil
-      - react-devtools-core
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.11.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
 
   '@highlightjs/cdn-assets@11.11.1': {}
 

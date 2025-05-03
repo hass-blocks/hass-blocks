@@ -8,13 +8,19 @@ import { Block } from '@hass-blocks/core';
 import { ITrigger } from '@hass-blocks/core';
 
 // @public
-export const ifStateIs: (entityId: string, state: "on" | "off") => Block<void, void>;
+export const ifStateIs: (entityId: string, state: string) => Block<void, void>;
+
+// @public
+export const ifStateIsNot: (entityId: string, state: string) => Block<void, void>;
 
 // @public
 export const stateTurns: (entityId: string, onOrOff: "on" | "off") => ITrigger;
 
 // @public
 export const switchLight: (target: Which, onOrOff: "on" | "off") => Block<void, void>;
+
+// @public
+export const turnSwitch: (target: Which, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public
 export const waitMinutes: (minutes: number) => Block<void, Promise<void>>;

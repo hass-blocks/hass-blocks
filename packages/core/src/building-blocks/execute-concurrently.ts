@@ -94,7 +94,7 @@ export const concurrently = <
   I = void,
   O = void,
 >(
-  actions: A,
+  ...actions: A
 ): Block<I, O> => {
   return new ExecuteConcurrently<A, I, O>({
     name: 'Execute Concurrently',

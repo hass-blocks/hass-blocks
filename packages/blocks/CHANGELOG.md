@@ -1,3 +1,14 @@
+## 3.11.1 (2025-05-03)
+
+### 🩹 Fixes
+
+- **blocks:** don't need to update state cache for individual listeners ([0752fc0](https://github.com/hass-blocks/hass-blocks/commit/0752fc0))
+- **blocks:** was not actually updating the state cache as new events were fired ([73892a5](https://github.com/hass-blocks/hass-blocks/commit/73892a5))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.11.0 (2025-05-02)
 
 ### 🚀 Features

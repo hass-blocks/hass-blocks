@@ -412,7 +412,7 @@ importers:
   packages/simple-terminal-logging-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.13.1
+        specifier: 3.13.2
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -430,7 +430,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.13.1
+        specifier: 3.13.2
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11

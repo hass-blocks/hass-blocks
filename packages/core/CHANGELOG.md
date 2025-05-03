@@ -1,3 +1,13 @@
+## 3.13.2 (2025-05-03)
+
+### 🩹 Fixes
+
+- **blocks:** renamed blocks to core ([e41a04f6](https://github.com/hass-blocks/hass-blocks/commit/e41a04f6))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.13.1 (2025-05-03)
 
 ### 🩹 Fixes

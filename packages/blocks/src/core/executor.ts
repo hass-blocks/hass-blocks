@@ -100,7 +100,7 @@ export class Executor<I, O> implements Runnable {
     this.events.emit('log-event', {
       level: 'trace',
       module: 'executor',
-      message: JSON.stringify(event),
+      message: JSON.stringify({ type, event }),
     });
   }
 

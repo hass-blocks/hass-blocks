@@ -298,7 +298,7 @@ importers:
         specifier: 0.6.0
         version: 0.6.0(@vitest/expect@3.1.2)(vitest@3.0.0)
 
-  packages/blocks:
+  packages/core:
     dependencies:
       '@hass-blocks/hass-ts':
         specifier: 0.11.0
@@ -395,7 +395,7 @@ importers:
     dependencies:
       '@hass-blocks/core':
         specifier: 3.13.1
-        version: link:../blocks
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -413,7 +413,7 @@ importers:
     dependencies:
       '@hass-blocks/core':
         specifier: 3.13.1
-        version: link:../blocks
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17

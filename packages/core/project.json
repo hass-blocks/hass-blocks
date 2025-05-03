@@ -1,5 +1,5 @@
 {
-  "name": "@hass-core/core",
+  "name": "@hass-blocks/core",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/core/src",
   "projectType": "library",
@@ -17,7 +17,7 @@
       }
     },
     "rollup-api": {
-      "executor": "@hass-core/publisher:api-extractor",
+      "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
         "mainEntrypointFile": "packages/core/dist/index.d.ts",
@@ -28,7 +28,7 @@
     },
     "doc-model": {
       "dependsOn": ["typecheck"],
-      "executor": "@hass-core/publisher:doc-model",
+      "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {
         "mainEntrypointFile": "packages/core/dist/index.d.ts",

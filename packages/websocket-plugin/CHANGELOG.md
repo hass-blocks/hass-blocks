@@ -1,3 +1,17 @@
+## 0.5.0 (2025-05-03)
+
+### 🚀 Features
+
+- **blocks:** change package name ([00078b97](https://github.com/hass-blocks/hass-blocks/commit/00078b97))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/core to 3.13.2
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.13 (2025-05-03)
 
 ### 🧱 Updated Dependencies

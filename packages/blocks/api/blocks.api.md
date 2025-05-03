@@ -411,6 +411,6 @@ First,
 ] : never : never;
 
 // @public
-export const when: <TO = void, EO = void, PO = void, I = void>(config: IfThenElseConditionConfig<TO, EO, PO, I>) => Block<I, TO | EO>;
+export const when: <TO = void, EO = void, PO = void, I = void>(assertion: Block<I, PO>, config: Omit<IfThenElseConditionConfig<TO, EO, PO, I>, "assertion" | "name">) => Block<I, TO | EO>;
 
 ```

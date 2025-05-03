@@ -122,7 +122,12 @@ export class IfThenElseCondition<
  * Supply two blocks and execute either one of them depending on the result of the assertion
  */
 export const when = <TO = void, EO = void, PO = void, I = void>(
-  config: IIfThenElseConditionConfig<TO, EO, PO, I>,
+  assertion: Block<I, PO>,
+  config: Omit<IIfThenElseConditionConfig<TO, EO, PO, I>, 'assertion' | 'name'>,
 ): Block<I, TO | EO> => {
-  return new IfThenElseCondition(config);
+  return new IfThenElseCondition({
+    ...config,
+    assertion,
+    name: `when ${assertion.name} then`,
+  });
 };

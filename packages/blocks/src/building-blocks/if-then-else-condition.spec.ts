@@ -26,9 +26,7 @@ describe('ifThenElseCondition.run', () => {
     const mockThenBlock = mock<Block<boolean>>();
     const mockElseBlock = mock<Block<boolean>>();
 
-    const condition = when({
-      name: 'foo',
-      assertion: mockAssertion,
+    const condition = when(mockAssertion, {
       then: mockThenBlock,
       else: mockElseBlock,
     });
@@ -68,9 +66,7 @@ describe('ifThenElseCondition.run', () => {
       .calledWith(mockClient, mockAssertionOutput, mockEvents, triggerId)
       .thenReturn(blockOutput);
 
-    const condition = when({
-      name: 'foo',
-      assertion: mockAssertion,
+    const condition = when(mockAssertion, {
       then: mockThenBlock,
       else: mockElseBlock,
     });
@@ -119,9 +115,7 @@ describe('ifThenElseCondition.run', () => {
       .calledWith(mockClient, mockAssertionOutput, mockEvents, triggerId)
       .thenReturn(blockOutput);
 
-    const condition = when({
-      name: 'foo',
-      assertion: mockAssertion,
+    const condition = when(mockAssertion, {
       then: mockThenBlock,
       else: mockElseBlock,
     });
@@ -145,32 +139,13 @@ describe('ifThenElseCondition.run', () => {
 });
 
 describe('ifThenElseCondition.constructor', () => {
-  it('generates an md5 hash of the name the id if not supplied', () => {
-    testWhen(md5).calledWith('foo').thenReturn('hash');
-
-    const mockAssertion = mock<Assertion<string, boolean>>();
-    const mockThenBlock = mock<Block<boolean, boolean>>();
-    const mockElseBlock = mock<Block<boolean, boolean>>();
-
-    const assertion = when({
-      name: 'foo',
-      assertion: mockAssertion,
-      then: mockThenBlock,
-      else: mockElseBlock,
-    });
-
-    expect(assertion.id).toEqual('hash');
-  });
-
   it('configures the id from the constructor input when supplied', () => {
     const mockAssertion = mock<Assertion<string, boolean>>();
     const mockThenBlock = mock<Block<boolean, boolean>>();
     const mockElseBlock = mock<Block<boolean, boolean>>();
 
-    const assertion = when({
-      name: 'foo',
+    const assertion = when(mockAssertion, {
       id: 'foo-id',
-      assertion: mockAssertion,
       then: mockThenBlock,
       else: mockElseBlock,
     });

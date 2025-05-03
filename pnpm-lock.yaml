@@ -394,7 +394,7 @@ importers:
   packages/simple-terminal-logging-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: 3.11.0
+        specifier: 3.11.1
         version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11
@@ -412,7 +412,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: 3.11.0
+        specifier: 3.11.1
         version: link:../blocks
       '@swc/helpers':
         specifier: ~0.5.11
@@ -16285,7 +16285,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.12
       tinyrainbow: 2.0.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
 
   '@vitest/utils@3.0.0':
     dependencies:
@@ -24613,7 +24613,7 @@ snapshots:
   vitest-when@0.6.0(@vitest/expect@3.1.2)(vitest@3.0.0):
     dependencies:
       pretty-format: 29.7.0
-      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.7.3))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vitest: 3.0.0(@types/node@22.14.1)(@vitest/ui@3.0.0)(jiti@2.4.2)(jsdom@22.1.0)(msw@2.7.4(@types/node@22.14.1)(typescript@5.8.2))(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
     optionalDependencies:
       '@vitest/expect': 3.1.2
 

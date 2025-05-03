@@ -1,3 +1,13 @@
+## 3.13.1 (2025-05-03)
+
+### 🩹 Fixes
+
+- **blocks:** fix race condition in run queue ([83b7ff1](https://github.com/hass-blocks/hass-blocks/commit/83b7ff1))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.13.0 (2025-05-03)
 
 ### 🚀 Features

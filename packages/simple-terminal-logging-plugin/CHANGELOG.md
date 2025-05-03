@@ -1,3 +1,9 @@
+## 0.2.5 (2025-05-03)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/blocks to 3.13.0
+
 ## 0.2.4 (2025-05-03)
 
 ### 🧱 Updated Dependencies

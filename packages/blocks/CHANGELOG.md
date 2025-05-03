@@ -1,3 +1,13 @@
+## 3.13.0 (2025-05-03)
+
+### 🚀 Features
+
+- **blocks:** log event type ([e5ddec0](https://github.com/hass-blocks/hass-blocks/commit/e5ddec0))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.12.0 (2025-05-03)
 
 ### 🚀 Features

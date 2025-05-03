@@ -1,1 +1,1 @@
-export { logLifecycleEvents } from './lib/simple-terminal-logging-plugin.tsx';
+export { terminalUi } from './lib/terminal-ui-plugin.tsx';

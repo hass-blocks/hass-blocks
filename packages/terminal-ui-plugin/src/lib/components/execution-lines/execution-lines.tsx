@@ -13,10 +13,11 @@ export const ExecutionLines = ({ eventBus }: ExecutionLinesProps) => {
   useEffect(() => {
     eventBus.subscribe((event) => {
       if (
-        event.eventType === 'block-started' ||
-        event.eventType === 'block-finished' ||
-        event.eventType === 'block-failed' ||
-        event.eventType === 'sequence-aborted'
+        (event.eventType === 'block-started' ||
+          event.eventType === 'block-finished' ||
+          event.eventType === 'block-failed' ||
+          event.eventType === 'sequence-aborted') &&
+        event.type !== 'automation'
       ) {
         setEvents((events) => [...events, event]);
       }

@@ -23,17 +23,11 @@ const getIcon = (event: LifeCycleEvent) => {
 
 export const ExecutionLine = ({ event }: ExecutionLineProps) => {
   return (
-    <Box flexDirection="row" width="100%">
-      <Box width={4}>
-        <Text> {getIcon(event)}</Text>
+    <Box flexDirection="row" width="100%" gap={1}>
+      <Box>
+        <Text>{getIcon(event)}</Text>
       </Box>
-      <Box width={35}>
-        <Text>{('parent' in event && event.parent?.name) || event.name}</Text>
-      </Box>
-      <Box width={30}>
-        <Text>{event.type}</Text>
-      </Box>
-      <Box width={40}>
+      <Box>
         <Text>{event.name}</Text>
       </Box>
     </Box>

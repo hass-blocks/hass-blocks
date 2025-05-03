@@ -1,12 +1,12 @@
 import { Block, initialiseBlocks } from '@hass-blocks/core';
 import { readdir } from 'node:fs/promises';
 import { join } from 'node:path';
-import { logLifecycleEvents } from '@hass-blocks/simple-terminal-logging-plugin';
+import { terminalUi } from '@hass-blocks/terminal-ui-plugin';
 
 const automationsDir = join(import.meta.dirname, 'automations');
 
 const { registry } = await initialiseBlocks({
-  plugins: [logLifecycleEvents()],
+  plugins: [terminalUi()],
 });
 
 const files = await readdir(automationsDir);

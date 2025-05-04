@@ -10,6 +10,7 @@ export {
   ifSleepModeIsOff,
   ifTvModeIsOff,
   ifHomeModeIsOff,
+  ifVisitorModeIsNotOn,
 } from './switches.ts';
 
 export { ifIamOut } from './location.ts';

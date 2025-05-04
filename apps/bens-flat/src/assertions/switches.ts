@@ -1,5 +1,6 @@
 import { ifStateIs } from '@hass-blocks/blocks';
 import { entities } from '../constants.ts';
+import { ifStateIsNot } from '@hass-blocks/blocks';
 
 const {
   livingRoomMotionSensor,
@@ -9,6 +10,7 @@ const {
   hallwayMotionSensor,
   sleepMode,
   tvMode,
+  visitorMode,
 } = entities.switch;
 
 export const ifLivingRoomMotionSensorIsOn = ifStateIs(
@@ -46,3 +48,4 @@ export const ifBathroomMotionSensorIsOff = ifStateIs(
 export const ifSleepModeIsOff = ifStateIs(sleepMode.id, 'off');
 export const ifTvModeIsOff = ifStateIs(tvMode.id, 'off');
 export const ifHomeModeIsOff = ifStateIs(homeMode.id, 'off');
+export const ifVisitorModeIsNotOn = ifStateIsNot(visitorMode.id, 'on');

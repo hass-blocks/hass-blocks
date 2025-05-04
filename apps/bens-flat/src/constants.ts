@@ -114,6 +114,11 @@ export const entities = {
       area: 'living_room',
       initial_state: 'off',
     },
+    tv: {
+      id: 'switch.living_room_tv_on',
+      area: 'living_room',
+      initial_state: 'off',
+    },
     sleepMode: {
       id: 'switch.sleep_mode',
       area: 'none',
@@ -174,7 +179,7 @@ export const entities = {
       initial_state: 'standby',
     },
     livingRoomSpeaker: {
-      id: 'media_player.living_room_speaker',
+      id: 'media_player.sonos_arc_ultra',
       area: 'living_room',
       initial_state: 'standby',
     },

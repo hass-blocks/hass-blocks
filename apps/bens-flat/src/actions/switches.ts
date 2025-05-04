@@ -1,7 +1,7 @@
 import { turnSwitch } from '@hass-blocks/blocks';
-import { entities } from 'src/constants.ts';
+import { entities } from '../constants.ts';
 
-const { homeMode } = entities.switch;
+const { homeMode, tv } = entities.switch;
 
 export const turnHomeModeOff = turnSwitch(
   {
@@ -16,3 +16,5 @@ export const turnHomeModeOn = turnSwitch(
   },
   'on',
 );
+
+export const turnOffTv = turnSwitch({ entity_id: tv.id }, 'off');

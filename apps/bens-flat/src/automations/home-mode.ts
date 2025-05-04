@@ -13,6 +13,12 @@ import {
   switchLivingRoomLightsOff,
   turnHomeModeOff,
   turnHomeModeOn,
+  stopMusicInTheBedroom,
+  stopMusicInTheLivingRoom,
+  turnOffTv,
+  turnOffMyMac,
+  notifyMyPhone,
+  closeLivingRoomBlinds,
 } from '../actions/index.ts';
 
 import {
@@ -42,19 +48,6 @@ export const onLastExit = automation({
   then: [ifZoneExitChecksAllowed, turnHomeModeOff],
 });
 
-export const whenIGoOut = automation({
-  name: 'When I go out',
-  when: homeModeTurnsOff,
-  then: [
-    concurrently(
-      switchBedroomLightsOff,
-      switchHallwayLightsOff,
-      switchLivingRoomLightsOff,
-      switchBathroomLightsOff,
-    ),
-  ],
-});
-
 export const homeModeDetection = automation({
   name: 'Home mode detection',
   when: [
@@ -75,4 +68,26 @@ export const homeModeDetection = automation({
     ),
   ],
   mode: ExecutionMode.Restart,
+});
+
+export const whenIGoOut = automation({
+  name: 'When I go out',
+  when: homeModeTurnsOff,
+  then: [
+    concurrently(
+      switchBedroomLightsOff,
+      switchHallwayLightsOff,
+      switchLivingRoomLightsOff,
+      switchBathroomLightsOff,
+      stopMusicInTheBedroom,
+      stopMusicInTheLivingRoom,
+      turnOffTv,
+      turnOffMyMac,
+      closeLivingRoomBlinds,
+      notifyMyPhone({
+        title: 'Leaving flat',
+        message: 'Home empty detected - turning everything off',
+      }),
+    ),
+  ],
 });

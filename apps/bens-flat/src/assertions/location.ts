@@ -1,5 +1,5 @@
 import { ifStateIsNot } from '@hass-blocks/blocks';
-import { entities } from 'src/constants.ts';
+import { entities } from '../constants.ts';
 
 const { me } = entities.person;
 

@@ -8,6 +8,14 @@ import { Block } from '@hass-blocks/core';
 import { ITrigger } from '@hass-blocks/core';
 
 // @public
+export const gate: (name: string) => {
+    ifGateIsOpen: Block<void, void>;
+    ifGateIsClosed: Block<void, void>;
+    open: Block<void, void>;
+    close: Block<void, void>;
+};
+
+// @public
 export const ifStateIs: (entityId: string, state: string) => Block<void, void>;
 
 // @public
@@ -15,6 +23,9 @@ export const ifStateIsNot: (entityId: string, state: string) => Block<void, void
 
 // @public
 export const stateTurns: (entityId: string, onOrOff: "on" | "off") => ITrigger;
+
+// @public
+export const stopMediaPlayer: (target: Which) => Block<void, void>;
 
 // @public
 export const switchLight: (target: Which, onOrOff: "on" | "off") => Block<void, void>;

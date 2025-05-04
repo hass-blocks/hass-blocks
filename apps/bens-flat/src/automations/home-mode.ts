@@ -1,4 +1,4 @@
-import { waitMinutes } from '@hass-blocks/blocks';
+import { waitMinutes, gate } from '@hass-blocks/blocks';
 import {
   automation,
   concurrently,
@@ -6,23 +6,57 @@ import {
   sequence,
 } from '@hass-blocks/core';
 
-import { turnHomeModeOff, turnHomeModeOn } from 'src/actions/index.ts';
+import {
+  switchBathroomLightsOff,
+  switchBedroomLightsOff,
+  switchHallwayLightsOff,
+  switchLivingRoomLightsOff,
+  turnHomeModeOff,
+  turnHomeModeOn,
+} from '../actions/index.ts';
 
 import {
   ifIamOut,
   ifHomeModeIsOff,
   ifHomeIsNotEmpty,
-} from 'src/assertions/index.ts';
+} from '../assertions/index.ts';
 
 import {
   motionIsDetectedInTheBathroom,
   motionIsDetectedInTheBedroom,
   motionIsDetectedInTheHallway,
   motionIsDetectedInTheLivingRoom,
-} from 'src/triggers/motion-sensors.ts';
+} from '../triggers/motion-sensors.ts';
 
-export const homeMode = automation({
-  name: 'Home mode',
+import { homeBecomesEmpty, homeModeTurnsOff } from '../triggers/index.ts';
+
+const {
+  open: allowZoneExitChecks,
+  close: disallowZoneExitChecks,
+  ifGateIsOpen: ifZoneExitChecksAllowed,
+} = gate('Zone exit checks');
+
+export const onLastExit = automation({
+  name: 'Last Exit',
+  when: homeBecomesEmpty,
+  then: [ifZoneExitChecksAllowed, turnHomeModeOff],
+});
+
+export const whenIGoOut = automation({
+  name: 'When I go out',
+  when: homeModeTurnsOff,
+  then: [
+    concurrently(
+      switchBedroomLightsOff,
+      switchHallwayLightsOff,
+      switchLivingRoomLightsOff,
+      switchBathroomLightsOff,
+    ),
+  ],
+});
+
+export const homeModeDetection = automation({
+  name: 'Home mode detection',
   when: [
     motionIsDetectedInTheBedroom,
     motionIsDetectedInTheHallway,
@@ -31,8 +65,13 @@ export const homeMode = automation({
   ],
   then: [
     concurrently(
-      sequence(waitMinutes(5), ifIamOut, turnHomeModeOff),
-      sequence(ifHomeModeIsOff, ifHomeIsNotEmpty, turnHomeModeOn),
+      sequence(waitMinutes(5), ifIamOut, allowZoneExitChecks, turnHomeModeOff),
+      sequence(
+        ifHomeModeIsOff,
+        ifHomeIsNotEmpty,
+        disallowZoneExitChecks,
+        turnHomeModeOn,
+      ),
     ),
   ],
   mode: ExecutionMode.Restart,

@@ -17,5 +17,6 @@ export const setMediaPlayerVolume = (target: Which, volume: number) =>
       service_data: {
         volume_level: volume,
       },
+      target,
     },
   });

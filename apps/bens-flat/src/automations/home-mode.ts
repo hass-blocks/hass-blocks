@@ -34,7 +34,11 @@ import {
   motionIsDetectedInTheLivingRoom,
 } from '../triggers/motion-sensors.ts';
 
-import { homeBecomesEmpty, homeModeTurnsOff } from '../triggers/index.ts';
+import {
+  homeBecomesEmpty,
+  homeModeTurnsOff,
+  homeModeTurnsOn,
+} from '../triggers/index.ts';
 
 const {
   open: allowZoneExitChecks,
@@ -90,4 +94,10 @@ export const whenIGoOut = automation({
       }),
     ),
   ],
+});
+
+export const whenIGetHome = automation({
+  name: 'When I get home',
+  when: homeModeTurnsOn,
+  then: [],
 });

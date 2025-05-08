@@ -14,7 +14,7 @@ export const setMediaPlayerVolume = (target: ITarget, volume: number) =>
     name: `Set media player volume to ${volume}`,
     params: {
       domain: 'media_player',
-      service: 'set_volumne',
+      service: 'volume_set',
       service_data: {
         volume_level: volume,
       },

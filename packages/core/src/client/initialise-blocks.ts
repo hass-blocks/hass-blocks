@@ -91,7 +91,7 @@ export const initialiseBlocks = async (
 
   const packageJson = JSON.parse(
     await readFile(
-      join(import.meta.dirname, '..', '..', '..', 'package.json'),
+      join(import.meta.dirname, '..', '..', '..', '..', 'package.json'),
       'utf8',
     ),
   );

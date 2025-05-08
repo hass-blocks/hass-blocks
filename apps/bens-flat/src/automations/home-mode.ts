@@ -19,12 +19,14 @@ import {
   turnOffMyMac,
   notifyMyPhone,
   closeLivingRoomBlinds,
+  openLivingRoomBlinds,
 } from '../actions/index.ts';
 
 import {
   ifIamOut,
   ifHomeModeIsOff,
   ifHomeIsNotEmpty,
+  ifBlindsWouldNormallyBeOpen,
 } from '../assertions/index.ts';
 
 import {
@@ -37,8 +39,14 @@ import {
 import {
   homeBecomesEmpty,
   homeModeTurnsOff,
+  homeModeTurnsOn,
   // homeModeTurnsOn,
 } from '../triggers/index.ts';
+import {
+  playMyDiscoverWeeklyEveryWhere,
+  setVolumeOnSpeakers,
+} from '../actions/media.ts';
+import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
 
 const {
   open: allowZoneExitChecks,
@@ -96,8 +104,15 @@ export const whenIGoOut = automation({
   ],
 });
 
-// export const whenIGetHome = automation({
-//   name: 'When I get home',
-//   when: homeModeTurnsOn,
-//   then: [],
-// });
+export const whenIGetHome = automation({
+  name: 'When I get home',
+  when: homeModeTurnsOn,
+  then: [
+    concurrently(
+      playMyDiscoverWeeklyEveryWhere,
+      setVolumeOnSpeakers(0.3),
+      sequence(ifBlindsWouldNormallyBeOpen, openLivingRoomBlinds),
+      startSlideshowOnAppleTv,
+    ),
+  ],
+});

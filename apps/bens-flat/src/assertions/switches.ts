@@ -6,6 +6,7 @@ const {
   livingRoomMotionSensor,
   bedroomMotionSensor,
   homeMode,
+  blindsDefaultOpen,
   bathroomMotionSensor,
   hallwayMotionSensor,
   sleepMode,
@@ -49,3 +50,7 @@ export const ifSleepModeIsOff = ifStateIs(sleepMode.id, 'off');
 export const ifTvModeIsOff = ifStateIs(tvMode.id, 'off');
 export const ifHomeModeIsOff = ifStateIs(homeMode.id, 'off');
 export const ifVisitorModeIsNotOn = ifStateIsNot(visitorMode.id, 'on');
+export const ifBlindsWouldNormallyBeOpen = ifStateIs(
+  blindsDefaultOpen.id,
+  'on',
+);

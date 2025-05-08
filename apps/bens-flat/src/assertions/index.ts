@@ -1,5 +1,6 @@
 export {
   ifHallwaySensorIsOff,
+  ifBlindsWouldNormallyBeOpen,
   ifBedroomMotionSensorIsOn,
   ifHallwayMotionSensorIsOn,
   ifBathroomMotionSensorIsOn,
@@ -16,3 +17,5 @@ export {
 export { ifIamOut } from './location.ts';
 
 export { ifHomeIsNotEmpty } from './zone.ts';
+
+export { appleTvIsOnStandby } from './devices.ts';

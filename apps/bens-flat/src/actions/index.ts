@@ -17,4 +17,4 @@ export { turnOffMyMac } from './mqtt.ts';
 
 export { notifyMyPhone } from './notify.ts';
 
-export { closeLivingRoomBlinds } from './blinds.ts';
+export { closeLivingRoomBlinds, openLivingRoomBlinds } from './blinds.ts';

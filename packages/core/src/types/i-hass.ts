@@ -1,6 +1,6 @@
-import { Service, State } from '@hass-blocks/hass-ts';
-import { HassEntity } from './hass-events.ts';
-import { ICallServiceParams } from './i-call-service-params.ts';
+import type { Service, State } from '@hass-blocks/hass-ts';
+import type { HassEntity } from './hass-events.ts';
+import type { ICallServiceParams } from './i-call-service-params.ts';
 
 /**
  * @public

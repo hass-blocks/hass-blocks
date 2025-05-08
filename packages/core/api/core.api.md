@@ -4,11 +4,12 @@
 
 ```ts
 
-import { CallServiceCommand } from '@hass-blocks/hass-ts';
-import { Event as Event_2 } from '@hass-blocks/hass-ts';
-import { HassConfig } from '@hass-blocks/hass-ts';
+import type { CallServiceCommand } from '@hass-blocks/hass-ts';
+import type { Event as Event_2 } from '@hass-blocks/hass-ts';
+import type { HassConfig } from '@hass-blocks/hass-ts';
 import { IClient } from '@hass-blocks/hass-ts';
-import { State } from '@hass-blocks/hass-ts';
+import type { Service } from '@hass-blocks/hass-ts';
+import type { State } from '@hass-blocks/hass-ts';
 
 // @public
 export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<I, O>;
@@ -112,6 +113,11 @@ export interface ContinueOutput<O> {
 }
 
 // @public
+export class ExecutionAbortedError extends HassBlocksError {
+    constructor(name: string);
+}
+
+// @public
 export enum ExecutionMode {
     Parallel = "Parallel",
     Queue = "Queue",
@@ -129,6 +135,10 @@ export type GetSequenceInput<T extends ReadonlyArray<unknown>> = T extends reado
 
 // @public
 export type GetSequenceOutput<T extends ReadonlyArray<unknown>> = T extends readonly [...unknown[], infer Last] ? Last extends Block<unknown, unknown> ? OutputType<Last> : never : never;
+
+// @public
+export class HassBlocksError extends Error {
+}
 
 // @public
 export type HassBlocksEvent = AutomationRegistered | GeneralFailure | LogEvent | StateChanged | BlockFailed | BlockFinished | BlockPending | BlockStarted | SequenceAborted | LoadPluginsStart | LoadPluginStart | LoadPluginsFinished | LoadPluginFinished;
@@ -284,6 +294,7 @@ export interface IFullBlocksClient extends IHass {
 export interface IHass {
     callService(params: ICallServiceParams): Promise<State[]>;
     getEntity(id: string): HassEntity;
+    getServices(): Promise<Record<string, Record<string, Service>>>;
     getState(id: string): string;
 }
 

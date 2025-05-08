@@ -10,6 +10,8 @@
 export { initialiseBlocks } from './client/index.ts';
 export type { IBlocksConfig } from './client/index.ts';
 
+export { ExecutionAbortedError, HassBlocksError } from './errors/index.ts';
+
 export { Block } from './core/index.ts';
 
 export type {

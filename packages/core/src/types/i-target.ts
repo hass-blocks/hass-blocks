@@ -1,4 +1,4 @@
-import { AssertionError } from 'src/errors/assertion-error.ts';
+import { AssertionError } from '../errors/assertion-error.ts';
 import type { IHass } from './i-hass.ts';
 import type { ITargetIds } from './i-target-ids.ts';
 

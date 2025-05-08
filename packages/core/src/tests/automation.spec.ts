@@ -7,6 +7,7 @@ import {
   serviceCall,
   trigger,
 } from '../building-blocks/index.ts';
+import type { Service } from '@hass-blocks/hass-ts';
 
 const advanceTimersByTime = (time: number) => {
   vi.advanceTimersByTime(time);
@@ -21,15 +22,35 @@ afterEach(() => {
   vi.useRealTimers();
 });
 
+const testServices: Record<string, Record<string, Service>> = {
+  light: {
+    turn_on: {
+      name: 'Turn On',
+      description: 'turn light on',
+      response: {},
+      fields: {},
+    },
+    turn_off: {
+      name: 'Turn On',
+      description: 'turn light on',
+      response: {},
+      fields: {},
+    },
+  },
+};
+
 test('test a simple automation with just a series of actions', async () => {
-  const { blocks, hass } = await initialiseTestBlocks({ states: [] });
+  const { blocks, hass } = await initialiseTestBlocks({
+    states: [],
+    services: testServices,
+  });
 
   const triggerParams = {
     foo: 'bar',
   };
 
   const thereIsMotionInTheLivingRoom = trigger({
-    name: 'There is motion in the livdng room',
+    name: 'There is motion in the living room',
     trigger: triggerParams,
   });
 
@@ -94,6 +115,7 @@ test('assertions that return true does not block the rest of the sequence', asyn
         state: 'on',
       }),
     ],
+    services: testServices,
   });
 
   const triggerParams = {
@@ -169,6 +191,7 @@ test('assertions that return false does block the rest of the sequence', async (
         state: 'off',
       }),
     ],
+    services: testServices,
   });
 
   const triggerParams = {
@@ -244,6 +267,7 @@ test('state change part way through sequence is registered by assertions', async
         state: 'off',
       }),
     ],
+    services: testServices,
   });
 
   const triggerParams = {

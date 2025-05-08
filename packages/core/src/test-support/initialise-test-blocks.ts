@@ -1,4 +1,4 @@
-import {
+import type {
   CalendarDetails,
   CallServiceCommand,
   Event,
@@ -36,7 +36,10 @@ export class TestHassClient implements IClient {
     event: TriggerEventMessage['event'] | Event,
   ) => void)[] = [];
 
-  constructor(private states: State[]) {}
+  constructor(
+    private states: State[],
+    private services: Record<string, Record<string, Service>>,
+  ) {}
 
   async getStates(): Promise<State[]> {
     return this.states;
@@ -122,8 +125,8 @@ export class TestHassClient implements IClient {
   getConfig(): Promise<Config> {
     throw new Error('Method not implemented.');
   }
-  getServices(): Promise<Record<string, Service>> {
-    throw new Error('Method not implemented.');
+  async getServices(): Promise<Record<string, Record<string, Service>>> {
+    return this.services;
   }
   getServiceDomains(): Promise<ServiceDomainDetails[]> {
     throw new Error('Method not implemented.');
@@ -154,10 +157,13 @@ export class TestHassClient implements IClient {
  *
  * @param config - configuration for the test Hass Client
  */
-export const initialiseTestBlocks = async (config: { states: State[] }) => {
+export const initialiseTestBlocks = async (config: {
+  states: State[];
+  services: Record<string, Record<string, Service>>;
+}) => {
   process.env['HASS_HOST'] = 'localhost';
   process.env['HASS_TOKEN'] = 'token';
-  const testClient = new TestHassClient(config.states);
+  const testClient = new TestHassClient(config.states, config.services);
   return {
     blocks: await initialiseBlocks({
       client: testClient,

@@ -25,7 +25,22 @@ export const ifStateIs: (entityId: string, state: string) => Block<void, void>;
 export const ifStateIsNot: (entityId: string, state: string) => Block<void, void>;
 
 // @public
+export const openCover: (target: Which) => Block<void, void>;
+
+// @public
+export const playMedia: (target: Which, mediaContentId: string, mediaContentType: string) => Block<void, void>;
+
+// @public
 export const publishMessageToMqtt: (topic: string, payload: string) => Block<void, void>;
+
+// @public (undocumented)
+export const selectMediaPlayerSource: (target: Which, source: string) => Block<void, void>;
+
+// @public (undocumented)
+export const sendRemoteCommands: (target: Which, commands: string[]) => Block<void, void>;
+
+// @public
+export const setMediaPlayerVolume: (target: Which, volume: number) => Block<void, void>;
 
 // @public
 export const stateTurns: (entityId: string, onOrOff: "on" | "off") => ITrigger;
@@ -37,15 +52,28 @@ export const stopMediaPlayer: (target: Which) => Block<void, void>;
 export const switchLight: (target: Which, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public
+export const turnMediaPlayer: (target: Which, onOrOff: "on" | "off") => Block<void, void>;
+
+// @public
 export const turnSwitch: (target: Which, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public
 export const waitMinutes: (minutes: number) => Block<void, Promise<void>>;
 
 // @public
+export const waitSeconds: (seconds: number) => Block<void, Promise<void>>;
+
+// @public
+export const waitUntilState: (target: string, state: string, timeout?: number) => Block<void, Promise<void>>;
+
+// @public
+export const waitUntilStateIsNot: (target: string, state: string, timeout?: number) => Block<void, Promise<void>>;
+
+// @public
 export interface Which {
-    area_id?: string;
-    entity_id?: string;
+    area_id?: string | string[];
+    device_id?: string | string[];
+    entity_id?: string | string[];
 }
 
 // (No @packageDocumentation comment for this package)

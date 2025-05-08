@@ -5,13 +5,18 @@
  */
 export interface Which {
   /**
-   * Entity id of the service call
+   * Entity id or list of entity ids
    */
-  entity_id?: string;
+  entity_id?: string | string[];
 
   /**
-   * Area id of the service call - will normally apply the action to all associated
+   * Area id or list of area ids- will normally apply the action to all associated
    * entities within that area
    */
-  area_id?: string;
+  area_id?: string | string[];
+
+  /**
+   * Device id or list of device ids
+   */
+  device_id?: string | string[];
 }

@@ -2,6 +2,8 @@ import { serviceCall } from '@hass-blocks/core';
 import type { Which } from '../types/index.ts';
 
 /**
+ * @public
+ *
  * Change the volume level of a specific media player
  *
  * @param target - The entity or area id of the media player you want to target

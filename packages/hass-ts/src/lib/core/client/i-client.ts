@@ -1,4 +1,4 @@
-import {
+import type {
   Config,
   Event,
   Panel,
@@ -13,10 +13,10 @@ import {
   Service,
 } from '../../types/index.ts';
 
-import { GetHistoryParams } from './get-history-params.ts';
-import { GetLogbookParams } from './get-logbook-params.ts';
+import type { GetHistoryParams } from './get-history-params.ts';
+import type { GetLogbookParams } from './get-logbook-params.ts';
 
-import {
+import type {
   CallServiceCommand,
   TriggerEventMessage,
   SubscribeToTriggerMessage,

@@ -1,5 +1,5 @@
 import {
-  Tree,
+  type Tree,
   formatFiles,
   generateFiles,
   installPackagesTask,
@@ -7,7 +7,7 @@ import {
   readProjectConfiguration,
 } from '@nx/devkit';
 import { libraryGenerator } from '@nx/js';
-import { CreateLibrarySchema } from './schema.js';
+import type { CreateLibrarySchema } from './schema.js';
 
 const newLibrary = async (tree: Tree, schema: CreateLibrarySchema) => {
   const directory = `packages/${schema.name}`;

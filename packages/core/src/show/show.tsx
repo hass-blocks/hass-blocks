@@ -1,8 +1,8 @@
-import { EventBus } from '../core/index.ts';
+import type { EventBus } from '../core/index.ts';
 import { useState, useEffect } from 'react';
 import { StaticLogView } from './static-log-view.tsx';
 import { Box, Text } from 'ink';
-import { HassBlocksEvent } from '../types/index.ts';
+import type { HassBlocksEvent } from '../types/index.ts';
 import { SummaryView } from './summary-view.tsx';
 
 interface ShowProps {
@@ -12,6 +12,7 @@ interface ShowProps {
 export const Show = ({ staticLog, events }: ShowProps) => {
   const [logs, setLogs] = useState<(HassBlocksEvent & { id: string })[]>([]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     events.subscribe((event) => {
       if (event.eventType !== 'hass-state-changed') {

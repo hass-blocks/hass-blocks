@@ -1,7 +1,7 @@
 import { convertCamelCaseToUnderscoreCase } from '../../utils/index.ts';
 
-import { RestClient } from '../rest-client/index.ts';
-import {
+import type { RestClient } from '../rest-client/index.ts';
+import type {
   CallServiceCommand,
   GetAreasCommand,
   GetConfigCommand,
@@ -14,9 +14,9 @@ import {
   WebsocketClient,
 } from '../websocket-client/index.ts';
 
-import { IClient } from './i-client.ts';
+import type { IClient } from './i-client.ts';
 
-import {
+import type {
   CalendarDetails,
   Config,
   EventDetails,
@@ -30,9 +30,9 @@ import {
   HassDevice,
   Service,
 } from '../../types/index.ts';
-import { GetHistoryParams } from './get-history-params.ts';
-import { GetLogbookParams } from './get-logbook-params.ts';
-import {
+import type { GetHistoryParams } from './get-history-params.ts';
+import type { GetLogbookParams } from './get-logbook-params.ts';
+import type {
   TriggerEventMessage,
   SubscribeToTriggerMessage,
 } from '../websocket-client/index.ts';
@@ -267,15 +267,14 @@ export class Client implements IClient {
       callbackIfTypeIsSupplied === undefined
     ) {
       return { type: undefined, callback: typeOrCallback };
-    } else {
-      if (
-        typeof callbackIfTypeIsSupplied === 'function' &&
-        typeof typeOrCallback === 'string'
-      ) {
-        return { type: typeOrCallback, callback: callbackIfTypeIsSupplied };
-      }
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      return { type: undefined, callback: () => {} };
     }
+    if (
+      typeof callbackIfTypeIsSupplied === 'function' &&
+      typeof typeOrCallback === 'string'
+    ) {
+      return { type: typeOrCallback, callback: callbackIfTypeIsSupplied };
+    }
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    return { type: undefined, callback: () => {} };
   }
 }

@@ -1,10 +1,10 @@
-import {
+import type {
   IClient,
   Event,
   TriggerEventMessage,
   Service,
 } from '@hass-blocks/hass-ts';
-import {
+import type {
   HassEntity,
   IEventBus,
   ICallServiceParams,
@@ -14,7 +14,7 @@ import {
   EntityDoesNotExistError,
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
-import { IFullBlocksClient } from '../types/index.ts';
+import type { IFullBlocksClient } from '../types/index.ts';
 
 type StateChangedCallback = (
   event: Event | TriggerEventMessage['event'],
@@ -25,7 +25,7 @@ type StateChangedCallback = (
  */
 export class BlocksClient implements IFullBlocksClient {
   private states: Map<string, HassEntity> | undefined;
-  private services: Map<string, Service> | undefined;
+  private services: Record<string, Record<string, Service>> | undefined;
   private _automations: IBlock<unknown, unknown>[] = [];
   private stateChangedCallback: StateChangedCallback | undefined;
 
@@ -52,7 +52,7 @@ export class BlocksClient implements IFullBlocksClient {
 
   public async getServices() {
     if (!this.services) {
-      this.services = new Map(Object.entries(await this.client.getServices()));
+      this.services = await this.client.getServices();
     }
 
     return this.services;

@@ -1,4 +1,7 @@
-import { ApiDocumentedItem, ApiItem } from '@microsoft/api-extractor-model';
+import {
+  ApiDocumentedItem,
+  type ApiItem,
+} from '@microsoft/api-extractor-model';
 import { parseTsDoc } from './parse-ts-doc';
 
 export const getDocSummary = (item: ApiItem) => {

@@ -1,6 +1,6 @@
-import { BlockOutput } from '../types/index.ts';
+import type { BlockOutput } from '../types/index.ts';
 
-import { IHass } from '../types/index.ts';
+import type { IHass } from '../types/index.ts';
 import { Block } from './block.ts';
 
 import { mock } from 'vitest-mock-extended';

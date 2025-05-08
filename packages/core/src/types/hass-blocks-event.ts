@@ -1,7 +1,7 @@
-import { ITrigger } from './i-trigger.ts';
-import { Event } from '@hass-blocks/hass-ts';
-import { BlockOutput } from './block-output.ts';
-import { SerialisedBlock } from './serialised-block.ts';
+import type { ITrigger } from './i-trigger.ts';
+import type { Event } from '@hass-blocks/hass-ts';
+import type { BlockOutput } from './block-output.ts';
+import type { SerialisedBlock } from './serialised-block.ts';
 
 /**
  * @public

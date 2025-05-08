@@ -1,5 +1,5 @@
 import { serviceCall } from '@hass-blocks/core';
-import { Which } from '../types/which.ts';
+import type { Which } from '../types/which.ts';
 
 /**
  * @public

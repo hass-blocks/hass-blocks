@@ -1,6 +1,6 @@
 import { md5 } from '../utils/md5.ts';
-import { Executor, Block } from './index.ts';
-import { IEventBus, IFullBlocksClient, ITrigger } from '../types/index.ts';
+import { Executor, type Block } from './index.ts';
+import type { IEventBus, IFullBlocksClient, ITrigger } from '../types/index.ts';
 import { v4 } from 'uuid';
 
 /**

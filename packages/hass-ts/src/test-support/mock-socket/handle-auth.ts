@@ -1,6 +1,6 @@
-import { AuthRequiredMessageResponse } from '../../lib/core/index.ts';
+import type { AuthRequiredMessageResponse } from '../../lib/core/index.ts';
 import { send } from './send.ts';
-import { Socket } from './socket.ts';
+import type { Socket } from './socket.ts';
 
 let authedSessions: number[] = [];
 

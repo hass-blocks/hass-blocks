@@ -1,5 +1,5 @@
 import { v2 as compose } from 'docker-compose';
-import path from 'path';
+import path from 'node:path';
 import { generateDockerCompose } from './docker-compose-yaml-generator.ts';
 import getPort from 'get-port';
 import waitOn from 'wait-on';

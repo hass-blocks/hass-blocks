@@ -1,8 +1,8 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import {
   Extractor,
   ExtractorConfig,
-  ExtractorResult,
+  type ExtractorResult,
 } from '@microsoft/api-extractor';
 
 const apiExtractorJsonPath: string = path.join(

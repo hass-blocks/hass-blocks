@@ -5,7 +5,7 @@ import {
   Block,
 } from '../core/index.ts';
 
-import {
+import type {
   GetSequenceInput,
   GetSequenceOutput,
   BlockRetainType,
@@ -13,12 +13,12 @@ import {
 } from './valid-input-output-sequence.ts';
 
 import {
-  IEventBus,
-  BlockOutput,
-  IHass,
+  type IEventBus,
+  type BlockOutput,
+  type IHass,
   ExecutionMode,
-  ITrigger,
-  IBaseBlockConfig,
+  type ITrigger,
+  type IBaseBlockConfig,
 } from '../types/index.ts';
 
 import { ExecutionAbortedError } from '../errors/index.ts';
@@ -30,7 +30,7 @@ import { md5 } from '../utils/index.ts';
  * Configuration object for automation blocks
  */
 export interface IAutomationConfig<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: constraint
   A extends readonly any[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
@@ -52,7 +52,7 @@ export interface IAutomationConfig<
 }
 
 export class Automation<
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: type constraint
   const A extends readonly any[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
@@ -136,7 +136,7 @@ export class Automation<
  * or in parallel. When passed into
  */
 export const automation = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const A extends readonly any[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,

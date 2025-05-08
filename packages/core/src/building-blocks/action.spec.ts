@@ -1,4 +1,4 @@
-import { IHass } from '../types/index.ts';
+import type { IHass } from '../types/index.ts';
 import { Action } from './action.ts';
 import { mock } from 'vitest-mock-extended';
 

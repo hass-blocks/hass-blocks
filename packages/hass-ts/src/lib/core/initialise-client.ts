@@ -1,5 +1,5 @@
-import { HassConfig } from '../types/index.ts';
-import { Client, IClient } from './client/index.ts';
+import type { HassConfig } from '../types/index.ts';
+import { Client, type IClient } from './client/index.ts';
 import { WebsocketClient } from './websocket-client/index.ts';
 import { getLogger } from './get-logger.ts';
 import { RestClient } from './rest-client/index.ts';

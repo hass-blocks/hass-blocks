@@ -1,4 +1,4 @@
-import { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '../../types/index.ts';
 import { ExecutionLine } from '../execution-line/index.tsx';
 
 export interface ExecutionListProps {
@@ -9,6 +9,7 @@ export const ExecutionList = ({ events }: ExecutionListProps) =>
   Object.values(
     events.reduce<Record<string, LifeCycleEvent[]>>(
       (accum, event) => ({
+        // biome-ignore lint/performance/noAccumulatingSpread: <explanation>
         ...accum,
         [event.triggerId]: [...(accum[event.triggerId] ?? []), event].toSorted(
           (a, b) => (new Date(a.timestamp) > new Date(b.timestamp) ? 0 : 1),

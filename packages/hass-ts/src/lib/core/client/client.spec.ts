@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 import { when } from 'vitest-when';
 import { mock } from 'vitest-mock-extended';
 
-import {
+import type {
   CalendarDetails,
   Config,
   EventDetails,
@@ -13,12 +13,12 @@ import {
   State,
 } from '../../types/index.ts';
 
-import {
+import type {
   WebsocketClient,
   MessageFromServer,
   SubscribeToTriggerMessage,
 } from '../websocket-client/index.ts';
-import { RestClient } from '../rest-client/index.ts';
+import type { RestClient } from '../rest-client/index.ts';
 
 import { Client } from './client.ts';
 import { mockEventData } from './mock-event-data.ts';

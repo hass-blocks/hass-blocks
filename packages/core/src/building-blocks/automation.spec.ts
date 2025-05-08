@@ -4,14 +4,14 @@ import { when } from 'vitest-when';
 import {
   RunQueue,
   BlockExecutionMode,
-  EventBus,
+  type EventBus,
   Executor,
 } from '../core/index.ts';
 
-import { Action } from './action.ts';
+import type { Action } from './action.ts';
 import { Automation } from './automation.ts';
 
-import { IHass, ExecutionMode } from '../types/index.ts';
+import { type IHass, ExecutionMode } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
 
 vi.mock('../core/index.ts', async (importOriginal) => {

@@ -1,4 +1,4 @@
-import { IBlocksRegistry } from './i-blocks-registry.ts';
+import type { IBlocksRegistry } from './i-blocks-registry.ts';
 
 /**
  * @public

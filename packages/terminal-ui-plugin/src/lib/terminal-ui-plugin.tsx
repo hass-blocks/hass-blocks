@@ -1,4 +1,4 @@
-import { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
+import type { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
 import { render } from 'ink';
 import { AutomationList } from './components/automation-list/automation-list.tsx';
 

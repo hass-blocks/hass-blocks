@@ -1,8 +1,4 @@
 /**
  * @public
  */
-export class HassBlocksError extends Error {
-  public constructor(message: string) {
-    super(message);
-  }
-}
+export class HassBlocksError extends Error {}

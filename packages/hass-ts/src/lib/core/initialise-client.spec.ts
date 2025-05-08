@@ -1,7 +1,7 @@
 import { vi } from 'vitest';
 import { when } from 'vitest-when';
 
-import { Logger } from '../types/index.ts';
+import type { Logger } from '../types/index.ts';
 
 import { initialiseClient } from './initialise-client.ts';
 import { WebsocketClient } from './websocket-client/index.ts';

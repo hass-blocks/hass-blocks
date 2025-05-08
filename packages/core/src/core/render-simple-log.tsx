@@ -1,5 +1,5 @@
 import { render } from 'ink';
-import { EventBus } from './event-bus.ts';
+import type { EventBus } from './event-bus.ts';
 import { Show } from '../show/index.ts';
 
 /**

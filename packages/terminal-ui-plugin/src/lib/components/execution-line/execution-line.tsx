@@ -1,5 +1,5 @@
 import { Box, Text } from 'ink';
-import { LifeCycleEvent } from '../..//types/life-cycle-events.ts';
+import type { LifeCycleEvent } from '../..//types/life-cycle-events.ts';
 import Spinner from 'ink-spinner';
 
 interface ExecutionLineProps {

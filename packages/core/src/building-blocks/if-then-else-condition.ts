@@ -1,6 +1,6 @@
-import { EventBus, Block } from '../core/index.ts';
+import { type EventBus, Block } from '../core/index.ts';
 import { AssertionError } from '../errors/index.ts';
-import { BlockOutput, IHass } from '../types/index.ts';
+import type { BlockOutput, IHass } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**

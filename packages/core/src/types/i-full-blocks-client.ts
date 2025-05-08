@@ -1,5 +1,5 @@
-import { IBlock } from './i-block.ts';
-import { IHass } from './i-hass.ts';
+import type { IBlock } from './i-block.ts';
+import type { IHass } from './i-hass.ts';
 
 /**
  * @public

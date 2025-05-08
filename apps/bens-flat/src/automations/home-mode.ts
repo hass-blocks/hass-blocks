@@ -37,7 +37,7 @@ import {
 import {
   homeBecomesEmpty,
   homeModeTurnsOff,
-  homeModeTurnsOn,
+  // homeModeTurnsOn,
 } from '../triggers/index.ts';
 
 const {
@@ -96,8 +96,8 @@ export const whenIGoOut = automation({
   ],
 });
 
-export const whenIGetHome = automation({
-  name: 'When I get home',
-  when: homeModeTurnsOn,
-  then: [],
-});
+// export const whenIGetHome = automation({
+//   name: 'When I get home',
+//   when: homeModeTurnsOn,
+//   then: [],
+// });

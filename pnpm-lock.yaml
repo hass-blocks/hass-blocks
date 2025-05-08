@@ -174,9 +174,6 @@ importers:
       docusaurus-plugin-api-extractor-markdown-documenter:
         specifier: ^0.3.4
         version: 0.3.4(@types/node@22.14.1)
-      eslint:
-        specifier: 9.8.0
-        version: 9.8.0
       eslint-config-prettier:
         specifier: 10.0.0
         version: 10.0.0(eslint@9.8.0)

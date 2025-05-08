@@ -1,4 +1,4 @@
-import { IBlock } from './i-block.ts';
+import type { IBlock } from './i-block.ts';
 
 /**
  * @public

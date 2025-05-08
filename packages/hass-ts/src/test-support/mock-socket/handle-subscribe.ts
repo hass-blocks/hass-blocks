@@ -1,9 +1,9 @@
 import { mockEventData } from '../../lib/core/client/index.ts';
 import { delay } from '../index.ts';
 
-import { Socket } from './socket.ts';
+import type { Socket } from './socket.ts';
 import { send } from './send.ts';
-import { SubscribeToEventsMessage } from '../../lib/core/index.ts';
+import type { SubscribeToEventsMessage } from '../../lib/core/index.ts';
 
 export const handleSubscribe = async (
   socket: Socket,

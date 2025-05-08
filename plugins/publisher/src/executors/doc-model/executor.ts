@@ -1,4 +1,4 @@
-import { PromiseExecutor, logger } from '@nx/devkit';
+import { type PromiseExecutor, logger } from '@nx/devkit';
 import { apiExtractor } from '../../lib/api-extractor.ts';
 import type { DocModelExecutorSchema } from './schema.js';
 

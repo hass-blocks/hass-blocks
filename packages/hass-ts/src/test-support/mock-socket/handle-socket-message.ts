@@ -1,9 +1,9 @@
-import { MessageToServer } from '../../lib/core/index.ts';
+import type { MessageToServer } from '../../lib/core/index.ts';
 import { safeJsonParse } from '../../lib/utils/index.ts';
 
 import { handleAuth } from './handle-auth.ts';
 import { handleHello } from './handle-hello.ts';
-import { Socket } from './socket.ts';
+import type { Socket } from './socket.ts';
 import { handleSubscribe } from './handle-subscribe.ts';
 import { handleThrow } from './handle-throw.ts';
 

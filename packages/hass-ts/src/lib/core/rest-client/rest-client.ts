@@ -1,5 +1,5 @@
 import { HTTP } from '../index.ts';
-import { Logger } from '../../types/index.ts';
+import type { Logger } from '../../types/index.ts';
 import { normalisePath, safeJsonParse } from '../../utils/index.ts';
 import { HassHttpError } from '../errors/index.ts';
 

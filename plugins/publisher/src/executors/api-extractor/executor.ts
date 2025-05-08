@@ -1,4 +1,4 @@
-import { PromiseExecutor, logger } from '@nx/devkit';
+import { type PromiseExecutor, logger } from '@nx/devkit';
 import type { ApiExtractorExecutorSchema } from './schema.ts';
 import { apiExtractor } from '../../lib/api-extractor.ts';
 
@@ -27,16 +27,15 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
     return {
       success: true,
     };
-  } else {
-    logger.error(
-      `API extractor completed with ${String(
-        result.errorCount,
-      )} errors and ${String(result.warningCount)} warnings`,
-    );
-    return {
-      success: false,
-    };
   }
+  logger.error(
+    `API extractor completed with ${String(
+      result.errorCount,
+    )} errors and ${String(result.warningCount)} warnings`,
+  );
+  return {
+    success: false,
+  };
 };
 
 export default runExecutor;

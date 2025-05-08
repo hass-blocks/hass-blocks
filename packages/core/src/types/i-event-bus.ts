@@ -1,4 +1,4 @@
-import { HassBlocksEvent } from './hass-blocks-event.ts';
+import type { HassBlocksEvent } from './hass-blocks-event.ts';
 
 /**
  * @public

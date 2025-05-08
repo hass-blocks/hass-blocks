@@ -1,6 +1,6 @@
-import { IBlock } from './i-block.ts';
-import { IEventBus } from './i-event-bus.ts';
-import { IFullBlocksClient } from './i-full-blocks-client.ts';
+import type { IBlock } from './i-block.ts';
+import type { IEventBus } from './i-event-bus.ts';
+import type { IFullBlocksClient } from './i-full-blocks-client.ts';
 
 /**
  * @public

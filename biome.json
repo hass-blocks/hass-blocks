@@ -1,9 +1,15 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "linter": {
+    "ignore": [".nx", ".astro", "dist", "out-tsc"],
+
     "rules": {
       "complexity": {
+        "noForEach": "off",
         "useLiteralKeys": "off"
+      },
+      "style": {
+        "noUnusedTemplateLiteral": "off"
       },
       "suspicious": {
         "noThenProperty": "off"

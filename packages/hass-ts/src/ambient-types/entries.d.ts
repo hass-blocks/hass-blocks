@@ -1,4 +1,4 @@
-import { Entries } from 'type-fest';
+import type { Entries } from 'type-fest';
 
 declare global {
   interface ObjectConstructor {

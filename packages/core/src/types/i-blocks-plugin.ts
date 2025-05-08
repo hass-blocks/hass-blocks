@@ -1,6 +1,6 @@
-import { HassConfig } from '@hass-blocks/hass-ts';
-import { IFullBlocksClient } from './i-full-blocks-client.ts';
-import { IEventBus } from './i-event-bus.ts';
+import type { HassConfig } from '@hass-blocks/hass-ts';
+import type { IFullBlocksClient } from './i-full-blocks-client.ts';
+import type { IEventBus } from './i-event-bus.ts';
 
 /**
  * @public

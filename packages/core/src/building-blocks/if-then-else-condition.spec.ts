@@ -1,10 +1,10 @@
 import { when } from './if-then-else-condition.ts';
-import { Assertion } from './assertion.ts';
+import type { Assertion } from './assertion.ts';
 import { when as testWhen } from 'vitest-when';
-import { Block } from '../core/index.ts';
+import type { Block } from '../core/index.ts';
 import { mock } from 'vitest-mock-extended';
 import { EventBus } from '../core/index.ts';
-import { ContinueOutput, IHass } from '../types/index.ts';
+import type { ContinueOutput, IHass } from '../types/index.ts';
 
 vi.mock('../utils/index.ts');
 

@@ -1,6 +1,6 @@
 import { mock } from 'vitest-mock-extended';
 
-import { Logger } from '../../types/index.ts';
+import type { Logger } from '../../types/index.ts';
 import {
   TEST_HASS_HOST,
   TEST_HASS_PORT,

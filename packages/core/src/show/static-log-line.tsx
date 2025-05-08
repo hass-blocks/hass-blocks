@@ -1,4 +1,4 @@
-import { HassBlocksEvent } from '../types/index.ts';
+import type { HassBlocksEvent } from '../types/index.ts';
 import { Box, Text } from 'ink';
 
 interface StaticLogLineProps {

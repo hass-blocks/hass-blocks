@@ -2,10 +2,10 @@ import { Stack } from 'aws-cdk-lib';
 import {
   Certificate,
   CertificateValidation,
-  ICertificate,
+  type ICertificate,
 } from 'aws-cdk-lib/aws-certificatemanager';
 import { HostedZone } from 'aws-cdk-lib/aws-route53';
-import { Construct } from 'constructs';
+import type { Construct } from 'constructs';
 
 interface CertificateStackProps {
   env: {

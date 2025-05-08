@@ -1,8 +1,8 @@
 import { Queue } from 'queue-typescript';
-import EventEmitter from 'events';
+import EventEmitter from 'node:events';
 import { v4 } from 'uuid';
 
-import {
+import type {
   BlockOutput,
   Runnable,
   IHass,
@@ -10,7 +10,7 @@ import {
   HassBlocksEvent,
 } from '../types/index.ts';
 import { ExecutionAbortedError } from '../errors/index.ts';
-import { Block } from './block.ts';
+import type { Block } from './block.ts';
 
 const EXECUTOR_FINISHED = 'executor-finished';
 const EXECUTOR_ABORTED = 'executor-aborted';

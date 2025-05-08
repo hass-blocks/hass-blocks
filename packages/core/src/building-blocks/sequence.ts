@@ -1,6 +1,6 @@
 import { ExecutionMode } from '../types/index.ts';
 
-import {
+import type {
   ValidInputOutputSequence,
   BlockRetainType,
   GetSequenceInput,
@@ -8,7 +8,7 @@ import {
 } from './valid-input-output-sequence.ts';
 
 import { automation } from './automation.ts';
-import { Block } from '../core/index.ts';
+import type { Block } from '../core/index.ts';
 
 /**
  * @public
@@ -17,7 +17,7 @@ import { Block } from '../core/index.ts';
  * in parallel
  */
 export const sequence = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   const A extends readonly any[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,

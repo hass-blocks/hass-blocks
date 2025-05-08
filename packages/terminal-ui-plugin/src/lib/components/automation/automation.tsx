@@ -1,6 +1,6 @@
-import { IBlock } from '@hass-blocks/core';
+import type { IBlock } from '@hass-blocks/core';
 import { Box, Text } from 'ink';
-import { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '../../types/index.ts';
 import { ExecutionList } from '../execution-list/execution-list.tsx';
 import { ExecutionLine } from '../execution-line/index.ts';
 

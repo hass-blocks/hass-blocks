@@ -1,6 +1,6 @@
 import { mock } from 'vitest-mock-extended';
 import { getLogger } from './get-logger.ts';
-import { Logger } from '../types/index.ts';
+import type { Logger } from '../types/index.ts';
 import { vi } from 'vitest';
 
 afterEach(() => {

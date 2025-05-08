@@ -1,5 +1,5 @@
 import { Stack } from 'aws-cdk-lib';
-import { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import type { ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import { Distribution, ViewerProtocolPolicy } from 'aws-cdk-lib/aws-cloudfront';
 import { S3StaticWebsiteOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import {
@@ -11,8 +11,8 @@ import {
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
-import { Construct } from 'constructs';
-import { join } from 'path';
+import type { Construct } from 'constructs';
+import { join } from 'node:path';
 
 interface DocsStackProps {
   env: {

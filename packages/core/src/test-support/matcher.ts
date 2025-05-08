@@ -1,5 +1,5 @@
-import { TestHassClient } from './initialise-test-blocks.ts';
-import { CallServiceCommand } from '@hass-blocks/hass-ts';
+import type { TestHassClient } from './initialise-test-blocks.ts';
+import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import 'vitest';
 
 interface CustomMatchers<R = unknown> {
@@ -9,7 +9,7 @@ interface CustomMatchers<R = unknown> {
 }
 
 declare module 'vitest' {
-  // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   interface Assertion<T = any> extends CustomMatchers<T> {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface

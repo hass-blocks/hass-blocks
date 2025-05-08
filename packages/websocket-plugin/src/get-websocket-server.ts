@@ -1,7 +1,7 @@
 import { Server } from 'socket.io';
-import { createServer } from 'http';
-import { IBlock, IEventBus } from '@hass-blocks/core';
-import { CorsOptions } from './cors-options.ts';
+import { createServer } from 'node:http';
+import type { IBlock, IEventBus } from '@hass-blocks/core';
+import type { CorsOptions } from './cors-options.ts';
 import { SOCKET_EVENT_NAME } from './constants.ts';
 
 interface ServerProps {

@@ -1,5 +1,5 @@
 import { Block } from '../core/index.ts';
-import {
+import type {
   BlockOutput,
   IHass,
   IEventBus,

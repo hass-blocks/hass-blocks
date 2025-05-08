@@ -1,13 +1,13 @@
-import {
+import type {
   AuthInvalidMessage,
   AuthOkMessage,
   AuthRequiredMessage,
 } from './auth.ts';
-import { ErrorResult } from './error-result.ts';
-import { EventMessage } from './event-message.ts';
-import { Result } from './result.ts';
-import { TestArbitraryMessage } from './test-arbitrary-message.ts';
-import { TriggerEventMessage } from './trigger-event-message.ts';
+import type { ErrorResult } from './error-result.ts';
+import type { EventMessage } from './event-message.ts';
+import type { Result } from './result.ts';
+import type { TestArbitraryMessage } from './test-arbitrary-message.ts';
+import type { TriggerEventMessage } from './trigger-event-message.ts';
 
 export type MessageFromServer<T = unknown> =
   | AuthRequiredMessage

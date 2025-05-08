@@ -1,8 +1,8 @@
-import { IBlock, IEventBus } from '@hass-blocks/core';
-import { IFullBlocksClient } from '@hass-blocks/core';
+import type { IBlock, IEventBus } from '@hass-blocks/core';
+import type { IFullBlocksClient } from '@hass-blocks/core';
 import { useEffect, useState } from 'react';
 import { Automation } from '../automation/automation.tsx';
-import { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '../../types/index.ts';
 import { Box } from 'ink';
 
 interface AutomationListProps {
@@ -15,6 +15,7 @@ export const AutomationList = ({ hass, bus }: AutomationListProps) => {
     [],
   );
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     bus.subscribe((event) => {
       if (
@@ -28,6 +29,7 @@ export const AutomationList = ({ hass, bus }: AutomationListProps) => {
     });
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     bus.subscribe((event) => {
       if (event.eventType === 'automation-registered') {

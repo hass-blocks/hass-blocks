@@ -2,7 +2,7 @@ import WebSocket from 'ws';
 
 import { normalisePath, safeJsonParse } from '../../utils/index.ts';
 
-import {
+import type {
   ErrorResult,
   MessageFromServer,
   MessageToServer,
@@ -11,7 +11,7 @@ import {
 
 import { HassTsError, ErrorResponseError } from '../errors/index.ts';
 
-import { Logger } from '../../types/index.ts';
+import type { Logger } from '../../types/index.ts';
 import { ERRORS } from '../constants.ts';
 
 export class WebsocketClient {

@@ -1,8 +1,8 @@
-import { BlockOutput } from './block-output.ts';
-import { IEventBus } from './i-event-bus.ts';
-import { IHass } from './i-hass.ts';
-import { ITrigger } from './i-trigger.ts';
-import { SerialisedBlock } from './serialised-block.ts';
+import type { BlockOutput } from './block-output.ts';
+import type { IEventBus } from './i-event-bus.ts';
+import type { IHass } from './i-hass.ts';
+import type { ITrigger } from './i-trigger.ts';
+import type { SerialisedBlock } from './serialised-block.ts';
 
 /**
  * @public

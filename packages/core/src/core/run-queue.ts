@@ -1,5 +1,5 @@
 import { ExecutionAbortedError } from '../errors/index.ts';
-import { Runnable } from '../types/index.ts';
+import type { Runnable } from '../types/index.ts';
 import { Queue } from 'queue-typescript';
 
 export class RunQueue {

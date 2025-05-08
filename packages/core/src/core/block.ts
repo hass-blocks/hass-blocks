@@ -1,4 +1,4 @@
-import {
+import type {
   BlockOutput,
   IEventBus,
   IBlock,

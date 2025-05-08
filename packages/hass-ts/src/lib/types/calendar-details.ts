@@ -1,5 +1,6 @@
 /**
  * @public
  */
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface
-export interface CalendarDetails {}
+
+// biome-ignore lint/complexity/noBannedTypes: <explanation>
+export type CalendarDetails = {};

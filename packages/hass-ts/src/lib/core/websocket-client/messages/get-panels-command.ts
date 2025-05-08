@@ -1,4 +1,4 @@
-import { Command } from './command.ts';
+import type { Command } from './command.ts';
 
 export interface GetPanelsCommand extends Command {
   type: 'get_panels';

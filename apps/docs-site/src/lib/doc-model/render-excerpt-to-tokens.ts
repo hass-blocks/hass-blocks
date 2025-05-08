@@ -1,5 +1,5 @@
 import {
-  ApiItem,
+  type ApiItem,
   ExcerptTokenKind,
   type Excerpt,
 } from '@microsoft/api-extractor-model';

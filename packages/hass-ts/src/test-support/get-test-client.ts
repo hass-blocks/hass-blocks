@@ -1,7 +1,7 @@
 import { initialiseClient } from './package-intercept.ts';
 import { getConfig } from '../lib/core/index.ts';
 import { inject } from 'vitest';
-import { Logger } from '../lib/index.ts';
+import type { Logger } from '../lib/index.ts';
 
 export const clientBuilder = () => {
   let started = false;

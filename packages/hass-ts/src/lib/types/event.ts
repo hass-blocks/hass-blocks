@@ -1,5 +1,5 @@
-import { Context } from './context.ts';
-import { State } from './state.ts';
+import type { Context } from './context.ts';
+import type { State } from './state.ts';
 
 /**
  * @public

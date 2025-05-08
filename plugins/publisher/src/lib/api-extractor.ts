@@ -2,11 +2,11 @@ import {
   Extractor,
   ExtractorConfig,
   ExtractorLogLevel,
-  IConfigFile,
-  IExtractorConfigPrepareOptions,
+  type IConfigFile,
+  type IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';
 import { workspaceRoot } from '@nx/devkit';
-import { basename, join } from 'path';
+import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 
 interface ApiExractorArgs {

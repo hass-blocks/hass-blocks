@@ -1,12 +1,12 @@
-import { GetOutputs } from './valid-input-output-sequence.ts';
+import type { GetOutputs } from './valid-input-output-sequence.ts';
 
 import {
-  EventBus,
+  type EventBus,
   BlockExecutionMode,
   Executor,
   Block,
 } from '../core/index.ts';
-import { BlockOutput, IHass } from '../types/index.ts';
+import type { BlockOutput, IHass } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 class ExecuteConcurrently<

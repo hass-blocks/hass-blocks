@@ -1,5 +1,5 @@
-import EventEmitter from 'events';
-import { HassBlocksEvent, IEventBus } from '../types/index.ts';
+import EventEmitter from 'node:events';
+import type { HassBlocksEvent, IEventBus } from '../types/index.ts';
 import { v4 } from 'uuid';
 
 const AUTOMATION_EVENT = 'AUTOMATION_EVENT';

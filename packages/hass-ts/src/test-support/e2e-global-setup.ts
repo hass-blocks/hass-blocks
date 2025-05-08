@@ -2,7 +2,7 @@ import { getPackageName } from './get-package-name.ts';
 import { hass } from '@hass-blocks/local-hass';
 import type { TestProject } from 'vitest/node';
 import { $ } from 'execa';
-import { join } from 'path';
+import { join } from 'node:path';
 
 declare module 'vitest' {
   export interface ProvidedContext {

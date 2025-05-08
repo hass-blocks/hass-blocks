@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest';
-import { createServer } from 'http';
+import type { createServer } from 'node:http';
 import { io as Client } from 'socket.io-client';
 import { getWebsocketServer } from './get-websocket-server.ts';
 import { mock } from 'vitest-mock-extended';
 
-import {
+import type {
   IFullBlocksClient,
   IBlock,
   IEventBus,

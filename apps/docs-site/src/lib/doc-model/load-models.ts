@@ -1,6 +1,6 @@
 import { ApiModel } from '@microsoft/api-extractor-model';
-import { readdir } from 'fs/promises';
-import { join } from 'path';
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
 export const loadModels = async (folder: string) => {
   const model = new ApiModel();

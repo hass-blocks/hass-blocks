@@ -1,5 +1,5 @@
-import { IEventBus } from '@hass-blocks/core';
-import { LifeCycleEvent } from '../../types/index.ts';
+import type { IEventBus } from '@hass-blocks/core';
+import type { LifeCycleEvent } from '../../types/index.ts';
 import { useEffect, useState } from 'react';
 import { ExecutionList } from '../execution-list/execution-list.tsx';
 
@@ -10,6 +10,7 @@ export interface ExecutionLinesProps {
 export const ExecutionLines = ({ eventBus }: ExecutionLinesProps) => {
   const [events, setEvents] = useState<LifeCycleEvent[]>([]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     eventBus.subscribe((event) => {
       if (

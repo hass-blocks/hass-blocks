@@ -26,7 +26,7 @@ export interface IHass {
   /**
    * Get a list of registered services from Home Assistant
    */
-  getServices(): Promise<Map<string, Service>>;
+  getServices(): Promise<Record<string, Record<string, Service>>>;
 
   /**
    * Call a service on the Home Assistant API

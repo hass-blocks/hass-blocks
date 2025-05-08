@@ -27,7 +27,7 @@ export type HassEventBase = {
  */
 export type HassEvent = HassEventBase & {
   event_type: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   data: { [key: string]: any };
 };
 
@@ -81,6 +81,6 @@ export type HassEntityAttributeBase = {
  * A Home Assistant entity
  */
 export type HassEntity = HassEntityBase & {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   attributes: { [key: string]: any };
 };

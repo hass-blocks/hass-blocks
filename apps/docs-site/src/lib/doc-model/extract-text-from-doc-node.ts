@@ -1,4 +1,4 @@
-import { DocExcerpt, DocNode } from '@microsoft/tsdoc';
+import { DocExcerpt, type DocNode } from '@microsoft/tsdoc';
 
 export const extractTextFromDocNode = (node: DocNode | undefined): string => {
   if (!node) {

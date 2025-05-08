@@ -2,6 +2,7 @@ import { Action } from './action.ts';
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import type { IHass } from '../types/index.ts';
 import { BlockValidationError } from '../errors/index.ts';
+import type { Block } from '../core/index.ts';
 
 class ServiceCall extends Action {
   public override typeString = 'service-call';

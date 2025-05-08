@@ -65,10 +65,10 @@ export const waitMinutes: (minutes: number) => Block<void, Promise<void>>;
 export const waitSeconds: (seconds: number) => Block<void, Promise<void>>;
 
 // @public
-export const waitUntilState: (target: string, state: string, timeout?: number) => Block<void, Promise<void>>;
+export const waitUntilState: (target: ITarget, state: string, timeout?: number) => Block<void, Promise<void>>;
 
 // @public
-export const waitUntilStateIsNot: (target: string, state: string, timeout?: number) => Block<void, Promise<void>>;
+export const waitUntilStateIsNot: (target: ITarget, state: string, timeout?: number) => Block<void, Promise<void>>;
 
 // (No @packageDocumentation comment for this package)
 

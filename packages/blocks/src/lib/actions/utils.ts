@@ -1,4 +1,9 @@
-import { action, HassBlocksError, type IHass } from '@hass-blocks/core';
+import {
+  action,
+  HassBlocksError,
+  type ITarget,
+  type IHass,
+} from '@hass-blocks/core';
 import { waitInSeconds, waitInMinutes } from '../utils/index.ts';
 
 /**
@@ -41,15 +46,20 @@ export const waitSeconds = (seconds: number) =>
  * Given an entity id and a state value, this block will pause
  * execution of a given sequence until the entity id has that state.
  *
- * @param target - The entity id to monitor
+ * @param target - The entity to monitor
  * @param state - The targeted state
  * @param timeout - Wait timeout
  */
 export const waitUntilState = (
-  target: string,
+  target: ITarget,
   state: string,
   timeout?: number,
 ) => {
+  if (!target.targetIds) {
+    throw new HassBlocksError(
+      `waitUntilState needs target to supply entity ids`,
+    );
+  }
   const waitForState = async (
     target: string,
     client: IHass,
@@ -64,15 +74,23 @@ export const waitUntilState = (
   return action({
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     callback: async (client) => {
-      const timeoutPromise = waitInMinutes(timeout ?? 10);
-      const stateWaitPromise = waitForState(target, client, state);
-      await Promise.race([timeoutPromise, stateWaitPromise]);
-      const finalState = client.getState(target);
-      if (state !== finalState) {
-        throw new HassBlocksError(
-          `${target} did not get state ${state} after ${timeout} minutes`,
-        );
-      }
+      const { entity_id } = target.targetIds;
+      const ids = (Array.isArray(entity_id) ? entity_id : [entity_id]).flatMap(
+        (id) => (id ? [id] : []),
+      );
+      await Promise.all(
+        ids?.map(async (id) => {
+          const timeoutPromise = waitInMinutes(timeout ?? 10);
+          const stateWaitPromise = waitForState(id, client, state);
+          await Promise.race([timeoutPromise, stateWaitPromise]);
+          const finalState = client.getState(id);
+          if (state !== finalState) {
+            throw new HassBlocksError(
+              `${target} did not get state ${state} after ${timeout} minutes`,
+            );
+          }
+        }),
+      );
     },
   });
 };
@@ -89,10 +107,15 @@ export const waitUntilState = (
  * @param timeout - Wait timeout
  */
 export const waitUntilStateIsNot = (
-  target: string,
+  target: ITarget,
   state: string,
   timeout?: number,
 ) => {
+  if (!target.targetIds) {
+    throw new HassBlocksError(
+      `waitUntilStateIsNot needs target to supply entity ids`,
+    );
+  }
   const waitForState = async (
     target: string,
     client: IHass,
@@ -107,15 +130,23 @@ export const waitUntilStateIsNot = (
   return action({
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     callback: async (client) => {
-      const timeoutPromise = waitInMinutes(timeout ?? 10);
-      const stateWaitPromise = waitForState(target, client, state);
-      await Promise.race([timeoutPromise, stateWaitPromise]);
-      const finalState = client.getState(target);
-      if (state === finalState) {
-        throw new HassBlocksError(
-          `${target} still had state ${state} after ${timeout} minutes`,
-        );
-      }
+      const { entity_id } = target.targetIds;
+      const ids = (Array.isArray(entity_id) ? entity_id : [entity_id]).flatMap(
+        (id) => (id ? [id] : []),
+      );
+      await Promise.all(
+        ids?.map(async (id) => {
+          const timeoutPromise = waitInMinutes(timeout ?? 10);
+          const stateWaitPromise = waitForState(id, client, state);
+          await Promise.race([timeoutPromise, stateWaitPromise]);
+          const finalState = client.getState(id);
+          if (state === finalState) {
+            throw new HassBlocksError(
+              `${target} still had state ${state} after ${timeout} minutes`,
+            );
+          }
+        }),
+      );
     },
   });
 };

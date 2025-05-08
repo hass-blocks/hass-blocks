@@ -15,13 +15,13 @@ export const entities = {
   hallwayMotionSensor: entity('switch.hallway_motion_sensor'),
   livingRoomSpeaker: entity('media_player.sonos_arc_ultra'),
   sleepMode: entity('switch.sleep_mode'),
-  tv: entity('media_player.lg_webos_smart_tv'),
+  tv: entity('media_player.lg_webos_tv'),
   tvMode: entity('switch.tvMode'),
   visitorMode: entity('switch.visitor_mode'),
   allSpeakers: entity(
     'media_player.bedroom_speaker',
     'media_player.sonos_arc_ultra',
   ),
-  appleTv: entity('media_player.apple_tv'),
+  appleTv: entity('media_player.bens_apple_tv'),
   homeMode: entity('switch.home_mode'),
 };

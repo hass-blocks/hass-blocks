@@ -33,10 +33,10 @@ export const playMedia: (target: Which, mediaContentId: string, mediaContentType
 // @public
 export const publishMessageToMqtt: (topic: string, payload: string) => Block<void, void>;
 
-// @public (undocumented)
+// @public
 export const selectMediaPlayerSource: (target: Which, source: string) => Block<void, void>;
 
-// @public (undocumented)
+// @public
 export const sendRemoteCommands: (target: Which, commands: string[]) => Block<void, void>;
 
 // @public

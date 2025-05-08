@@ -4,7 +4,7 @@
 
 ```ts
 
-import { IBlocksPlugin } from '@hass-blocks/core';
+import type { IBlocksPlugin } from '@hass-blocks/core';
 
 // @public
 export const websocketServer: (config: WebsocketServerPluginConfig) => IBlocksPlugin;

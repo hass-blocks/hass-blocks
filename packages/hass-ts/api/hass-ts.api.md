@@ -5,8 +5,7 @@
 ```ts
 
 // @public (undocumented)
-export interface CalendarDetails {
-}
+export type CalendarDetails = {};
 
 // @public
 export interface CallServiceCommand extends Command {

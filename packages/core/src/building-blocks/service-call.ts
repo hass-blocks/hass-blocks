@@ -24,10 +24,9 @@ class ServiceCall extends Action {
     const services = await client.getServices();
 
     const { domain, service } = this.serviceConfig.params;
+    const theService = services?.[domain]?.[service];
 
-    const theServiceDefinition = services.get(`${domain}.${service}`);
-
-    if (!theServiceDefinition) {
+    if (!theService) {
       throw new BlockValidationError(
         `${domain}.${service} was not registered with Home Assistant`,
       );

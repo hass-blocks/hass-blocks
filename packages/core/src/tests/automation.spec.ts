@@ -7,7 +7,8 @@ import {
   serviceCall,
   trigger,
 } from '../building-blocks/index.ts';
-import type { Service } from '@hass-blocks/hass-ts';
+import type { Service, State } from '@hass-blocks/hass-ts';
+import { entity } from '../core/index.ts';
 
 const advanceTimersByTime = (time: number) => {
   vi.advanceTimersByTime(time);
@@ -21,6 +22,17 @@ beforeEach(() => {
 afterEach(() => {
   vi.useRealTimers();
 });
+
+const testStates: State[] = [
+  mock({
+    entity_id: 'light.living_room',
+    state: 'on',
+  }),
+  mock({
+    entity_id: 'switch.living_room',
+    state: 'on',
+  }),
+];
 
 const testServices: Record<string, Record<string, Service>> = {
   light: {
@@ -41,7 +53,7 @@ const testServices: Record<string, Record<string, Service>> = {
 
 test('test a simple automation with just a series of actions', async () => {
   const { blocks, hass } = await initialiseTestBlocks({
-    states: [],
+    states: testStates,
     services: testServices,
   });
 
@@ -54,25 +66,23 @@ test('test a simple automation with just a series of actions', async () => {
     trigger: triggerParams,
   });
 
+  const livingRoomLight = entity('light.living_room');
+
   const turnLightsOn = serviceCall({
     name: 'Turn on living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_on',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
   const turnLightsOff = serviceCall({
     name: 'Turn on living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_off',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
@@ -95,7 +105,7 @@ test('test a simple automation with just a series of actions', async () => {
   await expect(hass).toHaveHadServiceCallWithParams({
     domain: 'light',
     service: 'turn_on',
-    target: { entity_id: 'light.living_room' },
+    target: { entity_id: ['light.living_room'] },
   });
 
   await advanceTimersByTime(1_000 * 60 * 11);
@@ -103,18 +113,13 @@ test('test a simple automation with just a series of actions', async () => {
   await expect(hass).toHaveHadServiceCallWithParams({
     domain: 'light',
     service: 'turn_off',
-    target: { entity_id: 'light.living_room' },
+    target: { entity_id: ['light.living_room'] },
   });
 });
 
 test('assertions that return true does not block the rest of the sequence', async () => {
   const { blocks, hass } = await initialiseTestBlocks({
-    states: [
-      mock({
-        entity_id: 'switch.living_room',
-        state: 'on',
-      }),
-    ],
+    states: testStates,
     services: testServices,
   });
 
@@ -122,25 +127,23 @@ test('assertions that return true does not block the rest of the sequence', asyn
     foo: 'bar',
   };
 
+  const livingRoomLight = entity('light.living_room');
+
   const turnLightsOn = serviceCall({
     name: 'Turn on living room lights',
     params: {
       domain: 'light',
       service: 'turn_on',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
+    target: livingRoomLight,
   });
 
   const turnLightsOff = serviceCall({
     name: 'Turn off living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_off',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
@@ -170,7 +173,7 @@ test('assertions that return true does not block the rest of the sequence', asyn
     domain: 'light',
     service: 'turn_on',
     target: {
-      entity_id: 'light.living_room',
+      entity_id: ['light.living_room'],
     },
   });
 
@@ -178,19 +181,14 @@ test('assertions that return true does not block the rest of the sequence', asyn
     domain: 'light',
     service: 'turn_off',
     target: {
-      entity_id: 'light.living_room',
+      entity_id: ['light.living_room'],
     },
   });
 });
 
 test('assertions that return false does block the rest of the sequence', async () => {
   const { blocks, hass } = await initialiseTestBlocks({
-    states: [
-      mock({
-        entity_id: 'switch.living_room',
-        state: 'off',
-      }),
-    ],
+    states: testStates,
     services: testServices,
   });
 
@@ -198,25 +196,23 @@ test('assertions that return false does block the rest of the sequence', async (
     foo: 'bar',
   };
 
+  const livingRoomLight = entity('light.living_room');
+
   const turnLightsOn = serviceCall({
     name: 'Turn on living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_on',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
   const turnLightsOff = serviceCall({
     name: 'Turn off living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_off',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
@@ -246,7 +242,7 @@ test('assertions that return false does block the rest of the sequence', async (
     domain: 'light',
     service: 'turn_on',
     target: {
-      entity_id: 'light.living_room',
+      entity_id: ['light.living_room'],
     },
   });
 
@@ -261,12 +257,7 @@ test('assertions that return false does block the rest of the sequence', async (
 
 test('state change part way through sequence is registered by assertions', async () => {
   const { blocks, hass } = await initialiseTestBlocks({
-    states: [
-      mock({
-        entity_id: 'switch.living_room',
-        state: 'off',
-      }),
-    ],
+    states: testStates,
     services: testServices,
   });
 
@@ -274,25 +265,22 @@ test('state change part way through sequence is registered by assertions', async
     foo: 'bar',
   };
 
+  const livingRoomLight = entity('light.living_room');
   const turnLightsOn = serviceCall({
     name: 'Turn on living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_on',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
   const turnLightsOff = serviceCall({
     name: 'Turn off living room lights',
+    target: livingRoomLight,
     params: {
       domain: 'light',
       service: 'turn_off',
-      target: {
-        entity_id: 'light.living_room',
-      },
     },
   });
 
@@ -334,7 +322,7 @@ test('state change part way through sequence is registered by assertions', async
     domain: 'light',
     service: 'turn_on',
     target: {
-      entity_id: 'light.living_room',
+      entity_id: ['light.living_room'],
     },
   });
 
@@ -384,7 +372,7 @@ test('state change part way through sequence is registered by assertions', async
     domain: 'light',
     service: 'turn_off',
     target: {
-      entity_id: 'light.living_room',
+      entity_id: ['light.living_room'],
     },
   });
 });

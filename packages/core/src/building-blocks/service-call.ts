@@ -1,6 +1,6 @@
 import { Action } from './action.ts';
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
-import type { IHass } from '../types/index.ts';
+import type { IHass, ITarget } from '../types/index.ts';
 import { BlockValidationError } from '../errors/index.ts';
 import type { Block } from '../core/index.ts';
 
@@ -10,13 +10,19 @@ class ServiceCall extends Action {
   public constructor(
     private readonly serviceConfig: {
       name: string;
-      params: Omit<CallServiceCommand, 'id' | 'type'>;
+      target: ITarget;
+      params: Omit<CallServiceCommand, 'id' | 'type' | 'target'>;
     },
   ) {
     super({
       name: serviceConfig.name,
       callback: async (client) => {
-        return await client.callService(serviceConfig.params);
+        const { target } = this.serviceConfig;
+
+        return await client.callService({
+          ...serviceConfig.params,
+          target: target.targetIds,
+        });
       },
     });
   }
@@ -32,6 +38,10 @@ class ServiceCall extends Action {
         `${domain}.${service} was not registered with Home Assistant`,
       );
     }
+
+    const { target } = this.serviceConfig;
+
+    await target.validate(client);
   }
 
   public override toJson() {
@@ -52,6 +62,7 @@ class ServiceCall extends Action {
  */
 export const serviceCall = (serviceConfig: {
   name: string;
+  target: ITarget;
   params: Omit<CallServiceCommand, 'id' | 'type'>;
 }): Block => {
   return new ServiceCall(serviceConfig);

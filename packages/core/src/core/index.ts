@@ -4,3 +4,4 @@ export { Block } from './block.ts';
 export { RunQueue } from './run-queue.ts';
 export { renderSimpleLog } from './render-simple-log.tsx';
 export { loadPlugins } from './load-plugins.ts';
+export { entity } from './entity.ts';

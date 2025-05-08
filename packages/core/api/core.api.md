@@ -113,6 +113,9 @@ export interface ContinueOutput<O> {
 }
 
 // @public
+export const entity: (...id: string[]) => ITarget;
+
+// @public
 export class ExecutionAbortedError extends HassBlocksError {
     constructor(name: string);
 }
@@ -322,6 +325,19 @@ export interface IPluginArgs {
 }
 
 // @public
+export interface ITarget {
+    targetIds: ITargetIds;
+    validate(hass: IHass): Promise<void>;
+}
+
+// @public
+export interface ITargetIds {
+    area_id?: string | string[];
+    device_id?: string | string[];
+    entity_id?: string | string[];
+}
+
+// @public
 export interface ITrigger {
     attachToClient(client: IFullBlocksClient, block: IBlock<unknown, unknown>, events: IEventBus): Promise<void>;
 }
@@ -395,6 +411,7 @@ export interface SerialisedBlock {
 // @public
 export const serviceCall: (serviceConfig: {
     name: string;
+    target: ITarget;
     params: Omit<CallServiceCommand, "id" | "type">;
 }) => Block;
 

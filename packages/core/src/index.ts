@@ -12,11 +12,13 @@ export type { IBlocksConfig } from './client/index.ts';
 
 export { ExecutionAbortedError, HassBlocksError } from './errors/index.ts';
 
-export { Block } from './core/index.ts';
+export { Block, entity } from './core/index.ts';
 
 export type {
   IBlocksConnection,
   ILogger,
+  ITarget,
+  ITargetIds,
   IHass,
   BaseHassBlocksEvent,
   ITrigger,

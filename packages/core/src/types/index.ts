@@ -8,6 +8,9 @@ export type {
   HassEntityBase,
 } from './hass-events.ts';
 
+export type { ITarget } from './i-target.ts';
+export type { ITargetIds } from './i-target-ids.ts';
+
 export type { IBlocksConnection } from './i-blocks-connection.ts';
 
 export type { IFullBlocksClient } from './i-full-blocks-client.ts';

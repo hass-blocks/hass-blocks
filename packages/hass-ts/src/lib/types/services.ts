@@ -6,7 +6,7 @@ export interface Service {
   description: string;
   fields: ServiceFields;
   target?: { entity?: EntityTarget[]; device?: DeviceTarget[] };
-  Response: unknown;
+  response: unknown;
 }
 
 interface NumberSelector {

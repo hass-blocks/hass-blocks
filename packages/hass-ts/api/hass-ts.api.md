@@ -266,7 +266,7 @@ export interface IClient {
     getLogbook(params?: GetLogbookParams): Promise<LogBookEntry[]>;
     getPanels(): Promise<Record<string, Panel>>;
     getServiceDomains(): Promise<ServiceDomainDetails[]>;
-    getServices(): Promise<Record<string, Service>>;
+    getServices(): Promise<Record<string, Record<string, Service>>>;
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
@@ -325,7 +325,7 @@ export interface Service {
     // (undocumented)
     name: string;
     // (undocumented)
-    Response: unknown;
+    response: unknown;
     // (undocumented)
     target?: {
         entity?: EntityTarget[];

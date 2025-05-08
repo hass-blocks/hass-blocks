@@ -87,7 +87,7 @@ export interface IClient {
   /**
    * Get details of all the services currently registered in home assistant, grouped by domain
    */
-  getServices(): Promise<Record<string, Service>>;
+  getServices(): Promise<Record<string, Record<string, Service>>>;
 
   /**
    * Get a list of possible domains for services

@@ -183,10 +183,10 @@ export class Client implements IClient {
     return await this.httpClient.get('/services');
   }
 
-  public async getServices(): Promise<Record<string, Service>> {
+  public async getServices(): Promise<Record<string, Record<string, Service>>> {
     const { result } = await this.websocketClient.sendCommand<
       GetServicesCommand,
-      Record<string, Service>
+      Record<string, Record<string, Service>>
     >({
       type: 'get_services',
     });

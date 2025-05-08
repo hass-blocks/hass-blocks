@@ -68,6 +68,21 @@ describe('The Hass SDK', () => {
     });
   });
 
+  describe('getServices', () => {
+    it('returns a list of the available services', async () => {
+      const client = await getTestClient();
+      const services = await client.getServices();
+
+      expect(services).toEqual(
+        expect.objectContaining({
+          notify: expect.objectContaining({
+            send_message: expect.anything(),
+          }),
+        }),
+      );
+    });
+  });
+
   describe('callService', () => {
     it('turns the test switch off without a problem', async () => {
       const client = await getTestClient();

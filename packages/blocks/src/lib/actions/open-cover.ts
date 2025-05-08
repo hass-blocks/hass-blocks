@@ -1,5 +1,4 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/which.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 /**
  * @public
@@ -8,12 +7,12 @@ import type { Which } from '../types/which.ts';
  *
  * @param target - The entity id or area to target
  */
-export const openCover = (target: Which) =>
+export const openCover = (target: ITarget) =>
   serviceCall({
     name: `Open the blinds`,
     params: {
       domain: 'cover',
       service: 'open_cover',
-      target,
     },
+    target,
   });

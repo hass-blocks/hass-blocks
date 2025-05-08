@@ -1,5 +1,4 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/index.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 /**
  * @public
@@ -10,7 +9,7 @@ import type { Which } from '../types/index.ts';
  * @param volume - The volume level (between 0 and 1)
  * @returns
  */
-export const setMediaPlayerVolume = (target: Which, volume: number) =>
+export const setMediaPlayerVolume = (target: ITarget, volume: number) =>
   serviceCall({
     name: `Set media player volume to ${volume}`,
     params: {
@@ -19,6 +18,6 @@ export const setMediaPlayerVolume = (target: Which, volume: number) =>
       service_data: {
         volume_level: volume,
       },
-      target,
     },
+    target,
   });

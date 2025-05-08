@@ -1,5 +1,4 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/which.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 /**
  * @public
@@ -8,12 +7,12 @@ import type { Which } from '../types/which.ts';
  *
  * @param target - The targeted entity or area
  */
-export const stopMediaPlayer = (target: Which) =>
+export const stopMediaPlayer = (target: ITarget) =>
   serviceCall({
     name: 'Stop media player',
     params: {
       domain: 'media_player',
       service: 'media_stop',
-      target,
     },
+    target,
   });

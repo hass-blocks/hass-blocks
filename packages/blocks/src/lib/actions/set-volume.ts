@@ -1,7 +1,6 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/index.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
-export const setVolume = (target: Which, level: number) => {
+export const setVolume = (target: ITarget, level: number) => {
   return serviceCall({
     name: `Set volume to ${level}`,
     params: {
@@ -10,7 +9,7 @@ export const setVolume = (target: Which, level: number) => {
       service_data: {
         level,
       },
-      target,
     },
+    target,
   });
 };

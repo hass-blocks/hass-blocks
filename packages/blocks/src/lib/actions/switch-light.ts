@@ -1,5 +1,4 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/index.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 /**
  * @public
@@ -9,14 +8,14 @@ import type { Which } from '../types/index.ts';
  * @param target - Target of switch light service
  * @param onOrOff - Whether to switch the light on or off
  */
-export const switchLight = (target: Which, onOrOff: 'on' | 'off') => {
+export const switchLight = (target: ITarget, onOrOff: 'on' | 'off') => {
   const service = onOrOff === 'on' ? 'turn_on' : 'turn_off';
   return serviceCall({
     name: `Switch light ${onOrOff}`,
     params: {
       domain: 'light',
       service,
-      target,
     },
+    target,
   });
 };

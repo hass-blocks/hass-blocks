@@ -1,5 +1,4 @@
-import { serviceCall } from '@hass-blocks/core';
-import type { Which } from '../types/index.ts';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 /**
  * @public
@@ -11,14 +10,14 @@ import type { Which } from '../types/index.ts';
  * @param mediaContentType - The type of media to play
  */
 export const playMedia = (
-  target: Which,
+  target: ITarget,
   mediaContentId: string,
   mediaContentType: string,
 ) =>
   serviceCall({
     name: 'Play music',
+    target,
     params: {
-      target,
       domain: 'media_player',
       service: 'play_media',
       service_data: {

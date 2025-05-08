@@ -1,4 +1,4 @@
-import { State } from '@hass-blocks/hass-ts';
+import { Service, State } from '@hass-blocks/hass-ts';
 import { HassEntity } from './hass-events.ts';
 import { ICallServiceParams } from './i-call-service-params.ts';
 
@@ -22,6 +22,11 @@ export interface IHass {
    * @param id - The entity id
    */
   getEntity(id: string): HassEntity;
+
+  /**
+   * Get a list of registered services from Home Assistant
+   */
+  getServices(): Promise<Map<string, Service>>;
 
   /**
    * Call a service on the Home Assistant API

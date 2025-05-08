@@ -1,6 +1,7 @@
 import { Action } from './action.ts';
 import { CallServiceCommand } from '@hass-blocks/hass-ts';
-import { Block } from '../core/index.ts';
+import { IHass } from '../types/index.ts';
+import { BlockValidationError } from '../errors/index.ts';
 
 class ServiceCall extends Action {
   public override typeString = 'service-call';
@@ -17,6 +18,20 @@ class ServiceCall extends Action {
         return await client.callService(serviceConfig.params);
       },
     });
+  }
+
+  public override async validate(client: IHass): Promise<void> {
+    const services = await client.getServices();
+
+    const { domain, service } = this.serviceConfig.params;
+
+    const theServiceDefinition = services.get(`${domain}.${service}`);
+
+    if (!theServiceDefinition) {
+      throw new BlockValidationError(
+        `${domain}.${service} was not registered with Home Assistant`,
+      );
+    }
   }
 
   public override toJson() {

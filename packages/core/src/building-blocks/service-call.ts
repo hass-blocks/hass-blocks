@@ -10,7 +10,7 @@ class ServiceCall extends Action {
   public constructor(
     private readonly serviceConfig: {
       name: string;
-      target: ITarget;
+      target?: ITarget;
       params: Omit<CallServiceCommand, 'id' | 'type' | 'target'>;
     },
   ) {
@@ -21,7 +21,7 @@ class ServiceCall extends Action {
 
         return await client.callService({
           ...serviceConfig.params,
-          target: target.targetIds,
+          ...(target ? { target: target.targetIds } : {}),
         });
       },
     });
@@ -41,7 +41,7 @@ class ServiceCall extends Action {
 
     const { target } = this.serviceConfig;
 
-    await target.validate(client);
+    await target?.validate(client);
   }
 
   public override toJson() {
@@ -62,7 +62,7 @@ class ServiceCall extends Action {
  */
 export const serviceCall = (serviceConfig: {
   name: string;
-  target: ITarget;
+  target?: ITarget;
   params: Omit<CallServiceCommand, 'id' | 'type'>;
 }): Block => {
   return new ServiceCall(serviceConfig);

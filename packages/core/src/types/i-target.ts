@@ -1,3 +1,4 @@
+import { AssertionError } from 'src/errors/assertion-error.ts';
 import type { IHass } from './i-hass.ts';
 import type { ITargetIds } from './i-target-ids.ts';
 
@@ -19,3 +20,21 @@ export interface ITarget {
    */
   validate(hass: IHass): Promise<void>;
 }
+
+/**
+ * @public
+ *
+ * Will throw an error if the supplied target doesn't provide
+ * entity ids
+ *
+ * @param target - A home assistant target
+ */
+export const assertTargetHasEntityIds: (
+  target: ITarget,
+) => asserts target is ITarget & {
+  targetIds: ITarget['targetIds'] & { entity_id: string[] };
+} = (target) => {
+  if (!target.targetIds) {
+    throw new AssertionError(`Target must have entity ids`);
+  }
+};

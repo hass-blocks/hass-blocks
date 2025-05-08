@@ -12,45 +12,30 @@ const {
   sleepMode,
   tvMode,
   visitorMode,
-} = entities.switch;
+} = entities;
 
 export const ifLivingRoomMotionSensorIsOn = ifStateIs(
-  livingRoomMotionSensor.id,
+  livingRoomMotionSensor,
   'on',
 );
 export const ifLivingRoomMotionSensorIsOff = ifStateIs(
-  livingRoomMotionSensor.id,
+  livingRoomMotionSensor,
   'off',
 );
-export const ifBedroomMotionSensorIsOn = ifStateIs(
-  bedroomMotionSensor.id,
-  'on',
-);
-export const ifBedroomMotionSensorIsOff = ifStateIs(
-  bedroomMotionSensor.id,
-  'off',
-);
+export const ifBedroomMotionSensorIsOn = ifStateIs(bedroomMotionSensor, 'on');
+export const ifBedroomMotionSensorIsOff = ifStateIs(bedroomMotionSensor, 'off');
 
-export const ifHallwayMotionSensorIsOn = ifStateIs(
-  hallwayMotionSensor.id,
-  'on',
-);
-export const ifHallwaySensorIsOff = ifStateIs(hallwayMotionSensor.id, 'off');
+export const ifHallwayMotionSensorIsOn = ifStateIs(hallwayMotionSensor, 'on');
+export const ifHallwaySensorIsOff = ifStateIs(hallwayMotionSensor, 'off');
 
-export const ifBathroomMotionSensorIsOn = ifStateIs(
-  bathroomMotionSensor.id,
-  'on',
-);
+export const ifBathroomMotionSensorIsOn = ifStateIs(bathroomMotionSensor, 'on');
 export const ifBathroomMotionSensorIsOff = ifStateIs(
-  bathroomMotionSensor.id,
+  bathroomMotionSensor,
   'off',
 );
 
-export const ifSleepModeIsOff = ifStateIs(sleepMode.id, 'off');
-export const ifTvModeIsOff = ifStateIs(tvMode.id, 'off');
-export const ifHomeModeIsOff = ifStateIs(homeMode.id, 'off');
-export const ifVisitorModeIsNotOn = ifStateIsNot(visitorMode.id, 'on');
-export const ifBlindsWouldNormallyBeOpen = ifStateIs(
-  blindsDefaultOpen.id,
-  'on',
-);
+export const ifSleepModeIsOff = ifStateIs(sleepMode, 'off');
+export const ifTvModeIsOff = ifStateIs(tvMode, 'off');
+export const ifHomeModeIsOff = ifStateIs(homeMode, 'off');
+export const ifVisitorModeIsNotOn = ifStateIsNot(visitorMode, 'on');
+export const ifBlindsWouldNormallyBeOpen = ifStateIs(blindsDefaultOpen, 'on');

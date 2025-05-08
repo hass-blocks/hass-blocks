@@ -8,13 +8,13 @@ export interface ITargetIds {
   /**
    * An entity id or list of ids
    */
-  entity_id?: string | string[];
+  entity_id?: string[];
   /**
    * An area id or list of ids
    */
-  area_id?: string | string[];
+  area_id?: string[];
   /**
    * A device id or list of ids
    */
-  device_id?: string | string[];
+  device_id?: string[];
 }

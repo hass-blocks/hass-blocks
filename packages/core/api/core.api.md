@@ -18,6 +18,13 @@ export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
 
 // @public
+export const assertTargetHasEntityIds: (target: ITarget) => asserts target is ITarget & {
+    targetIds: ITarget['targetIds'] & {
+        entity_id: string[];
+    };
+};
+
+// @public
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
 
 // @public
@@ -332,9 +339,9 @@ export interface ITarget {
 
 // @public
 export interface ITargetIds {
-    area_id?: string | string[];
-    device_id?: string | string[];
-    entity_id?: string | string[];
+    area_id?: string[];
+    device_id?: string[];
+    entity_id?: string[];
 }
 
 // @public
@@ -411,7 +418,7 @@ export interface SerialisedBlock {
 // @public
 export const serviceCall: (serviceConfig: {
     name: string;
-    target: ITarget;
+    target?: ITarget;
     params: Omit<CallServiceCommand, "id" | "type">;
 }) => Block;
 

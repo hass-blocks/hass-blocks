@@ -20,10 +20,10 @@ export const gate: (name: string) => {
 };
 
 // @public
-export const ifStateIs: (entityId: string, state: string) => Block<void, void>;
+export const ifStateIs: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
-export const ifStateIsNot: (entityId: string, state: string) => Block<void, void>;
+export const ifStateIsNot: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
 export const openCover: (target: ITarget) => Block<void, void>;

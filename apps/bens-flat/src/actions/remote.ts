@@ -1,9 +1,9 @@
 import { sendRemoteCommands } from '@hass-blocks/blocks';
 import { entities } from '../constants.ts';
 
-const { appleTv } = entities.media_player;
+const { appleTv } = entities;
 
-export const startScreenSaver = sendRemoteCommands({ entity_id: appleTv.id }, [
+export const startScreenSaver = sendRemoteCommands(appleTv, [
   'home',
   'home',
   'menu',

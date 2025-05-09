@@ -24,7 +24,10 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
      */
     public readonly id: string,
     private targets: ITarget[] | undefined,
-    private children?: IBlocksNode[],
+    /**
+     * All child nodes of this block
+     */
+    public readonly children?: IBlocksNode[],
     private _trigger?: ITrigger | ITrigger[],
   ) {}
 

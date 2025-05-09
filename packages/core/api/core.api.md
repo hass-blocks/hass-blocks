@@ -47,7 +47,9 @@ export interface BaseHassBlocksEvent<T extends string> {
 // @public
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     constructor(
-    id: string, targets: ITarget[] | undefined, children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
+    id: string, targets: ITarget[] | undefined,
+    children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
+    readonly children?: IBlocksNode[] | undefined;
     readonly id: string;
     inputType: I | undefined;
     abstract readonly name: string;
@@ -261,6 +263,8 @@ export interface IBlocksConnection {
 
 // @public
 export interface IBlocksNode {
+    id: string;
+    name: string;
     validate(client: IHass): Promise<void>;
 }
 

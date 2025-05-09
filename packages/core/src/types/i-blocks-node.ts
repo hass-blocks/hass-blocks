@@ -11,4 +11,19 @@ export interface IBlocksNode {
    * If any configuration is invalid, an error should be thrown
    */
   validate(client: IHass): Promise<void>;
+
+  /**
+   * String to identify this particular instance of a block. Must be unique
+   */
+  id: string;
+
+  /**
+   * Friendly name for the node - for use in user interfaces
+   */
+  name: string;
+
+  /**
+   * Nodes that descend from this one on the tree
+   */
+  children?: IBlocksNode[] | undefined;
 }

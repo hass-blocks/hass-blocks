@@ -59,6 +59,12 @@ export const switchLight: (target: ITarget, onOrOff: "on" | "off") => Block<void
 export const turnMediaPlayer: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public
+export const turnOffAllSchedulers: Block<void, void>;
+
+// @public
+export const turnOnAllSchedulers: Block<void, void>;
+
+// @public
 export const turnSwitch: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public

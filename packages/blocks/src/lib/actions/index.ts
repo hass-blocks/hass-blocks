@@ -17,3 +17,5 @@ export { openCover } from './open-cover.ts';
 export { playMedia } from './play-media.ts';
 export { setMediaPlayerVolume } from './set-media-player-volume.ts';
 export { turnMediaPlayer } from './turn-media-player-on.ts';
+export { turnOnAllSchedulers } from './turn-on-all-schedulers.ts';
+export { turnOffAllSchedulers } from './turn-off-all-schedulers.ts';

@@ -1,5 +1,7 @@
 export {
   switchLight,
+  turnOnAllSchedulers,
+  turnOffAllSchedulers,
   turnSwitch,
   waitMinutes,
   waitUntilState,

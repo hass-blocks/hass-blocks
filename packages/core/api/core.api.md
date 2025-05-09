@@ -263,6 +263,7 @@ export interface IBlocksConnection {
 
 // @public
 export interface IBlocksNode {
+    children?: IBlocksNode[] | undefined;
     id: string;
     name: string;
     validate(client: IHass): Promise<void>;

@@ -23,6 +23,12 @@
     },
     {
       "path": "./packages/blocks"
+    },
+    {
+      "path": "./apps/bens-flat/packages/cli"
+    },
+    {
+      "path": "./packages/cli"
     }
   ]
 }

@@ -1,0 +1,41 @@
+{
+  "name": "@hass-blocks/cli",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/cli/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/cli/dist",
+        "main": "packages/cli/src/index.ts",
+        "tsConfig": "packages/cli/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "rollup-api": {
+      "dependsOn": ["build"],
+      "executor": "@hass-blocks/publisher:api-extractor",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/cli/dist/index.d.ts",
+        "reportFolder": "packages/cli/api",
+        "projectFolder": "packages/cli",
+        "strictChecks": true
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/cli/dist/index.d.ts",
+        "projectFolder": "packages/cli",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

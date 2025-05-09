@@ -1,0 +1,49 @@
+{
+  "name": "@hass-blocks/cli",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "types": "./dist/public.d.ts",
+  "bugs": {
+    "url": "https://github.com/benwainwright/hass-blocks/issues",
+    "email": "bwainwright28@gmail.com"
+  },
+  "author": {
+    "name": "Ben Wainwright",
+    "email": "bwainwright28@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwainwright/hass-blocks.git",
+    "directory": "packages/cli"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/public.d.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "dependencies": {
+    "@hass-blocks/core": "workspace:3.13.2",
+    "@swc/helpers": "~0.5.11",
+    "flexible-tree-printer": "^1.0.3",
+    "ink": "5.2.0",
+    "termost": "^1.4.0"
+  }
+}

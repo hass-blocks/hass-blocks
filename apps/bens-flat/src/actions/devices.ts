@@ -1,7 +1,5 @@
-import { entities } from '../constants.ts';
 import { waitUntilStateIsNot } from '@hass-blocks/blocks';
-
-const { appleTv } = entities;
+import { appleTv } from '../entities.ts';
 
 export const waitUntilAppleTvFinishesTurningOn = waitUntilStateIsNot(
   appleTv,

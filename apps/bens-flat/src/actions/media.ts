@@ -3,10 +3,15 @@ import {
   setMediaPlayerVolume,
   stopMediaPlayer,
 } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
+
 import { selectMediaPlayerSource } from '@hass-blocks/blocks';
 
-const { bedroomSpeaker, livingRoomSpeaker, allSpeakers, tv } = entities;
+import {
+  allSpeakers,
+  bedroomSpeaker,
+  livingRoomSpeaker,
+  tv,
+} from '../entities.ts';
 
 export const stopMusicInTheBedroom = stopMediaPlayer(bedroomSpeaker);
 export const stopMusicInTheLivingRoom = stopMediaPlayer(livingRoomSpeaker);

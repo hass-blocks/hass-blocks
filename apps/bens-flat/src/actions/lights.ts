@@ -1,8 +1,11 @@
 import { switchLight } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
 
-const { livingRoomLights, bathroomLights, bedroomLights, hallwayLights } =
-  entities;
+import {
+  bathroomLights,
+  bedroomLights,
+  hallwayLights,
+  livingRoomLights,
+} from '../entities.ts';
 
 export const switchLivingRoomLightsOn = switchLight(livingRoomLights, 'on');
 export const switchLivingRoomLightsOff = switchLight(livingRoomLights, 'off');

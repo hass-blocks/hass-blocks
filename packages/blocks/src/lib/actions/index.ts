@@ -1,6 +1,7 @@
 export { switchLight } from './switch-light.ts';
 export { setVolume } from './set-volume.ts';
 export { turnSwitch } from './turn-switch.ts';
+export { switchClimate } from './switch-climate.ts';
 export {
   waitMinutes,
   waitUntilState,

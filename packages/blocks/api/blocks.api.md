@@ -50,6 +50,9 @@ export const stateTurns: (entityId: ITarget, onOrOff: "on" | "off") => ITrigger;
 export const stopMediaPlayer: (target: ITarget) => Block<void, void>;
 
 // @public
+export const switchClimate: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
+
+// @public
 export const switchLight: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
 
 // @public

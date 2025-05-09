@@ -5,6 +5,7 @@ export {
   waitUntilState,
   waitUntilStateIsNot,
   stopMediaPlayer,
+  switchClimate,
   publishMessageToMqtt,
   closeCover,
   openCover,

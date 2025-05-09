@@ -4,7 +4,7 @@ import { switchThing } from './switch-thing.ts';
 
 export class Light extends Entity implements ISwitchable {
   // biome-ignore lint/complexity/noUselessConstructor: <explanation>
-  public constructor(entityIds: `light.${string}`[]) {
+  public constructor(entityIds: `light.${string}`) {
     super(entityIds);
   }
 

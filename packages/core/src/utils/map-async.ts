@@ -1,4 +1,4 @@
-export const mapAsync = async <T extends unknown[], U>(
+export const mapAsync = async <T extends readonly unknown[], U>(
   theArray: T | undefined,
   callback: (item: T[number]) => Promise<U>,
 ) => {

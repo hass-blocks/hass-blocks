@@ -13,7 +13,9 @@ export type { IBlocksConfig } from './client/index.ts';
 export { assertTargetHasEntityIds } from './types/index.ts';
 export { ExecutionAbortedError, HassBlocksError } from './errors/index.ts';
 
-export { Block, entity } from './core/index.ts';
+export { Block } from './core/index.ts';
+
+export { area, entity, type EntityId } from './targets/index.ts';
 
 export type {
   IBlocksNode,

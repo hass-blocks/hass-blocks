@@ -6,6 +6,7 @@
 
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import type { Event as Event_2 } from '@hass-blocks/hass-ts';
+import type { HassArea } from '@hass-blocks/hass-ts';
 import type { HassConfig } from '@hass-blocks/hass-ts';
 import { IClient } from '@hass-blocks/hass-ts';
 import type { Service } from '@hass-blocks/hass-ts';
@@ -13,6 +14,9 @@ import type { State } from '@hass-blocks/hass-ts';
 
 // @public
 export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<I, O>;
+
+// @public
+export const area: (...targets: (string | ITarget)[]) => ITarget;
 
 // @public
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
@@ -120,7 +124,10 @@ export interface ContinueOutput<O> {
 }
 
 // @public
-export const entity: (...id: `${string}.${string}`[]) => ITarget;
+export const entity: (...targets: (EntityId | ITarget)[]) => ITarget;
+
+// @public
+export type EntityId = `${string}.${string}`;
 
 // @public
 export class ExecutionAbortedError extends HassBlocksError {
@@ -306,6 +313,7 @@ export interface IFullBlocksClient extends IHass {
 // @public
 export interface IHass {
     callService(params: ICallServiceParams): Promise<State[]>;
+    getAreas(): Promise<HassArea[]>;
     getEntity(id: string): HassEntity;
     getServices(): Promise<Record<string, Record<string, Service>>>;
     getState(id: string): string;
@@ -339,6 +347,7 @@ export interface ITarget {
     areaIds: string[];
     deviceIds: string[];
     entityIds: string[];
+    merge: (other: ITarget) => ITarget;
     targetIds: ITargetIds;
     validate(hass: IHass): Promise<void>;
 }

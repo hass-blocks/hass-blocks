@@ -7,7 +7,7 @@ import {
   Block,
 } from '../core/index.ts';
 import type { BlockOutput, IHass } from '../types/index.ts';
-import { md5 } from '../utils/index.ts';
+import { mapAsync, md5 } from '../utils/index.ts';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
@@ -30,10 +30,9 @@ class ExecuteConcurrently<
   }
 
   public override async validate(client: IHass) {
-    await Promise.all(
-      this.config.actions.map(async (action) => {
-        await action.validate(client);
-      }),
+    await mapAsync(
+      this.config.actions,
+      async (action) => await action.validate(client),
     );
   }
 

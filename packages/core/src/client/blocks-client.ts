@@ -3,6 +3,7 @@ import type {
   Event,
   TriggerEventMessage,
   Service,
+  HassArea,
 } from '@hass-blocks/hass-ts';
 import type {
   HassEntity,
@@ -15,6 +16,7 @@ import {
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
 import type { IFullBlocksClient } from '../types/index.ts';
+import { mapAsync } from 'src/utils/map-async.ts';
 
 type StateChangedCallback = (
   event: Event | TriggerEventMessage['event'],
@@ -24,6 +26,7 @@ type StateChangedCallback = (
  * @public
  */
 export class BlocksClient implements IFullBlocksClient {
+  private areas: HassArea[] = [];
   private states: Map<string, HassEntity> | undefined;
   private services: Record<string, Record<string, Service>> | undefined;
   private _automations: IBlock<unknown, unknown>[] = [];
@@ -69,6 +72,13 @@ export class BlocksClient implements IFullBlocksClient {
     return state;
   }
 
+  public async getAreas() {
+    if (!this.areas) {
+      this.areas = await this.client.getAreas();
+    }
+    return this.areas;
+  }
+
   public getAutomations(): IBlock<unknown, unknown>[] {
     return this._automations;
   }
@@ -94,27 +104,25 @@ export class BlocksClient implements IFullBlocksClient {
     if (!this.states) {
       await this.loadStates();
     }
-    await Promise.all(
-      automation.map(async (automation) => {
-        this._automations.push(automation);
-        const { trigger } = automation;
 
-        await automation.validate(this);
+    await mapAsync(automation, async (automation) => {
+      this._automations.push(automation);
+      const { trigger } = automation;
 
-        const triggers = Array.isArray(trigger) ? trigger : [trigger];
+      await automation.validate(this);
 
-        await Promise.all(
-          triggers.map(async (item) => {
-            await item?.attachToClient(this, automation, this.bus);
-          }),
-        );
+      const triggers = Array.isArray(trigger) ? trigger : [trigger];
 
-        this.bus.emit('automation-registered', {
-          name: automation.name,
-          block: automation.toJson(),
-        });
-      }),
-    );
+      await mapAsync(
+        triggers,
+        async (item) => await item?.attachToClient(this, automation, this.bus),
+      );
+
+      this.bus.emit('automation-registered', {
+        name: automation.name,
+        block: automation.toJson(),
+      });
+    });
   }
 
   private async attachStateChangeListenerIfNotAttached() {

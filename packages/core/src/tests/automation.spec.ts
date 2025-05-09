@@ -8,7 +8,7 @@ import {
   trigger,
 } from '../building-blocks/index.ts';
 import type { Service, State } from '@hass-blocks/hass-ts';
-import { entity } from '../core/index.ts';
+import { entity } from '../targets/index.ts';
 
 const advanceTimersByTime = (time: number) => {
   vi.advanceTimersByTime(time);

@@ -1,4 +1,4 @@
-import type { Service, State } from '@hass-blocks/hass-ts';
+import type { HassArea, Service, State } from '@hass-blocks/hass-ts';
 import type { HassEntity } from './hass-events.ts';
 import type { ICallServiceParams } from './i-call-service-params.ts';
 
@@ -27,6 +27,11 @@ export interface IHass {
    * Get a list of registered services from Home Assistant
    */
   getServices(): Promise<Record<string, Record<string, Service>>>;
+
+  /**
+   * Get a list of registered areas
+   */
+  getAreas(): Promise<HassArea[]>;
 
   /**
    * Call a service on the Home Assistant API

@@ -1,6 +1,7 @@
 import { entity } from '@hass-blocks/core';
 
 export const entities = {
+  home: entity('zone.home'),
   me: entity('person.ben_wainwright'),
   livingRoomMotionSensor: entity('switch.living_room_motion_sensor'),
   bedroomMotionSensor: entity('switch.bedroom_motion_sensor'),
@@ -16,7 +17,7 @@ export const entities = {
   livingRoomSpeaker: entity('media_player.sonos_arc_ultra'),
   sleepMode: entity('switch.sleep_mode'),
   tv: entity('media_player.lg_webos_tv'),
-  tvMode: entity('switch.tvMode'),
+  tvMode: entity('switch.tv_mode'),
   visitorMode: entity('switch.visitor_mode'),
   allSpeakers: entity(
     'media_player.bedroom_speaker',

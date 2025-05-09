@@ -34,11 +34,6 @@ export interface ITarget {
    * Area ids supplied by the target
    */
   areaIds: string[];
-
-  /**
-   * Merge with other targets
-   */
-  merge: (other: ITarget) => ITarget;
 }
 
 /**

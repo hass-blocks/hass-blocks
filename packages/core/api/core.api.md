@@ -347,7 +347,6 @@ export interface ITarget {
     areaIds: string[];
     deviceIds: string[];
     entityIds: string[];
-    merge: (other: ITarget) => ITarget;
     targetIds: ITargetIds;
     validate(hass: IHass): Promise<void>;
 }

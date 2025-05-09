@@ -1,5 +1,5 @@
 import type { IHass, ITarget, ITargetIds } from '../types/index.ts';
-import { Target } from '../core/index.ts';
+import { Target } from './target.ts';
 import { mapAsync } from '../utils/index.ts';
 
 export class Combination extends Target {

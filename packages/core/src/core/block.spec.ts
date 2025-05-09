@@ -16,7 +16,7 @@ describe('block.toJson', () => {
         throw new Error();
       }
       public constructor() {
-        super('foo-id');
+        super('foo-id', undefined);
       }
     }
 
@@ -40,7 +40,7 @@ describe('block.validate', () => {
         throw new Error();
       }
       public constructor() {
-        super('foo-id');
+        super('foo-id', undefined);
       }
     }
 

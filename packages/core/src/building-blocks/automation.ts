@@ -62,7 +62,7 @@ export class Automation<
   private runQueue = new RunQueue();
 
   public constructor(public config: IAutomationConfig<A, I, O>) {
-    super(config.id ?? md5(config.name), [...config.then]);
+    super(config.id ?? md5(config.name), config.targets, [...config.then]);
     this.name = this.config.name;
     if (config.when) {
       this.trigger = config.when;

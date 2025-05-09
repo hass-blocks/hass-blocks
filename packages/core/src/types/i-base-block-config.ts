@@ -1,3 +1,5 @@
+import { ITarget } from './i-target.ts';
+
 /**
  * @public
  * Configuration that is common for all blocks
@@ -13,4 +15,10 @@ export interface IBaseBlockConfig {
    * will be used. Must be unique
    */
   readonly id?: string;
+
+  /**
+   * A list of targets used by this block. The framework will validate they exist on boot
+   * and at regular intervals
+   */
+  readonly targets?: ITarget[];
 }

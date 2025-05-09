@@ -15,6 +15,7 @@ class ServiceCall extends Action {
     },
   ) {
     super({
+      ...(serviceConfig.target ? { targets: [serviceConfig.target] } : {}),
       name: serviceConfig.name,
       callback: async (client) => {
         const { target } = this.serviceConfig;
@@ -38,10 +39,6 @@ class ServiceCall extends Action {
         `${domain}.${service} was not registered with Home Assistant`,
       );
     }
-
-    const { target } = this.serviceConfig;
-
-    await target?.validate(client);
   }
 
   public override toJson() {

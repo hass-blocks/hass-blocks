@@ -1,6 +1,6 @@
 import { type EventBus, Block } from '../core/index.ts';
 import { AssertionError } from '../errors/index.ts';
-import type { BlockOutput, IHass } from '../types/index.ts';
+import type { BlockOutput, IBaseBlockConfig, IHass } from '../types/index.ts';
 import { md5 } from '../utils/index.ts';
 
 /**
@@ -25,17 +25,7 @@ export interface IIfThenElseConditionConfig<
   EO = void,
   PO = void,
   I = void,
-> {
-  /**
-   * Block name
-   */
-  readonly name: string;
-
-  /**
-   * Unique identifier for this block. Will use a hash of the name if not provided
-   */
-  readonly id?: string;
-
+> extends IBaseBlockConfig {
   /**
    * The result of this assertion decides which branch to take
    */
@@ -71,7 +61,7 @@ export class IfThenElseCondition<
   public constructor(
     public readonly config: IIfThenElseConditionConfig<TO, EO, PO, I>,
   ) {
-    super(config.id ?? md5(config.name), [
+    super(config.id ?? md5(config.name), config.targets, [
       config.assertion,
       config.then,
       config.else,

@@ -43,7 +43,7 @@ export interface BaseHassBlocksEvent<T extends string> {
 // @public
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     constructor(
-    id: string, children?: Block<unknown, unknown>[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
+    id: string, targets: ITarget[] | undefined, children?: Block<unknown, unknown>[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
     readonly id: string;
     inputType: I | undefined;
     abstract readonly name: string;
@@ -225,6 +225,7 @@ export interface IAutomationConfig<A extends readonly any[], I = GetSequenceInpu
 export interface IBaseBlockConfig {
     readonly id?: string;
     readonly name: string;
+    readonly targets?: ITarget[];
 }
 
 // @public
@@ -284,11 +285,9 @@ export interface IEventBus {
 }
 
 // @public
-export interface IfThenElseConditionConfig<TO = void, EO = void, PO = void, I = void> {
+export interface IfThenElseConditionConfig<TO = void, EO = void, PO = void, I = void> extends IBaseBlockConfig {
     readonly assertion: Block<I, PO>;
     readonly else: Block<PO, EO>;
-    readonly id?: string;
-    readonly name: string;
     readonly then: Block<PO, TO>;
 }
 

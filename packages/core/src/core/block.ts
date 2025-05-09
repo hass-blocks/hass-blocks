@@ -4,9 +4,11 @@ import type {
   IBlock,
   IHass,
   ITrigger,
+  ITarget,
 } from '../types/index.ts';
 
 import { HassBlocksError } from '../errors/index.ts';
+import { mapAsync } from '../utils/index.ts';
 
 /**
  * @public
@@ -20,6 +22,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
      * String to identify this particular instance of a block. Must be unique
      */
     public readonly id: string,
+    private targets: ITarget[] | undefined,
     private children?: Block<unknown, unknown>[],
     private _trigger?: ITrigger | ITrigger[],
   ) {}
@@ -70,11 +73,12 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * If any configuration is invalid, an error should be thrown
    */
   public async validate(client: IHass): Promise<void> {
-    await Promise.all(
-      this.children?.map(async (action) => {
-        await action.validate(client);
-      }) ?? [],
+    await mapAsync(
+      this.children,
+      async (action) => await action.validate(client),
     );
+
+    await mapAsync(this.targets, async (target) => target.validate(client));
   }
 
   /**

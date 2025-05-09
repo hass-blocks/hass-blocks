@@ -27,7 +27,7 @@ export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
 
 export class Assertion<I = void, O = void> extends Block<I, O> {
   public constructor(public config: IAssertionConfig<I, O>) {
-    super(config.id ?? md5(config.name));
+    super(config.id ?? md5(config.name), config.targets);
     this.name = this.config.name;
   }
   public readonly name: string;

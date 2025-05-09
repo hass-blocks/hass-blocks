@@ -27,7 +27,7 @@ export class Action<I = void, O = void>
 {
   public readonly name: string;
   public constructor(public readonly config: IActionConfig<I, O>) {
-    super(config.id ?? md5(config.name));
+    super(config.id ?? md5(config.name), config.targets);
     this.name = this.config.name;
   }
 

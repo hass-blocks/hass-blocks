@@ -25,7 +25,7 @@ class ExecuteConcurrently<
       actions: A;
     },
   ) {
-    super(config.id ?? md5(config.name));
+    super(config.id ?? md5(config.name), undefined);
     this.name = this.config.name;
   }
 

@@ -1,7 +1,14 @@
 import { md5 } from '../utils/md5.ts';
 import { Executor, type Block } from './index.ts';
-import type { IEventBus, IFullBlocksClient, ITrigger } from '../types/index.ts';
+import type {
+  IEventBus,
+  IFullBlocksClient,
+  IHass,
+  ITarget,
+  ITrigger,
+} from '../types/index.ts';
 import { v4 } from 'uuid';
+import { mapAsync } from 'src/utils/map-async.ts';
 
 /**
  * @public
@@ -23,6 +30,12 @@ export interface ITriggerConfig {
    * The Home Assistant trigger parameters (See {@link https://www.home-assistant.io/docs/automation/trigger/})
    */
   trigger: Record<string, unknown>;
+
+  /**
+   * A list of targets used by the trigger. The framework will validate the targets on boot and
+   * at regular intervals
+   */
+  targets?: ITarget[];
 }
 
 export class Trigger implements ITrigger {
@@ -34,6 +47,10 @@ export class Trigger implements ITrigger {
     this.name = config.name;
     this.id = config.id ?? md5(this.name);
     this.trigger = config.trigger;
+  }
+
+  public async validate(hass: IHass) {
+    await mapAsync(this.config.targets, (target) => target.validate(hass));
   }
 
   public async attachToClient(

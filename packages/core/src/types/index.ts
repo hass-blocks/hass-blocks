@@ -11,6 +11,8 @@ export type {
 export type { ITarget } from './i-target.ts';
 export type { ITargetIds } from './i-target-ids.ts';
 
+export type { IBlocksNode } from './i-blocks-node.ts';
+
 export { assertTargetHasEntityIds } from './i-target.ts';
 
 export type { ISwitchable } from './i-switchable.ts';

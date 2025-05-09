@@ -1,4 +1,5 @@
 import type { IBlock } from './i-block.ts';
+import type { IBlocksNode } from './i-blocks-node.ts';
 import type { IEventBus } from './i-event-bus.ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
 
@@ -7,7 +8,7 @@ import type { IFullBlocksClient } from './i-full-blocks-client.ts';
  *
  * An object representing a Home Assistant trigger
  */
-export interface ITrigger {
+export interface ITrigger extends IBlocksNode {
   /**
    * Register the trigger with a Home Assistant client so that it actually fires when
    * the conditions are met

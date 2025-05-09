@@ -1,4 +1,5 @@
 import type { BlockOutput } from './block-output.ts';
+import type { IBlocksNode } from './i-blocks-node.ts';
 import type { IEventBus } from './i-event-bus.ts';
 import type { IHass } from './i-hass.ts';
 import type { ITrigger } from './i-trigger.ts';
@@ -9,7 +10,7 @@ import type { SerialisedBlock } from './serialised-block.ts';
  *
  * The abstract base class that all blocks inherit from
  */
-export interface IBlock<I = void, O = void> {
+export interface IBlock<I = void, O = void> extends IBlocksNode {
   /**
    * A JSON representation of the block. Used for websocket and rest serialisation
    */
@@ -41,12 +42,6 @@ export interface IBlock<I = void, O = void> {
    * Triggers that are currently registered with this block
    */
   trigger: ITrigger | ITrigger[];
-
-  /**
-   * If defined, this method will be called when the parent automation is registered.
-   * If any configuration is invalid, an error should be thrown
-   */
-  validate(client: IHass): Promise<void>;
 
   /**
    * String that identifies the kind of block

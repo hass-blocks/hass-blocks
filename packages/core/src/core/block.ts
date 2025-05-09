@@ -5,6 +5,7 @@ import type {
   IHass,
   ITrigger,
   ITarget,
+  IBlocksNode,
 } from '../types/index.ts';
 
 import { HassBlocksError } from '../errors/index.ts';
@@ -23,7 +24,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
      */
     public readonly id: string,
     private targets: ITarget[] | undefined,
-    private children?: Block<unknown, unknown>[],
+    private children?: IBlocksNode[],
     private _trigger?: ITrigger | ITrigger[],
   ) {}
 

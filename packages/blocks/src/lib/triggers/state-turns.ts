@@ -1,4 +1,4 @@
-import { trigger } from '@hass-blocks/core';
+import { type ITarget, trigger } from '@hass-blocks/core';
 
 /**
  * @public
@@ -9,7 +9,7 @@ import { trigger } from '@hass-blocks/core';
  * @param entityId - ID of the entity we are monitoring
  * @param onOrOff - Whether the trigger is listening for the entity to turn on or off
  */
-export const stateTurns = (entityId: string, onOrOff: 'on' | 'off') => {
+export const stateTurns = (entityId: ITarget, onOrOff: 'on' | 'off') => {
   const withDirection =
     onOrOff === 'on' ? { from: 'off', to: 'on' } : { from: 'on', to: 'off' };
   return trigger({

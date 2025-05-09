@@ -1,18 +1,17 @@
 import { ifStateIs } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
 import { ifStateIsNot } from '@hass-blocks/blocks';
 
-const {
-  livingRoomMotionSensor,
-  bedroomMotionSensor,
-  homeMode,
-  blindsDefaultOpen,
+import {
   bathroomMotionSensor,
+  bedroomMotionSensor,
+  blindsDefaultOpen,
   hallwayMotionSensor,
+  homeMode,
+  livingRoomMotionSensor,
   sleepMode,
   tvMode,
   visitorMode,
-} = entities;
+} from '../entities.ts';
 
 export const ifLivingRoomMotionSensorIsOn = ifStateIs(
   livingRoomMotionSensor,

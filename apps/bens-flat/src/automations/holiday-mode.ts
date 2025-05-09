@@ -32,7 +32,7 @@ export const holidayModeTurnsOn = automation({
 });
 
 export const holidayModeTurnsOff = automation({
-  name: 'Holiday Mode Turns on',
+  name: 'Holiday Mode Turns Off',
   when: stateTurns(homeMode, 'off'),
   then: [
     concurrently(

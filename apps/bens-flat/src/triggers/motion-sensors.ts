@@ -1,12 +1,10 @@
 import { stateTurns } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
-
-const {
-  livingRoomMotionSensor,
-  bedroomMotionSensor,
+import {
   bathroomMotionSensor,
+  bedroomMotionSensor,
   hallwayMotionSensor,
-} = entities;
+  livingRoomMotionSensor,
+} from '../entities.ts';
 
 export const motionIsDetectedInTheLivingRoom = stateTurns(
   livingRoomMotionSensor,

@@ -1,5 +1,4 @@
 import { ifStateIs } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
-const { appleTv } = entities;
+import { appleTv } from '../entities.ts';
 
 export const appleTvIsOnStandby = ifStateIs(appleTv, 'on');

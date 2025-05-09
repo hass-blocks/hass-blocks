@@ -2,7 +2,7 @@ import { entity } from '@hass-blocks/core';
 
 export const home = entity('zone.home');
 
-export const me = entity('person.ben.wainwright');
+export const me = entity('person.ben_wainwright');
 
 export const livingRoomMotionSensor = entity(
   'switch.living_room_motion_sensor',

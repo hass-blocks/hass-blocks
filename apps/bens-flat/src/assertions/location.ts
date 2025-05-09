@@ -1,6 +1,4 @@
 import { ifStateIsNot } from '@hass-blocks/blocks';
-import { entities } from '../constants.ts';
-
-const { me } = entities;
+import { me } from '../entities.ts';
 
 export const ifIamOut = ifStateIsNot(me, 'home');

@@ -1,4 +1,9 @@
-import { waitMinutes, gate } from '@hass-blocks/blocks';
+import {
+  waitMinutes,
+  gate,
+  switchLight,
+  stopMediaPlayer,
+} from '@hass-blocks/blocks';
 import {
   automation,
   concurrently,
@@ -7,14 +12,8 @@ import {
 } from '@hass-blocks/core';
 
 import {
-  switchBathroomLightsOff,
-  switchBedroomLightsOff,
-  switchHallwayLightsOff,
-  switchLivingRoomLightsOff,
   turnHomeModeOff,
   turnHomeModeOn,
-  stopMusicInTheBedroom,
-  stopMusicInTheLivingRoom,
   turnOffTv,
   turnOffMyMac,
   notifyMyPhone,
@@ -47,6 +46,7 @@ import {
   setVolumeOnSpeakers,
 } from '../actions/media.ts';
 import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
+import { allLights, allSpeakers } from '../entities.ts';
 
 const {
   open: allowZoneExitChecks,
@@ -87,12 +87,8 @@ export const whenIGoOut = automation({
   when: homeModeTurnsOff,
   then: [
     concurrently(
-      switchBedroomLightsOff,
-      switchHallwayLightsOff,
-      switchLivingRoomLightsOff,
-      switchBathroomLightsOff,
-      stopMusicInTheBedroom,
-      stopMusicInTheLivingRoom,
+      switchLight(allLights, 'off'),
+      stopMediaPlayer(allSpeakers),
       turnOffTv,
       turnOffMyMac,
       closeLivingRoomBlinds,

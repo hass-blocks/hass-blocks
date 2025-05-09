@@ -13,6 +13,7 @@ export const stateTurns = (entityId: ITarget, onOrOff: 'on' | 'off') => {
   const withDirection =
     onOrOff === 'on' ? { from: 'off', to: 'on' } : { from: 'on', to: 'off' };
   return trigger({
+    targets: [entityId],
     name: 'When state changes',
     trigger: {
       platform: 'state',

@@ -44,7 +44,7 @@ export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<
 export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<void, void>;
 
 // @public
-export const stateTurns: (entityId: string, onOrOff: "on" | "off") => ITrigger;
+export const stateTurns: (entityId: ITarget, onOrOff: "on" | "off") => ITrigger;
 
 // @public
 export const stopMediaPlayer: (target: ITarget) => Block<void, void>;

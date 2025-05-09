@@ -73,6 +73,7 @@ export const waitUntilState = (
   };
   return action({
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
+    targets: [target],
     callback: async (client) => {
       const { entity_id } = target.targetIds;
       const ids = (Array.isArray(entity_id) ? entity_id : [entity_id]).flatMap(
@@ -128,6 +129,7 @@ export const waitUntilStateIsNot = (
     }
   };
   return action({
+    targets: [target],
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     callback: async (client) => {
       const { entity_id } = target.targetIds;

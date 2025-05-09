@@ -16,6 +16,7 @@ export const ifStateIs = (target: ITarget, state: string) => {
   assertTargetHasEntityIds(target);
   return assertion({
     name: `If ${target} is ${state}`,
+    targets: [target],
     predicate: (client) => {
       const { entity_id } = target.targetIds;
       return entity_id.every((id) => {

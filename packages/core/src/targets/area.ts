@@ -1,4 +1,4 @@
-import { HassBlocksError } from 'src/errors/hass-blocks-error.ts';
+import { HassBlocksError } from '../errors/hass-blocks-error.ts';
 import { Target } from '../core/index.ts';
 import type { IHass, ITarget, ITargetIds } from '../types/index.ts';
 import { Combination } from './combination.ts';

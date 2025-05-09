@@ -16,7 +16,7 @@ import {
   InitialStatesNotLoadedError,
 } from '../errors/index.ts';
 import type { IFullBlocksClient } from '../types/index.ts';
-import { mapAsync } from 'src/utils/map-async.ts';
+import { mapAsync } from '../utils/index.ts';
 
 type StateChangedCallback = (
   event: Event | TriggerEventMessage['event'],

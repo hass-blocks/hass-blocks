@@ -8,7 +8,7 @@ import type {
   ITrigger,
 } from '../types/index.ts';
 import { v4 } from 'uuid';
-import { mapAsync } from 'src/utils/map-async.ts';
+import { mapAsync } from '../utils/index.ts';
 
 /**
  * @public

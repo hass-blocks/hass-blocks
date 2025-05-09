@@ -16,6 +16,7 @@ export { ExecutionAbortedError, HassBlocksError } from './errors/index.ts';
 export { Block, entity } from './core/index.ts';
 
 export type {
+  IBlocksNode,
   IBlocksConnection,
   ILogger,
   ITarget,

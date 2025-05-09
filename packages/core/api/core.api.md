@@ -43,7 +43,7 @@ export interface BaseHassBlocksEvent<T extends string> {
 // @public
 export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     constructor(
-    id: string, targets: ITarget[] | undefined, children?: Block<unknown, unknown>[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
+    id: string, targets: ITarget[] | undefined, children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
     readonly id: string;
     inputType: I | undefined;
     abstract readonly name: string;
@@ -229,7 +229,7 @@ export interface IBaseBlockConfig {
 }
 
 // @public
-export interface IBlock<I = void, O = void> {
+export interface IBlock<I = void, O = void> extends IBlocksNode {
     id: string;
     inputType: I | undefined;
     name: string;
@@ -238,7 +238,6 @@ export interface IBlock<I = void, O = void> {
     toJson(): SerialisedBlock;
     trigger: ITrigger | ITrigger[];
     typeString: string;
-    validate(client: IHass): Promise<void>;
 }
 
 // @public
@@ -251,6 +250,11 @@ export interface IBlocksConfig {
 // @public
 export interface IBlocksConnection {
     registry: IBlocksRegistry;
+}
+
+// @public
+export interface IBlocksNode {
+    validate(client: IHass): Promise<void>;
 }
 
 // @public
@@ -347,7 +351,7 @@ export interface ITargetIds {
 }
 
 // @public
-export interface ITrigger {
+export interface ITrigger extends IBlocksNode {
     attachToClient(client: IFullBlocksClient, block: IBlock<unknown, unknown>, events: IEventBus): Promise<void>;
 }
 
@@ -355,6 +359,7 @@ export interface ITrigger {
 export interface ITriggerConfig {
     id?: string;
     name: string;
+    targets?: ITarget[];
     trigger: Record<string, unknown>;
 }
 

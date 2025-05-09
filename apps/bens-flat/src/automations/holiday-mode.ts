@@ -1,9 +1,15 @@
 import { automation, concurrently } from '@hass-blocks/core';
 import { imLessThen20kmAway, imMoreThan20KmAway } from '../triggers/zone.ts';
-import { stateTurns, switchClimate, turnSwitch } from '@hass-blocks/blocks';
+import {
+  stateTurns,
+  switchClimate,
+  turnOffAllSchedulers,
+  turnOnAllSchedulers,
+  turnSwitch,
+} from '@hass-blocks/blocks';
 import { allRooms } from '../areas.ts';
 import { notifyMyPhone } from '../actions/notify.ts';
-import { homeMode } from '../entities.ts';
+import { allHeatingAndBoilerSwitches, homeMode } from '../entities.ts';
 
 export const holidayModeOn = automation({
   name: 'Holiday Mode On',
@@ -27,6 +33,8 @@ export const holidayModeTurnsOn = automation({
         title: 'Holiday mode',
       }),
       switchClimate(allRooms, 'off'),
+      turnSwitch(allHeatingAndBoilerSwitches, 'off'),
+      turnOnAllSchedulers,
     ),
   ],
 });
@@ -41,6 +49,7 @@ export const holidayModeTurnsOff = automation({
         title: 'Holiday mode',
       }),
       switchClimate(allRooms, 'on'),
+      turnOffAllSchedulers,
     ),
   ],
 });

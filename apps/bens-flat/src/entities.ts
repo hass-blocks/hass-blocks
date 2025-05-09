@@ -44,3 +44,23 @@ export const visitorMode = entity('switch.visitor_mode');
 
 export const appleTv = entity('media_player.bens_apple_tv');
 export const homeMode = entity('switch.home_mode');
+
+export const boiler = entity('switch.boiler');
+
+export const bedroomHeatingSwitch = entity('switch.bedroom_heating_switch');
+
+export const boilerBoostSwitch = entity('switch.boiler_boost');
+
+export const gymHeatingSwitch = entity('switch.gym_heating_switch');
+
+export const livingRoomHeatingSwitch = entity(
+  'switch.living_room_heating_switch',
+);
+
+export const allHeatingAndBoilerSwitches = entity(
+  boiler,
+  bedroomHeatingSwitch,
+  boilerBoostSwitch,
+  gymHeatingSwitch,
+  livingRoomHeatingSwitch,
+);

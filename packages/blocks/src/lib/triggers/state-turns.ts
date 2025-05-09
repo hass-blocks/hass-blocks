@@ -13,10 +13,10 @@ export const stateTurns = (entityId: ITarget, onOrOff: 'on' | 'off') => {
   const withDirection =
     onOrOff === 'on' ? { from: 'off', to: 'on' } : { from: 'on', to: 'off' };
   return trigger({
-    name: 'When motion is detected in the hallway',
+    name: 'When state changes',
     trigger: {
       platform: 'state',
-      entity_id: entityId,
+      entity_id: entityId.entityIds[0],
       ...withDirection,
     },
   });

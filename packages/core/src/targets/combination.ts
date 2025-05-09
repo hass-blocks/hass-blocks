@@ -9,19 +9,25 @@ export class Combination extends Target {
 
   get targetIds(): ITargetIds {
     return this.targets.reduce<ITargetIds>((accum, target) => {
+      const entities = [
+        ...(accum.entity_id ?? []),
+        ...(target.targetIds.entity_id ?? []),
+      ];
+
+      const areas = [
+        ...(accum.area_id ?? []),
+        ...(target.targetIds.area_id ?? []),
+      ];
+
+      const devices = [
+        ...(accum.device_id ?? []),
+        ...(target.targetIds.device_id ?? []),
+      ];
+
       return {
-        entity_id: [
-          ...(accum.entity_id ?? []),
-          ...(target.targetIds.entity_id ?? []),
-        ],
-        area_id: [
-          ...(accum.area_id ?? []),
-          ...(target.targetIds.area_id ?? []),
-        ],
-        device_id: [
-          ...(accum.device_id ?? []),
-          ...(target.targetIds.device_id ?? []),
-        ],
+        ...(entities.length > 0 ? { entity_id: entities } : {}),
+        ...(areas.length > 0 ? { area_id: areas } : {}),
+        ...(devices.length > 0 ? { device_id: devices } : {}),
       };
     }, {});
   }

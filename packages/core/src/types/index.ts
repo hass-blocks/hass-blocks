@@ -13,6 +13,8 @@ export type { ITargetIds } from './i-target-ids.ts';
 
 export { assertTargetHasEntityIds } from './i-target.ts';
 
+export type { ISwitchable } from './i-switchable.ts';
+
 export type { IBlocksConnection } from './i-blocks-connection.ts';
 
 export type { IFullBlocksClient } from './i-full-blocks-client.ts';

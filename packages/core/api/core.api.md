@@ -120,7 +120,7 @@ export interface ContinueOutput<O> {
 }
 
 // @public
-export const entity: (...id: string[]) => ITarget;
+export const entity: (...id: `${string}.${string}`[]) => ITarget;
 
 // @public
 export class ExecutionAbortedError extends HassBlocksError {
@@ -333,6 +333,9 @@ export interface IPluginArgs {
 
 // @public
 export interface ITarget {
+    areaIds: string[];
+    deviceIds: string[];
+    entityIds: string[];
     targetIds: ITargetIds;
     validate(hass: IHass): Promise<void>;
 }

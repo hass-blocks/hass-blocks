@@ -1,5 +1,12 @@
 {
   "jsc": {
+    "baseUrl":"./",
+    "paths": {
+      "@actions": ["src/lib/actions/index.ts"],
+      "@assertions": ["src/lib/assertions/index.ts"],
+      "@triggers": ["src/lib/triggers/index.ts"],
+      "@utils": ["src/lib/utils/index.ts"]
+    },
     "target": "es2017",
     "parser": {
       "syntax": "typescript",

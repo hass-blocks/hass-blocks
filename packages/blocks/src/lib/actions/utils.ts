@@ -4,7 +4,8 @@ import {
   type ITarget,
   type IHass,
 } from '@hass-blocks/core';
-import { waitInSeconds, waitInMinutes } from '../utils/index.ts';
+
+import { waitInSeconds, waitInMinutes } from '@utils';
 
 /**
  * @public

@@ -24,6 +24,7 @@
         "mainEntrypointFile": "packages/blocks/dist/index.d.ts",
         "reportFolder": "packages/blocks/api",
         "projectFolder": "packages/blocks",
+        "replacePaths": true,
         "strictChecks": true
       }
     },

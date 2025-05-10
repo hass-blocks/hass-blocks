@@ -1,9 +1,9 @@
-import type { BlockOutput } from '../types/index.ts';
-
-import type { IHass } from '../types/index.ts';
-import { Block } from './block.ts';
-
 import { mock } from 'vitest-mock-extended';
+
+import type { BlockOutput } from '@types';
+import type { IHass } from '@types';
+
+import { Block } from './block.ts';
 
 describe('block.toJson', () => {
   it('returns a serialised version of the block', () => {

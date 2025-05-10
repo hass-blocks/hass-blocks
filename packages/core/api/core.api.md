@@ -451,9 +451,6 @@ export interface StopOutput {
 }
 
 // @public
-export const trigger: (config: ITriggerConfig) => ITrigger;
-
-// @public
 export type ValidInputOutputSequence<I, O, A extends readonly Block<unknown, unknown>[]> = A extends readonly [infer Only extends Block<unknown, unknown>] ? InputType<Only> extends I ? OutputType<Only> extends O ? readonly [Only] : never : never : A extends readonly [
 infer First extends Block<unknown, unknown>,
 ...infer Rest extends readonly Block<unknown, unknown>[]

@@ -1,6 +1,8 @@
-import type { IHass } from '../types/index.ts';
-import { Action } from './action.ts';
 import { mock } from 'vitest-mock-extended';
+
+import type { IHass } from '@types';
+
+import { Action } from './action.ts';
 
 describe('the action block', () => {
   it('calls the callback when executed and passes the result out as output', async () => {

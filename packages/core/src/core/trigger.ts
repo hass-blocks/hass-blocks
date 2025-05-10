@@ -1,14 +1,16 @@
-import { md5 } from '../utils/md5.ts';
-import { Executor, type Block } from './index.ts';
+import { v4 } from 'uuid';
+
+import { Executor } from './executor.ts';
+import type { Block } from './block.ts';
+
 import type {
   IEventBus,
   IFullBlocksClient,
   IHass,
   ITarget,
   ITrigger,
-} from '../types/index.ts';
-import { v4 } from 'uuid';
-import { mapAsync } from '../utils/index.ts';
+} from '@types';
+import { mapAsync, md5 } from '@utils';
 
 /**
  * @public

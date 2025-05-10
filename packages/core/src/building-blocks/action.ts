@@ -1,11 +1,6 @@
-import { Block } from '../core/index.ts';
-import type {
-  BlockOutput,
-  IHass,
-  IEventBus,
-  IBaseBlockConfig,
-} from '../types/index.ts';
-import { md5 } from '../utils/index.ts';
+import { Block } from '@core';
+import type { BlockOutput, IHass, IEventBus, IBaseBlockConfig } from '@types';
+import { md5 } from '@utils';
 
 /**
  * @public

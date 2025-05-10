@@ -1,13 +1,8 @@
-import type { GetOutputs } from './valid-input-output-sequence.ts';
+import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
+import type { BlockOutput, IHass } from '@types';
+import { mapAsync, md5 } from '@utils';
 
-import {
-  type EventBus,
-  BlockExecutionMode,
-  Executor,
-  Block,
-} from '../core/index.ts';
-import type { BlockOutput, IHass } from '../types/index.ts';
-import { mapAsync, md5 } from '../utils/index.ts';
+import type { GetOutputs } from './valid-input-output-sequence.ts';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],

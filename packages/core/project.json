@@ -23,7 +23,8 @@
         "mainEntrypointFile": "packages/core/dist/index.d.ts",
         "reportFolder": "packages/core/api",
         "projectFolder": "packages/core",
-        "strictChecks": true
+        "strictChecks": true,
+        "replacePaths": true
       }
     },
     "doc-model": {

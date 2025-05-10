@@ -1,4 +1,5 @@
-import type { ISwitchable } from '../types/index.ts';
+import type { ISwitchable } from '@types';
+
 import { Entity } from './entity.ts';
 import { switchThing } from './switch-thing.ts';
 

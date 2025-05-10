@@ -1,7 +1,7 @@
-import { type EventBus, Block } from '../core/index.ts';
-import { AssertionError } from '../errors/index.ts';
-import type { BlockOutput, IBaseBlockConfig, IHass } from '../types/index.ts';
-import { md5 } from '../utils/index.ts';
+import { type EventBus, Block } from '@core';
+import { AssertionError } from '@errors';
+import type { BlockOutput, IBaseBlockConfig, IHass } from '@types';
+import { md5 } from '@utils';
 
 /**
  * @public

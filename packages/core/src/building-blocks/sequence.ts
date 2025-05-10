@@ -1,4 +1,5 @@
-import { ExecutionMode } from '../types/index.ts';
+import { ExecutionMode } from '@types';
+import type { Block } from '@core';
 
 import type {
   ValidInputOutputSequence,
@@ -6,9 +7,7 @@ import type {
   GetSequenceInput,
   GetSequenceOutput,
 } from './valid-input-output-sequence.ts';
-
 import { automation } from './automation.ts';
-import type { Block } from '../core/index.ts';
 
 /**
  * @public

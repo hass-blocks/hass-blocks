@@ -1,4 +1,4 @@
-import type { IBlocksPlugin, IPluginArgs } from '../types/index.ts';
+import type { IBlocksPlugin, IPluginArgs } from '@types';
 
 interface LoadPluginsConfig extends IPluginArgs {
   plugins: IBlocksPlugin[];

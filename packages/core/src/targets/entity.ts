@@ -1,5 +1,6 @@
-import type { ITargetIds, ITarget, IHass } from '../types/index.ts';
-import { Target } from '../core/index.ts';
+import type { ITargetIds, ITarget, IHass } from '@types';
+
+import { Target } from './target.ts';
 import { Combination } from './combination.ts';
 
 /**

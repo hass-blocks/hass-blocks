@@ -1,8 +1,10 @@
-import { Action } from './action.ts';
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
-import type { IHass, ITarget } from '../types/index.ts';
-import { BlockValidationError } from '../errors/index.ts';
-import type { Block } from '../core/index.ts';
+
+import type { IHass, ITarget } from '@types';
+import { BlockValidationError } from '@errors';
+import type { Block } from '@core';
+
+import { Action } from './action.ts';
 
 class ServiceCall extends Action {
   public override typeString = 'service-call';

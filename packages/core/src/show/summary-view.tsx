@@ -1,5 +1,7 @@
-import type { HassBlocksEvent } from '../types/index.ts';
 import { Box } from 'ink';
+
+import type { HassBlocksEvent } from '@types';
+
 import { SummaryViewRow } from './summary-view-row.tsx';
 
 interface SummaryViewProps {

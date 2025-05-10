@@ -1,8 +1,10 @@
 import { mock } from 'vitest-mock-extended';
+
+import type { Block } from '@core';
+import type { ITrigger } from '@types';
+
 import { Action } from './action.ts';
 import { automation } from './automation.ts';
-import type { Block } from '../core/index.ts';
-import type { ITrigger } from '../types/index.ts';
 
 describe('the automation class', () => {
   it('should correctly type the sequence when there is only one item and that item has inputs and outputs', () => {

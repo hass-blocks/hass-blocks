@@ -1,9 +1,15 @@
+import { Executor, BlockExecutionMode, RunQueue, Block } from '@core';
+import { ExecutionAbortedError } from '@errors';
+import { md5 } from '@utils';
+
 import {
-  Executor,
-  BlockExecutionMode,
-  RunQueue,
-  Block,
-} from '../core/index.ts';
+  type IEventBus,
+  type BlockOutput,
+  type IHass,
+  type ITrigger,
+  type IBaseBlockConfig,
+  ExecutionMode,
+} from '@types';
 
 import type {
   GetSequenceInput,
@@ -11,18 +17,6 @@ import type {
   BlockRetainType,
   ValidInputOutputSequence,
 } from './valid-input-output-sequence.ts';
-
-import {
-  type IEventBus,
-  type BlockOutput,
-  type IHass,
-  ExecutionMode,
-  type ITrigger,
-  type IBaseBlockConfig,
-} from '../types/index.ts';
-
-import { ExecutionAbortedError } from '../errors/index.ts';
-import { md5 } from '../utils/index.ts';
 
 /**
  * @public

@@ -7,15 +7,12 @@
  * @packageDocumentation
  */
 
-export { initialiseBlocks } from './client/index.ts';
-export type { IBlocksConfig } from './client/index.ts';
+export { initialiseBlocks, type IBlocksConfig } from '@client';
+export { assertTargetHasEntityIds } from '@types';
+export { ExecutionAbortedError, HassBlocksError } from '@errors';
 
-export { assertTargetHasEntityIds } from './types/index.ts';
-export { ExecutionAbortedError, HassBlocksError } from './errors/index.ts';
-
-export { Block } from './core/index.ts';
-
-export { area, entity } from './targets/index.ts';
+export { Block, type ITriggerConfig } from '@core';
+export { area, entity } from '@targets';
 
 export type {
   IBlocksNode,
@@ -60,9 +57,9 @@ export type {
   HassEntity,
   HassEntityAttributeBase,
   SerialisedBlock,
-} from './types/index.ts';
+} from '@types';
 
-export { ExecutionMode } from './types/index.ts';
+export { ExecutionMode } from '@types';
 
 export {
   when,
@@ -71,12 +68,10 @@ export {
   sequence,
   serviceCall,
   assertion,
-  trigger,
   automation,
-} from './building-blocks/index.ts';
+} from '@building-blocks';
 
 export type {
-  ITriggerConfig,
   IActionConfig,
   IAutomationConfig,
   IAssertionConfig,
@@ -88,4 +83,4 @@ export type {
   OutputType,
   InputType,
   OutputTypeKeepPromise,
-} from './building-blocks/index.ts';
+} from '@building-blocks';

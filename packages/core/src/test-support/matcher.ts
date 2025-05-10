@@ -1,6 +1,8 @@
-import type { TestHassClient } from './initialise-test-blocks.ts';
-import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import 'vitest';
+
+import type { CallServiceCommand } from '@hass-blocks/hass-ts';
+
+import type { TestHassClient } from './initialise-test-blocks.ts';
 
 interface CustomMatchers<R = unknown> {
   toHaveHadServiceCallWithParams: (

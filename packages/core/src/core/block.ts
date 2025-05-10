@@ -6,10 +6,10 @@ import type {
   ITrigger,
   ITarget,
   IBlocksNode,
-} from '../types/index.ts';
+} from '@types';
 
-import { HassBlocksError } from '../errors/index.ts';
-import { mapAsync } from '../utils/index.ts';
+import { HassBlocksError } from '@errors';
+import { mapAsync } from '@utils';
 
 /**
  * @public

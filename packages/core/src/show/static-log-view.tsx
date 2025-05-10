@@ -1,6 +1,8 @@
-import type { HassBlocksEvent } from '../types/index.ts';
-import { StaticLogLine } from './static-log-line.tsx';
 import { Box } from 'ink';
+
+import type { HassBlocksEvent } from '@types';
+
+import { StaticLogLine } from './static-log-line.tsx';
 
 interface StaticLogView {
   events: (HassBlocksEvent & {

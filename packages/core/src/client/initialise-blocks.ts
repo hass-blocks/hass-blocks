@@ -1,17 +1,11 @@
-import {
-  getConfig,
-  type IClient,
-  initialiseClient,
-} from '@hass-blocks/hass-ts';
-import type {
-  IBlocksConnection,
-  IBlocksPlugin,
-  ILogger,
-} from '../types/index.ts';
-import { BlocksClient } from './blocks-client.ts';
-import { EventBus, loadPlugins } from '../core/index.ts';
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { getConfig, IClient, initialiseClient } from '@hass-blocks/hass-ts';
+
+import type { IBlocksConnection, IBlocksPlugin, ILogger } from '@types';
+import { EventBus, loadPlugins } from '@core';
+
+import { BlocksClient } from './blocks-client.ts';
 
 /**
  * @public

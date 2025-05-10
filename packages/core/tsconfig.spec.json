@@ -9,7 +9,19 @@
       "node",
       "vitest"
     ],
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@building-blocks": ["src/building-blocks/index.ts"],
+      "@client": ["src/client/index.ts"],
+      "@core": ["src/core/index.ts"],
+      "@errors": ["src/errors/index.ts"],
+      "@show": ["src/show/index.ts"],
+      "@targets": ["src/targets/index.ts"],
+      "@test-support": ["src/test-support/index.ts"],
+      "@types": ["src/types/index.ts"],
+      "@utils": ["src/utils/index.ts"]
+    }
   },
   "include": [
     "vite.config.ts",

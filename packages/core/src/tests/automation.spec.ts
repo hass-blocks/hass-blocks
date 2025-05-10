@@ -1,14 +1,10 @@
-import { initialiseTestBlocks } from '../test-support/index.ts';
 import { mock } from 'vitest-mock-extended';
-import {
-  action,
-  assertion,
-  automation,
-  serviceCall,
-  trigger,
-} from '../building-blocks/index.ts';
 import type { Service, State } from '@hass-blocks/hass-ts';
-import { entity } from '../targets/index.ts';
+
+import { initialiseTestBlocks } from '@test-support';
+import { action, assertion, automation, serviceCall } from '@building-blocks';
+import { trigger } from '@core';
+import { entity } from '@targets';
 
 const advanceTimersByTime = (time: number) => {
   vi.advanceTimersByTime(time);

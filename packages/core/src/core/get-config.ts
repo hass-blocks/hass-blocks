@@ -1,6 +1,6 @@
 import dotEnv from 'dotenv';
 
-import { getEnv } from '../utils/index.ts';
+import { getEnv } from '@utils';
 
 import {
   HASS_HOST_ENV,

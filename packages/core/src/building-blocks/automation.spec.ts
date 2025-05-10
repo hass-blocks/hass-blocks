@@ -1,22 +1,16 @@
 import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
-import {
-  RunQueue,
-  BlockExecutionMode,
-  type EventBus,
-  Executor,
-} from '../core/index.ts';
+import { RunQueue, BlockExecutionMode, type EventBus, Executor } from '@core';
+import { type IHass, ExecutionMode } from '@types';
+import { ExecutionAbortedError } from '@errors';
 
 import type { Action } from './action.ts';
 import { Automation } from './automation.ts';
 
-import { type IHass, ExecutionMode } from '../types/index.ts';
-import { ExecutionAbortedError } from '../errors/index.ts';
-
-vi.mock('../core/index.ts', async (importOriginal) => {
+vi.mock('@core', async (importOriginal) => {
   return {
-    ...(await importOriginal<typeof import('../core/index.ts')>()),
+    ...(await importOriginal<typeof import('@core')>()),
     RunQueue: vi.fn(),
     Executor: vi.fn(),
   };

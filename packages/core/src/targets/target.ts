@@ -1,4 +1,4 @@
-import type { IHass, ITarget, ITargetIds } from '../types/index.ts';
+import type { IHass, ITarget, ITargetIds } from '@types';
 
 export abstract class Target implements ITarget {
   public abstract targetIds: ITargetIds;

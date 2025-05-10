@@ -1,12 +1,13 @@
+import { mock } from 'vitest-mock-extended';
+import { when as testWhen } from 'vitest-when';
+
+import { type Block, EventBus } from '@core';
+import type { ContinueOutput, IHass } from '@types';
+
 import { when } from './if-then-else-condition.ts';
 import type { Assertion } from './assertion.ts';
-import { when as testWhen } from 'vitest-when';
-import type { Block } from '../core/index.ts';
-import { mock } from 'vitest-mock-extended';
-import { EventBus } from '../core/index.ts';
-import type { ContinueOutput, IHass } from '../types/index.ts';
 
-vi.mock('../utils/index.ts');
+vi.mock('@utils');
 
 beforeEach(() => {
   vi.resetAllMocks();

@@ -17,7 +17,7 @@ import type {
   State,
   TriggerEventMessage,
 } from '@hass-blocks/hass-ts';
-import { initialiseBlocks } from '../client/index.ts';
+import { initialiseBlocks } from '@client';
 
 type TriggerCallback = (event: unknown) => void | Promise<void>;
 

@@ -1,4 +1,4 @@
-import type { Block } from '../core/index.ts';
+import type { Block } from '@core';
 
 /**
  * Given an array of blocks, get the input type from the first block

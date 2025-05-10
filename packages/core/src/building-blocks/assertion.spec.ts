@@ -1,10 +1,12 @@
 import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
-import { Assertion } from './assertion.ts';
-import { md5 } from '../utils/index.ts';
-import type { IHass } from '../types/index.ts';
 
-vi.mock('../utils/index.ts');
+import { md5 } from '@utils';
+import type { IHass } from '@types';
+
+import { Assertion } from './assertion.ts';
+
+vi.mock('@utils');
 
 beforeEach(() => {
   vi.resetAllMocks();

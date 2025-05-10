@@ -2,8 +2,8 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 import { v4 } from 'uuid';
 
-import type { IHass } from '../types/index.ts';
-import type { EventBus, Block } from '../core/index.ts';
+import type { IHass } from '@types';
+import type { EventBus, Block } from '@core';
 
 import { BlockExecutionMode, Executor } from './executor.ts';
 

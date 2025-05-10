@@ -1,5 +1,5 @@
-import { Queue } from 'queue-typescript';
 import EventEmitter from 'node:events';
+import { Queue } from 'queue-typescript';
 import { v4 } from 'uuid';
 
 import type {
@@ -8,8 +8,8 @@ import type {
   IHass,
   IEventBus,
   HassBlocksEvent,
-} from '../types/index.ts';
-import { ExecutionAbortedError } from '../errors/index.ts';
+} from '@types';
+import { ExecutionAbortedError } from '@errors';
 import type { Block } from './block.ts';
 
 const EXECUTOR_FINISHED = 'executor-finished';

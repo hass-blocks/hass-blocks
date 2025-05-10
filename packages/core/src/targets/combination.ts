@@ -1,6 +1,7 @@
-import type { IHass, ITarget, ITargetIds } from '../types/index.ts';
+import type { IHass, ITarget, ITargetIds } from '@types';
+import { mapAsync } from '@utils';
+
 import { Target } from './target.ts';
-import { mapAsync } from '../utils/index.ts';
 
 export class Combination extends Target {
   public constructor(private targets: ITarget[]) {

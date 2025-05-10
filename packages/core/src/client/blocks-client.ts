@@ -5,18 +5,11 @@ import type {
   Service,
   HassArea,
 } from '@hass-blocks/hass-ts';
-import type {
-  HassEntity,
-  IEventBus,
-  ICallServiceParams,
-  IBlock,
-} from '../types/index.ts';
-import {
-  EntityDoesNotExistError,
-  InitialStatesNotLoadedError,
-} from '../errors/index.ts';
-import type { IFullBlocksClient } from '../types/index.ts';
-import { mapAsync } from '../utils/index.ts';
+
+import type { HassEntity, IEventBus, ICallServiceParams, IBlock } from '@types';
+import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
+import type { IFullBlocksClient } from '@types';
+import { mapAsync } from '@utils';
 
 type StateChangedCallback = (
   event: Event | TriggerEventMessage['event'],

@@ -17,6 +17,8 @@ export default defineConfig(() => ({
     setupFiles: ['src/test-support/matcher.ts'],
     reporters: ['default'],
     coverage: {
+      include: ['src/**/*.ts'],
+      exclude: ['src/index.ts', 'src/test-support/**/*', 'src/tests/**/*'],
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,
     },

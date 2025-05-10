@@ -12,10 +12,9 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
 
   const result = apiExtractor({
     workspaceRoot: root,
-    ...options,
     outputDir: options.reportFolder,
     dtsRollup: true,
-    strictChecks: options.strictChecks,
+    ...options,
   });
 
   if (

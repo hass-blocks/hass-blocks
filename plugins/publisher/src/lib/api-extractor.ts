@@ -8,6 +8,7 @@ import {
 import { workspaceRoot } from '@nx/devkit';
 import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
+import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 
 interface ApiExractorArgs {
   workspaceRoot: string;
@@ -17,6 +18,7 @@ interface ApiExractorArgs {
   docModel?: boolean;
   dtsRollup?: boolean;
   strictChecks?: boolean;
+  replacePaths?: boolean;
 }
 
 export const apiExtractor = (options: ApiExractorArgs) => {
@@ -39,6 +41,16 @@ export const apiExtractor = (options: ApiExractorArgs) => {
   const packageJsonFullPath = join(projectRoot, `package.json`);
   const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
   const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
+  const srcDir = join(projectRoot, `src`);
+  const distDir = join(projectRoot, `dist`);
+
+  if (options.replacePaths) {
+    tsconfigReplacePaths({
+      project: tsconfigFilePath,
+      src: srcDir,
+      out: distDir,
+    });
+  }
 
   const dtsRollup: IConfigFile['dtsRollup'] = {
     enabled: true,

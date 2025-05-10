@@ -5,6 +5,10 @@
   "description": "",
   "type": "object",
   "properties": {
+    "replacePaths": {
+      "type": "boolean",
+      "description": "Whether or not to replace tsconfig paths before generating rollup"
+    },
     "strictChecks": {
       "type": "boolean",
       "description": "Whether or not to check for missing documentation and exports"

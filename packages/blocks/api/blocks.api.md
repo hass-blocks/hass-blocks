@@ -20,12 +20,6 @@ export const gate: (name: string) => {
 };
 
 // @public
-export const ifStateIs: (target: ITarget, state: string) => Block<void, void>;
-
-// @public
-export const ifStateIsNot: (target: ITarget, state: string) => Block<void, void>;
-
-// @public
 export const openCover: (target: ITarget) => Block<void, void>;
 
 // @public
@@ -42,6 +36,15 @@ export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<
 
 // @public
 export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<void, void>;
+
+// @public
+export const stateChanges: (target: ITarget) => ITrigger;
+
+// @public
+export const stateIs: (target: ITarget, state: string) => Block<void, void>;
+
+// @public
+export const stateIsNot: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
 export const stateTurns: (entityId: ITarget, onOrOff: "on" | "off") => ITrigger;

@@ -19,6 +19,6 @@ export {
   selectMediaPlayerSource,
 } from './actions/index.ts';
 
-export { stateTurns } from './triggers/index.ts';
+export { stateTurns, stateChanges } from './triggers/index.ts';
 
-export { ifStateIs, ifStateIsNot, gate } from './assertions/index.ts';
+export { stateIs, stateIsNot, gate } from './assertions/index.ts';

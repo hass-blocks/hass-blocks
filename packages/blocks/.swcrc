@@ -1,6 +1,6 @@
 {
   "jsc": {
-    "baseUrl":"./",
+    "baseUrl": "./",
     "paths": {
       "@actions": ["src/lib/actions/index.ts"],
       "@assertions": ["src/lib/assertions/index.ts"],

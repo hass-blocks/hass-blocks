@@ -11,7 +11,7 @@ export { initialiseBlocks, type IBlocksConfig } from '@client';
 export { assertTargetHasEntityIds } from '@types';
 export { ExecutionAbortedError, HassBlocksError } from '@errors';
 
-export { Block, type ITriggerConfig } from '@core';
+export { Block, type ITriggerConfig, trigger } from '@core';
 export { area, entity } from '@targets';
 
 export type {

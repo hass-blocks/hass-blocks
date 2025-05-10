@@ -1,4 +1,4 @@
-import type { Event } from '../../../types/index.ts';
+import type { Event } from '@types';
 
 export interface EventMessage {
   id: number;

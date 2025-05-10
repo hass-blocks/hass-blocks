@@ -1,4 +1,5 @@
-import type { ThrowCommand, ErrorResult } from '../../lib/core/index.ts';
+import type { ThrowCommand, ErrorResult } from '@websocket-client';
+
 import { TEST_ERROR_CODE, TEST_ERROR_MESSAGE } from '../index.ts';
 
 import type { Socket } from './socket.ts';

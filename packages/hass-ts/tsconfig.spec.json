@@ -1,6 +1,18 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@initialise": ["src/lib/initialise/index.ts"],
+      "@home-assistant": ["src/lib/home-assistant/index.ts"],
+      "@rest-client": ["src/lib/rest-client/index.ts"],
+      "@websocket-client": ["src/lib/websocket-client/index.ts"],
+      "@test-support": ["src/test-support/index.ts"],
+      "@constants": ["src/lib/constants.ts"],
+      "@types": ["src/lib/types/index.ts"],
+      "@errors": ["src/lib/errors/index.ts"],
+      "@utils": ["src/lib/utils/index.ts"]
+    },
     "outDir": "./out-tsc/vitest",
     "types": [
       "vitest/globals",
@@ -24,7 +36,9 @@
     "src/**/*.spec.js",
     "src/**/*.test.jsx",
     "src/**/*.spec.jsx",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/lib/initialise/initialise-hass-spec.ts",
+    "src/lib/initialise/initialise-hass-spec.ts"
   ],
   "references": [
     {

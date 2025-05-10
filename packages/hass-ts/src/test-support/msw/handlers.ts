@@ -1,5 +1,7 @@
 import { HttpResponse, http } from 'msw';
-import { HTTP } from '../../lib/core/index.ts';
+
+import { HTTP } from '@constants';
+
 import { TEST_HASS_HOST, TEST_HASS_PORT } from '../index.ts';
 
 import { validateCredentials } from './validate-credentials.ts';

@@ -1,6 +1,6 @@
-import { getConfig, initialiseClient } from '../lib/core/index.ts';
+import { getConfig, initialiseHass } from '@initialise';
 
-const client = await initialiseClient(getConfig());
+const client = await initialiseHass(getConfig());
 
 const devices = await client.getAreas();
 

@@ -1,4 +1,8 @@
-import type { HassConfig } from '../types/index.ts';
+import dotEnv from 'dotenv';
+
+import { getEnv } from '@utils';
+import type { HassConfig } from '@types';
+
 import {
   HASS_HOST_ENV,
   HASS_HTTP_PATH_ENV,
@@ -6,10 +10,7 @@ import {
   HASS_TOKEN_ENV,
   HASS_WS_PATH_ENV,
   SUPERVISOR_TOKEN_ENV,
-} from './constants.ts';
-
-import { getEnv } from '../utils/index.ts';
-import dotEnv from 'dotenv';
+} from '../constants.ts';
 
 /**
  * @public

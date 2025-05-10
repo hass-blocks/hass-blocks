@@ -1,6 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { safeJsonParse } from '../lib/utils/index.ts';
+
+import { safeJsonParse } from '@utils';
+
 import type { IPackageJson } from 'package-json-type';
 
 export const getPackageName = () => {

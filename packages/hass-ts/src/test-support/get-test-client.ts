@@ -1,7 +1,9 @@
-import { initialiseClient } from './package-intercept.ts';
-import { getConfig } from '../lib/core/index.ts';
 import { inject } from 'vitest';
-import type { Logger } from '../lib/index.ts';
+
+import { getConfig } from '@initialise';
+import type { Logger } from '@types';
+
+import { initialiseHass } from './package-intercept.ts';
 
 export const clientBuilder = () => {
   let started = false;
@@ -24,7 +26,7 @@ export const clientBuilder = () => {
       fatal: console.log,
     };
 
-    const client = await initialiseClient({ ...config, logger });
+    const client = await initialiseHass({ ...config, logger });
 
     console.log('Waiting for home assistant to start');
 

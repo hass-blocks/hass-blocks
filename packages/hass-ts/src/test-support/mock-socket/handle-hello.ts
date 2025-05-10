@@ -1,4 +1,4 @@
-import type { HelloCommand } from '../../lib/core/index.ts';
+import type { HelloCommand } from '@websocket-client';
 import { send } from './send.ts';
 import type { Socket } from './socket.ts';
 

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
-import { safeJsonParse } from '../lib/utils/index.ts';
 import type { IPackageJson } from 'package-json-type';
+
+import { safeJsonParse } from '@utils';
 
 export class PackageJsonFile {
   private data: IPackageJson;

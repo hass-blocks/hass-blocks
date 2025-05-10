@@ -1,15 +1,15 @@
-export { initialiseClient, getConfig } from './core/index.ts';
+export { initialiseHass, getConfig } from '@initialise';
 
 export type {
-  IClient,
-  GetHistoryParams,
-  GetLogbookParams,
   CallServiceCommand,
   CallServiceResponse,
   TriggerEventMessage,
-} from './core/index.ts';
+} from '@websocket-client';
 
 export type {
+  IHomeAssistant,
+  GetHistoryParams,
+  GetLogbookParams,
   HassEntity,
   HassConfig,
   Context,
@@ -25,4 +25,4 @@ export type {
   Panel,
   Event,
   HassArea,
-} from './types/index.ts';
+} from '@types';

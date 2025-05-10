@@ -1,18 +1,15 @@
-import type {
-  Config,
-  Event,
-  Panel,
-  State,
-  CalendarDetails,
-  ServiceDomainDetails,
-  LogBookEntry,
-  EventDetails,
-  HassArea,
-  HassEntity,
-  HassDevice,
-  Service,
-} from '../../types/index.ts';
-
+import type { Config } from './config.ts';
+import type { Event } from './event.ts';
+import type { Panel } from './panel.ts';
+import type { State } from './state.ts';
+import type { CalendarDetails } from './calendar-details.ts';
+import type { ServiceDomainDetails } from './service-domain-details.ts';
+import type { LogBookEntry } from './logbook-entry.ts';
+import type { EventDetails } from './event-details.ts';
+import type { HassArea } from './area.ts';
+import type { HassEntity } from './hass-entity.ts';
+import type { HassDevice } from './hass-device.ts';
+import type { Service } from './services.ts';
 import type { GetHistoryParams } from './get-history-params.ts';
 import type { GetLogbookParams } from './get-logbook-params.ts';
 
@@ -28,7 +25,7 @@ import type {
  *
  * @public
  */
-export interface IClient {
+export interface IHomeAssistant {
   /**
    * Returns an array of state changes from the past
    */

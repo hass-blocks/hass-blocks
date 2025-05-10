@@ -1,8 +1,9 @@
-import type { HassConfig } from '../types/index.ts';
-import { Client, type IClient } from './client/index.ts';
-import { WebsocketClient } from './websocket-client/index.ts';
+import type { HassConfig, IHomeAssistant } from '@types';
+import { HomeAssistant } from '@home-assistant';
+import { WebsocketClient } from '@websocket-client';
+import { RestClient } from '@rest-client';
+
 import { getLogger } from './get-logger.ts';
-import { RestClient } from './rest-client/index.ts';
 
 /**
  * Initialise the http and websocket connections and return a client that is ready
@@ -17,14 +18,14 @@ import { RestClient } from './rest-client/index.ts';
  * const client = await initialiseClient(config)
  *
  */
-export const initialiseClient = async ({
+export const initialiseHass = async ({
   host,
   port,
   httpPath,
   websocketPath,
   token,
   logger,
-}: HassConfig): Promise<IClient> => {
+}: HassConfig): Promise<IHomeAssistant> => {
   const finalLogger = getLogger(logger);
   const websocketClient = new WebsocketClient(
     host,
@@ -36,7 +37,7 @@ export const initialiseClient = async ({
 
   await websocketClient.init();
   const restClient = new RestClient(host, port, httpPath, token, finalLogger);
-  const client = new Client(websocketClient, restClient);
+  const client = new HomeAssistant(websocketClient, restClient);
 
   return client;
 };

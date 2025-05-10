@@ -1,14 +1,14 @@
 import { vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 
-import type { Logger } from '../../types/index.ts';
+import type { Logger } from '@types';
 import {
   TEST_ERROR_CODE,
   TEST_ERROR_MESSAGE,
   initialiseMockHassWebsocket,
-} from '../../../test-support/index.ts';
-import { ErrorResponseError, HassTsError } from '../errors/index.ts';
-import { ERRORS } from '../constants.ts';
+} from '@test-support';
+import { ErrorResponseError, HassTsError } from '@errors';
+import { ERRORS } from '@constants';
 
 import { WebsocketClient } from './websocket-client.ts';
 

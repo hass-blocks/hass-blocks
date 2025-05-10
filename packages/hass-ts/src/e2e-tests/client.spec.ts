@@ -1,5 +1,5 @@
 import { vi } from 'vitest';
-import { clientBuilder } from '../test-support/get-test-client.ts';
+import { clientBuilder } from '@test-support';
 
 const { getTestClient } = clientBuilder();
 

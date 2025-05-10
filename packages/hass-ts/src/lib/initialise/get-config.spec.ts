@@ -1,6 +1,7 @@
 import { vi } from 'vitest';
-import { getConfig } from './get-config.ts';
 import { config } from 'dotenv';
+
+import { getConfig } from './get-config.ts';
 
 vi.mock('dotenv');
 

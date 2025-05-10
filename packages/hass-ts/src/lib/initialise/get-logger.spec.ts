@@ -1,7 +1,9 @@
-import { mock } from 'vitest-mock-extended';
-import { getLogger } from './get-logger.ts';
-import type { Logger } from '../types/index.ts';
 import { vi } from 'vitest';
+import { mock } from 'vitest-mock-extended';
+
+import type { Logger } from '@types';
+
+import { getLogger } from './get-logger.ts';
 
 afterEach(() => {
   vi.unstubAllGlobals();

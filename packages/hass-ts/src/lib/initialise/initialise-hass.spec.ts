@@ -1,18 +1,18 @@
 import { vi } from 'vitest';
 import { when } from 'vitest-when';
-
-import type { Logger } from '../types/index.ts';
-
-import { initialiseClient } from './initialise-client.ts';
-import { WebsocketClient } from './websocket-client/index.ts';
 import { mock } from 'vitest-mock-extended';
-import { Client } from './client/index.ts';
-import { getLogger } from './get-logger.ts';
-import { RestClient } from './rest-client/index.ts';
 
-vi.mock('./client/index.js');
-vi.mock('./websocket-client/index.js');
-vi.mock('./rest-client/index.js');
+import type { Logger } from '@types';
+import { WebsocketClient } from '@websocket-client';
+import { HomeAssistant } from '@home-assistant';
+import { RestClient } from '@rest-client';
+
+import { initialiseHass } from './initialise-hass.ts';
+import { getLogger } from './get-logger.ts';
+
+vi.mock('@home-assistant');
+vi.mock('@websocket-client');
+vi.mock('@rest-client');
 vi.mock('./get-logger.js');
 
 describe('initialiseClient', () => {
@@ -38,13 +38,13 @@ describe('initialiseClient', () => {
       .calledWith(host, port, httpPath, token, logger)
       .thenReturn(mockRestClient);
 
-    const mockClient = mock<Client>();
+    const mockClient = mock<HomeAssistant>();
 
-    when(vi.mocked(Client))
+    when(vi.mocked(HomeAssistant))
       .calledWith(mockWebsocketClient, mockRestClient)
       .thenReturn(mockClient);
 
-    const client = await initialiseClient({
+    const client = await initialiseHass({
       host,
       port,
       httpPath,

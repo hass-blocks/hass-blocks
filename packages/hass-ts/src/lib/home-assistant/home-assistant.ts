@@ -1,8 +1,11 @@
-import { convertCamelCaseToUnderscoreCase } from '../../utils/index.ts';
+import { convertCamelCaseToUnderscoreCase } from '@utils';
 
-import type { RestClient } from '../rest-client/index.ts';
+import type { RestClient } from '@rest-client';
+
 import type {
   CallServiceCommand,
+  TriggerEventMessage,
+  SubscribeToTriggerMessage,
   GetAreasCommand,
   GetConfigCommand,
   GetDevicesCommand,
@@ -12,9 +15,7 @@ import type {
   GetStatesCommand,
   MessageFromServer,
   WebsocketClient,
-} from '../websocket-client/index.ts';
-
-import type { IClient } from './i-client.ts';
+} from '@websocket-client';
 
 import type {
   CalendarDetails,
@@ -29,15 +30,12 @@ import type {
   HassEntity,
   HassDevice,
   Service,
-} from '../../types/index.ts';
-import type { GetHistoryParams } from './get-history-params.ts';
-import type { GetLogbookParams } from './get-logbook-params.ts';
-import type {
-  TriggerEventMessage,
-  SubscribeToTriggerMessage,
-} from '../websocket-client/index.ts';
+  IHomeAssistant,
+  GetHistoryParams,
+  GetLogbookParams,
+} from '@types';
 
-export class Client implements IClient {
+export class HomeAssistant implements IHomeAssistant {
   constructor(
     private websocketClient: WebsocketClient,
     private httpClient: RestClient,
@@ -60,7 +58,6 @@ export class Client implements IClient {
     >({
       type: 'config/entity_registry/list',
     });
-    console.log('Do a thing');
     return result;
   }
 

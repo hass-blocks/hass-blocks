@@ -1,5 +1,6 @@
-import { HTTP } from '../../lib/core/index.ts';
 import { type DefaultBodyType, HttpResponse, type StrictRequest } from 'msw';
+
+import { HTTP } from '@constants';
 import { TEST_HASS_TOKEN } from '../index.ts';
 
 export const validateCredentials = (

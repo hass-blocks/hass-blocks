@@ -1,5 +1,5 @@
-import type { MessageToServer } from '../../lib/core/index.ts';
-import { safeJsonParse } from '../../lib/utils/index.ts';
+import type { MessageToServer } from '@websocket-client';
+import { safeJsonParse } from '@utils';
 
 import { handleAuth } from './handle-auth.ts';
 import { handleHello } from './handle-hello.ts';

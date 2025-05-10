@@ -1,1 +1,1 @@
-export { initialiseClient } from '../lib/core/index.ts';
+export { initialiseHass } from '@initialise';

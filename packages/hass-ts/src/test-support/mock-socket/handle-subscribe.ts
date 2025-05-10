@@ -1,9 +1,9 @@
-import { mockEventData } from '../../lib/core/client/index.ts';
-import { delay } from '../index.ts';
+import { mockEventData } from '@home-assistant';
+import type { SubscribeToEventsMessage } from '@websocket-client';
 
+import { delay } from '../index.ts';
 import type { Socket } from './socket.ts';
 import { send } from './send.ts';
-import type { SubscribeToEventsMessage } from '../../lib/core/index.ts';
 
 export const handleSubscribe = async (
   socket: Socket,

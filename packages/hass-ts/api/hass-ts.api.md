@@ -251,7 +251,7 @@ export interface HassEntity {
 }
 
 // @public
-export interface IClient {
+export interface IHomeAssistant {
     callService(params: Omit<CallServiceCommand, 'id' | 'type'>): Promise<State[]>;
     close(): Promise<void>;
     getAreas(): Promise<HassArea[]>;
@@ -274,7 +274,7 @@ export interface IClient {
 }
 
 // @public
-export const initialiseClient: ({ host, port, httpPath, websocketPath, token, logger, }: HassConfig) => Promise<IClient>;
+export const initialiseHass: ({ host, port, httpPath, websocketPath, token, logger, }: HassConfig) => Promise<IHomeAssistant>;
 
 // @public
 export type LogBookEntry = LogbookStatechangeEntry | LogbookStatechangeEntry2 | LogbookTriggerEntry;

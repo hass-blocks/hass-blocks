@@ -24,7 +24,8 @@
         "mainEntrypointFile": "packages/hass-ts/dist/index.d.ts",
         "reportFolder": "packages/hass-ts/api",
         "strictChecks": false,
-        "projectFolder": "packages/hass-ts"
+        "projectFolder": "packages/hass-ts",
+        "replacePaths": true
       }
     },
     "doc-model": {

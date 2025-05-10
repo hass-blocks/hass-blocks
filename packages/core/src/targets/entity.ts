@@ -7,10 +7,9 @@ import { Combination } from './combination.ts';
  *
  * An entity id
  */
-export type EntityId = `${string}.${string}`;
 
 export class Entity extends Target {
-  public constructor(private theId: EntityId) {
+  public constructor(private theId: string) {
     super();
   }
 
@@ -32,7 +31,7 @@ export class Entity extends Target {
  *
  * @param targets - One or more entity or other targets
  */
-export const entity = (...targets: (EntityId | ITarget)[]): ITarget => {
+export const entity = (...targets: (string | ITarget)[]): ITarget => {
   return new Combination(
     targets.map((theTarget) =>
       typeof theTarget === 'string' ? new Entity(theTarget) : theTarget,

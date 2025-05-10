@@ -126,10 +126,7 @@ export interface ContinueOutput<O> {
 }
 
 // @public
-export const entity: (...targets: (EntityId | ITarget)[]) => ITarget;
-
-// @public
-export type EntityId = `${string}.${string}`;
+export const entity: (...targets: (string | ITarget)[]) => ITarget;
 
 // @public
 export class ExecutionAbortedError extends HassBlocksError {

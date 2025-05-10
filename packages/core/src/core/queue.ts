@@ -1,6 +1,14 @@
 export class Queue<T> {
   private data: T[] = [];
 
+  public constructor(...data: T[]) {
+    this.data = data;
+  }
+
+  public toArray() {
+    return [...this.data];
+  }
+
   public push(item: T) {
     this.data.push(item);
   }

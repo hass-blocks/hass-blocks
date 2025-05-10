@@ -27,4 +27,29 @@ describe('the queue', () => {
     const result3 = queue.pop();
     expect(result3).toEqual(3);
   });
+
+  it('toArray returns an array version of the queue data', () => {
+    const queue = new Queue<number>();
+
+    queue.push(10);
+    queue.push(7);
+    queue.push(3);
+
+    expect(queue.toArray()).toEqual([10, 7, 3]);
+  });
+
+  it('The constructor prepopulates the data', () => {
+    const queue = new Queue<number>(...[10, 7, 3]);
+
+    expect(queue.toArray()).toEqual([10, 7, 3]);
+
+    const result1 = queue.pop();
+    expect(result1).toEqual(10);
+
+    const result2 = queue.pop();
+    expect(result2).toEqual(7);
+
+    const result3 = queue.pop();
+    expect(result3).toEqual(3);
+  });
 });

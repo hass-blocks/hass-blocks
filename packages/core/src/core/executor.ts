@@ -1,5 +1,4 @@
 import EventEmitter from 'node:events';
-import { Queue } from 'queue-typescript';
 import { v4 } from 'uuid';
 
 import type {
@@ -11,6 +10,7 @@ import type {
 } from '@types';
 import { ExecutionAbortedError } from '@errors';
 import type { Block } from './block.ts';
+import { Queue } from './queue.ts';
 
 const EXECUTOR_FINISHED = 'executor-finished';
 const EXECUTOR_ABORTED = 'executor-aborted';
@@ -180,7 +180,12 @@ export class Executor<I, O> implements Runnable {
     this.emitPendingMessages();
 
     while (this.executionQueue.length > 0) {
-      const { block, executionId } = this.executionQueue.dequeue();
+      const popResult = this.executionQueue.pop();
+      if (!popResult) {
+        // This should never happen!
+        continue;
+      }
+      const { block, executionId } = popResult;
 
       const lastResultPromise = this.executeBlock(
         executionId,

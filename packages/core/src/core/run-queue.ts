@@ -1,7 +1,7 @@
-import { Queue } from 'queue-typescript';
-
 import { ExecutionAbortedError } from '@errors';
 import type { Runnable } from '@types';
+
+import { Queue } from './queue.ts';
 
 export class RunQueue {
   private queue = new Queue<Runnable>();
@@ -13,14 +13,14 @@ export class RunQueue {
   }
 
   public enqueue(runnable: Runnable) {
-    this.queue.enqueue(runnable);
+    this.queue.push(runnable);
   }
 
   public abortAll() {
     this.current?.abort();
     while (this.queue.length > 0) {
-      const runnable = this.queue.dequeue();
-      runnable.abort();
+      const runnable = this.queue.pop();
+      runnable?.abort();
     }
   }
 
@@ -28,9 +28,9 @@ export class RunQueue {
     while (true) {
       while (this.queue.length > 0) {
         try {
-          const runnable = this.queue.dequeue();
+          const runnable = this.queue.pop();
           this.current = runnable;
-          await runnable.run();
+          await runnable?.run();
         } catch (error) {
           if (!(error instanceof ExecutionAbortedError)) {
             throw error;

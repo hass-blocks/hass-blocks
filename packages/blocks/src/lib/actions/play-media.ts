@@ -21,7 +21,7 @@ export const playMedia = (
       domain: 'media_player',
       service: 'play_media',
       service_data: {
-        announc: false,
+        announce: false,
         media_contend_id: mediaContentId,
         media_content_type: mediaContentType,
       },

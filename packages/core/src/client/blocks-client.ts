@@ -1,5 +1,5 @@
 import type {
-  IClient,
+  IHomeAssistant,
   Event,
   TriggerEventMessage,
   Service,
@@ -26,7 +26,7 @@ export class BlocksClient implements IFullBlocksClient {
   private stateChangedCallback: StateChangedCallback | undefined;
 
   public constructor(
-    private client: IClient,
+    private client: IHomeAssistant,
     private bus: IEventBus,
   ) {}
 

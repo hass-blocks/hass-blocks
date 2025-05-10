@@ -8,7 +8,7 @@ import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import type { Event as Event_2 } from '@hass-blocks/hass-ts';
 import type { HassArea } from '@hass-blocks/hass-ts';
 import type { HassConfig } from '@hass-blocks/hass-ts';
-import { IClient } from '@hass-blocks/hass-ts';
+import { IHomeAssistant } from '@hass-blocks/hass-ts';
 import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
 
@@ -248,7 +248,7 @@ export interface IBlock<I = void, O = void> extends IBlocksNode {
 
 // @public
 export interface IBlocksConfig {
-    client?: IClient;
+    client?: IHomeAssistant;
     logger?: ILogger;
     plugins?: IBlocksPlugin[];
 }
@@ -449,6 +449,9 @@ export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> 
 export interface StopOutput {
     continue: false;
 }
+
+// @public
+export const trigger: (config: ITriggerConfig) => ITrigger;
 
 // @public
 export type ValidInputOutputSequence<I, O, A extends readonly Block<unknown, unknown>[]> = A extends readonly [infer Only extends Block<unknown, unknown>] ? InputType<Only> extends I ? OutputType<Only> extends O ? readonly [Only] : never : never : A extends readonly [

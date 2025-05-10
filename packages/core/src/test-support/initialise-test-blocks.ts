@@ -9,7 +9,7 @@ import type {
   HassArea,
   HassDevice,
   HassEntity,
-  IClient,
+  IHomeAssistant,
   LogBookEntry,
   Panel,
   Service,
@@ -24,7 +24,7 @@ type TriggerCallback = (event: unknown) => void | Promise<void>;
 /**
  * A mock implementation of the Home Assistant client. Used for testing purposes
  */
-export class TestHassClient implements IClient {
+export class TestHassClient implements IHomeAssistant {
   private serviceCalls: Omit<CallServiceCommand, 'id' | 'type'>[] = [];
   private triggers: Record<string, TriggerCallback> = {};
   private eventCallbacksWithType: Record<

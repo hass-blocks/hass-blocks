@@ -1,6 +1,10 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { getConfig, IClient, initialiseClient } from '@hass-blocks/hass-ts';
+import {
+  getConfig,
+  type IHomeAssistant,
+  initialiseHass,
+} from '@hass-blocks/hass-ts';
 
 import type { IBlocksConnection, IBlocksPlugin, ILogger } from '@types';
 import { EventBus, loadPlugins } from '@core';
@@ -27,7 +31,7 @@ export interface IBlocksConfig {
   /**
    * An already instantiated version of the Hass client. Used for testing
    */
-  client?: IClient;
+  client?: IHomeAssistant;
 }
 
 /**
@@ -71,7 +75,7 @@ export const initialiseBlocks = async (
   });
 
   const config = getConfig();
-  const hassClient = client ?? (await initialiseClient(config));
+  const hassClient = client ?? (await initialiseHass(config));
   const blocks = new BlocksClient(hassClient, bus);
 
   if (plugins) {

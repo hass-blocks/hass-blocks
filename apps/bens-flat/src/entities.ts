@@ -10,6 +10,41 @@ export const livingRoomMotionSensor = entity(
 export const bedroomMotionSensor = entity('switch.bedroom_motion_sensor');
 
 export const livingRoomBlinds = entity('cover.living_room_blinds');
+
+export const livingRoomBlindsLeftWindow = entity(
+  'cover.living_room_windows_left',
+);
+
+export const sun = entity('sun');
+
+export const livingRoomBlindsLeftCentreWindow = entity(
+  'cover.living_room_windows_left_centre',
+);
+
+export const livingRoomBlindsRightWindow = entity(
+  'cover.living_room_windows_right',
+);
+
+export const livingRoomBlindsRightCentreWindow = entity(
+  'cover.living_room_windows_right_centre',
+);
+
+export const livingRoomBlindsLeftWindowSwitch = entity(
+  'switch.living_room_blinds_left_window',
+);
+
+export const livingRoomBlindsLeftCentreWindowSwitch = entity(
+  'switch.living_room_blinds_left_centre_window',
+);
+
+export const livingRoomBlindsRightWindowSwitch = entity(
+  'switch.living_room_blinds_right_window',
+);
+
+export const livingRoomBlindsRightCentreWindowSwitch = entity(
+  'switch.living_room_blinds_right_centre_window',
+);
+
 export const livingRoomLights = entity('light.living_room');
 export const bathroomLights = entity('light.main_bathroom');
 export const bedroomLights = entity('light.bedroom');

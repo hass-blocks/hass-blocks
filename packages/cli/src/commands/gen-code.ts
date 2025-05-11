@@ -1,5 +1,7 @@
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
 import { generateEntities } from '@lib/codegen/generate-entities.ts';
+import { generateServiceCalls } from '@lib/codegen/generate-service-calls.ts';
+import { generateOutputBarrel } from '@lib/codegen/generate-output-barrel.ts';
 import { Command, Option } from 'clipanion';
 
 export default class GenCodeCommand extends Command {
@@ -7,10 +9,15 @@ export default class GenCodeCommand extends Command {
 
   override async execute(): Promise<number | void> {
     const client = await initialiseHass(getConfig());
-    const states = await client.getStates();
-    await client.close();
-
-    await generateEntities(this.folder, states);
+    try {
+      const states = await client.getStates();
+      const services = await client.getServices();
+      await generateServiceCalls(this.folder, services);
+      await generateEntities(this.folder, states);
+      await generateOutputBarrel(this.folder);
+    } finally {
+      await client.close();
+    }
   }
 
   static override paths = [[`gen-code`]];

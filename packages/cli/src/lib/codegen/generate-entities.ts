@@ -1,7 +1,7 @@
 import { State } from '@hass-blocks/hass-ts';
 import { generateDomainEntities } from './generate-domain-entities.ts';
 import { splitId } from './split-id.ts';
-import { generateBucketFile } from './generate-bucket-file.ts';
+import { generateBucketFile } from './generate-barrel-file.ts';
 import { join } from 'path';
 
 export const generateEntities = async (folder: string, states: State[]) => {

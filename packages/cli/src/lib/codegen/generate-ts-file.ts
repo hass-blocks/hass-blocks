@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync } from 'node:fs';
 import { writeFile } from 'node:fs/promises';
+import * as prettier from 'prettier';
 import { join } from 'node:path/posix';
 import ts from 'typescript';
 import { Node, NodeArray } from 'typescript';
@@ -23,6 +24,9 @@ export const generateTsFile = async <T extends Node>(
   const output = printer.printList(ts.ListFormat.MultiLine, nodes, file);
   createDirIfNotExists(folder);
   const newFilePath = join(folder, fileName);
-  await writeFile(newFilePath, output);
+  const formatted = await prettier.format(output, {
+    filepath: newFilePath,
+  });
+  await writeFile(newFilePath, formatted);
   console.log(`Generated ${newFilePath}`);
 };

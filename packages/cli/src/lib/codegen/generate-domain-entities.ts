@@ -3,7 +3,7 @@ import { generateTsFile } from './generate-ts-file.ts';
 import { join } from 'path';
 import ts from 'typescript';
 import { splitId } from './split-id.ts';
-import { toCamel } from './underscore-to-came.ts';
+import { toCamel } from './to-camel.ts';
 
 export const generateDomainEntities = async (
   folder: string,
@@ -11,7 +11,6 @@ export const generateDomainEntities = async (
   states: State[],
 ) => {
   const entityIdentifier = ts.factory.createIdentifier('entity');
-
   const importStatement = ts.factory.createImportDeclaration(
     undefined,
     ts.factory.createImportClause(

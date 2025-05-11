@@ -2,6 +2,7 @@ import type { ITargetIds, ITarget, IHass } from '@types';
 
 import { Target } from './target.ts';
 import { Combination } from './combination.ts';
+import { EntityDoesNotExistError } from '@errors';
 
 /**
  * @public
@@ -21,7 +22,11 @@ export class Entity extends Target {
   }
 
   public async validate(hass: IHass): Promise<void> {
-    hass.getState(this.theId);
+    try {
+      hass.getState(this.theId);
+    } catch (error) {
+      EntityDoesNotExistError.RethrowWithNewPath(error, this.theId);
+    }
   }
 }
 

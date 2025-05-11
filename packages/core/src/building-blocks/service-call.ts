@@ -41,6 +41,7 @@ class ServiceCall<P> extends Action {
         `${domain}.${service} was not registered with Home Assistant`,
       );
     }
+    await super.validate(client);
   }
 
   public override toJson() {

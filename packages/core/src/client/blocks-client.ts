@@ -19,7 +19,7 @@ type StateChangedCallback = (
  * @public
  */
 export class BlocksClient implements IFullBlocksClient {
-  private areas: HassArea[] = [];
+  private areas: HassArea[] | undefined;
   private states: Map<string, HassEntity> | undefined;
   private services: Record<string, Record<string, Service>> | undefined;
   private _automations: IBlock<unknown, unknown>[] = [];

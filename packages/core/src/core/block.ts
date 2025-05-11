@@ -8,7 +8,7 @@ import type {
   IBlocksNode,
 } from '@types';
 
-import { HassBlocksError } from '@errors';
+import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
 
 /**
@@ -77,12 +77,16 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * If any configuration is invalid, an error should be thrown
    */
   public async validate(client: IHass): Promise<void> {
-    await mapAsync(
-      this.children,
-      async (action) => await action.validate(client),
-    );
+    try {
+      await mapAsync(
+        this.children,
+        async (action) => await action.validate(client),
+      );
 
-    await mapAsync(this.targets, async (target) => target.validate(client));
+      await mapAsync(this.targets, async (target) => target.validate(client));
+    } catch (error) {
+      EntityDoesNotExistError.RethrowWithNewPath(error, this.name);
+    }
   }
 
   /**

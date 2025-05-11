@@ -9,11 +9,11 @@ import {
 export const buildServiceFunctionParams = (
   propsIdentifier: Identifier | undefined,
   ITargetTypeIdentifier: Identifier | undefined,
-  targetIdentifier: Identifier,
+  targetIdentifier: Identifier | undefined,
   fields: ServiceFields,
 ): ParameterDeclaration[] => {
   return [
-    ...(ITargetTypeIdentifier
+    ...(ITargetTypeIdentifier && targetIdentifier
       ? [
           factory.createParameterDeclaration(
             undefined,

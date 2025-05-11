@@ -4,9 +4,8 @@ import { generateTsFile } from './generate-ts-file.ts';
 export const generateBucketFile = async (folder: string, domains: string[]) => {
   const nodes = factory.createNodeArray(
     domains.map((domain) => {
-      return factory.createExportDeclaration(
+      return factory.createImportDeclaration(
         undefined,
-        false,
         undefined,
         factory.createStringLiteral(`./${domain}.ts`),
         undefined,

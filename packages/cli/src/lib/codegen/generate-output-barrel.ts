@@ -3,16 +3,14 @@ import { generateTsFile } from './generate-ts-file.ts';
 
 export const generateOutputBarrel = async (folder: string) => {
   const nodes = factory.createNodeArray([
-    factory.createExportDeclaration(
+    factory.createImportDeclaration(
       undefined,
-      false,
       undefined,
       factory.createStringLiteral(`./entities/index.ts`),
       undefined,
     ),
-    factory.createExportDeclaration(
+    factory.createImportDeclaration(
       undefined,
-      false,
       undefined,
       factory.createStringLiteral(`./services/index.ts`),
       undefined,

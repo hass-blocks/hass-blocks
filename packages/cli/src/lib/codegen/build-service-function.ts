@@ -10,84 +10,78 @@ export const buildServiceFunction = (
   serviceName: string,
   propsIdentifier: Identifier | undefined,
   iTargetIdentifier: Identifier | undefined,
+  targetIdentifier: Identifier | undefined,
 ) => {
-  const targetIdentifier = factory.createIdentifier('target');
-  const callFunction = factory.createVariableStatement(
-    [factory.createToken(SyntaxKind.ExportKeyword)],
-    factory.createVariableDeclarationList(
-      [
-        factory.createVariableDeclaration(
-          factory.createIdentifier(serviceName),
-          undefined,
-          undefined,
-          factory.createArrowFunction(
-            undefined,
-            undefined,
-            buildServiceFunctionParams(
-              propsIdentifier,
-              iTargetIdentifier,
-              targetIdentifier,
-              details.fields,
-            ),
-            undefined,
-            factory.createToken(SyntaxKind.EqualsGreaterThanToken),
-            factory.createCallExpression(
-              factory.createIdentifier('serviceCall'),
-              undefined,
-              [
-                factory.createObjectLiteralExpression(
-                  [
-                    factory.createPropertyAssignment(
-                      factory.createIdentifier('name'),
-                      factory.createNoSubstitutionTemplateLiteral(
-                        `Call ${domain}.${serviceId}`,
-                      ),
-                    ),
-                    factory.createPropertyAssignment(
-                      factory.createIdentifier('params'),
-                      factory.createObjectLiteralExpression(
-                        [
-                          factory.createPropertyAssignment(
-                            factory.createIdentifier('domain'),
-                            factory.createStringLiteral(domain),
-                          ),
-                          factory.createPropertyAssignment(
-                            factory.createIdentifier('service'),
-                            factory.createStringLiteral(serviceId),
-                          ),
-                          ...(propsIdentifier
-                            ? [
-                                factory.createPropertyAssignment(
-                                  factory.createIdentifier('service_data'),
-                                  factory.createIdentifier('params'),
-                                ),
-                              ]
-                            : []),
-                        ],
-                        true,
-                      ),
-                    ),
-                    ...(details.target
-                      ? [
-                          factory.createShorthandPropertyAssignment(
-                            targetIdentifier,
-                            undefined,
-                          ),
-                        ]
-                      : []),
-                  ],
-                  true,
-                ),
-              ],
-            ),
-          ),
+  const callFunction = factory.createExpressionStatement(
+    factory.createBinaryExpression(
+      factory.createPropertyAccessExpression(
+        factory.createIdentifier('globalThis'),
+        factory.createIdentifier(serviceName),
+      ),
+      factory.createToken(SyntaxKind.EqualsToken),
+      factory.createArrowFunction(
+        undefined,
+        undefined,
+        buildServiceFunctionParams(
+          propsIdentifier,
+          iTargetIdentifier,
+          targetIdentifier,
+          details.fields,
         ),
-      ],
-      NodeFlags.Const,
+        undefined,
+        factory.createToken(SyntaxKind.EqualsGreaterThanToken),
+        factory.createCallExpression(
+          factory.createIdentifier('serviceCall'),
+          undefined,
+          [
+            factory.createObjectLiteralExpression(
+              [
+                factory.createPropertyAssignment(
+                  factory.createIdentifier('name'),
+                  factory.createNoSubstitutionTemplateLiteral(
+                    `Call ${domain}.${serviceId}`,
+                  ),
+                ),
+                factory.createPropertyAssignment(
+                  factory.createIdentifier('params'),
+                  factory.createObjectLiteralExpression(
+                    [
+                      factory.createPropertyAssignment(
+                        factory.createIdentifier('domain'),
+                        factory.createStringLiteral(domain),
+                      ),
+                      factory.createPropertyAssignment(
+                        factory.createIdentifier('service'),
+                        factory.createStringLiteral(serviceId),
+                      ),
+                      ...(propsIdentifier
+                        ? [
+                            factory.createPropertyAssignment(
+                              factory.createIdentifier('service_data'),
+                              factory.createIdentifier('params'),
+                            ),
+                          ]
+                        : []),
+                    ],
+                    true,
+                  ),
+                ),
+                ...(details.target
+                  ? [
+                      factory.createShorthandPropertyAssignment(
+                        targetIdentifier,
+                        undefined,
+                      ),
+                    ]
+                  : []),
+              ],
+              true,
+            ),
+          ],
+        ),
+      ),
     ),
   );
-
-  addDocCommentToNode(callFunction, details.description);
 
   return callFunction;
 };

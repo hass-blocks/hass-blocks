@@ -10,8 +10,8 @@ export const buildServiceCall = (
   serviceId: string,
   service: Service,
   iTargetIdentifier?: Identifier,
+  targetIdentifier?: Identifier,
 ) => {
-  console.log(typeof iTargetIdentifier);
   const serviceName = toCamel(`${serviceId}_${domain}`);
 
   const propsIdentifier =
@@ -36,6 +36,7 @@ export const buildServiceCall = (
       serviceName,
       propsIdentifier,
       iTargetIdentifier,
+      targetIdentifier,
     ),
   ];
 };

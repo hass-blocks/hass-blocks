@@ -3,6 +3,7 @@ import {
   gate,
   switchLight,
   stopMediaPlayer,
+  closeCover,
 } from '@hass-blocks/blocks';
 import {
   automation,
@@ -12,12 +13,8 @@ import {
 } from '@hass-blocks/core';
 
 import {
-  turnHomeModeOff,
-  turnHomeModeOn,
-  turnOffTv,
   turnOffMyMac,
   notifyMyPhone,
-  closeLivingRoomBlinds,
   openLivingRoomBlinds,
 } from '../actions/index.ts';
 
@@ -46,7 +43,14 @@ import {
   setVolumeOnSpeakers,
 } from '../actions/media.ts';
 import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
-import { allLights, allSpeakers } from '../entities.ts';
+import { allLights, allSpeakers, tv } from '../entities.ts';
+import {
+  homeModeSwitch,
+  livingRoomBlindsCover,
+  openCoverCover,
+  turnOffSwitch,
+  turnOnSwitch,
+} from '../blocks-codegen/index.ts';
 
 const {
   open: allowZoneExitChecks,
@@ -57,7 +61,7 @@ const {
 export const onLastExit = automation({
   name: 'Last Exit',
   when: homeBecomesEmpty,
-  then: [ifZoneExitChecksAllowed, turnHomeModeOff],
+  then: [ifZoneExitChecksAllowed, turnOffSwitch(homeModeSwitch)],
 });
 
 export const homeModeDetection = automation({
@@ -70,12 +74,17 @@ export const homeModeDetection = automation({
   ],
   then: [
     concurrently(
-      sequence(waitMinutes(5), ifIamOut, allowZoneExitChecks, turnHomeModeOff),
+      sequence(
+        waitMinutes(5),
+        ifIamOut,
+        allowZoneExitChecks,
+        turnOffSwitch(homeModeSwitch),
+      ),
       sequence(
         ifHomeModeIsOff,
         ifHomeIsNotEmpty,
         disallowZoneExitChecks,
-        turnHomeModeOn,
+        turnOnSwitch(homeModeSwitch),
       ),
     ),
   ],
@@ -89,9 +98,8 @@ export const whenIGoOut = automation({
     concurrently(
       switchLight(allLights, 'off'),
       stopMediaPlayer(allSpeakers),
-      turnOffTv,
       turnOffMyMac,
-      closeLivingRoomBlinds,
+      closeCover(livingRoomBlindsCover),
       notifyMyPhone({
         title: 'Leaving flat',
         message: 'Home empty detected - turning everything off',
@@ -107,7 +115,10 @@ export const whenIGetHome = automation({
     concurrently(
       playMyDiscoverWeeklyEveryWhere,
       setVolumeOnSpeakers(0.3),
-      sequence(ifBlindsWouldNormallyBeOpen, openLivingRoomBlinds),
+      sequence(
+        ifBlindsWouldNormallyBeOpen,
+        openCoverCover(livingRoomBlindsCover),
+      ),
       startSlideshowOnAppleTv,
     ),
   ],

@@ -1,6 +1,6 @@
-import { publishMessageToMqtt } from '@hass-blocks/blocks';
+import { publishMqtt } from '../blocks-codegen/index.ts';
 
-export const turnOffMyMac = publishMessageToMqtt(
-  'bens_imac/commands/shutdown',
-  'go',
-);
+export const turnOffMyMac = publishMqtt({
+  topic: 'bens_imac/commands/shutdown',
+  payload: {},
+});

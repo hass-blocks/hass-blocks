@@ -1,28 +1,29 @@
-import {
-  playMedia,
-  setMediaPlayerVolume,
-  stopMediaPlayer,
-} from '@hass-blocks/blocks';
-
-import { selectMediaPlayerSource } from '@hass-blocks/blocks';
+import { allSpeakers, livingRoomSpeaker, tv } from '../entities.ts';
 
 import {
-  allSpeakers,
-  bedroomSpeaker,
-  livingRoomSpeaker,
-  tv,
-} from '../entities.ts';
+  mediaStopMediaPlayer,
+  playMediaMediaPlayer,
+  selectSourceMediaPlayer,
+  volumeSetMediaPlayer,
+} from '../blocks-codegen/index.ts';
+import { bedroom } from '../areas.ts';
 
-export const stopMusicInTheBedroom = stopMediaPlayer(bedroomSpeaker);
-export const stopMusicInTheLivingRoom = stopMediaPlayer(livingRoomSpeaker);
+export const stopMusicInTheBedroom = mediaStopMediaPlayer(bedroom);
+export const stopMusicInTheLivingRoom = mediaStopMediaPlayer(livingRoomSpeaker);
 
-export const playMyDiscoverWeeklyEveryWhere = playMedia(
+export const playMyDiscoverWeeklyEveryWhere = playMediaMediaPlayer(
   allSpeakers,
-  'spotify:playlist:37i9dQZEVXcWyw95ymf2bT',
-  'playlist',
+  {
+    media_content_id: 'spotify:playlist:37i9dQZEVXcWyw95ymf2bT',
+    media_content_type: 'playlist',
+  },
 );
 
 export const setVolumeOnSpeakers = (volume: number) =>
-  setMediaPlayerVolume(allSpeakers, volume);
+  volumeSetMediaPlayer(allSpeakers, {
+    volume_level: volume,
+  });
 
-export const switchTvToAppleTv = selectMediaPlayerSource(tv, 'Apple TV');
+export const switchTvToAppleTv = selectSourceMediaPlayer(tv, {
+  source: 'Apple TV',
+});

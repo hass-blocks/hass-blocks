@@ -1,20 +1,13 @@
 import { automation } from '@hass-blocks/core';
+
 import { waitMinutes } from '@hass-blocks/blocks';
+
 import {
   motionIsDetectedInTheBathroom,
   motionIsDetectedInTheBedroom,
   motionIsDetectedInTheHallway,
   motionIsDetectedInTheLivingRoom,
 } from '../triggers/index.ts';
-import {
-  switchBathroomLightsOff,
-  switchBathroomLightsOn,
-  switchBedroomLightsOff,
-  switchBedroomLightsOn,
-  switchHallwayLightsOn,
-  switchLivingRoomLightsOff,
-  switchLivingRoomLightsOn,
-} from '../actions/index.ts';
 
 import {
   ifBathroomMotionSensorIsOn,
@@ -25,15 +18,19 @@ import {
   ifTvModeIsOff,
 } from '../assertions/index.ts';
 
-export const livingRoomLights = automation({
+import { turnOffLight, turnOnLight } from '../blocks-codegen/index.ts';
+
+import { bathroom, bedroom, hallway, livingRoom } from '../areas.ts';
+
+export const livingRoomLightsAutomation = automation({
   name: 'Living room Lights',
   when: motionIsDetectedInTheLivingRoom,
   then: [
     ifLivingRoomMotionSensorIsOn,
     ifTvModeIsOff,
-    switchLivingRoomLightsOn,
+    turnOnLight(livingRoom),
     waitMinutes(30),
-    switchLivingRoomLightsOff,
+    turnOffLight(livingRoom),
   ],
 });
 
@@ -43,9 +40,9 @@ export const bedroomLights = automation({
   then: [
     ifSleepModeIsOff,
     ifBedroomMotionSensorIsOn,
-    switchBedroomLightsOn,
+    turnOnLight(bedroom),
     waitMinutes(10),
-    switchBedroomLightsOff,
+    turnOffLight(bedroom),
   ],
 });
 
@@ -54,9 +51,9 @@ export const hallwayLights = automation({
   when: motionIsDetectedInTheHallway,
   then: [
     ifHallwayMotionSensorIsOn,
-    switchHallwayLightsOn,
+    turnOnLight(hallway),
     waitMinutes(2),
-    switchBedroomLightsOff,
+    turnOffLight(hallway),
   ],
 });
 
@@ -65,8 +62,8 @@ export const bathroomLights = automation({
   when: motionIsDetectedInTheBathroom,
   then: [
     ifBathroomMotionSensorIsOn,
-    switchBathroomLightsOn,
+    turnOnLight(bathroom),
     waitMinutes(10),
-    switchBathroomLightsOff,
+    turnOffLight(bathroom),
   ],
 });

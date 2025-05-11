@@ -1,4 +1,4 @@
-import { Service } from '@hass-blocks/hass-ts';
+import { ServiceFields } from '@hass-blocks/hass-ts';
 import {
   factory,
   Identifier,
@@ -7,36 +7,37 @@ import {
 } from 'typescript';
 
 export const buildServiceFunctionParams = (
-  details: Service,
   propsIdentifier: Identifier | undefined,
+  ITargetTypeIdentifier: Identifier | undefined,
+  targetIdentifier: Identifier,
+  fields: ServiceFields,
 ): ParameterDeclaration[] => {
-  if (!propsIdentifier) {
-    return [];
-  }
-  const actualParams = details.target
-    ? factory.createObjectBindingPattern([
-        factory.createBindingElement(
-          undefined,
-          undefined,
-          factory.createIdentifier('target'),
-          undefined,
-        ),
-        factory.createBindingElement(
-          factory.createToken(SyntaxKind.DotDotDotToken),
-          undefined,
-          factory.createIdentifier('params'),
-          undefined,
-        ),
-      ])
-    : factory.createIdentifier('params');
   return [
-    factory.createParameterDeclaration(
-      undefined,
-      undefined,
-      actualParams,
-      undefined,
-      factory.createTypeReferenceNode(propsIdentifier, undefined),
-      undefined,
-    ),
+    ...(ITargetTypeIdentifier
+      ? [
+          factory.createParameterDeclaration(
+            undefined,
+            undefined,
+            targetIdentifier,
+            undefined,
+            factory.createTypeReferenceNode(ITargetTypeIdentifier, undefined),
+            undefined,
+          ),
+        ]
+      : []),
+    ...(propsIdentifier
+      ? [
+          factory.createParameterDeclaration(
+            undefined,
+            undefined,
+            factory.createIdentifier('params'),
+            Object.values(fields).some((field) => field.required)
+              ? undefined
+              : factory.createToken(SyntaxKind.QuestionToken),
+            factory.createTypeReferenceNode(propsIdentifier, undefined),
+            undefined,
+          ),
+        ]
+      : []),
   ];
 };

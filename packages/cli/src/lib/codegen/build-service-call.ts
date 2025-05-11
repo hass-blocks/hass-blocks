@@ -11,6 +11,7 @@ export const buildServiceCall = (
   service: Service,
   iTargetIdentifier?: Identifier,
 ) => {
+  console.log(typeof iTargetIdentifier);
   const serviceName = toCamel(`${serviceId}_${domain}`);
 
   const propsIdentifier =
@@ -21,7 +22,7 @@ export const buildServiceCall = (
   const props = propsIdentifier
     ? [
         factory.createIdentifier('\n'),
-        buildServiceProps(service, propsIdentifier, iTargetIdentifier),
+        buildServiceProps(service, propsIdentifier),
       ]
     : [];
 
@@ -34,6 +35,7 @@ export const buildServiceCall = (
       service,
       serviceName,
       propsIdentifier,
+      iTargetIdentifier,
     ),
   ];
 };

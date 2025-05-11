@@ -9,7 +9,9 @@ export const buildServiceFunction = (
   details: Service,
   serviceName: string,
   propsIdentifier: Identifier | undefined,
+  iTargetIdentifier: Identifier | undefined,
 ) => {
+  const targetIdentifier = factory.createIdentifier('target');
   const callFunction = factory.createVariableStatement(
     [factory.createToken(SyntaxKind.ExportKeyword)],
     factory.createVariableDeclarationList(
@@ -21,7 +23,12 @@ export const buildServiceFunction = (
           factory.createArrowFunction(
             undefined,
             undefined,
-            buildServiceFunctionParams(details, propsIdentifier),
+            buildServiceFunctionParams(
+              propsIdentifier,
+              iTargetIdentifier,
+              targetIdentifier,
+              details.fields,
+            ),
             undefined,
             factory.createToken(SyntaxKind.EqualsGreaterThanToken),
             factory.createCallExpression(
@@ -63,7 +70,7 @@ export const buildServiceFunction = (
                     ...(details.target
                       ? [
                           factory.createShorthandPropertyAssignment(
-                            factory.createIdentifier('target'),
+                            targetIdentifier,
                             undefined,
                           ),
                         ]

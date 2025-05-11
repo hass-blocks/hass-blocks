@@ -38,5 +38,7 @@ export interface IHass {
    *
    * @param params - Service parameters
    */
-  callService(params: ICallServiceParams): Promise<State[]>;
+  callService(
+    params: Omit<ICallServiceParams, 'id' | 'type'>,
+  ): Promise<State[]>;
 }

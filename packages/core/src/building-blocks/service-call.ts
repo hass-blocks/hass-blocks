@@ -6,14 +6,14 @@ import type { Block } from '@core';
 
 import { Action } from './action.ts';
 
-class ServiceCall extends Action {
+class ServiceCall<P> extends Action {
   public override typeString = 'service-call';
 
   public constructor(
     private readonly serviceConfig: {
       name: string;
       target?: ITarget;
-      params: Omit<CallServiceCommand, 'id' | 'type' | 'target'>;
+      params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
     },
   ) {
     super({
@@ -59,10 +59,10 @@ class ServiceCall extends Action {
  * A specialised action block that will call a service on your configured Home Assistant
  * instance
  */
-export const serviceCall = (serviceConfig: {
+export const serviceCall = <P>(serviceConfig: {
   name: string;
   target?: ITarget;
-  params: Omit<CallServiceCommand, 'id' | 'type'>;
+  params: Omit<CallServiceCommand<P>, 'id' | 'type'>;
 }): Block => {
-  return new ServiceCall(serviceConfig);
+  return new ServiceCall<P>(serviceConfig);
 };

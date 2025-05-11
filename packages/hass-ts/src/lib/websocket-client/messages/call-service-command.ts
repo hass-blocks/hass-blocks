@@ -5,7 +5,7 @@ import type { Command } from './command.ts';
  *
  * Websocket command to call a Home Assistant service
  */
-export interface CallServiceCommand extends Command {
+export interface CallServiceCommand<T = unknown> extends Command {
   /**
    * Type of command on the Websocket API
    */
@@ -30,7 +30,7 @@ export interface CallServiceCommand extends Command {
    *  brightness: "101"
    * \}
    */
-  service_data?: Record<string, unknown>;
+  service_data?: T;
 
   /**
    * What entity is the service targeting

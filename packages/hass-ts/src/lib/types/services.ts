@@ -9,7 +9,7 @@ export interface Service {
   response: unknown;
 }
 
-interface NumberSelector {
+export interface NumberSelector {
   number: {
     mode?: string;
     min: number;
@@ -19,52 +19,52 @@ interface NumberSelector {
   };
 }
 
-interface SelectSelector {
+export interface SelectSelector {
   options: string[];
   translation_key?: string;
 }
 
-interface TextSelector {
+export interface TextSelector {
   text: null;
 }
 
-interface BooleanSelector {
+export interface BooleanSelector {
   boolean: null;
 }
 
-interface DeviceTarget {
+export interface DeviceTarget {
   filter: {
     integration: string;
   };
 }
 
-interface DeviceSelector {
+export interface DeviceSelector {
   device: DeviceTarget;
 }
 
-interface EntityTarget {
+export interface EntityTarget {
   integration: string;
   domain: string | string[];
   supported_feature: string[];
 }
 
-interface EntitySelector {
+export interface EntitySelector {
   entity: EntityTarget;
 }
 
-interface TemplateSelector {
+export interface TemplateSelector {
   template: null;
 }
 
-interface ObjectSelector {
+export interface ObjectSelector {
   object: null;
 }
 
-interface TimeSelector {
+export interface TimeSelector {
   time: null;
 }
 
-interface ServiceField {
+export interface ServiceField {
   name: string;
   default?: string | boolean;
   description?: string;
@@ -82,4 +82,4 @@ interface ServiceField {
     | EntitySelector;
 }
 
-type ServiceFields = Record<string, ServiceField>;
+export type ServiceFields = Record<string, ServiceField>;

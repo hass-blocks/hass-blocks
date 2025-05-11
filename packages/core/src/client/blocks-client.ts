@@ -48,7 +48,9 @@ export class BlocksClient implements IFullBlocksClient {
 
   public async getServices() {
     if (!this.services) {
-      this.services = await this.client.getServices();
+      const services = await this.client.getServices();
+      this.services = services;
+      return services;
     }
 
     return this.services;

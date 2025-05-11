@@ -314,7 +314,7 @@ export interface IFullBlocksClient extends IHass {
 
 // @public
 export interface IHass {
-    callService(params: ICallServiceParams): Promise<State[]>;
+    callService(params: Omit<ICallServiceParams, 'id' | 'type'>): Promise<State[]>;
     getAreas(): Promise<HassArea[]>;
     getEntity(id: string): HassEntity;
     getServices(): Promise<Record<string, Record<string, Service>>>;
@@ -433,10 +433,10 @@ export interface SerialisedBlock {
 }
 
 // @public
-export const serviceCall: (serviceConfig: {
+export const serviceCall: <P>(serviceConfig: {
     name: string;
     target?: ITarget;
-    params: Omit<CallServiceCommand, "id" | "type">;
+    params: Omit<CallServiceCommand<P>, "id" | "type">;
 }) => Block;
 
 // @public

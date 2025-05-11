@@ -5,14 +5,20 @@
 ```ts
 
 // @public (undocumented)
+export interface BooleanSelector {
+    // (undocumented)
+    boolean: null;
+}
+
+// @public (undocumented)
 export type CalendarDetails = {};
 
 // @public
-export interface CallServiceCommand extends Command {
+export interface CallServiceCommand<T = unknown> extends Command {
     domain: string;
     return_response?: boolean;
     service: string;
-    service_data?: Record<string, unknown>;
+    service_data?: T;
     target?: {
         entity_id?: string | string[];
         area_id?: string | string[];
@@ -90,6 +96,18 @@ export interface Context {
     id: string;
     parent_id: null;
     user_id: string;
+}
+
+// @public (undocumented)
+export interface DeviceSelector {
+    // (undocumented)
+    device: DeviceTarget;
+}
+
+// @public (undocumented)
+export interface EntitySelector {
+    // (undocumented)
+    entity: EntityTarget;
 }
 
 // @public (undocumented)
@@ -296,6 +314,24 @@ export interface Logger {
 }
 
 // @public (undocumented)
+export interface NumberSelector {
+    // (undocumented)
+    number: {
+        mode?: string;
+        min: number;
+        max: number;
+        step: number;
+        unit_of_measurement?: string;
+    };
+}
+
+// @public (undocumented)
+export interface ObjectSelector {
+    // (undocumented)
+    object: null;
+}
+
+// @public (undocumented)
 export interface Panel {
     // (undocumented)
     component_name: string;
@@ -313,6 +349,14 @@ export interface Panel {
     title: null | string;
     // (undocumented)
     url_path: string;
+}
+
+// @public (undocumented)
+export interface SelectSelector {
+    // (undocumented)
+    options: string[];
+    // (undocumented)
+    translation_key?: string;
 }
 
 // @public (undocumented)
@@ -341,6 +385,25 @@ export interface ServiceDomainDetails {
 }
 
 // @public (undocumented)
+export interface ServiceField {
+    // (undocumented)
+    advanced?: boolean;
+    // (undocumented)
+    default?: string | boolean;
+    // (undocumented)
+    description?: string;
+    // (undocumented)
+    name: string;
+    // (undocumented)
+    required?: boolean;
+    // (undocumented)
+    selector?: NumberSelector | SelectSelector | TextSelector | BooleanSelector | DeviceSelector | TemplateSelector | ObjectSelector | TimeSelector | EntitySelector;
+}
+
+// @public (undocumented)
+export type ServiceFields = Record<string, ServiceField>;
+
+// @public (undocumented)
 export interface State {
     attributes: Record<string, unknown>;
     context: Context;
@@ -349,6 +412,24 @@ export interface State {
     last_reported: string;
     last_updated: string;
     state: string;
+}
+
+// @public (undocumented)
+export interface TemplateSelector {
+    // (undocumented)
+    template: null;
+}
+
+// @public (undocumented)
+export interface TextSelector {
+    // (undocumented)
+    text: null;
+}
+
+// @public (undocumented)
+export interface TimeSelector {
+    // (undocumented)
+    time: null;
 }
 
 // @public

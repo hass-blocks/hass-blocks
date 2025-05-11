@@ -7,7 +7,11 @@
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
-    "types": ["node"]
+    "types": ["node"],
+    "paths": {
+      "@lib/*": ["./src/lib/*"],
+      "@commands/*": ["./src/commands/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "references": [],

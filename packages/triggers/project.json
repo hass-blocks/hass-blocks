@@ -1,0 +1,41 @@
+{
+  "name": "@hass-blocks/triggers",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/triggers/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/triggers/dist",
+        "main": "packages/triggers/src/index.ts",
+        "tsConfig": "packages/triggers/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "rollup-api": {
+      "dependsOn": ["build"],
+      "executor": "@hass-blocks/publisher:api-extractor",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/triggers/dist/index.d.ts",
+        "reportFolder": "packages/triggers/api",
+        "projectFolder": "packages/triggers",
+        "strictChecks": true
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/triggers/dist/index.d.ts",
+        "projectFolder": "packages/triggers",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

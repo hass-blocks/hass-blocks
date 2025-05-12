@@ -460,6 +460,18 @@ importers:
         specifier: '18'
         version: 18.3.1
 
+  packages/triggers:
+    dependencies:
+      '@hass-blocks/core':
+        specifier: workspace:^
+        version: link:../core
+      '@hass-blocks/hass-ts':
+        specifier: workspace:^
+        version: link:../hass-ts
+      '@swc/helpers':
+        specifier: ~0.5.11
+        version: 0.5.17
+
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':

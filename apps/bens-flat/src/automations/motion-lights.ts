@@ -42,7 +42,7 @@ export const hallwayLights = automation({
 
 export const bathroomLights = automation({
   name: 'Bathroom Lights',
-  when: stateTurns(bathroomMotionSensorOccupancyBinarySensor, 'on'),
+  when: stateTurns(hallwayMotionSensorOccupancyBinarySensor, 'on'),
   then: [
     stateIs(bathroomMotionSensorSwitch, 'on'),
     turnOnLight(bathroom),

@@ -65,7 +65,7 @@ export const numericStateChanges = (props: NumericStateChangesProps) => {
     name: 'When numeric state changes',
     trigger: removeUndefined({
       platform: 'numeric_state',
-      entity_id: props.entity.entityIds[0],
+      entity_id: props.entity.entityIds,
       attribute_name: props.attributeName,
       value_template: props.valueTemplate,
       for: props.for,

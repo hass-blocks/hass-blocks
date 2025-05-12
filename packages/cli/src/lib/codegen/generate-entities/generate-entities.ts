@@ -1,8 +1,9 @@
-import { State } from '@hass-blocks/hass-ts';
-import { generateDomainEntities } from './generate-domain-entities.ts';
+import type { State } from '@hass-blocks/hass-ts';
+import { join } from 'node:path';
+import { generateDomainEntities } from '@lib/codegen/generate-entities/generate-domain-entities.ts';
+import { generateBucketFile } from '@lib/codegen/utils/generate-barrel-file.ts';
+
 import { splitId } from './split-id.ts';
-import { generateBucketFile } from './generate-barrel-file.ts';
-import { join } from 'path';
 
 export const generateEntities = async (folder: string, states: State[]) => {
   const domainEntities = states.reduce<Record<string, State[]>>(

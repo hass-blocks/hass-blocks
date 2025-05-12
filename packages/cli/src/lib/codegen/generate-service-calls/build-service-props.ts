@@ -1,5 +1,5 @@
-import { Service } from '@hass-blocks/hass-ts';
-import { factory, Identifier, SyntaxKind } from 'typescript';
+import type { Service } from '@hass-blocks/hass-ts';
+import { factory, type Identifier, SyntaxKind } from 'typescript';
 import { buildPropsPropertyNode } from './build-props-property-node.ts';
 
 export const buildServiceProps = (service: Service, identifier: Identifier) => {

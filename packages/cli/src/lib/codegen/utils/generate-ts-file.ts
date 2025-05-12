@@ -1,12 +1,27 @@
-import { existsSync, mkdirSync } from 'node:fs';
-import { writeFile } from 'node:fs/promises';
+import type { Node, NodeArray } from 'typescript';
+
+import { mkdirSync } from 'node:fs';
+import { writeFile, open, mkdir } from 'node:fs/promises';
 import * as prettier from 'prettier';
 import { join } from 'node:path/posix';
 import ts from 'typescript';
-import { Node, NodeArray } from 'typescript';
 
-export const createDirIfNotExists = (dir: string) =>
-  !existsSync(dir) ? mkdirSync(dir, { recursive: true }) : undefined;
+const exists = async (dir: string) => {
+  try {
+    await open(dir);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (error.message.includes('ENOENT')) {
+        return false;
+      }
+    }
+    throw error;
+  }
+  return true;
+};
+
+export const createDirIfNotExists = async (dir: string) =>
+  !(await exists(dir)) ? await mkdir(dir, { recursive: true }) : undefined;
 
 export const generateTsFile = async <T extends Node>(
   folder: string,

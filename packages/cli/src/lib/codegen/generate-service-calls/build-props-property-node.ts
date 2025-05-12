@@ -1,6 +1,7 @@
 import { factory, SyntaxKind } from 'typescript';
-import { ServiceField } from '@hass-blocks/hass-ts';
-import { addDocCommentToNode } from './add-doc-comment-to-node.ts';
+import type { ServiceField } from '@hass-blocks/hass-ts';
+
+import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
 
 const getPropertyType = (selector: ServiceField['selector']) => {
   if (selector) {
@@ -42,7 +43,7 @@ const getPropertyType = (selector: ServiceField['selector']) => {
 
     if ('options' in selector) {
       return factory.createUnionTypeNode(
-        selector.options.map((option) =>
+        selector.options.map((option: string) =>
           factory.createLiteralTypeNode(factory.createStringLiteral(option)),
         ),
       );

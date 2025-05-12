@@ -1,7 +1,8 @@
-import { Service } from '@hass-blocks/hass-ts';
-import { toCamel } from './to-camel.ts';
-import { factory, Identifier } from 'typescript';
-import { uppercaseFirstLetter } from './uppercase-first-letter.ts';
+import { factory, type Identifier } from 'typescript';
+import type { Service } from '@hass-blocks/hass-ts';
+import { toCamel } from '@lib/codegen/utils/to-camel.ts';
+import { uppercaseFirstLetter } from '@lib/codegen/utils/uppercase-first-letter.ts';
+
 import { buildServiceProps } from './build-service-props.ts';
 import { buildServiceFunction } from './build-service-function.ts';
 

@@ -1,5 +1,7 @@
-import { Service } from '@hass-blocks/hass-ts';
-import { uppercaseFirstLetter } from './uppercase-first-letter.ts';
+import type { Service } from '@hass-blocks/hass-ts';
+
+import { uppercaseFirstLetter } from '@lib/codegen/utils/uppercase-first-letter.ts';
+
 import { factory } from 'typescript';
 
 export const makeServiceIdentifier = (

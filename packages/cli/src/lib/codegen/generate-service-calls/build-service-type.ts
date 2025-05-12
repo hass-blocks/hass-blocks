@@ -1,8 +1,8 @@
-import { factory, Identifier, NodeFlags } from 'typescript';
+import { factory, type Identifier, NodeFlags } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import { makeServiceIdentifier } from './make-service-identifier.ts';
-import { Service } from '@hass-blocks/hass-ts';
-import { addDocCommentToNode } from './add-doc-comment-to-node.ts';
+import type { Service } from '@hass-blocks/hass-ts';
+import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
 
 export const buildServiceType = (
   service: Service,

@@ -1,9 +1,10 @@
-import { State } from '@hass-blocks/hass-ts';
-import { generateTsFile } from './generate-ts-file.ts';
-import { join } from 'path';
+import { join } from 'node:path';
 import ts, { factory, NodeFlags, SyntaxKind } from 'typescript';
+import type { State } from '@hass-blocks/hass-ts';
+import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
+import { toCamel } from '@lib/codegen/utils/to-camel.ts';
+
 import { splitId } from './split-id.ts';
-import { toCamel } from './to-camel.ts';
 
 export const generateDomainEntities = async (
   folder: string,

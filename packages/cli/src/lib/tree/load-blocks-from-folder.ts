@@ -4,7 +4,6 @@ import { join } from 'path';
 
 export const loadBlocksFromFolder = async (automationsDir: string) => {
   const files = await readdir(automationsDir);
-  console.log(files);
   return (
     await Promise.all(
       files.map(async (file) => {

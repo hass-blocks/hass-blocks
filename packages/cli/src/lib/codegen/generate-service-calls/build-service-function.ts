@@ -1,6 +1,7 @@
-import { Service } from '@hass-blocks/hass-ts';
-import { factory, Identifier, NodeFlags, SyntaxKind } from 'typescript';
-import { addDocCommentToNode } from './add-doc-comment-to-node.ts';
+import type { Service } from '@hass-blocks/hass-ts';
+
+import { factory, type Identifier, SyntaxKind } from 'typescript';
+
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 
 export const buildServiceFunction = (
@@ -66,7 +67,7 @@ export const buildServiceFunction = (
                     true,
                   ),
                 ),
-                ...(details.target
+                ...(details.target && targetIdentifier
                   ? [
                       factory.createShorthandPropertyAssignment(
                         targetIdentifier,

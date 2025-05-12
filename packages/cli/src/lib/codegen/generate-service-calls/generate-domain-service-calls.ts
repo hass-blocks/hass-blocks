@@ -1,10 +1,13 @@
-import { Service } from '@hass-blocks/hass-ts';
-import { buildServiceCall } from './build-service-call.ts';
+import { join } from 'node:path';
 import { factory, NodeFlags, SyntaxKind } from 'typescript';
-import { generateTsFile } from './generate-ts-file.ts';
-import { join } from 'path';
-import { toCamel } from './to-camel.ts';
+
+import type { Service } from '@hass-blocks/hass-ts';
+
+import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
+import { toCamel } from '@lib/codegen/utils/to-camel.ts';
+
 import { buildServiceType } from './build-service-type.ts';
+import { buildServiceCall } from './build-service-call.ts';
 
 export const generateDomainServiceCalls = async (
   folder: string,

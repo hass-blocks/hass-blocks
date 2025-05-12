@@ -1,4 +1,4 @@
-import { addSyntheticLeadingComment, Node, SyntaxKind } from 'typescript';
+import { addSyntheticLeadingComment, type Node, SyntaxKind } from 'typescript';
 
 export const addDocCommentToNode = (node: Node, text?: string) => {
   if (!text) {

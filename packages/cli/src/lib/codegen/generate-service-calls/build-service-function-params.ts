@@ -1,8 +1,8 @@
-import { ServiceFields } from '@hass-blocks/hass-ts';
+import type { ServiceFields } from '@hass-blocks/hass-ts';
 import {
   factory,
-  Identifier,
-  ParameterDeclaration,
+  type Identifier,
+  type ParameterDeclaration,
   SyntaxKind,
 } from 'typescript';
 
@@ -31,7 +31,13 @@ export const buildServiceFunctionParams = (
             undefined,
             undefined,
             factory.createIdentifier('params'),
-            Object.values(fields).some((field) => field.required)
+            Object.values(fields).some(
+              (field) =>
+                field &&
+                typeof field === 'object' &&
+                'required' in field &&
+                field.required,
+            )
               ? undefined
               : factory.createToken(SyntaxKind.QuestionToken),
             factory.createTypeReferenceNode(propsIdentifier, undefined),

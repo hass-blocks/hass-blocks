@@ -1,5 +1,5 @@
 import GenCodeCommand from '@commands/gen-code.ts';
-import PrintTreeCommand from '@commands/print-tree.ts';
+import { LoadBlocks } from '@commands/load.ts';
 import { runExit } from 'clipanion';
 
-runExit([GenCodeCommand, PrintTreeCommand]);
+runExit([GenCodeCommand, LoadBlocks]);

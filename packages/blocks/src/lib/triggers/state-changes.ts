@@ -1,4 +1,4 @@
-import { ITarget, trigger } from '@hass-blocks/core';
+import { type ITarget, trigger } from '@hass-blocks/core';
 
 /**
  * A trigger that fires any time the state of an entity changes

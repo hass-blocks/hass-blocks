@@ -69,7 +69,9 @@ export class BlocksClient implements IFullBlocksClient {
 
   public async getAreas() {
     if (!this.areas) {
-      this.areas = await this.client.getAreas();
+      const areas = await this.client.getAreas();
+      this.areas = areas;
+      return areas;
     }
     return this.areas;
   }

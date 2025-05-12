@@ -154,6 +154,7 @@ export type GetSequenceOutput<T extends ReadonlyArray<unknown>> = T extends read
 
 // @public
 export class HassBlocksError extends Error {
+    constructor(message: string, cause?: unknown);
 }
 
 // @public

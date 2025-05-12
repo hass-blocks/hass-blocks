@@ -21,11 +21,12 @@ class ServiceCall<P> extends Action {
       name: serviceConfig.name,
       callback: async (client) => {
         const { target } = this.serviceConfig;
-
-        return await client.callService({
+        const params: CallServiceCommand<P> = {
           ...serviceConfig.params,
           ...(target ? { target: target.targetIds } : {}),
-        });
+        };
+
+        return await client.callService(params);
       },
     });
   }

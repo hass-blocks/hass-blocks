@@ -1,6 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  var imacOffShellCommand: () => Block;
+  var updateConfigShellCommand: () => Block;
+}
 
-export const imacOffShellCommand = () =>
+globalThis.imacOffShellCommand = () =>
   serviceCall({
     name: `Call shell_command.imac_off`,
     params: {
@@ -9,7 +13,7 @@ export const imacOffShellCommand = () =>
     },
   });
 
-export const updateConfigShellCommand = () =>
+globalThis.updateConfigShellCommand = () =>
   serviceCall({
     name: `Call shell_command.update_config`,
     params: {

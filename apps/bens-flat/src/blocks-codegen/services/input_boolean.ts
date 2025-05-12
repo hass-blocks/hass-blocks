@@ -1,9 +1,33 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads helpers from the YAML-configuration.
+   */
+  var reloadInputBoolean: (target: ITarget) => Block;
+  /**
+   * Turns on the helper.
+   */
+  var turnOnInputBoolean: (
+    target: ITarget,
+    params?: TurnOnInputBooleanProps,
+  ) => Block;
+  /**
+   * Turns off the helper.
+   */
+  var turnOffInputBoolean: (
+    target: ITarget,
+    params?: TurnOffInputBooleanProps,
+  ) => Block;
+  /**
+   * Toggles the helper on/off.
+   */
+  var toggleInputBoolean: (
+    target: ITarget,
+    params?: ToggleInputBooleanProps,
+  ) => Block;
+}
 
-/**
- * Reloads helpers from the YAML-configuration.
- */
-export const reloadInputBoolean = (target: ITarget) =>
+globalThis.reloadInputBoolean = (target: ITarget) =>
   serviceCall({
     name: `Call input_boolean.reload`,
     params: {
@@ -14,10 +38,7 @@ export const reloadInputBoolean = (target: ITarget) =>
 
 export interface TurnOnInputBooleanProps {}
 
-/**
- * Turns on the helper.
- */
-export const turnOnInputBoolean = (
+globalThis.turnOnInputBoolean = (
   target: ITarget,
   params?: TurnOnInputBooleanProps,
 ) =>
@@ -33,10 +54,7 @@ export const turnOnInputBoolean = (
 
 export interface TurnOffInputBooleanProps {}
 
-/**
- * Turns off the helper.
- */
-export const turnOffInputBoolean = (
+globalThis.turnOffInputBoolean = (
   target: ITarget,
   params?: TurnOffInputBooleanProps,
 ) =>
@@ -52,10 +70,7 @@ export const turnOffInputBoolean = (
 
 export interface ToggleInputBooleanProps {}
 
-/**
- * Toggles the helper on/off.
- */
-export const toggleInputBoolean = (
+globalThis.toggleInputBoolean = (
   target: ITarget,
   params?: ToggleInputBooleanProps,
 ) =>

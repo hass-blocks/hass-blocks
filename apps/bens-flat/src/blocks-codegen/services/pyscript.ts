@@ -1,9 +1,26 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * https://github.com/dmamelin/pyscript_autocomplete
+   */
+  var autocompleteGeneratorPyscript: () => Block;
+  /**
+   * hello_world example using pyscript.
+   */
+  var helloWorldPyscript: (params?: HelloWorldPyscriptProps) => Block;
+  /**
+   * Reloads all available pyscripts and restart triggers
+   */
+  var reloadPyscript: (params?: ReloadPyscriptProps) => Block;
+  /**
+   * Starts a jupyter kernel for interactive use; Called by Jupyter front end and should generally not be used by users
+   */
+  var jupyterKernelStartPyscript: (
+    params: JupyterKernelStartPyscriptProps,
+  ) => Block;
+}
 
-/**
- * https://github.com/dmamelin/pyscript_autocomplete
- */
-export const autocompleteGeneratorPyscript = () =>
+globalThis.autocompleteGeneratorPyscript = () =>
   serviceCall({
     name: `Call pyscript.autocomplete_generator`,
     params: {
@@ -23,10 +40,7 @@ export interface HelloWorldPyscriptProps {
   id?: never;
 }
 
-/**
- * hello_world example using pyscript.
- */
-export const helloWorldPyscript = (params?: HelloWorldPyscriptProps) =>
+globalThis.helloWorldPyscript = (params?: HelloWorldPyscriptProps) =>
   serviceCall({
     name: `Call pyscript.hello_world`,
     params: {
@@ -43,10 +57,7 @@ export interface ReloadPyscriptProps {
   global_ctx?: string;
 }
 
-/**
- * Reloads all available pyscripts and restart triggers
- */
-export const reloadPyscript = (params?: ReloadPyscriptProps) =>
+globalThis.reloadPyscript = (params?: ReloadPyscriptProps) =>
   serviceCall({
     name: `Call pyscript.reload`,
     params: {
@@ -99,10 +110,7 @@ export interface JupyterKernelStartPyscriptProps {
   kernel_name: string;
 }
 
-/**
- * Starts a jupyter kernel for interactive use; Called by Jupyter front end and should generally not be used by users
- */
-export const jupyterKernelStartPyscript = (
+globalThis.jupyterKernelStartPyscript = (
   params: JupyterKernelStartPyscriptProps,
 ) =>
   serviceCall({

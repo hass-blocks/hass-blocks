@@ -1,9 +1,19 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads schedules from the YAML-configuration.
+   */
+  var reloadSchedule: (target: ITarget) => Block;
+  /**
+   * Retrieves the configured time ranges of one or multiple schedules.
+   */
+  var getScheduleSchedule: (
+    target: ITarget,
+    params?: GetScheduleScheduleProps,
+  ) => Block;
+}
 
-/**
- * Reloads schedules from the YAML-configuration.
- */
-export const reloadSchedule = (target: ITarget) =>
+globalThis.reloadSchedule = (target: ITarget) =>
   serviceCall({
     name: `Call schedule.reload`,
     params: {
@@ -14,10 +24,7 @@ export const reloadSchedule = (target: ITarget) =>
 
 export interface GetScheduleScheduleProps {}
 
-/**
- * Retrieves the configured time ranges of one or multiple schedules.
- */
-export const getScheduleSchedule = (
+globalThis.getScheduleSchedule = (
   target: ITarget,
   params?: GetScheduleScheduleProps,
 ) =>

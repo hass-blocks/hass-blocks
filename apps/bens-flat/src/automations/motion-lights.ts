@@ -1,33 +1,16 @@
 import { automation } from '@hass-blocks/core';
-
-import { waitMinutes } from '@hass-blocks/blocks';
-
-import {
-  motionIsDetectedInTheBathroom,
-  motionIsDetectedInTheBedroom,
-  motionIsDetectedInTheHallway,
-  motionIsDetectedInTheLivingRoom,
-} from '../triggers/index.ts';
-
-import {
-  ifBathroomMotionSensorIsOn,
-  ifBedroomMotionSensorIsOn,
-  ifHallwayMotionSensorIsOn,
-  ifLivingRoomMotionSensorIsOn,
-  ifSleepModeIsOff,
-  ifTvModeIsOff,
-} from '../assertions/index.ts';
-
-import { turnOffLight, turnOnLight } from '../blocks-codegen/index.ts';
+import { stateIs, stateTurns, waitMinutes } from '@hass-blocks/blocks';
 
 import { bathroom, bedroom, hallway, livingRoom } from '../areas.ts';
 
+import '@blocks-codegen';
+
 export const livingRoomLightsAutomation = automation({
   name: 'Living room Lights',
-  when: motionIsDetectedInTheLivingRoom,
+  when: stateTurns(livingRoomSensorSensorStateMotionBinarySensor, 'on'),
   then: [
-    ifLivingRoomMotionSensorIsOn,
-    ifTvModeIsOff,
+    stateIs(livingRoomMotionSensorSwitch, 'on'),
+    stateIs(tvModeSwitch, 'off'),
     turnOnLight(livingRoom),
     waitMinutes(30),
     turnOffLight(livingRoom),
@@ -36,10 +19,10 @@ export const livingRoomLightsAutomation = automation({
 
 export const bedroomLights = automation({
   name: 'Bedroom Lights',
-  when: motionIsDetectedInTheBedroom,
+  when: stateTurns(bedroomSensorSensorStateMotionBinarySensor, 'on'),
   then: [
-    ifSleepModeIsOff,
-    ifBedroomMotionSensorIsOn,
+    stateIs(sleepModeSwitch, 'off'),
+    stateIs(bedroomMotionSensorSwitch, 'on'),
     turnOnLight(bedroom),
     waitMinutes(10),
     turnOffLight(bedroom),
@@ -48,9 +31,9 @@ export const bedroomLights = automation({
 
 export const hallwayLights = automation({
   name: 'Hallway Lights',
-  when: motionIsDetectedInTheHallway,
+  when: stateTurns(hallwayMotionSensorOccupancyBinarySensor, 'on'),
   then: [
-    ifHallwayMotionSensorIsOn,
+    stateIs(hallwayMotionSensorSwitch, 'on'),
     turnOnLight(hallway),
     waitMinutes(2),
     turnOffLight(hallway),
@@ -59,9 +42,9 @@ export const hallwayLights = automation({
 
 export const bathroomLights = automation({
   name: 'Bathroom Lights',
-  when: motionIsDetectedInTheBathroom,
+  when: stateTurns(bathroomMotionSensorOccupancyBinarySensor, 'on'),
   then: [
-    ifBathroomMotionSensorIsOn,
+    stateIs(bathroomMotionSensorSwitch, 'on'),
     turnOnLight(bathroom),
     waitMinutes(10),
     turnOffLight(bathroom),

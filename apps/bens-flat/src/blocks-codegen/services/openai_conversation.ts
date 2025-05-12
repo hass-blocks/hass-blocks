@@ -1,4 +1,18 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sends a conversational query to ChatGPT including any attached image or PDF files
+   */
+  var generateContentOpenaiConversation: (
+    params: GenerateContentOpenaiConversationProps,
+  ) => Block;
+  /**
+   * Turns a prompt into an image
+   */
+  var generateImageOpenaiConversation: (
+    params: GenerateImageOpenaiConversationProps,
+  ) => Block;
+}
 
 export interface GenerateContentOpenaiConversationProps {
   /**
@@ -15,10 +29,7 @@ export interface GenerateContentOpenaiConversationProps {
   filenames?: string;
 }
 
-/**
- * Sends a conversational query to ChatGPT including any attached image or PDF files
- */
-export const generateContentOpenaiConversation = (
+globalThis.generateContentOpenaiConversation = (
   params: GenerateContentOpenaiConversationProps,
 ) =>
   serviceCall({
@@ -53,10 +64,7 @@ export interface GenerateImageOpenaiConversationProps {
   style?: never;
 }
 
-/**
- * Turns a prompt into an image
- */
-export const generateImageOpenaiConversation = (
+globalThis.generateImageOpenaiConversation = (
   params: GenerateImageOpenaiConversationProps,
 ) =>
   serviceCall({

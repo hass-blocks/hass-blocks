@@ -1,4 +1,9 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const homeAssistantConversation = entity('conversation.home_assistant');
-export const chatgptConversation = entity('conversation.chatgpt');
+declare global {
+  var homeAssistantConversation: ITarget;
+  var chatgptConversation: ITarget;
+}
+
+globalThis.homeAssistantConversation = entity('conversation.home_assistant');
+globalThis.chatgptConversation = entity('conversation.chatgpt');

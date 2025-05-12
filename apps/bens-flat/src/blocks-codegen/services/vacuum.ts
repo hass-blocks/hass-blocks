@@ -1,11 +1,54 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Starts or resumes the cleaning task.
+   */
+  var startVacuum: (target: ITarget, params?: StartVacuumProps) => Block;
+  /**
+   * Pauses the cleaning task.
+   */
+  var pauseVacuum: (target: ITarget, params?: PauseVacuumProps) => Block;
+  /**
+   * Tells the vacuum cleaner to return to its dock.
+   */
+  var returnToBaseVacuum: (
+    target: ITarget,
+    params?: ReturnToBaseVacuumProps,
+  ) => Block;
+  /**
+   * Tells the vacuum cleaner to do a spot clean-up.
+   */
+  var cleanSpotVacuum: (
+    target: ITarget,
+    params?: CleanSpotVacuumProps,
+  ) => Block;
+  /**
+   * Locates the vacuum cleaner robot.
+   */
+  var locateVacuum: (target: ITarget, params?: LocateVacuumProps) => Block;
+  /**
+   * Stops the current cleaning task.
+   */
+  var stopVacuum: (target: ITarget, params?: StopVacuumProps) => Block;
+  /**
+   * Sets the fan speed of the vacuum cleaner.
+   */
+  var setFanSpeedVacuum: (
+    target: ITarget,
+    params: SetFanSpeedVacuumProps,
+  ) => Block;
+  /**
+   * Sends a command to the vacuum cleaner.
+   */
+  var sendCommandVacuum: (
+    target: ITarget,
+    params: SendCommandVacuumProps,
+  ) => Block;
+}
 
 export interface StartVacuumProps {}
 
-/**
- * Starts or resumes the cleaning task.
- */
-export const startVacuum = (target: ITarget, params?: StartVacuumProps) =>
+globalThis.startVacuum = (target: ITarget, params?: StartVacuumProps) =>
   serviceCall({
     name: `Call vacuum.start`,
     params: {
@@ -18,10 +61,7 @@ export const startVacuum = (target: ITarget, params?: StartVacuumProps) =>
 
 export interface PauseVacuumProps {}
 
-/**
- * Pauses the cleaning task.
- */
-export const pauseVacuum = (target: ITarget, params?: PauseVacuumProps) =>
+globalThis.pauseVacuum = (target: ITarget, params?: PauseVacuumProps) =>
   serviceCall({
     name: `Call vacuum.pause`,
     params: {
@@ -34,10 +74,7 @@ export const pauseVacuum = (target: ITarget, params?: PauseVacuumProps) =>
 
 export interface ReturnToBaseVacuumProps {}
 
-/**
- * Tells the vacuum cleaner to return to its dock.
- */
-export const returnToBaseVacuum = (
+globalThis.returnToBaseVacuum = (
   target: ITarget,
   params?: ReturnToBaseVacuumProps,
 ) =>
@@ -53,13 +90,7 @@ export const returnToBaseVacuum = (
 
 export interface CleanSpotVacuumProps {}
 
-/**
- * Tells the vacuum cleaner to do a spot clean-up.
- */
-export const cleanSpotVacuum = (
-  target: ITarget,
-  params?: CleanSpotVacuumProps,
-) =>
+globalThis.cleanSpotVacuum = (target: ITarget, params?: CleanSpotVacuumProps) =>
   serviceCall({
     name: `Call vacuum.clean_spot`,
     params: {
@@ -72,10 +103,7 @@ export const cleanSpotVacuum = (
 
 export interface LocateVacuumProps {}
 
-/**
- * Locates the vacuum cleaner robot.
- */
-export const locateVacuum = (target: ITarget, params?: LocateVacuumProps) =>
+globalThis.locateVacuum = (target: ITarget, params?: LocateVacuumProps) =>
   serviceCall({
     name: `Call vacuum.locate`,
     params: {
@@ -88,10 +116,7 @@ export const locateVacuum = (target: ITarget, params?: LocateVacuumProps) =>
 
 export interface StopVacuumProps {}
 
-/**
- * Stops the current cleaning task.
- */
-export const stopVacuum = (target: ITarget, params?: StopVacuumProps) =>
+globalThis.stopVacuum = (target: ITarget, params?: StopVacuumProps) =>
   serviceCall({
     name: `Call vacuum.stop`,
     params: {
@@ -109,10 +134,7 @@ export interface SetFanSpeedVacuumProps {
   fan_speed: string;
 }
 
-/**
- * Sets the fan speed of the vacuum cleaner.
- */
-export const setFanSpeedVacuum = (
+globalThis.setFanSpeedVacuum = (
   target: ITarget,
   params: SetFanSpeedVacuumProps,
 ) =>
@@ -137,10 +159,7 @@ export interface SendCommandVacuumProps {
   params?: never;
 }
 
-/**
- * Sends a command to the vacuum cleaner.
- */
-export const sendCommandVacuum = (
+globalThis.sendCommandVacuum = (
   target: ITarget,
   params: SendCommandVacuumProps,
 ) =>

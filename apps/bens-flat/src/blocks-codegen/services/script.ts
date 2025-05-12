@@ -1,6 +1,39 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  var turnTvOnScript: (target: ITarget) => Block;
+  var turnTvModeOnScript: (target: ITarget) => Block;
+  var boostBoilerScript: (target: ITarget) => Block;
+  var updateAllHacsItemsScript: (target: ITarget) => Block;
+  var todoListScript: (target: ITarget, params: TodoListScriptProps) => Block;
+  var openAiTtsScript: (target: ITarget, params: OpenAiTtsScriptProps) => Block;
+  var readTodaySCalendarScript: (
+    target: ITarget,
+    params?: ReadTodaySCalendarScriptProps,
+  ) => Block;
+  var goodMorningRoutineScript: (target: ITarget) => Block;
+  var turnEverythingOff_2Script: (target: ITarget) => Block;
+  var dismissWelcomeMessageScript: (target: ITarget) => Block;
+  var groupSpeakersScript: (target: ITarget) => Block;
+  var unjoinSpeakersScript: (target: ITarget) => Block;
+  /**
+   * Reloads all the available scripts.
+   */
+  var reloadScript: (target: ITarget) => Block;
+  /**
+   * Runs the sequence of actions defined in a script.
+   */
+  var turnOnScript: (target: ITarget, params?: TurnOnScriptProps) => Block;
+  /**
+   * Stops a running script.
+   */
+  var turnOffScript: (target: ITarget, params?: TurnOffScriptProps) => Block;
+  /**
+   * Starts a script if it isn't running, stops it otherwise.
+   */
+  var toggleScript: (target: ITarget, params?: ToggleScriptProps) => Block;
+}
 
-export const turnTvOnScript = (target: ITarget) =>
+globalThis.turnTvOnScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.turn_tv_on`,
     params: {
@@ -9,7 +42,7 @@ export const turnTvOnScript = (target: ITarget) =>
     },
   });
 
-export const turnTvModeOnScript = (target: ITarget) =>
+globalThis.turnTvModeOnScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.turn_tv_mode_on`,
     params: {
@@ -18,7 +51,7 @@ export const turnTvModeOnScript = (target: ITarget) =>
     },
   });
 
-export const boostBoilerScript = (target: ITarget) =>
+globalThis.boostBoilerScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.boost_boiler`,
     params: {
@@ -27,7 +60,7 @@ export const boostBoilerScript = (target: ITarget) =>
     },
   });
 
-export const updateAllHacsItemsScript = (target: ITarget) =>
+globalThis.updateAllHacsItemsScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.update_all_hacs_items`,
     params: {
@@ -40,7 +73,7 @@ export interface TodoListScriptProps {
   player: string;
 }
 
-export const todoListScript = (target: ITarget, params: TodoListScriptProps) =>
+globalThis.todoListScript = (target: ITarget, params: TodoListScriptProps) =>
   serviceCall({
     name: `Call script.todo_list`,
     params: {
@@ -55,10 +88,7 @@ export interface OpenAiTtsScriptProps {
   player: string;
 }
 
-export const openAiTtsScript = (
-  target: ITarget,
-  params: OpenAiTtsScriptProps,
-) =>
+globalThis.openAiTtsScript = (target: ITarget, params: OpenAiTtsScriptProps) =>
   serviceCall({
     name: `Call script.open_ai_tts`,
     params: {
@@ -72,7 +102,7 @@ export interface ReadTodaySCalendarScriptProps {
   player?: string;
 }
 
-export const readTodaySCalendarScript = (
+globalThis.readTodaySCalendarScript = (
   target: ITarget,
   params?: ReadTodaySCalendarScriptProps,
 ) =>
@@ -85,7 +115,7 @@ export const readTodaySCalendarScript = (
     },
   });
 
-export const goodMorningRoutineScript = (target: ITarget) =>
+globalThis.goodMorningRoutineScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.good_morning_routine`,
     params: {
@@ -94,7 +124,7 @@ export const goodMorningRoutineScript = (target: ITarget) =>
     },
   });
 
-export const turnEverythingOff_2Script = (target: ITarget) =>
+globalThis.turnEverythingOff_2Script = (target: ITarget) =>
   serviceCall({
     name: `Call script.turn_everything_off_2`,
     params: {
@@ -103,7 +133,7 @@ export const turnEverythingOff_2Script = (target: ITarget) =>
     },
   });
 
-export const dismissWelcomeMessageScript = (target: ITarget) =>
+globalThis.dismissWelcomeMessageScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.dismiss_welcome_message`,
     params: {
@@ -112,7 +142,7 @@ export const dismissWelcomeMessageScript = (target: ITarget) =>
     },
   });
 
-export const groupSpeakersScript = (target: ITarget) =>
+globalThis.groupSpeakersScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.group_speakers`,
     params: {
@@ -121,7 +151,7 @@ export const groupSpeakersScript = (target: ITarget) =>
     },
   });
 
-export const unjoinSpeakersScript = (target: ITarget) =>
+globalThis.unjoinSpeakersScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.unjoin_speakers`,
     params: {
@@ -130,10 +160,7 @@ export const unjoinSpeakersScript = (target: ITarget) =>
     },
   });
 
-/**
- * Reloads all the available scripts.
- */
-export const reloadScript = (target: ITarget) =>
+globalThis.reloadScript = (target: ITarget) =>
   serviceCall({
     name: `Call script.reload`,
     params: {
@@ -144,10 +171,7 @@ export const reloadScript = (target: ITarget) =>
 
 export interface TurnOnScriptProps {}
 
-/**
- * Runs the sequence of actions defined in a script.
- */
-export const turnOnScript = (target: ITarget, params?: TurnOnScriptProps) =>
+globalThis.turnOnScript = (target: ITarget, params?: TurnOnScriptProps) =>
   serviceCall({
     name: `Call script.turn_on`,
     params: {
@@ -160,10 +184,7 @@ export const turnOnScript = (target: ITarget, params?: TurnOnScriptProps) =>
 
 export interface TurnOffScriptProps {}
 
-/**
- * Stops a running script.
- */
-export const turnOffScript = (target: ITarget, params?: TurnOffScriptProps) =>
+globalThis.turnOffScript = (target: ITarget, params?: TurnOffScriptProps) =>
   serviceCall({
     name: `Call script.turn_off`,
     params: {
@@ -176,10 +197,7 @@ export const turnOffScript = (target: ITarget, params?: TurnOffScriptProps) =>
 
 export interface ToggleScriptProps {}
 
-/**
- * Starts a script if it isn't running, stops it otherwise.
- */
-export const toggleScript = (target: ITarget, params?: ToggleScriptProps) =>
+globalThis.toggleScript = (target: ITarget, params?: ToggleScriptProps) =>
   serviceCall({
     name: `Call script.toggle`,
     params: {

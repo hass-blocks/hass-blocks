@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const bensAppleTvRemote = entity('remote.bens_apple_tv');
+declare global {
+  var bensAppleTvRemote: ITarget;
+}
+
+globalThis.bensAppleTvRemote = entity('remote.bens_apple_tv');

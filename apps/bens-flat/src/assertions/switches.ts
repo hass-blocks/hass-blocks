@@ -1,5 +1,5 @@
-import { ifStateIs } from '@hass-blocks/blocks';
-import { ifStateIsNot } from '@hass-blocks/blocks';
+import { stateIs } from '@hass-blocks/blocks';
+import { stateIsNot } from '@hass-blocks/blocks';
 
 import {
   bathroomMotionSensor,
@@ -13,28 +13,25 @@ import {
   visitorMode,
 } from '../entities.ts';
 
-export const ifLivingRoomMotionSensorIsOn = ifStateIs(
+export const ifLivingRoomMotionSensorIsOn = stateIs(
   livingRoomMotionSensor,
   'on',
 );
-export const ifLivingRoomMotionSensorIsOff = ifStateIs(
+export const ifLivingRoomMotionSensorIsOff = stateIs(
   livingRoomMotionSensor,
   'off',
 );
-export const ifBedroomMotionSensorIsOn = ifStateIs(bedroomMotionSensor, 'on');
-export const ifBedroomMotionSensorIsOff = ifStateIs(bedroomMotionSensor, 'off');
+export const ifBedroomMotionSensorIsOn = stateIs(bedroomMotionSensor, 'on');
+export const ifBedroomMotionSensorIsOff = stateIs(bedroomMotionSensor, 'off');
 
-export const ifHallwayMotionSensorIsOn = ifStateIs(hallwayMotionSensor, 'on');
-export const ifHallwaySensorIsOff = ifStateIs(hallwayMotionSensor, 'off');
+export const ifHallwayMotionSensorIsOn = stateIs(hallwayMotionSensor, 'on');
+export const ifHallwaySensorIsOff = stateIs(hallwayMotionSensor, 'off');
 
-export const ifBathroomMotionSensorIsOn = ifStateIs(bathroomMotionSensor, 'on');
-export const ifBathroomMotionSensorIsOff = ifStateIs(
-  bathroomMotionSensor,
-  'off',
-);
+export const ifBathroomMotionSensorIsOn = stateIs(bathroomMotionSensor, 'on');
+export const ifBathroomMotionSensorIsOff = stateIs(bathroomMotionSensor, 'off');
 
-export const ifSleepModeIsOff = ifStateIs(sleepMode, 'off');
-export const ifTvModeIsOff = ifStateIs(tvMode, 'off');
-export const ifHomeModeIsOff = ifStateIs(homeMode, 'off');
-export const ifVisitorModeIsNotOn = ifStateIsNot(visitorMode, 'on');
-export const ifBlindsWouldNormallyBeOpen = ifStateIs(blindsDefaultOpen, 'on');
+export const ifSleepModeIsOff = stateIs(sleepMode, 'off');
+export const ifTvModeIsOff = stateIs(tvMode, 'off');
+export const ifHomeModeIsOff = stateIs(homeMode, 'off');
+export const ifVisitorModeIsNotOn = stateIsNot(visitorMode, 'on');
+export const ifBlindsWouldNormallyBeOpen = stateIs(blindsDefaultOpen, 'on');

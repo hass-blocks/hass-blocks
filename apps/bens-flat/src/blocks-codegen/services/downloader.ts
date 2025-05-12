@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Downloads a file to the download location.
+   */
+  var downloadFileDownloader: (params: DownloadFileDownloaderProps) => Block;
+}
 
 export interface DownloadFileDownloaderProps {
   /**
@@ -19,10 +25,7 @@ export interface DownloadFileDownloaderProps {
   overwrite?: boolean;
 }
 
-/**
- * Downloads a file to the download location.
- */
-export const downloadFileDownloader = (params: DownloadFileDownloaderProps) =>
+globalThis.downloadFileDownloader = (params: DownloadFileDownloaderProps) =>
   serviceCall({
     name: `Call downloader.download_file`,
     params: {

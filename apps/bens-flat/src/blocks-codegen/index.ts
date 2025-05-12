@@ -1,2 +1,2 @@
-export * from './entities/index.ts';
-export * from './services/index.ts';
+import './entities/index.ts';
+import './services/index.ts';

@@ -1,4 +1,48 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Performs a global search on the Music Assistant library and all providers.
+   */
+  var searchMusicAssistant: (
+    target: ITarget,
+    params: SearchMusicAssistantProps,
+  ) => Block;
+  /**
+   * Retrieves items from a Music Assistant library.
+   */
+  var getLibraryMusicAssistant: (
+    target: ITarget,
+    params: GetLibraryMusicAssistantProps,
+  ) => Block;
+  /**
+   * Plays media on a Music Assistant player with more fine-grained control options.
+   */
+  var playMediaMusicAssistant: (
+    target: ITarget,
+    params: PlayMediaMusicAssistantProps,
+  ) => Block;
+  /**
+   * Plays an announcement on a Music Assistant player with more fine-grained control options.
+   */
+  var playAnnouncementMusicAssistant: (
+    target: ITarget,
+    params: PlayAnnouncementMusicAssistantProps,
+  ) => Block;
+  /**
+   * Transfers a player's queue to another player.
+   */
+  var transferQueueMusicAssistant: (
+    target: ITarget,
+    params?: TransferQueueMusicAssistantProps,
+  ) => Block;
+  /**
+   * Retrieves the details of the currently active queue of a Music Assistant player.
+   */
+  var getQueueMusicAssistant: (
+    target: ITarget,
+    params?: GetQueueMusicAssistantProps,
+  ) => Block;
+}
 
 export interface SearchMusicAssistantProps {
   /**
@@ -31,10 +75,7 @@ export interface SearchMusicAssistantProps {
   library_only?: boolean;
 }
 
-/**
- * Performs a global search on the Music Assistant library and all providers.
- */
-export const searchMusicAssistant = (
+globalThis.searchMusicAssistant = (
   target: ITarget,
   params: SearchMusicAssistantProps,
 ) =>
@@ -86,10 +127,7 @@ export interface GetLibraryMusicAssistantProps {
   album_artists_only?: boolean;
 }
 
-/**
- * Retrieves items from a Music Assistant library.
- */
-export const getLibraryMusicAssistant = (
+globalThis.getLibraryMusicAssistant = (
   target: ITarget,
   params: GetLibraryMusicAssistantProps,
 ) =>
@@ -129,10 +167,7 @@ export interface PlayMediaMusicAssistantProps {
   radio_mode?: boolean;
 }
 
-/**
- * Plays media on a Music Assistant player with more fine-grained control options.
- */
-export const playMediaMusicAssistant = (
+globalThis.playMediaMusicAssistant = (
   target: ITarget,
   params: PlayMediaMusicAssistantProps,
 ) =>
@@ -161,10 +196,7 @@ export interface PlayAnnouncementMusicAssistantProps {
   announce_volume?: number;
 }
 
-/**
- * Plays an announcement on a Music Assistant player with more fine-grained control options.
- */
-export const playAnnouncementMusicAssistant = (
+globalThis.playAnnouncementMusicAssistant = (
   target: ITarget,
   params: PlayAnnouncementMusicAssistantProps,
 ) =>
@@ -189,10 +221,7 @@ export interface TransferQueueMusicAssistantProps {
   auto_play?: boolean;
 }
 
-/**
- * Transfers a player's queue to another player.
- */
-export const transferQueueMusicAssistant = (
+globalThis.transferQueueMusicAssistant = (
   target: ITarget,
   params?: TransferQueueMusicAssistantProps,
 ) =>
@@ -208,10 +237,7 @@ export const transferQueueMusicAssistant = (
 
 export interface GetQueueMusicAssistantProps {}
 
-/**
- * Retrieves the details of the currently active queue of a Music Assistant player.
- */
-export const getQueueMusicAssistant = (
+globalThis.getQueueMusicAssistant = (
   target: ITarget,
   params?: GetQueueMusicAssistantProps,
 ) =>

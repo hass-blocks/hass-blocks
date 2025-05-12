@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Starts spotify playback on chromecast devices
+   */
+  var startSpotcast: (params?: StartSpotcastProps) => Block;
+}
 
 export interface StartSpotcastProps {
   /**
@@ -99,10 +105,7 @@ export interface StartSpotcastProps {
   ignore_fully_played?: boolean;
 }
 
-/**
- * Starts spotify playback on chromecast devices
- */
-export const startSpotcast = (params?: StartSpotcastProps) =>
+globalThis.startSpotcast = (params?: StartSpotcastProps) =>
   serviceCall({
     name: `Call spotcast.start`,
     params: {

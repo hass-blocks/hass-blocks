@@ -1,9 +1,12 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads the intent script from the YAML-configuration.
+   */
+  var reloadIntentScript: () => Block;
+}
 
-/**
- * Reloads the intent script from the YAML-configuration.
- */
-export const reloadIntentScript = () =>
+globalThis.reloadIntentScript = () =>
   serviceCall({
     name: `Call intent_script.reload`,
     params: {

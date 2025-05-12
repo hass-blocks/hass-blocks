@@ -1,9 +1,16 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Deletes all log entries.
+   */
+  var clearSystemLog: () => Block;
+  /**
+   * Write log entry.
+   */
+  var writeSystemLog: (params: WriteSystemLogProps) => Block;
+}
 
-/**
- * Deletes all log entries.
- */
-export const clearSystemLog = () =>
+globalThis.clearSystemLog = () =>
   serviceCall({
     name: `Call system_log.clear`,
     params: {
@@ -27,10 +34,7 @@ export interface WriteSystemLogProps {
   logger?: string;
 }
 
-/**
- * Write log entry.
- */
-export const writeSystemLog = (params: WriteSystemLogProps) =>
+globalThis.writeSystemLog = (params: WriteSystemLogProps) =>
   serviceCall({
     name: `Call system_log.write`,
     params: {

@@ -1,4 +1,18 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns on one or more lights and adjusts their properties, even when they are turned on already.
+   */
+  var turnOnLight: (target: ITarget, params?: TurnOnLightProps) => Block;
+  /**
+   * Turns off one or more lights.
+   */
+  var turnOffLight: (target: ITarget, params?: TurnOffLightProps) => Block;
+  /**
+   * Toggles one or more lights, from on to off, or off to on, based on their current state.
+   */
+  var toggleLight: (target: ITarget, params?: ToggleLightProps) => Block;
+}
 
 export interface TurnOnLightProps {
   /**
@@ -28,10 +42,7 @@ export interface TurnOnLightProps {
   advanced_fields?: never;
 }
 
-/**
- * Turns on one or more lights and adjusts their properties, even when they are turned on already.
- */
-export const turnOnLight = (target: ITarget, params?: TurnOnLightProps) =>
+globalThis.turnOnLight = (target: ITarget, params?: TurnOnLightProps) =>
   serviceCall({
     name: `Call light.turn_on`,
     params: {
@@ -50,10 +61,7 @@ export interface TurnOffLightProps {
   advanced_fields?: never;
 }
 
-/**
- * Turns off one or more lights.
- */
-export const turnOffLight = (target: ITarget, params?: TurnOffLightProps) =>
+globalThis.turnOffLight = (target: ITarget, params?: TurnOffLightProps) =>
   serviceCall({
     name: `Call light.turn_off`,
     params: {
@@ -88,10 +96,7 @@ export interface ToggleLightProps {
   advanced_fields?: never;
 }
 
-/**
- * Toggles one or more lights, from on to off, or off to on, based on their current state.
- */
-export const toggleLight = (target: ITarget, params?: ToggleLightProps) =>
+globalThis.toggleLight = (target: ITarget, params?: ToggleLightProps) =>
   serviceCall({
     name: `Call light.toggle`,
     params: {

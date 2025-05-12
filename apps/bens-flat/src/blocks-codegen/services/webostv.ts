@@ -1,4 +1,20 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sends a button press command.
+   */
+  var buttonWebostv: (params: ButtonWebostvProps) => Block;
+  /**
+   * Sends a command.
+   */
+  var commandWebostv: (params: CommandWebostvProps) => Block;
+  /**
+   * Sends the TV the command to change sound output.
+   */
+  var selectSoundOutputWebostv: (
+    params: SelectSoundOutputWebostvProps,
+  ) => Block;
+}
 
 export interface ButtonWebostvProps {
   /**
@@ -11,10 +27,7 @@ export interface ButtonWebostvProps {
   button: string;
 }
 
-/**
- * Sends a button press command.
- */
-export const buttonWebostv = (params: ButtonWebostvProps) =>
+globalThis.buttonWebostv = (params: ButtonWebostvProps) =>
   serviceCall({
     name: `Call webostv.button`,
     params: {
@@ -39,10 +52,7 @@ export interface CommandWebostvProps {
   payload?: never;
 }
 
-/**
- * Sends a command.
- */
-export const commandWebostv = (params: CommandWebostvProps) =>
+globalThis.commandWebostv = (params: CommandWebostvProps) =>
   serviceCall({
     name: `Call webostv.command`,
     params: {
@@ -63,12 +73,7 @@ export interface SelectSoundOutputWebostvProps {
   sound_output: string;
 }
 
-/**
- * Sends the TV the command to change sound output.
- */
-export const selectSoundOutputWebostv = (
-  params: SelectSoundOutputWebostvProps,
-) =>
+globalThis.selectSoundOutputWebostv = (params: SelectSoundOutputWebostvProps) =>
   serviceCall({
     name: `Call webostv.select_sound_output`,
     params: {

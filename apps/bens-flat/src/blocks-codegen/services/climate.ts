@@ -1,11 +1,78 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns climate device on.
+   */
+  var turnOnClimate: (target: ITarget, params?: TurnOnClimateProps) => Block;
+  /**
+   * Turns climate device off.
+   */
+  var turnOffClimate: (target: ITarget, params?: TurnOffClimateProps) => Block;
+  /**
+   * Toggles climate device, from on to off, or off to on.
+   */
+  var toggleClimate: (target: ITarget, params?: ToggleClimateProps) => Block;
+  /**
+   * Sets HVAC operation mode.
+   */
+  var setHvacModeClimate: (
+    target: ITarget,
+    params?: SetHvacModeClimateProps,
+  ) => Block;
+  /**
+   * Sets preset mode.
+   */
+  var setPresetModeClimate: (
+    target: ITarget,
+    params: SetPresetModeClimateProps,
+  ) => Block;
+  /**
+   * Turns auxiliary heater on/off.
+   */
+  var setAuxHeatClimate: (
+    target: ITarget,
+    params: SetAuxHeatClimateProps,
+  ) => Block;
+  /**
+   * Sets the temperature setpoint.
+   */
+  var setTemperatureClimate: (
+    target: ITarget,
+    params?: SetTemperatureClimateProps,
+  ) => Block;
+  /**
+   * Sets target humidity.
+   */
+  var setHumidityClimate: (
+    target: ITarget,
+    params: SetHumidityClimateProps,
+  ) => Block;
+  /**
+   * Sets fan operation mode.
+   */
+  var setFanModeClimate: (
+    target: ITarget,
+    params: SetFanModeClimateProps,
+  ) => Block;
+  /**
+   * Sets swing operation mode.
+   */
+  var setSwingModeClimate: (
+    target: ITarget,
+    params: SetSwingModeClimateProps,
+  ) => Block;
+  /**
+   * Sets horizontal swing operation mode.
+   */
+  var setSwingHorizontalModeClimate: (
+    target: ITarget,
+    params: SetSwingHorizontalModeClimateProps,
+  ) => Block;
+}
 
 export interface TurnOnClimateProps {}
 
-/**
- * Turns climate device on.
- */
-export const turnOnClimate = (target: ITarget, params?: TurnOnClimateProps) =>
+globalThis.turnOnClimate = (target: ITarget, params?: TurnOnClimateProps) =>
   serviceCall({
     name: `Call climate.turn_on`,
     params: {
@@ -18,10 +85,7 @@ export const turnOnClimate = (target: ITarget, params?: TurnOnClimateProps) =>
 
 export interface TurnOffClimateProps {}
 
-/**
- * Turns climate device off.
- */
-export const turnOffClimate = (target: ITarget, params?: TurnOffClimateProps) =>
+globalThis.turnOffClimate = (target: ITarget, params?: TurnOffClimateProps) =>
   serviceCall({
     name: `Call climate.turn_off`,
     params: {
@@ -34,10 +98,7 @@ export const turnOffClimate = (target: ITarget, params?: TurnOffClimateProps) =>
 
 export interface ToggleClimateProps {}
 
-/**
- * Toggles climate device, from on to off, or off to on.
- */
-export const toggleClimate = (target: ITarget, params?: ToggleClimateProps) =>
+globalThis.toggleClimate = (target: ITarget, params?: ToggleClimateProps) =>
   serviceCall({
     name: `Call climate.toggle`,
     params: {
@@ -55,10 +116,7 @@ export interface SetHvacModeClimateProps {
   hvac_mode?: never;
 }
 
-/**
- * Sets HVAC operation mode.
- */
-export const setHvacModeClimate = (
+globalThis.setHvacModeClimate = (
   target: ITarget,
   params?: SetHvacModeClimateProps,
 ) =>
@@ -79,10 +137,7 @@ export interface SetPresetModeClimateProps {
   preset_mode: string;
 }
 
-/**
- * Sets preset mode.
- */
-export const setPresetModeClimate = (
+globalThis.setPresetModeClimate = (
   target: ITarget,
   params: SetPresetModeClimateProps,
 ) =>
@@ -103,10 +158,7 @@ export interface SetAuxHeatClimateProps {
   aux_heat: boolean;
 }
 
-/**
- * Turns auxiliary heater on/off.
- */
-export const setAuxHeatClimate = (
+globalThis.setAuxHeatClimate = (
   target: ITarget,
   params: SetAuxHeatClimateProps,
 ) =>
@@ -139,10 +191,7 @@ export interface SetTemperatureClimateProps {
   hvac_mode?: never;
 }
 
-/**
- * Sets the temperature setpoint.
- */
-export const setTemperatureClimate = (
+globalThis.setTemperatureClimate = (
   target: ITarget,
   params?: SetTemperatureClimateProps,
 ) =>
@@ -163,10 +212,7 @@ export interface SetHumidityClimateProps {
   humidity: number;
 }
 
-/**
- * Sets target humidity.
- */
-export const setHumidityClimate = (
+globalThis.setHumidityClimate = (
   target: ITarget,
   params: SetHumidityClimateProps,
 ) =>
@@ -187,10 +233,7 @@ export interface SetFanModeClimateProps {
   fan_mode: string;
 }
 
-/**
- * Sets fan operation mode.
- */
-export const setFanModeClimate = (
+globalThis.setFanModeClimate = (
   target: ITarget,
   params: SetFanModeClimateProps,
 ) =>
@@ -211,10 +254,7 @@ export interface SetSwingModeClimateProps {
   swing_mode: string;
 }
 
-/**
- * Sets swing operation mode.
- */
-export const setSwingModeClimate = (
+globalThis.setSwingModeClimate = (
   target: ITarget,
   params: SetSwingModeClimateProps,
 ) =>
@@ -235,10 +275,7 @@ export interface SetSwingHorizontalModeClimateProps {
   swing_horizontal_mode: string;
 }
 
-/**
- * Sets horizontal swing operation mode.
- */
-export const setSwingHorizontalModeClimate = (
+globalThis.setSwingHorizontalModeClimate = (
   target: ITarget,
   params: SetSwingHorizontalModeClimateProps,
 ) =>

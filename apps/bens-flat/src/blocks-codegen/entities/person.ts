@@ -1,6 +1,13 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const benWainwrightPerson = entity('person.ben_wainwright');
-export const mumPerson = entity('person.mum');
-export const dadPerson = entity('person.dad');
-export const tomPerson = entity('person.tom');
+declare global {
+  var benWainwrightPerson: ITarget;
+  var mumPerson: ITarget;
+  var dadPerson: ITarget;
+  var tomPerson: ITarget;
+}
+
+globalThis.benWainwrightPerson = entity('person.ben_wainwright');
+globalThis.mumPerson = entity('person.mum');
+globalThis.dadPerson = entity('person.dad');
+globalThis.tomPerson = entity('person.tom');

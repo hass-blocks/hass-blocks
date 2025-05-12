@@ -1,4 +1,56 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Starts the Profiler.
+   */
+  var startProfiler: (params?: StartProfilerProps) => Block;
+  /**
+   * Starts the Memory Profiler.
+   */
+  var memoryProfiler: (params?: MemoryProfilerProps) => Block;
+  /**
+   * Starts logging growth of objects in memory.
+   */
+  var startLogObjectsProfiler: (params?: StartLogObjectsProfilerProps) => Block;
+  /**
+   * Stops logging growth of objects in memory.
+   */
+  var stopLogObjectsProfiler: () => Block;
+  /**
+   * Starts logging sources of new objects in memory.
+   */
+  var startLogObjectSourcesProfiler: (
+    params?: StartLogObjectSourcesProfilerProps,
+  ) => Block;
+  /**
+   * Stops logging sources of new objects in memory.
+   */
+  var stopLogObjectSourcesProfiler: () => Block;
+  /**
+   * Dumps the repr of all matching objects to the log.
+   */
+  var dumpLogObjectsProfiler: (params: DumpLogObjectsProfilerProps) => Block;
+  /**
+   * Logs the stats of all lru caches.
+   */
+  var lruStatsProfiler: () => Block;
+  /**
+   * Logs the current frames for all threads.
+   */
+  var logThreadFramesProfiler: () => Block;
+  /**
+   * Logs what is scheduled in the event loop.
+   */
+  var logEventLoopScheduledProfiler: () => Block;
+  /**
+   * Enable or disable asyncio debug.
+   */
+  var setAsyncioDebugProfiler: (params?: SetAsyncioDebugProfilerProps) => Block;
+  /**
+   * Logs all the current asyncio tasks.
+   */
+  var logCurrentTasksProfiler: () => Block;
+}
 
 export interface StartProfilerProps {
   /**
@@ -7,10 +59,7 @@ export interface StartProfilerProps {
   seconds?: number;
 }
 
-/**
- * Starts the Profiler.
- */
-export const startProfiler = (params?: StartProfilerProps) =>
+globalThis.startProfiler = (params?: StartProfilerProps) =>
   serviceCall({
     name: `Call profiler.start`,
     params: {
@@ -27,10 +76,7 @@ export interface MemoryProfilerProps {
   seconds?: number;
 }
 
-/**
- * Starts the Memory Profiler.
- */
-export const memoryProfiler = (params?: MemoryProfilerProps) =>
+globalThis.memoryProfiler = (params?: MemoryProfilerProps) =>
   serviceCall({
     name: `Call profiler.memory`,
     params: {
@@ -47,12 +93,7 @@ export interface StartLogObjectsProfilerProps {
   scan_interval?: number;
 }
 
-/**
- * Starts logging growth of objects in memory.
- */
-export const startLogObjectsProfiler = (
-  params?: StartLogObjectsProfilerProps,
-) =>
+globalThis.startLogObjectsProfiler = (params?: StartLogObjectsProfilerProps) =>
   serviceCall({
     name: `Call profiler.start_log_objects`,
     params: {
@@ -62,10 +103,7 @@ export const startLogObjectsProfiler = (
     },
   });
 
-/**
- * Stops logging growth of objects in memory.
- */
-export const stopLogObjectsProfiler = () =>
+globalThis.stopLogObjectsProfiler = () =>
   serviceCall({
     name: `Call profiler.stop_log_objects`,
     params: {
@@ -85,10 +123,7 @@ export interface StartLogObjectSourcesProfilerProps {
   max_objects?: number;
 }
 
-/**
- * Starts logging sources of new objects in memory.
- */
-export const startLogObjectSourcesProfiler = (
+globalThis.startLogObjectSourcesProfiler = (
   params?: StartLogObjectSourcesProfilerProps,
 ) =>
   serviceCall({
@@ -100,10 +135,7 @@ export const startLogObjectSourcesProfiler = (
     },
   });
 
-/**
- * Stops logging sources of new objects in memory.
- */
-export const stopLogObjectSourcesProfiler = () =>
+globalThis.stopLogObjectSourcesProfiler = () =>
   serviceCall({
     name: `Call profiler.stop_log_object_sources`,
     params: {
@@ -119,10 +151,7 @@ export interface DumpLogObjectsProfilerProps {
   type: string;
 }
 
-/**
- * Dumps the repr of all matching objects to the log.
- */
-export const dumpLogObjectsProfiler = (params: DumpLogObjectsProfilerProps) =>
+globalThis.dumpLogObjectsProfiler = (params: DumpLogObjectsProfilerProps) =>
   serviceCall({
     name: `Call profiler.dump_log_objects`,
     params: {
@@ -132,10 +161,7 @@ export const dumpLogObjectsProfiler = (params: DumpLogObjectsProfilerProps) =>
     },
   });
 
-/**
- * Logs the stats of all lru caches.
- */
-export const lruStatsProfiler = () =>
+globalThis.lruStatsProfiler = () =>
   serviceCall({
     name: `Call profiler.lru_stats`,
     params: {
@@ -144,10 +170,7 @@ export const lruStatsProfiler = () =>
     },
   });
 
-/**
- * Logs the current frames for all threads.
- */
-export const logThreadFramesProfiler = () =>
+globalThis.logThreadFramesProfiler = () =>
   serviceCall({
     name: `Call profiler.log_thread_frames`,
     params: {
@@ -156,10 +179,7 @@ export const logThreadFramesProfiler = () =>
     },
   });
 
-/**
- * Logs what is scheduled in the event loop.
- */
-export const logEventLoopScheduledProfiler = () =>
+globalThis.logEventLoopScheduledProfiler = () =>
   serviceCall({
     name: `Call profiler.log_event_loop_scheduled`,
     params: {
@@ -175,12 +195,7 @@ export interface SetAsyncioDebugProfilerProps {
   enabled?: boolean;
 }
 
-/**
- * Enable or disable asyncio debug.
- */
-export const setAsyncioDebugProfiler = (
-  params?: SetAsyncioDebugProfilerProps,
-) =>
+globalThis.setAsyncioDebugProfiler = (params?: SetAsyncioDebugProfilerProps) =>
   serviceCall({
     name: `Call profiler.set_asyncio_debug`,
     params: {
@@ -190,10 +205,7 @@ export const setAsyncioDebugProfiler = (
     },
   });
 
-/**
- * Logs all the current asyncio tasks.
- */
-export const logCurrentTasksProfiler = () =>
+globalThis.logCurrentTasksProfiler = () =>
   serviceCall({
     name: `Call profiler.log_current_tasks`,
     params: {

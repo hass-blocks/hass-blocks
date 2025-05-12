@@ -1,4 +1,84 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Changes the configuration parameters of your Z-Wave devices.
+   */
+  var setConfigParameterZwaveJs: (
+    target: ITarget,
+    params: SetConfigParameterZwaveJsProps,
+  ) => Block;
+  /**
+   * Allows for bulk setting partial parameters. Useful when multiple partial parameters have to be set at the same time.
+   */
+  var bulkSetPartialConfigParametersZwaveJs: (
+    target: ITarget,
+    params: BulkSetPartialConfigParametersZwaveJsProps,
+  ) => Block;
+  /**
+   * Force updates the values of a Z-Wave entity.
+   */
+  var refreshValueZwaveJs: (
+    target: ITarget,
+    params: RefreshValueZwaveJsProps,
+  ) => Block;
+  /**
+   * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
+   */
+  var setValueZwaveJs: (target: ITarget, params: SetValueZwaveJsProps) => Block;
+  /**
+   * Changes any value that Z-Wave recognizes on multiple Z-Wave devices using multicast, so all devices receive the message simultaneously. This action has minimal validation so only use this action if you know what you are doing.
+   */
+  var multicastSetValueZwaveJs: (
+    target: ITarget,
+    params: MulticastSetValueZwaveJsProps,
+  ) => Block;
+  /**
+   * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
+   */
+  var pingZwaveJs: (target: ITarget, params?: PingZwaveJsProps) => Block;
+  /**
+   * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
+   */
+  var invokeCcApiZwaveJs: (
+    target: ITarget,
+    params: InvokeCcApiZwaveJsProps,
+  ) => Block;
+  /**
+   * Refreshes notifications on a node based on notification type and optionally notification event.
+   */
+  var refreshNotificationsZwaveJs: (
+    target: ITarget,
+    params: RefreshNotificationsZwaveJsProps,
+  ) => Block;
+  /**
+   * Sets a user code on a lock.
+   */
+  var setLockUsercodeZwaveJs: (
+    target: ITarget,
+    params: SetLockUsercodeZwaveJsProps,
+  ) => Block;
+  /**
+   * Clears a user code from a lock.
+   */
+  var clearLockUsercodeZwaveJs: (
+    target: ITarget,
+    params: ClearLockUsercodeZwaveJsProps,
+  ) => Block;
+  /**
+   * Sets the configuration for a lock.
+   */
+  var setLockConfigurationZwaveJs: (
+    target: ITarget,
+    params: SetLockConfigurationZwaveJsProps,
+  ) => Block;
+  /**
+   * Resets the meters on a node.
+   */
+  var resetMeterZwaveJs: (
+    target: ITarget,
+    params?: ResetMeterZwaveJsProps,
+  ) => Block;
+}
 
 export interface SetConfigParameterZwaveJsProps {
   /**
@@ -39,10 +119,7 @@ export interface SetConfigParameterZwaveJsProps {
   value_format?: number;
 }
 
-/**
- * Changes the configuration parameters of your Z-Wave devices.
- */
-export const setConfigParameterZwaveJs = (
+globalThis.setConfigParameterZwaveJs = (
   target: ITarget,
   params: SetConfigParameterZwaveJsProps,
 ) =>
@@ -82,10 +159,7 @@ export interface BulkSetPartialConfigParametersZwaveJsProps {
   value: never;
 }
 
-/**
- * Allows for bulk setting partial parameters. Useful when multiple partial parameters have to be set at the same time.
- */
-export const bulkSetPartialConfigParametersZwaveJs = (
+globalThis.bulkSetPartialConfigParametersZwaveJs = (
   target: ITarget,
   params: BulkSetPartialConfigParametersZwaveJsProps,
 ) =>
@@ -109,10 +183,7 @@ export interface RefreshValueZwaveJsProps {
   refresh_all_values?: boolean;
 }
 
-/**
- * Force updates the values of a Z-Wave entity.
- */
-export const refreshValueZwaveJs = (
+globalThis.refreshValueZwaveJs = (
   target: ITarget,
   params: RefreshValueZwaveJsProps,
 ) =>
@@ -168,13 +239,7 @@ export interface SetValueZwaveJsProps {
   wait_for_result?: boolean;
 }
 
-/**
- * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
- */
-export const setValueZwaveJs = (
-  target: ITarget,
-  params: SetValueZwaveJsProps,
-) =>
+globalThis.setValueZwaveJs = (target: ITarget, params: SetValueZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.set_value`,
     params: {
@@ -227,10 +292,7 @@ export interface MulticastSetValueZwaveJsProps {
   value: never;
 }
 
-/**
- * Changes any value that Z-Wave recognizes on multiple Z-Wave devices using multicast, so all devices receive the message simultaneously. This action has minimal validation so only use this action if you know what you are doing.
- */
-export const multicastSetValueZwaveJs = (
+globalThis.multicastSetValueZwaveJs = (
   target: ITarget,
   params: MulticastSetValueZwaveJsProps,
 ) =>
@@ -258,10 +320,7 @@ export interface PingZwaveJsProps {
   entity_id?: string;
 }
 
-/**
- * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
- */
-export const pingZwaveJs = (target: ITarget, params?: PingZwaveJsProps) =>
+globalThis.pingZwaveJs = (target: ITarget, params?: PingZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.ping`,
     params: {
@@ -302,10 +361,7 @@ export interface InvokeCcApiZwaveJsProps {
   parameters: never;
 }
 
-/**
- * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
- */
-export const invokeCcApiZwaveJs = (
+globalThis.invokeCcApiZwaveJs = (
   target: ITarget,
   params: InvokeCcApiZwaveJsProps,
 ) =>
@@ -341,10 +397,7 @@ export interface RefreshNotificationsZwaveJsProps {
   notification_event?: number;
 }
 
-/**
- * Refreshes notifications on a node based on notification type and optionally notification event.
- */
-export const refreshNotificationsZwaveJs = (
+globalThis.refreshNotificationsZwaveJs = (
   target: ITarget,
   params: RefreshNotificationsZwaveJsProps,
 ) =>
@@ -368,10 +421,7 @@ export interface SetLockUsercodeZwaveJsProps {
   usercode: string;
 }
 
-/**
- * Sets a user code on a lock.
- */
-export const setLockUsercodeZwaveJs = (
+globalThis.setLockUsercodeZwaveJs = (
   target: ITarget,
   params: SetLockUsercodeZwaveJsProps,
 ) =>
@@ -392,10 +442,7 @@ export interface ClearLockUsercodeZwaveJsProps {
   code_slot: string;
 }
 
-/**
- * Clears a user code from a lock.
- */
-export const clearLockUsercodeZwaveJs = (
+globalThis.clearLockUsercodeZwaveJs = (
   target: ITarget,
   params: ClearLockUsercodeZwaveJsProps,
 ) =>
@@ -436,10 +483,7 @@ export interface SetLockConfigurationZwaveJsProps {
   block_to_block?: boolean;
 }
 
-/**
- * Sets the configuration for a lock.
- */
-export const setLockConfigurationZwaveJs = (
+globalThis.setLockConfigurationZwaveJs = (
   target: ITarget,
   params: SetLockConfigurationZwaveJsProps,
 ) =>
@@ -476,10 +520,7 @@ export interface ResetMeterZwaveJsProps {
   value?: string;
 }
 
-/**
- * Resets the meters on a node.
- */
-export const resetMeterZwaveJs = (
+globalThis.resetMeterZwaveJs = (
   target: ITarget,
   params?: ResetMeterZwaveJsProps,
 ) =>

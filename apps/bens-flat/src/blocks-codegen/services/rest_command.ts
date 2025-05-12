@@ -1,6 +1,13 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  var shutdownImacRestCommand: () => Block;
+  /**
+   * Reloads RESTful commands from the YAML-configuration.
+   */
+  var reloadRestCommand: () => Block;
+}
 
-export const shutdownImacRestCommand = () =>
+globalThis.shutdownImacRestCommand = () =>
   serviceCall({
     name: `Call rest_command.shutdown_imac`,
     params: {
@@ -9,10 +16,7 @@ export const shutdownImacRestCommand = () =>
     },
   });
 
-/**
- * Reloads RESTful commands from the YAML-configuration.
- */
-export const reloadRestCommand = () =>
+globalThis.reloadRestCommand = () =>
   serviceCall({
     name: `Call rest_command.reload`,
     params: {

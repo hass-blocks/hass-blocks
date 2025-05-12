@@ -1,4 +1,38 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Triggers the actions of an automation.
+   */
+  var triggerAutomation: (
+    target: ITarget,
+    params?: TriggerAutomationProps,
+  ) => Block;
+  /**
+   * Toggles (enable / disable) an automation.
+   */
+  var toggleAutomation: (
+    target: ITarget,
+    params?: ToggleAutomationProps,
+  ) => Block;
+  /**
+   * Enables an automation.
+   */
+  var turnOnAutomation: (
+    target: ITarget,
+    params?: TurnOnAutomationProps,
+  ) => Block;
+  /**
+   * Disables an automation.
+   */
+  var turnOffAutomation: (
+    target: ITarget,
+    params?: TurnOffAutomationProps,
+  ) => Block;
+  /**
+   * Reloads the automation configuration.
+   */
+  var reloadAutomation: (target: ITarget) => Block;
+}
 
 export interface TriggerAutomationProps {
   /**
@@ -7,10 +41,7 @@ export interface TriggerAutomationProps {
   skip_condition?: boolean;
 }
 
-/**
- * Triggers the actions of an automation.
- */
-export const triggerAutomation = (
+globalThis.triggerAutomation = (
   target: ITarget,
   params?: TriggerAutomationProps,
 ) =>
@@ -26,10 +57,7 @@ export const triggerAutomation = (
 
 export interface ToggleAutomationProps {}
 
-/**
- * Toggles (enable / disable) an automation.
- */
-export const toggleAutomation = (
+globalThis.toggleAutomation = (
   target: ITarget,
   params?: ToggleAutomationProps,
 ) =>
@@ -45,10 +73,7 @@ export const toggleAutomation = (
 
 export interface TurnOnAutomationProps {}
 
-/**
- * Enables an automation.
- */
-export const turnOnAutomation = (
+globalThis.turnOnAutomation = (
   target: ITarget,
   params?: TurnOnAutomationProps,
 ) =>
@@ -69,10 +94,7 @@ export interface TurnOffAutomationProps {
   stop_actions?: boolean;
 }
 
-/**
- * Disables an automation.
- */
-export const turnOffAutomation = (
+globalThis.turnOffAutomation = (
   target: ITarget,
   params?: TurnOffAutomationProps,
 ) =>
@@ -86,10 +108,7 @@ export const turnOffAutomation = (
     target,
   });
 
-/**
- * Reloads the automation configuration.
- */
-export const reloadAutomation = (target: ITarget) =>
+globalThis.reloadAutomation = (target: ITarget) =>
   serviceCall({
     name: `Call automation.reload`,
     params: {

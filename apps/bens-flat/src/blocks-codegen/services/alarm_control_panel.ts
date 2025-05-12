@@ -1,4 +1,55 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Disarms the alarm.
+   */
+  var alarmDisarmAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmDisarmAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Arms the alarm in the home mode.
+   */
+  var alarmArmHomeAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmArmHomeAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Arms the alarm in the away mode.
+   */
+  var alarmArmAwayAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmArmAwayAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Arms the alarm in the night mode.
+   */
+  var alarmArmNightAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmArmNightAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Arms the alarm in the vacation mode.
+   */
+  var alarmArmVacationAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmArmVacationAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Arms the alarm while allowing to bypass a custom area.
+   */
+  var alarmArmCustomBypassAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmArmCustomBypassAlarmControlPanelProps,
+  ) => Block;
+  /**
+   * Triggers the alarm manually.
+   */
+  var alarmTriggerAlarmControlPanel: (
+    target: ITarget,
+    params?: AlarmTriggerAlarmControlPanelProps,
+  ) => Block;
+}
 
 export interface AlarmDisarmAlarmControlPanelProps {
   /**
@@ -7,10 +58,7 @@ export interface AlarmDisarmAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Disarms the alarm.
- */
-export const alarmDisarmAlarmControlPanel = (
+globalThis.alarmDisarmAlarmControlPanel = (
   target: ITarget,
   params?: AlarmDisarmAlarmControlPanelProps,
 ) =>
@@ -31,10 +79,7 @@ export interface AlarmArmHomeAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Arms the alarm in the home mode.
- */
-export const alarmArmHomeAlarmControlPanel = (
+globalThis.alarmArmHomeAlarmControlPanel = (
   target: ITarget,
   params?: AlarmArmHomeAlarmControlPanelProps,
 ) =>
@@ -55,10 +100,7 @@ export interface AlarmArmAwayAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Arms the alarm in the away mode.
- */
-export const alarmArmAwayAlarmControlPanel = (
+globalThis.alarmArmAwayAlarmControlPanel = (
   target: ITarget,
   params?: AlarmArmAwayAlarmControlPanelProps,
 ) =>
@@ -79,10 +121,7 @@ export interface AlarmArmNightAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Arms the alarm in the night mode.
- */
-export const alarmArmNightAlarmControlPanel = (
+globalThis.alarmArmNightAlarmControlPanel = (
   target: ITarget,
   params?: AlarmArmNightAlarmControlPanelProps,
 ) =>
@@ -103,10 +142,7 @@ export interface AlarmArmVacationAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Arms the alarm in the vacation mode.
- */
-export const alarmArmVacationAlarmControlPanel = (
+globalThis.alarmArmVacationAlarmControlPanel = (
   target: ITarget,
   params?: AlarmArmVacationAlarmControlPanelProps,
 ) =>
@@ -127,10 +163,7 @@ export interface AlarmArmCustomBypassAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Arms the alarm while allowing to bypass a custom area.
- */
-export const alarmArmCustomBypassAlarmControlPanel = (
+globalThis.alarmArmCustomBypassAlarmControlPanel = (
   target: ITarget,
   params?: AlarmArmCustomBypassAlarmControlPanelProps,
 ) =>
@@ -151,10 +184,7 @@ export interface AlarmTriggerAlarmControlPanelProps {
   code?: string;
 }
 
-/**
- * Triggers the alarm manually.
- */
-export const alarmTriggerAlarmControlPanel = (
+globalThis.alarmTriggerAlarmControlPanel = (
   target: ITarget,
   params?: AlarmTriggerAlarmControlPanelProps,
 ) =>

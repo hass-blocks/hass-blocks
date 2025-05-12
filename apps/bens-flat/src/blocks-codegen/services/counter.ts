@@ -1,11 +1,32 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Increments a counter by its step size.
+   */
+  var incrementCounter: (
+    target: ITarget,
+    params?: IncrementCounterProps,
+  ) => Block;
+  /**
+   * Decrements a counter by its step size.
+   */
+  var decrementCounter: (
+    target: ITarget,
+    params?: DecrementCounterProps,
+  ) => Block;
+  /**
+   * Resets a counter to its initial value.
+   */
+  var resetCounter: (target: ITarget, params?: ResetCounterProps) => Block;
+  /**
+   * Sets the counter to a specific value.
+   */
+  var setValueCounter: (target: ITarget, params: SetValueCounterProps) => Block;
+}
 
 export interface IncrementCounterProps {}
 
-/**
- * Increments a counter by its step size.
- */
-export const incrementCounter = (
+globalThis.incrementCounter = (
   target: ITarget,
   params?: IncrementCounterProps,
 ) =>
@@ -21,10 +42,7 @@ export const incrementCounter = (
 
 export interface DecrementCounterProps {}
 
-/**
- * Decrements a counter by its step size.
- */
-export const decrementCounter = (
+globalThis.decrementCounter = (
   target: ITarget,
   params?: DecrementCounterProps,
 ) =>
@@ -40,10 +58,7 @@ export const decrementCounter = (
 
 export interface ResetCounterProps {}
 
-/**
- * Resets a counter to its initial value.
- */
-export const resetCounter = (target: ITarget, params?: ResetCounterProps) =>
+globalThis.resetCounter = (target: ITarget, params?: ResetCounterProps) =>
   serviceCall({
     name: `Call counter.reset`,
     params: {
@@ -61,13 +76,7 @@ export interface SetValueCounterProps {
   value: number;
 }
 
-/**
- * Sets the counter to a specific value.
- */
-export const setValueCounter = (
-  target: ITarget,
-  params: SetValueCounterProps,
-) =>
+globalThis.setValueCounter = (target: ITarget, params: SetValueCounterProps) =>
   serviceCall({
     name: `Call counter.set_value`,
     params: {

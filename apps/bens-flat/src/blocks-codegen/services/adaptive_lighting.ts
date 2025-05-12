@@ -1,4 +1,22 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Applies the current Adaptive Lighting settings to lights.
+   */
+  var applyAdaptiveLighting: (params?: ApplyAdaptiveLightingProps) => Block;
+  /**
+   * Mark whether a light is 'manually controlled'.
+   */
+  var setManualControlAdaptiveLighting: (
+    params?: SetManualControlAdaptiveLightingProps,
+  ) => Block;
+  /**
+   * Change any settings you'd like in the switch. All options here are the same as in the config flow.
+   */
+  var changeSwitchSettingsAdaptiveLighting: (
+    params: ChangeSwitchSettingsAdaptiveLightingProps,
+  ) => Block;
+}
 
 export interface ApplyAdaptiveLightingProps {
   /**
@@ -31,10 +49,7 @@ export interface ApplyAdaptiveLightingProps {
   turn_on_lights?: boolean;
 }
 
-/**
- * Applies the current Adaptive Lighting settings to lights.
- */
-export const applyAdaptiveLighting = (params?: ApplyAdaptiveLightingProps) =>
+globalThis.applyAdaptiveLighting = (params?: ApplyAdaptiveLightingProps) =>
   serviceCall({
     name: `Call adaptive_lighting.apply`,
     params: {
@@ -59,10 +74,7 @@ export interface SetManualControlAdaptiveLightingProps {
   manual_control?: boolean;
 }
 
-/**
- * Mark whether a light is 'manually controlled'.
- */
-export const setManualControlAdaptiveLighting = (
+globalThis.setManualControlAdaptiveLighting = (
   params?: SetManualControlAdaptiveLightingProps,
 ) =>
   serviceCall({
@@ -193,10 +205,7 @@ export interface ChangeSwitchSettingsAdaptiveLightingProps {
   autoreset_control_seconds?: string;
 }
 
-/**
- * Change any settings you'd like in the switch. All options here are the same as in the config flow.
- */
-export const changeSwitchSettingsAdaptiveLighting = (
+globalThis.changeSwitchSettingsAdaptiveLighting = (
   params: ChangeSwitchSettingsAdaptiveLightingProps,
 ) =>
   serviceCall({

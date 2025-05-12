@@ -1,9 +1,16 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Makes the instance UI accessible from outside of the local network by enabling your Home Assistant Cloud connection.
+   */
+  var remoteConnectCloud: () => Block;
+  /**
+   * Disconnects the instance UI from Home Assistant Cloud. This disables access to it from outside your local network.
+   */
+  var remoteDisconnectCloud: () => Block;
+}
 
-/**
- * Makes the instance UI accessible from outside of the local network by enabling your Home Assistant Cloud connection.
- */
-export const remoteConnectCloud = () =>
+globalThis.remoteConnectCloud = () =>
   serviceCall({
     name: `Call cloud.remote_connect`,
     params: {
@@ -12,10 +19,7 @@ export const remoteConnectCloud = () =>
     },
   });
 
-/**
- * Disconnects the instance UI from Home Assistant Cloud. This disables access to it from outside your local network.
- */
-export const remoteDisconnectCloud = () =>
+globalThis.remoteDisconnectCloud = () =>
   serviceCall({
     name: `Call cloud.remote_disconnect`,
     params: {

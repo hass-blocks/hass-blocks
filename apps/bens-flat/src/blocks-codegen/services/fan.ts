@@ -1,4 +1,54 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns fan on.
+   */
+  var turnOnFan: (target: ITarget, params?: TurnOnFanProps) => Block;
+  /**
+   * Turns fan off.
+   */
+  var turnOffFan: (target: ITarget, params?: TurnOffFanProps) => Block;
+  /**
+   * Toggles a fan on/off.
+   */
+  var toggleFan: (target: ITarget, params?: ToggleFanProps) => Block;
+  /**
+   * Increases the speed of a fan.
+   */
+  var increaseSpeedFan: (
+    target: ITarget,
+    params?: IncreaseSpeedFanProps,
+  ) => Block;
+  /**
+   * Decreases the speed of a fan.
+   */
+  var decreaseSpeedFan: (
+    target: ITarget,
+    params?: DecreaseSpeedFanProps,
+  ) => Block;
+  /**
+   * Controls the oscillation of a fan.
+   */
+  var oscillateFan: (target: ITarget, params: OscillateFanProps) => Block;
+  /**
+   * Sets a fan's rotation direction.
+   */
+  var setDirectionFan: (target: ITarget, params: SetDirectionFanProps) => Block;
+  /**
+   * Sets the speed of a fan.
+   */
+  var setPercentageFan: (
+    target: ITarget,
+    params: SetPercentageFanProps,
+  ) => Block;
+  /**
+   * Sets preset fan mode.
+   */
+  var setPresetModeFan: (
+    target: ITarget,
+    params: SetPresetModeFanProps,
+  ) => Block;
+}
 
 export interface TurnOnFanProps {
   /**
@@ -11,10 +61,7 @@ export interface TurnOnFanProps {
   preset_mode?: string;
 }
 
-/**
- * Turns fan on.
- */
-export const turnOnFan = (target: ITarget, params?: TurnOnFanProps) =>
+globalThis.turnOnFan = (target: ITarget, params?: TurnOnFanProps) =>
   serviceCall({
     name: `Call fan.turn_on`,
     params: {
@@ -27,10 +74,7 @@ export const turnOnFan = (target: ITarget, params?: TurnOnFanProps) =>
 
 export interface TurnOffFanProps {}
 
-/**
- * Turns fan off.
- */
-export const turnOffFan = (target: ITarget, params?: TurnOffFanProps) =>
+globalThis.turnOffFan = (target: ITarget, params?: TurnOffFanProps) =>
   serviceCall({
     name: `Call fan.turn_off`,
     params: {
@@ -43,10 +87,7 @@ export const turnOffFan = (target: ITarget, params?: TurnOffFanProps) =>
 
 export interface ToggleFanProps {}
 
-/**
- * Toggles a fan on/off.
- */
-export const toggleFan = (target: ITarget, params?: ToggleFanProps) =>
+globalThis.toggleFan = (target: ITarget, params?: ToggleFanProps) =>
   serviceCall({
     name: `Call fan.toggle`,
     params: {
@@ -64,10 +105,7 @@ export interface IncreaseSpeedFanProps {
   percentage_step?: number;
 }
 
-/**
- * Increases the speed of a fan.
- */
-export const increaseSpeedFan = (
+globalThis.increaseSpeedFan = (
   target: ITarget,
   params?: IncreaseSpeedFanProps,
 ) =>
@@ -88,10 +126,7 @@ export interface DecreaseSpeedFanProps {
   percentage_step?: number;
 }
 
-/**
- * Decreases the speed of a fan.
- */
-export const decreaseSpeedFan = (
+globalThis.decreaseSpeedFan = (
   target: ITarget,
   params?: DecreaseSpeedFanProps,
 ) =>
@@ -112,10 +147,7 @@ export interface OscillateFanProps {
   oscillating: boolean;
 }
 
-/**
- * Controls the oscillation of a fan.
- */
-export const oscillateFan = (target: ITarget, params: OscillateFanProps) =>
+globalThis.oscillateFan = (target: ITarget, params: OscillateFanProps) =>
   serviceCall({
     name: `Call fan.oscillate`,
     params: {
@@ -133,13 +165,7 @@ export interface SetDirectionFanProps {
   direction: never;
 }
 
-/**
- * Sets a fan's rotation direction.
- */
-export const setDirectionFan = (
-  target: ITarget,
-  params: SetDirectionFanProps,
-) =>
+globalThis.setDirectionFan = (target: ITarget, params: SetDirectionFanProps) =>
   serviceCall({
     name: `Call fan.set_direction`,
     params: {
@@ -157,10 +183,7 @@ export interface SetPercentageFanProps {
   percentage: number;
 }
 
-/**
- * Sets the speed of a fan.
- */
-export const setPercentageFan = (
+globalThis.setPercentageFan = (
   target: ITarget,
   params: SetPercentageFanProps,
 ) =>
@@ -181,10 +204,7 @@ export interface SetPresetModeFanProps {
   preset_mode: string;
 }
 
-/**
- * Sets preset fan mode.
- */
-export const setPresetModeFan = (
+globalThis.setPresetModeFan = (
   target: ITarget,
   params: SetPresetModeFanProps,
 ) =>

@@ -1,4 +1,50 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Run a sequence of services
+   */
+  var sequenceBrowserMod: (params?: SequenceBrowserModProps) => Block;
+  /**
+   * Wait for a time
+   */
+  var delayBrowserMod: (params?: DelayBrowserModProps) => Block;
+  /**
+   * Display a popup
+   */
+  var popupBrowserMod: (params: PopupBrowserModProps) => Block;
+  /**
+   * Show more-info dialog
+   */
+  var moreInfoBrowserMod: (params: MoreInfoBrowserModProps) => Block;
+  /**
+   * Close a popup
+   */
+  var closePopupBrowserMod: (params?: ClosePopupBrowserModProps) => Block;
+  /**
+   * Display a short notification
+   */
+  var notificationBrowserMod: (params: NotificationBrowserModProps) => Block;
+  /**
+   * Navigate browser to a different page
+   */
+  var navigateBrowserMod: (params?: NavigateBrowserModProps) => Block;
+  /**
+   * Refresh page
+   */
+  var refreshBrowserMod: (params?: RefreshBrowserModProps) => Block;
+  /**
+   * Change the current theme
+   */
+  var setThemeBrowserMod: (params?: SetThemeBrowserModProps) => Block;
+  /**
+   * Print text to browser console
+   */
+  var consoleBrowserMod: (params?: ConsoleBrowserModProps) => Block;
+  /**
+   * Run arbitrary JavaScript code
+   */
+  var javascriptBrowserMod: (params?: JavascriptBrowserModProps) => Block;
+}
 
 export interface SequenceBrowserModProps {
   browser_id?: never;
@@ -8,10 +54,7 @@ export interface SequenceBrowserModProps {
   sequence?: never;
 }
 
-/**
- * Run a sequence of services
- */
-export const sequenceBrowserMod = (params?: SequenceBrowserModProps) =>
+globalThis.sequenceBrowserMod = (params?: SequenceBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.sequence`,
     params: {
@@ -29,10 +72,7 @@ export interface DelayBrowserModProps {
   time?: number;
 }
 
-/**
- * Wait for a time
- */
-export const delayBrowserMod = (params?: DelayBrowserModProps) =>
+globalThis.delayBrowserMod = (params?: DelayBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.delay`,
     params: {
@@ -95,10 +135,7 @@ export interface PopupBrowserModProps {
   style?: string;
 }
 
-/**
- * Display a popup
- */
-export const popupBrowserMod = (params: PopupBrowserModProps) =>
+globalThis.popupBrowserMod = (params: PopupBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.popup`,
     params: {
@@ -115,10 +152,7 @@ export interface MoreInfoBrowserModProps {
   ignore_popup_card?: boolean;
 }
 
-/**
- * Show more-info dialog
- */
-export const moreInfoBrowserMod = (params: MoreInfoBrowserModProps) =>
+globalThis.moreInfoBrowserMod = (params: MoreInfoBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.more_info`,
     params: {
@@ -132,10 +166,7 @@ export interface ClosePopupBrowserModProps {
   browser_id?: never;
 }
 
-/**
- * Close a popup
- */
-export const closePopupBrowserMod = (params?: ClosePopupBrowserModProps) =>
+globalThis.closePopupBrowserMod = (params?: ClosePopupBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.close_popup`,
     params: {
@@ -165,10 +196,7 @@ export interface NotificationBrowserModProps {
   action?: never;
 }
 
-/**
- * Display a short notification
- */
-export const notificationBrowserMod = (params: NotificationBrowserModProps) =>
+globalThis.notificationBrowserMod = (params: NotificationBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.notification`,
     params: {
@@ -186,10 +214,7 @@ export interface NavigateBrowserModProps {
   path?: string;
 }
 
-/**
- * Navigate browser to a different page
- */
-export const navigateBrowserMod = (params?: NavigateBrowserModProps) =>
+globalThis.navigateBrowserMod = (params?: NavigateBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.navigate`,
     params: {
@@ -203,10 +228,7 @@ export interface RefreshBrowserModProps {
   browser_id?: never;
 }
 
-/**
- * Refresh page
- */
-export const refreshBrowserMod = (params?: RefreshBrowserModProps) =>
+globalThis.refreshBrowserMod = (params?: RefreshBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.refresh`,
     params: {
@@ -236,10 +258,7 @@ export interface SetThemeBrowserModProps {
   accentColor?: never;
 }
 
-/**
- * Change the current theme
- */
-export const setThemeBrowserMod = (params?: SetThemeBrowserModProps) =>
+globalThis.setThemeBrowserMod = (params?: SetThemeBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.set_theme`,
     params: {
@@ -257,10 +276,7 @@ export interface ConsoleBrowserModProps {
   message?: string;
 }
 
-/**
- * Print text to browser console
- */
-export const consoleBrowserMod = (params?: ConsoleBrowserModProps) =>
+globalThis.consoleBrowserMod = (params?: ConsoleBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.console`,
     params: {
@@ -278,10 +294,7 @@ export interface JavascriptBrowserModProps {
   code?: never;
 }
 
-/**
- * Run arbitrary JavaScript code
- */
-export const javascriptBrowserMod = (params?: JavascriptBrowserModProps) =>
+globalThis.javascriptBrowserMod = (params?: JavascriptBrowserModProps) =>
   serviceCall({
     name: `Call browser_mod.javascript`,
     params: {

@@ -1,9 +1,12 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads persons from the YAML-configuration.
+   */
+  var reloadPerson: () => Block;
+}
 
-/**
- * Reloads persons from the YAML-configuration.
- */
-export const reloadPerson = () =>
+globalThis.reloadPerson = () =>
   serviceCall({
     name: `Call person.reload`,
     params: {

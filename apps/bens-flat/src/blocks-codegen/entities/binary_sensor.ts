@@ -1,248 +1,336 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const ringMqttWithVideoStreamingRunningBinarySensor = entity(
+declare global {
+  var ringMqttWithVideoStreamingRunningBinarySensor: ITarget;
+  var remoteUiBinarySensor: ITarget;
+  var tumbleDryerRunningBinarySensor: ITarget;
+  var diskCloseToFullBinarySensor: ITarget;
+  var ilightshowIosEntertainmentConfigurationBinarySensor: ITarget;
+  var livingRoomEntertainmentConfigurationBinarySensor: ITarget;
+  var bedroomBinarySensor: ITarget;
+  var systemMonitorProcessPython3BinarySensor: ITarget;
+  var livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor: ITarget;
+  var livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor: ITarget;
+  var livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor: ITarget;
+  var livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor: ITarget;
+  var shellyemA4e57cba73f5OverpoweringBinarySensor: ITarget;
+  var livingRoomSensorSensorStateTamperBinarySensor: ITarget;
+  var livingRoomSensorSensorStateMotionBinarySensor: ITarget;
+  var livingRoomSensorTamperingProductCoverRemovedBinarySensor: ITarget;
+  var livingRoomSensorMotionDetectionBinarySensor: ITarget;
+  var livingRoomSensorLowBatteryLevelBinarySensor: ITarget;
+  var gymSensorSensorStateTamperBinarySensor: ITarget;
+  var gymSensorSensorStateMotionBinarySensor: ITarget;
+  var gymSensorTamperingProductCoverRemovedBinarySensor: ITarget;
+  var gymSensorMotionDetectionBinarySensor: ITarget;
+  var gymSensorLowBatteryLevelBinarySensor: ITarget;
+  var bedroomSensorSensorStateTamperBinarySensor: ITarget;
+  var bedroomSensorSensorStateMotionBinarySensor: ITarget;
+  var bedroomSensorTamperingProductCoverRemovedBinarySensor: ITarget;
+  var bedroomSensorMotionDetectionBinarySensor: ITarget;
+  var bedroomSensorLowBatteryLevelBinarySensor: ITarget;
+  var octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor: ITarget;
+  var octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor: ITarget;
+  var bensImacProAudioInputInUseBinarySensor: ITarget;
+  var bensImacProAudioOutputInUseBinarySensor: ITarget;
+  var bensImacProCameraInUseBinarySensor: ITarget;
+  var bensImacProActiveBinarySensor: ITarget;
+  var bensImacProFocusBinarySensor: ITarget;
+  var bensIphoneFocusBinarySensor: ITarget;
+  var bensImacCameraInUseBinarySensor: ITarget;
+  var bensImacAudioInputInUseBinarySensor: ITarget;
+  var bensImacAudioOutputInUseBinarySensor: ITarget;
+  var bensImacActiveBinarySensor: ITarget;
+  var bensImacFocusBinarySensor: ITarget;
+  var ryansIphoneFocusBinarySensor: ITarget;
+  var livingRoomOccupancyBinarySensor: ITarget;
+  var benIsHomeBinarySensor: ITarget;
+  var inBedBinarySensor: ITarget;
+  var assistMicrophoneAssistInProgressBinarySensor: ITarget;
+  var zteRouterWanStatusBinarySensor: ITarget;
+  var tumbleDryerSmartPlugCloudConnectionBinarySensor: ITarget;
+  var tumbleDryerSmartPlugOverheatedBinarySensor: ITarget;
+  var tumbleDryerSmartPlugOverloadedBinarySensor: ITarget;
+  var homeAssistantServerCloudConnectionBinarySensor: ITarget;
+  var homeAssistantServerOverheatedBinarySensor: ITarget;
+  var homeAssistantServerOverloadedBinarySensor: ITarget;
+  var imacSmartPlugCloudConnection_2BinarySensor: ITarget;
+  var imacSmartPlugOverheatedBinarySensor: ITarget;
+  var imacSmartPlugOverloadedBinarySensor: ITarget;
+  var livingRoomHeaterSmartPlugCloudConnectionBinarySensor: ITarget;
+  var livingRoomHeaterSmartPlugOverheatedBinarySensor: ITarget;
+  var livingRoomHeaterSmartPlugOverloadedBinarySensor: ITarget;
+  var frontDoorBatteryCriticalBinarySensor: ITarget;
+  var frontDoorBatteryChargingBinarySensor: ITarget;
+  var frontDoorKeypadBatteryCriticalBinarySensor: ITarget;
+  var bathroomMotionSensorOccupancyBinarySensor: ITarget;
+  var hallwayMotionSensorOccupancyBinarySensor: ITarget;
+  var zigbee2mqttBridgeConnectionStateBinarySensor: ITarget;
+  var bedroomSpeakerMicrophoneBinarySensor: ITarget;
+  var sonosArcUltraMicrophoneBinarySensor: ITarget;
+  var officeMicrophoneBinarySensor: ITarget;
+  var livingRoomOccupiedBinarySensor: ITarget;
+  var bedroomOccupiedBinarySensor: ITarget;
+  var gymOccupiedBinarySensor: ITarget;
+  var rpiPowerStatusBinarySensor: ITarget;
+  var marthaBatteryLowBinarySensor: ITarget;
+  var livingRoomOccupied_2BinarySensor: ITarget;
+  var tumbleDryerSmartPlugUpdateBinarySensor: ITarget;
+  var goodMorningMessagePlayedBinarySensor: ITarget;
+  var tvModeBinarySensor: ITarget;
+  var homeAssistantServerUpdateBinarySensor: ITarget;
+  var imacSmartPlugUpdate_2BinarySensor: ITarget;
+  var livingRoomHeaterSmartPlugUpdateBinarySensor: ITarget;
+  var testingLessStupidSwitchBinarySensor: ITarget;
+  var frontDoorDoorbellMqttDingBinarySensor: ITarget;
+  var frontDoorDoorbellMqttMotionBinarySensor: ITarget;
+  var stateTestingBinarySensorBinarySensor: ITarget;
+  var stateTestingBinarySensor_2BinarySensor: ITarget;
+  var entityStateCliTestBinarySensor: ITarget;
+}
+
+globalThis.ringMqttWithVideoStreamingRunningBinarySensor = entity(
   'binary_sensor.ring_mqtt_with_video_streaming_running',
 );
-export const remoteUiBinarySensor = entity('binary_sensor.remote_ui');
-export const tumbleDryerRunningBinarySensor = entity(
+globalThis.remoteUiBinarySensor = entity('binary_sensor.remote_ui');
+globalThis.tumbleDryerRunningBinarySensor = entity(
   'binary_sensor.tumble_dryer_running',
 );
-export const diskCloseToFullBinarySensor = entity(
+globalThis.diskCloseToFullBinarySensor = entity(
   'binary_sensor.disk_close_to_full',
 );
-export const ilightshowIosEntertainmentConfigurationBinarySensor = entity(
+globalThis.ilightshowIosEntertainmentConfigurationBinarySensor = entity(
   'binary_sensor.ilightshow_ios_entertainment_configuration',
 );
-export const livingRoomEntertainmentConfigurationBinarySensor = entity(
+globalThis.livingRoomEntertainmentConfigurationBinarySensor = entity(
   'binary_sensor.living_room_entertainment_configuration',
 );
-export const bedroomBinarySensor = entity('binary_sensor.bedroom');
-export const systemMonitorProcessPython3BinarySensor = entity(
+globalThis.bedroomBinarySensor = entity('binary_sensor.bedroom');
+globalThis.systemMonitorProcessPython3BinarySensor = entity(
   'binary_sensor.system_monitor_process_python3',
 );
-export const livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor = entity(
+globalThis.livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor = entity(
   'binary_sensor.living_room_header_by_the_table_switch_0_overheating',
 );
-export const livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor =
-  entity('binary_sensor.living_room_header_by_the_table_switch_0_overpowering');
-export const livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor = entity(
+globalThis.livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor = entity(
+  'binary_sensor.living_room_header_by_the_table_switch_0_overpowering',
+);
+globalThis.livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor = entity(
   'binary_sensor.living_room_header_by_the_table_switch_0_overvoltage',
 );
-export const livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor = entity(
+globalThis.livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor = entity(
   'binary_sensor.living_room_header_by_the_table_switch_0_overcurrent',
 );
-export const shellyemA4e57cba73f5OverpoweringBinarySensor = entity(
+globalThis.shellyemA4e57cba73f5OverpoweringBinarySensor = entity(
   'binary_sensor.shellyem_a4e57cba73f5_overpowering',
 );
-export const livingRoomSensorSensorStateTamperBinarySensor = entity(
+globalThis.livingRoomSensorSensorStateTamperBinarySensor = entity(
   'binary_sensor.living_room_sensor_sensor_state_tamper',
 );
-export const livingRoomSensorSensorStateMotionBinarySensor = entity(
+globalThis.livingRoomSensorSensorStateMotionBinarySensor = entity(
   'binary_sensor.living_room_sensor_sensor_state_motion',
 );
-export const livingRoomSensorTamperingProductCoverRemovedBinarySensor = entity(
+globalThis.livingRoomSensorTamperingProductCoverRemovedBinarySensor = entity(
   'binary_sensor.living_room_sensor_tampering_product_cover_removed',
 );
-export const livingRoomSensorMotionDetectionBinarySensor = entity(
+globalThis.livingRoomSensorMotionDetectionBinarySensor = entity(
   'binary_sensor.living_room_sensor_motion_detection',
 );
-export const livingRoomSensorLowBatteryLevelBinarySensor = entity(
+globalThis.livingRoomSensorLowBatteryLevelBinarySensor = entity(
   'binary_sensor.living_room_sensor_low_battery_level',
 );
-export const gymSensorSensorStateTamperBinarySensor = entity(
+globalThis.gymSensorSensorStateTamperBinarySensor = entity(
   'binary_sensor.gym_sensor_sensor_state_tamper',
 );
-export const gymSensorSensorStateMotionBinarySensor = entity(
+globalThis.gymSensorSensorStateMotionBinarySensor = entity(
   'binary_sensor.gym_sensor_sensor_state_motion',
 );
-export const gymSensorTamperingProductCoverRemovedBinarySensor = entity(
+globalThis.gymSensorTamperingProductCoverRemovedBinarySensor = entity(
   'binary_sensor.gym_sensor_tampering_product_cover_removed',
 );
-export const gymSensorMotionDetectionBinarySensor = entity(
+globalThis.gymSensorMotionDetectionBinarySensor = entity(
   'binary_sensor.gym_sensor_motion_detection',
 );
-export const gymSensorLowBatteryLevelBinarySensor = entity(
+globalThis.gymSensorLowBatteryLevelBinarySensor = entity(
   'binary_sensor.gym_sensor_low_battery_level',
 );
-export const bedroomSensorSensorStateTamperBinarySensor = entity(
+globalThis.bedroomSensorSensorStateTamperBinarySensor = entity(
   'binary_sensor.bedroom_sensor_sensor_state_tamper',
 );
-export const bedroomSensorSensorStateMotionBinarySensor = entity(
+globalThis.bedroomSensorSensorStateMotionBinarySensor = entity(
   'binary_sensor.bedroom_sensor_sensor_state_motion',
 );
-export const bedroomSensorTamperingProductCoverRemovedBinarySensor = entity(
+globalThis.bedroomSensorTamperingProductCoverRemovedBinarySensor = entity(
   'binary_sensor.bedroom_sensor_tampering_product_cover_removed',
 );
-export const bedroomSensorMotionDetectionBinarySensor = entity(
+globalThis.bedroomSensorMotionDetectionBinarySensor = entity(
   'binary_sensor.bedroom_sensor_motion_detection',
 );
-export const bedroomSensorLowBatteryLevelBinarySensor = entity(
+globalThis.bedroomSensorLowBatteryLevelBinarySensor = entity(
   'binary_sensor.bedroom_sensor_low_battery_level',
 );
-export const octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor = entity(
+globalThis.octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor = entity(
   'binary_sensor.octopus_energy_a_11077925_octoplus_saving_sessions',
 );
-export const octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor =
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor =
   entity(
     'binary_sensor.octopus_energy_electricity_19l3210845_1630000030495_off_peak',
   );
-export const bensImacProAudioInputInUseBinarySensor = entity(
+globalThis.bensImacProAudioInputInUseBinarySensor = entity(
   'binary_sensor.bens_imac_pro_audio_input_in_use',
 );
-export const bensImacProAudioOutputInUseBinarySensor = entity(
+globalThis.bensImacProAudioOutputInUseBinarySensor = entity(
   'binary_sensor.bens_imac_pro_audio_output_in_use',
 );
-export const bensImacProCameraInUseBinarySensor = entity(
+globalThis.bensImacProCameraInUseBinarySensor = entity(
   'binary_sensor.bens_imac_pro_camera_in_use',
 );
-export const bensImacProActiveBinarySensor = entity(
+globalThis.bensImacProActiveBinarySensor = entity(
   'binary_sensor.bens_imac_pro_active',
 );
-export const bensImacProFocusBinarySensor = entity(
+globalThis.bensImacProFocusBinarySensor = entity(
   'binary_sensor.bens_imac_pro_focus',
 );
-export const bensIphoneFocusBinarySensor = entity(
+globalThis.bensIphoneFocusBinarySensor = entity(
   'binary_sensor.bens_iphone_focus',
 );
-export const bensImacCameraInUseBinarySensor = entity(
+globalThis.bensImacCameraInUseBinarySensor = entity(
   'binary_sensor.bens_imac_camera_in_use',
 );
-export const bensImacAudioInputInUseBinarySensor = entity(
+globalThis.bensImacAudioInputInUseBinarySensor = entity(
   'binary_sensor.bens_imac_audio_input_in_use',
 );
-export const bensImacAudioOutputInUseBinarySensor = entity(
+globalThis.bensImacAudioOutputInUseBinarySensor = entity(
   'binary_sensor.bens_imac_audio_output_in_use',
 );
-export const bensImacActiveBinarySensor = entity(
+globalThis.bensImacActiveBinarySensor = entity(
   'binary_sensor.bens_imac_active',
 );
-export const bensImacFocusBinarySensor = entity(
-  'binary_sensor.bens_imac_focus',
-);
-export const ryansIphoneFocusBinarySensor = entity(
+globalThis.bensImacFocusBinarySensor = entity('binary_sensor.bens_imac_focus');
+globalThis.ryansIphoneFocusBinarySensor = entity(
   'binary_sensor.ryans_iphone_focus',
 );
-export const livingRoomOccupancyBinarySensor = entity(
+globalThis.livingRoomOccupancyBinarySensor = entity(
   'binary_sensor.living_room_occupancy',
 );
-export const benIsHomeBinarySensor = entity('binary_sensor.ben_is_home');
-export const inBedBinarySensor = entity('binary_sensor.in_bed');
-export const assistMicrophoneAssistInProgressBinarySensor = entity(
+globalThis.benIsHomeBinarySensor = entity('binary_sensor.ben_is_home');
+globalThis.inBedBinarySensor = entity('binary_sensor.in_bed');
+globalThis.assistMicrophoneAssistInProgressBinarySensor = entity(
   'binary_sensor.assist_microphone_assist_in_progress',
 );
-export const zteRouterWanStatusBinarySensor = entity(
+globalThis.zteRouterWanStatusBinarySensor = entity(
   'binary_sensor.zte_router_wan_status',
 );
-export const tumbleDryerSmartPlugCloudConnectionBinarySensor = entity(
+globalThis.tumbleDryerSmartPlugCloudConnectionBinarySensor = entity(
   'binary_sensor.tumble_dryer_smart_plug_cloud_connection',
 );
-export const tumbleDryerSmartPlugOverheatedBinarySensor = entity(
+globalThis.tumbleDryerSmartPlugOverheatedBinarySensor = entity(
   'binary_sensor.tumble_dryer_smart_plug_overheated',
 );
-export const tumbleDryerSmartPlugOverloadedBinarySensor = entity(
+globalThis.tumbleDryerSmartPlugOverloadedBinarySensor = entity(
   'binary_sensor.tumble_dryer_smart_plug_overloaded',
 );
-export const homeAssistantServerCloudConnectionBinarySensor = entity(
+globalThis.homeAssistantServerCloudConnectionBinarySensor = entity(
   'binary_sensor.home_assistant_server_cloud_connection',
 );
-export const homeAssistantServerOverheatedBinarySensor = entity(
+globalThis.homeAssistantServerOverheatedBinarySensor = entity(
   'binary_sensor.home_assistant_server_overheated',
 );
-export const homeAssistantServerOverloadedBinarySensor = entity(
+globalThis.homeAssistantServerOverloadedBinarySensor = entity(
   'binary_sensor.home_assistant_server_overloaded',
 );
-export const imacSmartPlugCloudConnection_2BinarySensor = entity(
+globalThis.imacSmartPlugCloudConnection_2BinarySensor = entity(
   'binary_sensor.imac_smart_plug_cloud_connection_2',
 );
-export const imacSmartPlugOverheatedBinarySensor = entity(
+globalThis.imacSmartPlugOverheatedBinarySensor = entity(
   'binary_sensor.imac_smart_plug_overheated',
 );
-export const imacSmartPlugOverloadedBinarySensor = entity(
+globalThis.imacSmartPlugOverloadedBinarySensor = entity(
   'binary_sensor.imac_smart_plug_overloaded',
 );
-export const livingRoomHeaterSmartPlugCloudConnectionBinarySensor = entity(
+globalThis.livingRoomHeaterSmartPlugCloudConnectionBinarySensor = entity(
   'binary_sensor.living_room_heater_smart_plug_cloud_connection',
 );
-export const livingRoomHeaterSmartPlugOverheatedBinarySensor = entity(
+globalThis.livingRoomHeaterSmartPlugOverheatedBinarySensor = entity(
   'binary_sensor.living_room_heater_smart_plug_overheated',
 );
-export const livingRoomHeaterSmartPlugOverloadedBinarySensor = entity(
+globalThis.livingRoomHeaterSmartPlugOverloadedBinarySensor = entity(
   'binary_sensor.living_room_heater_smart_plug_overloaded',
 );
-export const frontDoorBatteryCriticalBinarySensor = entity(
+globalThis.frontDoorBatteryCriticalBinarySensor = entity(
   'binary_sensor.front_door_battery_critical',
 );
-export const frontDoorBatteryChargingBinarySensor = entity(
+globalThis.frontDoorBatteryChargingBinarySensor = entity(
   'binary_sensor.front_door_battery_charging',
 );
-export const frontDoorKeypadBatteryCriticalBinarySensor = entity(
+globalThis.frontDoorKeypadBatteryCriticalBinarySensor = entity(
   'binary_sensor.front_door_keypad_battery_critical',
 );
-export const bathroomMotionSensorOccupancyBinarySensor = entity(
+globalThis.bathroomMotionSensorOccupancyBinarySensor = entity(
   'binary_sensor.bathroom_motion_sensor_occupancy',
 );
-export const hallwayMotionSensorOccupancyBinarySensor = entity(
+globalThis.hallwayMotionSensorOccupancyBinarySensor = entity(
   'binary_sensor.hallway_motion_sensor_occupancy',
 );
-export const zigbee2mqttBridgeConnectionStateBinarySensor = entity(
+globalThis.zigbee2mqttBridgeConnectionStateBinarySensor = entity(
   'binary_sensor.zigbee2mqtt_bridge_connection_state',
 );
-export const bedroomSpeakerMicrophoneBinarySensor = entity(
+globalThis.bedroomSpeakerMicrophoneBinarySensor = entity(
   'binary_sensor.bedroom_speaker_microphone',
 );
-export const sonosArcUltraMicrophoneBinarySensor = entity(
+globalThis.sonosArcUltraMicrophoneBinarySensor = entity(
   'binary_sensor.sonos_arc_ultra_microphone',
 );
-export const officeMicrophoneBinarySensor = entity(
+globalThis.officeMicrophoneBinarySensor = entity(
   'binary_sensor.office_microphone',
 );
-export const livingRoomOccupiedBinarySensor = entity(
+globalThis.livingRoomOccupiedBinarySensor = entity(
   'binary_sensor.living_room_occupied',
 );
-export const bedroomOccupiedBinarySensor = entity(
+globalThis.bedroomOccupiedBinarySensor = entity(
   'binary_sensor.bedroom_occupied',
 );
-export const gymOccupiedBinarySensor = entity('binary_sensor.gym_occupied');
-export const rpiPowerStatusBinarySensor = entity(
+globalThis.gymOccupiedBinarySensor = entity('binary_sensor.gym_occupied');
+globalThis.rpiPowerStatusBinarySensor = entity(
   'binary_sensor.rpi_power_status',
 );
-export const marthaBatteryLowBinarySensor = entity(
+globalThis.marthaBatteryLowBinarySensor = entity(
   'binary_sensor.martha_battery_low',
 );
-export const livingRoomOccupied_2BinarySensor = entity(
+globalThis.livingRoomOccupied_2BinarySensor = entity(
   'binary_sensor.living_room_occupied_2',
 );
-export const tumbleDryerSmartPlugUpdateBinarySensor = entity(
+globalThis.tumbleDryerSmartPlugUpdateBinarySensor = entity(
   'binary_sensor.tumble_dryer_smart_plug_update',
 );
-export const goodMorningMessagePlayedBinarySensor = entity(
+globalThis.goodMorningMessagePlayedBinarySensor = entity(
   'binary_sensor.good_morning_message_played',
 );
-export const tvModeBinarySensor = entity('binary_sensor.tv_mode');
-export const homeAssistantServerUpdateBinarySensor = entity(
+globalThis.tvModeBinarySensor = entity('binary_sensor.tv_mode');
+globalThis.homeAssistantServerUpdateBinarySensor = entity(
   'binary_sensor.home_assistant_server_update',
 );
-export const imacSmartPlugUpdate_2BinarySensor = entity(
+globalThis.imacSmartPlugUpdate_2BinarySensor = entity(
   'binary_sensor.imac_smart_plug_update_2',
 );
-export const livingRoomHeaterSmartPlugUpdateBinarySensor = entity(
+globalThis.livingRoomHeaterSmartPlugUpdateBinarySensor = entity(
   'binary_sensor.living_room_heater_smart_plug_update',
 );
-export const testingLessStupidSwitchBinarySensor = entity(
+globalThis.testingLessStupidSwitchBinarySensor = entity(
   'binary_sensor.testing_less_stupid_switch',
 );
-export const frontDoorDoorbellMqttDingBinarySensor = entity(
+globalThis.frontDoorDoorbellMqttDingBinarySensor = entity(
   'binary_sensor.front_door_doorbell_mqtt_ding',
 );
-export const frontDoorDoorbellMqttMotionBinarySensor = entity(
+globalThis.frontDoorDoorbellMqttMotionBinarySensor = entity(
   'binary_sensor.front_door_doorbell_mqtt_motion',
 );
-export const stateTestingBinarySensorBinarySensor = entity(
+globalThis.stateTestingBinarySensorBinarySensor = entity(
   'binary_sensor.state_testing_binary_sensor',
 );
-export const stateTestingBinarySensor_2BinarySensor = entity(
+globalThis.stateTestingBinarySensor_2BinarySensor = entity(
   'binary_sensor.state_testing_binary_sensor_2',
 );
-export const entityStateCliTestBinarySensor = entity(
+globalThis.entityStateCliTestBinarySensor = entity(
   'binary_sensor.entity_state_cli_test',
 );

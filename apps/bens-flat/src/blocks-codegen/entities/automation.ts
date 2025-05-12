@@ -1,5 +1,9 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const downloadRingVideoAutomation = entity(
+declare global {
+  var downloadRingVideoAutomation: ITarget;
+}
+
+globalThis.downloadRingVideoAutomation = entity(
   'automation.download_ring_video',
 );

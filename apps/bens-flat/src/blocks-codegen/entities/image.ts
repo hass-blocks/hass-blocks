@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const playstationAvatarImage = entity('image.playstation_avatar');
+declare global {
+  var playstationAvatarImage: ITarget;
+}
+
+globalThis.playstationAvatarImage = entity('image.playstation_avatar');

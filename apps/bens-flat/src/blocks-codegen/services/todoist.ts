@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Creates a new task and add it to a project.
+   */
+  var newTaskTodoist: (params: NewTaskTodoistProps) => Block;
+}
 
 export interface NewTaskTodoistProps {
   /**
@@ -55,10 +61,7 @@ export interface NewTaskTodoistProps {
   reminder_date?: string;
 }
 
-/**
- * Creates a new task and add it to a project.
- */
-export const newTaskTodoist = (params: NewTaskTodoistProps) =>
+globalThis.newTaskTodoist = (params: NewTaskTodoistProps) =>
   serviceCall({
     name: `Call todoist.new_task`,
     params: {

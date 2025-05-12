@@ -1,19 +1,28 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const octopusEnergyA_11077925OctoplusSavingSessionEventsEvent = entity(
+declare global {
+  var octopusEnergyA_11077925OctoplusSavingSessionEventsEvent: ITarget;
+  var octopusEnergyElectricity_19l3210845_1630000030495PreviousDayRatesEvent: ITarget;
+  var octopusEnergyElectricity_19l3210845_1630000030495CurrentDayRatesEvent: ITarget;
+  var octopusEnergyElectricity_19l3210845_1630000030495NextDayRatesEvent: ITarget;
+  var frontDoorDingEvent: ITarget;
+  var frontDoorMotionEvent: ITarget;
+}
+
+globalThis.octopusEnergyA_11077925OctoplusSavingSessionEventsEvent = entity(
   'event.octopus_energy_a_11077925_octoplus_saving_session_events',
 );
-export const octopusEnergyElectricity_19l3210845_1630000030495PreviousDayRatesEvent =
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousDayRatesEvent =
   entity(
     'event.octopus_energy_electricity_19l3210845_1630000030495_previous_day_rates',
   );
-export const octopusEnergyElectricity_19l3210845_1630000030495CurrentDayRatesEvent =
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495CurrentDayRatesEvent =
   entity(
     'event.octopus_energy_electricity_19l3210845_1630000030495_current_day_rates',
   );
-export const octopusEnergyElectricity_19l3210845_1630000030495NextDayRatesEvent =
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495NextDayRatesEvent =
   entity(
     'event.octopus_energy_electricity_19l3210845_1630000030495_next_day_rates',
   );
-export const frontDoorDingEvent = entity('event.front_door_ding');
-export const frontDoorMotionEvent = entity('event.front_door_motion');
+globalThis.frontDoorDingEvent = entity('event.front_door_ding');
+globalThis.frontDoorMotionEvent = entity('event.front_door_motion');

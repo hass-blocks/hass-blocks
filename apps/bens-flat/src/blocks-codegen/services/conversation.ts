@@ -1,4 +1,14 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Launches a conversation from a transcribed text.
+   */
+  var processConversation: (params: ProcessConversationProps) => Block;
+  /**
+   * Reloads the intent configuration.
+   */
+  var reloadConversation: (params?: ReloadConversationProps) => Block;
+}
 
 export interface ProcessConversationProps {
   /**
@@ -19,10 +29,7 @@ export interface ProcessConversationProps {
   conversation_id?: string;
 }
 
-/**
- * Launches a conversation from a transcribed text.
- */
-export const processConversation = (params: ProcessConversationProps) =>
+globalThis.processConversation = (params: ProcessConversationProps) =>
   serviceCall({
     name: `Call conversation.process`,
     params: {
@@ -43,10 +50,7 @@ export interface ReloadConversationProps {
   agent_id?: never;
 }
 
-/**
- * Reloads the intent configuration.
- */
-export const reloadConversation = (params?: ReloadConversationProps) =>
+globalThis.reloadConversation = (params?: ReloadConversationProps) =>
   serviceCall({
     name: `Call conversation.reload`,
     params: {

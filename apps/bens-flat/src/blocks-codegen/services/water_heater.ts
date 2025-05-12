@@ -1,11 +1,45 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns water heater on.
+   */
+  var turnOnWaterHeater: (
+    target: ITarget,
+    params?: TurnOnWaterHeaterProps,
+  ) => Block;
+  /**
+   * Turns water heater off.
+   */
+  var turnOffWaterHeater: (
+    target: ITarget,
+    params?: TurnOffWaterHeaterProps,
+  ) => Block;
+  /**
+   * Turns away mode on/off.
+   */
+  var setAwayModeWaterHeater: (
+    target: ITarget,
+    params: SetAwayModeWaterHeaterProps,
+  ) => Block;
+  /**
+   * Sets the target temperature.
+   */
+  var setTemperatureWaterHeater: (
+    target: ITarget,
+    params: SetTemperatureWaterHeaterProps,
+  ) => Block;
+  /**
+   * Sets the operation mode.
+   */
+  var setOperationModeWaterHeater: (
+    target: ITarget,
+    params: SetOperationModeWaterHeaterProps,
+  ) => Block;
+}
 
 export interface TurnOnWaterHeaterProps {}
 
-/**
- * Turns water heater on.
- */
-export const turnOnWaterHeater = (
+globalThis.turnOnWaterHeater = (
   target: ITarget,
   params?: TurnOnWaterHeaterProps,
 ) =>
@@ -21,10 +55,7 @@ export const turnOnWaterHeater = (
 
 export interface TurnOffWaterHeaterProps {}
 
-/**
- * Turns water heater off.
- */
-export const turnOffWaterHeater = (
+globalThis.turnOffWaterHeater = (
   target: ITarget,
   params?: TurnOffWaterHeaterProps,
 ) =>
@@ -45,10 +76,7 @@ export interface SetAwayModeWaterHeaterProps {
   away_mode: boolean;
 }
 
-/**
- * Turns away mode on/off.
- */
-export const setAwayModeWaterHeater = (
+globalThis.setAwayModeWaterHeater = (
   target: ITarget,
   params: SetAwayModeWaterHeaterProps,
 ) =>
@@ -73,10 +101,7 @@ export interface SetTemperatureWaterHeaterProps {
   operation_mode?: string;
 }
 
-/**
- * Sets the target temperature.
- */
-export const setTemperatureWaterHeater = (
+globalThis.setTemperatureWaterHeater = (
   target: ITarget,
   params: SetTemperatureWaterHeaterProps,
 ) =>
@@ -97,10 +122,7 @@ export interface SetOperationModeWaterHeaterProps {
   operation_mode: string;
 }
 
-/**
- * Sets the operation mode.
- */
-export const setOperationModeWaterHeater = (
+globalThis.setOperationModeWaterHeater = (
   target: ITarget,
   params: SetOperationModeWaterHeaterProps,
 ) =>

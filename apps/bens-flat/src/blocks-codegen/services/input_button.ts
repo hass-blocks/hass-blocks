@@ -1,9 +1,19 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads helpers from the YAML-configuration.
+   */
+  var reloadInputButton: (target: ITarget) => Block;
+  /**
+   * Mimics the physical button press on the device.
+   */
+  var pressInputButton: (
+    target: ITarget,
+    params?: PressInputButtonProps,
+  ) => Block;
+}
 
-/**
- * Reloads helpers from the YAML-configuration.
- */
-export const reloadInputButton = (target: ITarget) =>
+globalThis.reloadInputButton = (target: ITarget) =>
   serviceCall({
     name: `Call input_button.reload`,
     params: {
@@ -14,10 +24,7 @@ export const reloadInputButton = (target: ITarget) =>
 
 export interface PressInputButtonProps {}
 
-/**
- * Mimics the physical button press on the device.
- */
-export const pressInputButton = (
+globalThis.pressInputButton = (
   target: ITarget,
   params?: PressInputButtonProps,
 ) =>

@@ -1,11 +1,43 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sends the turn off command.
+   */
+  var turnOffRemote: (target: ITarget, params?: TurnOffRemoteProps) => Block;
+  /**
+   * Sends the turn on command.
+   */
+  var turnOnRemote: (target: ITarget, params?: TurnOnRemoteProps) => Block;
+  /**
+   * Sends the toggle command.
+   */
+  var toggleRemote: (target: ITarget, params?: ToggleRemoteProps) => Block;
+  /**
+   * Sends a command or a list of commands to a device.
+   */
+  var sendCommandRemote: (
+    target: ITarget,
+    params: SendCommandRemoteProps,
+  ) => Block;
+  /**
+   * Learns a command or a list of commands from a device.
+   */
+  var learnCommandRemote: (
+    target: ITarget,
+    params?: LearnCommandRemoteProps,
+  ) => Block;
+  /**
+   * Deletes a command or a list of commands from the database.
+   */
+  var deleteCommandRemote: (
+    target: ITarget,
+    params: DeleteCommandRemoteProps,
+  ) => Block;
+}
 
 export interface TurnOffRemoteProps {}
 
-/**
- * Sends the turn off command.
- */
-export const turnOffRemote = (target: ITarget, params?: TurnOffRemoteProps) =>
+globalThis.turnOffRemote = (target: ITarget, params?: TurnOffRemoteProps) =>
   serviceCall({
     name: `Call remote.turn_off`,
     params: {
@@ -23,10 +55,7 @@ export interface TurnOnRemoteProps {
   activity?: string;
 }
 
-/**
- * Sends the turn on command.
- */
-export const turnOnRemote = (target: ITarget, params?: TurnOnRemoteProps) =>
+globalThis.turnOnRemote = (target: ITarget, params?: TurnOnRemoteProps) =>
   serviceCall({
     name: `Call remote.turn_on`,
     params: {
@@ -39,10 +68,7 @@ export const turnOnRemote = (target: ITarget, params?: TurnOnRemoteProps) =>
 
 export interface ToggleRemoteProps {}
 
-/**
- * Sends the toggle command.
- */
-export const toggleRemote = (target: ITarget, params?: ToggleRemoteProps) =>
+globalThis.toggleRemote = (target: ITarget, params?: ToggleRemoteProps) =>
   serviceCall({
     name: `Call remote.toggle`,
     params: {
@@ -76,10 +102,7 @@ export interface SendCommandRemoteProps {
   hold_secs?: number;
 }
 
-/**
- * Sends a command or a list of commands to a device.
- */
-export const sendCommandRemote = (
+globalThis.sendCommandRemote = (
   target: ITarget,
   params: SendCommandRemoteProps,
 ) =>
@@ -116,10 +139,7 @@ export interface LearnCommandRemoteProps {
   timeout?: number;
 }
 
-/**
- * Learns a command or a list of commands from a device.
- */
-export const learnCommandRemote = (
+globalThis.learnCommandRemote = (
   target: ITarget,
   params?: LearnCommandRemoteProps,
 ) =>
@@ -144,10 +164,7 @@ export interface DeleteCommandRemoteProps {
   command: never;
 }
 
-/**
- * Deletes a command or a list of commands from the database.
- */
-export const deleteCommandRemote = (
+globalThis.deleteCommandRemote = (
   target: ITarget,
   params: DeleteCommandRemoteProps,
 ) =>

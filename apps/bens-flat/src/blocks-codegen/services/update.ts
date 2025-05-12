@@ -1,4 +1,21 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Installs an update for a device or service.
+   */
+  var installUpdate: (target: ITarget, params?: InstallUpdateProps) => Block;
+  /**
+   * Marks currently available update as skipped.
+   */
+  var skipUpdate: (target: ITarget, params?: SkipUpdateProps) => Block;
+  /**
+   * Removes the skipped version marker from an update.
+   */
+  var clearSkippedUpdate: (
+    target: ITarget,
+    params?: ClearSkippedUpdateProps,
+  ) => Block;
+}
 
 export interface InstallUpdateProps {
   /**
@@ -11,10 +28,7 @@ export interface InstallUpdateProps {
   backup?: boolean;
 }
 
-/**
- * Installs an update for a device or service.
- */
-export const installUpdate = (target: ITarget, params?: InstallUpdateProps) =>
+globalThis.installUpdate = (target: ITarget, params?: InstallUpdateProps) =>
   serviceCall({
     name: `Call update.install`,
     params: {
@@ -27,10 +41,7 @@ export const installUpdate = (target: ITarget, params?: InstallUpdateProps) =>
 
 export interface SkipUpdateProps {}
 
-/**
- * Marks currently available update as skipped.
- */
-export const skipUpdate = (target: ITarget, params?: SkipUpdateProps) =>
+globalThis.skipUpdate = (target: ITarget, params?: SkipUpdateProps) =>
   serviceCall({
     name: `Call update.skip`,
     params: {
@@ -43,10 +54,7 @@ export const skipUpdate = (target: ITarget, params?: SkipUpdateProps) =>
 
 export interface ClearSkippedUpdateProps {}
 
-/**
- * Removes the skipped version marker from an update.
- */
-export const clearSkippedUpdate = (
+globalThis.clearSkippedUpdate = (
   target: ITarget,
   params?: ClearSkippedUpdateProps,
 ) =>

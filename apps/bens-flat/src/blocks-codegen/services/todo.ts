@@ -1,4 +1,29 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Adds a new to-do list item.
+   */
+  var addItemTodo: (target: ITarget, params: AddItemTodoProps) => Block;
+  /**
+   * Updates an existing to-do list item based on its name or UID.
+   */
+  var updateItemTodo: (target: ITarget, params: UpdateItemTodoProps) => Block;
+  /**
+   * Removes an existing to-do list item by its name or UID.
+   */
+  var removeItemTodo: (target: ITarget, params: RemoveItemTodoProps) => Block;
+  /**
+   * Gets items on a to-do list.
+   */
+  var getItemsTodo: (target: ITarget, params?: GetItemsTodoProps) => Block;
+  /**
+   * Removes all to-do list items that have been completed.
+   */
+  var removeCompletedItemsTodo: (
+    target: ITarget,
+    params?: RemoveCompletedItemsTodoProps,
+  ) => Block;
+}
 
 export interface AddItemTodoProps {
   /**
@@ -19,10 +44,7 @@ export interface AddItemTodoProps {
   description?: string;
 }
 
-/**
- * Adds a new to-do list item.
- */
-export const addItemTodo = (target: ITarget, params: AddItemTodoProps) =>
+globalThis.addItemTodo = (target: ITarget, params: AddItemTodoProps) =>
   serviceCall({
     name: `Call todo.add_item`,
     params: {
@@ -60,10 +82,7 @@ export interface UpdateItemTodoProps {
   description?: string;
 }
 
-/**
- * Updates an existing to-do list item based on its name or UID.
- */
-export const updateItemTodo = (target: ITarget, params: UpdateItemTodoProps) =>
+globalThis.updateItemTodo = (target: ITarget, params: UpdateItemTodoProps) =>
   serviceCall({
     name: `Call todo.update_item`,
     params: {
@@ -81,10 +100,7 @@ export interface RemoveItemTodoProps {
   item: string;
 }
 
-/**
- * Removes an existing to-do list item by its name or UID.
- */
-export const removeItemTodo = (target: ITarget, params: RemoveItemTodoProps) =>
+globalThis.removeItemTodo = (target: ITarget, params: RemoveItemTodoProps) =>
   serviceCall({
     name: `Call todo.remove_item`,
     params: {
@@ -102,10 +118,7 @@ export interface GetItemsTodoProps {
   status?: never;
 }
 
-/**
- * Gets items on a to-do list.
- */
-export const getItemsTodo = (target: ITarget, params?: GetItemsTodoProps) =>
+globalThis.getItemsTodo = (target: ITarget, params?: GetItemsTodoProps) =>
   serviceCall({
     name: `Call todo.get_items`,
     params: {
@@ -118,10 +131,7 @@ export const getItemsTodo = (target: ITarget, params?: GetItemsTodoProps) =>
 
 export interface RemoveCompletedItemsTodoProps {}
 
-/**
- * Removes all to-do list items that have been completed.
- */
-export const removeCompletedItemsTodo = (
+globalThis.removeCompletedItemsTodo = (
   target: ITarget,
   params?: RemoveCompletedItemsTodoProps,
 ) =>

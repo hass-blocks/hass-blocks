@@ -1,9 +1,19 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads helpers from the YAML-configuration.
+   */
+  var reloadInputText: (target: ITarget) => Block;
+  /**
+   * Sets the value.
+   */
+  var setValueInputText: (
+    target: ITarget,
+    params: SetValueInputTextProps,
+  ) => Block;
+}
 
-/**
- * Reloads helpers from the YAML-configuration.
- */
-export const reloadInputText = (target: ITarget) =>
+globalThis.reloadInputText = (target: ITarget) =>
   serviceCall({
     name: `Call input_text.reload`,
     params: {
@@ -19,10 +29,7 @@ export interface SetValueInputTextProps {
   value: string;
 }
 
-/**
- * Sets the value.
- */
-export const setValueInputText = (
+globalThis.setValueInputText = (
   target: ITarget,
   params: SetValueInputTextProps,
 ) =>

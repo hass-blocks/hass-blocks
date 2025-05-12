@@ -1,4 +1,26 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * This service will send operational commands to iCloud3
+   */
+  var actionIcloud3: (params: ActionIcloud3Props) => Block;
+  /**
+   * The Update service has been replaced by the Action service
+   */
+  var updateIcloud3: () => Block;
+  /**
+   * This service will restart iCloud3
+   */
+  var restartIcloud3: () => Block;
+  /**
+   * This service will send an alert tone to the device that you want to find
+   */
+  var findIphoneAlertIcloud3: (params: FindIphoneAlertIcloud3Props) => Block;
+  /**
+   * This service will send a Message and Phone number to the lost iPhone
+   */
+  var lostDeviceAlertIcloud3: (params: LostDeviceAlertIcloud3Props) => Block;
+}
 
 export interface ActionIcloud3Props {
   /**
@@ -11,10 +33,7 @@ export interface ActionIcloud3Props {
   device_name?: never;
 }
 
-/**
- * This service will send operational commands to iCloud3
- */
-export const actionIcloud3 = (params: ActionIcloud3Props) =>
+globalThis.actionIcloud3 = (params: ActionIcloud3Props) =>
   serviceCall({
     name: `Call icloud3.action`,
     params: {
@@ -24,10 +43,7 @@ export const actionIcloud3 = (params: ActionIcloud3Props) =>
     },
   });
 
-/**
- * The Update service has been replaced by the Action service
- */
-export const updateIcloud3 = () =>
+globalThis.updateIcloud3 = () =>
   serviceCall({
     name: `Call icloud3.update`,
     params: {
@@ -36,10 +52,7 @@ export const updateIcloud3 = () =>
     },
   });
 
-/**
- * This service will restart iCloud3
- */
-export const restartIcloud3 = () =>
+globalThis.restartIcloud3 = () =>
   serviceCall({
     name: `Call icloud3.restart`,
     params: {
@@ -55,10 +68,7 @@ export interface FindIphoneAlertIcloud3Props {
   device_name: never;
 }
 
-/**
- * This service will send an alert tone to the device that you want to find
- */
-export const findIphoneAlertIcloud3 = (params: FindIphoneAlertIcloud3Props) =>
+globalThis.findIphoneAlertIcloud3 = (params: FindIphoneAlertIcloud3Props) =>
   serviceCall({
     name: `Call icloud3.find_iphone_alert`,
     params: {
@@ -83,10 +93,7 @@ export interface LostDeviceAlertIcloud3Props {
   message: string;
 }
 
-/**
- * This service will send a Message and Phone number to the lost iPhone
- */
-export const lostDeviceAlertIcloud3 = (params: LostDeviceAlertIcloud3Props) =>
+globalThis.lostDeviceAlertIcloud3 = (params: LostDeviceAlertIcloud3Props) =>
   serviceCall({
     name: `Call icloud3.lost_device_alert`,
     params: {

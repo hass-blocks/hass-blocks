@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const bedroomChargerTag = entity('tag.bedroom_charger');
+declare global {
+  var bedroomChargerTag: ITarget;
+}
+
+globalThis.bedroomChargerTag = entity('tag.bedroom_charger');

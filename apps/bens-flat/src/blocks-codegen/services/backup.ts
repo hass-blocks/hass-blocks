@@ -1,9 +1,12 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Creates a new backup with automatic backup settings.
+   */
+  var createAutomaticBackup: () => Block;
+}
 
-/**
- * Creates a new backup with automatic backup settings.
- */
-export const createAutomaticBackup = () =>
+globalThis.createAutomaticBackup = () =>
   serviceCall({
     name: `Call backup.create_automatic`,
     params: {

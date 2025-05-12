@@ -1,4 +1,18 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Unlocks a lock.
+   */
+  var unlockLock: (target: ITarget, params?: UnlockLockProps) => Block;
+  /**
+   * Locks a lock.
+   */
+  var lockLock: (target: ITarget, params?: LockLockProps) => Block;
+  /**
+   * Opens a lock.
+   */
+  var openLock: (target: ITarget, params?: OpenLockProps) => Block;
+}
 
 export interface UnlockLockProps {
   /**
@@ -7,10 +21,7 @@ export interface UnlockLockProps {
   code?: string;
 }
 
-/**
- * Unlocks a lock.
- */
-export const unlockLock = (target: ITarget, params?: UnlockLockProps) =>
+globalThis.unlockLock = (target: ITarget, params?: UnlockLockProps) =>
   serviceCall({
     name: `Call lock.unlock`,
     params: {
@@ -28,10 +39,7 @@ export interface LockLockProps {
   code?: string;
 }
 
-/**
- * Locks a lock.
- */
-export const lockLock = (target: ITarget, params?: LockLockProps) =>
+globalThis.lockLock = (target: ITarget, params?: LockLockProps) =>
   serviceCall({
     name: `Call lock.lock`,
     params: {
@@ -49,10 +57,7 @@ export interface OpenLockProps {
   code?: string;
 }
 
-/**
- * Opens a lock.
- */
-export const openLock = (target: ITarget, params?: OpenLockProps) =>
+globalThis.openLock = (target: ITarget, params?: OpenLockProps) =>
   serviceCall({
     name: `Call lock.open`,
     params: {

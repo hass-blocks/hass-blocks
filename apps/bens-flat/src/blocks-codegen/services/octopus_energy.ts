@@ -1,11 +1,40 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Removes external statistics for all meters that don't have an active tariff
+   */
+  var purgeInvalidExternalStatisticIdsOctopusEnergy: (target: ITarget) => Block;
+  /**
+   * Joins a given Octoplus saving session event.
+   */
+  var joinOctoplusSavingSessionEventOctopusEnergy: (
+    target: ITarget,
+    params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
+  ) => Block;
+  /**
+   * Refreshes the previous consumption data for a given entity from a given date.
+   */
+  var refreshPreviousConsumptionDataOctopusEnergy: (
+    target: ITarget,
+    params: RefreshPreviousConsumptionDataOctopusEnergyProps,
+  ) => Block;
+  /**
+   * Spins the wheel of fortune for a given energy type
+   */
+  var spinWheelOfFortuneOctopusEnergy: (
+    target: ITarget,
+    params?: SpinWheelOfFortuneOctopusEnergyProps,
+  ) => Block;
+  /**
+   * Registers external weightings against rates, for use with target rate sensors when calculating target periods.
+   */
+  var registerRateWeightingsOctopusEnergy: (
+    target: ITarget,
+    params?: RegisterRateWeightingsOctopusEnergyProps,
+  ) => Block;
+}
 
-/**
- * Removes external statistics for all meters that don't have an active tariff
- */
-export const purgeInvalidExternalStatisticIdsOctopusEnergy = (
-  target: ITarget,
-) =>
+globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = (target: ITarget) =>
   serviceCall({
     name: `Call octopus_energy.purge_invalid_external_statistic_ids`,
     params: {
@@ -21,10 +50,7 @@ export interface JoinOctoplusSavingSessionEventOctopusEnergyProps {
   event_code?: string;
 }
 
-/**
- * Joins a given Octoplus saving session event.
- */
-export const joinOctoplusSavingSessionEventOctopusEnergy = (
+globalThis.joinOctoplusSavingSessionEventOctopusEnergy = (
   target: ITarget,
   params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
 ) =>
@@ -45,10 +71,7 @@ export interface RefreshPreviousConsumptionDataOctopusEnergyProps {
   start_date: never;
 }
 
-/**
- * Refreshes the previous consumption data for a given entity from a given date.
- */
-export const refreshPreviousConsumptionDataOctopusEnergy = (
+globalThis.refreshPreviousConsumptionDataOctopusEnergy = (
   target: ITarget,
   params: RefreshPreviousConsumptionDataOctopusEnergyProps,
 ) =>
@@ -64,10 +87,7 @@ export const refreshPreviousConsumptionDataOctopusEnergy = (
 
 export interface SpinWheelOfFortuneOctopusEnergyProps {}
 
-/**
- * Spins the wheel of fortune for a given energy type
- */
-export const spinWheelOfFortuneOctopusEnergy = (
+globalThis.spinWheelOfFortuneOctopusEnergy = (
   target: ITarget,
   params?: SpinWheelOfFortuneOctopusEnergyProps,
 ) =>
@@ -88,10 +108,7 @@ export interface RegisterRateWeightingsOctopusEnergyProps {
   weightings?: never;
 }
 
-/**
- * Registers external weightings against rates, for use with target rate sensors when calculating target periods.
- */
-export const registerRateWeightingsOctopusEnergy = (
+globalThis.registerRateWeightingsOctopusEnergy = (
   target: ITarget,
   params?: RegisterRateWeightingsOctopusEnergyProps,
 ) =>

@@ -1,4 +1,22 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Shows a notification on the notifications panel.
+   */
+  var createPersistentNotification: (
+    params: CreatePersistentNotificationProps,
+  ) => Block;
+  /**
+   * Deletes a notification from the notifications panel.
+   */
+  var dismissPersistentNotification: (
+    params: DismissPersistentNotificationProps,
+  ) => Block;
+  /**
+   * Deletes all notifications from the notifications panel.
+   */
+  var dismissAllPersistentNotification: () => Block;
+}
 
 export interface CreatePersistentNotificationProps {
   /**
@@ -15,10 +33,7 @@ export interface CreatePersistentNotificationProps {
   notification_id?: string;
 }
 
-/**
- * Shows a notification on the notifications panel.
- */
-export const createPersistentNotification = (
+globalThis.createPersistentNotification = (
   params: CreatePersistentNotificationProps,
 ) =>
   serviceCall({
@@ -37,10 +52,7 @@ export interface DismissPersistentNotificationProps {
   notification_id: string;
 }
 
-/**
- * Deletes a notification from the notifications panel.
- */
-export const dismissPersistentNotification = (
+globalThis.dismissPersistentNotification = (
   params: DismissPersistentNotificationProps,
 ) =>
   serviceCall({
@@ -52,10 +64,7 @@ export const dismissPersistentNotification = (
     },
   });
 
-/**
- * Deletes all notifications from the notifications panel.
- */
-export const dismissAllPersistentNotification = () =>
+globalThis.dismissAllPersistentNotification = () =>
   serviceCall({
     name: `Call persistent_notification.dismiss_all`,
     params: {

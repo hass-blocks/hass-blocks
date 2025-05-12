@@ -1,4 +1,25 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Speaks something using text-to-speech on a media player.
+   */
+  var speakTts: (target: ITarget, params: SpeakTtsProps) => Block;
+  /**
+   * Removes all cached text-to-speech files and purges the memory.
+   */
+  var clearCacheTts: (target: ITarget) => Block;
+  /**
+   * Say something using text-to-speech on a media player with google_translate.
+   */
+  var googleTranslateSayTts: (
+    target: ITarget,
+    params: GoogleTranslateSayTtsProps,
+  ) => Block;
+  /**
+   * Say something using text-to-speech on a media player with cloud.
+   */
+  var cloudSayTts: (target: ITarget, params: CloudSayTtsProps) => Block;
+}
 
 export interface SpeakTtsProps {
   /**
@@ -23,10 +44,7 @@ export interface SpeakTtsProps {
   options?: never;
 }
 
-/**
- * Speaks something using text-to-speech on a media player.
- */
-export const speakTts = (target: ITarget, params: SpeakTtsProps) =>
+globalThis.speakTts = (target: ITarget, params: SpeakTtsProps) =>
   serviceCall({
     name: `Call tts.speak`,
     params: {
@@ -37,10 +55,7 @@ export const speakTts = (target: ITarget, params: SpeakTtsProps) =>
     target,
   });
 
-/**
- * Removes all cached text-to-speech files and purges the memory.
- */
-export const clearCacheTts = (target: ITarget) =>
+globalThis.clearCacheTts = (target: ITarget) =>
   serviceCall({
     name: `Call tts.clear_cache`,
     params: {
@@ -57,10 +72,7 @@ export interface GoogleTranslateSayTtsProps {
   options?: never;
 }
 
-/**
- * Say something using text-to-speech on a media player with google_translate.
- */
-export const googleTranslateSayTts = (
+globalThis.googleTranslateSayTts = (
   target: ITarget,
   params: GoogleTranslateSayTtsProps,
 ) =>
@@ -81,10 +93,7 @@ export interface CloudSayTtsProps {
   options?: never;
 }
 
-/**
- * Say something using text-to-speech on a media player with cloud.
- */
-export const cloudSayTts = (target: ITarget, params: CloudSayTtsProps) =>
+globalThis.cloudSayTts = (target: ITarget, params: CloudSayTtsProps) =>
   serviceCall({
     name: `Call tts.cloud_say`,
     params: {

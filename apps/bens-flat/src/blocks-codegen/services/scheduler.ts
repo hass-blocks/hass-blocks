@@ -1,4 +1,34 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Execute the action of a schedule, optionally at a given time.
+   */
+  var runActionScheduler: (params: RunActionSchedulerProps) => Block;
+  /**
+   * Create a new schedule entity
+   */
+  var addScheduler: (params: AddSchedulerProps) => Block;
+  /**
+   * Edit a schedule entity
+   */
+  var editScheduler: (params: EditSchedulerProps) => Block;
+  /**
+   * Remove a schedule entity
+   */
+  var removeScheduler: (params: RemoveSchedulerProps) => Block;
+  /**
+   * Duplicate a schedule entity
+   */
+  var copyScheduler: (params: CopySchedulerProps) => Block;
+  /**
+   * Disables all schedules
+   */
+  var disableAllScheduler: () => Block;
+  /**
+   * Enables all schedules
+   */
+  var enableAllScheduler: () => Block;
+}
 
 export interface RunActionSchedulerProps {
   /**
@@ -15,10 +45,7 @@ export interface RunActionSchedulerProps {
   skip_conditions?: boolean;
 }
 
-/**
- * Execute the action of a schedule, optionally at a given time.
- */
-export const runActionScheduler = (params: RunActionSchedulerProps) =>
+globalThis.runActionScheduler = (params: RunActionSchedulerProps) =>
   serviceCall({
     name: `Call scheduler.run_action`,
     params: {
@@ -55,10 +82,7 @@ export interface AddSchedulerProps {
   name?: string;
 }
 
-/**
- * Create a new schedule entity
- */
-export const addScheduler = (params: AddSchedulerProps) =>
+globalThis.addScheduler = (params: AddSchedulerProps) =>
   serviceCall({
     name: `Call scheduler.add`,
     params: {
@@ -99,10 +123,7 @@ export interface EditSchedulerProps {
   name?: string;
 }
 
-/**
- * Edit a schedule entity
- */
-export const editScheduler = (params: EditSchedulerProps) =>
+globalThis.editScheduler = (params: EditSchedulerProps) =>
   serviceCall({
     name: `Call scheduler.edit`,
     params: {
@@ -119,10 +140,7 @@ export interface RemoveSchedulerProps {
   entity_id: string;
 }
 
-/**
- * Remove a schedule entity
- */
-export const removeScheduler = (params: RemoveSchedulerProps) =>
+globalThis.removeScheduler = (params: RemoveSchedulerProps) =>
   serviceCall({
     name: `Call scheduler.remove`,
     params: {
@@ -143,10 +161,7 @@ export interface CopySchedulerProps {
   name?: string;
 }
 
-/**
- * Duplicate a schedule entity
- */
-export const copyScheduler = (params: CopySchedulerProps) =>
+globalThis.copyScheduler = (params: CopySchedulerProps) =>
   serviceCall({
     name: `Call scheduler.copy`,
     params: {
@@ -156,10 +171,7 @@ export const copyScheduler = (params: CopySchedulerProps) =>
     },
   });
 
-/**
- * Disables all schedules
- */
-export const disableAllScheduler = () =>
+globalThis.disableAllScheduler = () =>
   serviceCall({
     name: `Call scheduler.disable_all`,
     params: {
@@ -168,10 +180,7 @@ export const disableAllScheduler = () =>
     },
   });
 
-/**
- * Enables all schedules
- */
-export const enableAllScheduler = () =>
+globalThis.enableAllScheduler = () =>
   serviceCall({
     name: `Call scheduler.enable_all`,
     params: {

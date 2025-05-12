@@ -1,11 +1,45 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Selects the first option.
+   */
+  var selectFirstSelect: (
+    target: ITarget,
+    params?: SelectFirstSelectProps,
+  ) => Block;
+  /**
+   * Selects the last option.
+   */
+  var selectLastSelect: (
+    target: ITarget,
+    params?: SelectLastSelectProps,
+  ) => Block;
+  /**
+   * Selects the next option.
+   */
+  var selectNextSelect: (
+    target: ITarget,
+    params?: SelectNextSelectProps,
+  ) => Block;
+  /**
+   * Selects an option.
+   */
+  var selectOptionSelect: (
+    target: ITarget,
+    params: SelectOptionSelectProps,
+  ) => Block;
+  /**
+   * Selects the previous option.
+   */
+  var selectPreviousSelect: (
+    target: ITarget,
+    params?: SelectPreviousSelectProps,
+  ) => Block;
+}
 
 export interface SelectFirstSelectProps {}
 
-/**
- * Selects the first option.
- */
-export const selectFirstSelect = (
+globalThis.selectFirstSelect = (
   target: ITarget,
   params?: SelectFirstSelectProps,
 ) =>
@@ -21,10 +55,7 @@ export const selectFirstSelect = (
 
 export interface SelectLastSelectProps {}
 
-/**
- * Selects the last option.
- */
-export const selectLastSelect = (
+globalThis.selectLastSelect = (
   target: ITarget,
   params?: SelectLastSelectProps,
 ) =>
@@ -45,10 +76,7 @@ export interface SelectNextSelectProps {
   cycle?: boolean;
 }
 
-/**
- * Selects the next option.
- */
-export const selectNextSelect = (
+globalThis.selectNextSelect = (
   target: ITarget,
   params?: SelectNextSelectProps,
 ) =>
@@ -69,10 +97,7 @@ export interface SelectOptionSelectProps {
   option: string;
 }
 
-/**
- * Selects an option.
- */
-export const selectOptionSelect = (
+globalThis.selectOptionSelect = (
   target: ITarget,
   params: SelectOptionSelectProps,
 ) =>
@@ -93,10 +118,7 @@ export interface SelectPreviousSelectProps {
   cycle?: boolean;
 }
 
-/**
- * Selects the previous option.
- */
-export const selectPreviousSelect = (
+globalThis.selectPreviousSelect = (
   target: ITarget,
   params?: SelectPreviousSelectProps,
 ) =>

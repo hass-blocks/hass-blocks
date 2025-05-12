@@ -1,4 +1,594 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Add one or more items to the end of the user's current Spotify Player playback queue.
+   */
+  var addPlayerQueueItemsSpotifyplus: (
+    params: AddPlayerQueueItemsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more albums (or the currently playing album) exists in the current user's 'Your Library' favorites.
+   */
+  var checkAlbumFavoritesSpotifyplus: (
+    params: CheckAlbumFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more artists (or the currently playing artists) is followed in the current user's 'Your Library' favorites.
+   */
+  var checkArtistsFollowingSpotifyplus: (
+    params: CheckArtistsFollowingSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more audiobooks (or the currently playing audiobook) exists in the current user's 'Your Library' favorites.
+   */
+  var checkAudiobookFavoritesSpotifyplus: (
+    params: CheckAudiobookFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more episodes (or the currently playing episode) exists in the current user's 'Your Library' favorites.
+   */
+  var checkEpisodeFavoritesSpotifyplus: (
+    params: CheckEpisodeFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check to see if the current user is following a specified playlist.
+   */
+  var checkPlaylistFollowersSpotifyplus: (
+    params: CheckPlaylistFollowersSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more shows (or the currently playing show) exists in the current user's 'Your Library' favorites.
+   */
+  var checkShowFavoritesSpotifyplus: (
+    params: CheckShowFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check if one or more tracks (or the currently playing track) exists in the current user's 'Your Library' favorites.
+   */
+  var checkTrackFavoritesSpotifyplus: (
+    params: CheckTrackFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Check to see if the current user is following one or more users.
+   */
+  var checkUsersFollowingSpotifyplus: (
+    params: CheckUsersFollowingSpotifyplusProps,
+  ) => Block;
+  /**
+   * Add the current user as a follower of one or more artists.
+   */
+  var followArtistsSpotifyplus: (
+    params: FollowArtistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Add the current user as a follower of a playlist.
+   */
+  var followPlaylistSpotifyplus: (
+    params: FollowPlaylistSpotifyplusProps,
+  ) => Block;
+  /**
+   * Add the current user as a follower of one or more users.
+   */
+  var followUsersSpotifyplus: (params: FollowUsersSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information for a single album.
+   */
+  var getAlbumSpotifyplus: (params: GetAlbumSpotifyplusProps) => Block;
+  /**
+   * Get a list of the albums saved in the current Spotify user's 'Your Library'.
+   */
+  var getAlbumFavoritesSpotifyplus: (
+    params: GetAlbumFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of new album releases featured in Spotify.
+   */
+  var getAlbumNewReleasesSpotifyplus: (
+    params: GetAlbumNewReleasesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about an album's tracks.
+   */
+  var getAlbumTracksSpotifyplus: (
+    params: GetAlbumTracksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single artist.
+   */
+  var getArtistSpotifyplus: (params: GetArtistSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information about an artist's albums.
+   */
+  var getArtistAlbumsSpotifyplus: (
+    params: GetArtistAlbumsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get artist about information from the Spotify Artist Biography page for the specified Spotify artist ID.
+   */
+  var getArtistInfoSpotifyplus: (
+    params: GetArtistInfoSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
+   */
+  var getArtistRelatedArtistsSpotifyplus: (
+    params: GetArtistRelatedArtistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about an artist's top tracks by country.
+   */
+  var getArtistTopTracksSpotifyplus: (
+    params: GetArtistTopTracksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get the current user's followed artists.
+   */
+  var getArtistsFollowedSpotifyplus: (
+    params: GetArtistsFollowedSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single audiobook.
+   */
+  var getAudiobookSpotifyplus: (params: GetAudiobookSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information about an audiobook's chapters.
+   */
+  var getAudiobookChaptersSpotifyplus: (
+    params: GetAudiobookChaptersSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of the audiobooks saved in the current Spotify user's 'Your Library'.
+   */
+  var getAudiobookFavoritesSpotifyplus: (
+    params: GetAudiobookFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a sorted list of ALL categories used to tag items in Spotify.
+   */
+  var getBrowseCategorysListSpotifyplus: (
+    params: GetBrowseCategorysListSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of Spotify playlists tagged with a particular category.
+   */
+  var getCategoryPlaylistsSpotifyplus: (
+    params: GetCategoryPlaylistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single chapter.
+   */
+  var getChapterSpotifyplus: (params: GetChapterSpotifyplusProps) => Block;
+  /**
+   * Gets the contents of an image url and transfers the contents to the local file system.
+   */
+  var getCoverImageFileSpotifyplus: (
+    params: GetCoverImageFileSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single episode.
+   */
+  var getEpisodeSpotifyplus: (params: GetEpisodeSpotifyplusProps) => Block;
+  /**
+   * Get a list of the episodes saved in the current Spotify user's 'Your Library'.
+   */
+  var getEpisodeFavoritesSpotifyplus: (
+    params: GetEpisodeFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of Spotify featured playlists.
+   */
+  var getFeaturedPlaylistsSpotifyplus: (
+    params: GetFeaturedPlaylistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get vibrant color palette values from the specified image source.
+   */
+  var getImageVibrantColorsSpotifyplus: (
+    params: GetImageVibrantColorsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get information about a user's available Spotify Connect player devices.  Some device models are not supported and will not be listed in the API response.
+   */
+  var getPlayerDevicesSpotifyplus: (
+    params: GetPlayerDevicesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get information about the user's current playback state, including track or episode, progress, and active device.
+   */
+  var getPlayerPlaybackStateSpotifyplus: (
+    params: GetPlayerPlaybackStateSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get the object currently being played on the user's Spotify account.
+   */
+  var getPlayerNowPlayingSpotifyplus: (
+    params: GetPlayerNowPlayingSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get the list of objects that make up the user's playback queue.
+   */
+  var getPlayerQueueInfoSpotifyplus: (
+    params: GetPlayerQueueInfoSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get tracks from the current user's recently played tracks; currently doesn't support podcast episodes, and only 50 items may be returned due to spotify limits.
+   */
+  var getPlayerRecentTracksSpotifyplus: (
+    params: GetPlayerRecentTracksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a playlist owned by a Spotify user.
+   */
+  var getPlaylistSpotifyplus: (params: GetPlaylistSpotifyplusProps) => Block;
+  /**
+   * Get the current image associated with a specific playlist.
+   */
+  var getPlaylistCoverImageSpotifyplus: (
+    params: GetPlaylistCoverImageSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of the playlists owned or followed by the current Spotify user.
+   */
+  var getPlaylistFavoritesSpotifyplus: (
+    params: GetPlaylistFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get full details of the items of a playlist owned by a Spotify user.
+   */
+  var getPlaylistItemsSpotifyplus: (
+    params: GetPlaylistItemsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of the playlists owned or followed by the current Spotify user.
+   */
+  var getPlaylistsForUserSpotifyplus: (
+    params: GetPlaylistsForUserSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single show.
+   */
+  var getShowSpotifyplus: (params: GetShowSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information about a show's episodes.
+   */
+  var getShowEpisodesSpotifyplus: (
+    params: GetShowEpisodesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of the shows saved in the current Spotify user's 'Your Library'.
+   */
+  var getShowFavoritesSpotifyplus: (
+    params: GetShowFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get information about a specific Spotify Connect player device, and (optionally) activate the device if it requires it.
+   */
+  var getSpotifyConnectDeviceSpotifyplus: (
+    params: GetSpotifyConnectDeviceSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get information about all available Spotify Connect player (both static and dynamic) devices.
+   */
+  var getSpotifyConnectDevicesSpotifyplus: (
+    params: GetSpotifyConnectDevicesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information for a single track.
+   */
+  var getTrackSpotifyplus: (params: GetTrackSpotifyplusProps) => Block;
+  /**
+   * Get audio feature information for a single track identified by its unique Spotify ID.
+   */
+  var getTrackAudioFeaturesSpotifyplus: (
+    params: GetTrackAudioFeaturesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get a list of the tracks saved in the current Spotify user's 'Your Library'.
+   */
+  var getTrackFavoritesSpotifyplus: (
+    params: GetTrackFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get track recommendations for specified criteria.
+   */
+  var getTrackRecommendationsSpotifyplus: (
+    params: GetTrackRecommendationsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get audio features for multiple tracks based on their Spotify IDs.
+   */
+  var getTracksAudioFeaturesSpotifyplus: (
+    params: GetTracksAudioFeaturesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get the current user's top artists based on calculated affinity.
+   */
+  var getUsersTopArtistsSpotifyplus: (
+    params: GetUsersTopArtistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get the current user's top tracks based on calculated affinity.
+   */
+  var getUsersTopTracksSpotifyplus: (
+    params: GetUsersTopTracksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Pause media play for the specified Spotify Connect device.
+   */
+  var playerMediaPauseSpotifyplus: (
+    params: PlayerMediaPauseSpotifyplusProps,
+  ) => Block;
+  /**
+   * Start playing one or more tracks of the specified context on a Spotify Connect device.
+   */
+  var playerMediaPlayContextSpotifyplus: (
+    params: PlayerMediaPlayContextSpotifyplusProps,
+  ) => Block;
+  /**
+   * Start playing track favorites on the specified Spotify Connect device.
+   */
+  var playerMediaPlayTrackFavoritesSpotifyplus: (
+    params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Start playing one or more tracks on the specified Spotify Connect device.
+   */
+  var playerMediaPlayTracksSpotifyplus: (
+    params: PlayerMediaPlayTracksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Resume media play for the specified Spotify Connect device.
+   */
+  var playerMediaResumeSpotifyplus: (
+    params: PlayerMediaResumeSpotifyplusProps,
+  ) => Block;
+  /**
+   * Seeks to the given absolute or relative position in the user's currently playing track for the specified Spotify Connect device.
+   */
+  var playerMediaSeekSpotifyplus: (
+    params: PlayerMediaSeekSpotifyplusProps,
+  ) => Block;
+  /**
+   * Skips to next track in the user's queue for the specified Spotify Connect device.
+   */
+  var playerMediaSkipNextSpotifyplus: (
+    params: PlayerMediaSkipNextSpotifyplusProps,
+  ) => Block;
+  /**
+   * Skips to previous track in the user's queue for the specified Spotify Connect device.
+   */
+  var playerMediaSkipPreviousSpotifyplus: (
+    params: PlayerMediaSkipPreviousSpotifyplusProps,
+  ) => Block;
+  /**
+   * Set repeat mode for the specified Spotify Connect device.
+   */
+  var playerSetRepeatModeSpotifyplus: (
+    params: PlayerSetRepeatModeSpotifyplusProps,
+  ) => Block;
+  /**
+   * Set shuffle mode for the specified Spotify Connect device.
+   */
+  var playerSetShuffleModeSpotifyplus: (
+    params: PlayerSetShuffleModeSpotifyplusProps,
+  ) => Block;
+  /**
+   * Set volume level for the specified Spotify Connect device.
+   */
+  var playerSetVolumeLevelSpotifyplus: (
+    params: PlayerSetVolumeLevelSpotifyplusProps,
+  ) => Block;
+  /**
+   * Transfer playback to a new Spotify Connect device and optionally begin playback.
+   */
+  var playerTransferPlaybackSpotifyplus: (
+    params: PlayerTransferPlaybackSpotifyplusProps,
+  ) => Block;
+  /**
+   * Replace the image used to represent a specific playlist.
+   */
+  var playlistCoverImageAddSpotifyplus: (
+    params: PlaylistCoverImageAddSpotifyplusProps,
+  ) => Block;
+  /**
+   * Change a playlist's details (name, description, and public / private state).
+   */
+  var playlistChangeSpotifyplus: (
+    params: PlaylistChangeSpotifyplusProps,
+  ) => Block;
+  /**
+   * Create an empty playlist for a Spotify user.  The playlist will remain empty until you add tracks.
+   */
+  var playlistCreateSpotifyplus: (
+    params: PlaylistCreateSpotifyplusProps,
+  ) => Block;
+  /**
+   * Add one or more items to a user's playlist.  Items are added in the order they are listed in the `uris` argument.
+   */
+  var playlistItemsAddSpotifyplus: (
+    params: PlaylistItemsAddSpotifyplusProps,
+  ) => Block;
+  /**
+   * Removes (clears) all items from a user's playlist.
+   */
+  var playlistItemsClearSpotifyplus: (
+    params: PlaylistItemsClearSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more items from a user's playlist.
+   */
+  var playlistItemsRemoveSpotifyplus: (
+    params: PlaylistItemsRemoveSpotifyplusProps,
+  ) => Block;
+  /**
+   * Reorder items in a user's playlist.
+   */
+  var playlistItemsReorderSpotifyplus: (
+    params: PlaylistItemsReorderSpotifyplusProps,
+  ) => Block;
+  /**
+   * Replace one or more items in a user's playlist. Replacing items in a playlist will overwrite its existing items. This service can also be used to clear a playlist.
+   */
+  var playlistItemsReplaceSpotifyplus: (
+    params: PlaylistItemsReplaceSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more albums from the current user's 'Your Library'.
+   */
+  var removeAlbumFavoritesSpotifyplus: (
+    params: RemoveAlbumFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more audiobooks from the current user's 'Your Library'.
+   */
+  var removeAudiobookFavoritesSpotifyplus: (
+    params: RemoveAudiobookFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more episodes from the current user's 'Your Library'.
+   */
+  var removeEpisodeFavoritesSpotifyplus: (
+    params: RemoveEpisodeFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more albums from the current user's 'Your Library'.
+   */
+  var removeShowFavoritesSpotifyplus: (
+    params: RemoveShowFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove one or more tracks from the current user's 'Your Library'.
+   */
+  var removeTrackFavoritesSpotifyplus: (
+    params: RemoveTrackFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Save one or more albums to the current user's 'Your Library'.
+   */
+  var saveAlbumFavoritesSpotifyplus: (
+    params: SaveAlbumFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Save one or more audiobook to the current user's 'Your Library'.
+   */
+  var saveAudiobookFavoritesSpotifyplus: (
+    params: SaveAudiobookFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Save one or more episodes to the current user's 'Your Library'.
+   */
+  var saveEpisodeFavoritesSpotifyplus: (
+    params: SaveEpisodeFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Save one or more shows to the current user's 'Your Library'.
+   */
+  var saveShowFavoritesSpotifyplus: (
+    params: SaveShowFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Save one or more tracks to the current user's 'Your Library'.
+   */
+  var saveTrackFavoritesSpotifyplus: (
+    params: SaveTrackFavoritesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about Albums that match a keyword string.
+   */
+  var searchAlbumsSpotifyplus: (params: SearchAlbumsSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information about Artists that match a keyword string.
+   */
+  var searchArtistsSpotifyplus: (
+    params: SearchArtistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about Audiobooks that match a keyword string.
+   */
+  var searchAudiobooksSpotifyplus: (
+    params: SearchAudiobooksSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about Episodes that match a keyword string.
+   */
+  var searchEpisodesSpotifyplus: (
+    params: SearchEpisodesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about Playlists that match a keyword string.
+   */
+  var searchPlaylistsSpotifyplus: (
+    params: SearchPlaylistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Get Spotify catalog information about Shows that match a keyword string.
+   */
+  var searchShowsSpotifyplus: (params: SearchShowsSpotifyplusProps) => Block;
+  /**
+   * Get Spotify catalog information about Tracks that match a keyword string.
+   */
+  var searchTracksSpotifyplus: (params: SearchTracksSpotifyplusProps) => Block;
+  /**
+   * Triggers a scan interval sequence, which will update HA State values from content currently being played on the user's Spotify account.
+   */
+  var triggerScanIntervalSpotifyplus: (
+    params: TriggerScanIntervalSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove the current user as a follower of one or more artists.
+   */
+  var unfollowArtistsSpotifyplus: (
+    params: UnfollowArtistsSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove the current user as a follower of a playlist.
+   */
+  var unfollowPlaylistSpotifyplus: (
+    params: UnfollowPlaylistSpotifyplusProps,
+  ) => Block;
+  /**
+   * Remove the current user as a follower of one or more users.
+   */
+  var unfollowUsersSpotifyplus: (
+    params: UnfollowUsersSpotifyplusProps,
+  ) => Block;
+  /**
+   * Calls the `addUser` Spotify Zeroconf API endpoint to issue a call to SpConnectionLoginBlob.  If successful, the associated device id is added to the Spotify Connect active device list for the specified user account.  This will also issue a `resetUsers` call prior to the `addUser` call.
+   */
+  var zeroconfDeviceConnectSpotifyplus: (
+    params: ZeroconfDeviceConnectSpotifyplusProps,
+  ) => Block;
+  /**
+   * Calls the `resetUsers` Spotify Zeroconf API endpoint to issue a call to SpConnectionLogout. The currently logged in user (if any) will be logged out of Spotify Connect, and the device id removed from the active Spotify Connect device list.
+   */
+  var zeroconfDeviceDisconnectSpotifyplus: (
+    params: ZeroconfDeviceDisconnectSpotifyplusProps,
+  ) => Block;
+  /**
+   * Calls the `getInfo` Spotify Zeroconf API endpoint to return information about the device.
+   */
+  var zeroconfDeviceGetinfoSpotifyplus: (
+    params: ZeroconfDeviceGetinfoSpotifyplusProps,
+  ) => Block;
+  /**
+   * Discover Spotify Connect devices on the local network via the ZeroConf (aka MDNS) service, and return details about each device.
+   */
+  var zeroconfDiscoverDevicesSpotifyplus: (
+    params: ZeroconfDiscoverDevicesSpotifyplusProps,
+  ) => Block;
+  /**
+   * Forces Spotify Authorization token to expire within 10 seconds; used to test token refresh processing.
+   */
+  var testTokenExpireSpotifyplus: (
+    params: TestTokenExpireSpotifyplusProps,
+  ) => Block;
+  /**
+   * Set level used for volume step services.
+   */
+  var volumeSetStepSpotifyplus: (
+    params: VolumeSetStepSpotifyplusProps,
+  ) => Block;
+}
 
 export interface AddPlayerQueueItemsSpotifyplusProps {
   /**
@@ -23,10 +613,7 @@ export interface AddPlayerQueueItemsSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Add one or more items to the end of the user's current Spotify Player playback queue.
- */
-export const addPlayerQueueItemsSpotifyplus = (
+globalThis.addPlayerQueueItemsSpotifyplus = (
   params: AddPlayerQueueItemsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -49,10 +636,7 @@ export interface CheckAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more albums (or the currently playing album) exists in the current user's 'Your Library' favorites.
- */
-export const checkAlbumFavoritesSpotifyplus = (
+globalThis.checkAlbumFavoritesSpotifyplus = (
   params: CheckAlbumFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -75,10 +659,7 @@ export interface CheckArtistsFollowingSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more artists (or the currently playing artists) is followed in the current user's 'Your Library' favorites.
- */
-export const checkArtistsFollowingSpotifyplus = (
+globalThis.checkArtistsFollowingSpotifyplus = (
   params: CheckArtistsFollowingSpotifyplusProps,
 ) =>
   serviceCall({
@@ -101,10 +682,7 @@ export interface CheckAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more audiobooks (or the currently playing audiobook) exists in the current user's 'Your Library' favorites.
- */
-export const checkAudiobookFavoritesSpotifyplus = (
+globalThis.checkAudiobookFavoritesSpotifyplus = (
   params: CheckAudiobookFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -127,10 +705,7 @@ export interface CheckEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more episodes (or the currently playing episode) exists in the current user's 'Your Library' favorites.
- */
-export const checkEpisodeFavoritesSpotifyplus = (
+globalThis.checkEpisodeFavoritesSpotifyplus = (
   params: CheckEpisodeFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -157,10 +732,7 @@ export interface CheckPlaylistFollowersSpotifyplusProps {
   user_ids?: string;
 }
 
-/**
- * Check to see if the current user is following a specified playlist.
- */
-export const checkPlaylistFollowersSpotifyplus = (
+globalThis.checkPlaylistFollowersSpotifyplus = (
   params: CheckPlaylistFollowersSpotifyplusProps,
 ) =>
   serviceCall({
@@ -183,10 +755,7 @@ export interface CheckShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more shows (or the currently playing show) exists in the current user's 'Your Library' favorites.
- */
-export const checkShowFavoritesSpotifyplus = (
+globalThis.checkShowFavoritesSpotifyplus = (
   params: CheckShowFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -209,10 +778,7 @@ export interface CheckTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Check if one or more tracks (or the currently playing track) exists in the current user's 'Your Library' favorites.
- */
-export const checkTrackFavoritesSpotifyplus = (
+globalThis.checkTrackFavoritesSpotifyplus = (
   params: CheckTrackFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -235,10 +801,7 @@ export interface CheckUsersFollowingSpotifyplusProps {
   ids: string;
 }
 
-/**
- * Check to see if the current user is following one or more users.
- */
-export const checkUsersFollowingSpotifyplus = (
+globalThis.checkUsersFollowingSpotifyplus = (
   params: CheckUsersFollowingSpotifyplusProps,
 ) =>
   serviceCall({
@@ -261,12 +824,7 @@ export interface FollowArtistsSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Add the current user as a follower of one or more artists.
- */
-export const followArtistsSpotifyplus = (
-  params: FollowArtistsSpotifyplusProps,
-) =>
+globalThis.followArtistsSpotifyplus = (params: FollowArtistsSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.follow_artists`,
     params: {
@@ -291,10 +849,7 @@ export interface FollowPlaylistSpotifyplusProps {
   public?: boolean;
 }
 
-/**
- * Add the current user as a follower of a playlist.
- */
-export const followPlaylistSpotifyplus = (
+globalThis.followPlaylistSpotifyplus = (
   params: FollowPlaylistSpotifyplusProps,
 ) =>
   serviceCall({
@@ -317,10 +872,7 @@ export interface FollowUsersSpotifyplusProps {
   ids: string;
 }
 
-/**
- * Add the current user as a follower of one or more users.
- */
-export const followUsersSpotifyplus = (params: FollowUsersSpotifyplusProps) =>
+globalThis.followUsersSpotifyplus = (params: FollowUsersSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.follow_users`,
     params: {
@@ -345,10 +897,7 @@ export interface GetAlbumSpotifyplusProps {
   market?: string;
 }
 
-/**
- * Get Spotify catalog information for a single album.
- */
-export const getAlbumSpotifyplus = (params: GetAlbumSpotifyplusProps) =>
+globalThis.getAlbumSpotifyplus = (params: GetAlbumSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_album`,
     params: {
@@ -385,10 +934,7 @@ export interface GetAlbumFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the albums saved in the current Spotify user's 'Your Library'.
- */
-export const getAlbumFavoritesSpotifyplus = (
+globalThis.getAlbumFavoritesSpotifyplus = (
   params: GetAlbumFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -427,10 +973,7 @@ export interface GetAlbumNewReleasesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of new album releases featured in Spotify.
- */
-export const getAlbumNewReleasesSpotifyplus = (
+globalThis.getAlbumNewReleasesSpotifyplus = (
   params: GetAlbumNewReleasesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -469,10 +1012,7 @@ export interface GetAlbumTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about an album's tracks.
- */
-export const getAlbumTracksSpotifyplus = (
+globalThis.getAlbumTracksSpotifyplus = (
   params: GetAlbumTracksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -495,10 +1035,7 @@ export interface GetArtistSpotifyplusProps {
   artist_id?: string;
 }
 
-/**
- * Get Spotify catalog information for a single artist.
- */
-export const getArtistSpotifyplus = (params: GetArtistSpotifyplusProps) =>
+globalThis.getArtistSpotifyplus = (params: GetArtistSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_artist`,
     params: {
@@ -543,10 +1080,7 @@ export interface GetArtistAlbumsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get Spotify catalog information about an artist's albums.
- */
-export const getArtistAlbumsSpotifyplus = (
+globalThis.getArtistAlbumsSpotifyplus = (
   params: GetArtistAlbumsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -569,12 +1103,7 @@ export interface GetArtistInfoSpotifyplusProps {
   artist_id?: string;
 }
 
-/**
- * Get artist about information from the Spotify Artist Biography page for the specified Spotify artist ID.
- */
-export const getArtistInfoSpotifyplus = (
-  params: GetArtistInfoSpotifyplusProps,
-) =>
+globalThis.getArtistInfoSpotifyplus = (params: GetArtistInfoSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_artist_info`,
     params: {
@@ -599,10 +1128,7 @@ export interface GetArtistRelatedArtistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
- */
-export const getArtistRelatedArtistsSpotifyplus = (
+globalThis.getArtistRelatedArtistsSpotifyplus = (
   params: GetArtistRelatedArtistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -633,10 +1159,7 @@ export interface GetArtistTopTracksSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get Spotify catalog information about an artist's top tracks by country.
- */
-export const getArtistTopTracksSpotifyplus = (
+globalThis.getArtistTopTracksSpotifyplus = (
   params: GetArtistTopTracksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -671,10 +1194,7 @@ export interface GetArtistsFollowedSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get the current user's followed artists.
- */
-export const getArtistsFollowedSpotifyplus = (
+globalThis.getArtistsFollowedSpotifyplus = (
   params: GetArtistsFollowedSpotifyplusProps,
 ) =>
   serviceCall({
@@ -701,10 +1221,7 @@ export interface GetAudiobookSpotifyplusProps {
   market?: string;
 }
 
-/**
- * Get Spotify catalog information for a single audiobook.
- */
-export const getAudiobookSpotifyplus = (params: GetAudiobookSpotifyplusProps) =>
+globalThis.getAudiobookSpotifyplus = (params: GetAudiobookSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_audiobook`,
     params: {
@@ -741,10 +1258,7 @@ export interface GetAudiobookChaptersSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about an audiobook's chapters.
- */
-export const getAudiobookChaptersSpotifyplus = (
+globalThis.getAudiobookChaptersSpotifyplus = (
   params: GetAudiobookChaptersSpotifyplusProps,
 ) =>
   serviceCall({
@@ -779,10 +1293,7 @@ export interface GetAudiobookFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the audiobooks saved in the current Spotify user's 'Your Library'.
- */
-export const getAudiobookFavoritesSpotifyplus = (
+globalThis.getAudiobookFavoritesSpotifyplus = (
   params: GetAudiobookFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -813,10 +1324,7 @@ export interface GetBrowseCategorysListSpotifyplusProps {
   refresh?: boolean;
 }
 
-/**
- * Get a sorted list of ALL categories used to tag items in Spotify.
- */
-export const getBrowseCategorysListSpotifyplus = (
+globalThis.getBrowseCategorysListSpotifyplus = (
   params: GetBrowseCategorysListSpotifyplusProps,
 ) =>
   serviceCall({
@@ -859,10 +1367,7 @@ export interface GetCategoryPlaylistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of Spotify playlists tagged with a particular category.
- */
-export const getCategoryPlaylistsSpotifyplus = (
+globalThis.getCategoryPlaylistsSpotifyplus = (
   params: GetCategoryPlaylistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -889,10 +1394,7 @@ export interface GetChapterSpotifyplusProps {
   market?: string;
 }
 
-/**
- * Get Spotify catalog information for a single chapter.
- */
-export const getChapterSpotifyplus = (params: GetChapterSpotifyplusProps) =>
+globalThis.getChapterSpotifyplus = (params: GetChapterSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_chapter`,
     params: {
@@ -917,10 +1419,7 @@ export interface GetCoverImageFileSpotifyplusProps {
   output_path: string;
 }
 
-/**
- * Gets the contents of an image url and transfers the contents to the local file system.
- */
-export const getCoverImageFileSpotifyplus = (
+globalThis.getCoverImageFileSpotifyplus = (
   params: GetCoverImageFileSpotifyplusProps,
 ) =>
   serviceCall({
@@ -947,10 +1446,7 @@ export interface GetEpisodeSpotifyplusProps {
   market?: string;
 }
 
-/**
- * Get Spotify catalog information for a single episode.
- */
-export const getEpisodeSpotifyplus = (params: GetEpisodeSpotifyplusProps) =>
+globalThis.getEpisodeSpotifyplus = (params: GetEpisodeSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_episode`,
     params: {
@@ -983,10 +1479,7 @@ export interface GetEpisodeFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the episodes saved in the current Spotify user's 'Your Library'.
- */
-export const getEpisodeFavoritesSpotifyplus = (
+globalThis.getEpisodeFavoritesSpotifyplus = (
   params: GetEpisodeFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1033,10 +1526,7 @@ export interface GetFeaturedPlaylistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of Spotify featured playlists.
- */
-export const getFeaturedPlaylistsSpotifyplus = (
+globalThis.getFeaturedPlaylistsSpotifyplus = (
   params: GetFeaturedPlaylistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1067,10 +1557,7 @@ export interface GetImageVibrantColorsSpotifyplusProps {
   color_quality?: number;
 }
 
-/**
- * Get vibrant color palette values from the specified image source.
- */
-export const getImageVibrantColorsSpotifyplus = (
+globalThis.getImageVibrantColorsSpotifyplus = (
   params: GetImageVibrantColorsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1097,10 +1584,7 @@ export interface GetPlayerDevicesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get information about a user's available Spotify Connect player devices.  Some device models are not supported and will not be listed in the API response.
- */
-export const getPlayerDevicesSpotifyplus = (
+globalThis.getPlayerDevicesSpotifyplus = (
   params: GetPlayerDevicesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1127,10 +1611,7 @@ export interface GetPlayerPlaybackStateSpotifyplusProps {
   additional_types?: string;
 }
 
-/**
- * Get information about the user's current playback state, including track or episode, progress, and active device.
- */
-export const getPlayerPlaybackStateSpotifyplus = (
+globalThis.getPlayerPlaybackStateSpotifyplus = (
   params: GetPlayerPlaybackStateSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1157,10 +1638,7 @@ export interface GetPlayerNowPlayingSpotifyplusProps {
   additional_types?: string;
 }
 
-/**
- * Get the object currently being played on the user's Spotify account.
- */
-export const getPlayerNowPlayingSpotifyplus = (
+globalThis.getPlayerNowPlayingSpotifyplus = (
   params: GetPlayerNowPlayingSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1179,10 +1657,7 @@ export interface GetPlayerQueueInfoSpotifyplusProps {
   entity_id: string;
 }
 
-/**
- * Get the list of objects that make up the user's playback queue.
- */
-export const getPlayerQueueInfoSpotifyplus = (
+globalThis.getPlayerQueueInfoSpotifyplus = (
   params: GetPlayerQueueInfoSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1217,10 +1692,7 @@ export interface GetPlayerRecentTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get tracks from the current user's recently played tracks; currently doesn't support podcast episodes, and only 50 items may be returned due to spotify limits.
- */
-export const getPlayerRecentTracksSpotifyplus = (
+globalThis.getPlayerRecentTracksSpotifyplus = (
   params: GetPlayerRecentTracksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1255,10 +1727,7 @@ export interface GetPlaylistSpotifyplusProps {
   additional_types?: string;
 }
 
-/**
- * Get a playlist owned by a Spotify user.
- */
-export const getPlaylistSpotifyplus = (params: GetPlaylistSpotifyplusProps) =>
+globalThis.getPlaylistSpotifyplus = (params: GetPlaylistSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_playlist`,
     params: {
@@ -1279,10 +1748,7 @@ export interface GetPlaylistCoverImageSpotifyplusProps {
   playlist_id?: string;
 }
 
-/**
- * Get the current image associated with a specific playlist.
- */
-export const getPlaylistCoverImageSpotifyplus = (
+globalThis.getPlaylistCoverImageSpotifyplus = (
   params: GetPlaylistCoverImageSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1317,10 +1783,7 @@ export interface GetPlaylistFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the playlists owned or followed by the current Spotify user.
- */
-export const getPlaylistFavoritesSpotifyplus = (
+globalThis.getPlaylistFavoritesSpotifyplus = (
   params: GetPlaylistFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1367,10 +1830,7 @@ export interface GetPlaylistItemsSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get full details of the items of a playlist owned by a Spotify user.
- */
-export const getPlaylistItemsSpotifyplus = (
+globalThis.getPlaylistItemsSpotifyplus = (
   params: GetPlaylistItemsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1409,10 +1869,7 @@ export interface GetPlaylistsForUserSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the playlists owned or followed by the current Spotify user.
- */
-export const getPlaylistsForUserSpotifyplus = (
+globalThis.getPlaylistsForUserSpotifyplus = (
   params: GetPlaylistsForUserSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1439,10 +1896,7 @@ export interface GetShowSpotifyplusProps {
   market?: string;
 }
 
-/**
- * Get Spotify catalog information for a single show.
- */
-export const getShowSpotifyplus = (params: GetShowSpotifyplusProps) =>
+globalThis.getShowSpotifyplus = (params: GetShowSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_show`,
     params: {
@@ -1479,10 +1933,7 @@ export interface GetShowEpisodesSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about a show's episodes.
- */
-export const getShowEpisodesSpotifyplus = (
+globalThis.getShowEpisodesSpotifyplus = (
   params: GetShowEpisodesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1521,10 +1972,7 @@ export interface GetShowFavoritesSpotifyplusProps {
   exclude_audiobooks?: boolean;
 }
 
-/**
- * Get a list of the shows saved in the current Spotify user's 'Your Library'.
- */
-export const getShowFavoritesSpotifyplus = (
+globalThis.getShowFavoritesSpotifyplus = (
   params: GetShowFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1567,10 +2015,7 @@ export interface GetSpotifyConnectDeviceSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Get information about a specific Spotify Connect player device, and (optionally) activate the device if it requires it.
- */
-export const getSpotifyConnectDeviceSpotifyplus = (
+globalThis.getSpotifyConnectDeviceSpotifyplus = (
   params: GetSpotifyConnectDeviceSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1597,10 +2042,7 @@ export interface GetSpotifyConnectDevicesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get information about all available Spotify Connect player (both static and dynamic) devices.
- */
-export const getSpotifyConnectDevicesSpotifyplus = (
+globalThis.getSpotifyConnectDevicesSpotifyplus = (
   params: GetSpotifyConnectDevicesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1623,10 +2065,7 @@ export interface GetTrackSpotifyplusProps {
   track_id?: string;
 }
 
-/**
- * Get Spotify catalog information for a single track.
- */
-export const getTrackSpotifyplus = (params: GetTrackSpotifyplusProps) =>
+globalThis.getTrackSpotifyplus = (params: GetTrackSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.get_track`,
     params: {
@@ -1647,10 +2086,7 @@ export interface GetTrackAudioFeaturesSpotifyplusProps {
   track_id?: string;
 }
 
-/**
- * Get audio feature information for a single track identified by its unique Spotify ID.
- */
-export const getTrackAudioFeaturesSpotifyplus = (
+globalThis.getTrackAudioFeaturesSpotifyplus = (
   params: GetTrackAudioFeaturesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1689,10 +2125,7 @@ export interface GetTrackFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get a list of the tracks saved in the current Spotify user's 'Your Library'.
- */
-export const getTrackFavoritesSpotifyplus = (
+globalThis.getTrackFavoritesSpotifyplus = (
   params: GetTrackFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1899,10 +2332,7 @@ export interface GetTrackRecommendationsSpotifyplusProps {
   target_valence?: number;
 }
 
-/**
- * Get track recommendations for specified criteria.
- */
-export const getTrackRecommendationsSpotifyplus = (
+globalThis.getTrackRecommendationsSpotifyplus = (
   params: GetTrackRecommendationsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1925,10 +2355,7 @@ export interface GetTracksAudioFeaturesSpotifyplusProps {
   ids: string;
 }
 
-/**
- * Get audio features for multiple tracks based on their Spotify IDs.
- */
-export const getTracksAudioFeaturesSpotifyplus = (
+globalThis.getTracksAudioFeaturesSpotifyplus = (
   params: GetTracksAudioFeaturesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -1967,10 +2394,7 @@ export interface GetUsersTopArtistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get the current user's top artists based on calculated affinity.
- */
-export const getUsersTopArtistsSpotifyplus = (
+globalThis.getUsersTopArtistsSpotifyplus = (
   params: GetUsersTopArtistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2009,10 +2433,7 @@ export interface GetUsersTopTracksSpotifyplusProps {
   sort_result?: boolean;
 }
 
-/**
- * Get the current user's top tracks based on calculated affinity.
- */
-export const getUsersTopTracksSpotifyplus = (
+globalThis.getUsersTopTracksSpotifyplus = (
   params: GetUsersTopTracksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2039,10 +2460,7 @@ export interface PlayerMediaPauseSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Pause media play for the specified Spotify Connect device.
- */
-export const playerMediaPauseSpotifyplus = (
+globalThis.playerMediaPauseSpotifyplus = (
   params: PlayerMediaPauseSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2085,10 +2503,7 @@ export interface PlayerMediaPlayContextSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Start playing one or more tracks of the specified context on a Spotify Connect device.
- */
-export const playerMediaPlayContextSpotifyplus = (
+globalThis.playerMediaPlayContextSpotifyplus = (
   params: PlayerMediaPlayContextSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2127,10 +2542,7 @@ export interface PlayerMediaPlayTrackFavoritesSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Start playing track favorites on the specified Spotify Connect device.
- */
-export const playerMediaPlayTrackFavoritesSpotifyplus = (
+globalThis.playerMediaPlayTrackFavoritesSpotifyplus = (
   params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2165,10 +2577,7 @@ export interface PlayerMediaPlayTracksSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Start playing one or more tracks on the specified Spotify Connect device.
- */
-export const playerMediaPlayTracksSpotifyplus = (
+globalThis.playerMediaPlayTracksSpotifyplus = (
   params: PlayerMediaPlayTracksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2195,10 +2604,7 @@ export interface PlayerMediaResumeSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Resume media play for the specified Spotify Connect device.
- */
-export const playerMediaResumeSpotifyplus = (
+globalThis.playerMediaResumeSpotifyplus = (
   params: PlayerMediaResumeSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2233,10 +2639,7 @@ export interface PlayerMediaSeekSpotifyplusProps {
   relative_position_ms?: number;
 }
 
-/**
- * Seeks to the given absolute or relative position in the user's currently playing track for the specified Spotify Connect device.
- */
-export const playerMediaSeekSpotifyplus = (
+globalThis.playerMediaSeekSpotifyplus = (
   params: PlayerMediaSeekSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2263,10 +2666,7 @@ export interface PlayerMediaSkipNextSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Skips to next track in the user's queue for the specified Spotify Connect device.
- */
-export const playerMediaSkipNextSpotifyplus = (
+globalThis.playerMediaSkipNextSpotifyplus = (
   params: PlayerMediaSkipNextSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2293,10 +2693,7 @@ export interface PlayerMediaSkipPreviousSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Skips to previous track in the user's queue for the specified Spotify Connect device.
- */
-export const playerMediaSkipPreviousSpotifyplus = (
+globalThis.playerMediaSkipPreviousSpotifyplus = (
   params: PlayerMediaSkipPreviousSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2327,10 +2724,7 @@ export interface PlayerSetRepeatModeSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Set repeat mode for the specified Spotify Connect device.
- */
-export const playerSetRepeatModeSpotifyplus = (
+globalThis.playerSetRepeatModeSpotifyplus = (
   params: PlayerSetRepeatModeSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2361,10 +2755,7 @@ export interface PlayerSetShuffleModeSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Set shuffle mode for the specified Spotify Connect device.
- */
-export const playerSetShuffleModeSpotifyplus = (
+globalThis.playerSetShuffleModeSpotifyplus = (
   params: PlayerSetShuffleModeSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2395,10 +2786,7 @@ export interface PlayerSetVolumeLevelSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Set volume level for the specified Spotify Connect device.
- */
-export const playerSetVolumeLevelSpotifyplus = (
+globalThis.playerSetVolumeLevelSpotifyplus = (
   params: PlayerSetVolumeLevelSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2441,10 +2829,7 @@ export interface PlayerTransferPlaybackSpotifyplusProps {
   device_id_from?: string;
 }
 
-/**
- * Transfer playback to a new Spotify Connect device and optionally begin playback.
- */
-export const playerTransferPlaybackSpotifyplus = (
+globalThis.playerTransferPlaybackSpotifyplus = (
   params: PlayerTransferPlaybackSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2471,10 +2856,7 @@ export interface PlaylistCoverImageAddSpotifyplusProps {
   image_path: string;
 }
 
-/**
- * Replace the image used to represent a specific playlist.
- */
-export const playlistCoverImageAddSpotifyplus = (
+globalThis.playlistCoverImageAddSpotifyplus = (
   params: PlaylistCoverImageAddSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2517,10 +2899,7 @@ export interface PlaylistChangeSpotifyplusProps {
   image_path?: string;
 }
 
-/**
- * Change a playlist's details (name, description, and public / private state).
- */
-export const playlistChangeSpotifyplus = (
+globalThis.playlistChangeSpotifyplus = (
   params: PlaylistChangeSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2563,10 +2942,7 @@ export interface PlaylistCreateSpotifyplusProps {
   image_path?: string;
 }
 
-/**
- * Create an empty playlist for a Spotify user.  The playlist will remain empty until you add tracks.
- */
-export const playlistCreateSpotifyplus = (
+globalThis.playlistCreateSpotifyplus = (
   params: PlaylistCreateSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2597,10 +2973,7 @@ export interface PlaylistItemsAddSpotifyplusProps {
   position?: number;
 }
 
-/**
- * Add one or more items to a user's playlist.  Items are added in the order they are listed in the `uris` argument.
- */
-export const playlistItemsAddSpotifyplus = (
+globalThis.playlistItemsAddSpotifyplus = (
   params: PlaylistItemsAddSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2623,10 +2996,7 @@ export interface PlaylistItemsClearSpotifyplusProps {
   playlist_id: string;
 }
 
-/**
- * Removes (clears) all items from a user's playlist.
- */
-export const playlistItemsClearSpotifyplus = (
+globalThis.playlistItemsClearSpotifyplus = (
   params: PlaylistItemsClearSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2657,10 +3027,7 @@ export interface PlaylistItemsRemoveSpotifyplusProps {
   snapshot_id?: string;
 }
 
-/**
- * Remove one or more items from a user's playlist.
- */
-export const playlistItemsRemoveSpotifyplus = (
+globalThis.playlistItemsRemoveSpotifyplus = (
   params: PlaylistItemsRemoveSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2699,10 +3066,7 @@ export interface PlaylistItemsReorderSpotifyplusProps {
   snapshot_id?: string;
 }
 
-/**
- * Reorder items in a user's playlist.
- */
-export const playlistItemsReorderSpotifyplus = (
+globalThis.playlistItemsReorderSpotifyplus = (
   params: PlaylistItemsReorderSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2729,10 +3093,7 @@ export interface PlaylistItemsReplaceSpotifyplusProps {
   uris?: string;
 }
 
-/**
- * Replace one or more items in a user's playlist. Replacing items in a playlist will overwrite its existing items. This service can also be used to clear a playlist.
- */
-export const playlistItemsReplaceSpotifyplus = (
+globalThis.playlistItemsReplaceSpotifyplus = (
   params: PlaylistItemsReplaceSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2755,10 +3116,7 @@ export interface RemoveAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove one or more albums from the current user's 'Your Library'.
- */
-export const removeAlbumFavoritesSpotifyplus = (
+globalThis.removeAlbumFavoritesSpotifyplus = (
   params: RemoveAlbumFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2781,10 +3139,7 @@ export interface RemoveAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove one or more audiobooks from the current user's 'Your Library'.
- */
-export const removeAudiobookFavoritesSpotifyplus = (
+globalThis.removeAudiobookFavoritesSpotifyplus = (
   params: RemoveAudiobookFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2807,10 +3162,7 @@ export interface RemoveEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove one or more episodes from the current user's 'Your Library'.
- */
-export const removeEpisodeFavoritesSpotifyplus = (
+globalThis.removeEpisodeFavoritesSpotifyplus = (
   params: RemoveEpisodeFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2833,10 +3185,7 @@ export interface RemoveShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove one or more albums from the current user's 'Your Library'.
- */
-export const removeShowFavoritesSpotifyplus = (
+globalThis.removeShowFavoritesSpotifyplus = (
   params: RemoveShowFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2859,10 +3208,7 @@ export interface RemoveTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove one or more tracks from the current user's 'Your Library'.
- */
-export const removeTrackFavoritesSpotifyplus = (
+globalThis.removeTrackFavoritesSpotifyplus = (
   params: RemoveTrackFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2885,10 +3231,7 @@ export interface SaveAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Save one or more albums to the current user's 'Your Library'.
- */
-export const saveAlbumFavoritesSpotifyplus = (
+globalThis.saveAlbumFavoritesSpotifyplus = (
   params: SaveAlbumFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2911,10 +3254,7 @@ export interface SaveAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Save one or more audiobook to the current user's 'Your Library'.
- */
-export const saveAudiobookFavoritesSpotifyplus = (
+globalThis.saveAudiobookFavoritesSpotifyplus = (
   params: SaveAudiobookFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2937,10 +3277,7 @@ export interface SaveEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Save one or more episodes to the current user's 'Your Library'.
- */
-export const saveEpisodeFavoritesSpotifyplus = (
+globalThis.saveEpisodeFavoritesSpotifyplus = (
   params: SaveEpisodeFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2963,10 +3300,7 @@ export interface SaveShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Save one or more shows to the current user's 'Your Library'.
- */
-export const saveShowFavoritesSpotifyplus = (
+globalThis.saveShowFavoritesSpotifyplus = (
   params: SaveShowFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -2989,10 +3323,7 @@ export interface SaveTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Save one or more tracks to the current user's 'Your Library'.
- */
-export const saveTrackFavoritesSpotifyplus = (
+globalThis.saveTrackFavoritesSpotifyplus = (
   params: SaveTrackFavoritesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3035,10 +3366,7 @@ export interface SearchAlbumsSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Albums that match a keyword string.
- */
-export const searchAlbumsSpotifyplus = (params: SearchAlbumsSpotifyplusProps) =>
+globalThis.searchAlbumsSpotifyplus = (params: SearchAlbumsSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.search_albums`,
     params: {
@@ -3079,12 +3407,7 @@ export interface SearchArtistsSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Artists that match a keyword string.
- */
-export const searchArtistsSpotifyplus = (
-  params: SearchArtistsSpotifyplusProps,
-) =>
+globalThis.searchArtistsSpotifyplus = (params: SearchArtistsSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.search_artists`,
     params: {
@@ -3125,10 +3448,7 @@ export interface SearchAudiobooksSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Audiobooks that match a keyword string.
- */
-export const searchAudiobooksSpotifyplus = (
+globalThis.searchAudiobooksSpotifyplus = (
   params: SearchAudiobooksSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3171,10 +3491,7 @@ export interface SearchEpisodesSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Episodes that match a keyword string.
- */
-export const searchEpisodesSpotifyplus = (
+globalThis.searchEpisodesSpotifyplus = (
   params: SearchEpisodesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3217,10 +3534,7 @@ export interface SearchPlaylistsSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Playlists that match a keyword string.
- */
-export const searchPlaylistsSpotifyplus = (
+globalThis.searchPlaylistsSpotifyplus = (
   params: SearchPlaylistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3263,10 +3577,7 @@ export interface SearchShowsSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Shows that match a keyword string.
- */
-export const searchShowsSpotifyplus = (params: SearchShowsSpotifyplusProps) =>
+globalThis.searchShowsSpotifyplus = (params: SearchShowsSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.search_shows`,
     params: {
@@ -3307,10 +3618,7 @@ export interface SearchTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-/**
- * Get Spotify catalog information about Tracks that match a keyword string.
- */
-export const searchTracksSpotifyplus = (params: SearchTracksSpotifyplusProps) =>
+globalThis.searchTracksSpotifyplus = (params: SearchTracksSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.search_tracks`,
     params: {
@@ -3327,10 +3635,7 @@ export interface TriggerScanIntervalSpotifyplusProps {
   entity_id: string;
 }
 
-/**
- * Triggers a scan interval sequence, which will update HA State values from content currently being played on the user's Spotify account.
- */
-export const triggerScanIntervalSpotifyplus = (
+globalThis.triggerScanIntervalSpotifyplus = (
   params: TriggerScanIntervalSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3353,10 +3658,7 @@ export interface UnfollowArtistsSpotifyplusProps {
   ids?: string;
 }
 
-/**
- * Remove the current user as a follower of one or more artists.
- */
-export const unfollowArtistsSpotifyplus = (
+globalThis.unfollowArtistsSpotifyplus = (
   params: UnfollowArtistsSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3379,10 +3681,7 @@ export interface UnfollowPlaylistSpotifyplusProps {
   playlist_id?: string;
 }
 
-/**
- * Remove the current user as a follower of a playlist.
- */
-export const unfollowPlaylistSpotifyplus = (
+globalThis.unfollowPlaylistSpotifyplus = (
   params: UnfollowPlaylistSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3405,12 +3704,7 @@ export interface UnfollowUsersSpotifyplusProps {
   ids: string;
 }
 
-/**
- * Remove the current user as a follower of one or more users.
- */
-export const unfollowUsersSpotifyplus = (
-  params: UnfollowUsersSpotifyplusProps,
-) =>
+globalThis.unfollowUsersSpotifyplus = (params: UnfollowUsersSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.unfollow_users`,
     params: {
@@ -3471,10 +3765,7 @@ export interface ZeroconfDeviceConnectSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Calls the `addUser` Spotify Zeroconf API endpoint to issue a call to SpConnectionLoginBlob.  If successful, the associated device id is added to the Spotify Connect active device list for the specified user account.  This will also issue a `resetUsers` call prior to the `addUser` call.
- */
-export const zeroconfDeviceConnectSpotifyplus = (
+globalThis.zeroconfDeviceConnectSpotifyplus = (
   params: ZeroconfDeviceConnectSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3517,10 +3808,7 @@ export interface ZeroconfDeviceDisconnectSpotifyplusProps {
   delay?: number;
 }
 
-/**
- * Calls the `resetUsers` Spotify Zeroconf API endpoint to issue a call to SpConnectionLogout. The currently logged in user (if any) will be logged out of Spotify Connect, and the device id removed from the active Spotify Connect device list.
- */
-export const zeroconfDeviceDisconnectSpotifyplus = (
+globalThis.zeroconfDeviceDisconnectSpotifyplus = (
   params: ZeroconfDeviceDisconnectSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3559,10 +3847,7 @@ export interface ZeroconfDeviceGetinfoSpotifyplusProps {
   use_ssl?: boolean;
 }
 
-/**
- * Calls the `getInfo` Spotify Zeroconf API endpoint to return information about the device.
- */
-export const zeroconfDeviceGetinfoSpotifyplus = (
+globalThis.zeroconfDeviceGetinfoSpotifyplus = (
   params: ZeroconfDeviceGetinfoSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3585,10 +3870,7 @@ export interface ZeroconfDiscoverDevicesSpotifyplusProps {
   timeout?: number;
 }
 
-/**
- * Discover Spotify Connect devices on the local network via the ZeroConf (aka MDNS) service, and return details about each device.
- */
-export const zeroconfDiscoverDevicesSpotifyplus = (
+globalThis.zeroconfDiscoverDevicesSpotifyplus = (
   params: ZeroconfDiscoverDevicesSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3607,10 +3889,7 @@ export interface TestTokenExpireSpotifyplusProps {
   entity_id: string;
 }
 
-/**
- * Forces Spotify Authorization token to expire within 10 seconds; used to test token refresh processing.
- */
-export const testTokenExpireSpotifyplus = (
+globalThis.testTokenExpireSpotifyplus = (
   params: TestTokenExpireSpotifyplusProps,
 ) =>
   serviceCall({
@@ -3633,12 +3912,7 @@ export interface VolumeSetStepSpotifyplusProps {
   level?: number;
 }
 
-/**
- * Set level used for volume step services.
- */
-export const volumeSetStepSpotifyplus = (
-  params: VolumeSetStepSpotifyplusProps,
-) =>
+globalThis.volumeSetStepSpotifyplus = (params: VolumeSetStepSpotifyplusProps) =>
   serviceCall({
     name: `Call spotifyplus.volume_set_step`,
     params: {

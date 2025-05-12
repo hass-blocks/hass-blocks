@@ -1,11 +1,36 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Opens a valve.
+   */
+  var openValveValve: (target: ITarget, params?: OpenValveValveProps) => Block;
+  /**
+   * Closes a valve.
+   */
+  var closeValveValve: (
+    target: ITarget,
+    params?: CloseValveValveProps,
+  ) => Block;
+  /**
+   * Moves a valve to a specific position.
+   */
+  var setValvePositionValve: (
+    target: ITarget,
+    params: SetValvePositionValveProps,
+  ) => Block;
+  /**
+   * Stops the valve movement.
+   */
+  var stopValveValve: (target: ITarget, params?: StopValveValveProps) => Block;
+  /**
+   * Toggles a valve open/closed.
+   */
+  var toggleValve: (target: ITarget, params?: ToggleValveProps) => Block;
+}
 
 export interface OpenValveValveProps {}
 
-/**
- * Opens a valve.
- */
-export const openValveValve = (target: ITarget, params?: OpenValveValveProps) =>
+globalThis.openValveValve = (target: ITarget, params?: OpenValveValveProps) =>
   serviceCall({
     name: `Call valve.open_valve`,
     params: {
@@ -18,13 +43,7 @@ export const openValveValve = (target: ITarget, params?: OpenValveValveProps) =>
 
 export interface CloseValveValveProps {}
 
-/**
- * Closes a valve.
- */
-export const closeValveValve = (
-  target: ITarget,
-  params?: CloseValveValveProps,
-) =>
+globalThis.closeValveValve = (target: ITarget, params?: CloseValveValveProps) =>
   serviceCall({
     name: `Call valve.close_valve`,
     params: {
@@ -42,10 +61,7 @@ export interface SetValvePositionValveProps {
   position: number;
 }
 
-/**
- * Moves a valve to a specific position.
- */
-export const setValvePositionValve = (
+globalThis.setValvePositionValve = (
   target: ITarget,
   params: SetValvePositionValveProps,
 ) =>
@@ -61,10 +77,7 @@ export const setValvePositionValve = (
 
 export interface StopValveValveProps {}
 
-/**
- * Stops the valve movement.
- */
-export const stopValveValve = (target: ITarget, params?: StopValveValveProps) =>
+globalThis.stopValveValve = (target: ITarget, params?: StopValveValveProps) =>
   serviceCall({
     name: `Call valve.stop_valve`,
     params: {
@@ -77,10 +90,7 @@ export const stopValveValve = (target: ITarget, params?: StopValveValveProps) =>
 
 export interface ToggleValveProps {}
 
-/**
- * Toggles a valve open/closed.
- */
-export const toggleValve = (target: ITarget, params?: ToggleValveProps) =>
+globalThis.toggleValve = (target: ITarget, params?: ToggleValveProps) =>
   serviceCall({
     name: `Call valve.toggle`,
     params: {

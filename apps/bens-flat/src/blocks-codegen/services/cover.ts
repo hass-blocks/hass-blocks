@@ -1,11 +1,71 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Opens a cover.
+   */
+  var openCoverCover: (target: ITarget, params?: OpenCoverCoverProps) => Block;
+  /**
+   * Closes a cover.
+   */
+  var closeCoverCover: (
+    target: ITarget,
+    params?: CloseCoverCoverProps,
+  ) => Block;
+  /**
+   * Moves a cover to a specific position.
+   */
+  var setCoverPositionCover: (
+    target: ITarget,
+    params: SetCoverPositionCoverProps,
+  ) => Block;
+  /**
+   * Stops the cover movement.
+   */
+  var stopCoverCover: (target: ITarget, params?: StopCoverCoverProps) => Block;
+  /**
+   * Toggles a cover open/closed.
+   */
+  var toggleCover: (target: ITarget, params?: ToggleCoverProps) => Block;
+  /**
+   * Tilts a cover open.
+   */
+  var openCoverTiltCover: (
+    target: ITarget,
+    params?: OpenCoverTiltCoverProps,
+  ) => Block;
+  /**
+   * Tilts a cover to close.
+   */
+  var closeCoverTiltCover: (
+    target: ITarget,
+    params?: CloseCoverTiltCoverProps,
+  ) => Block;
+  /**
+   * Stops a tilting cover movement.
+   */
+  var stopCoverTiltCover: (
+    target: ITarget,
+    params?: StopCoverTiltCoverProps,
+  ) => Block;
+  /**
+   * Moves a cover tilt to a specific position.
+   */
+  var setCoverTiltPositionCover: (
+    target: ITarget,
+    params: SetCoverTiltPositionCoverProps,
+  ) => Block;
+  /**
+   * Toggles a cover tilt open/closed.
+   */
+  var toggleCoverTiltCover: (
+    target: ITarget,
+    params?: ToggleCoverTiltCoverProps,
+  ) => Block;
+}
 
 export interface OpenCoverCoverProps {}
 
-/**
- * Opens a cover.
- */
-export const openCoverCover = (target: ITarget, params?: OpenCoverCoverProps) =>
+globalThis.openCoverCover = (target: ITarget, params?: OpenCoverCoverProps) =>
   serviceCall({
     name: `Call cover.open_cover`,
     params: {
@@ -18,13 +78,7 @@ export const openCoverCover = (target: ITarget, params?: OpenCoverCoverProps) =>
 
 export interface CloseCoverCoverProps {}
 
-/**
- * Closes a cover.
- */
-export const closeCoverCover = (
-  target: ITarget,
-  params?: CloseCoverCoverProps,
-) =>
+globalThis.closeCoverCover = (target: ITarget, params?: CloseCoverCoverProps) =>
   serviceCall({
     name: `Call cover.close_cover`,
     params: {
@@ -42,10 +96,7 @@ export interface SetCoverPositionCoverProps {
   position: number;
 }
 
-/**
- * Moves a cover to a specific position.
- */
-export const setCoverPositionCover = (
+globalThis.setCoverPositionCover = (
   target: ITarget,
   params: SetCoverPositionCoverProps,
 ) =>
@@ -61,10 +112,7 @@ export const setCoverPositionCover = (
 
 export interface StopCoverCoverProps {}
 
-/**
- * Stops the cover movement.
- */
-export const stopCoverCover = (target: ITarget, params?: StopCoverCoverProps) =>
+globalThis.stopCoverCover = (target: ITarget, params?: StopCoverCoverProps) =>
   serviceCall({
     name: `Call cover.stop_cover`,
     params: {
@@ -77,10 +125,7 @@ export const stopCoverCover = (target: ITarget, params?: StopCoverCoverProps) =>
 
 export interface ToggleCoverProps {}
 
-/**
- * Toggles a cover open/closed.
- */
-export const toggleCover = (target: ITarget, params?: ToggleCoverProps) =>
+globalThis.toggleCover = (target: ITarget, params?: ToggleCoverProps) =>
   serviceCall({
     name: `Call cover.toggle`,
     params: {
@@ -93,10 +138,7 @@ export const toggleCover = (target: ITarget, params?: ToggleCoverProps) =>
 
 export interface OpenCoverTiltCoverProps {}
 
-/**
- * Tilts a cover open.
- */
-export const openCoverTiltCover = (
+globalThis.openCoverTiltCover = (
   target: ITarget,
   params?: OpenCoverTiltCoverProps,
 ) =>
@@ -112,10 +154,7 @@ export const openCoverTiltCover = (
 
 export interface CloseCoverTiltCoverProps {}
 
-/**
- * Tilts a cover to close.
- */
-export const closeCoverTiltCover = (
+globalThis.closeCoverTiltCover = (
   target: ITarget,
   params?: CloseCoverTiltCoverProps,
 ) =>
@@ -131,10 +170,7 @@ export const closeCoverTiltCover = (
 
 export interface StopCoverTiltCoverProps {}
 
-/**
- * Stops a tilting cover movement.
- */
-export const stopCoverTiltCover = (
+globalThis.stopCoverTiltCover = (
   target: ITarget,
   params?: StopCoverTiltCoverProps,
 ) =>
@@ -155,10 +191,7 @@ export interface SetCoverTiltPositionCoverProps {
   tilt_position: number;
 }
 
-/**
- * Moves a cover tilt to a specific position.
- */
-export const setCoverTiltPositionCover = (
+globalThis.setCoverTiltPositionCover = (
   target: ITarget,
   params: SetCoverTiltPositionCoverProps,
 ) =>
@@ -174,10 +207,7 @@ export const setCoverTiltPositionCover = (
 
 export interface ToggleCoverTiltCoverProps {}
 
-/**
- * Toggles a cover tilt open/closed.
- */
-export const toggleCoverTiltCover = (
+globalThis.toggleCoverTiltCover = (
   target: ITarget,
   params?: ToggleCoverTiltCoverProps,
 ) =>

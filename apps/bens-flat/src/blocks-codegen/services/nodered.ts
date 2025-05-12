@@ -1,4 +1,10 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Send a message to a Node-RED flow that has been exposed to Home Assistant.
+   */
+  var triggerNodered: (target: ITarget, params?: TriggerNoderedProps) => Block;
+}
 
 export interface TriggerNoderedProps {
   /**
@@ -11,10 +17,7 @@ export interface TriggerNoderedProps {
   message?: never;
 }
 
-/**
- * Send a message to a Node-RED flow that has been exposed to Home Assistant.
- */
-export const triggerNodered = (target: ITarget, params?: TriggerNoderedProps) =>
+globalThis.triggerNodered = (target: ITarget, params?: TriggerNoderedProps) =>
   serviceCall({
     name: `Call nodered.trigger`,
     params: {

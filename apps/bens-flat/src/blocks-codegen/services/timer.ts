@@ -1,9 +1,32 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads timers from the YAML-configuration.
+   */
+  var reloadTimer: (target: ITarget) => Block;
+  /**
+   * Starts a timer or restarts it with a provided duration.
+   */
+  var startTimer: (target: ITarget, params?: StartTimerProps) => Block;
+  /**
+   * Pauses a running timer, retaining the remaining duration for later continuation.
+   */
+  var pauseTimer: (target: ITarget, params?: PauseTimerProps) => Block;
+  /**
+   * Resets a timer's duration to the last known initial value without firing the timer finished event.
+   */
+  var cancelTimer: (target: ITarget, params?: CancelTimerProps) => Block;
+  /**
+   * Finishes a running timer earlier than scheduled.
+   */
+  var finishTimer: (target: ITarget, params?: FinishTimerProps) => Block;
+  /**
+   * Changes a timer by adding or subtracting a given duration.
+   */
+  var changeTimer: (target: ITarget, params: ChangeTimerProps) => Block;
+}
 
-/**
- * Reloads timers from the YAML-configuration.
- */
-export const reloadTimer = (target: ITarget) =>
+globalThis.reloadTimer = (target: ITarget) =>
   serviceCall({
     name: `Call timer.reload`,
     params: {
@@ -19,10 +42,7 @@ export interface StartTimerProps {
   duration?: string;
 }
 
-/**
- * Starts a timer or restarts it with a provided duration.
- */
-export const startTimer = (target: ITarget, params?: StartTimerProps) =>
+globalThis.startTimer = (target: ITarget, params?: StartTimerProps) =>
   serviceCall({
     name: `Call timer.start`,
     params: {
@@ -35,10 +55,7 @@ export const startTimer = (target: ITarget, params?: StartTimerProps) =>
 
 export interface PauseTimerProps {}
 
-/**
- * Pauses a running timer, retaining the remaining duration for later continuation.
- */
-export const pauseTimer = (target: ITarget, params?: PauseTimerProps) =>
+globalThis.pauseTimer = (target: ITarget, params?: PauseTimerProps) =>
   serviceCall({
     name: `Call timer.pause`,
     params: {
@@ -51,10 +68,7 @@ export const pauseTimer = (target: ITarget, params?: PauseTimerProps) =>
 
 export interface CancelTimerProps {}
 
-/**
- * Resets a timer's duration to the last known initial value without firing the timer finished event.
- */
-export const cancelTimer = (target: ITarget, params?: CancelTimerProps) =>
+globalThis.cancelTimer = (target: ITarget, params?: CancelTimerProps) =>
   serviceCall({
     name: `Call timer.cancel`,
     params: {
@@ -67,10 +81,7 @@ export const cancelTimer = (target: ITarget, params?: CancelTimerProps) =>
 
 export interface FinishTimerProps {}
 
-/**
- * Finishes a running timer earlier than scheduled.
- */
-export const finishTimer = (target: ITarget, params?: FinishTimerProps) =>
+globalThis.finishTimer = (target: ITarget, params?: FinishTimerProps) =>
   serviceCall({
     name: `Call timer.finish`,
     params: {
@@ -88,10 +99,7 @@ export interface ChangeTimerProps {
   duration: string;
 }
 
-/**
- * Changes a timer by adding or subtracting a given duration.
- */
-export const changeTimer = (target: ITarget, params: ChangeTimerProps) =>
+globalThis.changeTimer = (target: ITarget, params: ChangeTimerProps) =>
   serviceCall({
     name: `Call timer.change`,
     params: {

@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Replaces the source for a plant sensor.
+   */
+  var replaceSensorPlant: (params: ReplaceSensorPlantProps) => Block;
+}
 
 export interface ReplaceSensorPlantProps {
   /**
@@ -11,10 +17,7 @@ export interface ReplaceSensorPlantProps {
   new_sensor?: string;
 }
 
-/**
- * Replaces the source for a plant sensor.
- */
-export const replaceSensorPlant = (params: ReplaceSensorPlantProps) =>
+globalThis.replaceSensorPlant = (params: ReplaceSensorPlantProps) =>
   serviceCall({
     name: `Call plant.replace_sensor`,
     params: {

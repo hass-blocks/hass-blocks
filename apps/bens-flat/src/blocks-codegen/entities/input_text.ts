@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const userDismissalsInputText = entity('input_text.user_dismissals');
+declare global {
+  var userDismissalsInputText: ITarget;
+}
+
+globalThis.userDismissalsInputText = entity('input_text.user_dismissals');

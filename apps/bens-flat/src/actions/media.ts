@@ -1,11 +1,7 @@
+import '@blocks-codegen';
+
 import { allSpeakers, livingRoomSpeaker, tv } from '../entities.ts';
 
-import {
-  mediaStopMediaPlayer,
-  playMediaMediaPlayer,
-  selectSourceMediaPlayer,
-  volumeSetMediaPlayer,
-} from '../blocks-codegen/index.ts';
 import { bedroom } from '../areas.ts';
 
 export const stopMusicInTheBedroom = mediaStopMediaPlayer(bedroom);

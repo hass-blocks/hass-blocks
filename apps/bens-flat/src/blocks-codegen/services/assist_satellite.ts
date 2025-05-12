@@ -1,4 +1,20 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Lets a satellite announce a message.
+   */
+  var announceAssistSatellite: (
+    target: ITarget,
+    params?: AnnounceAssistSatelliteProps,
+  ) => Block;
+  /**
+   * Starts a conversation from a satellite.
+   */
+  var startConversationAssistSatellite: (
+    target: ITarget,
+    params?: StartConversationAssistSatelliteProps,
+  ) => Block;
+}
 
 export interface AnnounceAssistSatelliteProps {
   /**
@@ -19,10 +35,7 @@ export interface AnnounceAssistSatelliteProps {
   preannounce_media_id?: string;
 }
 
-/**
- * Lets a satellite announce a message.
- */
-export const announceAssistSatellite = (
+globalThis.announceAssistSatellite = (
   target: ITarget,
   params?: AnnounceAssistSatelliteProps,
 ) =>
@@ -59,10 +72,7 @@ export interface StartConversationAssistSatelliteProps {
   preannounce_media_id?: string;
 }
 
-/**
- * Starts a conversation from a satellite.
- */
-export const startConversationAssistSatellite = (
+globalThis.startConversationAssistSatellite = (
   target: ITarget,
   params?: StartConversationAssistSatelliteProps,
 ) =>

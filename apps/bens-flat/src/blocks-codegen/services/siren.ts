@@ -1,4 +1,18 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns the siren on.
+   */
+  var turnOnSiren: (target: ITarget, params?: TurnOnSirenProps) => Block;
+  /**
+   * Turns the siren off.
+   */
+  var turnOffSiren: (target: ITarget, params?: TurnOffSirenProps) => Block;
+  /**
+   * Toggles the siren on/off.
+   */
+  var toggleSiren: (target: ITarget, params?: ToggleSirenProps) => Block;
+}
 
 export interface TurnOnSirenProps {
   /**
@@ -15,10 +29,7 @@ export interface TurnOnSirenProps {
   duration?: string;
 }
 
-/**
- * Turns the siren on.
- */
-export const turnOnSiren = (target: ITarget, params?: TurnOnSirenProps) =>
+globalThis.turnOnSiren = (target: ITarget, params?: TurnOnSirenProps) =>
   serviceCall({
     name: `Call siren.turn_on`,
     params: {
@@ -31,10 +42,7 @@ export const turnOnSiren = (target: ITarget, params?: TurnOnSirenProps) =>
 
 export interface TurnOffSirenProps {}
 
-/**
- * Turns the siren off.
- */
-export const turnOffSiren = (target: ITarget, params?: TurnOffSirenProps) =>
+globalThis.turnOffSiren = (target: ITarget, params?: TurnOffSirenProps) =>
   serviceCall({
     name: `Call siren.turn_off`,
     params: {
@@ -47,10 +55,7 @@ export const turnOffSiren = (target: ITarget, params?: TurnOffSirenProps) =>
 
 export interface ToggleSirenProps {}
 
-/**
- * Toggles the siren on/off.
- */
-export const toggleSiren = (target: ITarget, params?: ToggleSirenProps) =>
+globalThis.toggleSiren = (target: ITarget, params?: ToggleSirenProps) =>
   serviceCall({
     name: `Call siren.toggle`,
     params: {

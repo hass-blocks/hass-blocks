@@ -1,96 +1,125 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const assistMicrophoneAutoGainNumber = entity(
+declare global {
+  var assistMicrophoneAutoGainNumber: ITarget;
+  var assistMicrophoneMicVolumeNumber: ITarget;
+  var tumbleDryerSmartPlugTurnOffInNumber: ITarget;
+  var tumbleDryerSmartPlugPowerProtectionNumber: ITarget;
+  var homeAssistantServerTurnOffInNumber: ITarget;
+  var homeAssistantServerPowerProtectionNumber: ITarget;
+  var imacSmartPlugTurnOffIn_2Number: ITarget;
+  var imacSmartPlugPowerProtectionNumber: ITarget;
+  var livingRoomHeaterSmartPlugTurnOffInNumber: ITarget;
+  var livingRoomHeaterSmartPlugPowerProtectionNumber: ITarget;
+  var frontDoorVolumeNumber: ITarget;
+  var aliceMaxSoilMoistureNumber: ITarget;
+  var aliceMinSoilMoistureNumber: ITarget;
+  var aliceMaxTemperatureNumber: ITarget;
+  var aliceMinTemperatureNumber: ITarget;
+  var aliceMaxIlluminanceNumber: ITarget;
+  var aliceMinIlluminanceNumber: ITarget;
+  var aliceMaxConductivityNumber: ITarget;
+  var aliceMinConductivityNumber: ITarget;
+  var aliceMaxAirHumidityNumber: ITarget;
+  var aliceMinAirHumidityNumber: ITarget;
+  var aliceMaxDliNumber: ITarget;
+  var aliceMinDliNumber: ITarget;
+  var bathroomMotionSensorOccupancyTimeoutNumber: ITarget;
+  var hallwayMotionSensorOccupancyTimeoutNumber: ITarget;
+  var bedroomSpeakerBassNumber: ITarget;
+  var bedroomSpeakerBalanceNumber: ITarget;
+  var bedroomSpeakerTrebleNumber: ITarget;
+  var sonosArcUltraAudioDelayNumber: ITarget;
+  var sonosArcUltraBassNumber: ITarget;
+  var sonosArcUltraBalanceNumber: ITarget;
+  var sonosArcUltraTrebleNumber: ITarget;
+  var sonosArcUltraSurroundLevelNumber: ITarget;
+  var sonosArcUltraMusicSurroundLevelNumber: ITarget;
+  var officeTrebleNumber: ITarget;
+  var frontDoorDoorbellMqttDingDurationNumber: ITarget;
+  var frontDoorDoorbellMqttMotionDurationNumber: ITarget;
+  var frontDoorDoorbellMqttSnapshotIntervalNumber: ITarget;
+}
+
+globalThis.assistMicrophoneAutoGainNumber = entity(
   'number.assist_microphone_auto_gain',
 );
-export const assistMicrophoneMicVolumeNumber = entity(
+globalThis.assistMicrophoneMicVolumeNumber = entity(
   'number.assist_microphone_mic_volume',
 );
-export const tumbleDryerSmartPlugTurnOffInNumber = entity(
+globalThis.tumbleDryerSmartPlugTurnOffInNumber = entity(
   'number.tumble_dryer_smart_plug_turn_off_in',
 );
-export const tumbleDryerSmartPlugPowerProtectionNumber = entity(
+globalThis.tumbleDryerSmartPlugPowerProtectionNumber = entity(
   'number.tumble_dryer_smart_plug_power_protection',
 );
-export const homeAssistantServerTurnOffInNumber = entity(
+globalThis.homeAssistantServerTurnOffInNumber = entity(
   'number.home_assistant_server_turn_off_in',
 );
-export const homeAssistantServerPowerProtectionNumber = entity(
+globalThis.homeAssistantServerPowerProtectionNumber = entity(
   'number.home_assistant_server_power_protection',
 );
-export const imacSmartPlugTurnOffIn_2Number = entity(
+globalThis.imacSmartPlugTurnOffIn_2Number = entity(
   'number.imac_smart_plug_turn_off_in_2',
 );
-export const imacSmartPlugPowerProtectionNumber = entity(
+globalThis.imacSmartPlugPowerProtectionNumber = entity(
   'number.imac_smart_plug_power_protection',
 );
-export const livingRoomHeaterSmartPlugTurnOffInNumber = entity(
+globalThis.livingRoomHeaterSmartPlugTurnOffInNumber = entity(
   'number.living_room_heater_smart_plug_turn_off_in',
 );
-export const livingRoomHeaterSmartPlugPowerProtectionNumber = entity(
+globalThis.livingRoomHeaterSmartPlugPowerProtectionNumber = entity(
   'number.living_room_heater_smart_plug_power_protection',
 );
-export const frontDoorVolumeNumber = entity('number.front_door_volume');
-export const aliceMaxSoilMoistureNumber = entity(
+globalThis.frontDoorVolumeNumber = entity('number.front_door_volume');
+globalThis.aliceMaxSoilMoistureNumber = entity(
   'number.alice_max_soil_moisture',
 );
-export const aliceMinSoilMoistureNumber = entity(
+globalThis.aliceMinSoilMoistureNumber = entity(
   'number.alice_min_soil_moisture',
 );
-export const aliceMaxTemperatureNumber = entity('number.alice_max_temperature');
-export const aliceMinTemperatureNumber = entity('number.alice_min_temperature');
-export const aliceMaxIlluminanceNumber = entity('number.alice_max_illuminance');
-export const aliceMinIlluminanceNumber = entity('number.alice_min_illuminance');
-export const aliceMaxConductivityNumber = entity(
-  'number.alice_max_conductivity',
-);
-export const aliceMinConductivityNumber = entity(
-  'number.alice_min_conductivity',
-);
-export const aliceMaxAirHumidityNumber = entity(
-  'number.alice_max_air_humidity',
-);
-export const aliceMinAirHumidityNumber = entity(
-  'number.alice_min_air_humidity',
-);
-export const aliceMaxDliNumber = entity('number.alice_max_dli');
-export const aliceMinDliNumber = entity('number.alice_min_dli');
-export const bathroomMotionSensorOccupancyTimeoutNumber = entity(
+globalThis.aliceMaxTemperatureNumber = entity('number.alice_max_temperature');
+globalThis.aliceMinTemperatureNumber = entity('number.alice_min_temperature');
+globalThis.aliceMaxIlluminanceNumber = entity('number.alice_max_illuminance');
+globalThis.aliceMinIlluminanceNumber = entity('number.alice_min_illuminance');
+globalThis.aliceMaxConductivityNumber = entity('number.alice_max_conductivity');
+globalThis.aliceMinConductivityNumber = entity('number.alice_min_conductivity');
+globalThis.aliceMaxAirHumidityNumber = entity('number.alice_max_air_humidity');
+globalThis.aliceMinAirHumidityNumber = entity('number.alice_min_air_humidity');
+globalThis.aliceMaxDliNumber = entity('number.alice_max_dli');
+globalThis.aliceMinDliNumber = entity('number.alice_min_dli');
+globalThis.bathroomMotionSensorOccupancyTimeoutNumber = entity(
   'number.bathroom_motion_sensor_occupancy_timeout',
 );
-export const hallwayMotionSensorOccupancyTimeoutNumber = entity(
+globalThis.hallwayMotionSensorOccupancyTimeoutNumber = entity(
   'number.hallway_motion_sensor_occupancy_timeout',
 );
-export const bedroomSpeakerBassNumber = entity('number.bedroom_speaker_bass');
-export const bedroomSpeakerBalanceNumber = entity(
+globalThis.bedroomSpeakerBassNumber = entity('number.bedroom_speaker_bass');
+globalThis.bedroomSpeakerBalanceNumber = entity(
   'number.bedroom_speaker_balance',
 );
-export const bedroomSpeakerTrebleNumber = entity(
-  'number.bedroom_speaker_treble',
-);
-export const sonosArcUltraAudioDelayNumber = entity(
+globalThis.bedroomSpeakerTrebleNumber = entity('number.bedroom_speaker_treble');
+globalThis.sonosArcUltraAudioDelayNumber = entity(
   'number.sonos_arc_ultra_audio_delay',
 );
-export const sonosArcUltraBassNumber = entity('number.sonos_arc_ultra_bass');
-export const sonosArcUltraBalanceNumber = entity(
+globalThis.sonosArcUltraBassNumber = entity('number.sonos_arc_ultra_bass');
+globalThis.sonosArcUltraBalanceNumber = entity(
   'number.sonos_arc_ultra_balance',
 );
-export const sonosArcUltraTrebleNumber = entity(
-  'number.sonos_arc_ultra_treble',
-);
-export const sonosArcUltraSurroundLevelNumber = entity(
+globalThis.sonosArcUltraTrebleNumber = entity('number.sonos_arc_ultra_treble');
+globalThis.sonosArcUltraSurroundLevelNumber = entity(
   'number.sonos_arc_ultra_surround_level',
 );
-export const sonosArcUltraMusicSurroundLevelNumber = entity(
+globalThis.sonosArcUltraMusicSurroundLevelNumber = entity(
   'number.sonos_arc_ultra_music_surround_level',
 );
-export const officeTrebleNumber = entity('number.office_treble');
-export const frontDoorDoorbellMqttDingDurationNumber = entity(
+globalThis.officeTrebleNumber = entity('number.office_treble');
+globalThis.frontDoorDoorbellMqttDingDurationNumber = entity(
   'number.front_door_doorbell_mqtt_ding_duration',
 );
-export const frontDoorDoorbellMqttMotionDurationNumber = entity(
+globalThis.frontDoorDoorbellMqttMotionDurationNumber = entity(
   'number.front_door_doorbell_mqtt_motion_duration',
 );
-export const frontDoorDoorbellMqttSnapshotIntervalNumber = entity(
+globalThis.frontDoorDoorbellMqttSnapshotIntervalNumber = entity(
   'number.front_door_doorbell_mqtt_snapshot_interval',
 );

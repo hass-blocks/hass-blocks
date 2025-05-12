@@ -1,10 +1,5 @@
-import {
-  closeCover,
-  openCover,
-  stateChanges,
-  stateIs,
-  turnSwitch,
-} from '@hass-blocks/blocks';
+import { stateChanges, stateIs, turnSwitch } from '@hass-blocks/blocks';
+
 import { automation, sequence, when } from '@hass-blocks/core';
 import {
   blindsDefaultOpen,
@@ -17,12 +12,9 @@ import {
   livingRoomBlindsRightCentreWindowSwitch,
   livingRoomBlindsRightWindow,
   livingRoomBlindsRightWindowSwitch,
-  sun,
 } from '../entities.ts';
-import {
-  closeLivingRoomBlinds,
-  openLivingRoomBlinds,
-} from '../actions/blinds.ts';
+
+import '@blocks-codegen';
 
 export const blindsDefaultPosition = automation({
   name: 'Blinds default position changes',
@@ -31,11 +23,11 @@ export const blindsDefaultPosition = automation({
     when(stateIs(blindsDefaultOpen, 'on'), {
       then: sequence(
         when(stateIs(homeMode, 'on'), {
-          then: openLivingRoomBlinds,
-          else: closeLivingRoomBlinds,
+          then: openCoverCover(livingRoomBlindsCover),
+          else: closeCoverCover(livingRoomBlindsCover),
         }),
       ),
-      else: closeLivingRoomBlinds,
+      else: closeCoverCover(livingRoomBlindsCover),
     }),
   ],
 });
@@ -45,8 +37,8 @@ export const livingRoomBlindsLeft = automation({
   when: stateChanges(livingRoomBlindsLeftWindowSwitch),
   then: [
     when(stateIs(livingRoomBlindsLeftWindowSwitch, 'on'), {
-      then: openCover(livingRoomBlindsLeftWindow),
-      else: closeCover(livingRoomBlindsLeftWindow),
+      then: openCoverCover(livingRoomBlindsLeftWindow),
+      else: closeCoverCover(livingRoomBlindsLeftWindow),
     }),
   ],
 });
@@ -56,8 +48,8 @@ export const livingRoomBlindsLeftCentre = automation({
   when: stateChanges(livingRoomBlindsLeftCentreWindowSwitch),
   then: [
     when(stateIs(livingRoomBlindsLeftCentreWindowSwitch, 'on'), {
-      then: openCover(livingRoomBlindsLeftCentreWindow),
-      else: closeCover(livingRoomBlindsLeftCentreWindow),
+      then: openCoverCover(livingRoomBlindsLeftCentreWindow),
+      else: closeCoverCover(livingRoomBlindsLeftCentreWindow),
     }),
   ],
 });
@@ -67,8 +59,8 @@ export const livingRoomBlindsRight = automation({
   when: stateChanges(livingRoomBlindsRightWindowSwitch),
   then: [
     when(stateIs(livingRoomBlindsRightWindowSwitch, 'on'), {
-      then: openCover(livingRoomBlindsRightWindow),
-      else: closeCover(livingRoomBlindsRightWindow),
+      then: openCoverCover(livingRoomBlindsRightWindow),
+      else: closeCoverCover(livingRoomBlindsRightWindow),
     }),
   ],
 });
@@ -78,14 +70,17 @@ export const livingRoomBlindsRightCentre = automation({
   when: stateChanges(livingRoomBlindsRightCentreWindowSwitch),
   then: [
     when(stateIs(livingRoomBlindsRightCentreWindowSwitch, 'on'), {
-      then: openCover(livingRoomBlindsRightCentreWindow),
-      else: closeCover(livingRoomBlindsRightCentreWindow),
+      then: openCoverCover(livingRoomBlindsRightCentreWindow),
+      else: closeCoverCover(livingRoomBlindsRightCentreWindow),
     }),
   ],
 });
 
 export const closeBlindsAtSunset = automation({
   name: 'Close blinds at sunset',
-  when: stateChanges(sun),
-  then: [stateIs(sun, 'below_horizon'), turnSwitch(blindsDefaultOpen, 'off')],
+  when: stateChanges(sunSun),
+  then: [
+    stateIs(sunSun, 'below_horizon'),
+    turnSwitch(blindsDefaultOpen, 'off'),
+  ],
 });

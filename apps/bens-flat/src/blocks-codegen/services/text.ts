@@ -1,4 +1,10 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sets the value.
+   */
+  var setValueText: (target: ITarget, params: SetValueTextProps) => Block;
+}
 
 export interface SetValueTextProps {
   /**
@@ -7,10 +13,7 @@ export interface SetValueTextProps {
   value: string;
 }
 
-/**
- * Sets the value.
- */
-export const setValueText = (target: ITarget, params: SetValueTextProps) =>
+globalThis.setValueText = (target: ITarget, params: SetValueTextProps) =>
   serviceCall({
     name: `Call text.set_value`,
     params: {

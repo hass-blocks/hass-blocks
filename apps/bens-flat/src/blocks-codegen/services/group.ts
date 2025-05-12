@@ -1,9 +1,20 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads group configuration, entities, and notify services from YAML-configuration.
+   */
+  var reloadGroup: () => Block;
+  /**
+   * Creates/Updates a group.
+   */
+  var setGroup: (params: SetGroupProps) => Block;
+  /**
+   * Removes a group.
+   */
+  var removeGroup: (params: RemoveGroupProps) => Block;
+}
 
-/**
- * Reloads group configuration, entities, and notify services from YAML-configuration.
- */
-export const reloadGroup = () =>
+globalThis.reloadGroup = () =>
   serviceCall({
     name: `Call group.reload`,
     params: {
@@ -43,10 +54,7 @@ export interface SetGroupProps {
   all?: boolean;
 }
 
-/**
- * Creates/Updates a group.
- */
-export const setGroup = (params: SetGroupProps) =>
+globalThis.setGroup = (params: SetGroupProps) =>
   serviceCall({
     name: `Call group.set`,
     params: {
@@ -63,10 +71,7 @@ export interface RemoveGroupProps {
   object_id: never;
 }
 
-/**
- * Removes a group.
- */
-export const removeGroup = (params: RemoveGroupProps) =>
+globalThis.removeGroup = (params: RemoveGroupProps) =>
   serviceCall({
     name: `Call group.remove`,
     params: {

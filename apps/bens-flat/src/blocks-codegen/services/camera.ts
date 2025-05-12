@@ -1,11 +1,47 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Enables the motion detection.
+   */
+  var enableMotionDetectionCamera: (
+    target: ITarget,
+    params?: EnableMotionDetectionCameraProps,
+  ) => Block;
+  /**
+   * Disables the motion detection.
+   */
+  var disableMotionDetectionCamera: (
+    target: ITarget,
+    params?: DisableMotionDetectionCameraProps,
+  ) => Block;
+  /**
+   * Turns off the camera.
+   */
+  var turnOffCamera: (target: ITarget, params?: TurnOffCameraProps) => Block;
+  /**
+   * Turns on the camera.
+   */
+  var turnOnCamera: (target: ITarget, params?: TurnOnCameraProps) => Block;
+  /**
+   * Takes a snapshot from a camera.
+   */
+  var snapshotCamera: (target: ITarget, params: SnapshotCameraProps) => Block;
+  /**
+   * Plays the camera stream on a supported media player.
+   */
+  var playStreamCamera: (
+    target: ITarget,
+    params: PlayStreamCameraProps,
+  ) => Block;
+  /**
+   * Creates a recording of a live camera feed.
+   */
+  var recordCamera: (target: ITarget, params: RecordCameraProps) => Block;
+}
 
 export interface EnableMotionDetectionCameraProps {}
 
-/**
- * Enables the motion detection.
- */
-export const enableMotionDetectionCamera = (
+globalThis.enableMotionDetectionCamera = (
   target: ITarget,
   params?: EnableMotionDetectionCameraProps,
 ) =>
@@ -21,10 +57,7 @@ export const enableMotionDetectionCamera = (
 
 export interface DisableMotionDetectionCameraProps {}
 
-/**
- * Disables the motion detection.
- */
-export const disableMotionDetectionCamera = (
+globalThis.disableMotionDetectionCamera = (
   target: ITarget,
   params?: DisableMotionDetectionCameraProps,
 ) =>
@@ -40,10 +73,7 @@ export const disableMotionDetectionCamera = (
 
 export interface TurnOffCameraProps {}
 
-/**
- * Turns off the camera.
- */
-export const turnOffCamera = (target: ITarget, params?: TurnOffCameraProps) =>
+globalThis.turnOffCamera = (target: ITarget, params?: TurnOffCameraProps) =>
   serviceCall({
     name: `Call camera.turn_off`,
     params: {
@@ -56,10 +86,7 @@ export const turnOffCamera = (target: ITarget, params?: TurnOffCameraProps) =>
 
 export interface TurnOnCameraProps {}
 
-/**
- * Turns on the camera.
- */
-export const turnOnCamera = (target: ITarget, params?: TurnOnCameraProps) =>
+globalThis.turnOnCamera = (target: ITarget, params?: TurnOnCameraProps) =>
   serviceCall({
     name: `Call camera.turn_on`,
     params: {
@@ -77,10 +104,7 @@ export interface SnapshotCameraProps {
   filename: string;
 }
 
-/**
- * Takes a snapshot from a camera.
- */
-export const snapshotCamera = (target: ITarget, params: SnapshotCameraProps) =>
+globalThis.snapshotCamera = (target: ITarget, params: SnapshotCameraProps) =>
   serviceCall({
     name: `Call camera.snapshot`,
     params: {
@@ -102,10 +126,7 @@ export interface PlayStreamCameraProps {
   format?: never;
 }
 
-/**
- * Plays the camera stream on a supported media player.
- */
-export const playStreamCamera = (
+globalThis.playStreamCamera = (
   target: ITarget,
   params: PlayStreamCameraProps,
 ) =>
@@ -134,10 +155,7 @@ export interface RecordCameraProps {
   lookback?: number;
 }
 
-/**
- * Creates a recording of a live camera feed.
- */
-export const recordCamera = (target: ITarget, params: RecordCameraProps) =>
+globalThis.recordCamera = (target: ITarget, params: RecordCameraProps) =>
   serviceCall({
     name: `Call camera.record`,
     params: {

@@ -1,55 +1,51 @@
 import { automation, concurrently } from '@hass-blocks/core';
 import { imLessThen20kmAway, imMoreThan20KmAway } from '../triggers/zone.ts';
-import {
-  stateTurns,
-  switchClimate,
-  turnOffAllSchedulers,
-  turnOnAllSchedulers,
-  turnSwitch,
-} from '@hass-blocks/blocks';
 import { allRooms } from '../areas.ts';
 import { notifyMyPhone } from '../actions/notify.ts';
-import { allHeatingAndBoilerSwitches, homeMode } from '../entities.ts';
+import { allHeatingAndBoilerSwitches } from '../entities.ts';
+import { stateTurns } from '@hass-blocks/blocks';
+
+import '@blocks-codegen';
 
 export const holidayModeOn = automation({
   name: 'Holiday Mode On',
   when: imMoreThan20KmAway,
-  then: [turnSwitch(homeMode, 'on')],
+  then: [turnOnSwitch(homeModeSwitch)],
 });
 
 export const holidayModeOff = automation({
   name: 'Holiday Mode Off',
   when: imLessThen20kmAway,
-  then: [turnSwitch(homeMode, 'off')],
+  then: [turnOffSwitch(homeModeSwitch)],
 });
 
 export const holidayModeTurnsOn = automation({
   name: 'Holiday Mode Turns on',
-  when: stateTurns(homeMode, 'on'),
+  when: stateTurns(homeModeSwitch, 'on'),
   then: [
     concurrently(
       notifyMyPhone({
         message: 'Holiday mode turned on. Enjoy your time away!',
         title: 'Holiday mode',
       }),
-      switchClimate(allRooms, 'off'),
-      turnSwitch(allHeatingAndBoilerSwitches, 'off'),
-      turnOnAllSchedulers,
+      turnOffClimate(allRooms),
+      turnOffSwitch(allHeatingAndBoilerSwitches),
+      enableAllScheduler(),
     ),
   ],
 });
 
 export const holidayModeTurnsOff = automation({
   name: 'Holiday Mode Turns Off',
-  when: stateTurns(homeMode, 'off'),
+  when: stateTurns(homeModeSwitch, 'off'),
   then: [
     concurrently(
       notifyMyPhone({
         message: 'Holiday mode turned off… welcome home!',
         title: 'Holiday mode',
       }),
-      switchClimate(allRooms, 'on'),
-      turnOffAllSchedulers,
+      turnOnClimate(allRooms),
+      turnOffSwitch(allHeatingAndBoilerSwitches),
     ),
   ],
 });

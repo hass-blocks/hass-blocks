@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const sunSun = entity('sun.sun');
+declare global {
+  var sunSun: ITarget;
+}
+
+globalThis.sunSun = entity('sun.sun');

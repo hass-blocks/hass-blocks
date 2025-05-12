@@ -1,11 +1,45 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns the humidifier on.
+   */
+  var turnOnHumidifier: (
+    target: ITarget,
+    params?: TurnOnHumidifierProps,
+  ) => Block;
+  /**
+   * Turns the humidifier off.
+   */
+  var turnOffHumidifier: (
+    target: ITarget,
+    params?: TurnOffHumidifierProps,
+  ) => Block;
+  /**
+   * Toggles the humidifier on/off.
+   */
+  var toggleHumidifier: (
+    target: ITarget,
+    params?: ToggleHumidifierProps,
+  ) => Block;
+  /**
+   * Sets the humidifier operation mode.
+   */
+  var setModeHumidifier: (
+    target: ITarget,
+    params: SetModeHumidifierProps,
+  ) => Block;
+  /**
+   * Sets the target humidity.
+   */
+  var setHumidityHumidifier: (
+    target: ITarget,
+    params: SetHumidityHumidifierProps,
+  ) => Block;
+}
 
 export interface TurnOnHumidifierProps {}
 
-/**
- * Turns the humidifier on.
- */
-export const turnOnHumidifier = (
+globalThis.turnOnHumidifier = (
   target: ITarget,
   params?: TurnOnHumidifierProps,
 ) =>
@@ -21,10 +55,7 @@ export const turnOnHumidifier = (
 
 export interface TurnOffHumidifierProps {}
 
-/**
- * Turns the humidifier off.
- */
-export const turnOffHumidifier = (
+globalThis.turnOffHumidifier = (
   target: ITarget,
   params?: TurnOffHumidifierProps,
 ) =>
@@ -40,10 +71,7 @@ export const turnOffHumidifier = (
 
 export interface ToggleHumidifierProps {}
 
-/**
- * Toggles the humidifier on/off.
- */
-export const toggleHumidifier = (
+globalThis.toggleHumidifier = (
   target: ITarget,
   params?: ToggleHumidifierProps,
 ) =>
@@ -64,10 +92,7 @@ export interface SetModeHumidifierProps {
   mode: string;
 }
 
-/**
- * Sets the humidifier operation mode.
- */
-export const setModeHumidifier = (
+globalThis.setModeHumidifier = (
   target: ITarget,
   params: SetModeHumidifierProps,
 ) =>
@@ -88,10 +113,7 @@ export interface SetHumidityHumidifierProps {
   humidity: number;
 }
 
-/**
- * Sets the target humidity.
- */
-export const setHumidityHumidifier = (
+globalThis.setHumidityHumidifier = (
   target: ITarget,
   params: SetHumidityHumidifierProps,
 ) =>

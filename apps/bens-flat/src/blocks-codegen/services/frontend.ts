@@ -1,4 +1,14 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sets the default theme Home Assistant uses. Can be overridden by a user.
+   */
+  var setThemeFrontend: (params: SetThemeFrontendProps) => Block;
+  /**
+   * Reloads themes from the YAML-configuration.
+   */
+  var reloadThemesFrontend: () => Block;
+}
 
 export interface SetThemeFrontendProps {
   /**
@@ -11,10 +21,7 @@ export interface SetThemeFrontendProps {
   mode?: never;
 }
 
-/**
- * Sets the default theme Home Assistant uses. Can be overridden by a user.
- */
-export const setThemeFrontend = (params: SetThemeFrontendProps) =>
+globalThis.setThemeFrontend = (params: SetThemeFrontendProps) =>
   serviceCall({
     name: `Call frontend.set_theme`,
     params: {
@@ -24,10 +31,7 @@ export const setThemeFrontend = (params: SetThemeFrontendProps) =>
     },
   });
 
-/**
- * Reloads themes from the YAML-configuration.
- */
-export const reloadThemesFrontend = () =>
+globalThis.reloadThemesFrontend = () =>
   serviceCall({
     name: `Call frontend.reload_themes`,
     params: {

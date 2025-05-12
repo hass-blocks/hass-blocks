@@ -1,11 +1,24 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Resets all counters of a utility meter.
+   */
+  var resetUtilityMeter: (
+    target: ITarget,
+    params?: ResetUtilityMeterProps,
+  ) => Block;
+  /**
+   * Calibrates a utility meter sensor.
+   */
+  var calibrateUtilityMeter: (
+    target: ITarget,
+    params: CalibrateUtilityMeterProps,
+  ) => Block;
+}
 
 export interface ResetUtilityMeterProps {}
 
-/**
- * Resets all counters of a utility meter.
- */
-export const resetUtilityMeter = (
+globalThis.resetUtilityMeter = (
   target: ITarget,
   params?: ResetUtilityMeterProps,
 ) =>
@@ -26,10 +39,7 @@ export interface CalibrateUtilityMeterProps {
   value: string;
 }
 
-/**
- * Calibrates a utility meter sensor.
- */
-export const calibrateUtilityMeter = (
+globalThis.calibrateUtilityMeter = (
   target: ITarget,
   params: CalibrateUtilityMeterProps,
 ) =>

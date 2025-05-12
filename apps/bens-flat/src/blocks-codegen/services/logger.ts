@@ -1,4 +1,14 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sets the default log level for integrations.
+   */
+  var setDefaultLevelLogger: (params?: SetDefaultLevelLoggerProps) => Block;
+  /**
+   * Sets the log level for one or more integrations.
+   */
+  var setLevelLogger: () => Block;
+}
 
 export interface SetDefaultLevelLoggerProps {
   /**
@@ -7,10 +17,7 @@ export interface SetDefaultLevelLoggerProps {
   level?: never;
 }
 
-/**
- * Sets the default log level for integrations.
- */
-export const setDefaultLevelLogger = (params?: SetDefaultLevelLoggerProps) =>
+globalThis.setDefaultLevelLogger = (params?: SetDefaultLevelLoggerProps) =>
   serviceCall({
     name: `Call logger.set_default_level`,
     params: {
@@ -20,10 +27,7 @@ export const setDefaultLevelLogger = (params?: SetDefaultLevelLoggerProps) =>
     },
   });
 
-/**
- * Sets the log level for one or more integrations.
- */
-export const setLevelLogger = () =>
+globalThis.setLevelLogger = () =>
   serviceCall({
     name: `Call logger.set_level`,
     params: {

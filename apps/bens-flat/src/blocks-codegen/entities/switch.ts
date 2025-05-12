@@ -1,322 +1,437 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const adaptiveLightingSleepModeLivingRoomSwitch = entity(
+declare global {
+  var adaptiveLightingSleepModeLivingRoomSwitch: ITarget;
+  var adaptiveLightingAdaptColorLivingRoomSwitch: ITarget;
+  var adaptiveLightingAdaptBrightnessLivingRoomSwitch: ITarget;
+  var adaptiveLightingLivingRoomSwitch: ITarget;
+  var adaptiveLightingSleepModeBathroomSwitch: ITarget;
+  var adaptiveLightingAdaptColorBathroomSwitch: ITarget;
+  var adaptiveLightingAdaptBrightnessBathroomSwitch: ITarget;
+  var adaptiveLightingBathroomSwitch: ITarget;
+  var adaptiveLightingSleepModeHallwaySwitch: ITarget;
+  var adaptiveLightingAdaptColorHallwaySwitch: ITarget;
+  var adaptiveLightingAdaptBrightnessHallwaySwitch: ITarget;
+  var adaptiveLightingHallwaySwitch: ITarget;
+  var adaptiveLightingSleepModeBedroomSwitch: ITarget;
+  var adaptiveLightingAdaptColorBedroomSwitch: ITarget;
+  var adaptiveLightingAdaptBrightnessBedroomSwitch: ITarget;
+  var adaptiveLightingBedroomSwitch: ITarget;
+  var automationWakeUpSwitch: ITarget;
+  var automationLeavingHomeSwitch: ITarget;
+  var boilerBoostSwitch: ITarget;
+  var livingRoomHeaterDiningTableSwitch: ITarget;
+  var boilerSwitch: ITarget;
+  var shellyemA4e57cba73f5Switch: ITarget;
+  var qbittorrentAlternativeSpeedSwitch: ITarget;
+  var livingRoomHeatingSwitchSwitch: ITarget;
+  var bedroomHeatingSwitchSwitch: ITarget;
+  var gymHeatingSwitchSwitch: ITarget;
+  var genericRemoteControlCardPreReleaseSwitch: ITarget;
+  var sonosAlarmPreReleaseSwitch: ITarget;
+  var livingRoomTvOnSwitch: ITarget;
+  var imacProOnSwitch: ITarget;
+  var scheduleLivingRoomThermostatTrainingDaysSwitch: ITarget;
+  var scheduleBedroomThermostatWeekendSwitch: ITarget;
+  var scheduleLivingRoomThermostatWeekendSwitch: ITarget;
+  var scheduleBedroomThermostatWeekdaysSwitch: ITarget;
+  var scheduleBoilerSwitch: ITarget;
+  var scheduleLivingRoomThermostatFridaySwitch: ITarget;
+  var scheduleLivingRoomThermostatNonTrainingDaysSwitch: ITarget;
+  var adguardHomeProtectionSwitch: ITarget;
+  var adguardHomeParentalControlSwitch: ITarget;
+  var adguardHomeSafeSearchSwitch: ITarget;
+  var adguardHomeSafeBrowsingSwitch: ITarget;
+  var adguardHomeFilteringSwitch: ITarget;
+  var adguardHomeQueryLogSwitch: ITarget;
+  var assistMicrophoneMuteSwitch: ITarget;
+  var tumbleDryerSmartPlugSwitch: ITarget;
+  var tumbleDryerSmartPlugAutoOffEnabledSwitch: ITarget;
+  var tumbleDryerSmartPlugAutoUpdateEnabledSwitch: ITarget;
+  var tumbleDryerSmartPlugLedSwitch: ITarget;
+  var homeAssistantServerSwitch: ITarget;
+  var homeAssistantServerAutoOffEnabledSwitch: ITarget;
+  var homeAssistantServerAutoUpdateEnabledSwitch: ITarget;
+  var homeAssistantServerLedSwitch: ITarget;
+  var imacSmartPlug_2Switch: ITarget;
+  var imacSmartPlugAutoOffEnabled_2Switch: ITarget;
+  var imacSmartPlugAutoUpdateEnabled_2Switch: ITarget;
+  var imacSmartPlugLed_2Switch: ITarget;
+  var livingRoomHeaterSmartPlugSwitch: ITarget;
+  var livingRoomHeaterSmartPlugAutoOffEnabledSwitch: ITarget;
+  var livingRoomHeaterSmartPlugAutoUpdateEnabledSwitch: ITarget;
+  var livingRoomHeaterSmartPlugLedSwitch: ITarget;
+  var frontDoorMotionDetectionSwitch: ITarget;
+  var bedroomSpeakerCrossfadeSwitch: ITarget;
+  var bedroomSpeakerLoudnessSwitch: ITarget;
+  var bathroomMotionSensorLedIndicationSwitch: ITarget;
+  var hallwayMotionSensorLedIndicationSwitch: ITarget;
+  var zigbee2mqttBridgePermitJoinSwitch: ITarget;
+  var sonosArcUltraCrossfadeSwitch: ITarget;
+  var sonosArcUltraLoudnessSwitch: ITarget;
+  var sonosArcUltraSurroundMusicFullVolumeSwitch: ITarget;
+  var sonosArcUltraNightSoundSwitch: ITarget;
+  var sonosArcUltraSpeechEnhancementSwitch: ITarget;
+  var sonosArcUltraSurroundEnabledSwitch: ITarget;
+  var benSSonosOneSecondEditionDoNotDisturbSwitchSwitch: ITarget;
+  var benSSonosOneSecondEditionShuffleSwitchSwitch: ITarget;
+  var benSSonosOneSecondEditionRepeatSwitchSwitch: ITarget;
+  var bedroomSpeakerDoNotDisturbSwitchSwitch: ITarget;
+  var bedroomSpeakerShuffleSwitchSwitch: ITarget;
+  var bedroomSpeakerRepeatSwitchSwitch: ITarget;
+  var officeDoNotDisturbSwitchSwitch: ITarget;
+  var officeShuffleSwitchSwitch: ITarget;
+  var officeRepeatSwitchSwitch: ITarget;
+  var benS_2ndSonosOneSecondEditionDoNotDisturbSwitchSwitch: ITarget;
+  var benS_2ndSonosOneSecondEditionShuffleSwitchSwitch: ITarget;
+  var benS_2ndSonosOneSecondEditionRepeatSwitchSwitch: ITarget;
+  var benS_3rdSonosOneSecondEditionDoNotDisturbSwitchSwitch: ITarget;
+  var benS_3rdSonosOneSecondEditionShuffleSwitchSwitch: ITarget;
+  var benS_3rdSonosOneSecondEditionRepeatSwitchSwitch: ITarget;
+  var livingRoomDoNotDisturbSwitchSwitch: ITarget;
+  var livingRoomShuffleSwitchSwitch: ITarget;
+  var livingRoomRepeatSwitchSwitch: ITarget;
+  var sonosArcUltraDoNotDisturbSwitchSwitch: ITarget;
+  var sonosArcUltraShuffleSwitchSwitch: ITarget;
+  var sonosArcUltraRepeatSwitchSwitch: ITarget;
+  var livingRoomSonosDoNotDisturbSwitchSwitch: ITarget;
+  var livingRoomSonosShuffleSwitchSwitch: ITarget;
+  var livingRoomSonosRepeatSwitchSwitch: ITarget;
+  var thisDeviceDoNotDisturbSwitch_2Switch: ITarget;
+  var officeCrossfadeSwitch: ITarget;
+  var officeLoudnessSwitch: ITarget;
+  var livingRoomMainTurnonSwitch: ITarget;
+  var holidayModeSwitch: ITarget;
+  var sleepModeSwitch: ITarget;
+  var bedroomMotionSensorSwitch: ITarget;
+  var livingRoomMotionSensorSwitch: ITarget;
+  var hallwayMotionSensorSwitch: ITarget;
+  var bathroomMotionSensorSwitch: ITarget;
+  var frontDoorDoorbellMqttEventStreamSwitch: ITarget;
+  var frontDoorDoorbellMqttLiveStreamSwitch: ITarget;
+  var frontDoorDoorbellMqttMotionDetectionSwitch: ITarget;
+  var stateTestingBinarySwitchSwitch: ITarget;
+  var goodMorningMessagePlayedSwitch: ITarget;
+  var livingRoomBlindsDefaultToOpenSwitch: ITarget;
+  var tvModeSwitch: ITarget;
+  var benIsHomeSwitch: ITarget;
+  var homeModeSwitch: ITarget;
+  var visitorModeSwitch: ITarget;
+  var nagModeSwitch: ITarget;
+  var openBlindsSwitch: ITarget;
+  var livingRoomBlindsLeftWindowSwitch: ITarget;
+  var livingRoomBlindsLeftCentreWindowSwitch: ITarget;
+  var livingRoomBlindsRightCentreWindowSwitch: ITarget;
+  var livingRoomBlindsRightWindowSwitch: ITarget;
+  var quetModeSwitch: ITarget;
+  var quietModeSwitch: ITarget;
+}
+
+globalThis.adaptiveLightingSleepModeLivingRoomSwitch = entity(
   'switch.adaptive_lighting_sleep_mode_living_room',
 );
-export const adaptiveLightingAdaptColorLivingRoomSwitch = entity(
+globalThis.adaptiveLightingAdaptColorLivingRoomSwitch = entity(
   'switch.adaptive_lighting_adapt_color_living_room',
 );
-export const adaptiveLightingAdaptBrightnessLivingRoomSwitch = entity(
+globalThis.adaptiveLightingAdaptBrightnessLivingRoomSwitch = entity(
   'switch.adaptive_lighting_adapt_brightness_living_room',
 );
-export const adaptiveLightingLivingRoomSwitch = entity(
+globalThis.adaptiveLightingLivingRoomSwitch = entity(
   'switch.adaptive_lighting_living_room',
 );
-export const adaptiveLightingSleepModeBathroomSwitch = entity(
+globalThis.adaptiveLightingSleepModeBathroomSwitch = entity(
   'switch.adaptive_lighting_sleep_mode_bathroom',
 );
-export const adaptiveLightingAdaptColorBathroomSwitch = entity(
+globalThis.adaptiveLightingAdaptColorBathroomSwitch = entity(
   'switch.adaptive_lighting_adapt_color_bathroom',
 );
-export const adaptiveLightingAdaptBrightnessBathroomSwitch = entity(
+globalThis.adaptiveLightingAdaptBrightnessBathroomSwitch = entity(
   'switch.adaptive_lighting_adapt_brightness_bathroom',
 );
-export const adaptiveLightingBathroomSwitch = entity(
+globalThis.adaptiveLightingBathroomSwitch = entity(
   'switch.adaptive_lighting_bathroom',
 );
-export const adaptiveLightingSleepModeHallwaySwitch = entity(
+globalThis.adaptiveLightingSleepModeHallwaySwitch = entity(
   'switch.adaptive_lighting_sleep_mode_hallway',
 );
-export const adaptiveLightingAdaptColorHallwaySwitch = entity(
+globalThis.adaptiveLightingAdaptColorHallwaySwitch = entity(
   'switch.adaptive_lighting_adapt_color_hallway',
 );
-export const adaptiveLightingAdaptBrightnessHallwaySwitch = entity(
+globalThis.adaptiveLightingAdaptBrightnessHallwaySwitch = entity(
   'switch.adaptive_lighting_adapt_brightness_hallway',
 );
-export const adaptiveLightingHallwaySwitch = entity(
+globalThis.adaptiveLightingHallwaySwitch = entity(
   'switch.adaptive_lighting_hallway',
 );
-export const adaptiveLightingSleepModeBedroomSwitch = entity(
+globalThis.adaptiveLightingSleepModeBedroomSwitch = entity(
   'switch.adaptive_lighting_sleep_mode_bedroom',
 );
-export const adaptiveLightingAdaptColorBedroomSwitch = entity(
+globalThis.adaptiveLightingAdaptColorBedroomSwitch = entity(
   'switch.adaptive_lighting_adapt_color_bedroom',
 );
-export const adaptiveLightingAdaptBrightnessBedroomSwitch = entity(
+globalThis.adaptiveLightingAdaptBrightnessBedroomSwitch = entity(
   'switch.adaptive_lighting_adapt_brightness_bedroom',
 );
-export const adaptiveLightingBedroomSwitch = entity(
+globalThis.adaptiveLightingBedroomSwitch = entity(
   'switch.adaptive_lighting_bedroom',
 );
-export const automationWakeUpSwitch = entity('switch.automation_wake_up');
-export const automationLeavingHomeSwitch = entity(
+globalThis.automationWakeUpSwitch = entity('switch.automation_wake_up');
+globalThis.automationLeavingHomeSwitch = entity(
   'switch.automation_leaving_home',
 );
-export const boilerBoostSwitch = entity('switch.boiler_boost');
-export const livingRoomHeaterDiningTableSwitch = entity(
+globalThis.boilerBoostSwitch = entity('switch.boiler_boost');
+globalThis.livingRoomHeaterDiningTableSwitch = entity(
   'switch.living_room_heater_dining_table',
 );
-export const boilerSwitch = entity('switch.boiler');
-export const shellyemA4e57cba73f5Switch = entity(
-  'switch.shellyem_a4e57cba73f5',
-);
-export const qbittorrentAlternativeSpeedSwitch = entity(
+globalThis.boilerSwitch = entity('switch.boiler');
+globalThis.shellyemA4e57cba73f5Switch = entity('switch.shellyem_a4e57cba73f5');
+globalThis.qbittorrentAlternativeSpeedSwitch = entity(
   'switch.qbittorrent_alternative_speed',
 );
-export const livingRoomHeatingSwitchSwitch = entity(
+globalThis.livingRoomHeatingSwitchSwitch = entity(
   'switch.living_room_heating_switch',
 );
-export const bedroomHeatingSwitchSwitch = entity(
-  'switch.bedroom_heating_switch',
-);
-export const gymHeatingSwitchSwitch = entity('switch.gym_heating_switch');
-export const genericRemoteControlCardPreReleaseSwitch = entity(
+globalThis.bedroomHeatingSwitchSwitch = entity('switch.bedroom_heating_switch');
+globalThis.gymHeatingSwitchSwitch = entity('switch.gym_heating_switch');
+globalThis.genericRemoteControlCardPreReleaseSwitch = entity(
   'switch.generic_remote_control_card_pre_release',
 );
-export const sonosAlarmPreReleaseSwitch = entity(
+globalThis.sonosAlarmPreReleaseSwitch = entity(
   'switch.sonos_alarm_pre_release',
 );
-export const livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
-export const imacProOnSwitch = entity('switch.imac_pro_on');
-export const scheduleLivingRoomThermostatTrainingDaysSwitch = entity(
+globalThis.livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
+globalThis.imacProOnSwitch = entity('switch.imac_pro_on');
+globalThis.scheduleLivingRoomThermostatTrainingDaysSwitch = entity(
   'switch.schedule_living_room_thermostat_training_days',
 );
-export const scheduleBedroomThermostatWeekendSwitch = entity(
+globalThis.scheduleBedroomThermostatWeekendSwitch = entity(
   'switch.schedule_bedroom_thermostat_weekend',
 );
-export const scheduleLivingRoomThermostatWeekendSwitch = entity(
+globalThis.scheduleLivingRoomThermostatWeekendSwitch = entity(
   'switch.schedule_living_room_thermostat_weekend',
 );
-export const scheduleBedroomThermostatWeekdaysSwitch = entity(
+globalThis.scheduleBedroomThermostatWeekdaysSwitch = entity(
   'switch.schedule_bedroom_thermostat_weekdays',
 );
-export const scheduleBoilerSwitch = entity('switch.schedule_boiler');
-export const scheduleLivingRoomThermostatFridaySwitch = entity(
+globalThis.scheduleBoilerSwitch = entity('switch.schedule_boiler');
+globalThis.scheduleLivingRoomThermostatFridaySwitch = entity(
   'switch.schedule_living_room_thermostat_friday',
 );
-export const scheduleLivingRoomThermostatNonTrainingDaysSwitch = entity(
+globalThis.scheduleLivingRoomThermostatNonTrainingDaysSwitch = entity(
   'switch.schedule_living_room_thermostat_non_training_days',
 );
-export const adguardHomeProtectionSwitch = entity(
+globalThis.adguardHomeProtectionSwitch = entity(
   'switch.adguard_home_protection',
 );
-export const adguardHomeParentalControlSwitch = entity(
+globalThis.adguardHomeParentalControlSwitch = entity(
   'switch.adguard_home_parental_control',
 );
-export const adguardHomeSafeSearchSwitch = entity(
+globalThis.adguardHomeSafeSearchSwitch = entity(
   'switch.adguard_home_safe_search',
 );
-export const adguardHomeSafeBrowsingSwitch = entity(
+globalThis.adguardHomeSafeBrowsingSwitch = entity(
   'switch.adguard_home_safe_browsing',
 );
-export const adguardHomeFilteringSwitch = entity(
-  'switch.adguard_home_filtering',
-);
-export const adguardHomeQueryLogSwitch = entity(
-  'switch.adguard_home_query_log',
-);
-export const assistMicrophoneMuteSwitch = entity(
-  'switch.assist_microphone_mute',
-);
-export const tumbleDryerSmartPlugSwitch = entity(
+globalThis.adguardHomeFilteringSwitch = entity('switch.adguard_home_filtering');
+globalThis.adguardHomeQueryLogSwitch = entity('switch.adguard_home_query_log');
+globalThis.assistMicrophoneMuteSwitch = entity('switch.assist_microphone_mute');
+globalThis.tumbleDryerSmartPlugSwitch = entity(
   'switch.tumble_dryer_smart_plug',
 );
-export const tumbleDryerSmartPlugAutoOffEnabledSwitch = entity(
+globalThis.tumbleDryerSmartPlugAutoOffEnabledSwitch = entity(
   'switch.tumble_dryer_smart_plug_auto_off_enabled',
 );
-export const tumbleDryerSmartPlugAutoUpdateEnabledSwitch = entity(
+globalThis.tumbleDryerSmartPlugAutoUpdateEnabledSwitch = entity(
   'switch.tumble_dryer_smart_plug_auto_update_enabled',
 );
-export const tumbleDryerSmartPlugLedSwitch = entity(
+globalThis.tumbleDryerSmartPlugLedSwitch = entity(
   'switch.tumble_dryer_smart_plug_led',
 );
-export const homeAssistantServerSwitch = entity('switch.home_assistant_server');
-export const homeAssistantServerAutoOffEnabledSwitch = entity(
+globalThis.homeAssistantServerSwitch = entity('switch.home_assistant_server');
+globalThis.homeAssistantServerAutoOffEnabledSwitch = entity(
   'switch.home_assistant_server_auto_off_enabled',
 );
-export const homeAssistantServerAutoUpdateEnabledSwitch = entity(
+globalThis.homeAssistantServerAutoUpdateEnabledSwitch = entity(
   'switch.home_assistant_server_auto_update_enabled',
 );
-export const homeAssistantServerLedSwitch = entity(
+globalThis.homeAssistantServerLedSwitch = entity(
   'switch.home_assistant_server_led',
 );
-export const imacSmartPlug_2Switch = entity('switch.imac_smart_plug_2');
-export const imacSmartPlugAutoOffEnabled_2Switch = entity(
+globalThis.imacSmartPlug_2Switch = entity('switch.imac_smart_plug_2');
+globalThis.imacSmartPlugAutoOffEnabled_2Switch = entity(
   'switch.imac_smart_plug_auto_off_enabled_2',
 );
-export const imacSmartPlugAutoUpdateEnabled_2Switch = entity(
+globalThis.imacSmartPlugAutoUpdateEnabled_2Switch = entity(
   'switch.imac_smart_plug_auto_update_enabled_2',
 );
-export const imacSmartPlugLed_2Switch = entity('switch.imac_smart_plug_led_2');
-export const livingRoomHeaterSmartPlugSwitch = entity(
+globalThis.imacSmartPlugLed_2Switch = entity('switch.imac_smart_plug_led_2');
+globalThis.livingRoomHeaterSmartPlugSwitch = entity(
   'switch.living_room_heater_smart_plug',
 );
-export const livingRoomHeaterSmartPlugAutoOffEnabledSwitch = entity(
+globalThis.livingRoomHeaterSmartPlugAutoOffEnabledSwitch = entity(
   'switch.living_room_heater_smart_plug_auto_off_enabled',
 );
-export const livingRoomHeaterSmartPlugAutoUpdateEnabledSwitch = entity(
+globalThis.livingRoomHeaterSmartPlugAutoUpdateEnabledSwitch = entity(
   'switch.living_room_heater_smart_plug_auto_update_enabled',
 );
-export const livingRoomHeaterSmartPlugLedSwitch = entity(
+globalThis.livingRoomHeaterSmartPlugLedSwitch = entity(
   'switch.living_room_heater_smart_plug_led',
 );
-export const frontDoorMotionDetectionSwitch = entity(
+globalThis.frontDoorMotionDetectionSwitch = entity(
   'switch.front_door_motion_detection',
 );
-export const bedroomSpeakerCrossfadeSwitch = entity(
+globalThis.bedroomSpeakerCrossfadeSwitch = entity(
   'switch.bedroom_speaker_crossfade',
 );
-export const bedroomSpeakerLoudnessSwitch = entity(
+globalThis.bedroomSpeakerLoudnessSwitch = entity(
   'switch.bedroom_speaker_loudness',
 );
-export const bathroomMotionSensorLedIndicationSwitch = entity(
+globalThis.bathroomMotionSensorLedIndicationSwitch = entity(
   'switch.bathroom_motion_sensor_led_indication',
 );
-export const hallwayMotionSensorLedIndicationSwitch = entity(
+globalThis.hallwayMotionSensorLedIndicationSwitch = entity(
   'switch.hallway_motion_sensor_led_indication',
 );
-export const zigbee2mqttBridgePermitJoinSwitch = entity(
+globalThis.zigbee2mqttBridgePermitJoinSwitch = entity(
   'switch.zigbee2mqtt_bridge_permit_join',
 );
-export const sonosArcUltraCrossfadeSwitch = entity(
+globalThis.sonosArcUltraCrossfadeSwitch = entity(
   'switch.sonos_arc_ultra_crossfade',
 );
-export const sonosArcUltraLoudnessSwitch = entity(
+globalThis.sonosArcUltraLoudnessSwitch = entity(
   'switch.sonos_arc_ultra_loudness',
 );
-export const sonosArcUltraSurroundMusicFullVolumeSwitch = entity(
+globalThis.sonosArcUltraSurroundMusicFullVolumeSwitch = entity(
   'switch.sonos_arc_ultra_surround_music_full_volume',
 );
-export const sonosArcUltraNightSoundSwitch = entity(
+globalThis.sonosArcUltraNightSoundSwitch = entity(
   'switch.sonos_arc_ultra_night_sound',
 );
-export const sonosArcUltraSpeechEnhancementSwitch = entity(
+globalThis.sonosArcUltraSpeechEnhancementSwitch = entity(
   'switch.sonos_arc_ultra_speech_enhancement',
 );
-export const sonosArcUltraSurroundEnabledSwitch = entity(
+globalThis.sonosArcUltraSurroundEnabledSwitch = entity(
   'switch.sonos_arc_ultra_surround_enabled',
 );
-export const benSSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
+globalThis.benSSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
   'switch.ben_s_sonos_one_second_edition_do_not_disturb_switch',
 );
-export const benSSonosOneSecondEditionShuffleSwitchSwitch = entity(
+globalThis.benSSonosOneSecondEditionShuffleSwitchSwitch = entity(
   'switch.ben_s_sonos_one_second_edition_shuffle_switch',
 );
-export const benSSonosOneSecondEditionRepeatSwitchSwitch = entity(
+globalThis.benSSonosOneSecondEditionRepeatSwitchSwitch = entity(
   'switch.ben_s_sonos_one_second_edition_repeat_switch',
 );
-export const bedroomSpeakerDoNotDisturbSwitchSwitch = entity(
+globalThis.bedroomSpeakerDoNotDisturbSwitchSwitch = entity(
   'switch.bedroom_speaker_do_not_disturb_switch',
 );
-export const bedroomSpeakerShuffleSwitchSwitch = entity(
+globalThis.bedroomSpeakerShuffleSwitchSwitch = entity(
   'switch.bedroom_speaker_shuffle_switch',
 );
-export const bedroomSpeakerRepeatSwitchSwitch = entity(
+globalThis.bedroomSpeakerRepeatSwitchSwitch = entity(
   'switch.bedroom_speaker_repeat_switch',
 );
-export const officeDoNotDisturbSwitchSwitch = entity(
+globalThis.officeDoNotDisturbSwitchSwitch = entity(
   'switch.office_do_not_disturb_switch',
 );
-export const officeShuffleSwitchSwitch = entity('switch.office_shuffle_switch');
-export const officeRepeatSwitchSwitch = entity('switch.office_repeat_switch');
-export const benS_2ndSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
+globalThis.officeShuffleSwitchSwitch = entity('switch.office_shuffle_switch');
+globalThis.officeRepeatSwitchSwitch = entity('switch.office_repeat_switch');
+globalThis.benS_2ndSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
   'switch.ben_s_2nd_sonos_one_second_edition_do_not_disturb_switch',
 );
-export const benS_2ndSonosOneSecondEditionShuffleSwitchSwitch = entity(
+globalThis.benS_2ndSonosOneSecondEditionShuffleSwitchSwitch = entity(
   'switch.ben_s_2nd_sonos_one_second_edition_shuffle_switch',
 );
-export const benS_2ndSonosOneSecondEditionRepeatSwitchSwitch = entity(
+globalThis.benS_2ndSonosOneSecondEditionRepeatSwitchSwitch = entity(
   'switch.ben_s_2nd_sonos_one_second_edition_repeat_switch',
 );
-export const benS_3rdSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
+globalThis.benS_3rdSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
   'switch.ben_s_3rd_sonos_one_second_edition_do_not_disturb_switch',
 );
-export const benS_3rdSonosOneSecondEditionShuffleSwitchSwitch = entity(
+globalThis.benS_3rdSonosOneSecondEditionShuffleSwitchSwitch = entity(
   'switch.ben_s_3rd_sonos_one_second_edition_shuffle_switch',
 );
-export const benS_3rdSonosOneSecondEditionRepeatSwitchSwitch = entity(
+globalThis.benS_3rdSonosOneSecondEditionRepeatSwitchSwitch = entity(
   'switch.ben_s_3rd_sonos_one_second_edition_repeat_switch',
 );
-export const livingRoomDoNotDisturbSwitchSwitch = entity(
+globalThis.livingRoomDoNotDisturbSwitchSwitch = entity(
   'switch.living_room_do_not_disturb_switch',
 );
-export const livingRoomShuffleSwitchSwitch = entity(
+globalThis.livingRoomShuffleSwitchSwitch = entity(
   'switch.living_room_shuffle_switch',
 );
-export const livingRoomRepeatSwitchSwitch = entity(
+globalThis.livingRoomRepeatSwitchSwitch = entity(
   'switch.living_room_repeat_switch',
 );
-export const sonosArcUltraDoNotDisturbSwitchSwitch = entity(
+globalThis.sonosArcUltraDoNotDisturbSwitchSwitch = entity(
   'switch.sonos_arc_ultra_do_not_disturb_switch',
 );
-export const sonosArcUltraShuffleSwitchSwitch = entity(
+globalThis.sonosArcUltraShuffleSwitchSwitch = entity(
   'switch.sonos_arc_ultra_shuffle_switch',
 );
-export const sonosArcUltraRepeatSwitchSwitch = entity(
+globalThis.sonosArcUltraRepeatSwitchSwitch = entity(
   'switch.sonos_arc_ultra_repeat_switch',
 );
-export const livingRoomSonosDoNotDisturbSwitchSwitch = entity(
+globalThis.livingRoomSonosDoNotDisturbSwitchSwitch = entity(
   'switch.living_room_sonos_do_not_disturb_switch',
 );
-export const livingRoomSonosShuffleSwitchSwitch = entity(
+globalThis.livingRoomSonosShuffleSwitchSwitch = entity(
   'switch.living_room_sonos_shuffle_switch',
 );
-export const livingRoomSonosRepeatSwitchSwitch = entity(
+globalThis.livingRoomSonosRepeatSwitchSwitch = entity(
   'switch.living_room_sonos_repeat_switch',
 );
-export const thisDeviceDoNotDisturbSwitch_2Switch = entity(
+globalThis.thisDeviceDoNotDisturbSwitch_2Switch = entity(
   'switch.this_device_do_not_disturb_switch_2',
 );
-export const officeCrossfadeSwitch = entity('switch.office_crossfade');
-export const officeLoudnessSwitch = entity('switch.office_loudness');
-export const livingRoomMainTurnonSwitch = entity(
+globalThis.officeCrossfadeSwitch = entity('switch.office_crossfade');
+globalThis.officeLoudnessSwitch = entity('switch.office_loudness');
+globalThis.livingRoomMainTurnonSwitch = entity(
   'switch.living_room_main_turnon',
 );
-export const holidayModeSwitch = entity('switch.holiday_mode');
-export const sleepModeSwitch = entity('switch.sleep_mode');
-export const bedroomMotionSensorSwitch = entity('switch.bedroom_motion_sensor');
-export const livingRoomMotionSensorSwitch = entity(
+globalThis.holidayModeSwitch = entity('switch.holiday_mode');
+globalThis.sleepModeSwitch = entity('switch.sleep_mode');
+globalThis.bedroomMotionSensorSwitch = entity('switch.bedroom_motion_sensor');
+globalThis.livingRoomMotionSensorSwitch = entity(
   'switch.living_room_motion_sensor',
 );
-export const hallwayMotionSensorSwitch = entity('switch.hallway_motion_sensor');
-export const bathroomMotionSensorSwitch = entity(
-  'switch.bathroom_motion_sensor',
-);
-export const frontDoorDoorbellMqttEventStreamSwitch = entity(
+globalThis.hallwayMotionSensorSwitch = entity('switch.hallway_motion_sensor');
+globalThis.bathroomMotionSensorSwitch = entity('switch.bathroom_motion_sensor');
+globalThis.frontDoorDoorbellMqttEventStreamSwitch = entity(
   'switch.front_door_doorbell_mqtt_event_stream',
 );
-export const frontDoorDoorbellMqttLiveStreamSwitch = entity(
+globalThis.frontDoorDoorbellMqttLiveStreamSwitch = entity(
   'switch.front_door_doorbell_mqtt_live_stream',
 );
-export const frontDoorDoorbellMqttMotionDetectionSwitch = entity(
+globalThis.frontDoorDoorbellMqttMotionDetectionSwitch = entity(
   'switch.front_door_doorbell_mqtt_motion_detection',
 );
-export const stateTestingBinarySwitchSwitch = entity(
+globalThis.stateTestingBinarySwitchSwitch = entity(
   'switch.state_testing_binary_switch',
 );
-export const goodMorningMessagePlayedSwitch = entity(
+globalThis.goodMorningMessagePlayedSwitch = entity(
   'switch.good_morning_message_played',
 );
-export const livingRoomBlindsDefaultToOpenSwitch = entity(
+globalThis.livingRoomBlindsDefaultToOpenSwitch = entity(
   'switch.living_room_blinds_default_to_open',
 );
-export const tvModeSwitch = entity('switch.tv_mode');
-export const benIsHomeSwitch = entity('switch.ben_is_home');
-export const homeModeSwitch = entity('switch.home_mode');
-export const visitorModeSwitch = entity('switch.visitor_mode');
-export const nagModeSwitch = entity('switch.nag_mode');
-export const openBlindsSwitch = entity('switch.open_blinds');
-export const livingRoomBlindsLeftWindowSwitch = entity(
+globalThis.tvModeSwitch = entity('switch.tv_mode');
+globalThis.benIsHomeSwitch = entity('switch.ben_is_home');
+globalThis.homeModeSwitch = entity('switch.home_mode');
+globalThis.visitorModeSwitch = entity('switch.visitor_mode');
+globalThis.nagModeSwitch = entity('switch.nag_mode');
+globalThis.openBlindsSwitch = entity('switch.open_blinds');
+globalThis.livingRoomBlindsLeftWindowSwitch = entity(
   'switch.living_room_blinds_left_window',
 );
-export const livingRoomBlindsLeftCentreWindowSwitch = entity(
+globalThis.livingRoomBlindsLeftCentreWindowSwitch = entity(
   'switch.living_room_blinds_left_centre_window',
 );
-export const livingRoomBlindsRightCentreWindowSwitch = entity(
+globalThis.livingRoomBlindsRightCentreWindowSwitch = entity(
   'switch.living_room_blinds_right_centre_window',
 );
-export const livingRoomBlindsRightWindowSwitch = entity(
+globalThis.livingRoomBlindsRightWindowSwitch = entity(
   'switch.living_room_blinds_right_window',
 );
-export const quetModeSwitch = entity('switch.quet_mode');
-export const quietModeSwitch = entity('switch.quiet_mode');
+globalThis.quetModeSwitch = entity('switch.quet_mode');
+globalThis.quietModeSwitch = entity('switch.quiet_mode');

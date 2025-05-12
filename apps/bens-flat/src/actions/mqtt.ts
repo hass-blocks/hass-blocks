@@ -1,4 +1,4 @@
-import { publishMqtt } from '../blocks-codegen/index.ts';
+import '@blocks-codegen';
 
 export const turnOffMyMac = publishMqtt({
   topic: 'bens_imac/commands/shutdown',

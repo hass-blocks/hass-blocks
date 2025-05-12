@@ -1,4 +1,18 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sends a start command to an FFmpeg-based sensor.
+   */
+  var startFfmpeg: (params?: StartFfmpegProps) => Block;
+  /**
+   * Sends a stop command to an FFmpeg-based sensor.
+   */
+  var stopFfmpeg: (params?: StopFfmpegProps) => Block;
+  /**
+   * Sends a restart command to an FFmpeg-based sensor.
+   */
+  var restartFfmpeg: (params?: RestartFfmpegProps) => Block;
+}
 
 export interface StartFfmpegProps {
   /**
@@ -7,10 +21,7 @@ export interface StartFfmpegProps {
   entity_id?: string;
 }
 
-/**
- * Sends a start command to an FFmpeg-based sensor.
- */
-export const startFfmpeg = (params?: StartFfmpegProps) =>
+globalThis.startFfmpeg = (params?: StartFfmpegProps) =>
   serviceCall({
     name: `Call ffmpeg.start`,
     params: {
@@ -27,10 +38,7 @@ export interface StopFfmpegProps {
   entity_id?: string;
 }
 
-/**
- * Sends a stop command to an FFmpeg-based sensor.
- */
-export const stopFfmpeg = (params?: StopFfmpegProps) =>
+globalThis.stopFfmpeg = (params?: StopFfmpegProps) =>
   serviceCall({
     name: `Call ffmpeg.stop`,
     params: {
@@ -47,10 +55,7 @@ export interface RestartFfmpegProps {
   entity_id?: string;
 }
 
-/**
- * Sends a restart command to an FFmpeg-based sensor.
- */
-export const restartFfmpeg = (params?: RestartFfmpegProps) =>
+globalThis.restartFfmpeg = (params?: RestartFfmpegProps) =>
   serviceCall({
     name: `Call ffmpeg.restart`,
     params: {

@@ -1,4 +1,20 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Adds a new calendar event.
+   */
+  var createEventCalendar: (
+    target: ITarget,
+    params: CreateEventCalendarProps,
+  ) => Block;
+  /**
+   * Retrieves events on a calendar within a time range.
+   */
+  var getEventsCalendar: (
+    target: ITarget,
+    params?: GetEventsCalendarProps,
+  ) => Block;
+}
 
 export interface CreateEventCalendarProps {
   /**
@@ -35,10 +51,7 @@ export interface CreateEventCalendarProps {
   location?: string;
 }
 
-/**
- * Adds a new calendar event.
- */
-export const createEventCalendar = (
+globalThis.createEventCalendar = (
   target: ITarget,
   params: CreateEventCalendarProps,
 ) =>
@@ -67,10 +80,7 @@ export interface GetEventsCalendarProps {
   duration?: never;
 }
 
-/**
- * Retrieves events on a calendar within a time range.
- */
-export const getEventsCalendar = (
+globalThis.getEventsCalendar = (
   target: ITarget,
   params?: GetEventsCalendarProps,
 ) =>

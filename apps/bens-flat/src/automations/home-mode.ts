@@ -1,10 +1,5 @@
-import {
-  waitMinutes,
-  gate,
-  switchLight,
-  stopMediaPlayer,
-  closeCover,
-} from '@hass-blocks/blocks';
+import { waitMinutes, gate, stateTurns } from '@hass-blocks/blocks';
+
 import {
   automation,
   concurrently,
@@ -12,11 +7,7 @@ import {
   sequence,
 } from '@hass-blocks/core';
 
-import {
-  turnOffMyMac,
-  notifyMyPhone,
-  openLivingRoomBlinds,
-} from '../actions/index.ts';
+import { notifyMyPhone } from '../actions/index.ts';
 
 import {
   ifIamOut,
@@ -24,13 +15,6 @@ import {
   ifHomeIsNotEmpty,
   ifBlindsWouldNormallyBeOpen,
 } from '../assertions/index.ts';
-
-import {
-  motionIsDetectedInTheBathroom,
-  motionIsDetectedInTheBedroom,
-  motionIsDetectedInTheHallway,
-  motionIsDetectedInTheLivingRoom,
-} from '../triggers/motion-sensors.ts';
 
 import {
   homeBecomesEmpty,
@@ -43,14 +27,9 @@ import {
   setVolumeOnSpeakers,
 } from '../actions/media.ts';
 import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
-import { allLights, allSpeakers, tv } from '../entities.ts';
-import {
-  homeModeSwitch,
-  livingRoomBlindsCover,
-  openCoverCover,
-  turnOffSwitch,
-  turnOnSwitch,
-} from '../blocks-codegen/index.ts';
+import { allLights, allSpeakers } from '../entities.ts';
+
+import '@blocks-codegen';
 
 const {
   open: allowZoneExitChecks,
@@ -67,10 +46,10 @@ export const onLastExit = automation({
 export const homeModeDetection = automation({
   name: 'Home mode detection',
   when: [
-    motionIsDetectedInTheBedroom,
-    motionIsDetectedInTheHallway,
-    motionIsDetectedInTheBathroom,
-    motionIsDetectedInTheLivingRoom,
+    stateTurns(bedroomSensorSensorStateMotionBinarySensor, 'on'),
+    stateTurns(livingRoomSensorSensorStateMotionBinarySensor, 'on'),
+    stateTurns(hallwayMotionSensorOccupancyBinarySensor, 'on'),
+    stateTurns(bathroomMotionSensorOccupancyBinarySensor, 'on'),
   ],
   then: [
     concurrently(
@@ -96,10 +75,10 @@ export const whenIGoOut = automation({
   when: homeModeTurnsOff,
   then: [
     concurrently(
-      switchLight(allLights, 'off'),
-      stopMediaPlayer(allSpeakers),
-      turnOffMyMac,
-      closeCover(livingRoomBlindsCover),
+      turnOnLight(allLights),
+      mediaStopMediaPlayer(allSpeakers),
+      turnOffSwitch(imacProOnSwitch),
+      closeCoverCover(livingRoomBlindsCover),
       notifyMyPhone({
         title: 'Leaving flat',
         message: 'Home empty detected - turning everything off',

@@ -1,4 +1,18 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Publishes a message to an MQTT topic.
+   */
+  var publishMqtt: (params: PublishMqttProps) => Block;
+  /**
+   * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
+   */
+  var dumpMqtt: (params?: DumpMqttProps) => Block;
+  /**
+   * Reloads MQTT entities from the YAML-configuration.
+   */
+  var reloadMqtt: () => Block;
+}
 
 export interface PublishMqttProps {
   /**
@@ -23,10 +37,7 @@ export interface PublishMqttProps {
   retain?: boolean;
 }
 
-/**
- * Publishes a message to an MQTT topic.
- */
-export const publishMqtt = (params: PublishMqttProps) =>
+globalThis.publishMqtt = (params: PublishMqttProps) =>
   serviceCall({
     name: `Call mqtt.publish`,
     params: {
@@ -47,10 +58,7 @@ export interface DumpMqttProps {
   duration?: number;
 }
 
-/**
- * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
- */
-export const dumpMqtt = (params?: DumpMqttProps) =>
+globalThis.dumpMqtt = (params?: DumpMqttProps) =>
   serviceCall({
     name: `Call mqtt.dump`,
     params: {
@@ -60,10 +68,7 @@ export const dumpMqtt = (params?: DumpMqttProps) =>
     },
   });
 
-/**
- * Reloads MQTT entities from the YAML-configuration.
- */
-export const reloadMqtt = () =>
+globalThis.reloadMqtt = () =>
   serviceCall({
     name: `Call mqtt.reload`,
     params: {

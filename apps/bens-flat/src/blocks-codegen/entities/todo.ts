@@ -1,15 +1,31 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const inboxTodo = entity('todo.inbox');
-export const personalTodo = entity('todo.personal');
-export const workTodo = entity('todo.work');
-export const errandsTodo = entity('todo.errands');
-export const shoppingTodo = entity('todo.shopping');
-export const moviesToWatchTodo = entity('todo.movies_to_watch');
-export const stayInTouchTodo = entity('todo.stay_in_touch');
-export const fitnessTodo = entity('todo.fitness');
-export const selfCareTodo = entity('todo.self_care');
-export const adminTodo = entity('todo.admin');
-export const healthTodo = entity('todo.health');
-export const automationTodo = entity('todo.automation');
-export const socialTodo = entity('todo.social');
+declare global {
+  var inboxTodo: ITarget;
+  var personalTodo: ITarget;
+  var workTodo: ITarget;
+  var errandsTodo: ITarget;
+  var shoppingTodo: ITarget;
+  var moviesToWatchTodo: ITarget;
+  var stayInTouchTodo: ITarget;
+  var fitnessTodo: ITarget;
+  var selfCareTodo: ITarget;
+  var adminTodo: ITarget;
+  var healthTodo: ITarget;
+  var automationTodo: ITarget;
+  var socialTodo: ITarget;
+}
+
+globalThis.inboxTodo = entity('todo.inbox');
+globalThis.personalTodo = entity('todo.personal');
+globalThis.workTodo = entity('todo.work');
+globalThis.errandsTodo = entity('todo.errands');
+globalThis.shoppingTodo = entity('todo.shopping');
+globalThis.moviesToWatchTodo = entity('todo.movies_to_watch');
+globalThis.stayInTouchTodo = entity('todo.stay_in_touch');
+globalThis.fitnessTodo = entity('todo.fitness');
+globalThis.selfCareTodo = entity('todo.self_care');
+globalThis.adminTodo = entity('todo.admin');
+globalThis.healthTodo = entity('todo.health');
+globalThis.automationTodo = entity('todo.automation');
+globalThis.socialTodo = entity('todo.social');

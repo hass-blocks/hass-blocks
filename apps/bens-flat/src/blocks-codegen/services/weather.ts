@@ -1,4 +1,13 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Retrieves the forecast from selected weather services.
+   */
+  var getForecastsWeather: (
+    target: ITarget,
+    params: GetForecastsWeatherProps,
+  ) => Block;
+}
 
 export interface GetForecastsWeatherProps {
   /**
@@ -7,10 +16,7 @@ export interface GetForecastsWeatherProps {
   type: never;
 }
 
-/**
- * Retrieves the forecast from selected weather services.
- */
-export const getForecastsWeather = (
+globalThis.getForecastsWeather = (
   target: ITarget,
   params: GetForecastsWeatherProps,
 ) =>

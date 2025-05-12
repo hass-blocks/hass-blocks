@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Run the Watchman report
+   */
+  var reportWatchman: (params?: ReportWatchmanProps) => Block;
+}
 
 export interface ReportWatchmanProps {
   /**
@@ -8,10 +14,7 @@ export interface ReportWatchmanProps {
   advanced_options?: never;
 }
 
-/**
- * Run the Watchman report
- */
-export const reportWatchman = (params?: ReportWatchmanProps) =>
+globalThis.reportWatchman = (params?: ReportWatchmanProps) =>
   serviceCall({
     name: `Call watchman.report`,
     params: {

@@ -1,11 +1,22 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns a switch off.
+   */
+  var turnOffSwitch: (target: ITarget, params?: TurnOffSwitchProps) => Block;
+  /**
+   * Turns a switch on.
+   */
+  var turnOnSwitch: (target: ITarget, params?: TurnOnSwitchProps) => Block;
+  /**
+   * Toggles a switch on/off.
+   */
+  var toggleSwitch: (target: ITarget, params?: ToggleSwitchProps) => Block;
+}
 
 export interface TurnOffSwitchProps {}
 
-/**
- * Turns a switch off.
- */
-export const turnOffSwitch = (target: ITarget, params?: TurnOffSwitchProps) =>
+globalThis.turnOffSwitch = (target: ITarget, params?: TurnOffSwitchProps) =>
   serviceCall({
     name: `Call switch.turn_off`,
     params: {
@@ -18,10 +29,7 @@ export const turnOffSwitch = (target: ITarget, params?: TurnOffSwitchProps) =>
 
 export interface TurnOnSwitchProps {}
 
-/**
- * Turns a switch on.
- */
-export const turnOnSwitch = (target: ITarget, params?: TurnOnSwitchProps) =>
+globalThis.turnOnSwitch = (target: ITarget, params?: TurnOnSwitchProps) =>
   serviceCall({
     name: `Call switch.turn_on`,
     params: {
@@ -34,10 +42,7 @@ export const turnOnSwitch = (target: ITarget, params?: TurnOnSwitchProps) =>
 
 export interface ToggleSwitchProps {}
 
-/**
- * Toggles a switch on/off.
- */
-export const toggleSwitch = (target: ITarget, params?: ToggleSwitchProps) =>
+globalThis.toggleSwitch = (target: ITarget, params?: ToggleSwitchProps) =>
   serviceCall({
     name: `Call switch.toggle`,
     params: {

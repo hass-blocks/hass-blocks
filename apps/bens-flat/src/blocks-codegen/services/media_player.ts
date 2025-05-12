@@ -1,11 +1,175 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Turns on the power of the media player.
+   */
+  var turnOnMediaPlayer: (
+    target: ITarget,
+    params?: TurnOnMediaPlayerProps,
+  ) => Block;
+  /**
+   * Turns off the power of the media player.
+   */
+  var turnOffMediaPlayer: (
+    target: ITarget,
+    params?: TurnOffMediaPlayerProps,
+  ) => Block;
+  /**
+   * Toggles a media player on/off.
+   */
+  var toggleMediaPlayer: (
+    target: ITarget,
+    params?: ToggleMediaPlayerProps,
+  ) => Block;
+  /**
+   * Turns up the volume.
+   */
+  var volumeUpMediaPlayer: (
+    target: ITarget,
+    params?: VolumeUpMediaPlayerProps,
+  ) => Block;
+  /**
+   * Turns down the volume.
+   */
+  var volumeDownMediaPlayer: (
+    target: ITarget,
+    params?: VolumeDownMediaPlayerProps,
+  ) => Block;
+  /**
+   * Toggles play/pause.
+   */
+  var mediaPlayPauseMediaPlayer: (
+    target: ITarget,
+    params?: MediaPlayPauseMediaPlayerProps,
+  ) => Block;
+  /**
+   * Starts playing.
+   */
+  var mediaPlayMediaPlayer: (
+    target: ITarget,
+    params?: MediaPlayMediaPlayerProps,
+  ) => Block;
+  /**
+   * Pauses.
+   */
+  var mediaPauseMediaPlayer: (
+    target: ITarget,
+    params?: MediaPauseMediaPlayerProps,
+  ) => Block;
+  /**
+   * Stops playing.
+   */
+  var mediaStopMediaPlayer: (
+    target: ITarget,
+    params?: MediaStopMediaPlayerProps,
+  ) => Block;
+  /**
+   * Selects the next track.
+   */
+  var mediaNextTrackMediaPlayer: (
+    target: ITarget,
+    params?: MediaNextTrackMediaPlayerProps,
+  ) => Block;
+  /**
+   * Selects the previous track.
+   */
+  var mediaPreviousTrackMediaPlayer: (
+    target: ITarget,
+    params?: MediaPreviousTrackMediaPlayerProps,
+  ) => Block;
+  /**
+   * Removes all items from the playlist.
+   */
+  var clearPlaylistMediaPlayer: (
+    target: ITarget,
+    params?: ClearPlaylistMediaPlayerProps,
+  ) => Block;
+  /**
+   * Sets the volume level.
+   */
+  var volumeSetMediaPlayer: (
+    target: ITarget,
+    params: VolumeSetMediaPlayerProps,
+  ) => Block;
+  /**
+   * Mutes or unmutes the media player.
+   */
+  var volumeMuteMediaPlayer: (
+    target: ITarget,
+    params: VolumeMuteMediaPlayerProps,
+  ) => Block;
+  /**
+   * Allows you to go to a different part of the media that is currently playing.
+   */
+  var mediaSeekMediaPlayer: (
+    target: ITarget,
+    params: MediaSeekMediaPlayerProps,
+  ) => Block;
+  /**
+   * Groups media players together for synchronous playback. Only works on supported multiroom audio systems.
+   */
+  var joinMediaPlayer: (target: ITarget, params: JoinMediaPlayerProps) => Block;
+  /**
+   * Sends the media player the command to change input source.
+   */
+  var selectSourceMediaPlayer: (
+    target: ITarget,
+    params: SelectSourceMediaPlayerProps,
+  ) => Block;
+  /**
+   * Selects a specific sound mode.
+   */
+  var selectSoundModeMediaPlayer: (
+    target: ITarget,
+    params?: SelectSoundModeMediaPlayerProps,
+  ) => Block;
+  /**
+   * Starts playing specified media.
+   */
+  var playMediaMediaPlayer: (
+    target: ITarget,
+    params: PlayMediaMediaPlayerProps,
+  ) => Block;
+  /**
+   * Browses the available media.
+   */
+  var browseMediaMediaPlayer: (
+    target: ITarget,
+    params?: BrowseMediaMediaPlayerProps,
+  ) => Block;
+  /**
+   * Searches the available media.
+   */
+  var searchMediaMediaPlayer: (
+    target: ITarget,
+    params: SearchMediaMediaPlayerProps,
+  ) => Block;
+  /**
+   * Enables or disables the shuffle mode.
+   */
+  var shuffleSetMediaPlayer: (
+    target: ITarget,
+    params: ShuffleSetMediaPlayerProps,
+  ) => Block;
+  /**
+   * Removes the player from a group. Only works on platforms which support player groups.
+   */
+  var unjoinMediaPlayer: (
+    target: ITarget,
+    params?: UnjoinMediaPlayerProps,
+  ) => Block;
+  /**
+   * Sets the repeat mode.
+   */
+  var repeatSetMediaPlayer: (
+    target: ITarget,
+    params: RepeatSetMediaPlayerProps,
+  ) => Block;
+}
 
 export interface TurnOnMediaPlayerProps {}
 
-/**
- * Turns on the power of the media player.
- */
-export const turnOnMediaPlayer = (
+globalThis.turnOnMediaPlayer = (
   target: ITarget,
   params?: TurnOnMediaPlayerProps,
 ) =>
@@ -21,10 +185,7 @@ export const turnOnMediaPlayer = (
 
 export interface TurnOffMediaPlayerProps {}
 
-/**
- * Turns off the power of the media player.
- */
-export const turnOffMediaPlayer = (
+globalThis.turnOffMediaPlayer = (
   target: ITarget,
   params?: TurnOffMediaPlayerProps,
 ) =>
@@ -40,10 +201,7 @@ export const turnOffMediaPlayer = (
 
 export interface ToggleMediaPlayerProps {}
 
-/**
- * Toggles a media player on/off.
- */
-export const toggleMediaPlayer = (
+globalThis.toggleMediaPlayer = (
   target: ITarget,
   params?: ToggleMediaPlayerProps,
 ) =>
@@ -59,10 +217,7 @@ export const toggleMediaPlayer = (
 
 export interface VolumeUpMediaPlayerProps {}
 
-/**
- * Turns up the volume.
- */
-export const volumeUpMediaPlayer = (
+globalThis.volumeUpMediaPlayer = (
   target: ITarget,
   params?: VolumeUpMediaPlayerProps,
 ) =>
@@ -78,10 +233,7 @@ export const volumeUpMediaPlayer = (
 
 export interface VolumeDownMediaPlayerProps {}
 
-/**
- * Turns down the volume.
- */
-export const volumeDownMediaPlayer = (
+globalThis.volumeDownMediaPlayer = (
   target: ITarget,
   params?: VolumeDownMediaPlayerProps,
 ) =>
@@ -97,10 +249,7 @@ export const volumeDownMediaPlayer = (
 
 export interface MediaPlayPauseMediaPlayerProps {}
 
-/**
- * Toggles play/pause.
- */
-export const mediaPlayPauseMediaPlayer = (
+globalThis.mediaPlayPauseMediaPlayer = (
   target: ITarget,
   params?: MediaPlayPauseMediaPlayerProps,
 ) =>
@@ -116,10 +265,7 @@ export const mediaPlayPauseMediaPlayer = (
 
 export interface MediaPlayMediaPlayerProps {}
 
-/**
- * Starts playing.
- */
-export const mediaPlayMediaPlayer = (
+globalThis.mediaPlayMediaPlayer = (
   target: ITarget,
   params?: MediaPlayMediaPlayerProps,
 ) =>
@@ -135,10 +281,7 @@ export const mediaPlayMediaPlayer = (
 
 export interface MediaPauseMediaPlayerProps {}
 
-/**
- * Pauses.
- */
-export const mediaPauseMediaPlayer = (
+globalThis.mediaPauseMediaPlayer = (
   target: ITarget,
   params?: MediaPauseMediaPlayerProps,
 ) =>
@@ -154,10 +297,7 @@ export const mediaPauseMediaPlayer = (
 
 export interface MediaStopMediaPlayerProps {}
 
-/**
- * Stops playing.
- */
-export const mediaStopMediaPlayer = (
+globalThis.mediaStopMediaPlayer = (
   target: ITarget,
   params?: MediaStopMediaPlayerProps,
 ) =>
@@ -173,10 +313,7 @@ export const mediaStopMediaPlayer = (
 
 export interface MediaNextTrackMediaPlayerProps {}
 
-/**
- * Selects the next track.
- */
-export const mediaNextTrackMediaPlayer = (
+globalThis.mediaNextTrackMediaPlayer = (
   target: ITarget,
   params?: MediaNextTrackMediaPlayerProps,
 ) =>
@@ -192,10 +329,7 @@ export const mediaNextTrackMediaPlayer = (
 
 export interface MediaPreviousTrackMediaPlayerProps {}
 
-/**
- * Selects the previous track.
- */
-export const mediaPreviousTrackMediaPlayer = (
+globalThis.mediaPreviousTrackMediaPlayer = (
   target: ITarget,
   params?: MediaPreviousTrackMediaPlayerProps,
 ) =>
@@ -211,10 +345,7 @@ export const mediaPreviousTrackMediaPlayer = (
 
 export interface ClearPlaylistMediaPlayerProps {}
 
-/**
- * Removes all items from the playlist.
- */
-export const clearPlaylistMediaPlayer = (
+globalThis.clearPlaylistMediaPlayer = (
   target: ITarget,
   params?: ClearPlaylistMediaPlayerProps,
 ) =>
@@ -235,10 +366,7 @@ export interface VolumeSetMediaPlayerProps {
   volume_level: number;
 }
 
-/**
- * Sets the volume level.
- */
-export const volumeSetMediaPlayer = (
+globalThis.volumeSetMediaPlayer = (
   target: ITarget,
   params: VolumeSetMediaPlayerProps,
 ) =>
@@ -259,10 +387,7 @@ export interface VolumeMuteMediaPlayerProps {
   is_volume_muted: boolean;
 }
 
-/**
- * Mutes or unmutes the media player.
- */
-export const volumeMuteMediaPlayer = (
+globalThis.volumeMuteMediaPlayer = (
   target: ITarget,
   params: VolumeMuteMediaPlayerProps,
 ) =>
@@ -283,10 +408,7 @@ export interface MediaSeekMediaPlayerProps {
   seek_position: number;
 }
 
-/**
- * Allows you to go to a different part of the media that is currently playing.
- */
-export const mediaSeekMediaPlayer = (
+globalThis.mediaSeekMediaPlayer = (
   target: ITarget,
   params: MediaSeekMediaPlayerProps,
 ) =>
@@ -307,13 +429,7 @@ export interface JoinMediaPlayerProps {
   group_members: string;
 }
 
-/**
- * Groups media players together for synchronous playback. Only works on supported multiroom audio systems.
- */
-export const joinMediaPlayer = (
-  target: ITarget,
-  params: JoinMediaPlayerProps,
-) =>
+globalThis.joinMediaPlayer = (target: ITarget, params: JoinMediaPlayerProps) =>
   serviceCall({
     name: `Call media_player.join`,
     params: {
@@ -331,10 +447,7 @@ export interface SelectSourceMediaPlayerProps {
   source: string;
 }
 
-/**
- * Sends the media player the command to change input source.
- */
-export const selectSourceMediaPlayer = (
+globalThis.selectSourceMediaPlayer = (
   target: ITarget,
   params: SelectSourceMediaPlayerProps,
 ) =>
@@ -355,10 +468,7 @@ export interface SelectSoundModeMediaPlayerProps {
   sound_mode?: string;
 }
 
-/**
- * Selects a specific sound mode.
- */
-export const selectSoundModeMediaPlayer = (
+globalThis.selectSoundModeMediaPlayer = (
   target: ITarget,
   params?: SelectSoundModeMediaPlayerProps,
 ) =>
@@ -391,10 +501,7 @@ export interface PlayMediaMediaPlayerProps {
   announce?: boolean;
 }
 
-/**
- * Starts playing specified media.
- */
-export const playMediaMediaPlayer = (
+globalThis.playMediaMediaPlayer = (
   target: ITarget,
   params: PlayMediaMediaPlayerProps,
 ) =>
@@ -419,10 +526,7 @@ export interface BrowseMediaMediaPlayerProps {
   media_content_id?: string;
 }
 
-/**
- * Browses the available media.
- */
-export const browseMediaMediaPlayer = (
+globalThis.browseMediaMediaPlayer = (
   target: ITarget,
   params?: BrowseMediaMediaPlayerProps,
 ) =>
@@ -455,10 +559,7 @@ export interface SearchMediaMediaPlayerProps {
   media_filter_classes?: string;
 }
 
-/**
- * Searches the available media.
- */
-export const searchMediaMediaPlayer = (
+globalThis.searchMediaMediaPlayer = (
   target: ITarget,
   params: SearchMediaMediaPlayerProps,
 ) =>
@@ -479,10 +580,7 @@ export interface ShuffleSetMediaPlayerProps {
   shuffle: boolean;
 }
 
-/**
- * Enables or disables the shuffle mode.
- */
-export const shuffleSetMediaPlayer = (
+globalThis.shuffleSetMediaPlayer = (
   target: ITarget,
   params: ShuffleSetMediaPlayerProps,
 ) =>
@@ -498,10 +596,7 @@ export const shuffleSetMediaPlayer = (
 
 export interface UnjoinMediaPlayerProps {}
 
-/**
- * Removes the player from a group. Only works on platforms which support player groups.
- */
-export const unjoinMediaPlayer = (
+globalThis.unjoinMediaPlayer = (
   target: ITarget,
   params?: UnjoinMediaPlayerProps,
 ) =>
@@ -522,10 +617,7 @@ export interface RepeatSetMediaPlayerProps {
   repeat: never;
 }
 
-/**
- * Sets the repeat mode.
- */
-export const repeatSetMediaPlayer = (
+globalThis.repeatSetMediaPlayer = (
   target: ITarget,
   params: RepeatSetMediaPlayerProps,
 ) =>

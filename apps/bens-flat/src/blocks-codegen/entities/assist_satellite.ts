@@ -1,5 +1,9 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const assistMicrophoneAssistSatellite = entity(
+declare global {
+  var assistMicrophoneAssistSatellite: ITarget;
+}
+
+globalThis.assistMicrophoneAssistSatellite = entity(
   'assist_satellite.assist_microphone',
 );

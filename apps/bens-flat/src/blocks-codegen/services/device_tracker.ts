@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Manually update the records of a seen legacy device tracker in the known_devices.yaml file.
+   */
+  var seeDeviceTracker: (params?: SeeDeviceTrackerProps) => Block;
+}
 
 export interface SeeDeviceTrackerProps {
   /**
@@ -31,10 +37,7 @@ export interface SeeDeviceTrackerProps {
   battery?: number;
 }
 
-/**
- * Manually update the records of a seen legacy device tracker in the known_devices.yaml file.
- */
-export const seeDeviceTracker = (params?: SeeDeviceTrackerProps) =>
+globalThis.seeDeviceTracker = (params?: SeeDeviceTrackerProps) =>
   serviceCall({
     name: `Call device_tracker.see`,
     params: {

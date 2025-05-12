@@ -1,4 +1,10 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Creates a custom entry in the logbook.
+   */
+  var logLogbook: (params: LogLogbookProps) => Block;
+}
 
 export interface LogLogbookProps {
   /**
@@ -19,10 +25,7 @@ export interface LogLogbookProps {
   domain?: string;
 }
 
-/**
- * Creates a custom entry in the logbook.
- */
-export const logLogbook = (params: LogLogbookProps) =>
+globalThis.logLogbook = (params: LogLogbookProps) =>
   serviceCall({
     name: `Call logbook.log`,
     params: {

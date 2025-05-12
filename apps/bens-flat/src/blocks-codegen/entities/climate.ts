@@ -1,6 +1,13 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const livingRoomClimate = entity('climate.living_room');
-export const bedroomClimate = entity('climate.bedroom');
-export const boilerClimate = entity('climate.boiler');
-export const gymClimate = entity('climate.gym');
+declare global {
+  var livingRoomClimate: ITarget;
+  var bedroomClimate: ITarget;
+  var boilerClimate: ITarget;
+  var gymClimate: ITarget;
+}
+
+globalThis.livingRoomClimate = entity('climate.living_room');
+globalThis.bedroomClimate = entity('climate.bedroom');
+globalThis.boilerClimate = entity('climate.boiler');
+globalThis.gymClimate = entity('climate.gym');

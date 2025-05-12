@@ -1,4 +1,26 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Force account to logout. Used mainly for debugging.
+   */
+  var forceLogoutAlexaMedia: (params?: ForceLogoutAlexaMediaProps) => Block;
+  /**
+   * Forces update of last_called echo device for each Alexa account.
+   */
+  var updateLastCalledAlexaMedia: (
+    params?: UpdateLastCalledAlexaMediaProps,
+  ) => Block;
+  /**
+   * Restore previous volume level on Alexa media player device
+   */
+  var restoreVolumeAlexaMedia: (params: RestoreVolumeAlexaMediaProps) => Block;
+  /**
+   * Parses the history records for the specified device
+   */
+  var getHistoryRecordsAlexaMedia: (
+    params: GetHistoryRecordsAlexaMediaProps,
+  ) => Block;
+}
 
 export interface ForceLogoutAlexaMediaProps {
   /**
@@ -7,10 +29,7 @@ export interface ForceLogoutAlexaMediaProps {
   email?: never;
 }
 
-/**
- * Force account to logout. Used mainly for debugging.
- */
-export const forceLogoutAlexaMedia = (params?: ForceLogoutAlexaMediaProps) =>
+globalThis.forceLogoutAlexaMedia = (params?: ForceLogoutAlexaMediaProps) =>
   serviceCall({
     name: `Call alexa_media.force_logout`,
     params: {
@@ -27,10 +46,7 @@ export interface UpdateLastCalledAlexaMediaProps {
   email?: never;
 }
 
-/**
- * Forces update of last_called echo device for each Alexa account.
- */
-export const updateLastCalledAlexaMedia = (
+globalThis.updateLastCalledAlexaMedia = (
   params?: UpdateLastCalledAlexaMediaProps,
 ) =>
   serviceCall({
@@ -49,10 +65,7 @@ export interface RestoreVolumeAlexaMediaProps {
   entity_id: string;
 }
 
-/**
- * Restore previous volume level on Alexa media player device
- */
-export const restoreVolumeAlexaMedia = (params: RestoreVolumeAlexaMediaProps) =>
+globalThis.restoreVolumeAlexaMedia = (params: RestoreVolumeAlexaMediaProps) =>
   serviceCall({
     name: `Call alexa_media.restore_volume`,
     params: {
@@ -73,10 +86,7 @@ export interface GetHistoryRecordsAlexaMediaProps {
   entries?: never;
 }
 
-/**
- * Parses the history records for the specified device
- */
-export const getHistoryRecordsAlexaMedia = (
+globalThis.getHistoryRecordsAlexaMedia = (
   params: GetHistoryRecordsAlexaMediaProps,
 ) =>
   serviceCall({

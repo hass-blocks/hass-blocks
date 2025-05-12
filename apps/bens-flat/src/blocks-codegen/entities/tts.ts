@@ -1,4 +1,9 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const homeAssistantCloudTts = entity('tts.home_assistant_cloud');
-export const openaiTtsOnyxTts = entity('tts.openai_tts_onyx');
+declare global {
+  var homeAssistantCloudTts: ITarget;
+  var openaiTtsOnyxTts: ITarget;
+}
+
+globalThis.homeAssistantCloudTts = entity('tts.home_assistant_cloud');
+globalThis.openaiTtsOnyxTts = entity('tts.openai_tts_onyx');

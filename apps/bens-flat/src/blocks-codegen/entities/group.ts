@@ -1,3 +1,7 @@
-import { entity } from '@hass-blocks/core';
+import { entity, ITarget } from '@hass-blocks/core';
 
-export const benGroup = entity('group.ben');
+declare global {
+  var benGroup: ITarget;
+}
+
+globalThis.benGroup = entity('group.ben');

@@ -1,4 +1,22 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Starts purge task - to clean up old data from your database.
+   */
+  var purgeRecorder: (params?: PurgeRecorderProps) => Block;
+  /**
+   * Starts a purge task to remove the data related to specific entities from your database.
+   */
+  var purgeEntitiesRecorder: (params?: PurgeEntitiesRecorderProps) => Block;
+  /**
+   * Starts the recording of events and state changes.
+   */
+  var enableRecorder: () => Block;
+  /**
+   * Stops the recording of events and state changes.
+   */
+  var disableRecorder: () => Block;
+}
 
 export interface PurgeRecorderProps {
   /**
@@ -15,10 +33,7 @@ export interface PurgeRecorderProps {
   apply_filter?: boolean;
 }
 
-/**
- * Starts purge task - to clean up old data from your database.
- */
-export const purgeRecorder = (params?: PurgeRecorderProps) =>
+globalThis.purgeRecorder = (params?: PurgeRecorderProps) =>
   serviceCall({
     name: `Call recorder.purge`,
     params: {
@@ -47,10 +62,7 @@ export interface PurgeEntitiesRecorderProps {
   keep_days?: number;
 }
 
-/**
- * Starts a purge task to remove the data related to specific entities from your database.
- */
-export const purgeEntitiesRecorder = (params?: PurgeEntitiesRecorderProps) =>
+globalThis.purgeEntitiesRecorder = (params?: PurgeEntitiesRecorderProps) =>
   serviceCall({
     name: `Call recorder.purge_entities`,
     params: {
@@ -60,10 +72,7 @@ export const purgeEntitiesRecorder = (params?: PurgeEntitiesRecorderProps) =>
     },
   });
 
-/**
- * Starts the recording of events and state changes.
- */
-export const enableRecorder = () =>
+globalThis.enableRecorder = () =>
   serviceCall({
     name: `Call recorder.enable`,
     params: {
@@ -72,10 +81,7 @@ export const enableRecorder = () =>
     },
   });
 
-/**
- * Stops the recording of events and state changes.
- */
-export const disableRecorder = () =>
+globalThis.disableRecorder = () =>
   serviceCall({
     name: `Call recorder.disable`,
     params: {

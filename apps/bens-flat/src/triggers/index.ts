@@ -1,11 +1,4 @@
 export {
-  motionIsDetectedInTheBedroom,
-  motionIsDetectedInTheHallway,
-  motionIsDetectedInTheBathroom,
-  motionIsDetectedInTheLivingRoom,
-} from './motion-sensors.ts';
-
-export {
   homeBecomesEmpty,
   imMoreThan20KmAway,
   imLessThen20kmAway,

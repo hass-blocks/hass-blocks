@@ -1,9 +1,54 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads helpers from the YAML-configuration.
+   */
+  var reloadInputSelect: (target: ITarget) => Block;
+  /**
+   * Selects the first option.
+   */
+  var selectFirstInputSelect: (
+    target: ITarget,
+    params?: SelectFirstInputSelectProps,
+  ) => Block;
+  /**
+   * Selects the last option.
+   */
+  var selectLastInputSelect: (
+    target: ITarget,
+    params?: SelectLastInputSelectProps,
+  ) => Block;
+  /**
+   * Selects the next option.
+   */
+  var selectNextInputSelect: (
+    target: ITarget,
+    params?: SelectNextInputSelectProps,
+  ) => Block;
+  /**
+   * Selects an option.
+   */
+  var selectOptionInputSelect: (
+    target: ITarget,
+    params: SelectOptionInputSelectProps,
+  ) => Block;
+  /**
+   * Selects the previous option.
+   */
+  var selectPreviousInputSelect: (
+    target: ITarget,
+    params?: SelectPreviousInputSelectProps,
+  ) => Block;
+  /**
+   * Sets the options.
+   */
+  var setOptionsInputSelect: (
+    target: ITarget,
+    params: SetOptionsInputSelectProps,
+  ) => Block;
+}
 
-/**
- * Reloads helpers from the YAML-configuration.
- */
-export const reloadInputSelect = (target: ITarget) =>
+globalThis.reloadInputSelect = (target: ITarget) =>
   serviceCall({
     name: `Call input_select.reload`,
     params: {
@@ -14,10 +59,7 @@ export const reloadInputSelect = (target: ITarget) =>
 
 export interface SelectFirstInputSelectProps {}
 
-/**
- * Selects the first option.
- */
-export const selectFirstInputSelect = (
+globalThis.selectFirstInputSelect = (
   target: ITarget,
   params?: SelectFirstInputSelectProps,
 ) =>
@@ -33,10 +75,7 @@ export const selectFirstInputSelect = (
 
 export interface SelectLastInputSelectProps {}
 
-/**
- * Selects the last option.
- */
-export const selectLastInputSelect = (
+globalThis.selectLastInputSelect = (
   target: ITarget,
   params?: SelectLastInputSelectProps,
 ) =>
@@ -57,10 +96,7 @@ export interface SelectNextInputSelectProps {
   cycle?: boolean;
 }
 
-/**
- * Selects the next option.
- */
-export const selectNextInputSelect = (
+globalThis.selectNextInputSelect = (
   target: ITarget,
   params?: SelectNextInputSelectProps,
 ) =>
@@ -81,10 +117,7 @@ export interface SelectOptionInputSelectProps {
   option: string;
 }
 
-/**
- * Selects an option.
- */
-export const selectOptionInputSelect = (
+globalThis.selectOptionInputSelect = (
   target: ITarget,
   params: SelectOptionInputSelectProps,
 ) =>
@@ -105,10 +138,7 @@ export interface SelectPreviousInputSelectProps {
   cycle?: boolean;
 }
 
-/**
- * Selects the previous option.
- */
-export const selectPreviousInputSelect = (
+globalThis.selectPreviousInputSelect = (
   target: ITarget,
   params?: SelectPreviousInputSelectProps,
 ) =>
@@ -129,10 +159,7 @@ export interface SetOptionsInputSelectProps {
   options: string;
 }
 
-/**
- * Sets the options.
- */
-export const setOptionsInputSelect = (
+globalThis.setOptionsInputSelect = (
   target: ITarget,
   params: SetOptionsInputSelectProps,
 ) =>

@@ -1,4 +1,12 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.
+   */
+  var sendMagicPacketWakeOnLan: (
+    params: SendMagicPacketWakeOnLanProps,
+  ) => Block;
+}
 
 export interface SendMagicPacketWakeOnLanProps {
   /**
@@ -15,12 +23,7 @@ export interface SendMagicPacketWakeOnLanProps {
   broadcast_port?: number;
 }
 
-/**
- * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.
- */
-export const sendMagicPacketWakeOnLan = (
-  params: SendMagicPacketWakeOnLanProps,
-) =>
+globalThis.sendMagicPacketWakeOnLan = (params: SendMagicPacketWakeOnLanProps) =>
   serviceCall({
     name: `Call wake_on_lan.send_magic_packet`,
     params: {

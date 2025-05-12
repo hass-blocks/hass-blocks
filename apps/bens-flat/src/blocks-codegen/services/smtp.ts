@@ -1,9 +1,12 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Reloads smtp notify services.
+   */
+  var reloadSmtp: () => Block;
+}
 
-/**
- * Reloads smtp notify services.
- */
-export const reloadSmtp = () =>
+globalThis.reloadSmtp = () =>
   serviceCall({
     name: `Call smtp.reload`,
     params: {

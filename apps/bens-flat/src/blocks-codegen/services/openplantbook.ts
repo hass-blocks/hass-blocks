@@ -1,4 +1,22 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Searches Openplantbook for a plant
+   */
+  var searchOpenplantbook: (params: SearchOpenplantbookProps) => Block;
+  /**
+   * Fetches data for a single species
+   */
+  var getOpenplantbook: (params: GetOpenplantbookProps) => Block;
+  /**
+   * Clean up the cached entries from Openplantbook
+   */
+  var cleanCacheOpenplantbook: (params?: CleanCacheOpenplantbookProps) => Block;
+  /**
+   * Upload sensors data of all plant instances
+   */
+  var uploadOpenplantbook: () => Block;
+}
 
 export interface SearchOpenplantbookProps {
   /**
@@ -7,10 +25,7 @@ export interface SearchOpenplantbookProps {
   alias: string;
 }
 
-/**
- * Searches Openplantbook for a plant
- */
-export const searchOpenplantbook = (params: SearchOpenplantbookProps) =>
+globalThis.searchOpenplantbook = (params: SearchOpenplantbookProps) =>
   serviceCall({
     name: `Call openplantbook.search`,
     params: {
@@ -27,10 +42,7 @@ export interface GetOpenplantbookProps {
   species: string;
 }
 
-/**
- * Fetches data for a single species
- */
-export const getOpenplantbook = (params: GetOpenplantbookProps) =>
+globalThis.getOpenplantbook = (params: GetOpenplantbookProps) =>
   serviceCall({
     name: `Call openplantbook.get`,
     params: {
@@ -47,12 +59,7 @@ export interface CleanCacheOpenplantbookProps {
   hours?: number;
 }
 
-/**
- * Clean up the cached entries from Openplantbook
- */
-export const cleanCacheOpenplantbook = (
-  params?: CleanCacheOpenplantbookProps,
-) =>
+globalThis.cleanCacheOpenplantbook = (params?: CleanCacheOpenplantbookProps) =>
   serviceCall({
     name: `Call openplantbook.clean_cache`,
     params: {
@@ -62,10 +69,7 @@ export const cleanCacheOpenplantbook = (
     },
   });
 
-/**
- * Upload sensors data of all plant instances
- */
-export const uploadOpenplantbook = () =>
+globalThis.uploadOpenplantbook = () =>
   serviceCall({
     name: `Call openplantbook.upload`,
     params: {

@@ -1,4 +1,26 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Activates a scene.
+   */
+  var turnOnScene: (target: ITarget, params?: TurnOnSceneProps) => Block;
+  /**
+   * Reloads the scenes from the YAML-configuration.
+   */
+  var reloadScene: (target: ITarget) => Block;
+  /**
+   * Activates a scene with configuration.
+   */
+  var applyScene: (target: ITarget, params: ApplySceneProps) => Block;
+  /**
+   * Creates a new scene.
+   */
+  var createScene: (target: ITarget, params: CreateSceneProps) => Block;
+  /**
+   * Deletes a dynamically created scene.
+   */
+  var deleteScene: (target: ITarget, params?: DeleteSceneProps) => Block;
+}
 
 export interface TurnOnSceneProps {
   /**
@@ -7,10 +29,7 @@ export interface TurnOnSceneProps {
   transition?: number;
 }
 
-/**
- * Activates a scene.
- */
-export const turnOnScene = (target: ITarget, params?: TurnOnSceneProps) =>
+globalThis.turnOnScene = (target: ITarget, params?: TurnOnSceneProps) =>
   serviceCall({
     name: `Call scene.turn_on`,
     params: {
@@ -21,10 +40,7 @@ export const turnOnScene = (target: ITarget, params?: TurnOnSceneProps) =>
     target,
   });
 
-/**
- * Reloads the scenes from the YAML-configuration.
- */
-export const reloadScene = (target: ITarget) =>
+globalThis.reloadScene = (target: ITarget) =>
   serviceCall({
     name: `Call scene.reload`,
     params: {
@@ -44,10 +60,7 @@ export interface ApplySceneProps {
   transition?: number;
 }
 
-/**
- * Activates a scene with configuration.
- */
-export const applyScene = (target: ITarget, params: ApplySceneProps) =>
+globalThis.applyScene = (target: ITarget, params: ApplySceneProps) =>
   serviceCall({
     name: `Call scene.apply`,
     params: {
@@ -72,10 +85,7 @@ export interface CreateSceneProps {
   snapshot_entities?: string;
 }
 
-/**
- * Creates a new scene.
- */
-export const createScene = (target: ITarget, params: CreateSceneProps) =>
+globalThis.createScene = (target: ITarget, params: CreateSceneProps) =>
   serviceCall({
     name: `Call scene.create`,
     params: {
@@ -87,10 +97,7 @@ export const createScene = (target: ITarget, params: CreateSceneProps) =>
 
 export interface DeleteSceneProps {}
 
-/**
- * Deletes a dynamically created scene.
- */
-export const deleteScene = (target: ITarget, params?: DeleteSceneProps) =>
+globalThis.deleteScene = (target: ITarget, params?: DeleteSceneProps) =>
   serviceCall({
     name: `Call scene.delete`,
     params: {

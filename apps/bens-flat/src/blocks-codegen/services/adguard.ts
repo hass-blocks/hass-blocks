@@ -1,4 +1,26 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Adds a new filter subscription to AdGuard Home.
+   */
+  var addUrlAdguard: (params: AddUrlAdguardProps) => Block;
+  /**
+   * Removes a filter subscription from AdGuard Home.
+   */
+  var removeUrlAdguard: (params: RemoveUrlAdguardProps) => Block;
+  /**
+   * Enables a filter subscription in AdGuard Home.
+   */
+  var enableUrlAdguard: (params: EnableUrlAdguardProps) => Block;
+  /**
+   * Disables a filter subscription in AdGuard Home.
+   */
+  var disableUrlAdguard: (params: DisableUrlAdguardProps) => Block;
+  /**
+   * Refreshes all filter subscriptions in AdGuard Home.
+   */
+  var refreshAdguard: (params?: RefreshAdguardProps) => Block;
+}
 
 export interface AddUrlAdguardProps {
   /**
@@ -11,10 +33,7 @@ export interface AddUrlAdguardProps {
   url: string;
 }
 
-/**
- * Adds a new filter subscription to AdGuard Home.
- */
-export const addUrlAdguard = (params: AddUrlAdguardProps) =>
+globalThis.addUrlAdguard = (params: AddUrlAdguardProps) =>
   serviceCall({
     name: `Call adguard.add_url`,
     params: {
@@ -31,10 +50,7 @@ export interface RemoveUrlAdguardProps {
   url: string;
 }
 
-/**
- * Removes a filter subscription from AdGuard Home.
- */
-export const removeUrlAdguard = (params: RemoveUrlAdguardProps) =>
+globalThis.removeUrlAdguard = (params: RemoveUrlAdguardProps) =>
   serviceCall({
     name: `Call adguard.remove_url`,
     params: {
@@ -51,10 +67,7 @@ export interface EnableUrlAdguardProps {
   url: string;
 }
 
-/**
- * Enables a filter subscription in AdGuard Home.
- */
-export const enableUrlAdguard = (params: EnableUrlAdguardProps) =>
+globalThis.enableUrlAdguard = (params: EnableUrlAdguardProps) =>
   serviceCall({
     name: `Call adguard.enable_url`,
     params: {
@@ -71,10 +84,7 @@ export interface DisableUrlAdguardProps {
   url: string;
 }
 
-/**
- * Disables a filter subscription in AdGuard Home.
- */
-export const disableUrlAdguard = (params: DisableUrlAdguardProps) =>
+globalThis.disableUrlAdguard = (params: DisableUrlAdguardProps) =>
   serviceCall({
     name: `Call adguard.disable_url`,
     params: {
@@ -91,10 +101,7 @@ export interface RefreshAdguardProps {
   force?: boolean;
 }
 
-/**
- * Refreshes all filter subscriptions in AdGuard Home.
- */
-export const refreshAdguard = (params?: RefreshAdguardProps) =>
+globalThis.refreshAdguard = (params?: RefreshAdguardProps) =>
   serviceCall({
     name: `Call adguard.refresh`,
     params: {

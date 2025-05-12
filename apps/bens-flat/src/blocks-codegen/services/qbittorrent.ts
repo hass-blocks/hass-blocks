@@ -1,4 +1,16 @@
-import { serviceCall } from '@hass-blocks/core';
+import { Block, serviceCall } from '@hass-blocks/core';
+declare global {
+  /**
+   * Gets a list of current torrents
+   */
+  var getTorrentsQbittorrent: (params: GetTorrentsQbittorrentProps) => Block;
+  /**
+   * Gets a list of current torrents from all instances of qBittorrent
+   */
+  var getAllTorrentsQbittorrent: (
+    params: GetAllTorrentsQbittorrentProps,
+  ) => Block;
+}
 
 export interface GetTorrentsQbittorrentProps {
   /**
@@ -11,10 +23,7 @@ export interface GetTorrentsQbittorrentProps {
   torrent_filter: never;
 }
 
-/**
- * Gets a list of current torrents
- */
-export const getTorrentsQbittorrent = (params: GetTorrentsQbittorrentProps) =>
+globalThis.getTorrentsQbittorrent = (params: GetTorrentsQbittorrentProps) =>
   serviceCall({
     name: `Call qbittorrent.get_torrents`,
     params: {
@@ -31,10 +40,7 @@ export interface GetAllTorrentsQbittorrentProps {
   torrent_filter: never;
 }
 
-/**
- * Gets a list of current torrents from all instances of qBittorrent
- */
-export const getAllTorrentsQbittorrent = (
+globalThis.getAllTorrentsQbittorrent = (
   params: GetAllTorrentsQbittorrentProps,
 ) =>
   serviceCall({

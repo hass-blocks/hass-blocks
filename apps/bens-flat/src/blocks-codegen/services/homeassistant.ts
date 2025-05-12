@@ -1,9 +1,78 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+declare global {
+  /**
+   * Saves the persistent states immediately. Maintains the normal periodic saving interval.
+   */
+  var savePersistentStatesHomeassistant: (target: ITarget) => Block;
+  /**
+   * Generic action to turn devices off under any domain.
+   */
+  var turnOffHomeassistant: (
+    target: ITarget,
+    params?: TurnOffHomeassistantProps,
+  ) => Block;
+  /**
+   * Generic action to turn devices on under any domain.
+   */
+  var turnOnHomeassistant: (
+    target: ITarget,
+    params?: TurnOnHomeassistantProps,
+  ) => Block;
+  /**
+   * Generic action to toggle devices on/off under any domain.
+   */
+  var toggleHomeassistant: (
+    target: ITarget,
+    params?: ToggleHomeassistantProps,
+  ) => Block;
+  /**
+   * Stops Home Assistant.
+   */
+  var stopHomeassistant: (target: ITarget) => Block;
+  /**
+   * Restarts Home Assistant.
+   */
+  var restartHomeassistant: (target: ITarget) => Block;
+  /**
+   * Checks the Home Assistant YAML-configuration files for errors. Errors will be shown in the Home Assistant logs.
+   */
+  var checkConfigHomeassistant: (target: ITarget) => Block;
+  /**
+   * Forces one or more entities to update their data.
+   */
+  var updateEntityHomeassistant: (
+    target: ITarget,
+    params: UpdateEntityHomeassistantProps,
+  ) => Block;
+  /**
+   * Reloads the Core configuration from the YAML-configuration.
+   */
+  var reloadCoreConfigHomeassistant: (target: ITarget) => Block;
+  /**
+   * Updates the Home Assistant location.
+   */
+  var setLocationHomeassistant: (
+    target: ITarget,
+    params: SetLocationHomeassistantProps,
+  ) => Block;
+  /**
+   * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
+   */
+  var reloadCustomTemplatesHomeassistant: (target: ITarget) => Block;
+  /**
+   * Reloads the specified config entry.
+   */
+  var reloadConfigEntryHomeassistant: (
+    target: ITarget,
+    params?: ReloadConfigEntryHomeassistantProps,
+  ) => Block;
+  /**
+   * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.
+   */
+  var reloadAllHomeassistant: (target: ITarget) => Block;
+}
 
-/**
- * Saves the persistent states immediately. Maintains the normal periodic saving interval.
- */
-export const savePersistentStatesHomeassistant = (target: ITarget) =>
+globalThis.savePersistentStatesHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.save_persistent_states`,
     params: {
@@ -14,10 +83,7 @@ export const savePersistentStatesHomeassistant = (target: ITarget) =>
 
 export interface TurnOffHomeassistantProps {}
 
-/**
- * Generic action to turn devices off under any domain.
- */
-export const turnOffHomeassistant = (
+globalThis.turnOffHomeassistant = (
   target: ITarget,
   params?: TurnOffHomeassistantProps,
 ) =>
@@ -33,10 +99,7 @@ export const turnOffHomeassistant = (
 
 export interface TurnOnHomeassistantProps {}
 
-/**
- * Generic action to turn devices on under any domain.
- */
-export const turnOnHomeassistant = (
+globalThis.turnOnHomeassistant = (
   target: ITarget,
   params?: TurnOnHomeassistantProps,
 ) =>
@@ -52,10 +115,7 @@ export const turnOnHomeassistant = (
 
 export interface ToggleHomeassistantProps {}
 
-/**
- * Generic action to toggle devices on/off under any domain.
- */
-export const toggleHomeassistant = (
+globalThis.toggleHomeassistant = (
   target: ITarget,
   params?: ToggleHomeassistantProps,
 ) =>
@@ -69,10 +129,7 @@ export const toggleHomeassistant = (
     target,
   });
 
-/**
- * Stops Home Assistant.
- */
-export const stopHomeassistant = (target: ITarget) =>
+globalThis.stopHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.stop`,
     params: {
@@ -81,10 +138,7 @@ export const stopHomeassistant = (target: ITarget) =>
     },
   });
 
-/**
- * Restarts Home Assistant.
- */
-export const restartHomeassistant = (target: ITarget) =>
+globalThis.restartHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.restart`,
     params: {
@@ -93,10 +147,7 @@ export const restartHomeassistant = (target: ITarget) =>
     },
   });
 
-/**
- * Checks the Home Assistant YAML-configuration files for errors. Errors will be shown in the Home Assistant logs.
- */
-export const checkConfigHomeassistant = (target: ITarget) =>
+globalThis.checkConfigHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.check_config`,
     params: {
@@ -112,10 +163,7 @@ export interface UpdateEntityHomeassistantProps {
   entity_id: string;
 }
 
-/**
- * Forces one or more entities to update their data.
- */
-export const updateEntityHomeassistant = (
+globalThis.updateEntityHomeassistant = (
   target: ITarget,
   params: UpdateEntityHomeassistantProps,
 ) =>
@@ -128,10 +176,7 @@ export const updateEntityHomeassistant = (
     },
   });
 
-/**
- * Reloads the Core configuration from the YAML-configuration.
- */
-export const reloadCoreConfigHomeassistant = (target: ITarget) =>
+globalThis.reloadCoreConfigHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.reload_core_config`,
     params: {
@@ -155,10 +200,7 @@ export interface SetLocationHomeassistantProps {
   elevation?: number;
 }
 
-/**
- * Updates the Home Assistant location.
- */
-export const setLocationHomeassistant = (
+globalThis.setLocationHomeassistant = (
   target: ITarget,
   params: SetLocationHomeassistantProps,
 ) =>
@@ -171,10 +213,7 @@ export const setLocationHomeassistant = (
     },
   });
 
-/**
- * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
- */
-export const reloadCustomTemplatesHomeassistant = (target: ITarget) =>
+globalThis.reloadCustomTemplatesHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.reload_custom_templates`,
     params: {
@@ -190,10 +229,7 @@ export interface ReloadConfigEntryHomeassistantProps {
   entry_id?: never;
 }
 
-/**
- * Reloads the specified config entry.
- */
-export const reloadConfigEntryHomeassistant = (
+globalThis.reloadConfigEntryHomeassistant = (
   target: ITarget,
   params?: ReloadConfigEntryHomeassistantProps,
 ) =>
@@ -207,10 +243,7 @@ export const reloadConfigEntryHomeassistant = (
     target,
   });
 
-/**
- * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.
- */
-export const reloadAllHomeassistant = (target: ITarget) =>
+globalThis.reloadAllHomeassistant = (target: ITarget) =>
   serviceCall({
     name: `Call homeassistant.reload_all`,
     params: {

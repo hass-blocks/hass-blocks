@@ -64,9 +64,9 @@ import "./bop.ts";
     const expectedOutput = `import { entity, IEntity } from "@hass-blocks/core";
 
 declare global {
-  var barFoo: IEntity<\`foo.\${string}\`>;
-  var bazFoo: IEntity<\`foo.\${string}\`>;
-  var bapFoo: IEntity<\`foo.\${string}\`>;
+  var barFoo: IEntity<\`foo.bar\`>;
+  var bazFoo: IEntity<\`foo.baz\`>;
+  var bapFoo: IEntity<\`foo.bap\`>;
 }
 
 globalThis.barFoo = entity("foo.bar");
@@ -79,8 +79,8 @@ globalThis.bapFoo = entity("foo.bap");
     const expectedOutputTwo = `import { entity, IEntity } from "@hass-blocks/core";
 
 declare global {
-  var booBop: IEntity<\`bop.\${string}\`>;
-  var bongBop: IEntity<\`bop.\${string}\`>;
+  var booBop: IEntity<\`bop.boo\`>;
+  var bongBop: IEntity<\`bop.bong\`>;
 }
 
 globalThis.booBop = entity("bop.boo");

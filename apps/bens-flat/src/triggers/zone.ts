@@ -1,22 +1,21 @@
 import { trigger } from '@hass-blocks/core';
-import { home } from '../entities.ts';
 
 export const homeBecomesEmpty = trigger({
   name: 'Home has no occupants',
-  targets: [home],
+  targets: [homeZone],
   trigger: {
     platform: 'state',
-    entity_id: home.entityIds[0],
+    entity_id: homeZone.targetIds.entity_id,
     to: '0',
   },
 });
 
 export const imMoreThan20KmAway = trigger({
   name: "I'm more than 20km away",
-  targets: [home],
+  targets: [homeZone],
   trigger: {
     platform: 'numeric_state',
-    entity_id: home.entityIds[0],
+    entity_id: homeZone.targetIds.entity_id,
     above: 20000,
     for: '00:01:00',
   },
@@ -24,10 +23,10 @@ export const imMoreThan20KmAway = trigger({
 
 export const imLessThen20kmAway = trigger({
   name: "I'm less than 20km away",
-  targets: [home],
+  targets: [homeZone],
   trigger: {
     platform: 'numeric_state',
-    entity_id: home.entityIds[0],
+    entity_id: homeZone.targetIds.entity_id,
     below: 20000,
     for: '00:01:00',
   },

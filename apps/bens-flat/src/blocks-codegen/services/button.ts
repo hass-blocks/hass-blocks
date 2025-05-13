@@ -11,10 +11,7 @@ declare global {
 
 export interface PressButtonProps {}
 
-globalThis.pressButton = (
-  target: IEntity<`button.${string}`> | IArea,
-  params?: PressButtonProps,
-) =>
+globalThis.pressButton = (target, params) =>
   serviceCall({
     name: `Call button.press`,
     params: {

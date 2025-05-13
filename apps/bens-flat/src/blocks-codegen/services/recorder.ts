@@ -33,7 +33,7 @@ export interface PurgeRecorderProps {
   apply_filter?: boolean;
 }
 
-globalThis.purgeRecorder = (params?: PurgeRecorderProps) =>
+globalThis.purgeRecorder = (params) =>
   serviceCall({
     name: `Call recorder.purge`,
     params: {
@@ -62,7 +62,7 @@ export interface PurgeEntitiesRecorderProps {
   keep_days?: number;
 }
 
-globalThis.purgeEntitiesRecorder = (params?: PurgeEntitiesRecorderProps) =>
+globalThis.purgeEntitiesRecorder = (params) =>
   serviceCall({
     name: `Call recorder.purge_entities`,
     params: {

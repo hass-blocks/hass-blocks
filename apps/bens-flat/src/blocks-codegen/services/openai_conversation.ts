@@ -29,9 +29,7 @@ export interface GenerateContentOpenaiConversationProps {
   filenames?: string;
 }
 
-globalThis.generateContentOpenaiConversation = (
-  params: GenerateContentOpenaiConversationProps,
-) =>
+globalThis.generateContentOpenaiConversation = (params) =>
   serviceCall({
     name: `Call openai_conversation.generate_content`,
     params: {
@@ -64,9 +62,7 @@ export interface GenerateImageOpenaiConversationProps {
   style?: never;
 }
 
-globalThis.generateImageOpenaiConversation = (
-  params: GenerateImageOpenaiConversationProps,
-) =>
+globalThis.generateImageOpenaiConversation = (params) =>
   serviceCall({
     name: `Call openai_conversation.generate_image`,
     params: {

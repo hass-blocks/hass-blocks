@@ -43,10 +43,7 @@ export interface SetValueInputNumberProps {
   value: number;
 }
 
-globalThis.setValueInputNumber = (
-  target: IEntity<`input_number.${string}`> | IArea,
-  params: SetValueInputNumberProps,
-) =>
+globalThis.setValueInputNumber = (target, params) =>
   serviceCall({
     name: `Call input_number.set_value`,
     params: {
@@ -59,10 +56,7 @@ globalThis.setValueInputNumber = (
 
 export interface IncrementInputNumberProps {}
 
-globalThis.incrementInputNumber = (
-  target: IEntity<`input_number.${string}`> | IArea,
-  params?: IncrementInputNumberProps,
-) =>
+globalThis.incrementInputNumber = (target, params) =>
   serviceCall({
     name: `Call input_number.increment`,
     params: {
@@ -75,10 +69,7 @@ globalThis.incrementInputNumber = (
 
 export interface DecrementInputNumberProps {}
 
-globalThis.decrementInputNumber = (
-  target: IEntity<`input_number.${string}`> | IArea,
-  params?: DecrementInputNumberProps,
-) =>
+globalThis.decrementInputNumber = (target, params) =>
   serviceCall({
     name: `Call input_number.decrement`,
     params: {

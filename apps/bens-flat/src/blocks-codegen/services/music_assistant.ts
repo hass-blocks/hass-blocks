@@ -71,7 +71,7 @@ export interface SearchMusicAssistantProps {
   library_only?: boolean;
 }
 
-globalThis.searchMusicAssistant = (params: SearchMusicAssistantProps) =>
+globalThis.searchMusicAssistant = (params) =>
   serviceCall({
     name: `Call music_assistant.search`,
     params: {
@@ -120,7 +120,7 @@ export interface GetLibraryMusicAssistantProps {
   album_artists_only?: boolean;
 }
 
-globalThis.getLibraryMusicAssistant = (params: GetLibraryMusicAssistantProps) =>
+globalThis.getLibraryMusicAssistant = (params) =>
   serviceCall({
     name: `Call music_assistant.get_library`,
     params: {
@@ -157,10 +157,7 @@ export interface PlayMediaMusicAssistantProps {
   radio_mode?: boolean;
 }
 
-globalThis.playMediaMusicAssistant = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: PlayMediaMusicAssistantProps,
-) =>
+globalThis.playMediaMusicAssistant = (target, params) =>
   serviceCall({
     name: `Call music_assistant.play_media`,
     params: {
@@ -186,10 +183,7 @@ export interface PlayAnnouncementMusicAssistantProps {
   announce_volume?: number;
 }
 
-globalThis.playAnnouncementMusicAssistant = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: PlayAnnouncementMusicAssistantProps,
-) =>
+globalThis.playAnnouncementMusicAssistant = (target, params) =>
   serviceCall({
     name: `Call music_assistant.play_announcement`,
     params: {
@@ -211,10 +205,7 @@ export interface TransferQueueMusicAssistantProps {
   auto_play?: boolean;
 }
 
-globalThis.transferQueueMusicAssistant = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: TransferQueueMusicAssistantProps,
-) =>
+globalThis.transferQueueMusicAssistant = (target, params) =>
   serviceCall({
     name: `Call music_assistant.transfer_queue`,
     params: {
@@ -227,10 +218,7 @@ globalThis.transferQueueMusicAssistant = (
 
 export interface GetQueueMusicAssistantProps {}
 
-globalThis.getQueueMusicAssistant = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: GetQueueMusicAssistantProps,
-) =>
+globalThis.getQueueMusicAssistant = (target, params) =>
   serviceCall({
     name: `Call music_assistant.get_queue`,
     params: {

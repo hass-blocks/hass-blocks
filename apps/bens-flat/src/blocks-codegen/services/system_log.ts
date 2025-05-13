@@ -34,7 +34,7 @@ export interface WriteSystemLogProps {
   logger?: string;
 }
 
-globalThis.writeSystemLog = (params: WriteSystemLogProps) =>
+globalThis.writeSystemLog = (params) =>
   serviceCall({
     name: `Call system_log.write`,
     params: {

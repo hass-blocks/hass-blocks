@@ -37,7 +37,7 @@ export interface SeeDeviceTrackerProps {
   battery?: number;
 }
 
-globalThis.seeDeviceTracker = (params?: SeeDeviceTrackerProps) =>
+globalThis.seeDeviceTracker = (params) =>
   serviceCall({
     name: `Call device_tracker.see`,
     params: {

@@ -37,7 +37,7 @@ export interface PublishMqttProps {
   retain?: boolean;
 }
 
-globalThis.publishMqtt = (params: PublishMqttProps) =>
+globalThis.publishMqtt = (params) =>
   serviceCall({
     name: `Call mqtt.publish`,
     params: {
@@ -58,7 +58,7 @@ export interface DumpMqttProps {
   duration?: number;
 }
 
-globalThis.dumpMqtt = (params?: DumpMqttProps) =>
+globalThis.dumpMqtt = (params) =>
   serviceCall({
     name: `Call mqtt.dump`,
     params: {

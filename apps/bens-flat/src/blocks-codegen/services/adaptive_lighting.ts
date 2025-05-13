@@ -49,7 +49,7 @@ export interface ApplyAdaptiveLightingProps {
   turn_on_lights?: boolean;
 }
 
-globalThis.applyAdaptiveLighting = (params?: ApplyAdaptiveLightingProps) =>
+globalThis.applyAdaptiveLighting = (params) =>
   serviceCall({
     name: `Call adaptive_lighting.apply`,
     params: {
@@ -74,9 +74,7 @@ export interface SetManualControlAdaptiveLightingProps {
   manual_control?: boolean;
 }
 
-globalThis.setManualControlAdaptiveLighting = (
-  params?: SetManualControlAdaptiveLightingProps,
-) =>
+globalThis.setManualControlAdaptiveLighting = (params) =>
   serviceCall({
     name: `Call adaptive_lighting.set_manual_control`,
     params: {
@@ -205,9 +203,7 @@ export interface ChangeSwitchSettingsAdaptiveLightingProps {
   autoreset_control_seconds?: string;
 }
 
-globalThis.changeSwitchSettingsAdaptiveLighting = (
-  params: ChangeSwitchSettingsAdaptiveLightingProps,
-) =>
+globalThis.changeSwitchSettingsAdaptiveLighting = (params) =>
   serviceCall({
     name: `Call adaptive_lighting.change_switch_settings`,
     params: {

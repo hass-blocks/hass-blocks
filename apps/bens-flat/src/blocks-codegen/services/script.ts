@@ -81,7 +81,7 @@ export interface TodoListScriptProps {
   player: string;
 }
 
-globalThis.todoListScript = (params: TodoListScriptProps) =>
+globalThis.todoListScript = (params) =>
   serviceCall({
     name: `Call script.todo_list`,
     params: {
@@ -96,7 +96,7 @@ export interface OpenAiTtsScriptProps {
   player: string;
 }
 
-globalThis.openAiTtsScript = (params: OpenAiTtsScriptProps) =>
+globalThis.openAiTtsScript = (params) =>
   serviceCall({
     name: `Call script.open_ai_tts`,
     params: {
@@ -110,9 +110,7 @@ export interface ReadTodaySCalendarScriptProps {
   player?: string;
 }
 
-globalThis.readTodaySCalendarScript = (
-  params?: ReadTodaySCalendarScriptProps,
-) =>
+globalThis.readTodaySCalendarScript = (params) =>
   serviceCall({
     name: `Call script.read_today_s_calendar`,
     params: {
@@ -178,10 +176,7 @@ globalThis.reloadScript = () =>
 
 export interface TurnOnScriptProps {}
 
-globalThis.turnOnScript = (
-  target: IEntity<`script.${string}`> | IArea,
-  params?: TurnOnScriptProps,
-) =>
+globalThis.turnOnScript = (target, params) =>
   serviceCall({
     name: `Call script.turn_on`,
     params: {
@@ -194,10 +189,7 @@ globalThis.turnOnScript = (
 
 export interface TurnOffScriptProps {}
 
-globalThis.turnOffScript = (
-  target: IEntity<`script.${string}`> | IArea,
-  params?: TurnOffScriptProps,
-) =>
+globalThis.turnOffScript = (target, params) =>
   serviceCall({
     name: `Call script.turn_off`,
     params: {
@@ -210,10 +202,7 @@ globalThis.turnOffScript = (
 
 export interface ToggleScriptProps {}
 
-globalThis.toggleScript = (
-  target: IEntity<`script.${string}`> | IArea,
-  params?: ToggleScriptProps,
-) =>
+globalThis.toggleScript = (target, params) =>
   serviceCall({
     name: `Call script.toggle`,
     params: {

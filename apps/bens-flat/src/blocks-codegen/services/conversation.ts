@@ -29,7 +29,7 @@ export interface ProcessConversationProps {
   conversation_id?: string;
 }
 
-globalThis.processConversation = (params: ProcessConversationProps) =>
+globalThis.processConversation = (params) =>
   serviceCall({
     name: `Call conversation.process`,
     params: {
@@ -50,7 +50,7 @@ export interface ReloadConversationProps {
   agent_id?: never;
 }
 
-globalThis.reloadConversation = (params?: ReloadConversationProps) =>
+globalThis.reloadConversation = (params) =>
   serviceCall({
     name: `Call conversation.reload`,
     params: {

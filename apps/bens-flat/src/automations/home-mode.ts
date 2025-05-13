@@ -1,4 +1,4 @@
-import { waitMinutes, gate, stateTurns } from '@hass-blocks/blocks';
+import { waitMinutes, gate, stateTurns, stateIs } from '@hass-blocks/blocks';
 
 import {
   automation,
@@ -9,24 +9,21 @@ import {
 
 import { notifyMyPhone } from '../actions/index.ts';
 
-import {
-  ifIamOut,
-  ifHomeModeIsOff,
-  ifHomeIsNotEmpty,
-  ifBlindsWouldNormallyBeOpen,
-} from '../assertions/index.ts';
+import { ifIamOut, ifHomeIsNotEmpty } from '../assertions/index.ts';
 
 import {
   homeBecomesEmpty,
   homeModeTurnsOff,
   homeModeTurnsOn,
-  // homeModeTurnsOn,
 } from '../triggers/index.ts';
+
 import {
   playMyDiscoverWeeklyEveryWhere,
   setVolumeOnSpeakers,
 } from '../actions/media.ts';
+
 import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
+
 import { allLights, allSpeakers } from '../entities.ts';
 
 import '@blocks-codegen';
@@ -60,7 +57,7 @@ export const homeModeDetection = automation({
         turnOffSwitch(homeModeSwitch),
       ),
       sequence(
-        ifHomeModeIsOff,
+        stateIs(homeModeSwitch, 'off'),
         ifHomeIsNotEmpty,
         disallowZoneExitChecks,
         turnOnSwitch(homeModeSwitch),
@@ -95,7 +92,7 @@ export const whenIGetHome = automation({
       playMyDiscoverWeeklyEveryWhere,
       setVolumeOnSpeakers(0.3),
       sequence(
-        ifBlindsWouldNormallyBeOpen,
+        stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
         openCoverCover(livingRoomBlindsCover),
       ),
       startSlideshowOnAppleTv,

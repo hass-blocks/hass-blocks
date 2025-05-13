@@ -33,7 +33,7 @@ export interface AddUrlAdguardProps {
   url: string;
 }
 
-globalThis.addUrlAdguard = (params: AddUrlAdguardProps) =>
+globalThis.addUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.add_url`,
     params: {
@@ -50,7 +50,7 @@ export interface RemoveUrlAdguardProps {
   url: string;
 }
 
-globalThis.removeUrlAdguard = (params: RemoveUrlAdguardProps) =>
+globalThis.removeUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.remove_url`,
     params: {
@@ -67,7 +67,7 @@ export interface EnableUrlAdguardProps {
   url: string;
 }
 
-globalThis.enableUrlAdguard = (params: EnableUrlAdguardProps) =>
+globalThis.enableUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.enable_url`,
     params: {
@@ -84,7 +84,7 @@ export interface DisableUrlAdguardProps {
   url: string;
 }
 
-globalThis.disableUrlAdguard = (params: DisableUrlAdguardProps) =>
+globalThis.disableUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.disable_url`,
     params: {
@@ -101,7 +101,7 @@ export interface RefreshAdguardProps {
   force?: boolean;
 }
 
-globalThis.refreshAdguard = (params?: RefreshAdguardProps) =>
+globalThis.refreshAdguard = (params) =>
   serviceCall({
     name: `Call adguard.refresh`,
     params: {

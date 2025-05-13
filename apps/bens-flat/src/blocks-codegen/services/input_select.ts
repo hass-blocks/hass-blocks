@@ -59,10 +59,7 @@ globalThis.reloadInputSelect = () =>
 
 export interface SelectFirstInputSelectProps {}
 
-globalThis.selectFirstInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params?: SelectFirstInputSelectProps,
-) =>
+globalThis.selectFirstInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_first`,
     params: {
@@ -75,10 +72,7 @@ globalThis.selectFirstInputSelect = (
 
 export interface SelectLastInputSelectProps {}
 
-globalThis.selectLastInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params?: SelectLastInputSelectProps,
-) =>
+globalThis.selectLastInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_last`,
     params: {
@@ -96,10 +90,7 @@ export interface SelectNextInputSelectProps {
   cycle?: boolean;
 }
 
-globalThis.selectNextInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params?: SelectNextInputSelectProps,
-) =>
+globalThis.selectNextInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_next`,
     params: {
@@ -117,10 +108,7 @@ export interface SelectOptionInputSelectProps {
   option: string;
 }
 
-globalThis.selectOptionInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params: SelectOptionInputSelectProps,
-) =>
+globalThis.selectOptionInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_option`,
     params: {
@@ -138,10 +126,7 @@ export interface SelectPreviousInputSelectProps {
   cycle?: boolean;
 }
 
-globalThis.selectPreviousInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params?: SelectPreviousInputSelectProps,
-) =>
+globalThis.selectPreviousInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_previous`,
     params: {
@@ -159,10 +144,7 @@ export interface SetOptionsInputSelectProps {
   options: string;
 }
 
-globalThis.setOptionsInputSelect = (
-  target: IEntity<`input_select.${string}`> | IArea,
-  params: SetOptionsInputSelectProps,
-) =>
+globalThis.setOptionsInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.set_options`,
     params: {

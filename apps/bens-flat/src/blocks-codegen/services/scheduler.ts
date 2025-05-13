@@ -45,7 +45,7 @@ export interface RunActionSchedulerProps {
   skip_conditions?: boolean;
 }
 
-globalThis.runActionScheduler = (params: RunActionSchedulerProps) =>
+globalThis.runActionScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.run_action`,
     params: {
@@ -82,7 +82,7 @@ export interface AddSchedulerProps {
   name?: string;
 }
 
-globalThis.addScheduler = (params: AddSchedulerProps) =>
+globalThis.addScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.add`,
     params: {
@@ -123,7 +123,7 @@ export interface EditSchedulerProps {
   name?: string;
 }
 
-globalThis.editScheduler = (params: EditSchedulerProps) =>
+globalThis.editScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.edit`,
     params: {
@@ -140,7 +140,7 @@ export interface RemoveSchedulerProps {
   entity_id: string;
 }
 
-globalThis.removeScheduler = (params: RemoveSchedulerProps) =>
+globalThis.removeScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.remove`,
     params: {
@@ -161,7 +161,7 @@ export interface CopySchedulerProps {
   name?: string;
 }
 
-globalThis.copyScheduler = (params: CopySchedulerProps) =>
+globalThis.copyScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.copy`,
     params: {

@@ -25,7 +25,7 @@ export interface LogLogbookProps {
   domain?: string;
 }
 
-globalThis.logLogbook = (params: LogLogbookProps) =>
+globalThis.logLogbook = (params) =>
   serviceCall({
     name: `Call logbook.log`,
     params: {

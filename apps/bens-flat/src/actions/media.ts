@@ -1,11 +1,13 @@
 import '@blocks-codegen';
 
-import { allSpeakers, livingRoomSpeaker, tv } from '../entities.ts';
+import { allSpeakers } from '../entities.ts';
 
 import { bedroom } from '../areas.ts';
 
 export const stopMusicInTheBedroom = mediaStopMediaPlayer(bedroom);
-export const stopMusicInTheLivingRoom = mediaStopMediaPlayer(livingRoomSpeaker);
+export const stopMusicInTheLivingRoom = mediaStopMediaPlayer(
+  sonosArcUltraMediaPlayer,
+);
 
 export const playMyDiscoverWeeklyEveryWhere = playMediaMediaPlayer(
   allSpeakers,
@@ -20,6 +22,6 @@ export const setVolumeOnSpeakers = (volume: number) =>
     volume_level: volume,
   });
 
-export const switchTvToAppleTv = selectSourceMediaPlayer(tv, {
+export const switchTvToAppleTv = selectSourceMediaPlayer(lgWebosTvMediaPlayer, {
   source: 'Apple TV',
 });

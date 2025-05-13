@@ -16,10 +16,7 @@ export interface SetValueNumberProps {
   value: string;
 }
 
-globalThis.setValueNumber = (
-  target: IEntity<`number.${string}`> | IArea,
-  params: SetValueNumberProps,
-) =>
+globalThis.setValueNumber = (target, params) =>
   serviceCall({
     name: `Call number.set_value`,
     params: {

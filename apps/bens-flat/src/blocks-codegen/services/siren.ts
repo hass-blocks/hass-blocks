@@ -38,10 +38,7 @@ export interface TurnOnSirenProps {
   duration?: string;
 }
 
-globalThis.turnOnSiren = (
-  target: IEntity<`siren.${string}`> | IArea,
-  params?: TurnOnSirenProps,
-) =>
+globalThis.turnOnSiren = (target, params) =>
   serviceCall({
     name: `Call siren.turn_on`,
     params: {
@@ -54,10 +51,7 @@ globalThis.turnOnSiren = (
 
 export interface TurnOffSirenProps {}
 
-globalThis.turnOffSiren = (
-  target: IEntity<`siren.${string}`> | IArea,
-  params?: TurnOffSirenProps,
-) =>
+globalThis.turnOffSiren = (target, params) =>
   serviceCall({
     name: `Call siren.turn_off`,
     params: {
@@ -70,10 +64,7 @@ globalThis.turnOffSiren = (
 
 export interface ToggleSirenProps {}
 
-globalThis.toggleSiren = (
-  target: IEntity<`siren.${string}`> | IArea,
-  params?: ToggleSirenProps,
-) =>
+globalThis.toggleSiren = (target, params) =>
   serviceCall({
     name: `Call siren.toggle`,
     params: {

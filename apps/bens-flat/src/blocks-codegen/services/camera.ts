@@ -53,10 +53,7 @@ declare global {
 
 export interface EnableMotionDetectionCameraProps {}
 
-globalThis.enableMotionDetectionCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params?: EnableMotionDetectionCameraProps,
-) =>
+globalThis.enableMotionDetectionCamera = (target, params) =>
   serviceCall({
     name: `Call camera.enable_motion_detection`,
     params: {
@@ -69,10 +66,7 @@ globalThis.enableMotionDetectionCamera = (
 
 export interface DisableMotionDetectionCameraProps {}
 
-globalThis.disableMotionDetectionCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params?: DisableMotionDetectionCameraProps,
-) =>
+globalThis.disableMotionDetectionCamera = (target, params) =>
   serviceCall({
     name: `Call camera.disable_motion_detection`,
     params: {
@@ -85,10 +79,7 @@ globalThis.disableMotionDetectionCamera = (
 
 export interface TurnOffCameraProps {}
 
-globalThis.turnOffCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params?: TurnOffCameraProps,
-) =>
+globalThis.turnOffCamera = (target, params) =>
   serviceCall({
     name: `Call camera.turn_off`,
     params: {
@@ -101,10 +92,7 @@ globalThis.turnOffCamera = (
 
 export interface TurnOnCameraProps {}
 
-globalThis.turnOnCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params?: TurnOnCameraProps,
-) =>
+globalThis.turnOnCamera = (target, params) =>
   serviceCall({
     name: `Call camera.turn_on`,
     params: {
@@ -122,10 +110,7 @@ export interface SnapshotCameraProps {
   filename: string;
 }
 
-globalThis.snapshotCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params: SnapshotCameraProps,
-) =>
+globalThis.snapshotCamera = (target, params) =>
   serviceCall({
     name: `Call camera.snapshot`,
     params: {
@@ -147,10 +132,7 @@ export interface PlayStreamCameraProps {
   format?: never;
 }
 
-globalThis.playStreamCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params: PlayStreamCameraProps,
-) =>
+globalThis.playStreamCamera = (target, params) =>
   serviceCall({
     name: `Call camera.play_stream`,
     params: {
@@ -176,10 +158,7 @@ export interface RecordCameraProps {
   lookback?: number;
 }
 
-globalThis.recordCamera = (
-  target: IEntity<`camera.${string}`> | IArea,
-  params: RecordCameraProps,
-) =>
+globalThis.recordCamera = (target, params) =>
   serviceCall({
     name: `Call camera.record`,
     params: {

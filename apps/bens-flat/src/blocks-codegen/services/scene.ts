@@ -48,7 +48,7 @@ export interface ApplySceneProps {
   transition?: number;
 }
 
-globalThis.applyScene = (params: ApplySceneProps) =>
+globalThis.applyScene = (params) =>
   serviceCall({
     name: `Call scene.apply`,
     params: {
@@ -73,7 +73,7 @@ export interface CreateSceneProps {
   snapshot_entities?: string;
 }
 
-globalThis.createScene = (params: CreateSceneProps) =>
+globalThis.createScene = (params) =>
   serviceCall({
     name: `Call scene.create`,
     params: {
@@ -85,10 +85,7 @@ globalThis.createScene = (params: CreateSceneProps) =>
 
 export interface DeleteSceneProps {}
 
-globalThis.deleteScene = (
-  target: IEntity<`scene.${string}`> | IArea,
-  params?: DeleteSceneProps,
-) =>
+globalThis.deleteScene = (target, params) =>
   serviceCall({
     name: `Call scene.delete`,
     params: {
@@ -106,10 +103,7 @@ export interface TurnOnSceneProps {
   transition?: number;
 }
 
-globalThis.turnOnScene = (
-  target: IEntity<`scene.${string}`> | IArea,
-  params?: TurnOnSceneProps,
-) =>
+globalThis.turnOnScene = (target, params) =>
   serviceCall({
     name: `Call scene.turn_on`,
     params: {

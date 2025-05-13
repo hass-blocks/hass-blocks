@@ -54,7 +54,7 @@ export interface SetGroupProps {
   all?: boolean;
 }
 
-globalThis.setGroup = (params: SetGroupProps) =>
+globalThis.setGroup = (params) =>
   serviceCall({
     name: `Call group.set`,
     params: {
@@ -71,7 +71,7 @@ export interface RemoveGroupProps {
   object_id: never;
 }
 
-globalThis.removeGroup = (params: RemoveGroupProps) =>
+globalThis.removeGroup = (params) =>
   serviceCall({
     name: `Call group.remove`,
     params: {

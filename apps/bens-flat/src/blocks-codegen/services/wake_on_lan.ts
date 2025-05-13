@@ -23,7 +23,7 @@ export interface SendMagicPacketWakeOnLanProps {
   broadcast_port?: number;
 }
 
-globalThis.sendMagicPacketWakeOnLan = (params: SendMagicPacketWakeOnLanProps) =>
+globalThis.sendMagicPacketWakeOnLan = (params) =>
   serviceCall({
     name: `Call wake_on_lan.send_magic_packet`,
     params: {

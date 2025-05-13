@@ -150,10 +150,7 @@ export interface SendMessageNotifyProps {
   title?: string;
 }
 
-globalThis.sendMessageNotify = (
-  target: IEntity<`notify.${string}`> | IArea,
-  params: SendMessageNotifyProps,
-) =>
+globalThis.sendMessageNotify = (target, params) =>
   serviceCall({
     name: `Call notify.send_message`,
     params: {
@@ -179,9 +176,7 @@ export interface PersistentNotificationNotifyProps {
   data?: never;
 }
 
-globalThis.persistentNotificationNotify = (
-  params: PersistentNotificationNotifyProps,
-) =>
+globalThis.persistentNotificationNotify = (params) =>
   serviceCall({
     name: `Call notify.persistent_notification`,
     params: {
@@ -198,7 +193,7 @@ export interface EmailNotifyProps {
   data?: never;
 }
 
-globalThis.emailNotify = (params: EmailNotifyProps) =>
+globalThis.emailNotify = (params) =>
   serviceCall({
     name: `Call notify.email`,
     params: {
@@ -215,7 +210,7 @@ export interface MobileAppMumsPhoneNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppMumsPhoneNotify = (params: MobileAppMumsPhoneNotifyProps) =>
+globalThis.mobileAppMumsPhoneNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_mums_phone`,
     params: {
@@ -232,9 +227,7 @@ export interface MobileAppBensImacProNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppBensImacProNotify = (
-  params: MobileAppBensImacProNotifyProps,
-) =>
+globalThis.mobileAppBensImacProNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_bens_imac_pro`,
     params: {
@@ -251,9 +244,7 @@ export interface MobileAppBensIphoneNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppBensIphoneNotify = (
-  params: MobileAppBensIphoneNotifyProps,
-) =>
+globalThis.mobileAppBensIphoneNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_bens_iphone`,
     params: {
@@ -270,7 +261,7 @@ export interface MobileAppBensImacNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppBensImacNotify = (params: MobileAppBensImacNotifyProps) =>
+globalThis.mobileAppBensImacNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_bens_imac`,
     params: {
@@ -287,9 +278,7 @@ export interface MobileAppRyansIphoneNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppRyansIphoneNotify = (
-  params: MobileAppRyansIphoneNotifyProps,
-) =>
+globalThis.mobileAppRyansIphoneNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_ryans_iphone`,
     params: {
@@ -306,9 +295,7 @@ export interface MobileAppPixel_6ProNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppPixel_6ProNotify = (
-  params: MobileAppPixel_6ProNotifyProps,
-) =>
+globalThis.mobileAppPixel_6ProNotify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_pixel_6_pro`,
     params: {
@@ -325,9 +312,7 @@ export interface MobileAppTomSPixel_7NotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppTomSPixel_7Notify = (
-  params: MobileAppTomSPixel_7NotifyProps,
-) =>
+globalThis.mobileAppTomSPixel_7Notify = (params) =>
   serviceCall({
     name: `Call notify.mobile_app_tom_s_pixel_7`,
     params: {
@@ -344,7 +329,7 @@ export interface NotifyNotifyProps {
   data?: never;
 }
 
-globalThis.notifyNotify = (params: NotifyNotifyProps) =>
+globalThis.notifyNotify = (params) =>
   serviceCall({
     name: `Call notify.notify`,
     params: {
@@ -361,9 +346,7 @@ export interface LgWebosTvOled55c8plaNotifyProps {
   data?: never;
 }
 
-globalThis.lgWebosTvOled55c8plaNotify = (
-  params: LgWebosTvOled55c8plaNotifyProps,
-) =>
+globalThis.lgWebosTvOled55c8plaNotify = (params) =>
   serviceCall({
     name: `Call notify.lg_webos_tv_oled55c8pla`,
     params: {
@@ -380,7 +363,7 @@ export interface PlaystationNetworkNotifyProps {
   data?: never;
 }
 
-globalThis.playstationNetworkNotify = (params: PlaystationNetworkNotifyProps) =>
+globalThis.playstationNetworkNotify = (params) =>
   serviceCall({
     name: `Call notify.playstation_network`,
     params: {
@@ -397,9 +380,7 @@ export interface AlexaMediaBedroomSonosOneNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaBedroomSonosOneNotify = (
-  params: AlexaMediaBedroomSonosOneNotifyProps,
-) =>
+globalThis.alexaMediaBedroomSonosOneNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_bedroom_sonos_one`,
     params: {
@@ -416,9 +397,7 @@ export interface AlexaMediaBedroomSpeaker_2NotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaBedroomSpeaker_2Notify = (
-  params: AlexaMediaBedroomSpeaker_2NotifyProps,
-) =>
+globalThis.alexaMediaBedroomSpeaker_2Notify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_bedroom_speaker_2`,
     params: {
@@ -435,7 +414,7 @@ export interface AlexaMediaOffice_2NotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaOffice_2Notify = (params: AlexaMediaOffice_2NotifyProps) =>
+globalThis.alexaMediaOffice_2Notify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_office_2`,
     params: {
@@ -452,9 +431,7 @@ export interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaBenS_2ndSonosOneSecondEditionNotify = (
-  params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
-) =>
+globalThis.alexaMediaBenS_2ndSonosOneSecondEditionNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_ben_s_2nd_sonos_one_second_edition`,
     params: {
@@ -471,9 +448,7 @@ export interface AlexaMediaLivingRoomSonosOneNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaLivingRoomSonosOneNotify = (
-  params: AlexaMediaLivingRoomSonosOneNotifyProps,
-) =>
+globalThis.alexaMediaLivingRoomSonosOneNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_living_room_sonos_one`,
     params: {
@@ -490,9 +465,7 @@ export interface AlexaMediaLivingRoomNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaLivingRoomNotify = (
-  params: AlexaMediaLivingRoomNotifyProps,
-) =>
+globalThis.alexaMediaLivingRoomNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_living_room`,
     params: {
@@ -509,9 +482,7 @@ export interface AlexaMediaSonosArcUltra_2NotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaSonosArcUltra_2Notify = (
-  params: AlexaMediaSonosArcUltra_2NotifyProps,
-) =>
+globalThis.alexaMediaSonosArcUltra_2Notify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_sonos_arc_ultra_2`,
     params: {
@@ -528,9 +499,7 @@ export interface AlexaMediaLivingRoomSonosNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaLivingRoomSonosNotify = (
-  params: AlexaMediaLivingRoomSonosNotifyProps,
-) =>
+globalThis.alexaMediaLivingRoomSonosNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_living_room_sonos`,
     params: {
@@ -547,9 +516,7 @@ export interface AlexaMediaThisDevice_2NotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaThisDevice_2Notify = (
-  params: AlexaMediaThisDevice_2NotifyProps,
-) =>
+globalThis.alexaMediaThisDevice_2Notify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_this_device_2`,
     params: {
@@ -566,7 +533,7 @@ export interface AlexaMediaNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaNotify = (params: AlexaMediaNotifyProps) =>
+globalThis.alexaMediaNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media`,
     params: {
@@ -583,9 +550,7 @@ export interface AlexaMediaLastCalledBwainwright28GmailComNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (
-  params: AlexaMediaLastCalledBwainwright28GmailComNotifyProps,
-) =>
+globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_last_called_bwainwright28_gmail_com`,
     params: {

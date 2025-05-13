@@ -172,10 +172,7 @@ declare global {
 
 export interface TurnOnMediaPlayerProps {}
 
-globalThis.turnOnMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: TurnOnMediaPlayerProps,
-) =>
+globalThis.turnOnMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.turn_on`,
     params: {
@@ -188,10 +185,7 @@ globalThis.turnOnMediaPlayer = (
 
 export interface TurnOffMediaPlayerProps {}
 
-globalThis.turnOffMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: TurnOffMediaPlayerProps,
-) =>
+globalThis.turnOffMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.turn_off`,
     params: {
@@ -204,10 +198,7 @@ globalThis.turnOffMediaPlayer = (
 
 export interface ToggleMediaPlayerProps {}
 
-globalThis.toggleMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: ToggleMediaPlayerProps,
-) =>
+globalThis.toggleMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.toggle`,
     params: {
@@ -220,10 +211,7 @@ globalThis.toggleMediaPlayer = (
 
 export interface VolumeUpMediaPlayerProps {}
 
-globalThis.volumeUpMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: VolumeUpMediaPlayerProps,
-) =>
+globalThis.volumeUpMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.volume_up`,
     params: {
@@ -236,10 +224,7 @@ globalThis.volumeUpMediaPlayer = (
 
 export interface VolumeDownMediaPlayerProps {}
 
-globalThis.volumeDownMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: VolumeDownMediaPlayerProps,
-) =>
+globalThis.volumeDownMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.volume_down`,
     params: {
@@ -252,10 +237,7 @@ globalThis.volumeDownMediaPlayer = (
 
 export interface MediaPlayPauseMediaPlayerProps {}
 
-globalThis.mediaPlayPauseMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaPlayPauseMediaPlayerProps,
-) =>
+globalThis.mediaPlayPauseMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_play_pause`,
     params: {
@@ -268,10 +250,7 @@ globalThis.mediaPlayPauseMediaPlayer = (
 
 export interface MediaPlayMediaPlayerProps {}
 
-globalThis.mediaPlayMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaPlayMediaPlayerProps,
-) =>
+globalThis.mediaPlayMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_play`,
     params: {
@@ -284,10 +263,7 @@ globalThis.mediaPlayMediaPlayer = (
 
 export interface MediaPauseMediaPlayerProps {}
 
-globalThis.mediaPauseMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaPauseMediaPlayerProps,
-) =>
+globalThis.mediaPauseMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_pause`,
     params: {
@@ -300,10 +276,7 @@ globalThis.mediaPauseMediaPlayer = (
 
 export interface MediaStopMediaPlayerProps {}
 
-globalThis.mediaStopMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaStopMediaPlayerProps,
-) =>
+globalThis.mediaStopMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_stop`,
     params: {
@@ -316,10 +289,7 @@ globalThis.mediaStopMediaPlayer = (
 
 export interface MediaNextTrackMediaPlayerProps {}
 
-globalThis.mediaNextTrackMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaNextTrackMediaPlayerProps,
-) =>
+globalThis.mediaNextTrackMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_next_track`,
     params: {
@@ -332,10 +302,7 @@ globalThis.mediaNextTrackMediaPlayer = (
 
 export interface MediaPreviousTrackMediaPlayerProps {}
 
-globalThis.mediaPreviousTrackMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: MediaPreviousTrackMediaPlayerProps,
-) =>
+globalThis.mediaPreviousTrackMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_previous_track`,
     params: {
@@ -348,10 +315,7 @@ globalThis.mediaPreviousTrackMediaPlayer = (
 
 export interface ClearPlaylistMediaPlayerProps {}
 
-globalThis.clearPlaylistMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: ClearPlaylistMediaPlayerProps,
-) =>
+globalThis.clearPlaylistMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.clear_playlist`,
     params: {
@@ -369,10 +333,7 @@ export interface VolumeSetMediaPlayerProps {
   volume_level: number;
 }
 
-globalThis.volumeSetMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: VolumeSetMediaPlayerProps,
-) =>
+globalThis.volumeSetMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.volume_set`,
     params: {
@@ -390,10 +351,7 @@ export interface VolumeMuteMediaPlayerProps {
   is_volume_muted: boolean;
 }
 
-globalThis.volumeMuteMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: VolumeMuteMediaPlayerProps,
-) =>
+globalThis.volumeMuteMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.volume_mute`,
     params: {
@@ -411,10 +369,7 @@ export interface MediaSeekMediaPlayerProps {
   seek_position: number;
 }
 
-globalThis.mediaSeekMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: MediaSeekMediaPlayerProps,
-) =>
+globalThis.mediaSeekMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.media_seek`,
     params: {
@@ -432,10 +387,7 @@ export interface JoinMediaPlayerProps {
   group_members: string;
 }
 
-globalThis.joinMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: JoinMediaPlayerProps,
-) =>
+globalThis.joinMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.join`,
     params: {
@@ -453,10 +405,7 @@ export interface SelectSourceMediaPlayerProps {
   source: string;
 }
 
-globalThis.selectSourceMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: SelectSourceMediaPlayerProps,
-) =>
+globalThis.selectSourceMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.select_source`,
     params: {
@@ -474,10 +423,7 @@ export interface SelectSoundModeMediaPlayerProps {
   sound_mode?: string;
 }
 
-globalThis.selectSoundModeMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: SelectSoundModeMediaPlayerProps,
-) =>
+globalThis.selectSoundModeMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.select_sound_mode`,
     params: {
@@ -507,10 +453,7 @@ export interface PlayMediaMediaPlayerProps {
   announce?: boolean;
 }
 
-globalThis.playMediaMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: PlayMediaMediaPlayerProps,
-) =>
+globalThis.playMediaMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.play_media`,
     params: {
@@ -532,10 +475,7 @@ export interface BrowseMediaMediaPlayerProps {
   media_content_id?: string;
 }
 
-globalThis.browseMediaMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: BrowseMediaMediaPlayerProps,
-) =>
+globalThis.browseMediaMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.browse_media`,
     params: {
@@ -565,10 +505,7 @@ export interface SearchMediaMediaPlayerProps {
   media_filter_classes?: string;
 }
 
-globalThis.searchMediaMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: SearchMediaMediaPlayerProps,
-) =>
+globalThis.searchMediaMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.search_media`,
     params: {
@@ -586,10 +523,7 @@ export interface ShuffleSetMediaPlayerProps {
   shuffle: boolean;
 }
 
-globalThis.shuffleSetMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: ShuffleSetMediaPlayerProps,
-) =>
+globalThis.shuffleSetMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.shuffle_set`,
     params: {
@@ -602,10 +536,7 @@ globalThis.shuffleSetMediaPlayer = (
 
 export interface UnjoinMediaPlayerProps {}
 
-globalThis.unjoinMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: UnjoinMediaPlayerProps,
-) =>
+globalThis.unjoinMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.unjoin`,
     params: {
@@ -623,10 +554,7 @@ export interface RepeatSetMediaPlayerProps {
   repeat: never;
 }
 
-globalThis.repeatSetMediaPlayer = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params: RepeatSetMediaPlayerProps,
-) =>
+globalThis.repeatSetMediaPlayer = (target, params) =>
   serviceCall({
     name: `Call media_player.repeat_set`,
     params: {

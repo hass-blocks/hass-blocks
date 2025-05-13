@@ -106,9 +106,7 @@ export interface SetConfigParameterZwaveJsProps {
   value_format?: number;
 }
 
-globalThis.setConfigParameterZwaveJs = (
-  params: SetConfigParameterZwaveJsProps,
-) =>
+globalThis.setConfigParameterZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.set_config_parameter`,
     params: {
@@ -145,9 +143,7 @@ export interface BulkSetPartialConfigParametersZwaveJsProps {
   value: never;
 }
 
-globalThis.bulkSetPartialConfigParametersZwaveJs = (
-  params: BulkSetPartialConfigParametersZwaveJsProps,
-) =>
+globalThis.bulkSetPartialConfigParametersZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.bulk_set_partial_config_parameters`,
     params: {
@@ -168,7 +164,7 @@ export interface RefreshValueZwaveJsProps {
   refresh_all_values?: boolean;
 }
 
-globalThis.refreshValueZwaveJs = (params: RefreshValueZwaveJsProps) =>
+globalThis.refreshValueZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.refresh_value`,
     params: {
@@ -221,7 +217,7 @@ export interface SetValueZwaveJsProps {
   wait_for_result?: boolean;
 }
 
-globalThis.setValueZwaveJs = (params: SetValueZwaveJsProps) =>
+globalThis.setValueZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.set_value`,
     params: {
@@ -274,7 +270,7 @@ export interface MulticastSetValueZwaveJsProps {
   value: never;
 }
 
-globalThis.multicastSetValueZwaveJs = (params: MulticastSetValueZwaveJsProps) =>
+globalThis.multicastSetValueZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.multicast_set_value`,
     params: {
@@ -299,7 +295,7 @@ export interface PingZwaveJsProps {
   entity_id?: string;
 }
 
-globalThis.pingZwaveJs = (params?: PingZwaveJsProps) =>
+globalThis.pingZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.ping`,
     params: {
@@ -340,7 +336,7 @@ export interface InvokeCcApiZwaveJsProps {
   parameters: never;
 }
 
-globalThis.invokeCcApiZwaveJs = (params: InvokeCcApiZwaveJsProps) =>
+globalThis.invokeCcApiZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.invoke_cc_api`,
     params: {
@@ -373,9 +369,7 @@ export interface RefreshNotificationsZwaveJsProps {
   notification_event?: number;
 }
 
-globalThis.refreshNotificationsZwaveJs = (
-  params: RefreshNotificationsZwaveJsProps,
-) =>
+globalThis.refreshNotificationsZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.refresh_notifications`,
     params: {
@@ -396,10 +390,7 @@ export interface SetLockUsercodeZwaveJsProps {
   usercode: string;
 }
 
-globalThis.setLockUsercodeZwaveJs = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params: SetLockUsercodeZwaveJsProps,
-) =>
+globalThis.setLockUsercodeZwaveJs = (target, params) =>
   serviceCall({
     name: `Call zwave_js.set_lock_usercode`,
     params: {
@@ -417,10 +408,7 @@ export interface ClearLockUsercodeZwaveJsProps {
   code_slot: string;
 }
 
-globalThis.clearLockUsercodeZwaveJs = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params: ClearLockUsercodeZwaveJsProps,
-) =>
+globalThis.clearLockUsercodeZwaveJs = (target, params) =>
   serviceCall({
     name: `Call zwave_js.clear_lock_usercode`,
     params: {
@@ -458,10 +446,7 @@ export interface SetLockConfigurationZwaveJsProps {
   block_to_block?: boolean;
 }
 
-globalThis.setLockConfigurationZwaveJs = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params: SetLockConfigurationZwaveJsProps,
-) =>
+globalThis.setLockConfigurationZwaveJs = (target, params) =>
   serviceCall({
     name: `Call zwave_js.set_lock_configuration`,
     params: {
@@ -495,7 +480,7 @@ export interface ResetMeterZwaveJsProps {
   value?: string;
 }
 
-globalThis.resetMeterZwaveJs = (params?: ResetMeterZwaveJsProps) =>
+globalThis.resetMeterZwaveJs = (params) =>
   serviceCall({
     name: `Call zwave_js.reset_meter`,
     params: {

@@ -35,10 +35,7 @@ export interface AnnounceAssistSatelliteProps {
   preannounce_media_id?: string;
 }
 
-globalThis.announceAssistSatellite = (
-  target: IEntity<`assist_satellite.${string}`> | IArea,
-  params?: AnnounceAssistSatelliteProps,
-) =>
+globalThis.announceAssistSatellite = (target, params) =>
   serviceCall({
     name: `Call assist_satellite.announce`,
     params: {
@@ -72,10 +69,7 @@ export interface StartConversationAssistSatelliteProps {
   preannounce_media_id?: string;
 }
 
-globalThis.startConversationAssistSatellite = (
-  target: IEntity<`assist_satellite.${string}`> | IArea,
-  params?: StartConversationAssistSatelliteProps,
-) =>
+globalThis.startConversationAssistSatellite = (target, params) =>
   serviceCall({
     name: `Call assist_satellite.start_conversation`,
     params: {

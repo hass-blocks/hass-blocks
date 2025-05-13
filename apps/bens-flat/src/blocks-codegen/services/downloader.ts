@@ -25,7 +25,7 @@ export interface DownloadFileDownloaderProps {
   overwrite?: boolean;
 }
 
-globalThis.downloadFileDownloader = (params: DownloadFileDownloaderProps) =>
+globalThis.downloadFileDownloader = (params) =>
   serviceCall({
     name: `Call downloader.download_file`,
     params: {

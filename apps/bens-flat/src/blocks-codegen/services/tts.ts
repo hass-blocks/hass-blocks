@@ -44,10 +44,7 @@ export interface SpeakTtsProps {
   options?: never;
 }
 
-globalThis.speakTts = (
-  target: IEntity<`tts.${string}`> | IArea,
-  params: SpeakTtsProps,
-) =>
+globalThis.speakTts = (target, params) =>
   serviceCall({
     name: `Call tts.speak`,
     params: {
@@ -75,7 +72,7 @@ export interface GoogleTranslateSayTtsProps {
   options?: never;
 }
 
-globalThis.googleTranslateSayTts = (params: GoogleTranslateSayTtsProps) =>
+globalThis.googleTranslateSayTts = (params) =>
   serviceCall({
     name: `Call tts.google_translate_say`,
     params: {
@@ -93,7 +90,7 @@ export interface CloudSayTtsProps {
   options?: never;
 }
 
-globalThis.cloudSayTts = (params: CloudSayTtsProps) =>
+globalThis.cloudSayTts = (params) =>
   serviceCall({
     name: `Call tts.cloud_say`,
     params: {

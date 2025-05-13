@@ -39,10 +39,7 @@ declare global {
 
 export interface TurnOnWaterHeaterProps {}
 
-globalThis.turnOnWaterHeater = (
-  target: IEntity<`water_heater.${string}`> | IArea,
-  params?: TurnOnWaterHeaterProps,
-) =>
+globalThis.turnOnWaterHeater = (target, params) =>
   serviceCall({
     name: `Call water_heater.turn_on`,
     params: {
@@ -55,10 +52,7 @@ globalThis.turnOnWaterHeater = (
 
 export interface TurnOffWaterHeaterProps {}
 
-globalThis.turnOffWaterHeater = (
-  target: IEntity<`water_heater.${string}`> | IArea,
-  params?: TurnOffWaterHeaterProps,
-) =>
+globalThis.turnOffWaterHeater = (target, params) =>
   serviceCall({
     name: `Call water_heater.turn_off`,
     params: {
@@ -76,10 +70,7 @@ export interface SetAwayModeWaterHeaterProps {
   away_mode: boolean;
 }
 
-globalThis.setAwayModeWaterHeater = (
-  target: IEntity<`water_heater.${string}`> | IArea,
-  params: SetAwayModeWaterHeaterProps,
-) =>
+globalThis.setAwayModeWaterHeater = (target, params) =>
   serviceCall({
     name: `Call water_heater.set_away_mode`,
     params: {
@@ -101,10 +92,7 @@ export interface SetTemperatureWaterHeaterProps {
   operation_mode?: string;
 }
 
-globalThis.setTemperatureWaterHeater = (
-  target: IEntity<`water_heater.${string}`> | IArea,
-  params: SetTemperatureWaterHeaterProps,
-) =>
+globalThis.setTemperatureWaterHeater = (target, params) =>
   serviceCall({
     name: `Call water_heater.set_temperature`,
     params: {
@@ -122,10 +110,7 @@ export interface SetOperationModeWaterHeaterProps {
   operation_mode: string;
 }
 
-globalThis.setOperationModeWaterHeater = (
-  target: IEntity<`water_heater.${string}`> | IArea,
-  params: SetOperationModeWaterHeaterProps,
-) =>
+globalThis.setOperationModeWaterHeater = (target, params) =>
   serviceCall({
     name: `Call water_heater.set_operation_mode`,
     params: {

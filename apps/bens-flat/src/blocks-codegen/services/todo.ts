@@ -56,10 +56,7 @@ export interface AddItemTodoProps {
   description?: string;
 }
 
-globalThis.addItemTodo = (
-  target: IEntity<`todo.${string}`> | IArea,
-  params: AddItemTodoProps,
-) =>
+globalThis.addItemTodo = (target, params) =>
   serviceCall({
     name: `Call todo.add_item`,
     params: {
@@ -97,10 +94,7 @@ export interface UpdateItemTodoProps {
   description?: string;
 }
 
-globalThis.updateItemTodo = (
-  target: IEntity<`todo.${string}`> | IArea,
-  params: UpdateItemTodoProps,
-) =>
+globalThis.updateItemTodo = (target, params) =>
   serviceCall({
     name: `Call todo.update_item`,
     params: {
@@ -118,10 +112,7 @@ export interface RemoveItemTodoProps {
   item: string;
 }
 
-globalThis.removeItemTodo = (
-  target: IEntity<`todo.${string}`> | IArea,
-  params: RemoveItemTodoProps,
-) =>
+globalThis.removeItemTodo = (target, params) =>
   serviceCall({
     name: `Call todo.remove_item`,
     params: {
@@ -139,10 +130,7 @@ export interface GetItemsTodoProps {
   status?: never;
 }
 
-globalThis.getItemsTodo = (
-  target: IEntity<`todo.${string}`> | IArea,
-  params?: GetItemsTodoProps,
-) =>
+globalThis.getItemsTodo = (target, params) =>
   serviceCall({
     name: `Call todo.get_items`,
     params: {
@@ -155,10 +143,7 @@ globalThis.getItemsTodo = (
 
 export interface RemoveCompletedItemsTodoProps {}
 
-globalThis.removeCompletedItemsTodo = (
-  target: IEntity<`todo.${string}`> | IArea,
-  params?: RemoveCompletedItemsTodoProps,
-) =>
+globalThis.removeCompletedItemsTodo = (target, params) =>
   serviceCall({
     name: `Call todo.remove_completed_items`,
     params: {

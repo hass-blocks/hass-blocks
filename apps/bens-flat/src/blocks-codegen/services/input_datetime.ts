@@ -41,10 +41,7 @@ export interface SetDatetimeInputDatetimeProps {
   timestamp?: number;
 }
 
-globalThis.setDatetimeInputDatetime = (
-  target: IEntity<`input_datetime.${string}`> | IArea,
-  params?: SetDatetimeInputDatetimeProps,
-) =>
+globalThis.setDatetimeInputDatetime = (target, params) =>
   serviceCall({
     name: `Call input_datetime.set_datetime`,
     params: {

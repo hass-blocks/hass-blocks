@@ -51,10 +51,7 @@ export interface CreateEventCalendarProps {
   location?: string;
 }
 
-globalThis.createEventCalendar = (
-  target: IEntity<`calendar.${string}`> | IArea,
-  params: CreateEventCalendarProps,
-) =>
+globalThis.createEventCalendar = (target, params) =>
   serviceCall({
     name: `Call calendar.create_event`,
     params: {
@@ -80,10 +77,7 @@ export interface GetEventsCalendarProps {
   duration?: never;
 }
 
-globalThis.getEventsCalendar = (
-  target: IEntity<`calendar.${string}`> | IArea,
-  params?: GetEventsCalendarProps,
-) =>
+globalThis.getEventsCalendar = (target, params) =>
   serviceCall({
     name: `Call calendar.get_events`,
     params: {

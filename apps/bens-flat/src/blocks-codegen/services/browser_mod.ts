@@ -54,7 +54,7 @@ export interface SequenceBrowserModProps {
   sequence?: never;
 }
 
-globalThis.sequenceBrowserMod = (params?: SequenceBrowserModProps) =>
+globalThis.sequenceBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.sequence`,
     params: {
@@ -72,7 +72,7 @@ export interface DelayBrowserModProps {
   time?: number;
 }
 
-globalThis.delayBrowserMod = (params?: DelayBrowserModProps) =>
+globalThis.delayBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.delay`,
     params: {
@@ -135,7 +135,7 @@ export interface PopupBrowserModProps {
   style?: string;
 }
 
-globalThis.popupBrowserMod = (params: PopupBrowserModProps) =>
+globalThis.popupBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.popup`,
     params: {
@@ -152,7 +152,7 @@ export interface MoreInfoBrowserModProps {
   ignore_popup_card?: boolean;
 }
 
-globalThis.moreInfoBrowserMod = (params: MoreInfoBrowserModProps) =>
+globalThis.moreInfoBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.more_info`,
     params: {
@@ -166,7 +166,7 @@ export interface ClosePopupBrowserModProps {
   browser_id?: never;
 }
 
-globalThis.closePopupBrowserMod = (params?: ClosePopupBrowserModProps) =>
+globalThis.closePopupBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.close_popup`,
     params: {
@@ -196,7 +196,7 @@ export interface NotificationBrowserModProps {
   action?: never;
 }
 
-globalThis.notificationBrowserMod = (params: NotificationBrowserModProps) =>
+globalThis.notificationBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.notification`,
     params: {
@@ -214,7 +214,7 @@ export interface NavigateBrowserModProps {
   path?: string;
 }
 
-globalThis.navigateBrowserMod = (params?: NavigateBrowserModProps) =>
+globalThis.navigateBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.navigate`,
     params: {
@@ -228,7 +228,7 @@ export interface RefreshBrowserModProps {
   browser_id?: never;
 }
 
-globalThis.refreshBrowserMod = (params?: RefreshBrowserModProps) =>
+globalThis.refreshBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.refresh`,
     params: {
@@ -258,7 +258,7 @@ export interface SetThemeBrowserModProps {
   accentColor?: never;
 }
 
-globalThis.setThemeBrowserMod = (params?: SetThemeBrowserModProps) =>
+globalThis.setThemeBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.set_theme`,
     params: {
@@ -276,7 +276,7 @@ export interface ConsoleBrowserModProps {
   message?: string;
 }
 
-globalThis.consoleBrowserMod = (params?: ConsoleBrowserModProps) =>
+globalThis.consoleBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.console`,
     params: {
@@ -294,7 +294,7 @@ export interface JavascriptBrowserModProps {
   code?: never;
 }
 
-globalThis.javascriptBrowserMod = (params?: JavascriptBrowserModProps) =>
+globalThis.javascriptBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.javascript`,
     params: {

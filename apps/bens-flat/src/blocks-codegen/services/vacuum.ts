@@ -60,10 +60,7 @@ declare global {
 
 export interface StartVacuumProps {}
 
-globalThis.startVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: StartVacuumProps,
-) =>
+globalThis.startVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.start`,
     params: {
@@ -76,10 +73,7 @@ globalThis.startVacuum = (
 
 export interface PauseVacuumProps {}
 
-globalThis.pauseVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: PauseVacuumProps,
-) =>
+globalThis.pauseVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.pause`,
     params: {
@@ -92,10 +86,7 @@ globalThis.pauseVacuum = (
 
 export interface ReturnToBaseVacuumProps {}
 
-globalThis.returnToBaseVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: ReturnToBaseVacuumProps,
-) =>
+globalThis.returnToBaseVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.return_to_base`,
     params: {
@@ -108,10 +99,7 @@ globalThis.returnToBaseVacuum = (
 
 export interface CleanSpotVacuumProps {}
 
-globalThis.cleanSpotVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: CleanSpotVacuumProps,
-) =>
+globalThis.cleanSpotVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.clean_spot`,
     params: {
@@ -124,10 +112,7 @@ globalThis.cleanSpotVacuum = (
 
 export interface LocateVacuumProps {}
 
-globalThis.locateVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: LocateVacuumProps,
-) =>
+globalThis.locateVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.locate`,
     params: {
@@ -140,10 +125,7 @@ globalThis.locateVacuum = (
 
 export interface StopVacuumProps {}
 
-globalThis.stopVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params?: StopVacuumProps,
-) =>
+globalThis.stopVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.stop`,
     params: {
@@ -161,10 +143,7 @@ export interface SetFanSpeedVacuumProps {
   fan_speed: string;
 }
 
-globalThis.setFanSpeedVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params: SetFanSpeedVacuumProps,
-) =>
+globalThis.setFanSpeedVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.set_fan_speed`,
     params: {
@@ -186,10 +165,7 @@ export interface SendCommandVacuumProps {
   params?: never;
 }
 
-globalThis.sendCommandVacuum = (
-  target: IEntity<`vacuum.${string}`> | IArea,
-  params: SendCommandVacuumProps,
-) =>
+globalThis.sendCommandVacuum = (target, params) =>
   serviceCall({
     name: `Call vacuum.send_command`,
     params: {

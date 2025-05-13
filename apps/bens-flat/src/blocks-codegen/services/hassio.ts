@@ -49,7 +49,7 @@ export interface AddonStartHassioProps {
   addon: never;
 }
 
-globalThis.addonStartHassio = (params: AddonStartHassioProps) =>
+globalThis.addonStartHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_start`,
     params: {
@@ -66,7 +66,7 @@ export interface AddonStopHassioProps {
   addon: never;
 }
 
-globalThis.addonStopHassio = (params: AddonStopHassioProps) =>
+globalThis.addonStopHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_stop`,
     params: {
@@ -83,7 +83,7 @@ export interface AddonRestartHassioProps {
   addon: never;
 }
 
-globalThis.addonRestartHassio = (params: AddonRestartHassioProps) =>
+globalThis.addonRestartHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_restart`,
     params: {
@@ -100,7 +100,7 @@ export interface AddonStdinHassioProps {
   addon: never;
 }
 
-globalThis.addonStdinHassio = (params: AddonStdinHassioProps) =>
+globalThis.addonStdinHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_stdin`,
     params: {
@@ -151,7 +151,7 @@ export interface BackupFullHassioProps {
   homeassistant_exclude_database?: boolean;
 }
 
-globalThis.backupFullHassio = (params?: BackupFullHassioProps) =>
+globalThis.backupFullHassio = (params) =>
   serviceCall({
     name: `Call hassio.backup_full`,
     params: {
@@ -196,7 +196,7 @@ export interface BackupPartialHassioProps {
   location?: never;
 }
 
-globalThis.backupPartialHassio = (params?: BackupPartialHassioProps) =>
+globalThis.backupPartialHassio = (params) =>
   serviceCall({
     name: `Call hassio.backup_partial`,
     params: {
@@ -217,7 +217,7 @@ export interface RestoreFullHassioProps {
   password?: string;
 }
 
-globalThis.restoreFullHassio = (params: RestoreFullHassioProps) =>
+globalThis.restoreFullHassio = (params) =>
   serviceCall({
     name: `Call hassio.restore_full`,
     params: {
@@ -250,7 +250,7 @@ export interface RestorePartialHassioProps {
   password?: string;
 }
 
-globalThis.restorePartialHassio = (params: RestorePartialHassioProps) =>
+globalThis.restorePartialHassio = (params) =>
   serviceCall({
     name: `Call hassio.restore_partial`,
     params: {

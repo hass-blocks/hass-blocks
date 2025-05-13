@@ -63,7 +63,7 @@ export interface SnapshotSonosProps {
   with_group?: boolean;
 }
 
-globalThis.snapshotSonos = (params?: SnapshotSonosProps) =>
+globalThis.snapshotSonos = (params) =>
   serviceCall({
     name: `Call sonos.snapshot`,
     params: {
@@ -84,7 +84,7 @@ export interface RestoreSonosProps {
   with_group?: boolean;
 }
 
-globalThis.restoreSonos = (params?: RestoreSonosProps) =>
+globalThis.restoreSonos = (params) =>
   serviceCall({
     name: `Call sonos.restore`,
     params: {
@@ -101,10 +101,7 @@ export interface SetSleepTimerSonosProps {
   sleep_time?: number;
 }
 
-globalThis.setSleepTimerSonos = (
-  target: IEntity | IArea,
-  params?: SetSleepTimerSonosProps,
-) =>
+globalThis.setSleepTimerSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.set_sleep_timer`,
     params: {
@@ -117,10 +114,7 @@ globalThis.setSleepTimerSonos = (
 
 export interface ClearSleepTimerSonosProps {}
 
-globalThis.clearSleepTimerSonos = (
-  target: IEntity | IArea,
-  params?: ClearSleepTimerSonosProps,
-) =>
+globalThis.clearSleepTimerSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.clear_sleep_timer`,
     params: {
@@ -154,10 +148,7 @@ export interface UpdateAlarmSonosProps {
   include_linked_zones?: boolean;
 }
 
-globalThis.updateAlarmSonos = (
-  target: IEntity | IArea,
-  params: UpdateAlarmSonosProps,
-) =>
+globalThis.updateAlarmSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.update_alarm`,
     params: {
@@ -175,10 +166,7 @@ export interface PlayQueueSonosProps {
   queue_position?: number;
 }
 
-globalThis.playQueueSonos = (
-  target: IEntity | IArea,
-  params?: PlayQueueSonosProps,
-) =>
+globalThis.playQueueSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.play_queue`,
     params: {
@@ -196,10 +184,7 @@ export interface RemoveFromQueueSonosProps {
   queue_position?: number;
 }
 
-globalThis.removeFromQueueSonos = (
-  target: IEntity | IArea,
-  params?: RemoveFromQueueSonosProps,
-) =>
+globalThis.removeFromQueueSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.remove_from_queue`,
     params: {
@@ -212,10 +197,7 @@ globalThis.removeFromQueueSonos = (
 
 export interface GetQueueSonosProps {}
 
-globalThis.getQueueSonos = (
-  target: IEntity<`media_player.${string}`> | IArea,
-  params?: GetQueueSonosProps,
-) =>
+globalThis.getQueueSonos = (target, params) =>
   serviceCall({
     name: `Call sonos.get_queue`,
     params: {

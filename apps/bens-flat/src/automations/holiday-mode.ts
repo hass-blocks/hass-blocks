@@ -1,9 +1,10 @@
 import { automation, concurrently } from '@hass-blocks/core';
+import { stateTurns } from '@hass-blocks/blocks';
+
 import { imLessThen20kmAway, imMoreThan20KmAway } from '../triggers/zone.ts';
 import { allRooms } from '../areas.ts';
 import { notifyMyPhone } from '../actions/notify.ts';
 import { allHeatingAndBoilerSwitches } from '../entities.ts';
-import { stateTurns } from '@hass-blocks/blocks';
 
 import '@blocks-codegen';
 

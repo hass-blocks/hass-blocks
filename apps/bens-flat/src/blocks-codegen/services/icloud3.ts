@@ -33,7 +33,7 @@ export interface ActionIcloud3Props {
   device_name?: never;
 }
 
-globalThis.actionIcloud3 = (params: ActionIcloud3Props) =>
+globalThis.actionIcloud3 = (params) =>
   serviceCall({
     name: `Call icloud3.action`,
     params: {
@@ -68,7 +68,7 @@ export interface FindIphoneAlertIcloud3Props {
   device_name: never;
 }
 
-globalThis.findIphoneAlertIcloud3 = (params: FindIphoneAlertIcloud3Props) =>
+globalThis.findIphoneAlertIcloud3 = (params) =>
   serviceCall({
     name: `Call icloud3.find_iphone_alert`,
     params: {
@@ -93,7 +93,7 @@ export interface LostDeviceAlertIcloud3Props {
   message: string;
 }
 
-globalThis.lostDeviceAlertIcloud3 = (params: LostDeviceAlertIcloud3Props) =>
+globalThis.lostDeviceAlertIcloud3 = (params) =>
   serviceCall({
     name: `Call icloud3.lost_device_alert`,
     params: {

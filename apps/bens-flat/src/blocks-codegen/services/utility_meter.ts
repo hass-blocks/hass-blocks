@@ -18,10 +18,7 @@ declare global {
 
 export interface ResetUtilityMeterProps {}
 
-globalThis.resetUtilityMeter = (
-  target: IEntity<`select.${string}`> | IArea,
-  params?: ResetUtilityMeterProps,
-) =>
+globalThis.resetUtilityMeter = (target, params) =>
   serviceCall({
     name: `Call utility_meter.reset`,
     params: {
@@ -39,10 +36,7 @@ export interface CalibrateUtilityMeterProps {
   value: string;
 }
 
-globalThis.calibrateUtilityMeter = (
-  target: IEntity<`sensor.${string}`> | IArea,
-  params: CalibrateUtilityMeterProps,
-) =>
+globalThis.calibrateUtilityMeter = (target, params) =>
   serviceCall({
     name: `Call utility_meter.calibrate`,
     params: {

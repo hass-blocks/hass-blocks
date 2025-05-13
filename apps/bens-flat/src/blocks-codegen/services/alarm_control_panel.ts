@@ -58,10 +58,7 @@ export interface AlarmDisarmAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmDisarmAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmDisarmAlarmControlPanelProps,
-) =>
+globalThis.alarmDisarmAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_disarm`,
     params: {
@@ -79,10 +76,7 @@ export interface AlarmArmHomeAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmArmHomeAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmArmHomeAlarmControlPanelProps,
-) =>
+globalThis.alarmArmHomeAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_home`,
     params: {
@@ -100,10 +94,7 @@ export interface AlarmArmAwayAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmArmAwayAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmArmAwayAlarmControlPanelProps,
-) =>
+globalThis.alarmArmAwayAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_away`,
     params: {
@@ -121,10 +112,7 @@ export interface AlarmArmNightAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmArmNightAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmArmNightAlarmControlPanelProps,
-) =>
+globalThis.alarmArmNightAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_night`,
     params: {
@@ -142,10 +130,7 @@ export interface AlarmArmVacationAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmArmVacationAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmArmVacationAlarmControlPanelProps,
-) =>
+globalThis.alarmArmVacationAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_vacation`,
     params: {
@@ -163,10 +148,7 @@ export interface AlarmArmCustomBypassAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmArmCustomBypassAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmArmCustomBypassAlarmControlPanelProps,
-) =>
+globalThis.alarmArmCustomBypassAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_custom_bypass`,
     params: {
@@ -184,10 +166,7 @@ export interface AlarmTriggerAlarmControlPanelProps {
   code?: string;
 }
 
-globalThis.alarmTriggerAlarmControlPanel = (
-  target: IEntity<`alarm_control_panel.${string}`> | IArea,
-  params?: AlarmTriggerAlarmControlPanelProps,
-) =>
+globalThis.alarmTriggerAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_trigger`,
     params: {

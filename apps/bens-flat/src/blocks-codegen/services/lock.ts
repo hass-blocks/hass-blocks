@@ -30,10 +30,7 @@ export interface UnlockLockProps {
   code?: string;
 }
 
-globalThis.unlockLock = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params?: UnlockLockProps,
-) =>
+globalThis.unlockLock = (target, params) =>
   serviceCall({
     name: `Call lock.unlock`,
     params: {
@@ -51,10 +48,7 @@ export interface LockLockProps {
   code?: string;
 }
 
-globalThis.lockLock = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params?: LockLockProps,
-) =>
+globalThis.lockLock = (target, params) =>
   serviceCall({
     name: `Call lock.lock`,
     params: {
@@ -72,10 +66,7 @@ export interface OpenLockProps {
   code?: string;
 }
 
-globalThis.openLock = (
-  target: IEntity<`lock.${string}`> | IArea,
-  params?: OpenLockProps,
-) =>
+globalThis.openLock = (target, params) =>
   serviceCall({
     name: `Call lock.open`,
     params: {

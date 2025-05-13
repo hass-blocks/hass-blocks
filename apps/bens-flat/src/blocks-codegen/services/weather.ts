@@ -16,10 +16,7 @@ export interface GetForecastsWeatherProps {
   type: never;
 }
 
-globalThis.getForecastsWeather = (
-  target: IEntity<`weather.${string}`> | IArea,
-  params: GetForecastsWeatherProps,
-) =>
+globalThis.getForecastsWeather = (target, params) =>
   serviceCall({
     name: `Call weather.get_forecasts`,
     params: {

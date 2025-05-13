@@ -21,7 +21,7 @@ export interface StartFfmpegProps {
   entity_id?: string;
 }
 
-globalThis.startFfmpeg = (params?: StartFfmpegProps) =>
+globalThis.startFfmpeg = (params) =>
   serviceCall({
     name: `Call ffmpeg.start`,
     params: {
@@ -38,7 +38,7 @@ export interface StopFfmpegProps {
   entity_id?: string;
 }
 
-globalThis.stopFfmpeg = (params?: StopFfmpegProps) =>
+globalThis.stopFfmpeg = (params) =>
   serviceCall({
     name: `Call ffmpeg.stop`,
     params: {
@@ -55,7 +55,7 @@ export interface RestartFfmpegProps {
   entity_id?: string;
 }
 
-globalThis.restartFfmpeg = (params?: RestartFfmpegProps) =>
+globalThis.restartFfmpeg = (params) =>
   serviceCall({
     name: `Call ffmpeg.restart`,
     params: {

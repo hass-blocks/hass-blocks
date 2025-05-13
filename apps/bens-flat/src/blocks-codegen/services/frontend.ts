@@ -21,7 +21,7 @@ export interface SetThemeFrontendProps {
   mode?: never;
 }
 
-globalThis.setThemeFrontend = (params: SetThemeFrontendProps) =>
+globalThis.setThemeFrontend = (params) =>
   serviceCall({
     name: `Call frontend.set_theme`,
     params: {

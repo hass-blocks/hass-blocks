@@ -51,10 +51,7 @@ export interface TurnOnLightProps {
   advanced_fields?: never;
 }
 
-globalThis.turnOnLight = (
-  target: IEntity<`light.${string}`> | IArea,
-  params?: TurnOnLightProps,
-) =>
+globalThis.turnOnLight = (target, params) =>
   serviceCall({
     name: `Call light.turn_on`,
     params: {
@@ -73,10 +70,7 @@ export interface TurnOffLightProps {
   advanced_fields?: never;
 }
 
-globalThis.turnOffLight = (
-  target: IEntity<`light.${string}`> | IArea,
-  params?: TurnOffLightProps,
-) =>
+globalThis.turnOffLight = (target, params) =>
   serviceCall({
     name: `Call light.turn_off`,
     params: {
@@ -111,10 +105,7 @@ export interface ToggleLightProps {
   advanced_fields?: never;
 }
 
-globalThis.toggleLight = (
-  target: IEntity<`light.${string}`> | IArea,
-  params?: ToggleLightProps,
-) =>
+globalThis.toggleLight = (target, params) =>
   serviceCall({
     name: `Call light.toggle`,
     params: {

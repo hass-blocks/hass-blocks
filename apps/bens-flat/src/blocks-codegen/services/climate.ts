@@ -81,10 +81,7 @@ declare global {
 
 export interface TurnOnClimateProps {}
 
-globalThis.turnOnClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params?: TurnOnClimateProps,
-) =>
+globalThis.turnOnClimate = (target, params) =>
   serviceCall({
     name: `Call climate.turn_on`,
     params: {
@@ -97,10 +94,7 @@ globalThis.turnOnClimate = (
 
 export interface TurnOffClimateProps {}
 
-globalThis.turnOffClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params?: TurnOffClimateProps,
-) =>
+globalThis.turnOffClimate = (target, params) =>
   serviceCall({
     name: `Call climate.turn_off`,
     params: {
@@ -113,10 +107,7 @@ globalThis.turnOffClimate = (
 
 export interface ToggleClimateProps {}
 
-globalThis.toggleClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params?: ToggleClimateProps,
-) =>
+globalThis.toggleClimate = (target, params) =>
   serviceCall({
     name: `Call climate.toggle`,
     params: {
@@ -134,10 +125,7 @@ export interface SetHvacModeClimateProps {
   hvac_mode?: never;
 }
 
-globalThis.setHvacModeClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params?: SetHvacModeClimateProps,
-) =>
+globalThis.setHvacModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_hvac_mode`,
     params: {
@@ -155,10 +143,7 @@ export interface SetPresetModeClimateProps {
   preset_mode: string;
 }
 
-globalThis.setPresetModeClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetPresetModeClimateProps,
-) =>
+globalThis.setPresetModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_preset_mode`,
     params: {
@@ -176,10 +161,7 @@ export interface SetAuxHeatClimateProps {
   aux_heat: boolean;
 }
 
-globalThis.setAuxHeatClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetAuxHeatClimateProps,
-) =>
+globalThis.setAuxHeatClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_aux_heat`,
     params: {
@@ -209,10 +191,7 @@ export interface SetTemperatureClimateProps {
   hvac_mode?: never;
 }
 
-globalThis.setTemperatureClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params?: SetTemperatureClimateProps,
-) =>
+globalThis.setTemperatureClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_temperature`,
     params: {
@@ -230,10 +209,7 @@ export interface SetHumidityClimateProps {
   humidity: number;
 }
 
-globalThis.setHumidityClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetHumidityClimateProps,
-) =>
+globalThis.setHumidityClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_humidity`,
     params: {
@@ -251,10 +227,7 @@ export interface SetFanModeClimateProps {
   fan_mode: string;
 }
 
-globalThis.setFanModeClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetFanModeClimateProps,
-) =>
+globalThis.setFanModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_fan_mode`,
     params: {
@@ -272,10 +245,7 @@ export interface SetSwingModeClimateProps {
   swing_mode: string;
 }
 
-globalThis.setSwingModeClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetSwingModeClimateProps,
-) =>
+globalThis.setSwingModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_swing_mode`,
     params: {
@@ -293,10 +263,7 @@ export interface SetSwingHorizontalModeClimateProps {
   swing_horizontal_mode: string;
 }
 
-globalThis.setSwingHorizontalModeClimate = (
-  target: IEntity<`climate.${string}`> | IArea,
-  params: SetSwingHorizontalModeClimateProps,
-) =>
+globalThis.setSwingHorizontalModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_swing_horizontal_mode`,
     params: {

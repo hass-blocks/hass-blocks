@@ -61,7 +61,7 @@ export interface NewTaskTodoistProps {
   reminder_date?: string;
 }
 
-globalThis.newTaskTodoist = (params: NewTaskTodoistProps) =>
+globalThis.newTaskTodoist = (params) =>
   serviceCall({
     name: `Call todoist.new_task`,
     params: {

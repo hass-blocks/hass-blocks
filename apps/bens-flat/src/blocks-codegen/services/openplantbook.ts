@@ -25,7 +25,7 @@ export interface SearchOpenplantbookProps {
   alias: string;
 }
 
-globalThis.searchOpenplantbook = (params: SearchOpenplantbookProps) =>
+globalThis.searchOpenplantbook = (params) =>
   serviceCall({
     name: `Call openplantbook.search`,
     params: {
@@ -42,7 +42,7 @@ export interface GetOpenplantbookProps {
   species: string;
 }
 
-globalThis.getOpenplantbook = (params: GetOpenplantbookProps) =>
+globalThis.getOpenplantbook = (params) =>
   serviceCall({
     name: `Call openplantbook.get`,
     params: {
@@ -59,7 +59,7 @@ export interface CleanCacheOpenplantbookProps {
   hours?: number;
 }
 
-globalThis.cleanCacheOpenplantbook = (params?: CleanCacheOpenplantbookProps) =>
+globalThis.cleanCacheOpenplantbook = (params) =>
   serviceCall({
     name: `Call openplantbook.clean_cache`,
     params: {

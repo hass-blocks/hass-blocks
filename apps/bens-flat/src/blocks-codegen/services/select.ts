@@ -39,10 +39,7 @@ declare global {
 
 export interface SelectFirstSelectProps {}
 
-globalThis.selectFirstSelect = (
-  target: IEntity<`select.${string}`> | IArea,
-  params?: SelectFirstSelectProps,
-) =>
+globalThis.selectFirstSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_first`,
     params: {
@@ -55,10 +52,7 @@ globalThis.selectFirstSelect = (
 
 export interface SelectLastSelectProps {}
 
-globalThis.selectLastSelect = (
-  target: IEntity<`select.${string}`> | IArea,
-  params?: SelectLastSelectProps,
-) =>
+globalThis.selectLastSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_last`,
     params: {
@@ -76,10 +70,7 @@ export interface SelectNextSelectProps {
   cycle?: boolean;
 }
 
-globalThis.selectNextSelect = (
-  target: IEntity<`select.${string}`> | IArea,
-  params?: SelectNextSelectProps,
-) =>
+globalThis.selectNextSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_next`,
     params: {
@@ -97,10 +88,7 @@ export interface SelectOptionSelectProps {
   option: string;
 }
 
-globalThis.selectOptionSelect = (
-  target: IEntity<`select.${string}`> | IArea,
-  params: SelectOptionSelectProps,
-) =>
+globalThis.selectOptionSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_option`,
     params: {
@@ -118,10 +106,7 @@ export interface SelectPreviousSelectProps {
   cycle?: boolean;
 }
 
-globalThis.selectPreviousSelect = (
-  target: IEntity<`select.${string}`> | IArea,
-  params?: SelectPreviousSelectProps,
-) =>
+globalThis.selectPreviousSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_previous`,
     params: {

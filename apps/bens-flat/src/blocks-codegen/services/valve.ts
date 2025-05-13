@@ -39,10 +39,7 @@ declare global {
 
 export interface OpenValveValveProps {}
 
-globalThis.openValveValve = (
-  target: IEntity<`valve.${string}`> | IArea,
-  params?: OpenValveValveProps,
-) =>
+globalThis.openValveValve = (target, params) =>
   serviceCall({
     name: `Call valve.open_valve`,
     params: {
@@ -55,10 +52,7 @@ globalThis.openValveValve = (
 
 export interface CloseValveValveProps {}
 
-globalThis.closeValveValve = (
-  target: IEntity<`valve.${string}`> | IArea,
-  params?: CloseValveValveProps,
-) =>
+globalThis.closeValveValve = (target, params) =>
   serviceCall({
     name: `Call valve.close_valve`,
     params: {
@@ -76,10 +70,7 @@ export interface SetValvePositionValveProps {
   position: number;
 }
 
-globalThis.setValvePositionValve = (
-  target: IEntity<`valve.${string}`> | IArea,
-  params: SetValvePositionValveProps,
-) =>
+globalThis.setValvePositionValve = (target, params) =>
   serviceCall({
     name: `Call valve.set_valve_position`,
     params: {
@@ -92,10 +83,7 @@ globalThis.setValvePositionValve = (
 
 export interface StopValveValveProps {}
 
-globalThis.stopValveValve = (
-  target: IEntity<`valve.${string}`> | IArea,
-  params?: StopValveValveProps,
-) =>
+globalThis.stopValveValve = (target, params) =>
   serviceCall({
     name: `Call valve.stop_valve`,
     params: {
@@ -108,10 +96,7 @@ globalThis.stopValveValve = (
 
 export interface ToggleValveProps {}
 
-globalThis.toggleValve = (
-  target: IEntity<`valve.${string}`> | IArea,
-  params?: ToggleValveProps,
-) =>
+globalThis.toggleValve = (target, params) =>
   serviceCall({
     name: `Call valve.toggle`,
     params: {

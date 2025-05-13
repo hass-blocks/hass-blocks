@@ -32,10 +32,7 @@ export interface ActivateSceneHueProps {
   brightness?: number;
 }
 
-globalThis.activateSceneHue = (
-  target: IEntity<`scene.${string}`> | IArea,
-  params?: ActivateSceneHueProps,
-) =>
+globalThis.activateSceneHue = (target, params) =>
   serviceCall({
     name: `Call hue.activate_scene`,
     params: {
@@ -61,7 +58,7 @@ export interface HueActivateSceneHueProps {
   dynamic?: boolean;
 }
 
-globalThis.hueActivateSceneHue = (params?: HueActivateSceneHueProps) =>
+globalThis.hueActivateSceneHue = (params) =>
   serviceCall({
     name: `Call hue.hue_activate_scene`,
     params: {

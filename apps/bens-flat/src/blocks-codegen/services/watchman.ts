@@ -14,7 +14,7 @@ export interface ReportWatchmanProps {
   advanced_options?: never;
 }
 
-globalThis.reportWatchman = (params?: ReportWatchmanProps) =>
+globalThis.reportWatchman = (params) =>
   serviceCall({
     name: `Call watchman.report`,
     params: {

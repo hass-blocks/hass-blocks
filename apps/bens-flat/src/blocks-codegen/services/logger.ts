@@ -17,7 +17,7 @@ export interface SetDefaultLevelLoggerProps {
   level?: never;
 }
 
-globalThis.setDefaultLevelLogger = (params?: SetDefaultLevelLoggerProps) =>
+globalThis.setDefaultLevelLogger = (params) =>
   serviceCall({
     name: `Call logger.set_default_level`,
     params: {

@@ -20,10 +20,7 @@ export interface TriggerNoderedProps {
   message?: never;
 }
 
-globalThis.triggerNodered = (
-  target: IEntity<`switch.${string}`> | IArea,
-  params?: TriggerNoderedProps,
-) =>
+globalThis.triggerNodered = (target, params) =>
   serviceCall({
     name: `Call nodered.trigger`,
     params: {

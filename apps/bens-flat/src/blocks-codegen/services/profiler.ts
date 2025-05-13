@@ -59,7 +59,7 @@ export interface StartProfilerProps {
   seconds?: number;
 }
 
-globalThis.startProfiler = (params?: StartProfilerProps) =>
+globalThis.startProfiler = (params) =>
   serviceCall({
     name: `Call profiler.start`,
     params: {
@@ -76,7 +76,7 @@ export interface MemoryProfilerProps {
   seconds?: number;
 }
 
-globalThis.memoryProfiler = (params?: MemoryProfilerProps) =>
+globalThis.memoryProfiler = (params) =>
   serviceCall({
     name: `Call profiler.memory`,
     params: {
@@ -93,7 +93,7 @@ export interface StartLogObjectsProfilerProps {
   scan_interval?: number;
 }
 
-globalThis.startLogObjectsProfiler = (params?: StartLogObjectsProfilerProps) =>
+globalThis.startLogObjectsProfiler = (params) =>
   serviceCall({
     name: `Call profiler.start_log_objects`,
     params: {
@@ -123,9 +123,7 @@ export interface StartLogObjectSourcesProfilerProps {
   max_objects?: number;
 }
 
-globalThis.startLogObjectSourcesProfiler = (
-  params?: StartLogObjectSourcesProfilerProps,
-) =>
+globalThis.startLogObjectSourcesProfiler = (params) =>
   serviceCall({
     name: `Call profiler.start_log_object_sources`,
     params: {
@@ -151,7 +149,7 @@ export interface DumpLogObjectsProfilerProps {
   type: string;
 }
 
-globalThis.dumpLogObjectsProfiler = (params: DumpLogObjectsProfilerProps) =>
+globalThis.dumpLogObjectsProfiler = (params) =>
   serviceCall({
     name: `Call profiler.dump_log_objects`,
     params: {
@@ -195,7 +193,7 @@ export interface SetAsyncioDebugProfilerProps {
   enabled?: boolean;
 }
 
-globalThis.setAsyncioDebugProfiler = (params?: SetAsyncioDebugProfilerProps) =>
+globalThis.setAsyncioDebugProfiler = (params) =>
   serviceCall({
     name: `Call profiler.set_asyncio_debug`,
     params: {

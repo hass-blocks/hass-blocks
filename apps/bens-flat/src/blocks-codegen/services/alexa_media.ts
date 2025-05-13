@@ -29,7 +29,7 @@ export interface ForceLogoutAlexaMediaProps {
   email?: never;
 }
 
-globalThis.forceLogoutAlexaMedia = (params?: ForceLogoutAlexaMediaProps) =>
+globalThis.forceLogoutAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.force_logout`,
     params: {
@@ -46,9 +46,7 @@ export interface UpdateLastCalledAlexaMediaProps {
   email?: never;
 }
 
-globalThis.updateLastCalledAlexaMedia = (
-  params?: UpdateLastCalledAlexaMediaProps,
-) =>
+globalThis.updateLastCalledAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.update_last_called`,
     params: {
@@ -65,7 +63,7 @@ export interface RestoreVolumeAlexaMediaProps {
   entity_id: string;
 }
 
-globalThis.restoreVolumeAlexaMedia = (params: RestoreVolumeAlexaMediaProps) =>
+globalThis.restoreVolumeAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.restore_volume`,
     params: {
@@ -86,9 +84,7 @@ export interface GetHistoryRecordsAlexaMediaProps {
   entries?: never;
 }
 
-globalThis.getHistoryRecordsAlexaMedia = (
-  params: GetHistoryRecordsAlexaMediaProps,
-) =>
+globalThis.getHistoryRecordsAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.get_history_records`,
     params: {

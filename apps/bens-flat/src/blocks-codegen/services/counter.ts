@@ -32,10 +32,7 @@ declare global {
 
 export interface IncrementCounterProps {}
 
-globalThis.incrementCounter = (
-  target: IEntity<`counter.${string}`> | IArea,
-  params?: IncrementCounterProps,
-) =>
+globalThis.incrementCounter = (target, params) =>
   serviceCall({
     name: `Call counter.increment`,
     params: {
@@ -48,10 +45,7 @@ globalThis.incrementCounter = (
 
 export interface DecrementCounterProps {}
 
-globalThis.decrementCounter = (
-  target: IEntity<`counter.${string}`> | IArea,
-  params?: DecrementCounterProps,
-) =>
+globalThis.decrementCounter = (target, params) =>
   serviceCall({
     name: `Call counter.decrement`,
     params: {
@@ -64,10 +58,7 @@ globalThis.decrementCounter = (
 
 export interface ResetCounterProps {}
 
-globalThis.resetCounter = (
-  target: IEntity<`counter.${string}`> | IArea,
-  params?: ResetCounterProps,
-) =>
+globalThis.resetCounter = (target, params) =>
   serviceCall({
     name: `Call counter.reset`,
     params: {
@@ -85,10 +76,7 @@ export interface SetValueCounterProps {
   value: number;
 }
 
-globalThis.setValueCounter = (
-  target: IEntity<`counter.${string}`> | IArea,
-  params: SetValueCounterProps,
-) =>
+globalThis.setValueCounter = (target, params) =>
   serviceCall({
     name: `Call counter.set_value`,
     params: {

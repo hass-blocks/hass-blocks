@@ -16,10 +16,7 @@ export interface SetValueTimeProps {
   time: string;
 }
 
-globalThis.setValueTime = (
-  target: IEntity<`time.${string}`> | IArea,
-  params: SetValueTimeProps,
-) =>
+globalThis.setValueTime = (target, params) =>
   serviceCall({
     name: `Call time.set_value`,
     params: {

@@ -46,10 +46,7 @@ declare global {
 
 export interface TurnOffRemoteProps {}
 
-globalThis.turnOffRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params?: TurnOffRemoteProps,
-) =>
+globalThis.turnOffRemote = (target, params) =>
   serviceCall({
     name: `Call remote.turn_off`,
     params: {
@@ -67,10 +64,7 @@ export interface TurnOnRemoteProps {
   activity?: string;
 }
 
-globalThis.turnOnRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params?: TurnOnRemoteProps,
-) =>
+globalThis.turnOnRemote = (target, params) =>
   serviceCall({
     name: `Call remote.turn_on`,
     params: {
@@ -83,10 +77,7 @@ globalThis.turnOnRemote = (
 
 export interface ToggleRemoteProps {}
 
-globalThis.toggleRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params?: ToggleRemoteProps,
-) =>
+globalThis.toggleRemote = (target, params) =>
   serviceCall({
     name: `Call remote.toggle`,
     params: {
@@ -120,10 +111,7 @@ export interface SendCommandRemoteProps {
   hold_secs?: number;
 }
 
-globalThis.sendCommandRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params: SendCommandRemoteProps,
-) =>
+globalThis.sendCommandRemote = (target, params) =>
   serviceCall({
     name: `Call remote.send_command`,
     params: {
@@ -157,10 +145,7 @@ export interface LearnCommandRemoteProps {
   timeout?: number;
 }
 
-globalThis.learnCommandRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params?: LearnCommandRemoteProps,
-) =>
+globalThis.learnCommandRemote = (target, params) =>
   serviceCall({
     name: `Call remote.learn_command`,
     params: {
@@ -182,10 +167,7 @@ export interface DeleteCommandRemoteProps {
   command: never;
 }
 
-globalThis.deleteCommandRemote = (
-  target: IEntity<`remote.${string}`> | IArea,
-  params: DeleteCommandRemoteProps,
-) =>
+globalThis.deleteCommandRemote = (target, params) =>
   serviceCall({
     name: `Call remote.delete_command`,
     params: {

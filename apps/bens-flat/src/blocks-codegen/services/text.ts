@@ -16,10 +16,7 @@ export interface SetValueTextProps {
   value: string;
 }
 
-globalThis.setValueText = (
-  target: IEntity<`text.${string}`> | IArea,
-  params: SetValueTextProps,
-) =>
+globalThis.setValueText = (target, params) =>
   serviceCall({
     name: `Call text.set_value`,
     params: {

@@ -34,10 +34,7 @@ export interface InstallUpdateProps {
   backup?: boolean;
 }
 
-globalThis.installUpdate = (
-  target: IEntity<`update.${string}`> | IArea,
-  params?: InstallUpdateProps,
-) =>
+globalThis.installUpdate = (target, params) =>
   serviceCall({
     name: `Call update.install`,
     params: {
@@ -50,10 +47,7 @@ globalThis.installUpdate = (
 
 export interface SkipUpdateProps {}
 
-globalThis.skipUpdate = (
-  target: IEntity<`update.${string}`> | IArea,
-  params?: SkipUpdateProps,
-) =>
+globalThis.skipUpdate = (target, params) =>
   serviceCall({
     name: `Call update.skip`,
     params: {
@@ -66,10 +60,7 @@ globalThis.skipUpdate = (
 
 export interface ClearSkippedUpdateProps {}
 
-globalThis.clearSkippedUpdate = (
-  target: IEntity<`update.${string}`> | IArea,
-  params?: ClearSkippedUpdateProps,
-) =>
+globalThis.clearSkippedUpdate = (target, params) =>
   serviceCall({
     name: `Call update.clear_skipped`,
     params: {

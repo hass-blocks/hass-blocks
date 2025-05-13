@@ -16,10 +16,7 @@ export interface SnapshotImageProps {
   filename: string;
 }
 
-globalThis.snapshotImage = (
-  target: IEntity<`image.${string}`> | IArea,
-  params: SnapshotImageProps,
-) =>
+globalThis.snapshotImage = (target, params) =>
   serviceCall({
     name: `Call image.snapshot`,
     params: {

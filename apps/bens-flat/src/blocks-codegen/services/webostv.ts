@@ -27,7 +27,7 @@ export interface ButtonWebostvProps {
   button: string;
 }
 
-globalThis.buttonWebostv = (params: ButtonWebostvProps) =>
+globalThis.buttonWebostv = (params) =>
   serviceCall({
     name: `Call webostv.button`,
     params: {
@@ -52,7 +52,7 @@ export interface CommandWebostvProps {
   payload?: never;
 }
 
-globalThis.commandWebostv = (params: CommandWebostvProps) =>
+globalThis.commandWebostv = (params) =>
   serviceCall({
     name: `Call webostv.command`,
     params: {
@@ -73,7 +73,7 @@ export interface SelectSoundOutputWebostvProps {
   sound_output: string;
 }
 
-globalThis.selectSoundOutputWebostv = (params: SelectSoundOutputWebostvProps) =>
+globalThis.selectSoundOutputWebostv = (params) =>
   serviceCall({
     name: `Call webostv.select_sound_output`,
     params: {

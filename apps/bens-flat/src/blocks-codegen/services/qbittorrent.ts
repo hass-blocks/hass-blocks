@@ -23,7 +23,7 @@ export interface GetTorrentsQbittorrentProps {
   torrent_filter: never;
 }
 
-globalThis.getTorrentsQbittorrent = (params: GetTorrentsQbittorrentProps) =>
+globalThis.getTorrentsQbittorrent = (params) =>
   serviceCall({
     name: `Call qbittorrent.get_torrents`,
     params: {
@@ -40,9 +40,7 @@ export interface GetAllTorrentsQbittorrentProps {
   torrent_filter: never;
 }
 
-globalThis.getAllTorrentsQbittorrent = (
-  params: GetAllTorrentsQbittorrentProps,
-) =>
+globalThis.getAllTorrentsQbittorrent = (params) =>
   serviceCall({
     name: `Call qbittorrent.get_all_torrents`,
     params: {

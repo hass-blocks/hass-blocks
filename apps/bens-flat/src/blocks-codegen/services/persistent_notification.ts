@@ -33,9 +33,7 @@ export interface CreatePersistentNotificationProps {
   notification_id?: string;
 }
 
-globalThis.createPersistentNotification = (
-  params: CreatePersistentNotificationProps,
-) =>
+globalThis.createPersistentNotification = (params) =>
   serviceCall({
     name: `Call persistent_notification.create`,
     params: {
@@ -52,9 +50,7 @@ export interface DismissPersistentNotificationProps {
   notification_id: string;
 }
 
-globalThis.dismissPersistentNotification = (
-  params: DismissPersistentNotificationProps,
-) =>
+globalThis.dismissPersistentNotification = (params) =>
   serviceCall({
     name: `Call persistent_notification.dismiss`,
     params: {

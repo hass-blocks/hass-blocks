@@ -81,10 +81,7 @@ globalThis.savePersistentStatesHomeassistant = () =>
 
 export interface TurnOffHomeassistantProps {}
 
-globalThis.turnOffHomeassistant = (
-  target: IEntity | IArea,
-  params?: TurnOffHomeassistantProps,
-) =>
+globalThis.turnOffHomeassistant = (target, params) =>
   serviceCall({
     name: `Call homeassistant.turn_off`,
     params: {
@@ -97,10 +94,7 @@ globalThis.turnOffHomeassistant = (
 
 export interface TurnOnHomeassistantProps {}
 
-globalThis.turnOnHomeassistant = (
-  target: IEntity | IArea,
-  params?: TurnOnHomeassistantProps,
-) =>
+globalThis.turnOnHomeassistant = (target, params) =>
   serviceCall({
     name: `Call homeassistant.turn_on`,
     params: {
@@ -113,10 +107,7 @@ globalThis.turnOnHomeassistant = (
 
 export interface ToggleHomeassistantProps {}
 
-globalThis.toggleHomeassistant = (
-  target: IEntity | IArea,
-  params?: ToggleHomeassistantProps,
-) =>
+globalThis.toggleHomeassistant = (target, params) =>
   serviceCall({
     name: `Call homeassistant.toggle`,
     params: {
@@ -161,9 +152,7 @@ export interface UpdateEntityHomeassistantProps {
   entity_id: string;
 }
 
-globalThis.updateEntityHomeassistant = (
-  params: UpdateEntityHomeassistantProps,
-) =>
+globalThis.updateEntityHomeassistant = (params) =>
   serviceCall({
     name: `Call homeassistant.update_entity`,
     params: {
@@ -197,7 +186,7 @@ export interface SetLocationHomeassistantProps {
   elevation?: number;
 }
 
-globalThis.setLocationHomeassistant = (params: SetLocationHomeassistantProps) =>
+globalThis.setLocationHomeassistant = (params) =>
   serviceCall({
     name: `Call homeassistant.set_location`,
     params: {
@@ -223,10 +212,7 @@ export interface ReloadConfigEntryHomeassistantProps {
   entry_id?: never;
 }
 
-globalThis.reloadConfigEntryHomeassistant = (
-  target: IEntity | IArea,
-  params?: ReloadConfigEntryHomeassistantProps,
-) =>
+globalThis.reloadConfigEntryHomeassistant = (target, params) =>
   serviceCall({
     name: `Call homeassistant.reload_config_entry`,
     params: {

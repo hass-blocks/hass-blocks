@@ -24,10 +24,7 @@ globalThis.reloadSchedule = () =>
 
 export interface GetScheduleScheduleProps {}
 
-globalThis.getScheduleSchedule = (
-  target: IEntity<`schedule.${string}`> | IArea,
-  params?: GetScheduleScheduleProps,
-) =>
+globalThis.getScheduleSchedule = (target, params) =>
   serviceCall({
     name: `Call schedule.get_schedule`,
     params: {

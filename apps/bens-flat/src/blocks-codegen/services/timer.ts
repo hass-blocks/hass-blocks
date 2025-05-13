@@ -57,10 +57,7 @@ export interface StartTimerProps {
   duration?: string;
 }
 
-globalThis.startTimer = (
-  target: IEntity<`timer.${string}`> | IArea,
-  params?: StartTimerProps,
-) =>
+globalThis.startTimer = (target, params) =>
   serviceCall({
     name: `Call timer.start`,
     params: {
@@ -73,10 +70,7 @@ globalThis.startTimer = (
 
 export interface PauseTimerProps {}
 
-globalThis.pauseTimer = (
-  target: IEntity<`timer.${string}`> | IArea,
-  params?: PauseTimerProps,
-) =>
+globalThis.pauseTimer = (target, params) =>
   serviceCall({
     name: `Call timer.pause`,
     params: {
@@ -89,10 +83,7 @@ globalThis.pauseTimer = (
 
 export interface CancelTimerProps {}
 
-globalThis.cancelTimer = (
-  target: IEntity<`timer.${string}`> | IArea,
-  params?: CancelTimerProps,
-) =>
+globalThis.cancelTimer = (target, params) =>
   serviceCall({
     name: `Call timer.cancel`,
     params: {
@@ -105,10 +96,7 @@ globalThis.cancelTimer = (
 
 export interface FinishTimerProps {}
 
-globalThis.finishTimer = (
-  target: IEntity<`timer.${string}`> | IArea,
-  params?: FinishTimerProps,
-) =>
+globalThis.finishTimer = (target, params) =>
   serviceCall({
     name: `Call timer.finish`,
     params: {
@@ -126,10 +114,7 @@ export interface ChangeTimerProps {
   duration: string;
 }
 
-globalThis.changeTimer = (
-  target: IEntity<`timer.${string}`> | IArea,
-  params: ChangeTimerProps,
-) =>
+globalThis.changeTimer = (target, params) =>
   serviceCall({
     name: `Call timer.change`,
     params: {

@@ -17,7 +17,7 @@ export interface ReplaceSensorPlantProps {
   new_sensor?: string;
 }
 
-globalThis.replaceSensorPlant = (params: ReplaceSensorPlantProps) =>
+globalThis.replaceSensorPlant = (params) =>
   serviceCall({
     name: `Call plant.replace_sensor`,
     params: {

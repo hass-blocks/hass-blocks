@@ -29,10 +29,7 @@ export interface SetValueInputTextProps {
   value: string;
 }
 
-globalThis.setValueInputText = (
-  target: IEntity<`input_text.${string}`> | IArea,
-  params: SetValueInputTextProps,
-) =>
+globalThis.setValueInputText = (target, params) =>
   serviceCall({
     name: `Call input_text.set_value`,
     params: {

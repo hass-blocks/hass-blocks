@@ -39,10 +39,7 @@ declare global {
 
 export interface TurnOnHumidifierProps {}
 
-globalThis.turnOnHumidifier = (
-  target: IEntity<`humidifier.${string}`> | IArea,
-  params?: TurnOnHumidifierProps,
-) =>
+globalThis.turnOnHumidifier = (target, params) =>
   serviceCall({
     name: `Call humidifier.turn_on`,
     params: {
@@ -55,10 +52,7 @@ globalThis.turnOnHumidifier = (
 
 export interface TurnOffHumidifierProps {}
 
-globalThis.turnOffHumidifier = (
-  target: IEntity<`humidifier.${string}`> | IArea,
-  params?: TurnOffHumidifierProps,
-) =>
+globalThis.turnOffHumidifier = (target, params) =>
   serviceCall({
     name: `Call humidifier.turn_off`,
     params: {
@@ -71,10 +65,7 @@ globalThis.turnOffHumidifier = (
 
 export interface ToggleHumidifierProps {}
 
-globalThis.toggleHumidifier = (
-  target: IEntity<`humidifier.${string}`> | IArea,
-  params?: ToggleHumidifierProps,
-) =>
+globalThis.toggleHumidifier = (target, params) =>
   serviceCall({
     name: `Call humidifier.toggle`,
     params: {
@@ -92,10 +83,7 @@ export interface SetModeHumidifierProps {
   mode: string;
 }
 
-globalThis.setModeHumidifier = (
-  target: IEntity<`humidifier.${string}`> | IArea,
-  params: SetModeHumidifierProps,
-) =>
+globalThis.setModeHumidifier = (target, params) =>
   serviceCall({
     name: `Call humidifier.set_mode`,
     params: {
@@ -113,10 +101,7 @@ export interface SetHumidityHumidifierProps {
   humidity: number;
 }
 
-globalThis.setHumidityHumidifier = (
-  target: IEntity<`humidifier.${string}`> | IArea,
-  params: SetHumidityHumidifierProps,
-) =>
+globalThis.setHumidityHumidifier = (target, params) =>
   serviceCall({
     name: `Call humidifier.set_humidity`,
     params: {

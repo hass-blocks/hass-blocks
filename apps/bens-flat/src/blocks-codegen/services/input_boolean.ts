@@ -38,10 +38,7 @@ globalThis.reloadInputBoolean = () =>
 
 export interface TurnOnInputBooleanProps {}
 
-globalThis.turnOnInputBoolean = (
-  target: IEntity<`input_boolean.${string}`> | IArea,
-  params?: TurnOnInputBooleanProps,
-) =>
+globalThis.turnOnInputBoolean = (target, params) =>
   serviceCall({
     name: `Call input_boolean.turn_on`,
     params: {
@@ -54,10 +51,7 @@ globalThis.turnOnInputBoolean = (
 
 export interface TurnOffInputBooleanProps {}
 
-globalThis.turnOffInputBoolean = (
-  target: IEntity<`input_boolean.${string}`> | IArea,
-  params?: TurnOffInputBooleanProps,
-) =>
+globalThis.turnOffInputBoolean = (target, params) =>
   serviceCall({
     name: `Call input_boolean.turn_off`,
     params: {
@@ -70,10 +64,7 @@ globalThis.turnOffInputBoolean = (
 
 export interface ToggleInputBooleanProps {}
 
-globalThis.toggleInputBoolean = (
-  target: IEntity<`input_boolean.${string}`> | IArea,
-  params?: ToggleInputBooleanProps,
-) =>
+globalThis.toggleInputBoolean = (target, params) =>
   serviceCall({
     name: `Call input_boolean.toggle`,
     params: {

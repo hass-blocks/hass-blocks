@@ -41,10 +41,7 @@ export interface TriggerAutomationProps {
   skip_condition?: boolean;
 }
 
-globalThis.triggerAutomation = (
-  target: IEntity<`automation.${string}`> | IArea,
-  params?: TriggerAutomationProps,
-) =>
+globalThis.triggerAutomation = (target, params) =>
   serviceCall({
     name: `Call automation.trigger`,
     params: {
@@ -57,10 +54,7 @@ globalThis.triggerAutomation = (
 
 export interface ToggleAutomationProps {}
 
-globalThis.toggleAutomation = (
-  target: IEntity<`automation.${string}`> | IArea,
-  params?: ToggleAutomationProps,
-) =>
+globalThis.toggleAutomation = (target, params) =>
   serviceCall({
     name: `Call automation.toggle`,
     params: {
@@ -73,10 +67,7 @@ globalThis.toggleAutomation = (
 
 export interface TurnOnAutomationProps {}
 
-globalThis.turnOnAutomation = (
-  target: IEntity<`automation.${string}`> | IArea,
-  params?: TurnOnAutomationProps,
-) =>
+globalThis.turnOnAutomation = (target, params) =>
   serviceCall({
     name: `Call automation.turn_on`,
     params: {
@@ -94,10 +85,7 @@ export interface TurnOffAutomationProps {
   stop_actions?: boolean;
 }
 
-globalThis.turnOffAutomation = (
-  target: IEntity<`automation.${string}`> | IArea,
-  params?: TurnOffAutomationProps,
-) =>
+globalThis.turnOffAutomation = (target, params) =>
   serviceCall({
     name: `Call automation.turn_off`,
     params: {

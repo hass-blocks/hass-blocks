@@ -105,7 +105,7 @@ export interface StartSpotcastProps {
   ignore_fully_played?: boolean;
 }
 
-globalThis.startSpotcast = (params?: StartSpotcastProps) =>
+globalThis.startSpotcast = (params) =>
   serviceCall({
     name: `Call spotcast.start`,
     params: {

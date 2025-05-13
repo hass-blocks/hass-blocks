@@ -24,10 +24,7 @@ globalThis.reloadInputButton = () =>
 
 export interface PressInputButtonProps {}
 
-globalThis.pressInputButton = (
-  target: IEntity<`input_button.${string}`> | IArea,
-  params?: PressInputButtonProps,
-) =>
+globalThis.pressInputButton = (target, params) =>
   serviceCall({
     name: `Call input_button.press`,
     params: {

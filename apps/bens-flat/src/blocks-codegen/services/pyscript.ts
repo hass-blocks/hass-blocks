@@ -40,7 +40,7 @@ export interface HelloWorldPyscriptProps {
   id?: never;
 }
 
-globalThis.helloWorldPyscript = (params?: HelloWorldPyscriptProps) =>
+globalThis.helloWorldPyscript = (params) =>
   serviceCall({
     name: `Call pyscript.hello_world`,
     params: {
@@ -57,7 +57,7 @@ export interface ReloadPyscriptProps {
   global_ctx?: string;
 }
 
-globalThis.reloadPyscript = (params?: ReloadPyscriptProps) =>
+globalThis.reloadPyscript = (params) =>
   serviceCall({
     name: `Call pyscript.reload`,
     params: {
@@ -110,9 +110,7 @@ export interface JupyterKernelStartPyscriptProps {
   kernel_name: string;
 }
 
-globalThis.jupyterKernelStartPyscript = (
-  params: JupyterKernelStartPyscriptProps,
-) =>
+globalThis.jupyterKernelStartPyscript = (params) =>
   serviceCall({
     name: `Call pyscript.jupyter_kernel_start`,
     params: {

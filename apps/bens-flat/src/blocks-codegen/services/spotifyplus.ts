@@ -613,9 +613,7 @@ export interface AddPlayerQueueItemsSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.addPlayerQueueItemsSpotifyplus = (
-  params: AddPlayerQueueItemsSpotifyplusProps,
-) =>
+globalThis.addPlayerQueueItemsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.add_player_queue_items`,
     params: {
@@ -636,9 +634,7 @@ export interface CheckAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkAlbumFavoritesSpotifyplus = (
-  params: CheckAlbumFavoritesSpotifyplusProps,
-) =>
+globalThis.checkAlbumFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_album_favorites`,
     params: {
@@ -659,9 +655,7 @@ export interface CheckArtistsFollowingSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkArtistsFollowingSpotifyplus = (
-  params: CheckArtistsFollowingSpotifyplusProps,
-) =>
+globalThis.checkArtistsFollowingSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_artists_following`,
     params: {
@@ -682,9 +676,7 @@ export interface CheckAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkAudiobookFavoritesSpotifyplus = (
-  params: CheckAudiobookFavoritesSpotifyplusProps,
-) =>
+globalThis.checkAudiobookFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_audiobook_favorites`,
     params: {
@@ -705,9 +697,7 @@ export interface CheckEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkEpisodeFavoritesSpotifyplus = (
-  params: CheckEpisodeFavoritesSpotifyplusProps,
-) =>
+globalThis.checkEpisodeFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_episode_favorites`,
     params: {
@@ -732,9 +722,7 @@ export interface CheckPlaylistFollowersSpotifyplusProps {
   user_ids?: string;
 }
 
-globalThis.checkPlaylistFollowersSpotifyplus = (
-  params: CheckPlaylistFollowersSpotifyplusProps,
-) =>
+globalThis.checkPlaylistFollowersSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_playlist_followers`,
     params: {
@@ -755,9 +743,7 @@ export interface CheckShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkShowFavoritesSpotifyplus = (
-  params: CheckShowFavoritesSpotifyplusProps,
-) =>
+globalThis.checkShowFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_show_favorites`,
     params: {
@@ -778,9 +764,7 @@ export interface CheckTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.checkTrackFavoritesSpotifyplus = (
-  params: CheckTrackFavoritesSpotifyplusProps,
-) =>
+globalThis.checkTrackFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_track_favorites`,
     params: {
@@ -801,9 +785,7 @@ export interface CheckUsersFollowingSpotifyplusProps {
   ids: string;
 }
 
-globalThis.checkUsersFollowingSpotifyplus = (
-  params: CheckUsersFollowingSpotifyplusProps,
-) =>
+globalThis.checkUsersFollowingSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.check_users_following`,
     params: {
@@ -824,7 +806,7 @@ export interface FollowArtistsSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.followArtistsSpotifyplus = (params: FollowArtistsSpotifyplusProps) =>
+globalThis.followArtistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.follow_artists`,
     params: {
@@ -849,9 +831,7 @@ export interface FollowPlaylistSpotifyplusProps {
   public?: boolean;
 }
 
-globalThis.followPlaylistSpotifyplus = (
-  params: FollowPlaylistSpotifyplusProps,
-) =>
+globalThis.followPlaylistSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.follow_playlist`,
     params: {
@@ -872,7 +852,7 @@ export interface FollowUsersSpotifyplusProps {
   ids: string;
 }
 
-globalThis.followUsersSpotifyplus = (params: FollowUsersSpotifyplusProps) =>
+globalThis.followUsersSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.follow_users`,
     params: {
@@ -897,7 +877,7 @@ export interface GetAlbumSpotifyplusProps {
   market?: string;
 }
 
-globalThis.getAlbumSpotifyplus = (params: GetAlbumSpotifyplusProps) =>
+globalThis.getAlbumSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_album`,
     params: {
@@ -934,9 +914,7 @@ export interface GetAlbumFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getAlbumFavoritesSpotifyplus = (
-  params: GetAlbumFavoritesSpotifyplusProps,
-) =>
+globalThis.getAlbumFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_album_favorites`,
     params: {
@@ -973,9 +951,7 @@ export interface GetAlbumNewReleasesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getAlbumNewReleasesSpotifyplus = (
-  params: GetAlbumNewReleasesSpotifyplusProps,
-) =>
+globalThis.getAlbumNewReleasesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_album_new_releases`,
     params: {
@@ -1012,9 +988,7 @@ export interface GetAlbumTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.getAlbumTracksSpotifyplus = (
-  params: GetAlbumTracksSpotifyplusProps,
-) =>
+globalThis.getAlbumTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_album_tracks`,
     params: {
@@ -1035,7 +1009,7 @@ export interface GetArtistSpotifyplusProps {
   artist_id?: string;
 }
 
-globalThis.getArtistSpotifyplus = (params: GetArtistSpotifyplusProps) =>
+globalThis.getArtistSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artist`,
     params: {
@@ -1080,9 +1054,7 @@ export interface GetArtistAlbumsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getArtistAlbumsSpotifyplus = (
-  params: GetArtistAlbumsSpotifyplusProps,
-) =>
+globalThis.getArtistAlbumsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artist_albums`,
     params: {
@@ -1103,7 +1075,7 @@ export interface GetArtistInfoSpotifyplusProps {
   artist_id?: string;
 }
 
-globalThis.getArtistInfoSpotifyplus = (params: GetArtistInfoSpotifyplusProps) =>
+globalThis.getArtistInfoSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artist_info`,
     params: {
@@ -1128,9 +1100,7 @@ export interface GetArtistRelatedArtistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getArtistRelatedArtistsSpotifyplus = (
-  params: GetArtistRelatedArtistsSpotifyplusProps,
-) =>
+globalThis.getArtistRelatedArtistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artist_related_artists`,
     params: {
@@ -1159,9 +1129,7 @@ export interface GetArtistTopTracksSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getArtistTopTracksSpotifyplus = (
-  params: GetArtistTopTracksSpotifyplusProps,
-) =>
+globalThis.getArtistTopTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artist_top_tracks`,
     params: {
@@ -1194,9 +1162,7 @@ export interface GetArtistsFollowedSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getArtistsFollowedSpotifyplus = (
-  params: GetArtistsFollowedSpotifyplusProps,
-) =>
+globalThis.getArtistsFollowedSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_artists_followed`,
     params: {
@@ -1221,7 +1187,7 @@ export interface GetAudiobookSpotifyplusProps {
   market?: string;
 }
 
-globalThis.getAudiobookSpotifyplus = (params: GetAudiobookSpotifyplusProps) =>
+globalThis.getAudiobookSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_audiobook`,
     params: {
@@ -1258,9 +1224,7 @@ export interface GetAudiobookChaptersSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.getAudiobookChaptersSpotifyplus = (
-  params: GetAudiobookChaptersSpotifyplusProps,
-) =>
+globalThis.getAudiobookChaptersSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_audiobook_chapters`,
     params: {
@@ -1293,9 +1257,7 @@ export interface GetAudiobookFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getAudiobookFavoritesSpotifyplus = (
-  params: GetAudiobookFavoritesSpotifyplusProps,
-) =>
+globalThis.getAudiobookFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_audiobook_favorites`,
     params: {
@@ -1324,9 +1286,7 @@ export interface GetBrowseCategorysListSpotifyplusProps {
   refresh?: boolean;
 }
 
-globalThis.getBrowseCategorysListSpotifyplus = (
-  params: GetBrowseCategorysListSpotifyplusProps,
-) =>
+globalThis.getBrowseCategorysListSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_browse_categorys_list`,
     params: {
@@ -1367,9 +1327,7 @@ export interface GetCategoryPlaylistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getCategoryPlaylistsSpotifyplus = (
-  params: GetCategoryPlaylistsSpotifyplusProps,
-) =>
+globalThis.getCategoryPlaylistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_category_playlists`,
     params: {
@@ -1394,7 +1352,7 @@ export interface GetChapterSpotifyplusProps {
   market?: string;
 }
 
-globalThis.getChapterSpotifyplus = (params: GetChapterSpotifyplusProps) =>
+globalThis.getChapterSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_chapter`,
     params: {
@@ -1419,9 +1377,7 @@ export interface GetCoverImageFileSpotifyplusProps {
   output_path: string;
 }
 
-globalThis.getCoverImageFileSpotifyplus = (
-  params: GetCoverImageFileSpotifyplusProps,
-) =>
+globalThis.getCoverImageFileSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_cover_image_file`,
     params: {
@@ -1446,7 +1402,7 @@ export interface GetEpisodeSpotifyplusProps {
   market?: string;
 }
 
-globalThis.getEpisodeSpotifyplus = (params: GetEpisodeSpotifyplusProps) =>
+globalThis.getEpisodeSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_episode`,
     params: {
@@ -1479,9 +1435,7 @@ export interface GetEpisodeFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getEpisodeFavoritesSpotifyplus = (
-  params: GetEpisodeFavoritesSpotifyplusProps,
-) =>
+globalThis.getEpisodeFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_episode_favorites`,
     params: {
@@ -1526,9 +1480,7 @@ export interface GetFeaturedPlaylistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getFeaturedPlaylistsSpotifyplus = (
-  params: GetFeaturedPlaylistsSpotifyplusProps,
-) =>
+globalThis.getFeaturedPlaylistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_featured_playlists`,
     params: {
@@ -1557,9 +1509,7 @@ export interface GetImageVibrantColorsSpotifyplusProps {
   color_quality?: number;
 }
 
-globalThis.getImageVibrantColorsSpotifyplus = (
-  params: GetImageVibrantColorsSpotifyplusProps,
-) =>
+globalThis.getImageVibrantColorsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_image_vibrant_colors`,
     params: {
@@ -1584,9 +1534,7 @@ export interface GetPlayerDevicesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getPlayerDevicesSpotifyplus = (
-  params: GetPlayerDevicesSpotifyplusProps,
-) =>
+globalThis.getPlayerDevicesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_player_devices`,
     params: {
@@ -1611,9 +1559,7 @@ export interface GetPlayerPlaybackStateSpotifyplusProps {
   additional_types?: string;
 }
 
-globalThis.getPlayerPlaybackStateSpotifyplus = (
-  params: GetPlayerPlaybackStateSpotifyplusProps,
-) =>
+globalThis.getPlayerPlaybackStateSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_player_playback_state`,
     params: {
@@ -1638,9 +1584,7 @@ export interface GetPlayerNowPlayingSpotifyplusProps {
   additional_types?: string;
 }
 
-globalThis.getPlayerNowPlayingSpotifyplus = (
-  params: GetPlayerNowPlayingSpotifyplusProps,
-) =>
+globalThis.getPlayerNowPlayingSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_player_now_playing`,
     params: {
@@ -1657,9 +1601,7 @@ export interface GetPlayerQueueInfoSpotifyplusProps {
   entity_id: string;
 }
 
-globalThis.getPlayerQueueInfoSpotifyplus = (
-  params: GetPlayerQueueInfoSpotifyplusProps,
-) =>
+globalThis.getPlayerQueueInfoSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_player_queue_info`,
     params: {
@@ -1692,9 +1634,7 @@ export interface GetPlayerRecentTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.getPlayerRecentTracksSpotifyplus = (
-  params: GetPlayerRecentTracksSpotifyplusProps,
-) =>
+globalThis.getPlayerRecentTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_player_recent_tracks`,
     params: {
@@ -1727,7 +1667,7 @@ export interface GetPlaylistSpotifyplusProps {
   additional_types?: string;
 }
 
-globalThis.getPlaylistSpotifyplus = (params: GetPlaylistSpotifyplusProps) =>
+globalThis.getPlaylistSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_playlist`,
     params: {
@@ -1748,9 +1688,7 @@ export interface GetPlaylistCoverImageSpotifyplusProps {
   playlist_id?: string;
 }
 
-globalThis.getPlaylistCoverImageSpotifyplus = (
-  params: GetPlaylistCoverImageSpotifyplusProps,
-) =>
+globalThis.getPlaylistCoverImageSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_playlist_cover_image`,
     params: {
@@ -1783,9 +1721,7 @@ export interface GetPlaylistFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getPlaylistFavoritesSpotifyplus = (
-  params: GetPlaylistFavoritesSpotifyplusProps,
-) =>
+globalThis.getPlaylistFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_playlist_favorites`,
     params: {
@@ -1830,9 +1766,7 @@ export interface GetPlaylistItemsSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.getPlaylistItemsSpotifyplus = (
-  params: GetPlaylistItemsSpotifyplusProps,
-) =>
+globalThis.getPlaylistItemsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_playlist_items`,
     params: {
@@ -1869,9 +1803,7 @@ export interface GetPlaylistsForUserSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getPlaylistsForUserSpotifyplus = (
-  params: GetPlaylistsForUserSpotifyplusProps,
-) =>
+globalThis.getPlaylistsForUserSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_playlists_for_user`,
     params: {
@@ -1896,7 +1828,7 @@ export interface GetShowSpotifyplusProps {
   market?: string;
 }
 
-globalThis.getShowSpotifyplus = (params: GetShowSpotifyplusProps) =>
+globalThis.getShowSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_show`,
     params: {
@@ -1933,9 +1865,7 @@ export interface GetShowEpisodesSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.getShowEpisodesSpotifyplus = (
-  params: GetShowEpisodesSpotifyplusProps,
-) =>
+globalThis.getShowEpisodesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_show_episodes`,
     params: {
@@ -1972,9 +1902,7 @@ export interface GetShowFavoritesSpotifyplusProps {
   exclude_audiobooks?: boolean;
 }
 
-globalThis.getShowFavoritesSpotifyplus = (
-  params: GetShowFavoritesSpotifyplusProps,
-) =>
+globalThis.getShowFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_show_favorites`,
     params: {
@@ -2015,9 +1943,7 @@ export interface GetSpotifyConnectDeviceSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.getSpotifyConnectDeviceSpotifyplus = (
-  params: GetSpotifyConnectDeviceSpotifyplusProps,
-) =>
+globalThis.getSpotifyConnectDeviceSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_spotify_connect_device`,
     params: {
@@ -2042,9 +1968,7 @@ export interface GetSpotifyConnectDevicesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getSpotifyConnectDevicesSpotifyplus = (
-  params: GetSpotifyConnectDevicesSpotifyplusProps,
-) =>
+globalThis.getSpotifyConnectDevicesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_spotify_connect_devices`,
     params: {
@@ -2065,7 +1989,7 @@ export interface GetTrackSpotifyplusProps {
   track_id?: string;
 }
 
-globalThis.getTrackSpotifyplus = (params: GetTrackSpotifyplusProps) =>
+globalThis.getTrackSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_track`,
     params: {
@@ -2086,9 +2010,7 @@ export interface GetTrackAudioFeaturesSpotifyplusProps {
   track_id?: string;
 }
 
-globalThis.getTrackAudioFeaturesSpotifyplus = (
-  params: GetTrackAudioFeaturesSpotifyplusProps,
-) =>
+globalThis.getTrackAudioFeaturesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_track_audio_features`,
     params: {
@@ -2125,9 +2047,7 @@ export interface GetTrackFavoritesSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getTrackFavoritesSpotifyplus = (
-  params: GetTrackFavoritesSpotifyplusProps,
-) =>
+globalThis.getTrackFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_track_favorites`,
     params: {
@@ -2332,9 +2252,7 @@ export interface GetTrackRecommendationsSpotifyplusProps {
   target_valence?: number;
 }
 
-globalThis.getTrackRecommendationsSpotifyplus = (
-  params: GetTrackRecommendationsSpotifyplusProps,
-) =>
+globalThis.getTrackRecommendationsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_track_recommendations`,
     params: {
@@ -2355,9 +2273,7 @@ export interface GetTracksAudioFeaturesSpotifyplusProps {
   ids: string;
 }
 
-globalThis.getTracksAudioFeaturesSpotifyplus = (
-  params: GetTracksAudioFeaturesSpotifyplusProps,
-) =>
+globalThis.getTracksAudioFeaturesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_tracks_audio_features`,
     params: {
@@ -2394,9 +2310,7 @@ export interface GetUsersTopArtistsSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getUsersTopArtistsSpotifyplus = (
-  params: GetUsersTopArtistsSpotifyplusProps,
-) =>
+globalThis.getUsersTopArtistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_users_top_artists`,
     params: {
@@ -2433,9 +2347,7 @@ export interface GetUsersTopTracksSpotifyplusProps {
   sort_result?: boolean;
 }
 
-globalThis.getUsersTopTracksSpotifyplus = (
-  params: GetUsersTopTracksSpotifyplusProps,
-) =>
+globalThis.getUsersTopTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.get_users_top_tracks`,
     params: {
@@ -2460,9 +2372,7 @@ export interface PlayerMediaPauseSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaPauseSpotifyplus = (
-  params: PlayerMediaPauseSpotifyplusProps,
-) =>
+globalThis.playerMediaPauseSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_pause`,
     params: {
@@ -2503,9 +2413,7 @@ export interface PlayerMediaPlayContextSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaPlayContextSpotifyplus = (
-  params: PlayerMediaPlayContextSpotifyplusProps,
-) =>
+globalThis.playerMediaPlayContextSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_play_context`,
     params: {
@@ -2542,9 +2450,7 @@ export interface PlayerMediaPlayTrackFavoritesSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.playerMediaPlayTrackFavoritesSpotifyplus = (
-  params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
-) =>
+globalThis.playerMediaPlayTrackFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_play_track_favorites`,
     params: {
@@ -2577,9 +2483,7 @@ export interface PlayerMediaPlayTracksSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaPlayTracksSpotifyplus = (
-  params: PlayerMediaPlayTracksSpotifyplusProps,
-) =>
+globalThis.playerMediaPlayTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_play_tracks`,
     params: {
@@ -2604,9 +2508,7 @@ export interface PlayerMediaResumeSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaResumeSpotifyplus = (
-  params: PlayerMediaResumeSpotifyplusProps,
-) =>
+globalThis.playerMediaResumeSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_resume`,
     params: {
@@ -2639,9 +2541,7 @@ export interface PlayerMediaSeekSpotifyplusProps {
   relative_position_ms?: number;
 }
 
-globalThis.playerMediaSeekSpotifyplus = (
-  params: PlayerMediaSeekSpotifyplusProps,
-) =>
+globalThis.playerMediaSeekSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_seek`,
     params: {
@@ -2666,9 +2566,7 @@ export interface PlayerMediaSkipNextSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaSkipNextSpotifyplus = (
-  params: PlayerMediaSkipNextSpotifyplusProps,
-) =>
+globalThis.playerMediaSkipNextSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_skip_next`,
     params: {
@@ -2693,9 +2591,7 @@ export interface PlayerMediaSkipPreviousSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerMediaSkipPreviousSpotifyplus = (
-  params: PlayerMediaSkipPreviousSpotifyplusProps,
-) =>
+globalThis.playerMediaSkipPreviousSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_media_skip_previous`,
     params: {
@@ -2724,9 +2620,7 @@ export interface PlayerSetRepeatModeSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerSetRepeatModeSpotifyplus = (
-  params: PlayerSetRepeatModeSpotifyplusProps,
-) =>
+globalThis.playerSetRepeatModeSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_set_repeat_mode`,
     params: {
@@ -2755,9 +2649,7 @@ export interface PlayerSetShuffleModeSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerSetShuffleModeSpotifyplus = (
-  params: PlayerSetShuffleModeSpotifyplusProps,
-) =>
+globalThis.playerSetShuffleModeSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_set_shuffle_mode`,
     params: {
@@ -2786,9 +2678,7 @@ export interface PlayerSetVolumeLevelSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.playerSetVolumeLevelSpotifyplus = (
-  params: PlayerSetVolumeLevelSpotifyplusProps,
-) =>
+globalThis.playerSetVolumeLevelSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_set_volume_level`,
     params: {
@@ -2829,9 +2719,7 @@ export interface PlayerTransferPlaybackSpotifyplusProps {
   device_id_from?: string;
 }
 
-globalThis.playerTransferPlaybackSpotifyplus = (
-  params: PlayerTransferPlaybackSpotifyplusProps,
-) =>
+globalThis.playerTransferPlaybackSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.player_transfer_playback`,
     params: {
@@ -2856,9 +2744,7 @@ export interface PlaylistCoverImageAddSpotifyplusProps {
   image_path: string;
 }
 
-globalThis.playlistCoverImageAddSpotifyplus = (
-  params: PlaylistCoverImageAddSpotifyplusProps,
-) =>
+globalThis.playlistCoverImageAddSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_cover_image_add`,
     params: {
@@ -2899,9 +2785,7 @@ export interface PlaylistChangeSpotifyplusProps {
   image_path?: string;
 }
 
-globalThis.playlistChangeSpotifyplus = (
-  params: PlaylistChangeSpotifyplusProps,
-) =>
+globalThis.playlistChangeSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_change`,
     params: {
@@ -2942,9 +2826,7 @@ export interface PlaylistCreateSpotifyplusProps {
   image_path?: string;
 }
 
-globalThis.playlistCreateSpotifyplus = (
-  params: PlaylistCreateSpotifyplusProps,
-) =>
+globalThis.playlistCreateSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_create`,
     params: {
@@ -2973,9 +2855,7 @@ export interface PlaylistItemsAddSpotifyplusProps {
   position?: number;
 }
 
-globalThis.playlistItemsAddSpotifyplus = (
-  params: PlaylistItemsAddSpotifyplusProps,
-) =>
+globalThis.playlistItemsAddSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_items_add`,
     params: {
@@ -2996,9 +2876,7 @@ export interface PlaylistItemsClearSpotifyplusProps {
   playlist_id: string;
 }
 
-globalThis.playlistItemsClearSpotifyplus = (
-  params: PlaylistItemsClearSpotifyplusProps,
-) =>
+globalThis.playlistItemsClearSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_items_clear`,
     params: {
@@ -3027,9 +2905,7 @@ export interface PlaylistItemsRemoveSpotifyplusProps {
   snapshot_id?: string;
 }
 
-globalThis.playlistItemsRemoveSpotifyplus = (
-  params: PlaylistItemsRemoveSpotifyplusProps,
-) =>
+globalThis.playlistItemsRemoveSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_items_remove`,
     params: {
@@ -3066,9 +2942,7 @@ export interface PlaylistItemsReorderSpotifyplusProps {
   snapshot_id?: string;
 }
 
-globalThis.playlistItemsReorderSpotifyplus = (
-  params: PlaylistItemsReorderSpotifyplusProps,
-) =>
+globalThis.playlistItemsReorderSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_items_reorder`,
     params: {
@@ -3093,9 +2967,7 @@ export interface PlaylistItemsReplaceSpotifyplusProps {
   uris?: string;
 }
 
-globalThis.playlistItemsReplaceSpotifyplus = (
-  params: PlaylistItemsReplaceSpotifyplusProps,
-) =>
+globalThis.playlistItemsReplaceSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.playlist_items_replace`,
     params: {
@@ -3116,9 +2988,7 @@ export interface RemoveAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.removeAlbumFavoritesSpotifyplus = (
-  params: RemoveAlbumFavoritesSpotifyplusProps,
-) =>
+globalThis.removeAlbumFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.remove_album_favorites`,
     params: {
@@ -3139,9 +3009,7 @@ export interface RemoveAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.removeAudiobookFavoritesSpotifyplus = (
-  params: RemoveAudiobookFavoritesSpotifyplusProps,
-) =>
+globalThis.removeAudiobookFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.remove_audiobook_favorites`,
     params: {
@@ -3162,9 +3030,7 @@ export interface RemoveEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.removeEpisodeFavoritesSpotifyplus = (
-  params: RemoveEpisodeFavoritesSpotifyplusProps,
-) =>
+globalThis.removeEpisodeFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.remove_episode_favorites`,
     params: {
@@ -3185,9 +3051,7 @@ export interface RemoveShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.removeShowFavoritesSpotifyplus = (
-  params: RemoveShowFavoritesSpotifyplusProps,
-) =>
+globalThis.removeShowFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.remove_show_favorites`,
     params: {
@@ -3208,9 +3072,7 @@ export interface RemoveTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.removeTrackFavoritesSpotifyplus = (
-  params: RemoveTrackFavoritesSpotifyplusProps,
-) =>
+globalThis.removeTrackFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.remove_track_favorites`,
     params: {
@@ -3231,9 +3093,7 @@ export interface SaveAlbumFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.saveAlbumFavoritesSpotifyplus = (
-  params: SaveAlbumFavoritesSpotifyplusProps,
-) =>
+globalThis.saveAlbumFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.save_album_favorites`,
     params: {
@@ -3254,9 +3114,7 @@ export interface SaveAudiobookFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.saveAudiobookFavoritesSpotifyplus = (
-  params: SaveAudiobookFavoritesSpotifyplusProps,
-) =>
+globalThis.saveAudiobookFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.save_audiobook_favorites`,
     params: {
@@ -3277,9 +3135,7 @@ export interface SaveEpisodeFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.saveEpisodeFavoritesSpotifyplus = (
-  params: SaveEpisodeFavoritesSpotifyplusProps,
-) =>
+globalThis.saveEpisodeFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.save_episode_favorites`,
     params: {
@@ -3300,9 +3156,7 @@ export interface SaveShowFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.saveShowFavoritesSpotifyplus = (
-  params: SaveShowFavoritesSpotifyplusProps,
-) =>
+globalThis.saveShowFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.save_show_favorites`,
     params: {
@@ -3323,9 +3177,7 @@ export interface SaveTrackFavoritesSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.saveTrackFavoritesSpotifyplus = (
-  params: SaveTrackFavoritesSpotifyplusProps,
-) =>
+globalThis.saveTrackFavoritesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.save_track_favorites`,
     params: {
@@ -3366,7 +3218,7 @@ export interface SearchAlbumsSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchAlbumsSpotifyplus = (params: SearchAlbumsSpotifyplusProps) =>
+globalThis.searchAlbumsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_albums`,
     params: {
@@ -3407,7 +3259,7 @@ export interface SearchArtistsSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchArtistsSpotifyplus = (params: SearchArtistsSpotifyplusProps) =>
+globalThis.searchArtistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_artists`,
     params: {
@@ -3448,9 +3300,7 @@ export interface SearchAudiobooksSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchAudiobooksSpotifyplus = (
-  params: SearchAudiobooksSpotifyplusProps,
-) =>
+globalThis.searchAudiobooksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_audiobooks`,
     params: {
@@ -3491,9 +3341,7 @@ export interface SearchEpisodesSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchEpisodesSpotifyplus = (
-  params: SearchEpisodesSpotifyplusProps,
-) =>
+globalThis.searchEpisodesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_episodes`,
     params: {
@@ -3534,9 +3382,7 @@ export interface SearchPlaylistsSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchPlaylistsSpotifyplus = (
-  params: SearchPlaylistsSpotifyplusProps,
-) =>
+globalThis.searchPlaylistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_playlists`,
     params: {
@@ -3577,7 +3423,7 @@ export interface SearchShowsSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchShowsSpotifyplus = (params: SearchShowsSpotifyplusProps) =>
+globalThis.searchShowsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_shows`,
     params: {
@@ -3618,7 +3464,7 @@ export interface SearchTracksSpotifyplusProps {
   limit_total?: number;
 }
 
-globalThis.searchTracksSpotifyplus = (params: SearchTracksSpotifyplusProps) =>
+globalThis.searchTracksSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.search_tracks`,
     params: {
@@ -3635,9 +3481,7 @@ export interface TriggerScanIntervalSpotifyplusProps {
   entity_id: string;
 }
 
-globalThis.triggerScanIntervalSpotifyplus = (
-  params: TriggerScanIntervalSpotifyplusProps,
-) =>
+globalThis.triggerScanIntervalSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.trigger_scan_interval`,
     params: {
@@ -3658,9 +3502,7 @@ export interface UnfollowArtistsSpotifyplusProps {
   ids?: string;
 }
 
-globalThis.unfollowArtistsSpotifyplus = (
-  params: UnfollowArtistsSpotifyplusProps,
-) =>
+globalThis.unfollowArtistsSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.unfollow_artists`,
     params: {
@@ -3681,9 +3523,7 @@ export interface UnfollowPlaylistSpotifyplusProps {
   playlist_id?: string;
 }
 
-globalThis.unfollowPlaylistSpotifyplus = (
-  params: UnfollowPlaylistSpotifyplusProps,
-) =>
+globalThis.unfollowPlaylistSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.unfollow_playlist`,
     params: {
@@ -3704,7 +3544,7 @@ export interface UnfollowUsersSpotifyplusProps {
   ids: string;
 }
 
-globalThis.unfollowUsersSpotifyplus = (params: UnfollowUsersSpotifyplusProps) =>
+globalThis.unfollowUsersSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.unfollow_users`,
     params: {
@@ -3765,9 +3605,7 @@ export interface ZeroconfDeviceConnectSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.zeroconfDeviceConnectSpotifyplus = (
-  params: ZeroconfDeviceConnectSpotifyplusProps,
-) =>
+globalThis.zeroconfDeviceConnectSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.zeroconf_device_connect`,
     params: {
@@ -3808,9 +3646,7 @@ export interface ZeroconfDeviceDisconnectSpotifyplusProps {
   delay?: number;
 }
 
-globalThis.zeroconfDeviceDisconnectSpotifyplus = (
-  params: ZeroconfDeviceDisconnectSpotifyplusProps,
-) =>
+globalThis.zeroconfDeviceDisconnectSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.zeroconf_device_disconnect`,
     params: {
@@ -3847,9 +3683,7 @@ export interface ZeroconfDeviceGetinfoSpotifyplusProps {
   use_ssl?: boolean;
 }
 
-globalThis.zeroconfDeviceGetinfoSpotifyplus = (
-  params: ZeroconfDeviceGetinfoSpotifyplusProps,
-) =>
+globalThis.zeroconfDeviceGetinfoSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.zeroconf_device_getinfo`,
     params: {
@@ -3870,9 +3704,7 @@ export interface ZeroconfDiscoverDevicesSpotifyplusProps {
   timeout?: number;
 }
 
-globalThis.zeroconfDiscoverDevicesSpotifyplus = (
-  params: ZeroconfDiscoverDevicesSpotifyplusProps,
-) =>
+globalThis.zeroconfDiscoverDevicesSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.zeroconf_discover_devices`,
     params: {
@@ -3889,9 +3721,7 @@ export interface TestTokenExpireSpotifyplusProps {
   entity_id: string;
 }
 
-globalThis.testTokenExpireSpotifyplus = (
-  params: TestTokenExpireSpotifyplusProps,
-) =>
+globalThis.testTokenExpireSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.test_token_expire`,
     params: {
@@ -3912,7 +3742,7 @@ export interface VolumeSetStepSpotifyplusProps {
   level?: number;
 }
 
-globalThis.volumeSetStepSpotifyplus = (params: VolumeSetStepSpotifyplusProps) =>
+globalThis.volumeSetStepSpotifyplus = (params) =>
   serviceCall({
     name: `Call spotifyplus.volume_set_step`,
     params: {

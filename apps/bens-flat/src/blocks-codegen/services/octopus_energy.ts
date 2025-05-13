@@ -50,10 +50,7 @@ export interface JoinOctoplusSavingSessionEventOctopusEnergyProps {
   event_code?: string;
 }
 
-globalThis.joinOctoplusSavingSessionEventOctopusEnergy = (
-  target: IEntity<`event.${string}`> | IArea,
-  params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
-) =>
+globalThis.joinOctoplusSavingSessionEventOctopusEnergy = (target, params) =>
   serviceCall({
     name: `Call octopus_energy.join_octoplus_saving_session_event`,
     params: {
@@ -71,10 +68,7 @@ export interface RefreshPreviousConsumptionDataOctopusEnergyProps {
   start_date: never;
 }
 
-globalThis.refreshPreviousConsumptionDataOctopusEnergy = (
-  target: IEntity<`sensor.${string}`> | IArea,
-  params: RefreshPreviousConsumptionDataOctopusEnergyProps,
-) =>
+globalThis.refreshPreviousConsumptionDataOctopusEnergy = (target, params) =>
   serviceCall({
     name: `Call octopus_energy.refresh_previous_consumption_data`,
     params: {
@@ -87,10 +81,7 @@ globalThis.refreshPreviousConsumptionDataOctopusEnergy = (
 
 export interface SpinWheelOfFortuneOctopusEnergyProps {}
 
-globalThis.spinWheelOfFortuneOctopusEnergy = (
-  target: IEntity<`sensor.${string}`> | IArea,
-  params?: SpinWheelOfFortuneOctopusEnergyProps,
-) =>
+globalThis.spinWheelOfFortuneOctopusEnergy = (target, params) =>
   serviceCall({
     name: `Call octopus_energy.spin_wheel_of_fortune`,
     params: {
@@ -108,10 +99,7 @@ export interface RegisterRateWeightingsOctopusEnergyProps {
   weightings?: never;
 }
 
-globalThis.registerRateWeightingsOctopusEnergy = (
-  target: IEntity<`sensor.${string}`> | IArea,
-  params?: RegisterRateWeightingsOctopusEnergyProps,
-) =>
+globalThis.registerRateWeightingsOctopusEnergy = (target, params) =>
   serviceCall({
     name: `Call octopus_energy.register_rate_weightings`,
     params: {

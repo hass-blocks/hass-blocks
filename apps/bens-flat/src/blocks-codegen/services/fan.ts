@@ -76,10 +76,7 @@ export interface TurnOnFanProps {
   preset_mode?: string;
 }
 
-globalThis.turnOnFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params?: TurnOnFanProps,
-) =>
+globalThis.turnOnFan = (target, params) =>
   serviceCall({
     name: `Call fan.turn_on`,
     params: {
@@ -92,10 +89,7 @@ globalThis.turnOnFan = (
 
 export interface TurnOffFanProps {}
 
-globalThis.turnOffFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params?: TurnOffFanProps,
-) =>
+globalThis.turnOffFan = (target, params) =>
   serviceCall({
     name: `Call fan.turn_off`,
     params: {
@@ -108,10 +102,7 @@ globalThis.turnOffFan = (
 
 export interface ToggleFanProps {}
 
-globalThis.toggleFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params?: ToggleFanProps,
-) =>
+globalThis.toggleFan = (target, params) =>
   serviceCall({
     name: `Call fan.toggle`,
     params: {
@@ -129,10 +120,7 @@ export interface IncreaseSpeedFanProps {
   percentage_step?: number;
 }
 
-globalThis.increaseSpeedFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params?: IncreaseSpeedFanProps,
-) =>
+globalThis.increaseSpeedFan = (target, params) =>
   serviceCall({
     name: `Call fan.increase_speed`,
     params: {
@@ -150,10 +138,7 @@ export interface DecreaseSpeedFanProps {
   percentage_step?: number;
 }
 
-globalThis.decreaseSpeedFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params?: DecreaseSpeedFanProps,
-) =>
+globalThis.decreaseSpeedFan = (target, params) =>
   serviceCall({
     name: `Call fan.decrease_speed`,
     params: {
@@ -171,10 +156,7 @@ export interface OscillateFanProps {
   oscillating: boolean;
 }
 
-globalThis.oscillateFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params: OscillateFanProps,
-) =>
+globalThis.oscillateFan = (target, params) =>
   serviceCall({
     name: `Call fan.oscillate`,
     params: {
@@ -192,10 +174,7 @@ export interface SetDirectionFanProps {
   direction: never;
 }
 
-globalThis.setDirectionFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params: SetDirectionFanProps,
-) =>
+globalThis.setDirectionFan = (target, params) =>
   serviceCall({
     name: `Call fan.set_direction`,
     params: {
@@ -213,10 +192,7 @@ export interface SetPercentageFanProps {
   percentage: number;
 }
 
-globalThis.setPercentageFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params: SetPercentageFanProps,
-) =>
+globalThis.setPercentageFan = (target, params) =>
   serviceCall({
     name: `Call fan.set_percentage`,
     params: {
@@ -234,10 +210,7 @@ export interface SetPresetModeFanProps {
   preset_mode: string;
 }
 
-globalThis.setPresetModeFan = (
-  target: IEntity<`fan.${string}`> | IArea,
-  params: SetPresetModeFanProps,
-) =>
+globalThis.setPresetModeFan = (target, params) =>
   serviceCall({
     name: `Call fan.set_preset_mode`,
     params: {

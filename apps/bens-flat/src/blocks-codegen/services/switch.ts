@@ -25,10 +25,7 @@ declare global {
 
 export interface TurnOffSwitchProps {}
 
-globalThis.turnOffSwitch = (
-  target: IEntity<`switch.${string}`> | IArea,
-  params?: TurnOffSwitchProps,
-) =>
+globalThis.turnOffSwitch = (target, params) =>
   serviceCall({
     name: `Call switch.turn_off`,
     params: {
@@ -41,10 +38,7 @@ globalThis.turnOffSwitch = (
 
 export interface TurnOnSwitchProps {}
 
-globalThis.turnOnSwitch = (
-  target: IEntity<`switch.${string}`> | IArea,
-  params?: TurnOnSwitchProps,
-) =>
+globalThis.turnOnSwitch = (target, params) =>
   serviceCall({
     name: `Call switch.turn_on`,
     params: {
@@ -57,10 +51,7 @@ globalThis.turnOnSwitch = (
 
 export interface ToggleSwitchProps {}
 
-globalThis.toggleSwitch = (
-  target: IEntity<`switch.${string}`> | IArea,
-  params?: ToggleSwitchProps,
-) =>
+globalThis.toggleSwitch = (target, params) =>
   serviceCall({
     name: `Call switch.toggle`,
     params: {

@@ -1,12 +1,12 @@
 import { join } from 'node:path';
-import ts, { factory, NodeFlags, SyntaxKind } from 'typescript';
+import ts, { factory } from 'typescript';
 import type { State } from '@hass-blocks/hass-ts';
 import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
 import { toCamel } from '@lib/codegen/utils/to-camel.ts';
 import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
 
 import { splitId } from './split-id.ts';
-import { generateTypeParamsFromDomain } from '../utils/generate-type-params-from-domain.ts';
+import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
 
 export const generateDomainEntities = async (
   folder: string,
@@ -16,7 +16,7 @@ export const generateDomainEntities = async (
   const coreImport = new ImportStatement('@hass-blocks/core');
 
   const entityIdentifier = coreImport.newIdentifier('entity');
-  const iEntityIdentifier = coreImport.newIdentifier('IEntity');
+  const iEntityIdentifier = coreImport.newIdentifier('IEntity', true);
 
   const getVariableNameFromState = (state: State) => {
     const { domain, id } = splitId(state.entity_id);
@@ -24,31 +24,33 @@ export const generateDomainEntities = async (
     return toCamel(`${id}${domainString}`);
   };
 
-  const moduleBlock = factory.createModuleDeclaration(
-    [factory.createToken(SyntaxKind.DeclareKeyword)],
-    factory.createIdentifier('global'),
-    factory.createModuleBlock(
-      states.map((state) => {
-        return factory.createVariableStatement(
-          undefined,
-          factory.createVariableDeclarationList(
-            [
-              factory.createVariableDeclaration(
-                factory.createIdentifier(getVariableNameFromState(state)),
-                undefined,
-                factory.createTypeReferenceNode(
-                  iEntityIdentifier.getIdentifier(),
-                  [generateTypeParamsFromDomain(domain)],
-                ),
-                undefined,
+  const declareGlobalBlock = new DeclareGlobalBlock(
+    states.map((state) => {
+      return factory.createVariableStatement(
+        undefined,
+        factory.createVariableDeclarationList(
+          [
+            factory.createVariableDeclaration(
+              factory.createIdentifier(getVariableNameFromState(state)),
+              undefined,
+              factory.createTypeReferenceNode(
+                iEntityIdentifier.getIdentifier(),
+                [
+                  factory.createLiteralTypeNode(
+                    factory.createNoSubstitutionTemplateLiteral(
+                      state.entity_id,
+                      state.entity_id,
+                    ),
+                  ),
+                ],
               ),
-            ],
-            ts.NodeFlags.ContextFlags,
-          ),
-        );
-      }),
-    ),
-    NodeFlags.GlobalAugmentation | ts.NodeFlags.ContextFlags,
+              undefined,
+            ),
+          ],
+          ts.NodeFlags.ContextFlags,
+        ),
+      );
+    }),
   );
 
   const entities = states.map((state) => {
@@ -74,7 +76,7 @@ export const generateDomainEntities = async (
     ts.factory.createNodeArray([
       coreImport.buildNode(),
       ts.factory.createIdentifier('\n'),
-      moduleBlock,
+      declareGlobalBlock.buildNode(),
       ts.factory.createIdentifier('\n'),
       ...entities,
     ]),

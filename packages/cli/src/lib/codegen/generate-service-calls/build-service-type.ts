@@ -1,9 +1,9 @@
-import { factory, Identifier, NodeFlags } from 'typescript';
+import { factory, type Identifier, NodeFlags } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
-import { makeServiceIdentifier } from './make-service-identifier.ts';
 import type { Service } from '@hass-blocks/hass-ts';
 import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
-import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import type { PropsInterface } from './props-interface.ts';
 
 export const buildServiceType = (
   service: Service,
@@ -12,8 +12,8 @@ export const buildServiceType = (
   targetIdentifier: Identifier,
   blockIdentifier: ImportedIdentifier,
   iAreaIdentifer: ImportedIdentifier,
+  props: PropsInterface,
 ) => {
-  const propsIdentifier = makeServiceIdentifier(service, serviceName);
   const varStatement = factory.createVariableStatement(
     undefined,
     factory.createVariableDeclarationList(
@@ -24,14 +24,14 @@ export const buildServiceType = (
           factory.createFunctionTypeNode(
             undefined,
             buildServiceFunctionParams(
-              propsIdentifier,
+              props,
               iEntityIdentifier,
               iAreaIdentifer,
               targetIdentifier,
               service,
             ),
             factory.createTypeReferenceNode(
-              blockIdentifier.getIdentifier(),
+              blockIdentifier.getIdentifier(true),
               undefined,
             ),
           ),

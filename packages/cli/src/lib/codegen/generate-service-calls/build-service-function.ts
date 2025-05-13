@@ -3,14 +3,15 @@ import type { Service } from '@hass-blocks/hass-ts';
 import { factory, type Identifier, SyntaxKind } from 'typescript';
 
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
-import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import type { PropsInterface } from './props-interface.ts';
 
 export const buildServiceFunction = (
   domain: string,
   serviceId: string,
   details: Service,
   serviceName: string,
-  propsIdentifier: Identifier | undefined,
+  propsIdentifier: PropsInterface,
   iEntityIdentifier: ImportedIdentifier,
   iAreaIdentifier: ImportedIdentifier,
   targetIdentifier: Identifier,
@@ -60,7 +61,7 @@ export const buildServiceFunction = (
                         factory.createIdentifier('service'),
                         factory.createStringLiteral(serviceId),
                       ),
-                      ...(propsIdentifier
+                      ...(propsIdentifier.hasProps()
                         ? [
                             factory.createPropertyAssignment(
                               factory.createIdentifier('service_data'),

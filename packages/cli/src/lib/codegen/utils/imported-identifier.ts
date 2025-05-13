@@ -1,20 +1,29 @@
-import { factory, Identifier } from 'typescript';
+import { factory, type Identifier } from 'typescript';
 
 export class ImportedIdentifier {
-  private inUse: boolean = false;
+  private inUseType = false;
+  private inUseValue = false;
 
   private identifier: Identifier;
 
-  public constructor(name: string) {
+  public constructor(
+    name: string,
+    private type?: boolean,
+  ) {
     this.identifier = factory.createIdentifier(name);
   }
 
-  public getIdentifier() {
-    this.inUse = true;
+  public getIdentifier(typeOnly?: boolean) {
+    this.inUseType = true;
+    this.inUseValue = !this.type && (this.inUseValue || !typeOnly);
     return this.identifier;
   }
 
-  public get used() {
-    return this.inUse;
+  public get usedAsValue() {
+    return this.inUseValue;
+  }
+
+  public get usedAsType() {
+    return this.inUseType;
   }
 }

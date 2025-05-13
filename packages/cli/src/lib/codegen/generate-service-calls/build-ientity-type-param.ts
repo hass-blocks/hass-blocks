@@ -1,4 +1,4 @@
-import { Service } from '@hass-blocks/hass-ts';
+import type { Service } from '@hass-blocks/hass-ts';
 import { generateTypeParamsFromDomain } from '@lib/codegen/utils/generate-type-params-from-domain.ts';
 
 export const buildIentityTypeParam = (service: Service) => {

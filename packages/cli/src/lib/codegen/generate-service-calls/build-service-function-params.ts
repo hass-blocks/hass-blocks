@@ -1,21 +1,22 @@
 import type { Service } from '@hass-blocks/hass-ts';
 import {
   factory,
-  Identifier,
+  type Identifier,
   type ParameterDeclaration,
   SyntaxKind,
 } from 'typescript';
-import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 import { serviceHasTarget } from './service-has-target.ts';
 import { buildIentityTypeParam } from './build-ientity-type-param.ts';
+import type { PropsInterface } from './props-interface.ts';
 
 export const buildServiceFunctionParams = (
-  propsIdentifier: Identifier | undefined,
+  propsIdentifier: PropsInterface,
   iEntityIdentifier: ImportedIdentifier,
   iAreaIdentifier: ImportedIdentifier,
   targetIdentifier: Identifier,
   service: Service,
-  addTypes: boolean = true,
+  addTypes = true,
 ): ParameterDeclaration[] => {
   return [
     ...(serviceHasTarget(service)
@@ -41,23 +42,20 @@ export const buildServiceFunctionParams = (
           ),
         ]
       : []),
-    ...(propsIdentifier
+    ...(propsIdentifier.hasProps()
       ? [
           factory.createParameterDeclaration(
             undefined,
             undefined,
             factory.createIdentifier('params'),
-            Object.values(service.fields).some(
-              (field) =>
-                field &&
-                typeof field === 'object' &&
-                'required' in field &&
-                field.required,
-            ) || !addTypes
+            !propsIdentifier.allOptional() || !addTypes
               ? undefined
               : factory.createToken(SyntaxKind.QuestionToken),
             addTypes
-              ? factory.createTypeReferenceNode(propsIdentifier, undefined)
+              ? factory.createTypeReferenceNode(
+                  propsIdentifier.identifier,
+                  undefined,
+                )
               : undefined,
             undefined,
           ),

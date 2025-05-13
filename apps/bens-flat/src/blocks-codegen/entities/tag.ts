@@ -1,7 +1,7 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var bedroomChargerTag: ITarget;
+  var bedroomChargerTag: IEntity<`tag.${string}`>;
 }
 
 globalThis.bedroomChargerTag = entity('tag.bedroom_charger');

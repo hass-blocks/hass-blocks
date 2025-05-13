@@ -1,4 +1,4 @@
-import { entity } from '@hass-blocks/core';
+import { combine, entity } from '@hass-blocks/core';
 
 export const home = entity('zone.home');
 
@@ -14,8 +14,6 @@ export const livingRoomBlinds = entity('cover.living_room_blinds');
 export const livingRoomBlindsLeftWindow = entity(
   'cover.living_room_windows_left',
 );
-
-export const sun = entity('sun');
 
 export const livingRoomBlindsLeftCentreWindow = entity(
   'cover.living_room_windows_left_centre',
@@ -50,7 +48,7 @@ export const bathroomLights = entity('light.main_bathroom');
 export const bedroomLights = entity('light.bedroom');
 export const hallwayLights = entity('light.hallway');
 
-export const allLights = entity(
+export const allLights = combine(
   hallwayLights,
   bedroomLights,
   livingRoomLights,
@@ -63,7 +61,7 @@ export const blindsDefaultOpen = entity(
 
 export const bedroomSpeaker = entity('media_player.bedroom_speaker');
 export const livingRoomSpeaker = entity('media_player.sonos_arc_ultra');
-export const allSpeakers = entity(livingRoomSpeaker, bedroomSpeaker);
+export const allSpeakers = combine(livingRoomSpeaker, bedroomSpeaker);
 
 export const bathroomMotionSensor = entity('switch.bathroom_motion_sensor');
 
@@ -92,7 +90,7 @@ export const livingRoomHeatingSwitch = entity(
   'switch.living_room_heating_switch',
 );
 
-export const allHeatingAndBoilerSwitches = entity(
+export const allHeatingAndBoilerSwitches = combine(
   boiler,
   bedroomHeatingSwitch,
   boilerBoostSwitch,

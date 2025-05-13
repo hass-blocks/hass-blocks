@@ -1,32 +1,47 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Reloads timers from the YAML-configuration.
    */
-  var reloadTimer: (target: ITarget) => Block;
+  var reloadTimer: () => Block;
   /**
    * Starts a timer or restarts it with a provided duration.
    */
-  var startTimer: (target: ITarget, params?: StartTimerProps) => Block;
+  var startTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+    params?: StartTimerProps,
+  ) => Block;
   /**
    * Pauses a running timer, retaining the remaining duration for later continuation.
    */
-  var pauseTimer: (target: ITarget, params?: PauseTimerProps) => Block;
+  var pauseTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+    params?: PauseTimerProps,
+  ) => Block;
   /**
    * Resets a timer's duration to the last known initial value without firing the timer finished event.
    */
-  var cancelTimer: (target: ITarget, params?: CancelTimerProps) => Block;
+  var cancelTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+    params?: CancelTimerProps,
+  ) => Block;
   /**
    * Finishes a running timer earlier than scheduled.
    */
-  var finishTimer: (target: ITarget, params?: FinishTimerProps) => Block;
+  var finishTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+    params?: FinishTimerProps,
+  ) => Block;
   /**
    * Changes a timer by adding or subtracting a given duration.
    */
-  var changeTimer: (target: ITarget, params: ChangeTimerProps) => Block;
+  var changeTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+    params: ChangeTimerProps,
+  ) => Block;
 }
 
-globalThis.reloadTimer = (target: ITarget) =>
+globalThis.reloadTimer = () =>
   serviceCall({
     name: `Call timer.reload`,
     params: {
@@ -42,7 +57,10 @@ export interface StartTimerProps {
   duration?: string;
 }
 
-globalThis.startTimer = (target: ITarget, params?: StartTimerProps) =>
+globalThis.startTimer = (
+  target: IEntity<`timer.${string}`> | IArea,
+  params?: StartTimerProps,
+) =>
   serviceCall({
     name: `Call timer.start`,
     params: {
@@ -55,7 +73,10 @@ globalThis.startTimer = (target: ITarget, params?: StartTimerProps) =>
 
 export interface PauseTimerProps {}
 
-globalThis.pauseTimer = (target: ITarget, params?: PauseTimerProps) =>
+globalThis.pauseTimer = (
+  target: IEntity<`timer.${string}`> | IArea,
+  params?: PauseTimerProps,
+) =>
   serviceCall({
     name: `Call timer.pause`,
     params: {
@@ -68,7 +89,10 @@ globalThis.pauseTimer = (target: ITarget, params?: PauseTimerProps) =>
 
 export interface CancelTimerProps {}
 
-globalThis.cancelTimer = (target: ITarget, params?: CancelTimerProps) =>
+globalThis.cancelTimer = (
+  target: IEntity<`timer.${string}`> | IArea,
+  params?: CancelTimerProps,
+) =>
   serviceCall({
     name: `Call timer.cancel`,
     params: {
@@ -81,7 +105,10 @@ globalThis.cancelTimer = (target: ITarget, params?: CancelTimerProps) =>
 
 export interface FinishTimerProps {}
 
-globalThis.finishTimer = (target: ITarget, params?: FinishTimerProps) =>
+globalThis.finishTimer = (
+  target: IEntity<`timer.${string}`> | IArea,
+  params?: FinishTimerProps,
+) =>
   serviceCall({
     name: `Call timer.finish`,
     params: {
@@ -99,7 +126,10 @@ export interface ChangeTimerProps {
   duration: string;
 }
 
-globalThis.changeTimer = (target: ITarget, params: ChangeTimerProps) =>
+globalThis.changeTimer = (
+  target: IEntity<`timer.${string}`> | IArea,
+  params: ChangeTimerProps,
+) =>
   serviceCall({
     name: `Call timer.change`,
     params: {

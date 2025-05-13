@@ -1,9 +1,9 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var livingRoomMotionSensorInputBoolean: ITarget;
-  var hallwayMotionSensorInputBoolean: ITarget;
-  var holidayModeInputBoolean: ITarget;
+  var livingRoomMotionSensorInputBoolean: IEntity<`input_boolean.${string}`>;
+  var hallwayMotionSensorInputBoolean: IEntity<`input_boolean.${string}`>;
+  var holidayModeInputBoolean: IEntity<`input_boolean.${string}`>;
 }
 
 globalThis.livingRoomMotionSensorInputBoolean = entity(

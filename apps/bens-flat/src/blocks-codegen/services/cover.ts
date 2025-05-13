@@ -1,71 +1,83 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Opens a cover.
    */
-  var openCoverCover: (target: ITarget, params?: OpenCoverCoverProps) => Block;
+  var openCoverCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+    params?: OpenCoverCoverProps,
+  ) => Block;
   /**
    * Closes a cover.
    */
   var closeCoverCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params?: CloseCoverCoverProps,
   ) => Block;
   /**
    * Moves a cover to a specific position.
    */
   var setCoverPositionCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverPositionCoverProps,
   ) => Block;
   /**
    * Stops the cover movement.
    */
-  var stopCoverCover: (target: ITarget, params?: StopCoverCoverProps) => Block;
+  var stopCoverCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+    params?: StopCoverCoverProps,
+  ) => Block;
   /**
    * Toggles a cover open/closed.
    */
-  var toggleCover: (target: ITarget, params?: ToggleCoverProps) => Block;
+  var toggleCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+    params?: ToggleCoverProps,
+  ) => Block;
   /**
    * Tilts a cover open.
    */
   var openCoverTiltCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params?: OpenCoverTiltCoverProps,
   ) => Block;
   /**
    * Tilts a cover to close.
    */
   var closeCoverTiltCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params?: CloseCoverTiltCoverProps,
   ) => Block;
   /**
    * Stops a tilting cover movement.
    */
   var stopCoverTiltCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params?: StopCoverTiltCoverProps,
   ) => Block;
   /**
    * Moves a cover tilt to a specific position.
    */
   var setCoverTiltPositionCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverTiltPositionCoverProps,
   ) => Block;
   /**
    * Toggles a cover tilt open/closed.
    */
   var toggleCoverTiltCover: (
-    target: ITarget,
+    target: IEntity<`cover.${string}`> | IArea,
     params?: ToggleCoverTiltCoverProps,
   ) => Block;
 }
 
 export interface OpenCoverCoverProps {}
 
-globalThis.openCoverCover = (target: ITarget, params?: OpenCoverCoverProps) =>
+globalThis.openCoverCover = (
+  target: IEntity<`cover.${string}`> | IArea,
+  params?: OpenCoverCoverProps,
+) =>
   serviceCall({
     name: `Call cover.open_cover`,
     params: {
@@ -78,7 +90,10 @@ globalThis.openCoverCover = (target: ITarget, params?: OpenCoverCoverProps) =>
 
 export interface CloseCoverCoverProps {}
 
-globalThis.closeCoverCover = (target: ITarget, params?: CloseCoverCoverProps) =>
+globalThis.closeCoverCover = (
+  target: IEntity<`cover.${string}`> | IArea,
+  params?: CloseCoverCoverProps,
+) =>
   serviceCall({
     name: `Call cover.close_cover`,
     params: {
@@ -97,7 +112,7 @@ export interface SetCoverPositionCoverProps {
 }
 
 globalThis.setCoverPositionCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params: SetCoverPositionCoverProps,
 ) =>
   serviceCall({
@@ -112,7 +127,10 @@ globalThis.setCoverPositionCover = (
 
 export interface StopCoverCoverProps {}
 
-globalThis.stopCoverCover = (target: ITarget, params?: StopCoverCoverProps) =>
+globalThis.stopCoverCover = (
+  target: IEntity<`cover.${string}`> | IArea,
+  params?: StopCoverCoverProps,
+) =>
   serviceCall({
     name: `Call cover.stop_cover`,
     params: {
@@ -125,7 +143,10 @@ globalThis.stopCoverCover = (target: ITarget, params?: StopCoverCoverProps) =>
 
 export interface ToggleCoverProps {}
 
-globalThis.toggleCover = (target: ITarget, params?: ToggleCoverProps) =>
+globalThis.toggleCover = (
+  target: IEntity<`cover.${string}`> | IArea,
+  params?: ToggleCoverProps,
+) =>
   serviceCall({
     name: `Call cover.toggle`,
     params: {
@@ -139,7 +160,7 @@ globalThis.toggleCover = (target: ITarget, params?: ToggleCoverProps) =>
 export interface OpenCoverTiltCoverProps {}
 
 globalThis.openCoverTiltCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params?: OpenCoverTiltCoverProps,
 ) =>
   serviceCall({
@@ -155,7 +176,7 @@ globalThis.openCoverTiltCover = (
 export interface CloseCoverTiltCoverProps {}
 
 globalThis.closeCoverTiltCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params?: CloseCoverTiltCoverProps,
 ) =>
   serviceCall({
@@ -171,7 +192,7 @@ globalThis.closeCoverTiltCover = (
 export interface StopCoverTiltCoverProps {}
 
 globalThis.stopCoverTiltCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params?: StopCoverTiltCoverProps,
 ) =>
   serviceCall({
@@ -192,7 +213,7 @@ export interface SetCoverTiltPositionCoverProps {
 }
 
 globalThis.setCoverTiltPositionCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params: SetCoverTiltPositionCoverProps,
 ) =>
   serviceCall({
@@ -208,7 +229,7 @@ globalThis.setCoverTiltPositionCover = (
 export interface ToggleCoverTiltCoverProps {}
 
 globalThis.toggleCoverTiltCover = (
-  target: ITarget,
+  target: IEntity<`cover.${string}`> | IArea,
   params?: ToggleCoverTiltCoverProps,
 ) =>
   serviceCall({

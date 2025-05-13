@@ -1,165 +1,140 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Sends a notification message.
    */
   var sendMessageNotify: (
-    target: ITarget,
+    target: IEntity<`notify.${string}`> | IArea,
     params: SendMessageNotifyProps,
   ) => Block;
   /**
    * Sends a notification that is visible in the notifications panel.
    */
   var persistentNotificationNotify: (
-    target: ITarget,
     params: PersistentNotificationNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the email service.
    */
-  var emailNotify: (target: ITarget, params: EmailNotifyProps) => Block;
+  var emailNotify: (params: EmailNotifyProps) => Block;
   /**
    * Sends a notification message using the mobile_app_mums_phone integration.
    */
   var mobileAppMumsPhoneNotify: (
-    target: ITarget,
     params: MobileAppMumsPhoneNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the mobile_app_bens_imac_pro integration.
    */
   var mobileAppBensImacProNotify: (
-    target: ITarget,
     params: MobileAppBensImacProNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the mobile_app_bens_iphone integration.
    */
   var mobileAppBensIphoneNotify: (
-    target: ITarget,
     params: MobileAppBensIphoneNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the mobile_app_bens_imac integration.
    */
-  var mobileAppBensImacNotify: (
-    target: ITarget,
-    params: MobileAppBensImacNotifyProps,
-  ) => Block;
+  var mobileAppBensImacNotify: (params: MobileAppBensImacNotifyProps) => Block;
   /**
    * Sends a notification message using the mobile_app_ryans_iphone integration.
    */
   var mobileAppRyansIphoneNotify: (
-    target: ITarget,
     params: MobileAppRyansIphoneNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the mobile_app_pixel_6_pro integration.
    */
   var mobileAppPixel_6ProNotify: (
-    target: ITarget,
     params: MobileAppPixel_6ProNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the mobile_app_tom_s_pixel_7 integration.
    */
   var mobileAppTomSPixel_7Notify: (
-    target: ITarget,
     params: MobileAppTomSPixel_7NotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the notify service.
    */
-  var notifyNotify: (target: ITarget, params: NotifyNotifyProps) => Block;
-  /**
-   * Sends a notification message using the playstation_network service.
-   */
-  var playstationNetworkNotify: (
-    target: ITarget,
-    params: PlaystationNetworkNotifyProps,
-  ) => Block;
+  var notifyNotify: (params: NotifyNotifyProps) => Block;
   /**
    * Sends a notification message using the lg_webos_tv_oled55c8pla service.
    */
   var lgWebosTvOled55c8plaNotify: (
-    target: ITarget,
     params: LgWebosTvOled55c8plaNotifyProps,
+  ) => Block;
+  /**
+   * Sends a notification message using the playstation_network service.
+   */
+  var playstationNetworkNotify: (
+    params: PlaystationNetworkNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_bedroom_sonos_one integration.
    */
   var alexaMediaBedroomSonosOneNotify: (
-    target: ITarget,
     params: AlexaMediaBedroomSonosOneNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_bedroom_speaker_2 integration.
    */
   var alexaMediaBedroomSpeaker_2Notify: (
-    target: ITarget,
     params: AlexaMediaBedroomSpeaker_2NotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_office_2 integration.
    */
   var alexaMediaOffice_2Notify: (
-    target: ITarget,
     params: AlexaMediaOffice_2NotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_ben_s_2nd_sonos_one_second_edition integration.
    */
   var alexaMediaBenS_2ndSonosOneSecondEditionNotify: (
-    target: ITarget,
     params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_living_room_sonos_one integration.
    */
   var alexaMediaLivingRoomSonosOneNotify: (
-    target: ITarget,
     params: AlexaMediaLivingRoomSonosOneNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_living_room integration.
    */
   var alexaMediaLivingRoomNotify: (
-    target: ITarget,
     params: AlexaMediaLivingRoomNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_sonos_arc_ultra_2 integration.
    */
   var alexaMediaSonosArcUltra_2Notify: (
-    target: ITarget,
     params: AlexaMediaSonosArcUltra_2NotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_living_room_sonos integration.
    */
   var alexaMediaLivingRoomSonosNotify: (
-    target: ITarget,
     params: AlexaMediaLivingRoomSonosNotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media_this_device_2 integration.
    */
   var alexaMediaThisDevice_2Notify: (
-    target: ITarget,
     params: AlexaMediaThisDevice_2NotifyProps,
   ) => Block;
   /**
    * Sends a notification message using the alexa_media service.
    */
-  var alexaMediaNotify: (
-    target: ITarget,
-    params: AlexaMediaNotifyProps,
-  ) => Block;
+  var alexaMediaNotify: (params: AlexaMediaNotifyProps) => Block;
   /**
    * Sends a notification message using the alexa_media_last_called_bwainwright28_gmail_com integration.
    */
   var alexaMediaLastCalledBwainwright28GmailComNotify: (
-    target: ITarget,
     params: AlexaMediaLastCalledBwainwright28GmailComNotifyProps,
   ) => Block;
 }
@@ -176,7 +151,7 @@ export interface SendMessageNotifyProps {
 }
 
 globalThis.sendMessageNotify = (
-  target: ITarget,
+  target: IEntity<`notify.${string}`> | IArea,
   params: SendMessageNotifyProps,
 ) =>
   serviceCall({
@@ -205,7 +180,6 @@ export interface PersistentNotificationNotifyProps {
 }
 
 globalThis.persistentNotificationNotify = (
-  target: ITarget,
   params: PersistentNotificationNotifyProps,
 ) =>
   serviceCall({
@@ -224,7 +198,7 @@ export interface EmailNotifyProps {
   data?: never;
 }
 
-globalThis.emailNotify = (target: ITarget, params: EmailNotifyProps) =>
+globalThis.emailNotify = (params: EmailNotifyProps) =>
   serviceCall({
     name: `Call notify.email`,
     params: {
@@ -241,10 +215,7 @@ export interface MobileAppMumsPhoneNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppMumsPhoneNotify = (
-  target: ITarget,
-  params: MobileAppMumsPhoneNotifyProps,
-) =>
+globalThis.mobileAppMumsPhoneNotify = (params: MobileAppMumsPhoneNotifyProps) =>
   serviceCall({
     name: `Call notify.mobile_app_mums_phone`,
     params: {
@@ -262,7 +233,6 @@ export interface MobileAppBensImacProNotifyProps {
 }
 
 globalThis.mobileAppBensImacProNotify = (
-  target: ITarget,
   params: MobileAppBensImacProNotifyProps,
 ) =>
   serviceCall({
@@ -282,7 +252,6 @@ export interface MobileAppBensIphoneNotifyProps {
 }
 
 globalThis.mobileAppBensIphoneNotify = (
-  target: ITarget,
   params: MobileAppBensIphoneNotifyProps,
 ) =>
   serviceCall({
@@ -301,10 +270,7 @@ export interface MobileAppBensImacNotifyProps {
   data?: never;
 }
 
-globalThis.mobileAppBensImacNotify = (
-  target: ITarget,
-  params: MobileAppBensImacNotifyProps,
-) =>
+globalThis.mobileAppBensImacNotify = (params: MobileAppBensImacNotifyProps) =>
   serviceCall({
     name: `Call notify.mobile_app_bens_imac`,
     params: {
@@ -322,7 +288,6 @@ export interface MobileAppRyansIphoneNotifyProps {
 }
 
 globalThis.mobileAppRyansIphoneNotify = (
-  target: ITarget,
   params: MobileAppRyansIphoneNotifyProps,
 ) =>
   serviceCall({
@@ -342,7 +307,6 @@ export interface MobileAppPixel_6ProNotifyProps {
 }
 
 globalThis.mobileAppPixel_6ProNotify = (
-  target: ITarget,
   params: MobileAppPixel_6ProNotifyProps,
 ) =>
   serviceCall({
@@ -362,7 +326,6 @@ export interface MobileAppTomSPixel_7NotifyProps {
 }
 
 globalThis.mobileAppTomSPixel_7Notify = (
-  target: ITarget,
   params: MobileAppTomSPixel_7NotifyProps,
 ) =>
   serviceCall({
@@ -381,32 +344,12 @@ export interface NotifyNotifyProps {
   data?: never;
 }
 
-globalThis.notifyNotify = (target: ITarget, params: NotifyNotifyProps) =>
+globalThis.notifyNotify = (params: NotifyNotifyProps) =>
   serviceCall({
     name: `Call notify.notify`,
     params: {
       domain: 'notify',
       service: 'notify',
-      service_data: params,
-    },
-  });
-
-export interface PlaystationNetworkNotifyProps {
-  message: string;
-  title?: string;
-  target?: never;
-  data?: never;
-}
-
-globalThis.playstationNetworkNotify = (
-  target: ITarget,
-  params: PlaystationNetworkNotifyProps,
-) =>
-  serviceCall({
-    name: `Call notify.playstation_network`,
-    params: {
-      domain: 'notify',
-      service: 'playstation_network',
       service_data: params,
     },
   });
@@ -419,7 +362,6 @@ export interface LgWebosTvOled55c8plaNotifyProps {
 }
 
 globalThis.lgWebosTvOled55c8plaNotify = (
-  target: ITarget,
   params: LgWebosTvOled55c8plaNotifyProps,
 ) =>
   serviceCall({
@@ -427,6 +369,23 @@ globalThis.lgWebosTvOled55c8plaNotify = (
     params: {
       domain: 'notify',
       service: 'lg_webos_tv_oled55c8pla',
+      service_data: params,
+    },
+  });
+
+export interface PlaystationNetworkNotifyProps {
+  message: string;
+  title?: string;
+  target?: never;
+  data?: never;
+}
+
+globalThis.playstationNetworkNotify = (params: PlaystationNetworkNotifyProps) =>
+  serviceCall({
+    name: `Call notify.playstation_network`,
+    params: {
+      domain: 'notify',
+      service: 'playstation_network',
       service_data: params,
     },
   });
@@ -439,7 +398,6 @@ export interface AlexaMediaBedroomSonosOneNotifyProps {
 }
 
 globalThis.alexaMediaBedroomSonosOneNotify = (
-  target: ITarget,
   params: AlexaMediaBedroomSonosOneNotifyProps,
 ) =>
   serviceCall({
@@ -459,7 +417,6 @@ export interface AlexaMediaBedroomSpeaker_2NotifyProps {
 }
 
 globalThis.alexaMediaBedroomSpeaker_2Notify = (
-  target: ITarget,
   params: AlexaMediaBedroomSpeaker_2NotifyProps,
 ) =>
   serviceCall({
@@ -478,10 +435,7 @@ export interface AlexaMediaOffice_2NotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaOffice_2Notify = (
-  target: ITarget,
-  params: AlexaMediaOffice_2NotifyProps,
-) =>
+globalThis.alexaMediaOffice_2Notify = (params: AlexaMediaOffice_2NotifyProps) =>
   serviceCall({
     name: `Call notify.alexa_media_office_2`,
     params: {
@@ -499,7 +453,6 @@ export interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
 }
 
 globalThis.alexaMediaBenS_2ndSonosOneSecondEditionNotify = (
-  target: ITarget,
   params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
 ) =>
   serviceCall({
@@ -519,7 +472,6 @@ export interface AlexaMediaLivingRoomSonosOneNotifyProps {
 }
 
 globalThis.alexaMediaLivingRoomSonosOneNotify = (
-  target: ITarget,
   params: AlexaMediaLivingRoomSonosOneNotifyProps,
 ) =>
   serviceCall({
@@ -539,7 +491,6 @@ export interface AlexaMediaLivingRoomNotifyProps {
 }
 
 globalThis.alexaMediaLivingRoomNotify = (
-  target: ITarget,
   params: AlexaMediaLivingRoomNotifyProps,
 ) =>
   serviceCall({
@@ -559,7 +510,6 @@ export interface AlexaMediaSonosArcUltra_2NotifyProps {
 }
 
 globalThis.alexaMediaSonosArcUltra_2Notify = (
-  target: ITarget,
   params: AlexaMediaSonosArcUltra_2NotifyProps,
 ) =>
   serviceCall({
@@ -579,7 +529,6 @@ export interface AlexaMediaLivingRoomSonosNotifyProps {
 }
 
 globalThis.alexaMediaLivingRoomSonosNotify = (
-  target: ITarget,
   params: AlexaMediaLivingRoomSonosNotifyProps,
 ) =>
   serviceCall({
@@ -599,7 +548,6 @@ export interface AlexaMediaThisDevice_2NotifyProps {
 }
 
 globalThis.alexaMediaThisDevice_2Notify = (
-  target: ITarget,
   params: AlexaMediaThisDevice_2NotifyProps,
 ) =>
   serviceCall({
@@ -618,10 +566,7 @@ export interface AlexaMediaNotifyProps {
   data?: never;
 }
 
-globalThis.alexaMediaNotify = (
-  target: ITarget,
-  params: AlexaMediaNotifyProps,
-) =>
+globalThis.alexaMediaNotify = (params: AlexaMediaNotifyProps) =>
   serviceCall({
     name: `Call notify.alexa_media`,
     params: {
@@ -639,7 +584,6 @@ export interface AlexaMediaLastCalledBwainwright28GmailComNotifyProps {
 }
 
 globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (
-  target: ITarget,
   params: AlexaMediaLastCalledBwainwright28GmailComNotifyProps,
 ) =>
   serviceCall({

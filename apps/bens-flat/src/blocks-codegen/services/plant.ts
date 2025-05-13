@@ -1,4 +1,4 @@
-import { Block, serviceCall } from '@hass-blocks/core';
+import { serviceCall, Block } from '@hass-blocks/core';
 declare global {
   /**
    * Replaces the source for a plant sensor.

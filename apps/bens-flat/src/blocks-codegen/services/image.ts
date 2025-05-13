@@ -1,9 +1,12 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Takes a snapshot from an image.
    */
-  var snapshotImage: (target: ITarget, params: SnapshotImageProps) => Block;
+  var snapshotImage: (
+    target: IEntity<`image.${string}`> | IArea,
+    params: SnapshotImageProps,
+  ) => Block;
 }
 
 export interface SnapshotImageProps {
@@ -13,7 +16,10 @@ export interface SnapshotImageProps {
   filename: string;
 }
 
-globalThis.snapshotImage = (target: ITarget, params: SnapshotImageProps) =>
+globalThis.snapshotImage = (
+  target: IEntity<`image.${string}`> | IArea,
+  params: SnapshotImageProps,
+) =>
   serviceCall({
     name: `Call image.snapshot`,
     params: {

@@ -1,4 +1,4 @@
-import { Block, serviceCall } from '@hass-blocks/core';
+import { serviceCall, Block } from '@hass-blocks/core';
 declare global {
   /**
    * This service will send operational commands to iCloud3

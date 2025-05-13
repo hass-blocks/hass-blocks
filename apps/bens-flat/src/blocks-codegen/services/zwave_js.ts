@@ -1,83 +1,70 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Changes the configuration parameters of your Z-Wave devices.
    */
   var setConfigParameterZwaveJs: (
-    target: ITarget,
     params: SetConfigParameterZwaveJsProps,
   ) => Block;
   /**
    * Allows for bulk setting partial parameters. Useful when multiple partial parameters have to be set at the same time.
    */
   var bulkSetPartialConfigParametersZwaveJs: (
-    target: ITarget,
     params: BulkSetPartialConfigParametersZwaveJsProps,
   ) => Block;
   /**
    * Force updates the values of a Z-Wave entity.
    */
-  var refreshValueZwaveJs: (
-    target: ITarget,
-    params: RefreshValueZwaveJsProps,
-  ) => Block;
+  var refreshValueZwaveJs: (params: RefreshValueZwaveJsProps) => Block;
   /**
    * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
    */
-  var setValueZwaveJs: (target: ITarget, params: SetValueZwaveJsProps) => Block;
+  var setValueZwaveJs: (params: SetValueZwaveJsProps) => Block;
   /**
    * Changes any value that Z-Wave recognizes on multiple Z-Wave devices using multicast, so all devices receive the message simultaneously. This action has minimal validation so only use this action if you know what you are doing.
    */
   var multicastSetValueZwaveJs: (
-    target: ITarget,
     params: MulticastSetValueZwaveJsProps,
   ) => Block;
   /**
    * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
    */
-  var pingZwaveJs: (target: ITarget, params?: PingZwaveJsProps) => Block;
+  var pingZwaveJs: (params?: PingZwaveJsProps) => Block;
   /**
    * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
    */
-  var invokeCcApiZwaveJs: (
-    target: ITarget,
-    params: InvokeCcApiZwaveJsProps,
-  ) => Block;
+  var invokeCcApiZwaveJs: (params: InvokeCcApiZwaveJsProps) => Block;
   /**
    * Refreshes notifications on a node based on notification type and optionally notification event.
    */
   var refreshNotificationsZwaveJs: (
-    target: ITarget,
     params: RefreshNotificationsZwaveJsProps,
   ) => Block;
   /**
    * Sets a user code on a lock.
    */
   var setLockUsercodeZwaveJs: (
-    target: ITarget,
+    target: IEntity<`lock.${string}`> | IArea,
     params: SetLockUsercodeZwaveJsProps,
   ) => Block;
   /**
    * Clears a user code from a lock.
    */
   var clearLockUsercodeZwaveJs: (
-    target: ITarget,
+    target: IEntity<`lock.${string}`> | IArea,
     params: ClearLockUsercodeZwaveJsProps,
   ) => Block;
   /**
    * Sets the configuration for a lock.
    */
   var setLockConfigurationZwaveJs: (
-    target: ITarget,
+    target: IEntity<`lock.${string}`> | IArea,
     params: SetLockConfigurationZwaveJsProps,
   ) => Block;
   /**
    * Resets the meters on a node.
    */
-  var resetMeterZwaveJs: (
-    target: ITarget,
-    params?: ResetMeterZwaveJsProps,
-  ) => Block;
+  var resetMeterZwaveJs: (params?: ResetMeterZwaveJsProps) => Block;
 }
 
 export interface SetConfigParameterZwaveJsProps {
@@ -120,7 +107,6 @@ export interface SetConfigParameterZwaveJsProps {
 }
 
 globalThis.setConfigParameterZwaveJs = (
-  target: ITarget,
   params: SetConfigParameterZwaveJsProps,
 ) =>
   serviceCall({
@@ -160,7 +146,6 @@ export interface BulkSetPartialConfigParametersZwaveJsProps {
 }
 
 globalThis.bulkSetPartialConfigParametersZwaveJs = (
-  target: ITarget,
   params: BulkSetPartialConfigParametersZwaveJsProps,
 ) =>
   serviceCall({
@@ -183,10 +168,7 @@ export interface RefreshValueZwaveJsProps {
   refresh_all_values?: boolean;
 }
 
-globalThis.refreshValueZwaveJs = (
-  target: ITarget,
-  params: RefreshValueZwaveJsProps,
-) =>
+globalThis.refreshValueZwaveJs = (params: RefreshValueZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.refresh_value`,
     params: {
@@ -239,7 +221,7 @@ export interface SetValueZwaveJsProps {
   wait_for_result?: boolean;
 }
 
-globalThis.setValueZwaveJs = (target: ITarget, params: SetValueZwaveJsProps) =>
+globalThis.setValueZwaveJs = (params: SetValueZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.set_value`,
     params: {
@@ -292,10 +274,7 @@ export interface MulticastSetValueZwaveJsProps {
   value: never;
 }
 
-globalThis.multicastSetValueZwaveJs = (
-  target: ITarget,
-  params: MulticastSetValueZwaveJsProps,
-) =>
+globalThis.multicastSetValueZwaveJs = (params: MulticastSetValueZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.multicast_set_value`,
     params: {
@@ -320,7 +299,7 @@ export interface PingZwaveJsProps {
   entity_id?: string;
 }
 
-globalThis.pingZwaveJs = (target: ITarget, params?: PingZwaveJsProps) =>
+globalThis.pingZwaveJs = (params?: PingZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.ping`,
     params: {
@@ -361,10 +340,7 @@ export interface InvokeCcApiZwaveJsProps {
   parameters: never;
 }
 
-globalThis.invokeCcApiZwaveJs = (
-  target: ITarget,
-  params: InvokeCcApiZwaveJsProps,
-) =>
+globalThis.invokeCcApiZwaveJs = (params: InvokeCcApiZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.invoke_cc_api`,
     params: {
@@ -398,7 +374,6 @@ export interface RefreshNotificationsZwaveJsProps {
 }
 
 globalThis.refreshNotificationsZwaveJs = (
-  target: ITarget,
   params: RefreshNotificationsZwaveJsProps,
 ) =>
   serviceCall({
@@ -422,7 +397,7 @@ export interface SetLockUsercodeZwaveJsProps {
 }
 
 globalThis.setLockUsercodeZwaveJs = (
-  target: ITarget,
+  target: IEntity<`lock.${string}`> | IArea,
   params: SetLockUsercodeZwaveJsProps,
 ) =>
   serviceCall({
@@ -443,7 +418,7 @@ export interface ClearLockUsercodeZwaveJsProps {
 }
 
 globalThis.clearLockUsercodeZwaveJs = (
-  target: ITarget,
+  target: IEntity<`lock.${string}`> | IArea,
   params: ClearLockUsercodeZwaveJsProps,
 ) =>
   serviceCall({
@@ -484,7 +459,7 @@ export interface SetLockConfigurationZwaveJsProps {
 }
 
 globalThis.setLockConfigurationZwaveJs = (
-  target: ITarget,
+  target: IEntity<`lock.${string}`> | IArea,
   params: SetLockConfigurationZwaveJsProps,
 ) =>
   serviceCall({
@@ -520,10 +495,7 @@ export interface ResetMeterZwaveJsProps {
   value?: string;
 }
 
-globalThis.resetMeterZwaveJs = (
-  target: ITarget,
-  params?: ResetMeterZwaveJsProps,
-) =>
+globalThis.resetMeterZwaveJs = (params?: ResetMeterZwaveJsProps) =>
   serviceCall({
     name: `Call zwave_js.reset_meter`,
     params: {

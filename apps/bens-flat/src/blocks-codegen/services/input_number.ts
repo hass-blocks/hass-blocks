@@ -1,33 +1,33 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputNumber: (target: ITarget) => Block;
+  var reloadInputNumber: () => Block;
   /**
    * Sets the value.
    */
   var setValueInputNumber: (
-    target: ITarget,
+    target: IEntity<`input_number.${string}`> | IArea,
     params: SetValueInputNumberProps,
   ) => Block;
   /**
    * Increments the current value by 1 step.
    */
   var incrementInputNumber: (
-    target: ITarget,
+    target: IEntity<`input_number.${string}`> | IArea,
     params?: IncrementInputNumberProps,
   ) => Block;
   /**
    * Decrements the current value by 1 step.
    */
   var decrementInputNumber: (
-    target: ITarget,
+    target: IEntity<`input_number.${string}`> | IArea,
     params?: DecrementInputNumberProps,
   ) => Block;
 }
 
-globalThis.reloadInputNumber = (target: ITarget) =>
+globalThis.reloadInputNumber = () =>
   serviceCall({
     name: `Call input_number.reload`,
     params: {
@@ -44,7 +44,7 @@ export interface SetValueInputNumberProps {
 }
 
 globalThis.setValueInputNumber = (
-  target: ITarget,
+  target: IEntity<`input_number.${string}`> | IArea,
   params: SetValueInputNumberProps,
 ) =>
   serviceCall({
@@ -60,7 +60,7 @@ globalThis.setValueInputNumber = (
 export interface IncrementInputNumberProps {}
 
 globalThis.incrementInputNumber = (
-  target: ITarget,
+  target: IEntity<`input_number.${string}`> | IArea,
   params?: IncrementInputNumberProps,
 ) =>
   serviceCall({
@@ -76,7 +76,7 @@ globalThis.incrementInputNumber = (
 export interface DecrementInputNumberProps {}
 
 globalThis.decrementInputNumber = (
-  target: ITarget,
+  target: IEntity<`input_number.${string}`> | IArea,
   params?: DecrementInputNumberProps,
 ) =>
   serviceCall({

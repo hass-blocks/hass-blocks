@@ -1,9 +1,12 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Sets the time.
    */
-  var setValueTime: (target: ITarget, params: SetValueTimeProps) => Block;
+  var setValueTime: (
+    target: IEntity<`time.${string}`> | IArea,
+    params: SetValueTimeProps,
+  ) => Block;
 }
 
 export interface SetValueTimeProps {
@@ -13,7 +16,10 @@ export interface SetValueTimeProps {
   time: string;
 }
 
-globalThis.setValueTime = (target: ITarget, params: SetValueTimeProps) =>
+globalThis.setValueTime = (
+  target: IEntity<`time.${string}`> | IArea,
+  params: SetValueTimeProps,
+) =>
   serviceCall({
     name: `Call time.set_value`,
     params: {

@@ -1,49 +1,55 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Takes a snapshot of a media player.
    */
-  var snapshotSonos: (target: ITarget, params?: SnapshotSonosProps) => Block;
+  var snapshotSonos: (params?: SnapshotSonosProps) => Block;
   /**
    * Restores a snapshot of a media player.
    */
-  var restoreSonos: (target: ITarget, params?: RestoreSonosProps) => Block;
+  var restoreSonos: (params?: RestoreSonosProps) => Block;
   /**
    * Sets a Sonos timer.
    */
   var setSleepTimerSonos: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: SetSleepTimerSonosProps,
   ) => Block;
   /**
    * Clears a Sonos timer.
    */
   var clearSleepTimerSonos: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: ClearSleepTimerSonosProps,
   ) => Block;
   /**
    * Updates an alarm with new time and volume settings.
    */
   var updateAlarmSonos: (
-    target: ITarget,
+    target: IEntity | IArea,
     params: UpdateAlarmSonosProps,
   ) => Block;
   /**
    * Starts playing the queue from the first item.
    */
-  var playQueueSonos: (target: ITarget, params?: PlayQueueSonosProps) => Block;
+  var playQueueSonos: (
+    target: IEntity | IArea,
+    params?: PlayQueueSonosProps,
+  ) => Block;
   /**
    * Removes an item from the queue.
    */
   var removeFromQueueSonos: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: RemoveFromQueueSonosProps,
   ) => Block;
   /**
    * Returns the contents of the queue.
    */
-  var getQueueSonos: (target: ITarget, params?: GetQueueSonosProps) => Block;
+  var getQueueSonos: (
+    target: IEntity<`media_player.${string}`> | IArea,
+    params?: GetQueueSonosProps,
+  ) => Block;
 }
 
 export interface SnapshotSonosProps {
@@ -57,7 +63,7 @@ export interface SnapshotSonosProps {
   with_group?: boolean;
 }
 
-globalThis.snapshotSonos = (target: ITarget, params?: SnapshotSonosProps) =>
+globalThis.snapshotSonos = (params?: SnapshotSonosProps) =>
   serviceCall({
     name: `Call sonos.snapshot`,
     params: {
@@ -78,7 +84,7 @@ export interface RestoreSonosProps {
   with_group?: boolean;
 }
 
-globalThis.restoreSonos = (target: ITarget, params?: RestoreSonosProps) =>
+globalThis.restoreSonos = (params?: RestoreSonosProps) =>
   serviceCall({
     name: `Call sonos.restore`,
     params: {
@@ -96,7 +102,7 @@ export interface SetSleepTimerSonosProps {
 }
 
 globalThis.setSleepTimerSonos = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: SetSleepTimerSonosProps,
 ) =>
   serviceCall({
@@ -112,7 +118,7 @@ globalThis.setSleepTimerSonos = (
 export interface ClearSleepTimerSonosProps {}
 
 globalThis.clearSleepTimerSonos = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: ClearSleepTimerSonosProps,
 ) =>
   serviceCall({
@@ -149,7 +155,7 @@ export interface UpdateAlarmSonosProps {
 }
 
 globalThis.updateAlarmSonos = (
-  target: ITarget,
+  target: IEntity | IArea,
   params: UpdateAlarmSonosProps,
 ) =>
   serviceCall({
@@ -169,7 +175,10 @@ export interface PlayQueueSonosProps {
   queue_position?: number;
 }
 
-globalThis.playQueueSonos = (target: ITarget, params?: PlayQueueSonosProps) =>
+globalThis.playQueueSonos = (
+  target: IEntity | IArea,
+  params?: PlayQueueSonosProps,
+) =>
   serviceCall({
     name: `Call sonos.play_queue`,
     params: {
@@ -188,7 +197,7 @@ export interface RemoveFromQueueSonosProps {
 }
 
 globalThis.removeFromQueueSonos = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: RemoveFromQueueSonosProps,
 ) =>
   serviceCall({
@@ -203,7 +212,10 @@ globalThis.removeFromQueueSonos = (
 
 export interface GetQueueSonosProps {}
 
-globalThis.getQueueSonos = (target: ITarget, params?: GetQueueSonosProps) =>
+globalThis.getQueueSonos = (
+  target: IEntity<`media_player.${string}`> | IArea,
+  params?: GetQueueSonosProps,
+) =>
   serviceCall({
     name: `Call sonos.get_queue`,
     params: {

@@ -1,4 +1,4 @@
-import { Block, serviceCall } from '@hass-blocks/core';
+import { serviceCall, Block } from '@hass-blocks/core';
 declare global {
   /**
    * Adds a new filter subscription to AdGuard Home.

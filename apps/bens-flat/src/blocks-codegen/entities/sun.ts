@@ -1,7 +1,7 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var sunSun: ITarget;
+  var sunSun: IEntity<`sun.${string}`>;
 }
 
 globalThis.sunSun = entity('sun.sun');

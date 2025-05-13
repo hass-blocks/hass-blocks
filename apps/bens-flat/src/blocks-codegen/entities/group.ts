@@ -1,7 +1,7 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var benGroup: ITarget;
+  var benGroup: IEntity<`group.${string}`>;
 }
 
 globalThis.benGroup = entity('group.ben');

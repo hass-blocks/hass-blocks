@@ -1,24 +1,24 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Speaks something using text-to-speech on a media player.
    */
-  var speakTts: (target: ITarget, params: SpeakTtsProps) => Block;
+  var speakTts: (
+    target: IEntity<`tts.${string}`> | IArea,
+    params: SpeakTtsProps,
+  ) => Block;
   /**
    * Removes all cached text-to-speech files and purges the memory.
    */
-  var clearCacheTts: (target: ITarget) => Block;
+  var clearCacheTts: () => Block;
   /**
    * Say something using text-to-speech on a media player with google_translate.
    */
-  var googleTranslateSayTts: (
-    target: ITarget,
-    params: GoogleTranslateSayTtsProps,
-  ) => Block;
+  var googleTranslateSayTts: (params: GoogleTranslateSayTtsProps) => Block;
   /**
    * Say something using text-to-speech on a media player with cloud.
    */
-  var cloudSayTts: (target: ITarget, params: CloudSayTtsProps) => Block;
+  var cloudSayTts: (params: CloudSayTtsProps) => Block;
 }
 
 export interface SpeakTtsProps {
@@ -44,7 +44,10 @@ export interface SpeakTtsProps {
   options?: never;
 }
 
-globalThis.speakTts = (target: ITarget, params: SpeakTtsProps) =>
+globalThis.speakTts = (
+  target: IEntity<`tts.${string}`> | IArea,
+  params: SpeakTtsProps,
+) =>
   serviceCall({
     name: `Call tts.speak`,
     params: {
@@ -55,7 +58,7 @@ globalThis.speakTts = (target: ITarget, params: SpeakTtsProps) =>
     target,
   });
 
-globalThis.clearCacheTts = (target: ITarget) =>
+globalThis.clearCacheTts = () =>
   serviceCall({
     name: `Call tts.clear_cache`,
     params: {
@@ -72,10 +75,7 @@ export interface GoogleTranslateSayTtsProps {
   options?: never;
 }
 
-globalThis.googleTranslateSayTts = (
-  target: ITarget,
-  params: GoogleTranslateSayTtsProps,
-) =>
+globalThis.googleTranslateSayTts = (params: GoogleTranslateSayTtsProps) =>
   serviceCall({
     name: `Call tts.google_translate_say`,
     params: {
@@ -93,7 +93,7 @@ export interface CloudSayTtsProps {
   options?: never;
 }
 
-globalThis.cloudSayTts = (target: ITarget, params: CloudSayTtsProps) =>
+globalThis.cloudSayTts = (params: CloudSayTtsProps) =>
   serviceCall({
     name: `Call tts.cloud_say`,
     params: {

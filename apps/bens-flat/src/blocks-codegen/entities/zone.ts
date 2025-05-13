@@ -1,11 +1,11 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var workZone: ITarget;
-  var gymZone: ITarget;
-  var lozSFlatZone: ITarget;
-  var mumAndDadSPlaceZone: ITarget;
-  var homeZone: ITarget;
+  var workZone: IEntity<`zone.${string}`>;
+  var gymZone: IEntity<`zone.${string}`>;
+  var lozSFlatZone: IEntity<`zone.${string}`>;
+  var mumAndDadSPlaceZone: IEntity<`zone.${string}`>;
+  var homeZone: IEntity<`zone.${string}`>;
 }
 
 globalThis.workZone = entity('zone.work');

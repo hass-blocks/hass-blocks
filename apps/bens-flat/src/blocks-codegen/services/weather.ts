@@ -1,10 +1,10 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Retrieves the forecast from selected weather services.
    */
   var getForecastsWeather: (
-    target: ITarget,
+    target: IEntity<`weather.${string}`> | IArea,
     params: GetForecastsWeatherProps,
   ) => Block;
 }
@@ -17,7 +17,7 @@ export interface GetForecastsWeatherProps {
 }
 
 globalThis.getForecastsWeather = (
-  target: ITarget,
+  target: IEntity<`weather.${string}`> | IArea,
   params: GetForecastsWeatherProps,
 ) =>
   serviceCall({

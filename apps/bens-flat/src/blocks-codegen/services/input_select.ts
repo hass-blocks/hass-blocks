@@ -1,54 +1,54 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputSelect: (target: ITarget) => Block;
+  var reloadInputSelect: () => Block;
   /**
    * Selects the first option.
    */
   var selectFirstInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectFirstInputSelectProps,
   ) => Block;
   /**
    * Selects the last option.
    */
   var selectLastInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectLastInputSelectProps,
   ) => Block;
   /**
    * Selects the next option.
    */
   var selectNextInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectNextInputSelectProps,
   ) => Block;
   /**
    * Selects an option.
    */
   var selectOptionInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params: SelectOptionInputSelectProps,
   ) => Block;
   /**
    * Selects the previous option.
    */
   var selectPreviousInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectPreviousInputSelectProps,
   ) => Block;
   /**
    * Sets the options.
    */
   var setOptionsInputSelect: (
-    target: ITarget,
+    target: IEntity<`input_select.${string}`> | IArea,
     params: SetOptionsInputSelectProps,
   ) => Block;
 }
 
-globalThis.reloadInputSelect = (target: ITarget) =>
+globalThis.reloadInputSelect = () =>
   serviceCall({
     name: `Call input_select.reload`,
     params: {
@@ -60,7 +60,7 @@ globalThis.reloadInputSelect = (target: ITarget) =>
 export interface SelectFirstInputSelectProps {}
 
 globalThis.selectFirstInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params?: SelectFirstInputSelectProps,
 ) =>
   serviceCall({
@@ -76,7 +76,7 @@ globalThis.selectFirstInputSelect = (
 export interface SelectLastInputSelectProps {}
 
 globalThis.selectLastInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params?: SelectLastInputSelectProps,
 ) =>
   serviceCall({
@@ -97,7 +97,7 @@ export interface SelectNextInputSelectProps {
 }
 
 globalThis.selectNextInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params?: SelectNextInputSelectProps,
 ) =>
   serviceCall({
@@ -118,7 +118,7 @@ export interface SelectOptionInputSelectProps {
 }
 
 globalThis.selectOptionInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params: SelectOptionInputSelectProps,
 ) =>
   serviceCall({
@@ -139,7 +139,7 @@ export interface SelectPreviousInputSelectProps {
 }
 
 globalThis.selectPreviousInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params?: SelectPreviousInputSelectProps,
 ) =>
   serviceCall({
@@ -160,7 +160,7 @@ export interface SetOptionsInputSelectProps {
 }
 
 globalThis.setOptionsInputSelect = (
-  target: ITarget,
+  target: IEntity<`input_select.${string}`> | IArea,
   params: SetOptionsInputSelectProps,
 ) =>
   serviceCall({

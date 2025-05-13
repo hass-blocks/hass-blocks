@@ -1,9 +1,9 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var frontDoorLiveViewCamera: ITarget;
-  var frontDoorCamera: ITarget;
-  var frontDoorDoorbellMqttSnapshotCamera: ITarget;
+  var frontDoorLiveViewCamera: IEntity<`camera.${string}`>;
+  var frontDoorCamera: IEntity<`camera.${string}`>;
+  var frontDoorDoorbellMqttSnapshotCamera: IEntity<`camera.${string}`>;
 }
 
 globalThis.frontDoorLiveViewCamera = entity('camera.front_door_live_view');

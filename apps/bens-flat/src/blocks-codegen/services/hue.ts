@@ -1,19 +1,16 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Activates a Hue scene with more control over the options.
    */
   var activateSceneHue: (
-    target: ITarget,
+    target: IEntity<`scene.${string}`> | IArea,
     params?: ActivateSceneHueProps,
   ) => Block;
   /**
    * Activates a Hue scene stored in the Hue hub.
    */
-  var hueActivateSceneHue: (
-    target: ITarget,
-    params?: HueActivateSceneHueProps,
-  ) => Block;
+  var hueActivateSceneHue: (params?: HueActivateSceneHueProps) => Block;
 }
 
 export interface ActivateSceneHueProps {
@@ -36,7 +33,7 @@ export interface ActivateSceneHueProps {
 }
 
 globalThis.activateSceneHue = (
-  target: ITarget,
+  target: IEntity<`scene.${string}`> | IArea,
   params?: ActivateSceneHueProps,
 ) =>
   serviceCall({
@@ -64,10 +61,7 @@ export interface HueActivateSceneHueProps {
   dynamic?: boolean;
 }
 
-globalThis.hueActivateSceneHue = (
-  target: ITarget,
-  params?: HueActivateSceneHueProps,
-) =>
+globalThis.hueActivateSceneHue = (params?: HueActivateSceneHueProps) =>
   serviceCall({
     name: `Call hue.hue_activate_scene`,
     params: {

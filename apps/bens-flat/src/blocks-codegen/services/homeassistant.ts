@@ -1,78 +1,76 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Saves the persistent states immediately. Maintains the normal periodic saving interval.
    */
-  var savePersistentStatesHomeassistant: (target: ITarget) => Block;
+  var savePersistentStatesHomeassistant: () => Block;
   /**
    * Generic action to turn devices off under any domain.
    */
   var turnOffHomeassistant: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: TurnOffHomeassistantProps,
   ) => Block;
   /**
    * Generic action to turn devices on under any domain.
    */
   var turnOnHomeassistant: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: TurnOnHomeassistantProps,
   ) => Block;
   /**
    * Generic action to toggle devices on/off under any domain.
    */
   var toggleHomeassistant: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: ToggleHomeassistantProps,
   ) => Block;
   /**
    * Stops Home Assistant.
    */
-  var stopHomeassistant: (target: ITarget) => Block;
+  var stopHomeassistant: () => Block;
   /**
    * Restarts Home Assistant.
    */
-  var restartHomeassistant: (target: ITarget) => Block;
+  var restartHomeassistant: () => Block;
   /**
    * Checks the Home Assistant YAML-configuration files for errors. Errors will be shown in the Home Assistant logs.
    */
-  var checkConfigHomeassistant: (target: ITarget) => Block;
+  var checkConfigHomeassistant: () => Block;
   /**
    * Forces one or more entities to update their data.
    */
   var updateEntityHomeassistant: (
-    target: ITarget,
     params: UpdateEntityHomeassistantProps,
   ) => Block;
   /**
    * Reloads the Core configuration from the YAML-configuration.
    */
-  var reloadCoreConfigHomeassistant: (target: ITarget) => Block;
+  var reloadCoreConfigHomeassistant: () => Block;
   /**
    * Updates the Home Assistant location.
    */
   var setLocationHomeassistant: (
-    target: ITarget,
     params: SetLocationHomeassistantProps,
   ) => Block;
   /**
    * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
    */
-  var reloadCustomTemplatesHomeassistant: (target: ITarget) => Block;
+  var reloadCustomTemplatesHomeassistant: () => Block;
   /**
    * Reloads the specified config entry.
    */
   var reloadConfigEntryHomeassistant: (
-    target: ITarget,
+    target: IEntity | IArea,
     params?: ReloadConfigEntryHomeassistantProps,
   ) => Block;
   /**
    * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.
    */
-  var reloadAllHomeassistant: (target: ITarget) => Block;
+  var reloadAllHomeassistant: () => Block;
 }
 
-globalThis.savePersistentStatesHomeassistant = (target: ITarget) =>
+globalThis.savePersistentStatesHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.save_persistent_states`,
     params: {
@@ -84,7 +82,7 @@ globalThis.savePersistentStatesHomeassistant = (target: ITarget) =>
 export interface TurnOffHomeassistantProps {}
 
 globalThis.turnOffHomeassistant = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: TurnOffHomeassistantProps,
 ) =>
   serviceCall({
@@ -100,7 +98,7 @@ globalThis.turnOffHomeassistant = (
 export interface TurnOnHomeassistantProps {}
 
 globalThis.turnOnHomeassistant = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: TurnOnHomeassistantProps,
 ) =>
   serviceCall({
@@ -116,7 +114,7 @@ globalThis.turnOnHomeassistant = (
 export interface ToggleHomeassistantProps {}
 
 globalThis.toggleHomeassistant = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: ToggleHomeassistantProps,
 ) =>
   serviceCall({
@@ -129,7 +127,7 @@ globalThis.toggleHomeassistant = (
     target,
   });
 
-globalThis.stopHomeassistant = (target: ITarget) =>
+globalThis.stopHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.stop`,
     params: {
@@ -138,7 +136,7 @@ globalThis.stopHomeassistant = (target: ITarget) =>
     },
   });
 
-globalThis.restartHomeassistant = (target: ITarget) =>
+globalThis.restartHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.restart`,
     params: {
@@ -147,7 +145,7 @@ globalThis.restartHomeassistant = (target: ITarget) =>
     },
   });
 
-globalThis.checkConfigHomeassistant = (target: ITarget) =>
+globalThis.checkConfigHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.check_config`,
     params: {
@@ -164,7 +162,6 @@ export interface UpdateEntityHomeassistantProps {
 }
 
 globalThis.updateEntityHomeassistant = (
-  target: ITarget,
   params: UpdateEntityHomeassistantProps,
 ) =>
   serviceCall({
@@ -176,7 +173,7 @@ globalThis.updateEntityHomeassistant = (
     },
   });
 
-globalThis.reloadCoreConfigHomeassistant = (target: ITarget) =>
+globalThis.reloadCoreConfigHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.reload_core_config`,
     params: {
@@ -200,10 +197,7 @@ export interface SetLocationHomeassistantProps {
   elevation?: number;
 }
 
-globalThis.setLocationHomeassistant = (
-  target: ITarget,
-  params: SetLocationHomeassistantProps,
-) =>
+globalThis.setLocationHomeassistant = (params: SetLocationHomeassistantProps) =>
   serviceCall({
     name: `Call homeassistant.set_location`,
     params: {
@@ -213,7 +207,7 @@ globalThis.setLocationHomeassistant = (
     },
   });
 
-globalThis.reloadCustomTemplatesHomeassistant = (target: ITarget) =>
+globalThis.reloadCustomTemplatesHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.reload_custom_templates`,
     params: {
@@ -230,7 +224,7 @@ export interface ReloadConfigEntryHomeassistantProps {
 }
 
 globalThis.reloadConfigEntryHomeassistant = (
-  target: ITarget,
+  target: IEntity | IArea,
   params?: ReloadConfigEntryHomeassistantProps,
 ) =>
   serviceCall({
@@ -243,7 +237,7 @@ globalThis.reloadConfigEntryHomeassistant = (
     target,
   });
 
-globalThis.reloadAllHomeassistant = (target: ITarget) =>
+globalThis.reloadAllHomeassistant = () =>
   serviceCall({
     name: `Call homeassistant.reload_all`,
     params: {

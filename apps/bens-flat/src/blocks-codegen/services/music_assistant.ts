@@ -1,45 +1,41 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Performs a global search on the Music Assistant library and all providers.
    */
-  var searchMusicAssistant: (
-    target: ITarget,
-    params: SearchMusicAssistantProps,
-  ) => Block;
+  var searchMusicAssistant: (params: SearchMusicAssistantProps) => Block;
   /**
    * Retrieves items from a Music Assistant library.
    */
   var getLibraryMusicAssistant: (
-    target: ITarget,
     params: GetLibraryMusicAssistantProps,
   ) => Block;
   /**
    * Plays media on a Music Assistant player with more fine-grained control options.
    */
   var playMediaMusicAssistant: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: PlayMediaMusicAssistantProps,
   ) => Block;
   /**
    * Plays an announcement on a Music Assistant player with more fine-grained control options.
    */
   var playAnnouncementMusicAssistant: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: PlayAnnouncementMusicAssistantProps,
   ) => Block;
   /**
    * Transfers a player's queue to another player.
    */
   var transferQueueMusicAssistant: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: TransferQueueMusicAssistantProps,
   ) => Block;
   /**
    * Retrieves the details of the currently active queue of a Music Assistant player.
    */
   var getQueueMusicAssistant: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: GetQueueMusicAssistantProps,
   ) => Block;
 }
@@ -75,10 +71,7 @@ export interface SearchMusicAssistantProps {
   library_only?: boolean;
 }
 
-globalThis.searchMusicAssistant = (
-  target: ITarget,
-  params: SearchMusicAssistantProps,
-) =>
+globalThis.searchMusicAssistant = (params: SearchMusicAssistantProps) =>
   serviceCall({
     name: `Call music_assistant.search`,
     params: {
@@ -127,10 +120,7 @@ export interface GetLibraryMusicAssistantProps {
   album_artists_only?: boolean;
 }
 
-globalThis.getLibraryMusicAssistant = (
-  target: ITarget,
-  params: GetLibraryMusicAssistantProps,
-) =>
+globalThis.getLibraryMusicAssistant = (params: GetLibraryMusicAssistantProps) =>
   serviceCall({
     name: `Call music_assistant.get_library`,
     params: {
@@ -168,7 +158,7 @@ export interface PlayMediaMusicAssistantProps {
 }
 
 globalThis.playMediaMusicAssistant = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: PlayMediaMusicAssistantProps,
 ) =>
   serviceCall({
@@ -197,7 +187,7 @@ export interface PlayAnnouncementMusicAssistantProps {
 }
 
 globalThis.playAnnouncementMusicAssistant = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: PlayAnnouncementMusicAssistantProps,
 ) =>
   serviceCall({
@@ -222,7 +212,7 @@ export interface TransferQueueMusicAssistantProps {
 }
 
 globalThis.transferQueueMusicAssistant = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: TransferQueueMusicAssistantProps,
 ) =>
   serviceCall({
@@ -238,7 +228,7 @@ globalThis.transferQueueMusicAssistant = (
 export interface GetQueueMusicAssistantProps {}
 
 globalThis.getQueueMusicAssistant = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: GetQueueMusicAssistantProps,
 ) =>
   serviceCall({

@@ -1,4 +1,4 @@
-import { Block, serviceCall } from '@hass-blocks/core';
+import { serviceCall, Block } from '@hass-blocks/core';
 declare global {
   /**
    * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.

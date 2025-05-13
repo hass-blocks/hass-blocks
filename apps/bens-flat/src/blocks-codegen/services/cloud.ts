@@ -1,4 +1,4 @@
-import { Block, serviceCall } from '@hass-blocks/core';
+import { serviceCall, Block } from '@hass-blocks/core';
 declare global {
   /**
    * Makes the instance UI accessible from outside of the local network by enabling your Home Assistant Cloud connection.

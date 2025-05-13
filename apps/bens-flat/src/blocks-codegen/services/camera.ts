@@ -1,48 +1,60 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Enables the motion detection.
    */
   var enableMotionDetectionCamera: (
-    target: ITarget,
+    target: IEntity<`camera.${string}`> | IArea,
     params?: EnableMotionDetectionCameraProps,
   ) => Block;
   /**
    * Disables the motion detection.
    */
   var disableMotionDetectionCamera: (
-    target: ITarget,
+    target: IEntity<`camera.${string}`> | IArea,
     params?: DisableMotionDetectionCameraProps,
   ) => Block;
   /**
    * Turns off the camera.
    */
-  var turnOffCamera: (target: ITarget, params?: TurnOffCameraProps) => Block;
+  var turnOffCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+    params?: TurnOffCameraProps,
+  ) => Block;
   /**
    * Turns on the camera.
    */
-  var turnOnCamera: (target: ITarget, params?: TurnOnCameraProps) => Block;
+  var turnOnCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+    params?: TurnOnCameraProps,
+  ) => Block;
   /**
    * Takes a snapshot from a camera.
    */
-  var snapshotCamera: (target: ITarget, params: SnapshotCameraProps) => Block;
+  var snapshotCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+    params: SnapshotCameraProps,
+  ) => Block;
   /**
    * Plays the camera stream on a supported media player.
    */
   var playStreamCamera: (
-    target: ITarget,
+    target: IEntity<`camera.${string}`> | IArea,
     params: PlayStreamCameraProps,
   ) => Block;
   /**
    * Creates a recording of a live camera feed.
    */
-  var recordCamera: (target: ITarget, params: RecordCameraProps) => Block;
+  var recordCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+    params: RecordCameraProps,
+  ) => Block;
 }
 
 export interface EnableMotionDetectionCameraProps {}
 
 globalThis.enableMotionDetectionCamera = (
-  target: ITarget,
+  target: IEntity<`camera.${string}`> | IArea,
   params?: EnableMotionDetectionCameraProps,
 ) =>
   serviceCall({
@@ -58,7 +70,7 @@ globalThis.enableMotionDetectionCamera = (
 export interface DisableMotionDetectionCameraProps {}
 
 globalThis.disableMotionDetectionCamera = (
-  target: ITarget,
+  target: IEntity<`camera.${string}`> | IArea,
   params?: DisableMotionDetectionCameraProps,
 ) =>
   serviceCall({
@@ -73,7 +85,10 @@ globalThis.disableMotionDetectionCamera = (
 
 export interface TurnOffCameraProps {}
 
-globalThis.turnOffCamera = (target: ITarget, params?: TurnOffCameraProps) =>
+globalThis.turnOffCamera = (
+  target: IEntity<`camera.${string}`> | IArea,
+  params?: TurnOffCameraProps,
+) =>
   serviceCall({
     name: `Call camera.turn_off`,
     params: {
@@ -86,7 +101,10 @@ globalThis.turnOffCamera = (target: ITarget, params?: TurnOffCameraProps) =>
 
 export interface TurnOnCameraProps {}
 
-globalThis.turnOnCamera = (target: ITarget, params?: TurnOnCameraProps) =>
+globalThis.turnOnCamera = (
+  target: IEntity<`camera.${string}`> | IArea,
+  params?: TurnOnCameraProps,
+) =>
   serviceCall({
     name: `Call camera.turn_on`,
     params: {
@@ -104,7 +122,10 @@ export interface SnapshotCameraProps {
   filename: string;
 }
 
-globalThis.snapshotCamera = (target: ITarget, params: SnapshotCameraProps) =>
+globalThis.snapshotCamera = (
+  target: IEntity<`camera.${string}`> | IArea,
+  params: SnapshotCameraProps,
+) =>
   serviceCall({
     name: `Call camera.snapshot`,
     params: {
@@ -127,7 +148,7 @@ export interface PlayStreamCameraProps {
 }
 
 globalThis.playStreamCamera = (
-  target: ITarget,
+  target: IEntity<`camera.${string}`> | IArea,
   params: PlayStreamCameraProps,
 ) =>
   serviceCall({
@@ -155,7 +176,10 @@ export interface RecordCameraProps {
   lookback?: number;
 }
 
-globalThis.recordCamera = (target: ITarget, params: RecordCameraProps) =>
+globalThis.recordCamera = (
+  target: IEntity<`camera.${string}`> | IArea,
+  params: RecordCameraProps,
+) =>
   serviceCall({
     name: `Call camera.record`,
     params: {

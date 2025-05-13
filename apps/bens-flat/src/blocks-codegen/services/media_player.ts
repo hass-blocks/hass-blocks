@@ -1,168 +1,171 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Turns on the power of the media player.
    */
   var turnOnMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: TurnOnMediaPlayerProps,
   ) => Block;
   /**
    * Turns off the power of the media player.
    */
   var turnOffMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: TurnOffMediaPlayerProps,
   ) => Block;
   /**
    * Toggles a media player on/off.
    */
   var toggleMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: ToggleMediaPlayerProps,
   ) => Block;
   /**
    * Turns up the volume.
    */
   var volumeUpMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: VolumeUpMediaPlayerProps,
   ) => Block;
   /**
    * Turns down the volume.
    */
   var volumeDownMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: VolumeDownMediaPlayerProps,
   ) => Block;
   /**
    * Toggles play/pause.
    */
   var mediaPlayPauseMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaPlayPauseMediaPlayerProps,
   ) => Block;
   /**
    * Starts playing.
    */
   var mediaPlayMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaPlayMediaPlayerProps,
   ) => Block;
   /**
    * Pauses.
    */
   var mediaPauseMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaPauseMediaPlayerProps,
   ) => Block;
   /**
    * Stops playing.
    */
   var mediaStopMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaStopMediaPlayerProps,
   ) => Block;
   /**
    * Selects the next track.
    */
   var mediaNextTrackMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaNextTrackMediaPlayerProps,
   ) => Block;
   /**
    * Selects the previous track.
    */
   var mediaPreviousTrackMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: MediaPreviousTrackMediaPlayerProps,
   ) => Block;
   /**
    * Removes all items from the playlist.
    */
   var clearPlaylistMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: ClearPlaylistMediaPlayerProps,
   ) => Block;
   /**
    * Sets the volume level.
    */
   var volumeSetMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: VolumeSetMediaPlayerProps,
   ) => Block;
   /**
    * Mutes or unmutes the media player.
    */
   var volumeMuteMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: VolumeMuteMediaPlayerProps,
   ) => Block;
   /**
    * Allows you to go to a different part of the media that is currently playing.
    */
   var mediaSeekMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: MediaSeekMediaPlayerProps,
   ) => Block;
   /**
    * Groups media players together for synchronous playback. Only works on supported multiroom audio systems.
    */
-  var joinMediaPlayer: (target: ITarget, params: JoinMediaPlayerProps) => Block;
+  var joinMediaPlayer: (
+    target: IEntity<`media_player.${string}`> | IArea,
+    params: JoinMediaPlayerProps,
+  ) => Block;
   /**
    * Sends the media player the command to change input source.
    */
   var selectSourceMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: SelectSourceMediaPlayerProps,
   ) => Block;
   /**
    * Selects a specific sound mode.
    */
   var selectSoundModeMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: SelectSoundModeMediaPlayerProps,
   ) => Block;
   /**
    * Starts playing specified media.
    */
   var playMediaMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: PlayMediaMediaPlayerProps,
   ) => Block;
   /**
    * Browses the available media.
    */
   var browseMediaMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: BrowseMediaMediaPlayerProps,
   ) => Block;
   /**
    * Searches the available media.
    */
   var searchMediaMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: SearchMediaMediaPlayerProps,
   ) => Block;
   /**
    * Enables or disables the shuffle mode.
    */
   var shuffleSetMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: ShuffleSetMediaPlayerProps,
   ) => Block;
   /**
    * Removes the player from a group. Only works on platforms which support player groups.
    */
   var unjoinMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params?: UnjoinMediaPlayerProps,
   ) => Block;
   /**
    * Sets the repeat mode.
    */
   var repeatSetMediaPlayer: (
-    target: ITarget,
+    target: IEntity<`media_player.${string}`> | IArea,
     params: RepeatSetMediaPlayerProps,
   ) => Block;
 }
@@ -170,7 +173,7 @@ declare global {
 export interface TurnOnMediaPlayerProps {}
 
 globalThis.turnOnMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: TurnOnMediaPlayerProps,
 ) =>
   serviceCall({
@@ -186,7 +189,7 @@ globalThis.turnOnMediaPlayer = (
 export interface TurnOffMediaPlayerProps {}
 
 globalThis.turnOffMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: TurnOffMediaPlayerProps,
 ) =>
   serviceCall({
@@ -202,7 +205,7 @@ globalThis.turnOffMediaPlayer = (
 export interface ToggleMediaPlayerProps {}
 
 globalThis.toggleMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: ToggleMediaPlayerProps,
 ) =>
   serviceCall({
@@ -218,7 +221,7 @@ globalThis.toggleMediaPlayer = (
 export interface VolumeUpMediaPlayerProps {}
 
 globalThis.volumeUpMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: VolumeUpMediaPlayerProps,
 ) =>
   serviceCall({
@@ -234,7 +237,7 @@ globalThis.volumeUpMediaPlayer = (
 export interface VolumeDownMediaPlayerProps {}
 
 globalThis.volumeDownMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: VolumeDownMediaPlayerProps,
 ) =>
   serviceCall({
@@ -250,7 +253,7 @@ globalThis.volumeDownMediaPlayer = (
 export interface MediaPlayPauseMediaPlayerProps {}
 
 globalThis.mediaPlayPauseMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaPlayPauseMediaPlayerProps,
 ) =>
   serviceCall({
@@ -266,7 +269,7 @@ globalThis.mediaPlayPauseMediaPlayer = (
 export interface MediaPlayMediaPlayerProps {}
 
 globalThis.mediaPlayMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaPlayMediaPlayerProps,
 ) =>
   serviceCall({
@@ -282,7 +285,7 @@ globalThis.mediaPlayMediaPlayer = (
 export interface MediaPauseMediaPlayerProps {}
 
 globalThis.mediaPauseMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaPauseMediaPlayerProps,
 ) =>
   serviceCall({
@@ -298,7 +301,7 @@ globalThis.mediaPauseMediaPlayer = (
 export interface MediaStopMediaPlayerProps {}
 
 globalThis.mediaStopMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaStopMediaPlayerProps,
 ) =>
   serviceCall({
@@ -314,7 +317,7 @@ globalThis.mediaStopMediaPlayer = (
 export interface MediaNextTrackMediaPlayerProps {}
 
 globalThis.mediaNextTrackMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaNextTrackMediaPlayerProps,
 ) =>
   serviceCall({
@@ -330,7 +333,7 @@ globalThis.mediaNextTrackMediaPlayer = (
 export interface MediaPreviousTrackMediaPlayerProps {}
 
 globalThis.mediaPreviousTrackMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: MediaPreviousTrackMediaPlayerProps,
 ) =>
   serviceCall({
@@ -346,7 +349,7 @@ globalThis.mediaPreviousTrackMediaPlayer = (
 export interface ClearPlaylistMediaPlayerProps {}
 
 globalThis.clearPlaylistMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: ClearPlaylistMediaPlayerProps,
 ) =>
   serviceCall({
@@ -367,7 +370,7 @@ export interface VolumeSetMediaPlayerProps {
 }
 
 globalThis.volumeSetMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: VolumeSetMediaPlayerProps,
 ) =>
   serviceCall({
@@ -388,7 +391,7 @@ export interface VolumeMuteMediaPlayerProps {
 }
 
 globalThis.volumeMuteMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: VolumeMuteMediaPlayerProps,
 ) =>
   serviceCall({
@@ -409,7 +412,7 @@ export interface MediaSeekMediaPlayerProps {
 }
 
 globalThis.mediaSeekMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: MediaSeekMediaPlayerProps,
 ) =>
   serviceCall({
@@ -429,7 +432,10 @@ export interface JoinMediaPlayerProps {
   group_members: string;
 }
 
-globalThis.joinMediaPlayer = (target: ITarget, params: JoinMediaPlayerProps) =>
+globalThis.joinMediaPlayer = (
+  target: IEntity<`media_player.${string}`> | IArea,
+  params: JoinMediaPlayerProps,
+) =>
   serviceCall({
     name: `Call media_player.join`,
     params: {
@@ -448,7 +454,7 @@ export interface SelectSourceMediaPlayerProps {
 }
 
 globalThis.selectSourceMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: SelectSourceMediaPlayerProps,
 ) =>
   serviceCall({
@@ -469,7 +475,7 @@ export interface SelectSoundModeMediaPlayerProps {
 }
 
 globalThis.selectSoundModeMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: SelectSoundModeMediaPlayerProps,
 ) =>
   serviceCall({
@@ -502,7 +508,7 @@ export interface PlayMediaMediaPlayerProps {
 }
 
 globalThis.playMediaMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: PlayMediaMediaPlayerProps,
 ) =>
   serviceCall({
@@ -527,7 +533,7 @@ export interface BrowseMediaMediaPlayerProps {
 }
 
 globalThis.browseMediaMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: BrowseMediaMediaPlayerProps,
 ) =>
   serviceCall({
@@ -560,7 +566,7 @@ export interface SearchMediaMediaPlayerProps {
 }
 
 globalThis.searchMediaMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: SearchMediaMediaPlayerProps,
 ) =>
   serviceCall({
@@ -581,7 +587,7 @@ export interface ShuffleSetMediaPlayerProps {
 }
 
 globalThis.shuffleSetMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: ShuffleSetMediaPlayerProps,
 ) =>
   serviceCall({
@@ -597,7 +603,7 @@ globalThis.shuffleSetMediaPlayer = (
 export interface UnjoinMediaPlayerProps {}
 
 globalThis.unjoinMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params?: UnjoinMediaPlayerProps,
 ) =>
   serviceCall({
@@ -618,7 +624,7 @@ export interface RepeatSetMediaPlayerProps {
 }
 
 globalThis.repeatSetMediaPlayer = (
-  target: ITarget,
+  target: IEntity<`media_player.${string}`> | IArea,
   params: RepeatSetMediaPlayerProps,
 ) =>
   serviceCall({

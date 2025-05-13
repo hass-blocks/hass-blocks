@@ -1,17 +1,26 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Turns on one or more lights and adjusts their properties, even when they are turned on already.
    */
-  var turnOnLight: (target: ITarget, params?: TurnOnLightProps) => Block;
+  var turnOnLight: (
+    target: IEntity<`light.${string}`> | IArea,
+    params?: TurnOnLightProps,
+  ) => Block;
   /**
    * Turns off one or more lights.
    */
-  var turnOffLight: (target: ITarget, params?: TurnOffLightProps) => Block;
+  var turnOffLight: (
+    target: IEntity<`light.${string}`> | IArea,
+    params?: TurnOffLightProps,
+  ) => Block;
   /**
    * Toggles one or more lights, from on to off, or off to on, based on their current state.
    */
-  var toggleLight: (target: ITarget, params?: ToggleLightProps) => Block;
+  var toggleLight: (
+    target: IEntity<`light.${string}`> | IArea,
+    params?: ToggleLightProps,
+  ) => Block;
 }
 
 export interface TurnOnLightProps {
@@ -42,7 +51,10 @@ export interface TurnOnLightProps {
   advanced_fields?: never;
 }
 
-globalThis.turnOnLight = (target: ITarget, params?: TurnOnLightProps) =>
+globalThis.turnOnLight = (
+  target: IEntity<`light.${string}`> | IArea,
+  params?: TurnOnLightProps,
+) =>
   serviceCall({
     name: `Call light.turn_on`,
     params: {
@@ -61,7 +73,10 @@ export interface TurnOffLightProps {
   advanced_fields?: never;
 }
 
-globalThis.turnOffLight = (target: ITarget, params?: TurnOffLightProps) =>
+globalThis.turnOffLight = (
+  target: IEntity<`light.${string}`> | IArea,
+  params?: TurnOffLightProps,
+) =>
   serviceCall({
     name: `Call light.turn_off`,
     params: {
@@ -96,7 +111,10 @@ export interface ToggleLightProps {
   advanced_fields?: never;
 }
 
-globalThis.toggleLight = (target: ITarget, params?: ToggleLightProps) =>
+globalThis.toggleLight = (
+  target: IEntity<`light.${string}`> | IArea,
+  params?: ToggleLightProps,
+) =>
   serviceCall({
     name: `Call light.toggle`,
     params: {

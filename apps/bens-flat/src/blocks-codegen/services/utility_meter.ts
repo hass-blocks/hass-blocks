@@ -1,17 +1,17 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Resets all counters of a utility meter.
    */
   var resetUtilityMeter: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params?: ResetUtilityMeterProps,
   ) => Block;
   /**
    * Calibrates a utility meter sensor.
    */
   var calibrateUtilityMeter: (
-    target: ITarget,
+    target: IEntity<`sensor.${string}`> | IArea,
     params: CalibrateUtilityMeterProps,
   ) => Block;
 }
@@ -19,7 +19,7 @@ declare global {
 export interface ResetUtilityMeterProps {}
 
 globalThis.resetUtilityMeter = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params?: ResetUtilityMeterProps,
 ) =>
   serviceCall({
@@ -40,7 +40,7 @@ export interface CalibrateUtilityMeterProps {
 }
 
 globalThis.calibrateUtilityMeter = (
-  target: ITarget,
+  target: IEntity<`sensor.${string}`> | IArea,
   params: CalibrateUtilityMeterProps,
 ) =>
   serviceCall({

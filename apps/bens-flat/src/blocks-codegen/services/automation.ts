@@ -1,37 +1,37 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Triggers the actions of an automation.
    */
   var triggerAutomation: (
-    target: ITarget,
+    target: IEntity<`automation.${string}`> | IArea,
     params?: TriggerAutomationProps,
   ) => Block;
   /**
    * Toggles (enable / disable) an automation.
    */
   var toggleAutomation: (
-    target: ITarget,
+    target: IEntity<`automation.${string}`> | IArea,
     params?: ToggleAutomationProps,
   ) => Block;
   /**
    * Enables an automation.
    */
   var turnOnAutomation: (
-    target: ITarget,
+    target: IEntity<`automation.${string}`> | IArea,
     params?: TurnOnAutomationProps,
   ) => Block;
   /**
    * Disables an automation.
    */
   var turnOffAutomation: (
-    target: ITarget,
+    target: IEntity<`automation.${string}`> | IArea,
     params?: TurnOffAutomationProps,
   ) => Block;
   /**
    * Reloads the automation configuration.
    */
-  var reloadAutomation: (target: ITarget) => Block;
+  var reloadAutomation: () => Block;
 }
 
 export interface TriggerAutomationProps {
@@ -42,7 +42,7 @@ export interface TriggerAutomationProps {
 }
 
 globalThis.triggerAutomation = (
-  target: ITarget,
+  target: IEntity<`automation.${string}`> | IArea,
   params?: TriggerAutomationProps,
 ) =>
   serviceCall({
@@ -58,7 +58,7 @@ globalThis.triggerAutomation = (
 export interface ToggleAutomationProps {}
 
 globalThis.toggleAutomation = (
-  target: ITarget,
+  target: IEntity<`automation.${string}`> | IArea,
   params?: ToggleAutomationProps,
 ) =>
   serviceCall({
@@ -74,7 +74,7 @@ globalThis.toggleAutomation = (
 export interface TurnOnAutomationProps {}
 
 globalThis.turnOnAutomation = (
-  target: ITarget,
+  target: IEntity<`automation.${string}`> | IArea,
   params?: TurnOnAutomationProps,
 ) =>
   serviceCall({
@@ -95,7 +95,7 @@ export interface TurnOffAutomationProps {
 }
 
 globalThis.turnOffAutomation = (
-  target: ITarget,
+  target: IEntity<`automation.${string}`> | IArea,
   params?: TurnOffAutomationProps,
 ) =>
   serviceCall({
@@ -108,7 +108,7 @@ globalThis.turnOffAutomation = (
     target,
   });
 
-globalThis.reloadAutomation = (target: ITarget) =>
+globalThis.reloadAutomation = () =>
   serviceCall({
     name: `Call automation.reload`,
     params: {

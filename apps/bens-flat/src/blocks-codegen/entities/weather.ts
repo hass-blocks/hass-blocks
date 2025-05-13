@@ -1,7 +1,7 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var forecastHomeWeather: ITarget;
+  var forecastHomeWeather: IEntity<`weather.${string}`>;
 }
 
 globalThis.forecastHomeWeather = entity('weather.forecast_home');

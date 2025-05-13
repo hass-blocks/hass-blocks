@@ -1,19 +1,19 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var inboxTodo: ITarget;
-  var personalTodo: ITarget;
-  var workTodo: ITarget;
-  var errandsTodo: ITarget;
-  var shoppingTodo: ITarget;
-  var moviesToWatchTodo: ITarget;
-  var stayInTouchTodo: ITarget;
-  var fitnessTodo: ITarget;
-  var selfCareTodo: ITarget;
-  var adminTodo: ITarget;
-  var healthTodo: ITarget;
-  var automationTodo: ITarget;
-  var socialTodo: ITarget;
+  var inboxTodo: IEntity<`todo.${string}`>;
+  var personalTodo: IEntity<`todo.${string}`>;
+  var workTodo: IEntity<`todo.${string}`>;
+  var errandsTodo: IEntity<`todo.${string}`>;
+  var shoppingTodo: IEntity<`todo.${string}`>;
+  var moviesToWatchTodo: IEntity<`todo.${string}`>;
+  var stayInTouchTodo: IEntity<`todo.${string}`>;
+  var fitnessTodo: IEntity<`todo.${string}`>;
+  var selfCareTodo: IEntity<`todo.${string}`>;
+  var adminTodo: IEntity<`todo.${string}`>;
+  var healthTodo: IEntity<`todo.${string}`>;
+  var automationTodo: IEntity<`todo.${string}`>;
+  var socialTodo: IEntity<`todo.${string}`>;
 }
 
 globalThis.inboxTodo = entity('todo.inbox');

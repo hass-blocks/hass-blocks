@@ -1,40 +1,40 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Removes external statistics for all meters that don't have an active tariff
    */
-  var purgeInvalidExternalStatisticIdsOctopusEnergy: (target: ITarget) => Block;
+  var purgeInvalidExternalStatisticIdsOctopusEnergy: () => Block;
   /**
    * Joins a given Octoplus saving session event.
    */
   var joinOctoplusSavingSessionEventOctopusEnergy: (
-    target: ITarget,
+    target: IEntity<`event.${string}`> | IArea,
     params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
   ) => Block;
   /**
    * Refreshes the previous consumption data for a given entity from a given date.
    */
   var refreshPreviousConsumptionDataOctopusEnergy: (
-    target: ITarget,
+    target: IEntity<`sensor.${string}`> | IArea,
     params: RefreshPreviousConsumptionDataOctopusEnergyProps,
   ) => Block;
   /**
    * Spins the wheel of fortune for a given energy type
    */
   var spinWheelOfFortuneOctopusEnergy: (
-    target: ITarget,
+    target: IEntity<`sensor.${string}`> | IArea,
     params?: SpinWheelOfFortuneOctopusEnergyProps,
   ) => Block;
   /**
    * Registers external weightings against rates, for use with target rate sensors when calculating target periods.
    */
   var registerRateWeightingsOctopusEnergy: (
-    target: ITarget,
+    target: IEntity<`sensor.${string}`> | IArea,
     params?: RegisterRateWeightingsOctopusEnergyProps,
   ) => Block;
 }
 
-globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = (target: ITarget) =>
+globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = () =>
   serviceCall({
     name: `Call octopus_energy.purge_invalid_external_statistic_ids`,
     params: {
@@ -51,7 +51,7 @@ export interface JoinOctoplusSavingSessionEventOctopusEnergyProps {
 }
 
 globalThis.joinOctoplusSavingSessionEventOctopusEnergy = (
-  target: ITarget,
+  target: IEntity<`event.${string}`> | IArea,
   params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
 ) =>
   serviceCall({
@@ -72,7 +72,7 @@ export interface RefreshPreviousConsumptionDataOctopusEnergyProps {
 }
 
 globalThis.refreshPreviousConsumptionDataOctopusEnergy = (
-  target: ITarget,
+  target: IEntity<`sensor.${string}`> | IArea,
   params: RefreshPreviousConsumptionDataOctopusEnergyProps,
 ) =>
   serviceCall({
@@ -88,7 +88,7 @@ globalThis.refreshPreviousConsumptionDataOctopusEnergy = (
 export interface SpinWheelOfFortuneOctopusEnergyProps {}
 
 globalThis.spinWheelOfFortuneOctopusEnergy = (
-  target: ITarget,
+  target: IEntity<`sensor.${string}`> | IArea,
   params?: SpinWheelOfFortuneOctopusEnergyProps,
 ) =>
   serviceCall({
@@ -109,7 +109,7 @@ export interface RegisterRateWeightingsOctopusEnergyProps {
 }
 
 globalThis.registerRateWeightingsOctopusEnergy = (
-  target: ITarget,
+  target: IEntity<`sensor.${string}`> | IArea,
   params?: RegisterRateWeightingsOctopusEnergyProps,
 ) =>
   serviceCall({

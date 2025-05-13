@@ -1,10 +1,10 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var benWainwrightPerson: ITarget;
-  var mumPerson: ITarget;
-  var dadPerson: ITarget;
-  var tomPerson: ITarget;
+  var benWainwrightPerson: IEntity<`person.${string}`>;
+  var mumPerson: IEntity<`person.${string}`>;
+  var dadPerson: IEntity<`person.${string}`>;
+  var tomPerson: IEntity<`person.${string}`>;
 }
 
 globalThis.benWainwrightPerson = entity('person.ben_wainwright');

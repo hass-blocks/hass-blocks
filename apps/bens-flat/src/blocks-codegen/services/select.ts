@@ -1,38 +1,38 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Selects the first option.
    */
   var selectFirstSelect: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params?: SelectFirstSelectProps,
   ) => Block;
   /**
    * Selects the last option.
    */
   var selectLastSelect: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params?: SelectLastSelectProps,
   ) => Block;
   /**
    * Selects the next option.
    */
   var selectNextSelect: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params?: SelectNextSelectProps,
   ) => Block;
   /**
    * Selects an option.
    */
   var selectOptionSelect: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params: SelectOptionSelectProps,
   ) => Block;
   /**
    * Selects the previous option.
    */
   var selectPreviousSelect: (
-    target: ITarget,
+    target: IEntity<`select.${string}`> | IArea,
     params?: SelectPreviousSelectProps,
   ) => Block;
 }
@@ -40,7 +40,7 @@ declare global {
 export interface SelectFirstSelectProps {}
 
 globalThis.selectFirstSelect = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params?: SelectFirstSelectProps,
 ) =>
   serviceCall({
@@ -56,7 +56,7 @@ globalThis.selectFirstSelect = (
 export interface SelectLastSelectProps {}
 
 globalThis.selectLastSelect = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params?: SelectLastSelectProps,
 ) =>
   serviceCall({
@@ -77,7 +77,7 @@ export interface SelectNextSelectProps {
 }
 
 globalThis.selectNextSelect = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params?: SelectNextSelectProps,
 ) =>
   serviceCall({
@@ -98,7 +98,7 @@ export interface SelectOptionSelectProps {
 }
 
 globalThis.selectOptionSelect = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params: SelectOptionSelectProps,
 ) =>
   serviceCall({
@@ -119,7 +119,7 @@ export interface SelectPreviousSelectProps {
 }
 
 globalThis.selectPreviousSelect = (
-  target: ITarget,
+  target: IEntity<`select.${string}`> | IArea,
   params?: SelectPreviousSelectProps,
 ) =>
   serviceCall({

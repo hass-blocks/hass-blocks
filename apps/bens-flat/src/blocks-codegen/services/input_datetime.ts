@@ -1,19 +1,19 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputDatetime: (target: ITarget) => Block;
+  var reloadInputDatetime: () => Block;
   /**
    * Sets the date and/or time.
    */
   var setDatetimeInputDatetime: (
-    target: ITarget,
+    target: IEntity<`input_datetime.${string}`> | IArea,
     params?: SetDatetimeInputDatetimeProps,
   ) => Block;
 }
 
-globalThis.reloadInputDatetime = (target: ITarget) =>
+globalThis.reloadInputDatetime = () =>
   serviceCall({
     name: `Call input_datetime.reload`,
     params: {
@@ -42,7 +42,7 @@ export interface SetDatetimeInputDatetimeProps {
 }
 
 globalThis.setDatetimeInputDatetime = (
-  target: ITarget,
+  target: IEntity<`input_datetime.${string}`> | IArea,
   params?: SetDatetimeInputDatetimeProps,
 ) =>
   serviceCall({

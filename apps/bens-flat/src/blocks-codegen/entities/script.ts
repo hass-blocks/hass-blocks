@@ -1,18 +1,18 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var turnTvOnScript: ITarget;
-  var turnTvModeOnScript: ITarget;
-  var boostBoilerScript: ITarget;
-  var updateAllHacsItemsScript: ITarget;
-  var todoListScript: ITarget;
-  var openAiTtsScript: ITarget;
-  var readTodaySCalendarScript: ITarget;
-  var goodMorningRoutineScript: ITarget;
-  var turnEverythingOff_2Script: ITarget;
-  var dismissWelcomeMessageScript: ITarget;
-  var groupSpeakersScript: ITarget;
-  var unjoinSpeakersScript: ITarget;
+  var turnTvOnScript: IEntity<`script.${string}`>;
+  var turnTvModeOnScript: IEntity<`script.${string}`>;
+  var boostBoilerScript: IEntity<`script.${string}`>;
+  var updateAllHacsItemsScript: IEntity<`script.${string}`>;
+  var todoListScript: IEntity<`script.${string}`>;
+  var openAiTtsScript: IEntity<`script.${string}`>;
+  var readTodaySCalendarScript: IEntity<`script.${string}`>;
+  var goodMorningRoutineScript: IEntity<`script.${string}`>;
+  var turnEverythingOff_2Script: IEntity<`script.${string}`>;
+  var dismissWelcomeMessageScript: IEntity<`script.${string}`>;
+  var groupSpeakersScript: IEntity<`script.${string}`>;
+  var unjoinSpeakersScript: IEntity<`script.${string}`>;
 }
 
 globalThis.turnTvOnScript = entity('script.turn_tv_on');

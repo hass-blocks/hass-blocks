@@ -1,38 +1,38 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Turns the humidifier on.
    */
   var turnOnHumidifier: (
-    target: ITarget,
+    target: IEntity<`humidifier.${string}`> | IArea,
     params?: TurnOnHumidifierProps,
   ) => Block;
   /**
    * Turns the humidifier off.
    */
   var turnOffHumidifier: (
-    target: ITarget,
+    target: IEntity<`humidifier.${string}`> | IArea,
     params?: TurnOffHumidifierProps,
   ) => Block;
   /**
    * Toggles the humidifier on/off.
    */
   var toggleHumidifier: (
-    target: ITarget,
+    target: IEntity<`humidifier.${string}`> | IArea,
     params?: ToggleHumidifierProps,
   ) => Block;
   /**
    * Sets the humidifier operation mode.
    */
   var setModeHumidifier: (
-    target: ITarget,
+    target: IEntity<`humidifier.${string}`> | IArea,
     params: SetModeHumidifierProps,
   ) => Block;
   /**
    * Sets the target humidity.
    */
   var setHumidityHumidifier: (
-    target: ITarget,
+    target: IEntity<`humidifier.${string}`> | IArea,
     params: SetHumidityHumidifierProps,
   ) => Block;
 }
@@ -40,7 +40,7 @@ declare global {
 export interface TurnOnHumidifierProps {}
 
 globalThis.turnOnHumidifier = (
-  target: ITarget,
+  target: IEntity<`humidifier.${string}`> | IArea,
   params?: TurnOnHumidifierProps,
 ) =>
   serviceCall({
@@ -56,7 +56,7 @@ globalThis.turnOnHumidifier = (
 export interface TurnOffHumidifierProps {}
 
 globalThis.turnOffHumidifier = (
-  target: ITarget,
+  target: IEntity<`humidifier.${string}`> | IArea,
   params?: TurnOffHumidifierProps,
 ) =>
   serviceCall({
@@ -72,7 +72,7 @@ globalThis.turnOffHumidifier = (
 export interface ToggleHumidifierProps {}
 
 globalThis.toggleHumidifier = (
-  target: ITarget,
+  target: IEntity<`humidifier.${string}`> | IArea,
   params?: ToggleHumidifierProps,
 ) =>
   serviceCall({
@@ -93,7 +93,7 @@ export interface SetModeHumidifierProps {
 }
 
 globalThis.setModeHumidifier = (
-  target: ITarget,
+  target: IEntity<`humidifier.${string}`> | IArea,
   params: SetModeHumidifierProps,
 ) =>
   serviceCall({
@@ -114,7 +114,7 @@ export interface SetHumidityHumidifierProps {
 }
 
 globalThis.setHumidityHumidifier = (
-  target: ITarget,
+  target: IEntity<`humidifier.${string}`> | IArea,
   params: SetHumidityHumidifierProps,
 ) =>
   serviceCall({

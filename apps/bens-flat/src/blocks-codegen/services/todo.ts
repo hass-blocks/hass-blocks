@@ -1,26 +1,38 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Adds a new to-do list item.
    */
-  var addItemTodo: (target: ITarget, params: AddItemTodoProps) => Block;
+  var addItemTodo: (
+    target: IEntity<`todo.${string}`> | IArea,
+    params: AddItemTodoProps,
+  ) => Block;
   /**
    * Updates an existing to-do list item based on its name or UID.
    */
-  var updateItemTodo: (target: ITarget, params: UpdateItemTodoProps) => Block;
+  var updateItemTodo: (
+    target: IEntity<`todo.${string}`> | IArea,
+    params: UpdateItemTodoProps,
+  ) => Block;
   /**
    * Removes an existing to-do list item by its name or UID.
    */
-  var removeItemTodo: (target: ITarget, params: RemoveItemTodoProps) => Block;
+  var removeItemTodo: (
+    target: IEntity<`todo.${string}`> | IArea,
+    params: RemoveItemTodoProps,
+  ) => Block;
   /**
    * Gets items on a to-do list.
    */
-  var getItemsTodo: (target: ITarget, params?: GetItemsTodoProps) => Block;
+  var getItemsTodo: (
+    target: IEntity<`todo.${string}`> | IArea,
+    params?: GetItemsTodoProps,
+  ) => Block;
   /**
    * Removes all to-do list items that have been completed.
    */
   var removeCompletedItemsTodo: (
-    target: ITarget,
+    target: IEntity<`todo.${string}`> | IArea,
     params?: RemoveCompletedItemsTodoProps,
   ) => Block;
 }
@@ -44,7 +56,10 @@ export interface AddItemTodoProps {
   description?: string;
 }
 
-globalThis.addItemTodo = (target: ITarget, params: AddItemTodoProps) =>
+globalThis.addItemTodo = (
+  target: IEntity<`todo.${string}`> | IArea,
+  params: AddItemTodoProps,
+) =>
   serviceCall({
     name: `Call todo.add_item`,
     params: {
@@ -82,7 +97,10 @@ export interface UpdateItemTodoProps {
   description?: string;
 }
 
-globalThis.updateItemTodo = (target: ITarget, params: UpdateItemTodoProps) =>
+globalThis.updateItemTodo = (
+  target: IEntity<`todo.${string}`> | IArea,
+  params: UpdateItemTodoProps,
+) =>
   serviceCall({
     name: `Call todo.update_item`,
     params: {
@@ -100,7 +118,10 @@ export interface RemoveItemTodoProps {
   item: string;
 }
 
-globalThis.removeItemTodo = (target: ITarget, params: RemoveItemTodoProps) =>
+globalThis.removeItemTodo = (
+  target: IEntity<`todo.${string}`> | IArea,
+  params: RemoveItemTodoProps,
+) =>
   serviceCall({
     name: `Call todo.remove_item`,
     params: {
@@ -118,7 +139,10 @@ export interface GetItemsTodoProps {
   status?: never;
 }
 
-globalThis.getItemsTodo = (target: ITarget, params?: GetItemsTodoProps) =>
+globalThis.getItemsTodo = (
+  target: IEntity<`todo.${string}`> | IArea,
+  params?: GetItemsTodoProps,
+) =>
   serviceCall({
     name: `Call todo.get_items`,
     params: {
@@ -132,7 +156,7 @@ globalThis.getItemsTodo = (target: ITarget, params?: GetItemsTodoProps) =>
 export interface RemoveCompletedItemsTodoProps {}
 
 globalThis.removeCompletedItemsTodo = (
-  target: ITarget,
+  target: IEntity<`todo.${string}`> | IArea,
   params?: RemoveCompletedItemsTodoProps,
 ) =>
   serviceCall({

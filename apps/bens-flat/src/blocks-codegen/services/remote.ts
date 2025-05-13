@@ -1,43 +1,55 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Sends the turn off command.
    */
-  var turnOffRemote: (target: ITarget, params?: TurnOffRemoteProps) => Block;
+  var turnOffRemote: (
+    target: IEntity<`remote.${string}`> | IArea,
+    params?: TurnOffRemoteProps,
+  ) => Block;
   /**
    * Sends the turn on command.
    */
-  var turnOnRemote: (target: ITarget, params?: TurnOnRemoteProps) => Block;
+  var turnOnRemote: (
+    target: IEntity<`remote.${string}`> | IArea,
+    params?: TurnOnRemoteProps,
+  ) => Block;
   /**
    * Sends the toggle command.
    */
-  var toggleRemote: (target: ITarget, params?: ToggleRemoteProps) => Block;
+  var toggleRemote: (
+    target: IEntity<`remote.${string}`> | IArea,
+    params?: ToggleRemoteProps,
+  ) => Block;
   /**
    * Sends a command or a list of commands to a device.
    */
   var sendCommandRemote: (
-    target: ITarget,
+    target: IEntity<`remote.${string}`> | IArea,
     params: SendCommandRemoteProps,
   ) => Block;
   /**
    * Learns a command or a list of commands from a device.
    */
   var learnCommandRemote: (
-    target: ITarget,
+    target: IEntity<`remote.${string}`> | IArea,
     params?: LearnCommandRemoteProps,
   ) => Block;
   /**
    * Deletes a command or a list of commands from the database.
    */
   var deleteCommandRemote: (
-    target: ITarget,
+    target: IEntity<`remote.${string}`> | IArea,
     params: DeleteCommandRemoteProps,
   ) => Block;
 }
 
 export interface TurnOffRemoteProps {}
 
-globalThis.turnOffRemote = (target: ITarget, params?: TurnOffRemoteProps) =>
+globalThis.turnOffRemote = (
+  target: IEntity<`remote.${string}`> | IArea,
+  params?: TurnOffRemoteProps,
+) =>
   serviceCall({
     name: `Call remote.turn_off`,
     params: {
@@ -55,7 +67,10 @@ export interface TurnOnRemoteProps {
   activity?: string;
 }
 
-globalThis.turnOnRemote = (target: ITarget, params?: TurnOnRemoteProps) =>
+globalThis.turnOnRemote = (
+  target: IEntity<`remote.${string}`> | IArea,
+  params?: TurnOnRemoteProps,
+) =>
   serviceCall({
     name: `Call remote.turn_on`,
     params: {
@@ -68,7 +83,10 @@ globalThis.turnOnRemote = (target: ITarget, params?: TurnOnRemoteProps) =>
 
 export interface ToggleRemoteProps {}
 
-globalThis.toggleRemote = (target: ITarget, params?: ToggleRemoteProps) =>
+globalThis.toggleRemote = (
+  target: IEntity<`remote.${string}`> | IArea,
+  params?: ToggleRemoteProps,
+) =>
   serviceCall({
     name: `Call remote.toggle`,
     params: {
@@ -103,7 +121,7 @@ export interface SendCommandRemoteProps {
 }
 
 globalThis.sendCommandRemote = (
-  target: ITarget,
+  target: IEntity<`remote.${string}`> | IArea,
   params: SendCommandRemoteProps,
 ) =>
   serviceCall({
@@ -140,7 +158,7 @@ export interface LearnCommandRemoteProps {
 }
 
 globalThis.learnCommandRemote = (
-  target: ITarget,
+  target: IEntity<`remote.${string}`> | IArea,
   params?: LearnCommandRemoteProps,
 ) =>
   serviceCall({
@@ -165,7 +183,7 @@ export interface DeleteCommandRemoteProps {
 }
 
 globalThis.deleteCommandRemote = (
-  target: ITarget,
+  target: IEntity<`remote.${string}`> | IArea,
   params: DeleteCommandRemoteProps,
 ) =>
   serviceCall({

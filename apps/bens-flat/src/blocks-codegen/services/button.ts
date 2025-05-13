@@ -1,14 +1,20 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Press the button entity.
    */
-  var pressButton: (target: ITarget, params?: PressButtonProps) => Block;
+  var pressButton: (
+    target: IEntity<`button.${string}`> | IArea,
+    params?: PressButtonProps,
+  ) => Block;
 }
 
 export interface PressButtonProps {}
 
-globalThis.pressButton = (target: ITarget, params?: PressButtonProps) =>
+globalThis.pressButton = (
+  target: IEntity<`button.${string}`> | IArea,
+  params?: PressButtonProps,
+) =>
   serviceCall({
     name: `Call button.press`,
     params: {

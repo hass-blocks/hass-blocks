@@ -1,52 +1,52 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Disarms the alarm.
    */
   var alarmDisarmAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmDisarmAlarmControlPanelProps,
   ) => Block;
   /**
    * Arms the alarm in the home mode.
    */
   var alarmArmHomeAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmHomeAlarmControlPanelProps,
   ) => Block;
   /**
    * Arms the alarm in the away mode.
    */
   var alarmArmAwayAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmAwayAlarmControlPanelProps,
   ) => Block;
   /**
    * Arms the alarm in the night mode.
    */
   var alarmArmNightAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmNightAlarmControlPanelProps,
   ) => Block;
   /**
    * Arms the alarm in the vacation mode.
    */
   var alarmArmVacationAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmVacationAlarmControlPanelProps,
   ) => Block;
   /**
    * Arms the alarm while allowing to bypass a custom area.
    */
   var alarmArmCustomBypassAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmCustomBypassAlarmControlPanelProps,
   ) => Block;
   /**
    * Triggers the alarm manually.
    */
   var alarmTriggerAlarmControlPanel: (
-    target: ITarget,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmTriggerAlarmControlPanelProps,
   ) => Block;
 }
@@ -59,7 +59,7 @@ export interface AlarmDisarmAlarmControlPanelProps {
 }
 
 globalThis.alarmDisarmAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmDisarmAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -80,7 +80,7 @@ export interface AlarmArmHomeAlarmControlPanelProps {
 }
 
 globalThis.alarmArmHomeAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmArmHomeAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -101,7 +101,7 @@ export interface AlarmArmAwayAlarmControlPanelProps {
 }
 
 globalThis.alarmArmAwayAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmArmAwayAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -122,7 +122,7 @@ export interface AlarmArmNightAlarmControlPanelProps {
 }
 
 globalThis.alarmArmNightAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmArmNightAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -143,7 +143,7 @@ export interface AlarmArmVacationAlarmControlPanelProps {
 }
 
 globalThis.alarmArmVacationAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmArmVacationAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -164,7 +164,7 @@ export interface AlarmArmCustomBypassAlarmControlPanelProps {
 }
 
 globalThis.alarmArmCustomBypassAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmArmCustomBypassAlarmControlPanelProps,
 ) =>
   serviceCall({
@@ -185,7 +185,7 @@ export interface AlarmTriggerAlarmControlPanelProps {
 }
 
 globalThis.alarmTriggerAlarmControlPanel = (
-  target: ITarget,
+  target: IEntity<`alarm_control_panel.${string}`> | IArea,
   params?: AlarmTriggerAlarmControlPanelProps,
 ) =>
   serviceCall({

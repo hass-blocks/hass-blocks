@@ -1,33 +1,33 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputBoolean: (target: ITarget) => Block;
+  var reloadInputBoolean: () => Block;
   /**
    * Turns on the helper.
    */
   var turnOnInputBoolean: (
-    target: ITarget,
+    target: IEntity<`input_boolean.${string}`> | IArea,
     params?: TurnOnInputBooleanProps,
   ) => Block;
   /**
    * Turns off the helper.
    */
   var turnOffInputBoolean: (
-    target: ITarget,
+    target: IEntity<`input_boolean.${string}`> | IArea,
     params?: TurnOffInputBooleanProps,
   ) => Block;
   /**
    * Toggles the helper on/off.
    */
   var toggleInputBoolean: (
-    target: ITarget,
+    target: IEntity<`input_boolean.${string}`> | IArea,
     params?: ToggleInputBooleanProps,
   ) => Block;
 }
 
-globalThis.reloadInputBoolean = (target: ITarget) =>
+globalThis.reloadInputBoolean = () =>
   serviceCall({
     name: `Call input_boolean.reload`,
     params: {
@@ -39,7 +39,7 @@ globalThis.reloadInputBoolean = (target: ITarget) =>
 export interface TurnOnInputBooleanProps {}
 
 globalThis.turnOnInputBoolean = (
-  target: ITarget,
+  target: IEntity<`input_boolean.${string}`> | IArea,
   params?: TurnOnInputBooleanProps,
 ) =>
   serviceCall({
@@ -55,7 +55,7 @@ globalThis.turnOnInputBoolean = (
 export interface TurnOffInputBooleanProps {}
 
 globalThis.turnOffInputBoolean = (
-  target: ITarget,
+  target: IEntity<`input_boolean.${string}`> | IArea,
   params?: TurnOffInputBooleanProps,
 ) =>
   serviceCall({
@@ -71,7 +71,7 @@ globalThis.turnOffInputBoolean = (
 export interface ToggleInputBooleanProps {}
 
 globalThis.toggleInputBoolean = (
-  target: ITarget,
+  target: IEntity<`input_boolean.${string}`> | IArea,
   params?: ToggleInputBooleanProps,
 ) =>
   serviceCall({

@@ -1,54 +1,69 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Starts or resumes the cleaning task.
    */
-  var startVacuum: (target: ITarget, params?: StartVacuumProps) => Block;
+  var startVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+    params?: StartVacuumProps,
+  ) => Block;
   /**
    * Pauses the cleaning task.
    */
-  var pauseVacuum: (target: ITarget, params?: PauseVacuumProps) => Block;
+  var pauseVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+    params?: PauseVacuumProps,
+  ) => Block;
   /**
    * Tells the vacuum cleaner to return to its dock.
    */
   var returnToBaseVacuum: (
-    target: ITarget,
+    target: IEntity<`vacuum.${string}`> | IArea,
     params?: ReturnToBaseVacuumProps,
   ) => Block;
   /**
    * Tells the vacuum cleaner to do a spot clean-up.
    */
   var cleanSpotVacuum: (
-    target: ITarget,
+    target: IEntity<`vacuum.${string}`> | IArea,
     params?: CleanSpotVacuumProps,
   ) => Block;
   /**
    * Locates the vacuum cleaner robot.
    */
-  var locateVacuum: (target: ITarget, params?: LocateVacuumProps) => Block;
+  var locateVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+    params?: LocateVacuumProps,
+  ) => Block;
   /**
    * Stops the current cleaning task.
    */
-  var stopVacuum: (target: ITarget, params?: StopVacuumProps) => Block;
+  var stopVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+    params?: StopVacuumProps,
+  ) => Block;
   /**
    * Sets the fan speed of the vacuum cleaner.
    */
   var setFanSpeedVacuum: (
-    target: ITarget,
+    target: IEntity<`vacuum.${string}`> | IArea,
     params: SetFanSpeedVacuumProps,
   ) => Block;
   /**
    * Sends a command to the vacuum cleaner.
    */
   var sendCommandVacuum: (
-    target: ITarget,
+    target: IEntity<`vacuum.${string}`> | IArea,
     params: SendCommandVacuumProps,
   ) => Block;
 }
 
 export interface StartVacuumProps {}
 
-globalThis.startVacuum = (target: ITarget, params?: StartVacuumProps) =>
+globalThis.startVacuum = (
+  target: IEntity<`vacuum.${string}`> | IArea,
+  params?: StartVacuumProps,
+) =>
   serviceCall({
     name: `Call vacuum.start`,
     params: {
@@ -61,7 +76,10 @@ globalThis.startVacuum = (target: ITarget, params?: StartVacuumProps) =>
 
 export interface PauseVacuumProps {}
 
-globalThis.pauseVacuum = (target: ITarget, params?: PauseVacuumProps) =>
+globalThis.pauseVacuum = (
+  target: IEntity<`vacuum.${string}`> | IArea,
+  params?: PauseVacuumProps,
+) =>
   serviceCall({
     name: `Call vacuum.pause`,
     params: {
@@ -75,7 +93,7 @@ globalThis.pauseVacuum = (target: ITarget, params?: PauseVacuumProps) =>
 export interface ReturnToBaseVacuumProps {}
 
 globalThis.returnToBaseVacuum = (
-  target: ITarget,
+  target: IEntity<`vacuum.${string}`> | IArea,
   params?: ReturnToBaseVacuumProps,
 ) =>
   serviceCall({
@@ -90,7 +108,10 @@ globalThis.returnToBaseVacuum = (
 
 export interface CleanSpotVacuumProps {}
 
-globalThis.cleanSpotVacuum = (target: ITarget, params?: CleanSpotVacuumProps) =>
+globalThis.cleanSpotVacuum = (
+  target: IEntity<`vacuum.${string}`> | IArea,
+  params?: CleanSpotVacuumProps,
+) =>
   serviceCall({
     name: `Call vacuum.clean_spot`,
     params: {
@@ -103,7 +124,10 @@ globalThis.cleanSpotVacuum = (target: ITarget, params?: CleanSpotVacuumProps) =>
 
 export interface LocateVacuumProps {}
 
-globalThis.locateVacuum = (target: ITarget, params?: LocateVacuumProps) =>
+globalThis.locateVacuum = (
+  target: IEntity<`vacuum.${string}`> | IArea,
+  params?: LocateVacuumProps,
+) =>
   serviceCall({
     name: `Call vacuum.locate`,
     params: {
@@ -116,7 +140,10 @@ globalThis.locateVacuum = (target: ITarget, params?: LocateVacuumProps) =>
 
 export interface StopVacuumProps {}
 
-globalThis.stopVacuum = (target: ITarget, params?: StopVacuumProps) =>
+globalThis.stopVacuum = (
+  target: IEntity<`vacuum.${string}`> | IArea,
+  params?: StopVacuumProps,
+) =>
   serviceCall({
     name: `Call vacuum.stop`,
     params: {
@@ -135,7 +162,7 @@ export interface SetFanSpeedVacuumProps {
 }
 
 globalThis.setFanSpeedVacuum = (
-  target: ITarget,
+  target: IEntity<`vacuum.${string}`> | IArea,
   params: SetFanSpeedVacuumProps,
 ) =>
   serviceCall({
@@ -160,7 +187,7 @@ export interface SendCommandVacuumProps {
 }
 
 globalThis.sendCommandVacuum = (
-  target: ITarget,
+  target: IEntity<`vacuum.${string}`> | IArea,
   params: SendCommandVacuumProps,
 ) =>
   serviceCall({

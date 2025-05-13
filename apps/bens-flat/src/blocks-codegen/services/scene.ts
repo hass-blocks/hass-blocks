@@ -1,46 +1,34 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
-  /**
-   * Activates a scene.
-   */
-  var turnOnScene: (target: ITarget, params?: TurnOnSceneProps) => Block;
   /**
    * Reloads the scenes from the YAML-configuration.
    */
-  var reloadScene: (target: ITarget) => Block;
+  var reloadScene: () => Block;
   /**
    * Activates a scene with configuration.
    */
-  var applyScene: (target: ITarget, params: ApplySceneProps) => Block;
+  var applyScene: (params: ApplySceneProps) => Block;
   /**
    * Creates a new scene.
    */
-  var createScene: (target: ITarget, params: CreateSceneProps) => Block;
+  var createScene: (params: CreateSceneProps) => Block;
   /**
    * Deletes a dynamically created scene.
    */
-  var deleteScene: (target: ITarget, params?: DeleteSceneProps) => Block;
-}
-
-export interface TurnOnSceneProps {
+  var deleteScene: (
+    target: IEntity<`scene.${string}`> | IArea,
+    params?: DeleteSceneProps,
+  ) => Block;
   /**
-   * Time it takes the devices to transition into the states defined in the scene.
+   * Activates a scene.
    */
-  transition?: number;
+  var turnOnScene: (
+    target: IEntity<`scene.${string}`> | IArea,
+    params?: TurnOnSceneProps,
+  ) => Block;
 }
 
-globalThis.turnOnScene = (target: ITarget, params?: TurnOnSceneProps) =>
-  serviceCall({
-    name: `Call scene.turn_on`,
-    params: {
-      domain: 'scene',
-      service: 'turn_on',
-      service_data: params,
-    },
-    target,
-  });
-
-globalThis.reloadScene = (target: ITarget) =>
+globalThis.reloadScene = () =>
   serviceCall({
     name: `Call scene.reload`,
     params: {
@@ -60,7 +48,7 @@ export interface ApplySceneProps {
   transition?: number;
 }
 
-globalThis.applyScene = (target: ITarget, params: ApplySceneProps) =>
+globalThis.applyScene = (params: ApplySceneProps) =>
   serviceCall({
     name: `Call scene.apply`,
     params: {
@@ -85,7 +73,7 @@ export interface CreateSceneProps {
   snapshot_entities?: string;
 }
 
-globalThis.createScene = (target: ITarget, params: CreateSceneProps) =>
+globalThis.createScene = (params: CreateSceneProps) =>
   serviceCall({
     name: `Call scene.create`,
     params: {
@@ -97,12 +85,36 @@ globalThis.createScene = (target: ITarget, params: CreateSceneProps) =>
 
 export interface DeleteSceneProps {}
 
-globalThis.deleteScene = (target: ITarget, params?: DeleteSceneProps) =>
+globalThis.deleteScene = (
+  target: IEntity<`scene.${string}`> | IArea,
+  params?: DeleteSceneProps,
+) =>
   serviceCall({
     name: `Call scene.delete`,
     params: {
       domain: 'scene',
       service: 'delete',
+      service_data: params,
+    },
+    target,
+  });
+
+export interface TurnOnSceneProps {
+  /**
+   * Time it takes the devices to transition into the states defined in the scene.
+   */
+  transition?: number;
+}
+
+globalThis.turnOnScene = (
+  target: IEntity<`scene.${string}`> | IArea,
+  params?: TurnOnSceneProps,
+) =>
+  serviceCall({
+    name: `Call scene.turn_on`,
+    params: {
+      domain: 'scene',
+      service: 'turn_on',
       service_data: params,
     },
     target,

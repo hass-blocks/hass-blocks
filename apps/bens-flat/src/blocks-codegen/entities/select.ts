@@ -1,26 +1,17 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var assistMicrophoneAssistPipelineSelect: ITarget;
-  var assistMicrophoneNoiseSuppressionLevelSelect: ITarget;
-  var assistMicrophoneFinishedSpeakingDetectionSelect: ITarget;
-  var bathroomMotionSensorMotionSensitivitySelect: ITarget;
-  var hallwayMotionSensorMotionSensitivitySelect: ITarget;
-  var zigbee2mqttBridgeLogLevelSelect: ITarget;
-  var livingRoomScenesSelect: ITarget;
-  var frontDoorDoorbellMqttEventSelectSelect: ITarget;
-  var frontDoorDoorbellMqttSnapshotModeSelect: ITarget;
+  var bathroomMotionSensorMotionSensitivitySelect: IEntity<`select.${string}`>;
+  var hallwayMotionSensorMotionSensitivitySelect: IEntity<`select.${string}`>;
+  var zigbee2mqttBridgeLogLevelSelect: IEntity<`select.${string}`>;
+  var livingRoomScenesSelect: IEntity<`select.${string}`>;
+  var frontDoorDoorbellMqttEventSelectSelect: IEntity<`select.${string}`>;
+  var frontDoorDoorbellMqttSnapshotModeSelect: IEntity<`select.${string}`>;
+  var assistMicrophoneAssistPipelineSelect: IEntity<`select.${string}`>;
+  var assistMicrophoneNoiseSuppressionLevelSelect: IEntity<`select.${string}`>;
+  var assistMicrophoneFinishedSpeakingDetectionSelect: IEntity<`select.${string}`>;
 }
 
-globalThis.assistMicrophoneAssistPipelineSelect = entity(
-  'select.assist_microphone_assist_pipeline',
-);
-globalThis.assistMicrophoneNoiseSuppressionLevelSelect = entity(
-  'select.assist_microphone_noise_suppression_level',
-);
-globalThis.assistMicrophoneFinishedSpeakingDetectionSelect = entity(
-  'select.assist_microphone_finished_speaking_detection',
-);
 globalThis.bathroomMotionSensorMotionSensitivitySelect = entity(
   'select.bathroom_motion_sensor_motion_sensitivity',
 );
@@ -36,4 +27,13 @@ globalThis.frontDoorDoorbellMqttEventSelectSelect = entity(
 );
 globalThis.frontDoorDoorbellMqttSnapshotModeSelect = entity(
   'select.front_door_doorbell_mqtt_snapshot_mode',
+);
+globalThis.assistMicrophoneAssistPipelineSelect = entity(
+  'select.assist_microphone_assist_pipeline',
+);
+globalThis.assistMicrophoneNoiseSuppressionLevelSelect = entity(
+  'select.assist_microphone_noise_suppression_level',
+);
+globalThis.assistMicrophoneFinishedSpeakingDetectionSelect = entity(
+  'select.assist_microphone_finished_speaking_detection',
 );

@@ -1,33 +1,39 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
   /**
    * Increments a counter by its step size.
    */
   var incrementCounter: (
-    target: ITarget,
+    target: IEntity<`counter.${string}`> | IArea,
     params?: IncrementCounterProps,
   ) => Block;
   /**
    * Decrements a counter by its step size.
    */
   var decrementCounter: (
-    target: ITarget,
+    target: IEntity<`counter.${string}`> | IArea,
     params?: DecrementCounterProps,
   ) => Block;
   /**
    * Resets a counter to its initial value.
    */
-  var resetCounter: (target: ITarget, params?: ResetCounterProps) => Block;
+  var resetCounter: (
+    target: IEntity<`counter.${string}`> | IArea,
+    params?: ResetCounterProps,
+  ) => Block;
   /**
    * Sets the counter to a specific value.
    */
-  var setValueCounter: (target: ITarget, params: SetValueCounterProps) => Block;
+  var setValueCounter: (
+    target: IEntity<`counter.${string}`> | IArea,
+    params: SetValueCounterProps,
+  ) => Block;
 }
 
 export interface IncrementCounterProps {}
 
 globalThis.incrementCounter = (
-  target: ITarget,
+  target: IEntity<`counter.${string}`> | IArea,
   params?: IncrementCounterProps,
 ) =>
   serviceCall({
@@ -43,7 +49,7 @@ globalThis.incrementCounter = (
 export interface DecrementCounterProps {}
 
 globalThis.decrementCounter = (
-  target: ITarget,
+  target: IEntity<`counter.${string}`> | IArea,
   params?: DecrementCounterProps,
 ) =>
   serviceCall({
@@ -58,7 +64,10 @@ globalThis.decrementCounter = (
 
 export interface ResetCounterProps {}
 
-globalThis.resetCounter = (target: ITarget, params?: ResetCounterProps) =>
+globalThis.resetCounter = (
+  target: IEntity<`counter.${string}`> | IArea,
+  params?: ResetCounterProps,
+) =>
   serviceCall({
     name: `Call counter.reset`,
     params: {
@@ -76,7 +85,10 @@ export interface SetValueCounterProps {
   value: number;
 }
 
-globalThis.setValueCounter = (target: ITarget, params: SetValueCounterProps) =>
+globalThis.setValueCounter = (
+  target: IEntity<`counter.${string}`> | IArea,
+  params: SetValueCounterProps,
+) =>
   serviceCall({
     name: `Call counter.set_value`,
     params: {

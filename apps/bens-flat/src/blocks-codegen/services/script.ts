@@ -1,39 +1,47 @@
-import { Block, serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
 declare global {
-  var turnTvOnScript: (target: ITarget) => Block;
-  var turnTvModeOnScript: (target: ITarget) => Block;
-  var boostBoilerScript: (target: ITarget) => Block;
-  var updateAllHacsItemsScript: (target: ITarget) => Block;
-  var todoListScript: (target: ITarget, params: TodoListScriptProps) => Block;
-  var openAiTtsScript: (target: ITarget, params: OpenAiTtsScriptProps) => Block;
+  var turnTvOnScript: () => Block;
+  var turnTvModeOnScript: () => Block;
+  var boostBoilerScript: () => Block;
+  var updateAllHacsItemsScript: () => Block;
+  var todoListScript: (params: TodoListScriptProps) => Block;
+  var openAiTtsScript: (params: OpenAiTtsScriptProps) => Block;
   var readTodaySCalendarScript: (
-    target: ITarget,
     params?: ReadTodaySCalendarScriptProps,
   ) => Block;
-  var goodMorningRoutineScript: (target: ITarget) => Block;
-  var turnEverythingOff_2Script: (target: ITarget) => Block;
-  var dismissWelcomeMessageScript: (target: ITarget) => Block;
-  var groupSpeakersScript: (target: ITarget) => Block;
-  var unjoinSpeakersScript: (target: ITarget) => Block;
+  var goodMorningRoutineScript: () => Block;
+  var turnEverythingOff_2Script: () => Block;
+  var dismissWelcomeMessageScript: () => Block;
+  var groupSpeakersScript: () => Block;
+  var unjoinSpeakersScript: () => Block;
   /**
    * Reloads all the available scripts.
    */
-  var reloadScript: (target: ITarget) => Block;
+  var reloadScript: () => Block;
   /**
    * Runs the sequence of actions defined in a script.
    */
-  var turnOnScript: (target: ITarget, params?: TurnOnScriptProps) => Block;
+  var turnOnScript: (
+    target: IEntity<`script.${string}`> | IArea,
+    params?: TurnOnScriptProps,
+  ) => Block;
   /**
    * Stops a running script.
    */
-  var turnOffScript: (target: ITarget, params?: TurnOffScriptProps) => Block;
+  var turnOffScript: (
+    target: IEntity<`script.${string}`> | IArea,
+    params?: TurnOffScriptProps,
+  ) => Block;
   /**
    * Starts a script if it isn't running, stops it otherwise.
    */
-  var toggleScript: (target: ITarget, params?: ToggleScriptProps) => Block;
+  var toggleScript: (
+    target: IEntity<`script.${string}`> | IArea,
+    params?: ToggleScriptProps,
+  ) => Block;
 }
 
-globalThis.turnTvOnScript = (target: ITarget) =>
+globalThis.turnTvOnScript = () =>
   serviceCall({
     name: `Call script.turn_tv_on`,
     params: {
@@ -42,7 +50,7 @@ globalThis.turnTvOnScript = (target: ITarget) =>
     },
   });
 
-globalThis.turnTvModeOnScript = (target: ITarget) =>
+globalThis.turnTvModeOnScript = () =>
   serviceCall({
     name: `Call script.turn_tv_mode_on`,
     params: {
@@ -51,7 +59,7 @@ globalThis.turnTvModeOnScript = (target: ITarget) =>
     },
   });
 
-globalThis.boostBoilerScript = (target: ITarget) =>
+globalThis.boostBoilerScript = () =>
   serviceCall({
     name: `Call script.boost_boiler`,
     params: {
@@ -60,7 +68,7 @@ globalThis.boostBoilerScript = (target: ITarget) =>
     },
   });
 
-globalThis.updateAllHacsItemsScript = (target: ITarget) =>
+globalThis.updateAllHacsItemsScript = () =>
   serviceCall({
     name: `Call script.update_all_hacs_items`,
     params: {
@@ -73,7 +81,7 @@ export interface TodoListScriptProps {
   player: string;
 }
 
-globalThis.todoListScript = (target: ITarget, params: TodoListScriptProps) =>
+globalThis.todoListScript = (params: TodoListScriptProps) =>
   serviceCall({
     name: `Call script.todo_list`,
     params: {
@@ -88,7 +96,7 @@ export interface OpenAiTtsScriptProps {
   player: string;
 }
 
-globalThis.openAiTtsScript = (target: ITarget, params: OpenAiTtsScriptProps) =>
+globalThis.openAiTtsScript = (params: OpenAiTtsScriptProps) =>
   serviceCall({
     name: `Call script.open_ai_tts`,
     params: {
@@ -103,7 +111,6 @@ export interface ReadTodaySCalendarScriptProps {
 }
 
 globalThis.readTodaySCalendarScript = (
-  target: ITarget,
   params?: ReadTodaySCalendarScriptProps,
 ) =>
   serviceCall({
@@ -115,7 +122,7 @@ globalThis.readTodaySCalendarScript = (
     },
   });
 
-globalThis.goodMorningRoutineScript = (target: ITarget) =>
+globalThis.goodMorningRoutineScript = () =>
   serviceCall({
     name: `Call script.good_morning_routine`,
     params: {
@@ -124,7 +131,7 @@ globalThis.goodMorningRoutineScript = (target: ITarget) =>
     },
   });
 
-globalThis.turnEverythingOff_2Script = (target: ITarget) =>
+globalThis.turnEverythingOff_2Script = () =>
   serviceCall({
     name: `Call script.turn_everything_off_2`,
     params: {
@@ -133,7 +140,7 @@ globalThis.turnEverythingOff_2Script = (target: ITarget) =>
     },
   });
 
-globalThis.dismissWelcomeMessageScript = (target: ITarget) =>
+globalThis.dismissWelcomeMessageScript = () =>
   serviceCall({
     name: `Call script.dismiss_welcome_message`,
     params: {
@@ -142,7 +149,7 @@ globalThis.dismissWelcomeMessageScript = (target: ITarget) =>
     },
   });
 
-globalThis.groupSpeakersScript = (target: ITarget) =>
+globalThis.groupSpeakersScript = () =>
   serviceCall({
     name: `Call script.group_speakers`,
     params: {
@@ -151,7 +158,7 @@ globalThis.groupSpeakersScript = (target: ITarget) =>
     },
   });
 
-globalThis.unjoinSpeakersScript = (target: ITarget) =>
+globalThis.unjoinSpeakersScript = () =>
   serviceCall({
     name: `Call script.unjoin_speakers`,
     params: {
@@ -160,7 +167,7 @@ globalThis.unjoinSpeakersScript = (target: ITarget) =>
     },
   });
 
-globalThis.reloadScript = (target: ITarget) =>
+globalThis.reloadScript = () =>
   serviceCall({
     name: `Call script.reload`,
     params: {
@@ -171,7 +178,10 @@ globalThis.reloadScript = (target: ITarget) =>
 
 export interface TurnOnScriptProps {}
 
-globalThis.turnOnScript = (target: ITarget, params?: TurnOnScriptProps) =>
+globalThis.turnOnScript = (
+  target: IEntity<`script.${string}`> | IArea,
+  params?: TurnOnScriptProps,
+) =>
   serviceCall({
     name: `Call script.turn_on`,
     params: {
@@ -184,7 +194,10 @@ globalThis.turnOnScript = (target: ITarget, params?: TurnOnScriptProps) =>
 
 export interface TurnOffScriptProps {}
 
-globalThis.turnOffScript = (target: ITarget, params?: TurnOffScriptProps) =>
+globalThis.turnOffScript = (
+  target: IEntity<`script.${string}`> | IArea,
+  params?: TurnOffScriptProps,
+) =>
   serviceCall({
     name: `Call script.turn_off`,
     params: {
@@ -197,7 +210,10 @@ globalThis.turnOffScript = (target: ITarget, params?: TurnOffScriptProps) =>
 
 export interface ToggleScriptProps {}
 
-globalThis.toggleScript = (target: ITarget, params?: ToggleScriptProps) =>
+globalThis.toggleScript = (
+  target: IEntity<`script.${string}`> | IArea,
+  params?: ToggleScriptProps,
+) =>
   serviceCall({
     name: `Call script.toggle`,
     params: {

@@ -1,7 +1,7 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var downloadRingVideoAutomation: ITarget;
+  var downloadRingVideoAutomation: IEntity<`automation.${string}`>;
 }
 
 globalThis.downloadRingVideoAutomation = entity(

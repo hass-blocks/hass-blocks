@@ -1,8 +1,8 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var homeAssistantCloudTts: ITarget;
-  var openaiTtsOnyxTts: ITarget;
+  var homeAssistantCloudTts: IEntity<`tts.${string}`>;
+  var openaiTtsOnyxTts: IEntity<`tts.${string}`>;
 }
 
 globalThis.homeAssistantCloudTts = entity('tts.home_assistant_cloud');

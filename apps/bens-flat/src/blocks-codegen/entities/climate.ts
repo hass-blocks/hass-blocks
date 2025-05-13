@@ -1,10 +1,10 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var livingRoomClimate: ITarget;
-  var bedroomClimate: ITarget;
-  var boilerClimate: ITarget;
-  var gymClimate: ITarget;
+  var livingRoomClimate: IEntity<`climate.${string}`>;
+  var bedroomClimate: IEntity<`climate.${string}`>;
+  var boilerClimate: IEntity<`climate.${string}`>;
+  var gymClimate: IEntity<`climate.${string}`>;
 }
 
 globalThis.livingRoomClimate = entity('climate.living_room');

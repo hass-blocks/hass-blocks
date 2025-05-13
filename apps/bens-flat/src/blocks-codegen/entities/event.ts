@@ -1,12 +1,12 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var octopusEnergyA_11077925OctoplusSavingSessionEventsEvent: ITarget;
-  var octopusEnergyElectricity_19l3210845_1630000030495PreviousDayRatesEvent: ITarget;
-  var octopusEnergyElectricity_19l3210845_1630000030495CurrentDayRatesEvent: ITarget;
-  var octopusEnergyElectricity_19l3210845_1630000030495NextDayRatesEvent: ITarget;
-  var frontDoorDingEvent: ITarget;
-  var frontDoorMotionEvent: ITarget;
+  var octopusEnergyA_11077925OctoplusSavingSessionEventsEvent: IEntity<`event.${string}`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495PreviousDayRatesEvent: IEntity<`event.${string}`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495CurrentDayRatesEvent: IEntity<`event.${string}`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495NextDayRatesEvent: IEntity<`event.${string}`>;
+  var frontDoorDingEvent: IEntity<`event.${string}`>;
+  var frontDoorMotionEvent: IEntity<`event.${string}`>;
 }
 
 globalThis.octopusEnergyA_11077925OctoplusSavingSessionEventsEvent = entity(

@@ -1,8 +1,8 @@
-import { entity, ITarget } from '@hass-blocks/core';
+import { entity, IEntity } from '@hass-blocks/core';
 
 declare global {
-  var scenesInputSelect: ITarget;
-  var livingRoomScenesInputSelect: ITarget;
+  var scenesInputSelect: IEntity<`input_select.${string}`>;
+  var livingRoomScenesInputSelect: IEntity<`input_select.${string}`>;
 }
 
 globalThis.scenesInputSelect = entity('input_select.scenes');

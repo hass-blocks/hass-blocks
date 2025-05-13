@@ -1,19 +1,25 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface GetForecastsWeatherProps {
+    /**
+     * The scope of the weather forecast.
+     */
+    type: never;
+  }
+
   /**
    * Retrieves the forecast from selected weather services.
    */
   var getForecastsWeather: (
     target: IEntity<`weather.${string}`> | IArea,
-    params: GetForecastsWeatherProps,
+    params?: GetForecastsWeatherProps,
   ) => Block;
-}
-
-export interface GetForecastsWeatherProps {
-  /**
-   * The scope of the weather forecast.
-   */
-  type: never;
 }
 
 globalThis.getForecastsWeather = (target, params) =>

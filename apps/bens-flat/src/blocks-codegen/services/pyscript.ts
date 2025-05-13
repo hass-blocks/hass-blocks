@@ -1,22 +1,87 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
   /**
    * https://github.com/dmamelin/pyscript_autocomplete
    */
   var autocompleteGeneratorPyscript: () => Block;
+
+  interface HelloWorldPyscriptProps {
+    /**
+     * argument action
+     */
+    action?: never;
+    /**
+     * argument id
+     */
+    id?: never;
+  }
+
   /**
    * hello_world example using pyscript.
    */
-  var helloWorldPyscript: (params?: HelloWorldPyscriptProps) => Block;
+  var helloWorldPyscript: (params: HelloWorldPyscriptProps) => Block;
+
+  interface ReloadPyscriptProps {
+    /**
+     * Only reload this specific global context (file or app)
+     */
+    global_ctx?: string;
+  }
+
   /**
    * Reloads all available pyscripts and restart triggers
    */
-  var reloadPyscript: (params?: ReloadPyscriptProps) => Block;
+  var reloadPyscript: (params: ReloadPyscriptProps) => Block;
+
+  interface JupyterKernelStartPyscriptProps {
+    /**
+     * Shell port number
+     */
+    shell_port?: number;
+    /**
+     * IOPub port number
+     */
+    iopub_port?: number;
+    /**
+     * Stdin port number
+     */
+    stdin_port?: number;
+    /**
+     * Control port number
+     */
+    control_port?: number;
+    /**
+     * Heartbeat port number
+     */
+    hb_port?: number;
+    /**
+     * IP address to connect to Jupyter front end
+     */
+    ip?: string;
+    /**
+     * Used for signing
+     */
+    key: string;
+    /**
+     * Transport type
+     */
+    transport?: never;
+    /**
+     * Signing algorithm
+     */
+    signature_scheme?: never;
+    /**
+     * Kernel name
+     */
+    kernel_name: string;
+  }
+
   /**
    * Starts a jupyter kernel for interactive use; Called by Jupyter front end and should generally not be used by users
    */
   var jupyterKernelStartPyscript: (
-    params: JupyterKernelStartPyscriptProps,
+    params?: JupyterKernelStartPyscriptProps,
   ) => Block;
 }
 
@@ -29,17 +94,6 @@ globalThis.autocompleteGeneratorPyscript = () =>
     },
   });
 
-export interface HelloWorldPyscriptProps {
-  /**
-   * argument action
-   */
-  action?: never;
-  /**
-   * argument id
-   */
-  id?: never;
-}
-
 globalThis.helloWorldPyscript = (params) =>
   serviceCall({
     name: `Call pyscript.hello_world`,
@@ -50,13 +104,6 @@ globalThis.helloWorldPyscript = (params) =>
     },
   });
 
-export interface ReloadPyscriptProps {
-  /**
-   * Only reload this specific global context (file or app)
-   */
-  global_ctx?: string;
-}
-
 globalThis.reloadPyscript = (params) =>
   serviceCall({
     name: `Call pyscript.reload`,
@@ -66,49 +113,6 @@ globalThis.reloadPyscript = (params) =>
       service_data: params,
     },
   });
-
-export interface JupyterKernelStartPyscriptProps {
-  /**
-   * Shell port number
-   */
-  shell_port?: number;
-  /**
-   * IOPub port number
-   */
-  iopub_port?: number;
-  /**
-   * Stdin port number
-   */
-  stdin_port?: number;
-  /**
-   * Control port number
-   */
-  control_port?: number;
-  /**
-   * Heartbeat port number
-   */
-  hb_port?: number;
-  /**
-   * IP address to connect to Jupyter front end
-   */
-  ip?: string;
-  /**
-   * Used for signing
-   */
-  key: string;
-  /**
-   * Transport type
-   */
-  transport?: never;
-  /**
-   * Signing algorithm
-   */
-  signature_scheme?: never;
-  /**
-   * Kernel name
-   */
-  kernel_name: string;
-}
 
 globalThis.jupyterKernelStartPyscript = (params) =>
   serviceCall({

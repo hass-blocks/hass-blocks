@@ -1,19 +1,25 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface SnapshotImageProps {
+    /**
+     * Template of a filename. Variable available is `entity_id`.
+     */
+    filename: string;
+  }
+
   /**
    * Takes a snapshot from an image.
    */
   var snapshotImage: (
     target: IEntity<`image.${string}`> | IArea,
-    params: SnapshotImageProps,
+    params?: SnapshotImageProps,
   ) => Block;
-}
-
-export interface SnapshotImageProps {
-  /**
-   * Template of a filename. Variable available is `entity_id`.
-   */
-  filename: string;
 }
 
 globalThis.snapshotImage = (target, params) =>

@@ -1,57 +1,208 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface SequenceBrowserModProps {
+    browser_id?: never;
+    /**
+     * List of services to run
+     */
+    sequence?: never;
+  }
+
   /**
    * Run a sequence of services
    */
-  var sequenceBrowserMod: (params?: SequenceBrowserModProps) => Block;
+  var sequenceBrowserMod: (params: SequenceBrowserModProps) => Block;
+
+  interface DelayBrowserModProps {
+    browser_id?: never;
+    /**
+     * Time to wait (ms)
+     */
+    time?: number;
+  }
+
   /**
    * Wait for a time
    */
-  var delayBrowserMod: (params?: DelayBrowserModProps) => Block;
+  var delayBrowserMod: (params: DelayBrowserModProps) => Block;
+
+  interface PopupBrowserModProps {
+    browser_id?: never;
+    /**
+     * Popup title
+     */
+    title?: string;
+    /**
+     * Popup content (Test or lovelace card configuration)
+     */
+    content: never;
+    size?: never;
+    /**
+     * Text of the right button
+     */
+    right_button?: string;
+    /**
+     * Action to perform when the right button is pressed
+     */
+    right_button_action?: never;
+    /**
+     * Text of the left button
+     */
+    left_button?: string;
+    /**
+     * Action to perform when left button is pressed
+     */
+    left_button_action?: never;
+    /**
+     * Whether the popup can be closed by the user without action
+     */
+    dismissable?: boolean;
+    /**
+     * Action to perform when popup is dismissed
+     */
+    dismiss_action?: never;
+    /**
+     * Close the popup automatically on mouse, pointer or keyboard activity
+     */
+    autoclose?: boolean;
+    /**
+     * Time before closing (ms)
+     */
+    timeout?: number;
+    /**
+     * Action to perform when popup is closed by timeout
+     */
+    timeout_action?: never;
+    /**
+     * CSS code to apply to the popup window
+     */
+    style?: string;
+  }
+
   /**
    * Display a popup
    */
-  var popupBrowserMod: (params: PopupBrowserModProps) => Block;
+  var popupBrowserMod: (params?: PopupBrowserModProps) => Block;
+
+  interface MoreInfoBrowserModProps {
+    browser_id?: never;
+    entity: string;
+    large?: boolean;
+    ignore_popup_card?: boolean;
+  }
+
   /**
    * Show more-info dialog
    */
-  var moreInfoBrowserMod: (params: MoreInfoBrowserModProps) => Block;
+  var moreInfoBrowserMod: (params?: MoreInfoBrowserModProps) => Block;
+
+  interface ClosePopupBrowserModProps {
+    browser_id?: never;
+  }
+
   /**
    * Close a popup
    */
-  var closePopupBrowserMod: (params?: ClosePopupBrowserModProps) => Block;
+  var closePopupBrowserMod: (params: ClosePopupBrowserModProps) => Block;
+
+  interface NotificationBrowserModProps {
+    browser_id?: never;
+    /**
+     * Message to display
+     */
+    message: string;
+    /**
+     * Time before closing (ms)
+     */
+    duration?: number;
+    /**
+     * Text of optional action button
+     */
+    action_text?: string;
+    /**
+     * Action to perform when the action button is pressed
+     */
+    action?: never;
+  }
+
   /**
    * Display a short notification
    */
-  var notificationBrowserMod: (params: NotificationBrowserModProps) => Block;
+  var notificationBrowserMod: (params?: NotificationBrowserModProps) => Block;
+
+  interface NavigateBrowserModProps {
+    browser_id?: never;
+    /**
+     * Target path
+     */
+    path?: string;
+  }
+
   /**
    * Navigate browser to a different page
    */
-  var navigateBrowserMod: (params?: NavigateBrowserModProps) => Block;
+  var navigateBrowserMod: (params: NavigateBrowserModProps) => Block;
+
+  interface RefreshBrowserModProps {
+    browser_id?: never;
+  }
+
   /**
    * Refresh page
    */
-  var refreshBrowserMod: (params?: RefreshBrowserModProps) => Block;
+  var refreshBrowserMod: (params: RefreshBrowserModProps) => Block;
+
+  interface SetThemeBrowserModProps {
+    browser_id?: never;
+    /**
+     * Name of theme or 'auto'
+     */
+    theme?: string;
+    /**
+     * Dark/light mode
+     */
+    dark?: never;
+    /**
+     * Primary theme color
+     */
+    primaryColor?: never;
+    /**
+     * Accent theme color
+     */
+    accentColor?: never;
+  }
+
   /**
    * Change the current theme
    */
-  var setThemeBrowserMod: (params?: SetThemeBrowserModProps) => Block;
+  var setThemeBrowserMod: (params: SetThemeBrowserModProps) => Block;
+
+  interface ConsoleBrowserModProps {
+    browser_id?: never;
+    /**
+     * Text to print
+     */
+    message?: string;
+  }
+
   /**
    * Print text to browser console
    */
-  var consoleBrowserMod: (params?: ConsoleBrowserModProps) => Block;
+  var consoleBrowserMod: (params: ConsoleBrowserModProps) => Block;
+
+  interface JavascriptBrowserModProps {
+    browser_id?: never;
+    /**
+     * JavaScript code to run
+     */
+    code?: never;
+  }
+
   /**
    * Run arbitrary JavaScript code
    */
-  var javascriptBrowserMod: (params?: JavascriptBrowserModProps) => Block;
-}
-
-export interface SequenceBrowserModProps {
-  browser_id?: never;
-  /**
-   * List of services to run
-   */
-  sequence?: never;
+  var javascriptBrowserMod: (params: JavascriptBrowserModProps) => Block;
 }
 
 globalThis.sequenceBrowserMod = (params) =>
@@ -64,14 +215,6 @@ globalThis.sequenceBrowserMod = (params) =>
     },
   });
 
-export interface DelayBrowserModProps {
-  browser_id?: never;
-  /**
-   * Time to wait (ms)
-   */
-  time?: number;
-}
-
 globalThis.delayBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.delay`,
@@ -81,59 +224,6 @@ globalThis.delayBrowserMod = (params) =>
       service_data: params,
     },
   });
-
-export interface PopupBrowserModProps {
-  browser_id?: never;
-  /**
-   * Popup title
-   */
-  title?: string;
-  /**
-   * Popup content (Test or lovelace card configuration)
-   */
-  content: never;
-  size?: never;
-  /**
-   * Text of the right button
-   */
-  right_button?: string;
-  /**
-   * Action to perform when the right button is pressed
-   */
-  right_button_action?: never;
-  /**
-   * Text of the left button
-   */
-  left_button?: string;
-  /**
-   * Action to perform when left button is pressed
-   */
-  left_button_action?: never;
-  /**
-   * Whether the popup can be closed by the user without action
-   */
-  dismissable?: boolean;
-  /**
-   * Action to perform when popup is dismissed
-   */
-  dismiss_action?: never;
-  /**
-   * Close the popup automatically on mouse, pointer or keyboard activity
-   */
-  autoclose?: boolean;
-  /**
-   * Time before closing (ms)
-   */
-  timeout?: number;
-  /**
-   * Action to perform when popup is closed by timeout
-   */
-  timeout_action?: never;
-  /**
-   * CSS code to apply to the popup window
-   */
-  style?: string;
-}
 
 globalThis.popupBrowserMod = (params) =>
   serviceCall({
@@ -145,13 +235,6 @@ globalThis.popupBrowserMod = (params) =>
     },
   });
 
-export interface MoreInfoBrowserModProps {
-  browser_id?: never;
-  entity: string;
-  large?: boolean;
-  ignore_popup_card?: boolean;
-}
-
 globalThis.moreInfoBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.more_info`,
@@ -161,10 +244,6 @@ globalThis.moreInfoBrowserMod = (params) =>
       service_data: params,
     },
   });
-
-export interface ClosePopupBrowserModProps {
-  browser_id?: never;
-}
 
 globalThis.closePopupBrowserMod = (params) =>
   serviceCall({
@@ -176,26 +255,6 @@ globalThis.closePopupBrowserMod = (params) =>
     },
   });
 
-export interface NotificationBrowserModProps {
-  browser_id?: never;
-  /**
-   * Message to display
-   */
-  message: string;
-  /**
-   * Time before closing (ms)
-   */
-  duration?: number;
-  /**
-   * Text of optional action button
-   */
-  action_text?: string;
-  /**
-   * Action to perform when the action button is pressed
-   */
-  action?: never;
-}
-
 globalThis.notificationBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.notification`,
@@ -205,14 +264,6 @@ globalThis.notificationBrowserMod = (params) =>
       service_data: params,
     },
   });
-
-export interface NavigateBrowserModProps {
-  browser_id?: never;
-  /**
-   * Target path
-   */
-  path?: string;
-}
 
 globalThis.navigateBrowserMod = (params) =>
   serviceCall({
@@ -224,10 +275,6 @@ globalThis.navigateBrowserMod = (params) =>
     },
   });
 
-export interface RefreshBrowserModProps {
-  browser_id?: never;
-}
-
 globalThis.refreshBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.refresh`,
@@ -237,26 +284,6 @@ globalThis.refreshBrowserMod = (params) =>
       service_data: params,
     },
   });
-
-export interface SetThemeBrowserModProps {
-  browser_id?: never;
-  /**
-   * Name of theme or 'auto'
-   */
-  theme?: string;
-  /**
-   * Dark/light mode
-   */
-  dark?: never;
-  /**
-   * Primary theme color
-   */
-  primaryColor?: never;
-  /**
-   * Accent theme color
-   */
-  accentColor?: never;
-}
 
 globalThis.setThemeBrowserMod = (params) =>
   serviceCall({
@@ -268,14 +295,6 @@ globalThis.setThemeBrowserMod = (params) =>
     },
   });
 
-export interface ConsoleBrowserModProps {
-  browser_id?: never;
-  /**
-   * Text to print
-   */
-  message?: string;
-}
-
 globalThis.consoleBrowserMod = (params) =>
   serviceCall({
     name: `Call browser_mod.console`,
@@ -285,14 +304,6 @@ globalThis.consoleBrowserMod = (params) =>
       service_data: params,
     },
   });
-
-export interface JavascriptBrowserModProps {
-  browser_id?: never;
-  /**
-   * JavaScript code to run
-   */
-  code?: never;
-}
 
 globalThis.javascriptBrowserMod = (params) =>
   serviceCall({

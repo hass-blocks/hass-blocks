@@ -1,87 +1,92 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Turns the humidifier on.
    */
   var turnOnHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params?: TurnOnHumidifierProps,
   ) => Block;
+
   /**
    * Turns the humidifier off.
    */
   var turnOffHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params?: TurnOffHumidifierProps,
   ) => Block;
+
   /**
    * Toggles the humidifier on/off.
    */
   var toggleHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params?: ToggleHumidifierProps,
   ) => Block;
+
+  interface SetModeHumidifierProps {
+    /**
+     * Operation mode. For example, "normal", "eco", or "away". For a list of possible values, refer to the integration documentation.
+     */
+    mode: string;
+  }
+
   /**
    * Sets the humidifier operation mode.
    */
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params: SetModeHumidifierProps,
+    params?: SetModeHumidifierProps,
   ) => Block;
+
+  interface SetHumidityHumidifierProps {
+    /**
+     * Target humidity.
+     */
+    humidity: number;
+  }
+
   /**
    * Sets the target humidity.
    */
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params: SetHumidityHumidifierProps,
+    params?: SetHumidityHumidifierProps,
   ) => Block;
 }
 
-export interface TurnOnHumidifierProps {}
-
-globalThis.turnOnHumidifier = (target, params) =>
+globalThis.turnOnHumidifier = (target) =>
   serviceCall({
     name: `Call humidifier.turn_on`,
     params: {
       domain: 'humidifier',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOffHumidifierProps {}
-
-globalThis.turnOffHumidifier = (target, params) =>
+globalThis.turnOffHumidifier = (target) =>
   serviceCall({
     name: `Call humidifier.turn_off`,
     params: {
       domain: 'humidifier',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleHumidifierProps {}
-
-globalThis.toggleHumidifier = (target, params) =>
+globalThis.toggleHumidifier = (target) =>
   serviceCall({
     name: `Call humidifier.toggle`,
     params: {
       domain: 'humidifier',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
-
-export interface SetModeHumidifierProps {
-  /**
-   * Operation mode. For example, "normal", "eco", or "away". For a list of possible values, refer to the integration documentation.
-   */
-  mode: string;
-}
 
 globalThis.setModeHumidifier = (target, params) =>
   serviceCall({
@@ -93,13 +98,6 @@ globalThis.setModeHumidifier = (target, params) =>
     },
     target,
   });
-
-export interface SetHumidityHumidifierProps {
-  /**
-   * Target humidity.
-   */
-  humidity: number;
-}
 
 globalThis.setHumidityHumidifier = (target, params) =>
   serviceCall({

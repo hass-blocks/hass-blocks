@@ -1,33 +1,55 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface UnlockLockProps {
+    /**
+     * Code used to unlock the lock.
+     */
+    code?: string;
+  }
+
   /**
    * Unlocks a lock.
    */
   var unlockLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: UnlockLockProps,
+    params: UnlockLockProps,
   ) => Block;
+
+  interface LockLockProps {
+    /**
+     * Code used to lock the lock.
+     */
+    code?: string;
+  }
+
   /**
    * Locks a lock.
    */
   var lockLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: LockLockProps,
+    params: LockLockProps,
   ) => Block;
+
+  interface OpenLockProps {
+    /**
+     * Code used to open the lock.
+     */
+    code?: string;
+  }
+
   /**
    * Opens a lock.
    */
   var openLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: OpenLockProps,
+    params: OpenLockProps,
   ) => Block;
-}
-
-export interface UnlockLockProps {
-  /**
-   * Code used to unlock the lock.
-   */
-  code?: string;
 }
 
 globalThis.unlockLock = (target, params) =>
@@ -41,13 +63,6 @@ globalThis.unlockLock = (target, params) =>
     target,
   });
 
-export interface LockLockProps {
-  /**
-   * Code used to lock the lock.
-   */
-  code?: string;
-}
-
 globalThis.lockLock = (target, params) =>
   serviceCall({
     name: `Call lock.lock`,
@@ -58,13 +73,6 @@ globalThis.lockLock = (target, params) =>
     },
     target,
   });
-
-export interface OpenLockProps {
-  /**
-   * Code used to open the lock.
-   */
-  code?: string;
-}
 
 globalThis.openLock = (target, params) =>
   serviceCall({

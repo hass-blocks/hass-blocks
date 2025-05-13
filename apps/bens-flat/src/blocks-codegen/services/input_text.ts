@@ -1,15 +1,29 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
   var reloadInputText: () => Block;
+
+  interface SetValueInputTextProps {
+    /**
+     * The target value.
+     */
+    value: string;
+  }
+
   /**
    * Sets the value.
    */
   var setValueInputText: (
     target: IEntity<`input_text.${string}`> | IArea,
-    params: SetValueInputTextProps,
+    params?: SetValueInputTextProps,
   ) => Block;
 }
 
@@ -21,13 +35,6 @@ globalThis.reloadInputText = () =>
       service: 'reload',
     },
   });
-
-export interface SetValueInputTextProps {
-  /**
-   * The target value.
-   */
-  value: string;
-}
 
 globalThis.setValueInputText = (target, params) =>
   serviceCall({

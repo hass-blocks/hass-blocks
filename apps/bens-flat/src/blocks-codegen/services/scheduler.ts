@@ -1,48 +1,131 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface RunActionSchedulerProps {
+    /**
+     * Identifier of the scheduler entity.
+     */
+    entity_id: string;
+    /**
+     * Time for which to evaluate the action (only useful for schedules with multiple timeslot)
+     */
+    time?: string;
+    /**
+     * Whether the conditions of the schedule should be skipped or not
+     */
+    skip_conditions?: boolean;
+  }
+
   /**
    * Execute the action of a schedule, optionally at a given time.
    */
-  var runActionScheduler: (params: RunActionSchedulerProps) => Block;
+  var runActionScheduler: (params?: RunActionSchedulerProps) => Block;
+
+  interface AddSchedulerProps {
+    /**
+     * Days of the week for which the schedule should be repeated
+     */
+    weekdays?: never;
+    /**
+     * Date from which schedule should be executed
+     */
+    start_date?: never;
+    /**
+     * Date until which schedule should be executed
+     */
+    end_date?: never;
+    /**
+     * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
+     */
+    timeslots: never;
+    /**
+     * Control what happens after the schedule is triggered
+     */
+    repeat_type: never;
+    /**
+     * Friendly name for the schedule
+     */
+    name?: string;
+  }
+
   /**
    * Create a new schedule entity
    */
-  var addScheduler: (params: AddSchedulerProps) => Block;
+  var addScheduler: (params?: AddSchedulerProps) => Block;
+
+  interface EditSchedulerProps {
+    /**
+     * Identifier of the scheduler entity.
+     */
+    entity_id: string;
+    /**
+     * Days of the week for which the schedule should be repeated
+     */
+    weekdays?: never;
+    /**
+     * Date from which schedule should be executed
+     */
+    start_date?: never;
+    /**
+     * Date until which schedule should be executed
+     */
+    end_date?: never;
+    /**
+     * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
+     */
+    timeslots?: never;
+    /**
+     * Control what happens after the schedule is triggered
+     */
+    repeat_type?: never;
+    /**
+     * Friendly name for the schedule
+     */
+    name?: string;
+  }
+
   /**
    * Edit a schedule entity
    */
-  var editScheduler: (params: EditSchedulerProps) => Block;
+  var editScheduler: (params?: EditSchedulerProps) => Block;
+
+  interface RemoveSchedulerProps {
+    /**
+     * Identifier of the scheduler entity.
+     */
+    entity_id: string;
+  }
+
   /**
    * Remove a schedule entity
    */
-  var removeScheduler: (params: RemoveSchedulerProps) => Block;
+  var removeScheduler: (params?: RemoveSchedulerProps) => Block;
+
+  interface CopySchedulerProps {
+    /**
+     * Identifier of the scheduler entity.
+     */
+    entity_id: string;
+    /**
+     * Friendly name for the copied schedule
+     */
+    name?: string;
+  }
+
   /**
    * Duplicate a schedule entity
    */
-  var copyScheduler: (params: CopySchedulerProps) => Block;
+  var copyScheduler: (params?: CopySchedulerProps) => Block;
+
   /**
    * Disables all schedules
    */
   var disableAllScheduler: () => Block;
+
   /**
    * Enables all schedules
    */
   var enableAllScheduler: () => Block;
-}
-
-export interface RunActionSchedulerProps {
-  /**
-   * Identifier of the scheduler entity.
-   */
-  entity_id: string;
-  /**
-   * Time for which to evaluate the action (only useful for schedules with multiple timeslot)
-   */
-  time?: string;
-  /**
-   * Whether the conditions of the schedule should be skipped or not
-   */
-  skip_conditions?: boolean;
 }
 
 globalThis.runActionScheduler = (params) =>
@@ -55,33 +138,6 @@ globalThis.runActionScheduler = (params) =>
     },
   });
 
-export interface AddSchedulerProps {
-  /**
-   * Days of the week for which the schedule should be repeated
-   */
-  weekdays?: never;
-  /**
-   * Date from which schedule should be executed
-   */
-  start_date?: never;
-  /**
-   * Date until which schedule should be executed
-   */
-  end_date?: never;
-  /**
-   * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
-   */
-  timeslots: never;
-  /**
-   * Control what happens after the schedule is triggered
-   */
-  repeat_type: never;
-  /**
-   * Friendly name for the schedule
-   */
-  name?: string;
-}
-
 globalThis.addScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.add`,
@@ -91,37 +147,6 @@ globalThis.addScheduler = (params) =>
       service_data: params,
     },
   });
-
-export interface EditSchedulerProps {
-  /**
-   * Identifier of the scheduler entity.
-   */
-  entity_id: string;
-  /**
-   * Days of the week for which the schedule should be repeated
-   */
-  weekdays?: never;
-  /**
-   * Date from which schedule should be executed
-   */
-  start_date?: never;
-  /**
-   * Date until which schedule should be executed
-   */
-  end_date?: never;
-  /**
-   * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
-   */
-  timeslots?: never;
-  /**
-   * Control what happens after the schedule is triggered
-   */
-  repeat_type?: never;
-  /**
-   * Friendly name for the schedule
-   */
-  name?: string;
-}
 
 globalThis.editScheduler = (params) =>
   serviceCall({
@@ -133,13 +158,6 @@ globalThis.editScheduler = (params) =>
     },
   });
 
-export interface RemoveSchedulerProps {
-  /**
-   * Identifier of the scheduler entity.
-   */
-  entity_id: string;
-}
-
 globalThis.removeScheduler = (params) =>
   serviceCall({
     name: `Call scheduler.remove`,
@@ -149,17 +167,6 @@ globalThis.removeScheduler = (params) =>
       service_data: params,
     },
   });
-
-export interface CopySchedulerProps {
-  /**
-   * Identifier of the scheduler entity.
-   */
-  entity_id: string;
-  /**
-   * Friendly name for the copied schedule
-   */
-  name?: string;
-}
 
 globalThis.copyScheduler = (params) =>
   serviceCall({

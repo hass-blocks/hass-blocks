@@ -1,50 +1,88 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
   var reloadInputSelect: () => Block;
+
   /**
    * Selects the first option.
    */
   var selectFirstInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectFirstInputSelectProps,
   ) => Block;
+
   /**
    * Selects the last option.
    */
   var selectLastInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectLastInputSelectProps,
   ) => Block;
+
+  interface SelectNextInputSelectProps {
+    /**
+     * If the option should cycle from the last to the first option on the list.
+     */
+    cycle?: boolean;
+  }
+
   /**
    * Selects the next option.
    */
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectNextInputSelectProps,
+    params: SelectNextInputSelectProps,
   ) => Block;
+
+  interface SelectOptionInputSelectProps {
+    /**
+     * Option to be selected.
+     */
+    option: string;
+  }
+
   /**
    * Selects an option.
    */
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SelectOptionInputSelectProps,
+    params?: SelectOptionInputSelectProps,
   ) => Block;
+
+  interface SelectPreviousInputSelectProps {
+    /**
+     * If the option should cycle from the first to the last option on the list.
+     */
+    cycle?: boolean;
+  }
+
   /**
    * Selects the previous option.
    */
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectPreviousInputSelectProps,
+    params: SelectPreviousInputSelectProps,
   ) => Block;
+
+  interface SetOptionsInputSelectProps {
+    /**
+     * List of options.
+     */
+    options: string;
+  }
+
   /**
    * Sets the options.
    */
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SetOptionsInputSelectProps,
+    params?: SetOptionsInputSelectProps,
   ) => Block;
 }
 
@@ -57,38 +95,25 @@ globalThis.reloadInputSelect = () =>
     },
   });
 
-export interface SelectFirstInputSelectProps {}
-
-globalThis.selectFirstInputSelect = (target, params) =>
+globalThis.selectFirstInputSelect = (target) =>
   serviceCall({
     name: `Call input_select.select_first`,
     params: {
       domain: 'input_select',
       service: 'select_first',
-      service_data: params,
     },
     target,
   });
 
-export interface SelectLastInputSelectProps {}
-
-globalThis.selectLastInputSelect = (target, params) =>
+globalThis.selectLastInputSelect = (target) =>
   serviceCall({
     name: `Call input_select.select_last`,
     params: {
       domain: 'input_select',
       service: 'select_last',
-      service_data: params,
     },
     target,
   });
-
-export interface SelectNextInputSelectProps {
-  /**
-   * If the option should cycle from the last to the first option on the list.
-   */
-  cycle?: boolean;
-}
 
 globalThis.selectNextInputSelect = (target, params) =>
   serviceCall({
@@ -101,13 +126,6 @@ globalThis.selectNextInputSelect = (target, params) =>
     target,
   });
 
-export interface SelectOptionInputSelectProps {
-  /**
-   * Option to be selected.
-   */
-  option: string;
-}
-
 globalThis.selectOptionInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_option`,
@@ -119,13 +137,6 @@ globalThis.selectOptionInputSelect = (target, params) =>
     target,
   });
 
-export interface SelectPreviousInputSelectProps {
-  /**
-   * If the option should cycle from the first to the last option on the list.
-   */
-  cycle?: boolean;
-}
-
 globalThis.selectPreviousInputSelect = (target, params) =>
   serviceCall({
     name: `Call input_select.select_previous`,
@@ -136,13 +147,6 @@ globalThis.selectPreviousInputSelect = (target, params) =>
     },
     target,
   });
-
-export interface SetOptionsInputSelectProps {
-  /**
-   * List of options.
-   */
-  options: string;
-}
 
 globalThis.setOptionsInputSelect = (target, params) =>
   serviceCall({

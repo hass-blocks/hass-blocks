@@ -1,74 +1,86 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Selects the first option.
    */
-  var selectFirstSelect: (
-    target: IEntity<`select.${string}`> | IArea,
-    params?: SelectFirstSelectProps,
-  ) => Block;
+  var selectFirstSelect: (target: IEntity<`select.${string}`> | IArea) => Block;
+
   /**
    * Selects the last option.
    */
-  var selectLastSelect: (
-    target: IEntity<`select.${string}`> | IArea,
-    params?: SelectLastSelectProps,
-  ) => Block;
+  var selectLastSelect: (target: IEntity<`select.${string}`> | IArea) => Block;
+
+  interface SelectNextSelectProps {
+    /**
+     * If the option should cycle from the last to the first.
+     */
+    cycle?: boolean;
+  }
+
   /**
    * Selects the next option.
    */
   var selectNextSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params?: SelectNextSelectProps,
+    params: SelectNextSelectProps,
   ) => Block;
+
+  interface SelectOptionSelectProps {
+    /**
+     * Option to be selected.
+     */
+    option: string;
+  }
+
   /**
    * Selects an option.
    */
   var selectOptionSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params: SelectOptionSelectProps,
+    params?: SelectOptionSelectProps,
   ) => Block;
+
+  interface SelectPreviousSelectProps {
+    /**
+     * If the option should cycle from the first to the last.
+     */
+    cycle?: boolean;
+  }
+
   /**
    * Selects the previous option.
    */
   var selectPreviousSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params?: SelectPreviousSelectProps,
+    params: SelectPreviousSelectProps,
   ) => Block;
 }
 
-export interface SelectFirstSelectProps {}
-
-globalThis.selectFirstSelect = (target, params) =>
+globalThis.selectFirstSelect = (target) =>
   serviceCall({
     name: `Call select.select_first`,
     params: {
       domain: 'select',
       service: 'select_first',
-      service_data: params,
     },
     target,
   });
 
-export interface SelectLastSelectProps {}
-
-globalThis.selectLastSelect = (target, params) =>
+globalThis.selectLastSelect = (target) =>
   serviceCall({
     name: `Call select.select_last`,
     params: {
       domain: 'select',
       service: 'select_last',
-      service_data: params,
     },
     target,
   });
-
-export interface SelectNextSelectProps {
-  /**
-   * If the option should cycle from the last to the first.
-   */
-  cycle?: boolean;
-}
 
 globalThis.selectNextSelect = (target, params) =>
   serviceCall({
@@ -81,13 +93,6 @@ globalThis.selectNextSelect = (target, params) =>
     target,
   });
 
-export interface SelectOptionSelectProps {
-  /**
-   * Option to be selected.
-   */
-  option: string;
-}
-
 globalThis.selectOptionSelect = (target, params) =>
   serviceCall({
     name: `Call select.select_option`,
@@ -98,13 +103,6 @@ globalThis.selectOptionSelect = (target, params) =>
     },
     target,
   });
-
-export interface SelectPreviousSelectProps {
-  /**
-   * If the option should cycle from the first to the last.
-   */
-  cycle?: boolean;
-}
 
 globalThis.selectPreviousSelect = (target, params) =>
   serviceCall({

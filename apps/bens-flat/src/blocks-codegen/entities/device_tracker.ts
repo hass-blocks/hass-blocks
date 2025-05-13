@@ -1,14 +1,14 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var mumsPhoneDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var bensImacProDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var bensIphoneCompanionAppDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var bensImacDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var ryansIphoneDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var dadSPhoneDeviceTracker: IEntity<`device_tracker.${string}`>;
-  var tomSPixel_7DeviceTracker: IEntity<`device_tracker.${string}`>;
-  var bensIphoneDeviceTracker: IEntity<`device_tracker.${string}`>;
+  var mumsPhoneDeviceTracker: IEntity<`device_tracker.mums_phone`>;
+  var bensImacProDeviceTracker: IEntity<`device_tracker.bens_imac_pro`>;
+  var bensIphoneCompanionAppDeviceTracker: IEntity<`device_tracker.bens_iphone_companion_app`>;
+  var bensImacDeviceTracker: IEntity<`device_tracker.bens_imac`>;
+  var ryansIphoneDeviceTracker: IEntity<`device_tracker.ryans_iphone`>;
+  var dadSPhoneDeviceTracker: IEntity<`device_tracker.dad_s_phone`>;
+  var tomSPixel_7DeviceTracker: IEntity<`device_tracker.tom_s_pixel_7`>;
+  var bensIphoneDeviceTracker: IEntity<`device_tracker.bens_iphone`>;
 }
 
 globalThis.mumsPhoneDeviceTracker = entity('device_tracker.mums_phone');

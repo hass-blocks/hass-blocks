@@ -1,44 +1,69 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   var turnTvOnScript: () => Block;
+
   var turnTvModeOnScript: () => Block;
+
   var boostBoilerScript: () => Block;
+
   var updateAllHacsItemsScript: () => Block;
-  var todoListScript: (params: TodoListScriptProps) => Block;
-  var openAiTtsScript: (params: OpenAiTtsScriptProps) => Block;
+
+  interface TodoListScriptProps {
+    player: string;
+  }
+
+  var todoListScript: (params?: TodoListScriptProps) => Block;
+
+  interface OpenAiTtsScriptProps {
+    message: string;
+    player: string;
+  }
+
+  var openAiTtsScript: (params?: OpenAiTtsScriptProps) => Block;
+
+  interface ReadTodaySCalendarScriptProps {
+    player?: string;
+  }
+
   var readTodaySCalendarScript: (
-    params?: ReadTodaySCalendarScriptProps,
+    params: ReadTodaySCalendarScriptProps,
   ) => Block;
+
   var goodMorningRoutineScript: () => Block;
+
   var turnEverythingOff_2Script: () => Block;
+
   var dismissWelcomeMessageScript: () => Block;
+
   var groupSpeakersScript: () => Block;
+
   var unjoinSpeakersScript: () => Block;
+
   /**
    * Reloads all the available scripts.
    */
   var reloadScript: () => Block;
+
   /**
    * Runs the sequence of actions defined in a script.
    */
-  var turnOnScript: (
-    target: IEntity<`script.${string}`> | IArea,
-    params?: TurnOnScriptProps,
-  ) => Block;
+  var turnOnScript: (target: IEntity<`script.${string}`> | IArea) => Block;
+
   /**
    * Stops a running script.
    */
-  var turnOffScript: (
-    target: IEntity<`script.${string}`> | IArea,
-    params?: TurnOffScriptProps,
-  ) => Block;
+  var turnOffScript: (target: IEntity<`script.${string}`> | IArea) => Block;
+
   /**
    * Starts a script if it isn't running, stops it otherwise.
    */
-  var toggleScript: (
-    target: IEntity<`script.${string}`> | IArea,
-    params?: ToggleScriptProps,
-  ) => Block;
+  var toggleScript: (target: IEntity<`script.${string}`> | IArea) => Block;
 }
 
 globalThis.turnTvOnScript = () =>
@@ -77,10 +102,6 @@ globalThis.updateAllHacsItemsScript = () =>
     },
   });
 
-export interface TodoListScriptProps {
-  player: string;
-}
-
 globalThis.todoListScript = (params) =>
   serviceCall({
     name: `Call script.todo_list`,
@@ -91,11 +112,6 @@ globalThis.todoListScript = (params) =>
     },
   });
 
-export interface OpenAiTtsScriptProps {
-  message: string;
-  player: string;
-}
-
 globalThis.openAiTtsScript = (params) =>
   serviceCall({
     name: `Call script.open_ai_tts`,
@@ -105,10 +121,6 @@ globalThis.openAiTtsScript = (params) =>
       service_data: params,
     },
   });
-
-export interface ReadTodaySCalendarScriptProps {
-  player?: string;
-}
 
 globalThis.readTodaySCalendarScript = (params) =>
   serviceCall({
@@ -174,41 +186,32 @@ globalThis.reloadScript = () =>
     },
   });
 
-export interface TurnOnScriptProps {}
-
-globalThis.turnOnScript = (target, params) =>
+globalThis.turnOnScript = (target) =>
   serviceCall({
     name: `Call script.turn_on`,
     params: {
       domain: 'script',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOffScriptProps {}
-
-globalThis.turnOffScript = (target, params) =>
+globalThis.turnOffScript = (target) =>
   serviceCall({
     name: `Call script.turn_off`,
     params: {
       domain: 'script',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleScriptProps {}
-
-globalThis.toggleScript = (target, params) =>
+globalThis.toggleScript = (target) =>
   serviceCall({
     name: `Call script.toggle`,
     params: {
       domain: 'script',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });

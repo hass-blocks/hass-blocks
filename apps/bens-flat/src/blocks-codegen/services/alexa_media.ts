@@ -1,32 +1,61 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface ForceLogoutAlexaMediaProps {
+    /**
+     * Accounts to clear. Empty will clear all.
+     */
+    email?: never;
+  }
+
   /**
    * Force account to logout. Used mainly for debugging.
    */
-  var forceLogoutAlexaMedia: (params?: ForceLogoutAlexaMediaProps) => Block;
+  var forceLogoutAlexaMedia: (params: ForceLogoutAlexaMediaProps) => Block;
+
+  interface UpdateLastCalledAlexaMediaProps {
+    /**
+     * List of Alexa accounts to update. If empty, will update all known accounts.
+     */
+    email?: never;
+  }
+
   /**
    * Forces update of last_called echo device for each Alexa account.
    */
   var updateLastCalledAlexaMedia: (
-    params?: UpdateLastCalledAlexaMediaProps,
+    params: UpdateLastCalledAlexaMediaProps,
   ) => Block;
+
+  interface RestoreVolumeAlexaMediaProps {
+    /**
+     * Entity to restore the previous volume level on
+     */
+    entity_id: string;
+  }
+
   /**
    * Restore previous volume level on Alexa media player device
    */
-  var restoreVolumeAlexaMedia: (params: RestoreVolumeAlexaMediaProps) => Block;
+  var restoreVolumeAlexaMedia: (params?: RestoreVolumeAlexaMediaProps) => Block;
+
+  interface GetHistoryRecordsAlexaMediaProps {
+    /**
+     * Entity to get the history for
+     */
+    entity_id: string;
+    /**
+     * Number of entries to get
+     */
+    entries?: never;
+  }
+
   /**
    * Parses the history records for the specified device
    */
   var getHistoryRecordsAlexaMedia: (
-    params: GetHistoryRecordsAlexaMediaProps,
+    params?: GetHistoryRecordsAlexaMediaProps,
   ) => Block;
-}
-
-export interface ForceLogoutAlexaMediaProps {
-  /**
-   * Accounts to clear. Empty will clear all.
-   */
-  email?: never;
 }
 
 globalThis.forceLogoutAlexaMedia = (params) =>
@@ -39,13 +68,6 @@ globalThis.forceLogoutAlexaMedia = (params) =>
     },
   });
 
-export interface UpdateLastCalledAlexaMediaProps {
-  /**
-   * List of Alexa accounts to update. If empty, will update all known accounts.
-   */
-  email?: never;
-}
-
 globalThis.updateLastCalledAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.update_last_called`,
@@ -56,13 +78,6 @@ globalThis.updateLastCalledAlexaMedia = (params) =>
     },
   });
 
-export interface RestoreVolumeAlexaMediaProps {
-  /**
-   * Entity to restore the previous volume level on
-   */
-  entity_id: string;
-}
-
 globalThis.restoreVolumeAlexaMedia = (params) =>
   serviceCall({
     name: `Call alexa_media.restore_volume`,
@@ -72,17 +87,6 @@ globalThis.restoreVolumeAlexaMedia = (params) =>
       service_data: params,
     },
   });
-
-export interface GetHistoryRecordsAlexaMediaProps {
-  /**
-   * Entity to get the history for
-   */
-  entity_id: string;
-  /**
-   * Number of entries to get
-   */
-  entries?: never;
-}
 
 globalThis.getHistoryRecordsAlexaMedia = (params) =>
   serviceCall({

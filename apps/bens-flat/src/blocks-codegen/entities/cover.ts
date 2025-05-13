@@ -1,15 +1,15 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var livingRoomBlindsCover: IEntity<`cover.${string}`>;
-  var livingRoomWindowsLeftCover: IEntity<`cover.${string}`>;
-  var livingRoomWindowsLeftCentreCover: IEntity<`cover.${string}`>;
-  var livingRoomWindowsRightCover: IEntity<`cover.${string}`>;
-  var livingRoomWindowsRightCentreCover: IEntity<`cover.${string}`>;
-  var leftCentreWindowCover: IEntity<`cover.${string}`>;
-  var leftWindowCover: IEntity<`cover.${string}`>;
-  var rightCentreWindowCover: IEntity<`cover.${string}`>;
-  var rightWindowCover: IEntity<`cover.${string}`>;
+  var livingRoomBlindsCover: IEntity<`cover.living_room_blinds`>;
+  var livingRoomWindowsLeftCover: IEntity<`cover.living_room_windows_left`>;
+  var livingRoomWindowsLeftCentreCover: IEntity<`cover.living_room_windows_left_centre`>;
+  var livingRoomWindowsRightCover: IEntity<`cover.living_room_windows_right`>;
+  var livingRoomWindowsRightCentreCover: IEntity<`cover.living_room_windows_right_centre`>;
+  var leftCentreWindowCover: IEntity<`cover.left_centre_window`>;
+  var leftWindowCover: IEntity<`cover.left_window`>;
+  var rightCentreWindowCover: IEntity<`cover.right_centre_window`>;
+  var rightWindowCover: IEntity<`cover.right_window`>;
 }
 
 globalThis.livingRoomBlindsCover = entity('cover.living_room_blinds');

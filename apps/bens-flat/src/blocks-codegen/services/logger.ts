@@ -1,20 +1,22 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface SetDefaultLevelLoggerProps {
+    /**
+     * Default severity level for all integrations.
+     */
+    level?: never;
+  }
+
   /**
    * Sets the default log level for integrations.
    */
-  var setDefaultLevelLogger: (params?: SetDefaultLevelLoggerProps) => Block;
+  var setDefaultLevelLogger: (params: SetDefaultLevelLoggerProps) => Block;
+
   /**
    * Sets the log level for one or more integrations.
    */
   var setLevelLogger: () => Block;
-}
-
-export interface SetDefaultLevelLoggerProps {
-  /**
-   * Default severity level for all integrations.
-   */
-  level?: never;
 }
 
 globalThis.setDefaultLevelLogger = (params) =>

@@ -1,4 +1,5 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
   /**
    * Creates a new backup with automatic backup settings.

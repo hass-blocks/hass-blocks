@@ -1,28 +1,46 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface SearchOpenplantbookProps {
+    /**
+     * The string to search for
+     */
+    alias: string;
+  }
+
   /**
    * Searches Openplantbook for a plant
    */
-  var searchOpenplantbook: (params: SearchOpenplantbookProps) => Block;
+  var searchOpenplantbook: (params?: SearchOpenplantbookProps) => Block;
+
+  interface GetOpenplantbookProps {
+    /**
+     * The name of the species exactly as written in "pid" or "scientific species" in Openplantbook
+     */
+    species: string;
+  }
+
   /**
    * Fetches data for a single species
    */
-  var getOpenplantbook: (params: GetOpenplantbookProps) => Block;
+  var getOpenplantbook: (params?: GetOpenplantbookProps) => Block;
+
+  interface CleanCacheOpenplantbookProps {
+    /**
+     * Minimum age of entries to clean from the cache. Default to 24 hours if not set
+     */
+    hours?: number;
+  }
+
   /**
    * Clean up the cached entries from Openplantbook
    */
-  var cleanCacheOpenplantbook: (params?: CleanCacheOpenplantbookProps) => Block;
+  var cleanCacheOpenplantbook: (params: CleanCacheOpenplantbookProps) => Block;
+
   /**
    * Upload sensors data of all plant instances
    */
   var uploadOpenplantbook: () => Block;
-}
-
-export interface SearchOpenplantbookProps {
-  /**
-   * The string to search for
-   */
-  alias: string;
 }
 
 globalThis.searchOpenplantbook = (params) =>
@@ -35,13 +53,6 @@ globalThis.searchOpenplantbook = (params) =>
     },
   });
 
-export interface GetOpenplantbookProps {
-  /**
-   * The name of the species exactly as written in "pid" or "scientific species" in Openplantbook
-   */
-  species: string;
-}
-
 globalThis.getOpenplantbook = (params) =>
   serviceCall({
     name: `Call openplantbook.get`,
@@ -51,13 +62,6 @@ globalThis.getOpenplantbook = (params) =>
       service_data: params,
     },
   });
-
-export interface CleanCacheOpenplantbookProps {
-  /**
-   * Minimum age of entries to clean from the cache. Default to 24 hours if not set
-   */
-  hours?: number;
-}
 
 globalThis.cleanCacheOpenplantbook = (params) =>
   serviceCall({

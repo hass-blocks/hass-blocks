@@ -1,26 +1,35 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface GetTorrentsQbittorrentProps {
+    /**
+     * Which service to grab the list from
+     */
+    device_id: never;
+    /**
+     * What kind of torrents you want to return, such as All or Active.
+     */
+    torrent_filter: never;
+  }
+
   /**
    * Gets a list of current torrents
    */
-  var getTorrentsQbittorrent: (params: GetTorrentsQbittorrentProps) => Block;
+  var getTorrentsQbittorrent: (params?: GetTorrentsQbittorrentProps) => Block;
+
+  interface GetAllTorrentsQbittorrentProps {
+    /**
+     * What kind of torrents you want to return, such as All or Active.
+     */
+    torrent_filter: never;
+  }
+
   /**
    * Gets a list of current torrents from all instances of qBittorrent
    */
   var getAllTorrentsQbittorrent: (
-    params: GetAllTorrentsQbittorrentProps,
+    params?: GetAllTorrentsQbittorrentProps,
   ) => Block;
-}
-
-export interface GetTorrentsQbittorrentProps {
-  /**
-   * Which service to grab the list from
-   */
-  device_id: never;
-  /**
-   * What kind of torrents you want to return, such as All or Active.
-   */
-  torrent_filter: never;
 }
 
 globalThis.getTorrentsQbittorrent = (params) =>
@@ -32,13 +41,6 @@ globalThis.getTorrentsQbittorrent = (params) =>
       service_data: params,
     },
   });
-
-export interface GetAllTorrentsQbittorrentProps {
-  /**
-   * What kind of torrents you want to return, such as All or Active.
-   */
-  torrent_filter: never;
-}
 
 globalThis.getAllTorrentsQbittorrent = (params) =>
   serviceCall({

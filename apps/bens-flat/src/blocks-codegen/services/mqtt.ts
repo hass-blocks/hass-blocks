@@ -1,40 +1,54 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface PublishMqttProps {
+    /**
+     * Topic to publish to.
+     */
+    topic: string;
+    /**
+     * The payload to publish. Publishes an empty message if not provided.
+     */
+    payload?: Record<string, unknown>;
+    /**
+     * If 'Payload' is a Python bytes literal, evaluate the bytes literal and publish the raw data.
+     */
+    evaluate_payload?: boolean;
+    /**
+     * Quality of Service to use. 0: At most once. 1: At least once. 2: Exactly once.
+     */
+    qos?: never;
+    /**
+     * If the message should have the retain flag set. If set, the broker stores the most recent message on a topic.
+     */
+    retain?: boolean;
+  }
+
   /**
    * Publishes a message to an MQTT topic.
    */
-  var publishMqtt: (params: PublishMqttProps) => Block;
+  var publishMqtt: (params?: PublishMqttProps) => Block;
+
+  interface DumpMqttProps {
+    /**
+     * Topic to listen to.
+     */
+    topic?: string;
+    /**
+     * How long we should listen for messages in seconds.
+     */
+    duration?: number;
+  }
+
   /**
    * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
    */
-  var dumpMqtt: (params?: DumpMqttProps) => Block;
+  var dumpMqtt: (params: DumpMqttProps) => Block;
+
   /**
    * Reloads MQTT entities from the YAML-configuration.
    */
   var reloadMqtt: () => Block;
-}
-
-export interface PublishMqttProps {
-  /**
-   * Topic to publish to.
-   */
-  topic: string;
-  /**
-   * The payload to publish. Publishes an empty message if not provided.
-   */
-  payload?: Record<string, unknown>;
-  /**
-   * If 'Payload' is a Python bytes literal, evaluate the bytes literal and publish the raw data.
-   */
-  evaluate_payload?: boolean;
-  /**
-   * Quality of Service to use. 0: At most once. 1: At least once. 2: Exactly once.
-   */
-  qos?: never;
-  /**
-   * If the message should have the retain flag set. If set, the broker stores the most recent message on a topic.
-   */
-  retain?: boolean;
 }
 
 globalThis.publishMqtt = (params) =>
@@ -46,17 +60,6 @@ globalThis.publishMqtt = (params) =>
       service_data: params,
     },
   });
-
-export interface DumpMqttProps {
-  /**
-   * Topic to listen to.
-   */
-  topic?: string;
-  /**
-   * How long we should listen for messages in seconds.
-   */
-  duration?: number;
-}
 
 globalThis.dumpMqtt = (params) =>
   serviceCall({

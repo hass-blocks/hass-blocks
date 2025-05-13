@@ -1,24 +1,41 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface StartFfmpegProps {
+    /**
+     * Name of entity that will start. Platform dependent.
+     */
+    entity_id?: string;
+  }
+
   /**
    * Sends a start command to an FFmpeg-based sensor.
    */
-  var startFfmpeg: (params?: StartFfmpegProps) => Block;
+  var startFfmpeg: (params: StartFfmpegProps) => Block;
+
+  interface StopFfmpegProps {
+    /**
+     * Name of entity that will stop. Platform dependent.
+     */
+    entity_id?: string;
+  }
+
   /**
    * Sends a stop command to an FFmpeg-based sensor.
    */
-  var stopFfmpeg: (params?: StopFfmpegProps) => Block;
+  var stopFfmpeg: (params: StopFfmpegProps) => Block;
+
+  interface RestartFfmpegProps {
+    /**
+     * Name of entity that will restart. Platform dependent.
+     */
+    entity_id?: string;
+  }
+
   /**
    * Sends a restart command to an FFmpeg-based sensor.
    */
-  var restartFfmpeg: (params?: RestartFfmpegProps) => Block;
-}
-
-export interface StartFfmpegProps {
-  /**
-   * Name of entity that will start. Platform dependent.
-   */
-  entity_id?: string;
+  var restartFfmpeg: (params: RestartFfmpegProps) => Block;
 }
 
 globalThis.startFfmpeg = (params) =>
@@ -31,13 +48,6 @@ globalThis.startFfmpeg = (params) =>
     },
   });
 
-export interface StopFfmpegProps {
-  /**
-   * Name of entity that will stop. Platform dependent.
-   */
-  entity_id?: string;
-}
-
 globalThis.stopFfmpeg = (params) =>
   serviceCall({
     name: `Call ffmpeg.stop`,
@@ -47,13 +57,6 @@ globalThis.stopFfmpeg = (params) =>
       service_data: params,
     },
   });
-
-export interface RestartFfmpegProps {
-  /**
-   * Name of entity that will restart. Platform dependent.
-   */
-  entity_id?: string;
-}
 
 globalThis.restartFfmpeg = (params) =>
   serviceCall({

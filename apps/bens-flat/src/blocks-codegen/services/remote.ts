@@ -1,68 +1,127 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Sends the turn off command.
    */
-  var turnOffRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
-    params?: TurnOffRemoteProps,
-  ) => Block;
+  var turnOffRemote: (target: IEntity<`remote.${string}`> | IArea) => Block;
+
+  interface TurnOnRemoteProps {
+    /**
+     * Activity ID or activity name to be started.
+     */
+    activity?: string;
+  }
+
   /**
    * Sends the turn on command.
    */
   var turnOnRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: TurnOnRemoteProps,
+    params: TurnOnRemoteProps,
   ) => Block;
+
   /**
    * Sends the toggle command.
    */
-  var toggleRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
-    params?: ToggleRemoteProps,
-  ) => Block;
+  var toggleRemote: (target: IEntity<`remote.${string}`> | IArea) => Block;
+
+  interface SendCommandRemoteProps {
+    /**
+     * Device ID to send command to.
+     */
+    device?: string;
+    /**
+     * A single command or a list of commands to send.
+     */
+    command: never;
+    /**
+     * The number of times you want to repeat the commands.
+     */
+    num_repeats?: number;
+    /**
+     * The time you want to wait in between repeated commands.
+     */
+    delay_secs?: number;
+    /**
+     * The time you want to have it held before the release is send.
+     */
+    hold_secs?: number;
+  }
+
   /**
    * Sends a command or a list of commands to a device.
    */
   var sendCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: SendCommandRemoteProps,
+    params?: SendCommandRemoteProps,
   ) => Block;
+
+  interface LearnCommandRemoteProps {
+    /**
+     * Device ID to learn command from.
+     */
+    device?: string;
+    /**
+     * A single command or a list of commands to learn.
+     */
+    command?: never;
+    /**
+     * The type of command to be learned.
+     */
+    command_type?: never;
+    /**
+     * If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won't change the state.
+     */
+    alternative?: boolean;
+    /**
+     * Timeout for the command to be learned.
+     */
+    timeout?: number;
+  }
+
   /**
    * Learns a command or a list of commands from a device.
    */
   var learnCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: LearnCommandRemoteProps,
+    params: LearnCommandRemoteProps,
   ) => Block;
+
+  interface DeleteCommandRemoteProps {
+    /**
+     * Device from which commands will be deleted.
+     */
+    device?: string;
+    /**
+     * The single command or the list of commands to be deleted.
+     */
+    command: never;
+  }
+
   /**
    * Deletes a command or a list of commands from the database.
    */
   var deleteCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: DeleteCommandRemoteProps,
+    params?: DeleteCommandRemoteProps,
   ) => Block;
 }
 
-export interface TurnOffRemoteProps {}
-
-globalThis.turnOffRemote = (target, params) =>
+globalThis.turnOffRemote = (target) =>
   serviceCall({
     name: `Call remote.turn_off`,
     params: {
       domain: 'remote',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
-
-export interface TurnOnRemoteProps {
-  /**
-   * Activity ID or activity name to be started.
-   */
-  activity?: string;
-}
 
 globalThis.turnOnRemote = (target, params) =>
   serviceCall({
@@ -75,41 +134,15 @@ globalThis.turnOnRemote = (target, params) =>
     target,
   });
 
-export interface ToggleRemoteProps {}
-
-globalThis.toggleRemote = (target, params) =>
+globalThis.toggleRemote = (target) =>
   serviceCall({
     name: `Call remote.toggle`,
     params: {
       domain: 'remote',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
-
-export interface SendCommandRemoteProps {
-  /**
-   * Device ID to send command to.
-   */
-  device?: string;
-  /**
-   * A single command or a list of commands to send.
-   */
-  command: never;
-  /**
-   * The number of times you want to repeat the commands.
-   */
-  num_repeats?: number;
-  /**
-   * The time you want to wait in between repeated commands.
-   */
-  delay_secs?: number;
-  /**
-   * The time you want to have it held before the release is send.
-   */
-  hold_secs?: number;
-}
 
 globalThis.sendCommandRemote = (target, params) =>
   serviceCall({
@@ -122,29 +155,6 @@ globalThis.sendCommandRemote = (target, params) =>
     target,
   });
 
-export interface LearnCommandRemoteProps {
-  /**
-   * Device ID to learn command from.
-   */
-  device?: string;
-  /**
-   * A single command or a list of commands to learn.
-   */
-  command?: never;
-  /**
-   * The type of command to be learned.
-   */
-  command_type?: never;
-  /**
-   * If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won't change the state.
-   */
-  alternative?: boolean;
-  /**
-   * Timeout for the command to be learned.
-   */
-  timeout?: number;
-}
-
 globalThis.learnCommandRemote = (target, params) =>
   serviceCall({
     name: `Call remote.learn_command`,
@@ -155,17 +165,6 @@ globalThis.learnCommandRemote = (target, params) =>
     },
     target,
   });
-
-export interface DeleteCommandRemoteProps {
-  /**
-   * Device from which commands will be deleted.
-   */
-  device?: string;
-  /**
-   * The single command or the list of commands to be deleted.
-   */
-  command: never;
-}
 
 globalThis.deleteCommandRemote = (target, params) =>
   serviceCall({

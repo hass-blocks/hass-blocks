@@ -1,54 +1,76 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface CreateEventCalendarProps {
+    /**
+     * Defines the short summary or subject for the event.
+     */
+    summary: string;
+    /**
+     * A more complete description of the event than the one provided by the summary.
+     */
+    description?: string;
+    /**
+     * The date and time the event should start.
+     */
+    start_date_time?: never;
+    /**
+     * The date and time the event should end.
+     */
+    end_date_time?: never;
+    /**
+     * The date the all-day event should start.
+     */
+    start_date?: never;
+    /**
+     * The date the all-day event should end (exclusive).
+     */
+    end_date?: never;
+    /**
+     * Days or weeks that you want to create the event in.
+     */
+    in?: never;
+    /**
+     * The location of the event.
+     */
+    location?: string;
+  }
+
   /**
    * Adds a new calendar event.
    */
   var createEventCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params: CreateEventCalendarProps,
+    params?: CreateEventCalendarProps,
   ) => Block;
+
+  interface GetEventsCalendarProps {
+    /**
+     * Returns active events after this time (exclusive). When not set, defaults to now.
+     */
+    start_date_time?: never;
+    /**
+     * Returns active events before this time (exclusive). Cannot be used with Duration.
+     */
+    end_date_time?: never;
+    /**
+     * Returns active events from Start time for the specified duration.
+     */
+    duration?: never;
+  }
+
   /**
    * Retrieves events on a calendar within a time range.
    */
   var getEventsCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params?: GetEventsCalendarProps,
+    params: GetEventsCalendarProps,
   ) => Block;
-}
-
-export interface CreateEventCalendarProps {
-  /**
-   * Defines the short summary or subject for the event.
-   */
-  summary: string;
-  /**
-   * A more complete description of the event than the one provided by the summary.
-   */
-  description?: string;
-  /**
-   * The date and time the event should start.
-   */
-  start_date_time?: never;
-  /**
-   * The date and time the event should end.
-   */
-  end_date_time?: never;
-  /**
-   * The date the all-day event should start.
-   */
-  start_date?: never;
-  /**
-   * The date the all-day event should end (exclusive).
-   */
-  end_date?: never;
-  /**
-   * Days or weeks that you want to create the event in.
-   */
-  in?: never;
-  /**
-   * The location of the event.
-   */
-  location?: string;
 }
 
 globalThis.createEventCalendar = (target, params) =>
@@ -61,21 +83,6 @@ globalThis.createEventCalendar = (target, params) =>
     },
     target,
   });
-
-export interface GetEventsCalendarProps {
-  /**
-   * Returns active events after this time (exclusive). When not set, defaults to now.
-   */
-  start_date_time?: never;
-  /**
-   * Returns active events before this time (exclusive). Cannot be used with Duration.
-   */
-  end_date_time?: never;
-  /**
-   * Returns active events from Start time for the specified duration.
-   */
-  duration?: never;
-}
 
 globalThis.getEventsCalendar = (target, params) =>
   serviceCall({

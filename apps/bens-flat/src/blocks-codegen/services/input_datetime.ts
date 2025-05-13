@@ -1,15 +1,41 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
   var reloadInputDatetime: () => Block;
+
+  interface SetDatetimeInputDatetimeProps {
+    /**
+     * The target date.
+     */
+    date?: string;
+    /**
+     * The target time.
+     */
+    time?: string;
+    /**
+     * The target date & time.
+     */
+    datetime?: string;
+    /**
+     * The target date & time, expressed by a UNIX timestamp.
+     */
+    timestamp?: number;
+  }
+
   /**
    * Sets the date and/or time.
    */
   var setDatetimeInputDatetime: (
     target: IEntity<`input_datetime.${string}`> | IArea,
-    params?: SetDatetimeInputDatetimeProps,
+    params: SetDatetimeInputDatetimeProps,
   ) => Block;
 }
 
@@ -21,25 +47,6 @@ globalThis.reloadInputDatetime = () =>
       service: 'reload',
     },
   });
-
-export interface SetDatetimeInputDatetimeProps {
-  /**
-   * The target date.
-   */
-  date?: string;
-  /**
-   * The target time.
-   */
-  time?: string;
-  /**
-   * The target date & time.
-   */
-  datetime?: string;
-  /**
-   * The target date & time, expressed by a UNIX timestamp.
-   */
-  timestamp?: number;
-}
 
 globalThis.setDatetimeInputDatetime = (target, params) =>
   serviceCall({

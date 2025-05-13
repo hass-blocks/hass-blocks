@@ -1,15 +1,21 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Reloads schedules from the YAML-configuration.
    */
   var reloadSchedule: () => Block;
+
   /**
    * Retrieves the configured time ranges of one or multiple schedules.
    */
   var getScheduleSchedule: (
     target: IEntity<`schedule.${string}`> | IArea,
-    params?: GetScheduleScheduleProps,
   ) => Block;
 }
 
@@ -22,15 +28,12 @@ globalThis.reloadSchedule = () =>
     },
   });
 
-export interface GetScheduleScheduleProps {}
-
-globalThis.getScheduleSchedule = (target, params) =>
+globalThis.getScheduleSchedule = (target) =>
   serviceCall({
     name: `Call schedule.get_schedule`,
     params: {
       domain: 'schedule',
       service: 'get_schedule',
-      service_data: params,
     },
     target,
   });

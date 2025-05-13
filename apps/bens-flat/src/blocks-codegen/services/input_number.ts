@@ -1,29 +1,43 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
   var reloadInputNumber: () => Block;
+
+  interface SetValueInputNumberProps {
+    /**
+     * The target value.
+     */
+    value: number;
+  }
+
   /**
    * Sets the value.
    */
   var setValueInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-    params: SetValueInputNumberProps,
+    params?: SetValueInputNumberProps,
   ) => Block;
+
   /**
    * Increments the current value by 1 step.
    */
   var incrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-    params?: IncrementInputNumberProps,
   ) => Block;
+
   /**
    * Decrements the current value by 1 step.
    */
   var decrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-    params?: DecrementInputNumberProps,
   ) => Block;
 }
 
@@ -36,13 +50,6 @@ globalThis.reloadInputNumber = () =>
     },
   });
 
-export interface SetValueInputNumberProps {
-  /**
-   * The target value.
-   */
-  value: number;
-}
-
 globalThis.setValueInputNumber = (target, params) =>
   serviceCall({
     name: `Call input_number.set_value`,
@@ -54,28 +61,22 @@ globalThis.setValueInputNumber = (target, params) =>
     target,
   });
 
-export interface IncrementInputNumberProps {}
-
-globalThis.incrementInputNumber = (target, params) =>
+globalThis.incrementInputNumber = (target) =>
   serviceCall({
     name: `Call input_number.increment`,
     params: {
       domain: 'input_number',
       service: 'increment',
-      service_data: params,
     },
     target,
   });
 
-export interface DecrementInputNumberProps {}
-
-globalThis.decrementInputNumber = (target, params) =>
+globalThis.decrementInputNumber = (target) =>
   serviceCall({
     name: `Call input_number.decrement`,
     params: {
       domain: 'input_number',
       service: 'decrement',
-      service_data: params,
     },
     target,
   });

@@ -1,61 +1,115 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface AlarmDisarmAlarmControlPanelProps {
+    /**
+     * Code to disarm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Disarms the alarm.
    */
   var alarmDisarmAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmDisarmAlarmControlPanelProps,
+    params: AlarmDisarmAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmArmHomeAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Arms the alarm in the home mode.
    */
   var alarmArmHomeAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmHomeAlarmControlPanelProps,
+    params: AlarmArmHomeAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmArmAwayAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Arms the alarm in the away mode.
    */
   var alarmArmAwayAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmAwayAlarmControlPanelProps,
+    params: AlarmArmAwayAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmArmNightAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Arms the alarm in the night mode.
    */
   var alarmArmNightAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmNightAlarmControlPanelProps,
+    params: AlarmArmNightAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmArmVacationAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Arms the alarm in the vacation mode.
    */
   var alarmArmVacationAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmVacationAlarmControlPanelProps,
+    params: AlarmArmVacationAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmArmCustomBypassAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Arms the alarm while allowing to bypass a custom area.
    */
   var alarmArmCustomBypassAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmCustomBypassAlarmControlPanelProps,
+    params: AlarmArmCustomBypassAlarmControlPanelProps,
   ) => Block;
+
+  interface AlarmTriggerAlarmControlPanelProps {
+    /**
+     * Code to arm the alarm.
+     */
+    code?: string;
+  }
+
   /**
    * Triggers the alarm manually.
    */
   var alarmTriggerAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmTriggerAlarmControlPanelProps,
+    params: AlarmTriggerAlarmControlPanelProps,
   ) => Block;
-}
-
-export interface AlarmDisarmAlarmControlPanelProps {
-  /**
-   * Code to disarm the alarm.
-   */
-  code?: string;
 }
 
 globalThis.alarmDisarmAlarmControlPanel = (target, params) =>
@@ -69,13 +123,6 @@ globalThis.alarmDisarmAlarmControlPanel = (target, params) =>
     target,
   });
 
-export interface AlarmArmHomeAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
-
 globalThis.alarmArmHomeAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_home`,
@@ -86,13 +133,6 @@ globalThis.alarmArmHomeAlarmControlPanel = (target, params) =>
     },
     target,
   });
-
-export interface AlarmArmAwayAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
 
 globalThis.alarmArmAwayAlarmControlPanel = (target, params) =>
   serviceCall({
@@ -105,13 +145,6 @@ globalThis.alarmArmAwayAlarmControlPanel = (target, params) =>
     target,
   });
 
-export interface AlarmArmNightAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
-
 globalThis.alarmArmNightAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_night`,
@@ -122,13 +155,6 @@ globalThis.alarmArmNightAlarmControlPanel = (target, params) =>
     },
     target,
   });
-
-export interface AlarmArmVacationAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
 
 globalThis.alarmArmVacationAlarmControlPanel = (target, params) =>
   serviceCall({
@@ -141,13 +167,6 @@ globalThis.alarmArmVacationAlarmControlPanel = (target, params) =>
     target,
   });
 
-export interface AlarmArmCustomBypassAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
-
 globalThis.alarmArmCustomBypassAlarmControlPanel = (target, params) =>
   serviceCall({
     name: `Call alarm_control_panel.alarm_arm_custom_bypass`,
@@ -158,13 +177,6 @@ globalThis.alarmArmCustomBypassAlarmControlPanel = (target, params) =>
     },
     target,
   });
-
-export interface AlarmTriggerAlarmControlPanelProps {
-  /**
-   * Code to arm the alarm.
-   */
-  code?: string;
-}
 
 globalThis.alarmTriggerAlarmControlPanel = (target, params) =>
   serviceCall({

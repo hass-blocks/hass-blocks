@@ -1,36 +1,69 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface AddUrlAdguardProps {
+    /**
+     * The name of the filter subscription.
+     */
+    name: string;
+    /**
+     * The filter URL to subscribe to, containing the filter rules.
+     */
+    url: string;
+  }
+
   /**
    * Adds a new filter subscription to AdGuard Home.
    */
-  var addUrlAdguard: (params: AddUrlAdguardProps) => Block;
+  var addUrlAdguard: (params?: AddUrlAdguardProps) => Block;
+
+  interface RemoveUrlAdguardProps {
+    /**
+     * The filter subscription URL to remove.
+     */
+    url: string;
+  }
+
   /**
    * Removes a filter subscription from AdGuard Home.
    */
-  var removeUrlAdguard: (params: RemoveUrlAdguardProps) => Block;
+  var removeUrlAdguard: (params?: RemoveUrlAdguardProps) => Block;
+
+  interface EnableUrlAdguardProps {
+    /**
+     * The filter subscription URL to enable.
+     */
+    url: string;
+  }
+
   /**
    * Enables a filter subscription in AdGuard Home.
    */
-  var enableUrlAdguard: (params: EnableUrlAdguardProps) => Block;
+  var enableUrlAdguard: (params?: EnableUrlAdguardProps) => Block;
+
+  interface DisableUrlAdguardProps {
+    /**
+     * The filter subscription URL to disable.
+     */
+    url: string;
+  }
+
   /**
    * Disables a filter subscription in AdGuard Home.
    */
-  var disableUrlAdguard: (params: DisableUrlAdguardProps) => Block;
+  var disableUrlAdguard: (params?: DisableUrlAdguardProps) => Block;
+
+  interface RefreshAdguardProps {
+    /**
+     * Force update (bypasses AdGuard Home throttling), omit for a regular refresh.
+     */
+    force?: boolean;
+  }
+
   /**
    * Refreshes all filter subscriptions in AdGuard Home.
    */
-  var refreshAdguard: (params?: RefreshAdguardProps) => Block;
-}
-
-export interface AddUrlAdguardProps {
-  /**
-   * The name of the filter subscription.
-   */
-  name: string;
-  /**
-   * The filter URL to subscribe to, containing the filter rules.
-   */
-  url: string;
+  var refreshAdguard: (params: RefreshAdguardProps) => Block;
 }
 
 globalThis.addUrlAdguard = (params) =>
@@ -43,13 +76,6 @@ globalThis.addUrlAdguard = (params) =>
     },
   });
 
-export interface RemoveUrlAdguardProps {
-  /**
-   * The filter subscription URL to remove.
-   */
-  url: string;
-}
-
 globalThis.removeUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.remove_url`,
@@ -59,13 +85,6 @@ globalThis.removeUrlAdguard = (params) =>
       service_data: params,
     },
   });
-
-export interface EnableUrlAdguardProps {
-  /**
-   * The filter subscription URL to enable.
-   */
-  url: string;
-}
 
 globalThis.enableUrlAdguard = (params) =>
   serviceCall({
@@ -77,13 +96,6 @@ globalThis.enableUrlAdguard = (params) =>
     },
   });
 
-export interface DisableUrlAdguardProps {
-  /**
-   * The filter subscription URL to disable.
-   */
-  url: string;
-}
-
 globalThis.disableUrlAdguard = (params) =>
   serviceCall({
     name: `Call adguard.disable_url`,
@@ -93,13 +105,6 @@ globalThis.disableUrlAdguard = (params) =>
       service_data: params,
     },
   });
-
-export interface RefreshAdguardProps {
-  /**
-   * Force update (bypasses AdGuard Home throttling), omit for a regular refresh.
-   */
-  force?: boolean;
-}
 
 globalThis.refreshAdguard = (params) =>
   serviceCall({

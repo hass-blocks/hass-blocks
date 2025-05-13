@@ -1,74 +1,66 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Opens a valve.
    */
-  var openValveValve: (
-    target: IEntity<`valve.${string}`> | IArea,
-    params?: OpenValveValveProps,
-  ) => Block;
+  var openValveValve: (target: IEntity<`valve.${string}`> | IArea) => Block;
+
   /**
    * Closes a valve.
    */
-  var closeValveValve: (
-    target: IEntity<`valve.${string}`> | IArea,
-    params?: CloseValveValveProps,
-  ) => Block;
+  var closeValveValve: (target: IEntity<`valve.${string}`> | IArea) => Block;
+
+  interface SetValvePositionValveProps {
+    /**
+     * Target position.
+     */
+    position: number;
+  }
+
   /**
    * Moves a valve to a specific position.
    */
   var setValvePositionValve: (
     target: IEntity<`valve.${string}`> | IArea,
-    params: SetValvePositionValveProps,
+    params?: SetValvePositionValveProps,
   ) => Block;
+
   /**
    * Stops the valve movement.
    */
-  var stopValveValve: (
-    target: IEntity<`valve.${string}`> | IArea,
-    params?: StopValveValveProps,
-  ) => Block;
+  var stopValveValve: (target: IEntity<`valve.${string}`> | IArea) => Block;
+
   /**
    * Toggles a valve open/closed.
    */
-  var toggleValve: (
-    target: IEntity<`valve.${string}`> | IArea,
-    params?: ToggleValveProps,
-  ) => Block;
+  var toggleValve: (target: IEntity<`valve.${string}`> | IArea) => Block;
 }
 
-export interface OpenValveValveProps {}
-
-globalThis.openValveValve = (target, params) =>
+globalThis.openValveValve = (target) =>
   serviceCall({
     name: `Call valve.open_valve`,
     params: {
       domain: 'valve',
       service: 'open_valve',
-      service_data: params,
     },
     target,
   });
 
-export interface CloseValveValveProps {}
-
-globalThis.closeValveValve = (target, params) =>
+globalThis.closeValveValve = (target) =>
   serviceCall({
     name: `Call valve.close_valve`,
     params: {
       domain: 'valve',
       service: 'close_valve',
-      service_data: params,
     },
     target,
   });
-
-export interface SetValvePositionValveProps {
-  /**
-   * Target position.
-   */
-  position: number;
-}
 
 globalThis.setValvePositionValve = (target, params) =>
   serviceCall({
@@ -81,28 +73,22 @@ globalThis.setValvePositionValve = (target, params) =>
     target,
   });
 
-export interface StopValveValveProps {}
-
-globalThis.stopValveValve = (target, params) =>
+globalThis.stopValveValve = (target) =>
   serviceCall({
     name: `Call valve.stop_valve`,
     params: {
       domain: 'valve',
       service: 'stop_valve',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleValveProps {}
-
-globalThis.toggleValve = (target, params) =>
+globalThis.toggleValve = (target) =>
   serviceCall({
     name: `Call valve.toggle`,
     params: {
       domain: 'valve',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });

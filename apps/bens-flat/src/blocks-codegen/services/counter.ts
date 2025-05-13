@@ -1,80 +1,71 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Increments a counter by its step size.
    */
-  var incrementCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
-    params?: IncrementCounterProps,
-  ) => Block;
+  var incrementCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+
   /**
    * Decrements a counter by its step size.
    */
-  var decrementCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
-    params?: DecrementCounterProps,
-  ) => Block;
+  var decrementCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+
   /**
    * Resets a counter to its initial value.
    */
-  var resetCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
-    params?: ResetCounterProps,
-  ) => Block;
+  var resetCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+
+  interface SetValueCounterProps {
+    /**
+     * The new counter value the entity should be set to.
+     */
+    value: number;
+  }
+
   /**
    * Sets the counter to a specific value.
    */
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea,
-    params: SetValueCounterProps,
+    params?: SetValueCounterProps,
   ) => Block;
 }
 
-export interface IncrementCounterProps {}
-
-globalThis.incrementCounter = (target, params) =>
+globalThis.incrementCounter = (target) =>
   serviceCall({
     name: `Call counter.increment`,
     params: {
       domain: 'counter',
       service: 'increment',
-      service_data: params,
     },
     target,
   });
 
-export interface DecrementCounterProps {}
-
-globalThis.decrementCounter = (target, params) =>
+globalThis.decrementCounter = (target) =>
   serviceCall({
     name: `Call counter.decrement`,
     params: {
       domain: 'counter',
       service: 'decrement',
-      service_data: params,
     },
     target,
   });
 
-export interface ResetCounterProps {}
-
-globalThis.resetCounter = (target, params) =>
+globalThis.resetCounter = (target) =>
   serviceCall({
     name: `Call counter.reset`,
     params: {
       domain: 'counter',
       service: 'reset',
-      service_data: params,
     },
     target,
   });
-
-export interface SetValueCounterProps {
-  /**
-   * The new counter value the entity should be set to.
-   */
-  value: number;
-}
 
 globalThis.setValueCounter = (target, params) =>
   serviceCall({

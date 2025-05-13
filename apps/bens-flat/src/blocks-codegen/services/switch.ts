@@ -1,63 +1,53 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Turns a switch off.
    */
-  var turnOffSwitch: (
-    target: IEntity<`switch.${string}`> | IArea,
-    params?: TurnOffSwitchProps,
-  ) => Block;
+  var turnOffSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
+
   /**
    * Turns a switch on.
    */
-  var turnOnSwitch: (
-    target: IEntity<`switch.${string}`> | IArea,
-    params?: TurnOnSwitchProps,
-  ) => Block;
+  var turnOnSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
+
   /**
    * Toggles a switch on/off.
    */
-  var toggleSwitch: (
-    target: IEntity<`switch.${string}`> | IArea,
-    params?: ToggleSwitchProps,
-  ) => Block;
+  var toggleSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
 }
 
-export interface TurnOffSwitchProps {}
-
-globalThis.turnOffSwitch = (target, params) =>
+globalThis.turnOffSwitch = (target) =>
   serviceCall({
     name: `Call switch.turn_off`,
     params: {
       domain: 'switch',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOnSwitchProps {}
-
-globalThis.turnOnSwitch = (target, params) =>
+globalThis.turnOnSwitch = (target) =>
   serviceCall({
     name: `Call switch.turn_on`,
     params: {
       domain: 'switch',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleSwitchProps {}
-
-globalThis.toggleSwitch = (target, params) =>
+globalThis.toggleSwitch = (target) =>
   serviceCall({
     name: `Call switch.toggle`,
     params: {
       domain: 'switch',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });

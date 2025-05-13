@@ -1,44 +1,59 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface TriggerAutomationProps {
+    /**
+     * Defines whether or not the conditions will be skipped.
+     */
+    skip_condition?: boolean;
+  }
+
   /**
    * Triggers the actions of an automation.
    */
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: TriggerAutomationProps,
+    params: TriggerAutomationProps,
   ) => Block;
+
   /**
    * Toggles (enable / disable) an automation.
    */
   var toggleAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: ToggleAutomationProps,
   ) => Block;
+
   /**
    * Enables an automation.
    */
   var turnOnAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: TurnOnAutomationProps,
   ) => Block;
+
+  interface TurnOffAutomationProps {
+    /**
+     * Stops currently running actions.
+     */
+    stop_actions?: boolean;
+  }
+
   /**
    * Disables an automation.
    */
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: TurnOffAutomationProps,
+    params: TurnOffAutomationProps,
   ) => Block;
+
   /**
    * Reloads the automation configuration.
    */
   var reloadAutomation: () => Block;
-}
-
-export interface TriggerAutomationProps {
-  /**
-   * Defines whether or not the conditions will be skipped.
-   */
-  skip_condition?: boolean;
 }
 
 globalThis.triggerAutomation = (target, params) =>
@@ -52,38 +67,25 @@ globalThis.triggerAutomation = (target, params) =>
     target,
   });
 
-export interface ToggleAutomationProps {}
-
-globalThis.toggleAutomation = (target, params) =>
+globalThis.toggleAutomation = (target) =>
   serviceCall({
     name: `Call automation.toggle`,
     params: {
       domain: 'automation',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOnAutomationProps {}
-
-globalThis.turnOnAutomation = (target, params) =>
+globalThis.turnOnAutomation = (target) =>
   serviceCall({
     name: `Call automation.turn_on`,
     params: {
       domain: 'automation',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
-
-export interface TurnOffAutomationProps {
-  /**
-   * Stops currently running actions.
-   */
-  stop_actions?: boolean;
-}
 
 globalThis.turnOffAutomation = (target, params) =>
   serviceCall({

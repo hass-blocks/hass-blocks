@@ -1,7 +1,7 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var playstationAvatarImage: IEntity<`image.${string}`>;
+  var playstationAvatarImage: IEntity<`image.playstation_avatar`>;
 }
 
 globalThis.playstationAvatarImage = entity('image.playstation_avatar');

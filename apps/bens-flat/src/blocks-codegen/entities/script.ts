@@ -1,18 +1,18 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var turnTvOnScript: IEntity<`script.${string}`>;
-  var turnTvModeOnScript: IEntity<`script.${string}`>;
-  var boostBoilerScript: IEntity<`script.${string}`>;
-  var updateAllHacsItemsScript: IEntity<`script.${string}`>;
-  var todoListScript: IEntity<`script.${string}`>;
-  var openAiTtsScript: IEntity<`script.${string}`>;
-  var readTodaySCalendarScript: IEntity<`script.${string}`>;
-  var goodMorningRoutineScript: IEntity<`script.${string}`>;
-  var turnEverythingOff_2Script: IEntity<`script.${string}`>;
-  var dismissWelcomeMessageScript: IEntity<`script.${string}`>;
-  var groupSpeakersScript: IEntity<`script.${string}`>;
-  var unjoinSpeakersScript: IEntity<`script.${string}`>;
+  var turnTvOnScript: IEntity<`script.turn_tv_on`>;
+  var turnTvModeOnScript: IEntity<`script.turn_tv_mode_on`>;
+  var boostBoilerScript: IEntity<`script.boost_boiler`>;
+  var updateAllHacsItemsScript: IEntity<`script.update_all_hacs_items`>;
+  var todoListScript: IEntity<`script.todo_list`>;
+  var openAiTtsScript: IEntity<`script.open_ai_tts`>;
+  var readTodaySCalendarScript: IEntity<`script.read_today_s_calendar`>;
+  var goodMorningRoutineScript: IEntity<`script.good_morning_routine`>;
+  var turnEverythingOff_2Script: IEntity<`script.turn_everything_off_2`>;
+  var dismissWelcomeMessageScript: IEntity<`script.dismiss_welcome_message`>;
+  var groupSpeakersScript: IEntity<`script.group_speakers`>;
+  var unjoinSpeakersScript: IEntity<`script.unjoin_speakers`>;
 }
 
 globalThis.turnTvOnScript = entity('script.turn_tv_on');

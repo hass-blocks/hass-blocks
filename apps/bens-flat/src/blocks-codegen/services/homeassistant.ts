@@ -1,69 +1,107 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Saves the persistent states immediately. Maintains the normal periodic saving interval.
    */
   var savePersistentStatesHomeassistant: () => Block;
+
   /**
    * Generic action to turn devices off under any domain.
    */
-  var turnOffHomeassistant: (
-    target: IEntity | IArea,
-    params?: TurnOffHomeassistantProps,
-  ) => Block;
+  var turnOffHomeassistant: (target: IEntity | IArea) => Block;
+
   /**
    * Generic action to turn devices on under any domain.
    */
-  var turnOnHomeassistant: (
-    target: IEntity | IArea,
-    params?: TurnOnHomeassistantProps,
-  ) => Block;
+  var turnOnHomeassistant: (target: IEntity | IArea) => Block;
+
   /**
    * Generic action to toggle devices on/off under any domain.
    */
-  var toggleHomeassistant: (
-    target: IEntity | IArea,
-    params?: ToggleHomeassistantProps,
-  ) => Block;
+  var toggleHomeassistant: (target: IEntity | IArea) => Block;
+
   /**
    * Stops Home Assistant.
    */
   var stopHomeassistant: () => Block;
+
   /**
    * Restarts Home Assistant.
    */
   var restartHomeassistant: () => Block;
+
   /**
    * Checks the Home Assistant YAML-configuration files for errors. Errors will be shown in the Home Assistant logs.
    */
   var checkConfigHomeassistant: () => Block;
+
+  interface UpdateEntityHomeassistantProps {
+    /**
+     * List of entities to force update.
+     */
+    entity_id: string;
+  }
+
   /**
    * Forces one or more entities to update their data.
    */
   var updateEntityHomeassistant: (
-    params: UpdateEntityHomeassistantProps,
+    params?: UpdateEntityHomeassistantProps,
   ) => Block;
+
   /**
    * Reloads the Core configuration from the YAML-configuration.
    */
   var reloadCoreConfigHomeassistant: () => Block;
+
+  interface SetLocationHomeassistantProps {
+    /**
+     * Latitude of your location.
+     */
+    latitude: number;
+    /**
+     * Longitude of your location.
+     */
+    longitude: number;
+    /**
+     * Elevation of your location above sea level.
+     */
+    elevation?: number;
+  }
+
   /**
    * Updates the Home Assistant location.
    */
   var setLocationHomeassistant: (
-    params: SetLocationHomeassistantProps,
+    params?: SetLocationHomeassistantProps,
   ) => Block;
+
   /**
    * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
    */
   var reloadCustomTemplatesHomeassistant: () => Block;
+
+  interface ReloadConfigEntryHomeassistantProps {
+    /**
+     * The configuration entry ID of the entry to be reloaded.
+     */
+    entry_id?: never;
+  }
+
   /**
    * Reloads the specified config entry.
    */
   var reloadConfigEntryHomeassistant: (
     target: IEntity | IArea,
-    params?: ReloadConfigEntryHomeassistantProps,
+    params: ReloadConfigEntryHomeassistantProps,
   ) => Block;
+
   /**
    * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.
    */
@@ -79,41 +117,32 @@ globalThis.savePersistentStatesHomeassistant = () =>
     },
   });
 
-export interface TurnOffHomeassistantProps {}
-
-globalThis.turnOffHomeassistant = (target, params) =>
+globalThis.turnOffHomeassistant = (target) =>
   serviceCall({
     name: `Call homeassistant.turn_off`,
     params: {
       domain: 'homeassistant',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOnHomeassistantProps {}
-
-globalThis.turnOnHomeassistant = (target, params) =>
+globalThis.turnOnHomeassistant = (target) =>
   serviceCall({
     name: `Call homeassistant.turn_on`,
     params: {
       domain: 'homeassistant',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleHomeassistantProps {}
-
-globalThis.toggleHomeassistant = (target, params) =>
+globalThis.toggleHomeassistant = (target) =>
   serviceCall({
     name: `Call homeassistant.toggle`,
     params: {
       domain: 'homeassistant',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
@@ -145,13 +174,6 @@ globalThis.checkConfigHomeassistant = () =>
     },
   });
 
-export interface UpdateEntityHomeassistantProps {
-  /**
-   * List of entities to force update.
-   */
-  entity_id: string;
-}
-
 globalThis.updateEntityHomeassistant = (params) =>
   serviceCall({
     name: `Call homeassistant.update_entity`,
@@ -171,21 +193,6 @@ globalThis.reloadCoreConfigHomeassistant = () =>
     },
   });
 
-export interface SetLocationHomeassistantProps {
-  /**
-   * Latitude of your location.
-   */
-  latitude: number;
-  /**
-   * Longitude of your location.
-   */
-  longitude: number;
-  /**
-   * Elevation of your location above sea level.
-   */
-  elevation?: number;
-}
-
 globalThis.setLocationHomeassistant = (params) =>
   serviceCall({
     name: `Call homeassistant.set_location`,
@@ -204,13 +211,6 @@ globalThis.reloadCustomTemplatesHomeassistant = () =>
       service: 'reload_custom_templates',
     },
   });
-
-export interface ReloadConfigEntryHomeassistantProps {
-  /**
-   * The configuration entry ID of the entry to be reloaded.
-   */
-  entry_id?: never;
-}
 
 globalThis.reloadConfigEntryHomeassistant = (target, params) =>
   serviceCall({

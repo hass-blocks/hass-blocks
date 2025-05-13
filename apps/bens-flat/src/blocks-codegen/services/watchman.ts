@@ -1,17 +1,18 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface ReportWatchmanProps {
+    /**
+     * Parse configuration files before generating the report. Usually, this is done automatically by Watchman, so this flag is typically not required.
+     */
+    parse_config?: boolean;
+    advanced_options?: never;
+  }
+
   /**
    * Run the Watchman report
    */
-  var reportWatchman: (params?: ReportWatchmanProps) => Block;
-}
-
-export interface ReportWatchmanProps {
-  /**
-   * Parse configuration files before generating the report. Usually, this is done automatically by Watchman, so this flag is typically not required.
-   */
-  parse_config?: boolean;
-  advanced_options?: never;
+  var reportWatchman: (params: ReportWatchmanProps) => Block;
 }
 
 globalThis.reportWatchman = (params) =>

@@ -1,52 +1,175 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface AddonStartHassioProps {
+    /**
+     * The add-on to start.
+     */
+    addon: never;
+  }
+
   /**
    * Starts an add-on.
    */
-  var addonStartHassio: (params: AddonStartHassioProps) => Block;
+  var addonStartHassio: (params?: AddonStartHassioProps) => Block;
+
+  interface AddonStopHassioProps {
+    /**
+     * The add-on to stop.
+     */
+    addon: never;
+  }
+
   /**
    * Stops an add-on.
    */
-  var addonStopHassio: (params: AddonStopHassioProps) => Block;
+  var addonStopHassio: (params?: AddonStopHassioProps) => Block;
+
+  interface AddonRestartHassioProps {
+    /**
+     * The add-on to restart.
+     */
+    addon: never;
+  }
+
   /**
    * Restarts an add-on.
    */
-  var addonRestartHassio: (params: AddonRestartHassioProps) => Block;
+  var addonRestartHassio: (params?: AddonRestartHassioProps) => Block;
+
+  interface AddonStdinHassioProps {
+    /**
+     * The add-on to write to.
+     */
+    addon: never;
+  }
+
   /**
    * Writes data to the add-on's standard input.
    */
-  var addonStdinHassio: (params: AddonStdinHassioProps) => Block;
+  var addonStdinHassio: (params?: AddonStdinHassioProps) => Block;
+
   /**
    * Powers off the host system.
    */
   var hostShutdownHassio: () => Block;
+
   /**
    * Reboots the host system.
    */
   var hostRebootHassio: () => Block;
+
+  interface BackupFullHassioProps {
+    /**
+     * Optional (default = current date and time).
+     */
+    name?: string;
+    /**
+     * Password to protect the backup with.
+     */
+    password?: string;
+    /**
+     * Compresses the backup files.
+     */
+    compressed?: boolean;
+    /**
+     * Name of a backup network storage to host backups.
+     */
+    location?: never;
+    /**
+     * Exclude the Home Assistant database file from the backup.
+     */
+    homeassistant_exclude_database?: boolean;
+  }
+
   /**
    * Creates a full backup.
    */
-  var backupFullHassio: (params?: BackupFullHassioProps) => Block;
+  var backupFullHassio: (params: BackupFullHassioProps) => Block;
+
+  interface BackupPartialHassioProps {
+    /**
+     * Includes Home Assistant settings in the backup.
+     */
+    homeassistant?: boolean;
+    /**
+     * Exclude the Home Assistant database file from the backup.
+     */
+    homeassistant_exclude_database?: boolean;
+    /**
+     * List of add-ons to include in the backup. Use the name slug of each add-on.
+     */
+    addons?: never;
+    /**
+     * List of directories to include in the backup.
+     */
+    folders?: never;
+    /**
+     * Optional (default = current date and time).
+     */
+    name?: string;
+    /**
+     * Password to protect the backup with.
+     */
+    password?: string;
+    /**
+     * Compresses the backup files.
+     */
+    compressed?: boolean;
+    /**
+     * Name of a backup network storage to host backups.
+     */
+    location?: never;
+  }
+
   /**
    * Creates a partial backup.
    */
-  var backupPartialHassio: (params?: BackupPartialHassioProps) => Block;
+  var backupPartialHassio: (params: BackupPartialHassioProps) => Block;
+
+  interface RestoreFullHassioProps {
+    /**
+     * Slug of backup to restore from.
+     */
+    slug: string;
+    /**
+     * Optional password.
+     */
+    password?: string;
+  }
+
   /**
    * Restores from full backup.
    */
-  var restoreFullHassio: (params: RestoreFullHassioProps) => Block;
+  var restoreFullHassio: (params?: RestoreFullHassioProps) => Block;
+
+  interface RestorePartialHassioProps {
+    /**
+     * Slug of backup to restore from.
+     */
+    slug: string;
+    /**
+     * Restores Home Assistant.
+     */
+    homeassistant?: boolean;
+    /**
+     * List of directories to restore from the backup.
+     */
+    folders?: never;
+    /**
+     * List of add-ons to restore from the backup. Use the name slug of each add-on.
+     */
+    addons?: never;
+    /**
+     * Optional password.
+     */
+    password?: string;
+  }
+
   /**
    * Restores from a partial backup.
    */
-  var restorePartialHassio: (params: RestorePartialHassioProps) => Block;
-}
-
-export interface AddonStartHassioProps {
-  /**
-   * The add-on to start.
-   */
-  addon: never;
+  var restorePartialHassio: (params?: RestorePartialHassioProps) => Block;
 }
 
 globalThis.addonStartHassio = (params) =>
@@ -59,13 +182,6 @@ globalThis.addonStartHassio = (params) =>
     },
   });
 
-export interface AddonStopHassioProps {
-  /**
-   * The add-on to stop.
-   */
-  addon: never;
-}
-
 globalThis.addonStopHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_stop`,
@@ -76,13 +192,6 @@ globalThis.addonStopHassio = (params) =>
     },
   });
 
-export interface AddonRestartHassioProps {
-  /**
-   * The add-on to restart.
-   */
-  addon: never;
-}
-
 globalThis.addonRestartHassio = (params) =>
   serviceCall({
     name: `Call hassio.addon_restart`,
@@ -92,13 +201,6 @@ globalThis.addonRestartHassio = (params) =>
       service_data: params,
     },
   });
-
-export interface AddonStdinHassioProps {
-  /**
-   * The add-on to write to.
-   */
-  addon: never;
-}
 
 globalThis.addonStdinHassio = (params) =>
   serviceCall({
@@ -128,29 +230,6 @@ globalThis.hostRebootHassio = () =>
     },
   });
 
-export interface BackupFullHassioProps {
-  /**
-   * Optional (default = current date and time).
-   */
-  name?: string;
-  /**
-   * Password to protect the backup with.
-   */
-  password?: string;
-  /**
-   * Compresses the backup files.
-   */
-  compressed?: boolean;
-  /**
-   * Name of a backup network storage to host backups.
-   */
-  location?: never;
-  /**
-   * Exclude the Home Assistant database file from the backup.
-   */
-  homeassistant_exclude_database?: boolean;
-}
-
 globalThis.backupFullHassio = (params) =>
   serviceCall({
     name: `Call hassio.backup_full`,
@@ -160,41 +239,6 @@ globalThis.backupFullHassio = (params) =>
       service_data: params,
     },
   });
-
-export interface BackupPartialHassioProps {
-  /**
-   * Includes Home Assistant settings in the backup.
-   */
-  homeassistant?: boolean;
-  /**
-   * Exclude the Home Assistant database file from the backup.
-   */
-  homeassistant_exclude_database?: boolean;
-  /**
-   * List of add-ons to include in the backup. Use the name slug of each add-on.
-   */
-  addons?: never;
-  /**
-   * List of directories to include in the backup.
-   */
-  folders?: never;
-  /**
-   * Optional (default = current date and time).
-   */
-  name?: string;
-  /**
-   * Password to protect the backup with.
-   */
-  password?: string;
-  /**
-   * Compresses the backup files.
-   */
-  compressed?: boolean;
-  /**
-   * Name of a backup network storage to host backups.
-   */
-  location?: never;
-}
 
 globalThis.backupPartialHassio = (params) =>
   serviceCall({
@@ -206,17 +250,6 @@ globalThis.backupPartialHassio = (params) =>
     },
   });
 
-export interface RestoreFullHassioProps {
-  /**
-   * Slug of backup to restore from.
-   */
-  slug: string;
-  /**
-   * Optional password.
-   */
-  password?: string;
-}
-
 globalThis.restoreFullHassio = (params) =>
   serviceCall({
     name: `Call hassio.restore_full`,
@@ -226,29 +259,6 @@ globalThis.restoreFullHassio = (params) =>
       service_data: params,
     },
   });
-
-export interface RestorePartialHassioProps {
-  /**
-   * Slug of backup to restore from.
-   */
-  slug: string;
-  /**
-   * Restores Home Assistant.
-   */
-  homeassistant?: boolean;
-  /**
-   * List of directories to restore from the backup.
-   */
-  folders?: never;
-  /**
-   * List of add-ons to restore from the backup. Use the name slug of each add-on.
-   */
-  addons?: never;
-  /**
-   * Optional password.
-   */
-  password?: string;
-}
 
 globalThis.restorePartialHassio = (params) =>
   serviceCall({

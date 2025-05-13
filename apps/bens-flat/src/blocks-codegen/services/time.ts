@@ -1,19 +1,25 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface SetValueTimeProps {
+    /**
+     * The time to set.
+     */
+    time: string;
+  }
+
   /**
    * Sets the time.
    */
   var setValueTime: (
     target: IEntity<`time.${string}`> | IArea,
-    params: SetValueTimeProps,
+    params?: SetValueTimeProps,
   ) => Block;
-}
-
-export interface SetValueTimeProps {
-  /**
-   * The time to set.
-   */
-  time: string;
 }
 
 globalThis.setValueTime = (target, params) =>

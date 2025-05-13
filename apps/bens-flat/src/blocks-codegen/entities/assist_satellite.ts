@@ -1,7 +1,7 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var assistMicrophoneAssistSatellite: IEntity<`assist_satellite.${string}`>;
+  var assistMicrophoneAssistSatellite: IEntity<`assist_satellite.assist_microphone`>;
 }
 
 globalThis.assistMicrophoneAssistSatellite = entity(

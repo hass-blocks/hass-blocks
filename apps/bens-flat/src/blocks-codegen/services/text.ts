@@ -1,19 +1,25 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface SetValueTextProps {
+    /**
+     * Enter your text.
+     */
+    value: string;
+  }
+
   /**
    * Sets the value.
    */
   var setValueText: (
     target: IEntity<`text.${string}`> | IArea,
-    params: SetValueTextProps,
+    params?: SetValueTextProps,
   ) => Block;
-}
-
-export interface SetValueTextProps {
-  /**
-   * Enter your text.
-   */
-  value: string;
 }
 
 globalThis.setValueText = (target, params) =>

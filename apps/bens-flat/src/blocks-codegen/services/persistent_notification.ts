@@ -1,36 +1,46 @@
-import { serviceCall, Block } from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
+
 declare global {
+  interface CreatePersistentNotificationProps {
+    /**
+     * Message body of the notification.
+     */
+    message: string;
+    /**
+     * Optional title of the notification.
+     */
+    title?: string;
+    /**
+     * ID of the notification. This new notification will overwrite an existing notification with the same ID.
+     */
+    notification_id?: string;
+  }
+
   /**
    * Shows a notification on the notifications panel.
    */
   var createPersistentNotification: (
-    params: CreatePersistentNotificationProps,
+    params?: CreatePersistentNotificationProps,
   ) => Block;
+
+  interface DismissPersistentNotificationProps {
+    /**
+     * ID of the notification to be deleted.
+     */
+    notification_id: string;
+  }
+
   /**
    * Deletes a notification from the notifications panel.
    */
   var dismissPersistentNotification: (
-    params: DismissPersistentNotificationProps,
+    params?: DismissPersistentNotificationProps,
   ) => Block;
+
   /**
    * Deletes all notifications from the notifications panel.
    */
   var dismissAllPersistentNotification: () => Block;
-}
-
-export interface CreatePersistentNotificationProps {
-  /**
-   * Message body of the notification.
-   */
-  message: string;
-  /**
-   * Optional title of the notification.
-   */
-  title?: string;
-  /**
-   * ID of the notification. This new notification will overwrite an existing notification with the same ID.
-   */
-  notification_id?: string;
 }
 
 globalThis.createPersistentNotification = (params) =>
@@ -42,13 +52,6 @@ globalThis.createPersistentNotification = (params) =>
       service_data: params,
     },
   });
-
-export interface DismissPersistentNotificationProps {
-  /**
-   * ID of the notification to be deleted.
-   */
-  notification_id: string;
-}
 
 globalThis.dismissPersistentNotification = (params) =>
   serviceCall({

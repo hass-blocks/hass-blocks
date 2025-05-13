@@ -1,129 +1,188 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
   /**
    * Turns climate device on.
    */
-  var turnOnClimate: (
-    target: IEntity<`climate.${string}`> | IArea,
-    params?: TurnOnClimateProps,
-  ) => Block;
+  var turnOnClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+
   /**
    * Turns climate device off.
    */
-  var turnOffClimate: (
-    target: IEntity<`climate.${string}`> | IArea,
-    params?: TurnOffClimateProps,
-  ) => Block;
+  var turnOffClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+
   /**
    * Toggles climate device, from on to off, or off to on.
    */
-  var toggleClimate: (
-    target: IEntity<`climate.${string}`> | IArea,
-    params?: ToggleClimateProps,
-  ) => Block;
+  var toggleClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+
+  interface SetHvacModeClimateProps {
+    /**
+     * HVAC operation mode.
+     */
+    hvac_mode?: never;
+  }
+
   /**
    * Sets HVAC operation mode.
    */
   var setHvacModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetHvacModeClimateProps,
+    params: SetHvacModeClimateProps,
   ) => Block;
+
+  interface SetPresetModeClimateProps {
+    /**
+     * Preset mode.
+     */
+    preset_mode: string;
+  }
+
   /**
    * Sets preset mode.
    */
   var setPresetModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetPresetModeClimateProps,
+    params?: SetPresetModeClimateProps,
   ) => Block;
+
+  interface SetAuxHeatClimateProps {
+    /**
+     * New value of auxiliary heater.
+     */
+    aux_heat: boolean;
+  }
+
   /**
    * Turns auxiliary heater on/off.
    */
   var setAuxHeatClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetAuxHeatClimateProps,
+    params?: SetAuxHeatClimateProps,
   ) => Block;
+
+  interface SetTemperatureClimateProps {
+    /**
+     * The temperature setpoint.
+     */
+    temperature?: number;
+    /**
+     * The max temperature setpoint.
+     */
+    target_temp_high?: number;
+    /**
+     * The min temperature setpoint.
+     */
+    target_temp_low?: number;
+    /**
+     * HVAC operation mode.
+     */
+    hvac_mode?: never;
+  }
+
   /**
    * Sets the temperature setpoint.
    */
   var setTemperatureClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetTemperatureClimateProps,
+    params: SetTemperatureClimateProps,
   ) => Block;
+
+  interface SetHumidityClimateProps {
+    /**
+     * Target humidity.
+     */
+    humidity: number;
+  }
+
   /**
    * Sets target humidity.
    */
   var setHumidityClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetHumidityClimateProps,
+    params?: SetHumidityClimateProps,
   ) => Block;
+
+  interface SetFanModeClimateProps {
+    /**
+     * Fan operation mode.
+     */
+    fan_mode: string;
+  }
+
   /**
    * Sets fan operation mode.
    */
   var setFanModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetFanModeClimateProps,
+    params?: SetFanModeClimateProps,
   ) => Block;
+
+  interface SetSwingModeClimateProps {
+    /**
+     * Swing operation mode.
+     */
+    swing_mode: string;
+  }
+
   /**
    * Sets swing operation mode.
    */
   var setSwingModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetSwingModeClimateProps,
+    params?: SetSwingModeClimateProps,
   ) => Block;
+
+  interface SetSwingHorizontalModeClimateProps {
+    /**
+     * Horizontal swing operation mode.
+     */
+    swing_horizontal_mode: string;
+  }
+
   /**
    * Sets horizontal swing operation mode.
    */
   var setSwingHorizontalModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetSwingHorizontalModeClimateProps,
+    params?: SetSwingHorizontalModeClimateProps,
   ) => Block;
 }
 
-export interface TurnOnClimateProps {}
-
-globalThis.turnOnClimate = (target, params) =>
+globalThis.turnOnClimate = (target) =>
   serviceCall({
     name: `Call climate.turn_on`,
     params: {
       domain: 'climate',
       service: 'turn_on',
-      service_data: params,
     },
     target,
   });
 
-export interface TurnOffClimateProps {}
-
-globalThis.turnOffClimate = (target, params) =>
+globalThis.turnOffClimate = (target) =>
   serviceCall({
     name: `Call climate.turn_off`,
     params: {
       domain: 'climate',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleClimateProps {}
-
-globalThis.toggleClimate = (target, params) =>
+globalThis.toggleClimate = (target) =>
   serviceCall({
     name: `Call climate.toggle`,
     params: {
       domain: 'climate',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
-
-export interface SetHvacModeClimateProps {
-  /**
-   * HVAC operation mode.
-   */
-  hvac_mode?: never;
-}
 
 globalThis.setHvacModeClimate = (target, params) =>
   serviceCall({
@@ -136,13 +195,6 @@ globalThis.setHvacModeClimate = (target, params) =>
     target,
   });
 
-export interface SetPresetModeClimateProps {
-  /**
-   * Preset mode.
-   */
-  preset_mode: string;
-}
-
 globalThis.setPresetModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_preset_mode`,
@@ -153,13 +205,6 @@ globalThis.setPresetModeClimate = (target, params) =>
     },
     target,
   });
-
-export interface SetAuxHeatClimateProps {
-  /**
-   * New value of auxiliary heater.
-   */
-  aux_heat: boolean;
-}
 
 globalThis.setAuxHeatClimate = (target, params) =>
   serviceCall({
@@ -172,25 +217,6 @@ globalThis.setAuxHeatClimate = (target, params) =>
     target,
   });
 
-export interface SetTemperatureClimateProps {
-  /**
-   * The temperature setpoint.
-   */
-  temperature?: number;
-  /**
-   * The max temperature setpoint.
-   */
-  target_temp_high?: number;
-  /**
-   * The min temperature setpoint.
-   */
-  target_temp_low?: number;
-  /**
-   * HVAC operation mode.
-   */
-  hvac_mode?: never;
-}
-
 globalThis.setTemperatureClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_temperature`,
@@ -201,13 +227,6 @@ globalThis.setTemperatureClimate = (target, params) =>
     },
     target,
   });
-
-export interface SetHumidityClimateProps {
-  /**
-   * Target humidity.
-   */
-  humidity: number;
-}
 
 globalThis.setHumidityClimate = (target, params) =>
   serviceCall({
@@ -220,13 +239,6 @@ globalThis.setHumidityClimate = (target, params) =>
     target,
   });
 
-export interface SetFanModeClimateProps {
-  /**
-   * Fan operation mode.
-   */
-  fan_mode: string;
-}
-
 globalThis.setFanModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_fan_mode`,
@@ -238,13 +250,6 @@ globalThis.setFanModeClimate = (target, params) =>
     target,
   });
 
-export interface SetSwingModeClimateProps {
-  /**
-   * Swing operation mode.
-   */
-  swing_mode: string;
-}
-
 globalThis.setSwingModeClimate = (target, params) =>
   serviceCall({
     name: `Call climate.set_swing_mode`,
@@ -255,13 +260,6 @@ globalThis.setSwingModeClimate = (target, params) =>
     },
     target,
   });
-
-export interface SetSwingHorizontalModeClimateProps {
-  /**
-   * Horizontal swing operation mode.
-   */
-  swing_horizontal_mode: string;
-}
 
 globalThis.setSwingHorizontalModeClimate = (target, params) =>
   serviceCall({

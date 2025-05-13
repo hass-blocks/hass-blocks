@@ -1,11 +1,11 @@
-import { entity, IEntity } from '@hass-blocks/core';
+import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var workZone: IEntity<`zone.${string}`>;
-  var gymZone: IEntity<`zone.${string}`>;
-  var lozSFlatZone: IEntity<`zone.${string}`>;
-  var mumAndDadSPlaceZone: IEntity<`zone.${string}`>;
-  var homeZone: IEntity<`zone.${string}`>;
+  var workZone: IEntity<`zone.work`>;
+  var gymZone: IEntity<`zone.gym`>;
+  var lozSFlatZone: IEntity<`zone.loz_s_flat`>;
+  var mumAndDadSPlaceZone: IEntity<`zone.mum_and_dad_s_place`>;
+  var homeZone: IEntity<`zone.home`>;
 }
 
 globalThis.workZone = entity('zone.work');

@@ -1,79 +1,129 @@
-import { serviceCall, Block, IEntity, IArea } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type IEntity,
+  type IArea,
+} from '@hass-blocks/core';
+
 declare global {
+  interface TurnOnFanProps {
+    /**
+     * Speed of the fan.
+     */
+    percentage?: number;
+    /**
+     * Preset fan mode.
+     */
+    preset_mode?: string;
+  }
+
   /**
    * Turns fan on.
    */
   var turnOnFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: TurnOnFanProps,
+    params: TurnOnFanProps,
   ) => Block;
+
   /**
    * Turns fan off.
    */
-  var turnOffFan: (
-    target: IEntity<`fan.${string}`> | IArea,
-    params?: TurnOffFanProps,
-  ) => Block;
+  var turnOffFan: (target: IEntity<`fan.${string}`> | IArea) => Block;
+
   /**
    * Toggles a fan on/off.
    */
-  var toggleFan: (
-    target: IEntity<`fan.${string}`> | IArea,
-    params?: ToggleFanProps,
-  ) => Block;
+  var toggleFan: (target: IEntity<`fan.${string}`> | IArea) => Block;
+
+  interface IncreaseSpeedFanProps {
+    /**
+     * Percentage step by which the speed should be increased.
+     */
+    percentage_step?: number;
+  }
+
   /**
    * Increases the speed of a fan.
    */
   var increaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: IncreaseSpeedFanProps,
+    params: IncreaseSpeedFanProps,
   ) => Block;
+
+  interface DecreaseSpeedFanProps {
+    /**
+     * Percentage step by which the speed should be decreased.
+     */
+    percentage_step?: number;
+  }
+
   /**
    * Decreases the speed of a fan.
    */
   var decreaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: DecreaseSpeedFanProps,
+    params: DecreaseSpeedFanProps,
   ) => Block;
+
+  interface OscillateFanProps {
+    /**
+     * Turns oscillation on/off.
+     */
+    oscillating: boolean;
+  }
+
   /**
    * Controls the oscillation of a fan.
    */
   var oscillateFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: OscillateFanProps,
+    params?: OscillateFanProps,
   ) => Block;
+
+  interface SetDirectionFanProps {
+    /**
+     * Direction of the fan rotation.
+     */
+    direction: never;
+  }
+
   /**
    * Sets a fan's rotation direction.
    */
   var setDirectionFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: SetDirectionFanProps,
+    params?: SetDirectionFanProps,
   ) => Block;
+
+  interface SetPercentageFanProps {
+    /**
+     * Speed of the fan.
+     */
+    percentage: number;
+  }
+
   /**
    * Sets the speed of a fan.
    */
   var setPercentageFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: SetPercentageFanProps,
+    params?: SetPercentageFanProps,
   ) => Block;
+
+  interface SetPresetModeFanProps {
+    /**
+     * Preset fan mode.
+     */
+    preset_mode: string;
+  }
+
   /**
    * Sets preset fan mode.
    */
   var setPresetModeFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: SetPresetModeFanProps,
+    params?: SetPresetModeFanProps,
   ) => Block;
-}
-
-export interface TurnOnFanProps {
-  /**
-   * Speed of the fan.
-   */
-  percentage?: number;
-  /**
-   * Preset fan mode.
-   */
-  preset_mode?: string;
 }
 
 globalThis.turnOnFan = (target, params) =>
@@ -87,38 +137,25 @@ globalThis.turnOnFan = (target, params) =>
     target,
   });
 
-export interface TurnOffFanProps {}
-
-globalThis.turnOffFan = (target, params) =>
+globalThis.turnOffFan = (target) =>
   serviceCall({
     name: `Call fan.turn_off`,
     params: {
       domain: 'fan',
       service: 'turn_off',
-      service_data: params,
     },
     target,
   });
 
-export interface ToggleFanProps {}
-
-globalThis.toggleFan = (target, params) =>
+globalThis.toggleFan = (target) =>
   serviceCall({
     name: `Call fan.toggle`,
     params: {
       domain: 'fan',
       service: 'toggle',
-      service_data: params,
     },
     target,
   });
-
-export interface IncreaseSpeedFanProps {
-  /**
-   * Percentage step by which the speed should be increased.
-   */
-  percentage_step?: number;
-}
 
 globalThis.increaseSpeedFan = (target, params) =>
   serviceCall({
@@ -131,13 +168,6 @@ globalThis.increaseSpeedFan = (target, params) =>
     target,
   });
 
-export interface DecreaseSpeedFanProps {
-  /**
-   * Percentage step by which the speed should be decreased.
-   */
-  percentage_step?: number;
-}
-
 globalThis.decreaseSpeedFan = (target, params) =>
   serviceCall({
     name: `Call fan.decrease_speed`,
@@ -148,13 +178,6 @@ globalThis.decreaseSpeedFan = (target, params) =>
     },
     target,
   });
-
-export interface OscillateFanProps {
-  /**
-   * Turns oscillation on/off.
-   */
-  oscillating: boolean;
-}
 
 globalThis.oscillateFan = (target, params) =>
   serviceCall({
@@ -167,13 +190,6 @@ globalThis.oscillateFan = (target, params) =>
     target,
   });
 
-export interface SetDirectionFanProps {
-  /**
-   * Direction of the fan rotation.
-   */
-  direction: never;
-}
-
 globalThis.setDirectionFan = (target, params) =>
   serviceCall({
     name: `Call fan.set_direction`,
@@ -185,13 +201,6 @@ globalThis.setDirectionFan = (target, params) =>
     target,
   });
 
-export interface SetPercentageFanProps {
-  /**
-   * Speed of the fan.
-   */
-  percentage: number;
-}
-
 globalThis.setPercentageFan = (target, params) =>
   serviceCall({
     name: `Call fan.set_percentage`,
@@ -202,13 +211,6 @@ globalThis.setPercentageFan = (target, params) =>
     },
     target,
   });
-
-export interface SetPresetModeFanProps {
-  /**
-   * Preset fan mode.
-   */
-  preset_mode: string;
-}
 
 globalThis.setPresetModeFan = (target, params) =>
   serviceCall({

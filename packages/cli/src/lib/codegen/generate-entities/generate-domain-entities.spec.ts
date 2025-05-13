@@ -61,12 +61,12 @@ import "./bop.ts";
     await generateEntities('foo', states);
 
     const result = await readFile('foo/entities/foo.ts', 'utf-8');
-    const expectedOutput = `import { entity, ITarget } from "@hass-blocks/core";
+    const expectedOutput = `import { entity, IEntity } from "@hass-blocks/core";
 
 declare global {
-  var barFoo: ITarget;
-  var bazFoo: ITarget;
-  var bapFoo: ITarget;
+  var barFoo: IEntity<\`foo.\${string}\`>;
+  var bazFoo: IEntity<\`foo.\${string}\`>;
+  var bapFoo: IEntity<\`foo.\${string}\`>;
 }
 
 globalThis.barFoo = entity("foo.bar");
@@ -76,11 +76,11 @@ globalThis.bapFoo = entity("foo.bap");
     expect(result).toEqual(expectedOutput);
 
     const resultTwo = await readFile('foo/entities/bop.ts', 'utf-8');
-    const expectedOutputTwo = `import { entity, ITarget } from "@hass-blocks/core";
+    const expectedOutputTwo = `import { entity, IEntity } from "@hass-blocks/core";
 
 declare global {
-  var booBop: ITarget;
-  var bongBop: ITarget;
+  var booBop: IEntity<\`bop.\${string}\`>;
+  var bongBop: IEntity<\`bop.\${string}\`>;
 }
 
 globalThis.booBop = entity("bop.boo");

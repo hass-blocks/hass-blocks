@@ -61,7 +61,7 @@ import "./bop.ts";
     await generateEntities('foo', states);
 
     const result = await readFile('foo/entities/foo.ts', 'utf-8');
-    const expectedOutput = `import { entity, IEntity } from "@hass-blocks/core";
+    const expectedOutput = `import { entity, type IEntity } from "@hass-blocks/core";
 
 declare global {
   var barFoo: IEntity<\`foo.bar\`>;
@@ -76,7 +76,7 @@ globalThis.bapFoo = entity("foo.bap");
     expect(result).toEqual(expectedOutput);
 
     const resultTwo = await readFile('foo/entities/bop.ts', 'utf-8');
-    const expectedOutputTwo = `import { entity, IEntity } from "@hass-blocks/core";
+    const expectedOutputTwo = `import { entity, type IEntity } from "@hass-blocks/core";
 
 declare global {
   var booBop: IEntity<\`bop.boo\`>;

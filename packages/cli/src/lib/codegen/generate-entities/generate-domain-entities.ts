@@ -3,28 +3,20 @@ import ts, { factory, NodeFlags, SyntaxKind } from 'typescript';
 import type { State } from '@hass-blocks/hass-ts';
 import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
 import { toCamel } from '@lib/codegen/utils/to-camel.ts';
+import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
 
 import { splitId } from './split-id.ts';
+import { generateTypeParamsFromDomain } from '../utils/generate-type-params-from-domain.ts';
 
 export const generateDomainEntities = async (
   folder: string,
   domain: string,
   states: State[],
 ) => {
-  const entityIdentifier = factory.createIdentifier('entity');
-  const iTargetIdentifier = factory.createIdentifier('ITarget');
-  const importStatement = factory.createImportDeclaration(
-    undefined,
-    factory.createImportClause(
-      false,
-      undefined,
-      factory.createNamedImports([
-        factory.createImportSpecifier(false, undefined, entityIdentifier),
-        factory.createImportSpecifier(false, undefined, iTargetIdentifier),
-      ]),
-    ),
-    factory.createStringLiteral('@hass-blocks/core'),
-  );
+  const coreImport = new ImportStatement('@hass-blocks/core');
+
+  const entityIdentifier = coreImport.newIdentifier('entity');
+  const iEntityIdentifier = coreImport.newIdentifier('IEntity');
 
   const getVariableNameFromState = (state: State) => {
     const { domain, id } = splitId(state.entity_id);
@@ -45,8 +37,8 @@ export const generateDomainEntities = async (
                 factory.createIdentifier(getVariableNameFromState(state)),
                 undefined,
                 factory.createTypeReferenceNode(
-                  factory.createIdentifier('ITarget'),
-                  undefined,
+                  iEntityIdentifier.getIdentifier(),
+                  [generateTypeParamsFromDomain(domain)],
                 ),
                 undefined,
               ),
@@ -67,9 +59,11 @@ export const generateDomainEntities = async (
           ts.factory.createIdentifier(getVariableNameFromState(state)),
         ),
         ts.factory.createToken(ts.SyntaxKind.EqualsToken),
-        ts.factory.createCallExpression(entityIdentifier, undefined, [
-          ts.factory.createStringLiteral(state.entity_id),
-        ]),
+        ts.factory.createCallExpression(
+          entityIdentifier.getIdentifier(),
+          undefined,
+          [ts.factory.createStringLiteral(state.entity_id)],
+        ),
       ),
     );
   });
@@ -78,7 +72,7 @@ export const generateDomainEntities = async (
     join(folder, `entities`),
     `${domain}.ts`,
     ts.factory.createNodeArray([
-      importStatement,
+      coreImport.buildNode(),
       ts.factory.createIdentifier('\n'),
       moduleBlock,
       ts.factory.createIdentifier('\n'),

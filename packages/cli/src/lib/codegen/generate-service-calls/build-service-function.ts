@@ -3,6 +3,7 @@ import type { Service } from '@hass-blocks/hass-ts';
 import { factory, type Identifier, SyntaxKind } from 'typescript';
 
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
+import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 
 export const buildServiceFunction = (
   domain: string,
@@ -10,8 +11,10 @@ export const buildServiceFunction = (
   details: Service,
   serviceName: string,
   propsIdentifier: Identifier | undefined,
-  iTargetIdentifier: Identifier | undefined,
-  targetIdentifier: Identifier | undefined,
+  iEntityIdentifier: ImportedIdentifier,
+  iAreaIdentifier: ImportedIdentifier,
+  targetIdentifier: Identifier,
+  serviceCallIdentifier: ImportedIdentifier,
 ) => {
   const callFunction = factory.createExpressionStatement(
     factory.createBinaryExpression(
@@ -25,14 +28,15 @@ export const buildServiceFunction = (
         undefined,
         buildServiceFunctionParams(
           propsIdentifier,
-          iTargetIdentifier,
+          iEntityIdentifier,
+          iAreaIdentifier,
           targetIdentifier,
-          details.fields,
+          details,
         ),
         undefined,
         factory.createToken(SyntaxKind.EqualsGreaterThanToken),
         factory.createCallExpression(
-          factory.createIdentifier('serviceCall'),
+          serviceCallIdentifier.getIdentifier(),
           undefined,
           [
             factory.createObjectLiteralExpression(

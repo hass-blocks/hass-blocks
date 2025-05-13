@@ -1,14 +1,17 @@
-import { factory, type Identifier, NodeFlags } from 'typescript';
+import { factory, Identifier, NodeFlags } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import { makeServiceIdentifier } from './make-service-identifier.ts';
 import type { Service } from '@hass-blocks/hass-ts';
 import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
+import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 
 export const buildServiceType = (
   service: Service,
   serviceName: string,
-  iTargetIdentifier: Identifier | undefined,
+  iEntityIdentifier: ImportedIdentifier,
   targetIdentifier: Identifier,
+  blockIdentifier: ImportedIdentifier,
+  iAreaIdentifer: ImportedIdentifier,
 ) => {
   const propsIdentifier = makeServiceIdentifier(service, serviceName);
   const varStatement = factory.createVariableStatement(
@@ -22,12 +25,13 @@ export const buildServiceType = (
             undefined,
             buildServiceFunctionParams(
               propsIdentifier,
-              iTargetIdentifier,
+              iEntityIdentifier,
+              iAreaIdentifer,
               targetIdentifier,
-              service.fields,
+              service,
             ),
             factory.createTypeReferenceNode(
-              factory.createIdentifier('Block'),
+              blockIdentifier.getIdentifier(),
               undefined,
             ),
           ),

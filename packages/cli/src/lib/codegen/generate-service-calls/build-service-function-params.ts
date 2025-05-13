@@ -1,26 +1,39 @@
-import type { ServiceFields } from '@hass-blocks/hass-ts';
+import type { Service } from '@hass-blocks/hass-ts';
 import {
   factory,
-  type Identifier,
+  Identifier,
   type ParameterDeclaration,
   SyntaxKind,
 } from 'typescript';
+import { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import { serviceHasTarget } from './service-has-target.ts';
+import { buildIentityTypeParam } from './build-ientity-type-param.ts';
 
 export const buildServiceFunctionParams = (
   propsIdentifier: Identifier | undefined,
-  ITargetTypeIdentifier: Identifier | undefined,
-  targetIdentifier: Identifier | undefined,
-  fields: ServiceFields,
+  iEntityIdentifier: ImportedIdentifier,
+  iAreaIdentifier: ImportedIdentifier,
+  targetIdentifier: Identifier,
+  service: Service,
 ): ParameterDeclaration[] => {
   return [
-    ...(ITargetTypeIdentifier && targetIdentifier
+    ...(serviceHasTarget(service)
       ? [
           factory.createParameterDeclaration(
             undefined,
             undefined,
             targetIdentifier,
             undefined,
-            factory.createTypeReferenceNode(ITargetTypeIdentifier, undefined),
+            factory.createUnionTypeNode([
+              factory.createTypeReferenceNode(
+                iEntityIdentifier.getIdentifier(),
+                buildIentityTypeParam(service),
+              ),
+              factory.createTypeReferenceNode(
+                iAreaIdentifier.getIdentifier(),
+                undefined,
+              ),
+            ]),
             undefined,
           ),
         ]
@@ -31,7 +44,7 @@ export const buildServiceFunctionParams = (
             undefined,
             undefined,
             factory.createIdentifier('params'),
-            Object.values(fields).some(
+            Object.values(service.fields).some(
               (field) =>
                 field &&
                 typeof field === 'object' &&

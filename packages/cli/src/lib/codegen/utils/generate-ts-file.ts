@@ -1,6 +1,5 @@
 import type { Node, NodeArray } from 'typescript';
 
-import { mkdirSync } from 'node:fs';
 import { writeFile, open, mkdir } from 'node:fs/promises';
 import * as prettier from 'prettier';
 import { join } from 'node:path/posix';

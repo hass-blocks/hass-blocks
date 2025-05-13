@@ -5,6 +5,7 @@ import type { Service } from '@hass-blocks/hass-ts';
 
 import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
 import { toCamel } from '@lib/codegen/utils/to-camel.ts';
+import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
 
 import { buildServiceType } from './build-service-type.ts';
 import { buildServiceCall } from './build-service-call.ts';
@@ -14,30 +15,13 @@ export const generateDomainServiceCalls = async (
   domain: string,
   services: Record<string, Service>,
 ) => {
-  const entityIdentifier = factory.createIdentifier('serviceCall');
-  const blockIdentifier = factory.createIdentifier('Block');
-  const targetIdentifier = factory.createIdentifier('target');
-  const iTargetIdentifier = Object.values(services).some(
-    (service) => service.target,
-  )
-    ? factory.createIdentifier('ITarget')
-    : undefined;
+  const coreImport = new ImportStatement('@hass-blocks/core');
 
-  const importStatement = factory.createImportDeclaration(
-    undefined,
-    factory.createImportClause(
-      false,
-      undefined,
-      factory.createNamedImports([
-        factory.createImportSpecifier(false, undefined, blockIdentifier),
-        factory.createImportSpecifier(false, undefined, entityIdentifier),
-        ...(iTargetIdentifier
-          ? [factory.createImportSpecifier(false, undefined, iTargetIdentifier)]
-          : []),
-      ]),
-    ),
-    factory.createStringLiteral('@hass-blocks/core'),
-  );
+  const serviceCallIdentifier = coreImport.newIdentifier('serviceCall');
+  const blockIdentifier = coreImport.newIdentifier('Block');
+  const iEntityIdentifier = coreImport.newIdentifier('IEntity');
+  const targetIdentifier = factory.createIdentifier('target');
+  const iAreaIdentifier = coreImport.newIdentifier('IArea');
 
   const moduleBlock = factory.createModuleDeclaration(
     [factory.createToken(SyntaxKind.DeclareKeyword)],
@@ -48,8 +32,10 @@ export const generateDomainServiceCalls = async (
         return buildServiceType(
           details,
           serviceName,
-          iTargetIdentifier,
+          iEntityIdentifier,
           targetIdentifier,
+          blockIdentifier,
+          iAreaIdentifier,
         );
       }),
     ),
@@ -62,8 +48,10 @@ export const generateDomainServiceCalls = async (
         domain,
         service,
         details,
-        iTargetIdentifier,
+        iEntityIdentifier,
+        iAreaIdentifier,
         targetIdentifier,
+        serviceCallIdentifier,
       ),
     ),
   );
@@ -71,6 +59,10 @@ export const generateDomainServiceCalls = async (
   await generateTsFile(
     join(folder, `services`),
     `${domain}.ts`,
-    factory.createNodeArray([importStatement, moduleBlock, ...serviceNodes]),
+    factory.createNodeArray([
+      coreImport.buildNode(),
+      moduleBlock,
+      ...serviceNodes,
+    ]),
   );
 };

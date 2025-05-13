@@ -2,9 +2,9 @@ import type {
   BlockOutput,
   IEventBus,
   IBlock,
+  ITarget,
   IHass,
   ITrigger,
-  ITarget,
   IBlocksNode,
 } from '@types';
 

@@ -1,7 +1,5 @@
-import type { ITargetIds, ITarget, IHass } from '@types';
+import type { IHass, IEntity } from '@types';
 
-import { Target } from './target.ts';
-import { Combination } from './combination.ts';
 import { EntityDoesNotExistError } from '@errors';
 
 /**
@@ -10,12 +8,10 @@ import { EntityDoesNotExistError } from '@errors';
  * An entity id
  */
 
-export class Entity extends Target {
-  public constructor(private theId: string) {
-    super();
-  }
+export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
+  public constructor(private theId: I) {}
 
-  get targetIds(): ITargetIds {
+  get targetIds() {
     return {
       entity_id: [this.theId],
     };
@@ -37,10 +33,6 @@ export class Entity extends Target {
  *
  * @param targets - One or more entity or other targets
  */
-export const entity = (...targets: (string | ITarget)[]): ITarget => {
-  return new Combination(
-    targets.map((theTarget) =>
-      typeof theTarget === 'string' ? new Entity(theTarget) : theTarget,
-    ),
-  );
+export const entity = <I extends `${string}.${string}`>(id: I): IEntity<I> => {
+  return new Entity(id);
 };

@@ -8,25 +8,16 @@ export type {
   HassEntityBase,
 } from './hass-events.ts';
 
-export type { ITarget } from './i-target.ts';
 export type { ITargetIds } from './i-target-ids.ts';
-
+export type { ITarget } from './i-target.ts';
 export type { IBlocksNode } from './i-blocks-node.ts';
-
-export { assertTargetHasEntityIds } from './i-target.ts';
-
+export type { IEntity } from './i-entity.ts';
 export type { ISwitchable } from './i-switchable.ts';
-
 export type { IBlocksConnection } from './i-blocks-connection.ts';
-
 export type { IFullBlocksClient } from './i-full-blocks-client.ts';
-
 export type { IBlocksRegistry } from './i-blocks-registry.ts';
-
 export type { ILogger } from './i-logger.ts';
-
 export type { IBlocksPlugin, IPluginArgs } from './i-blocks-plugin.ts';
-
 export type { SerialisedBlock } from './serialised-block.ts';
 
 export type {
@@ -66,6 +57,8 @@ export type { Expand, ExpandRecursively } from './expand.ts';
 
 export type { IsStrictlyAny } from './is-strictly-any.ts';
 
+export type { IArea } from './i-area.ts';
+export type { IDevice } from './i-device.ts';
 export type { IEventBus } from './i-event-bus.ts';
 export type { IBlock } from './i-block.ts';
 export type { ICallServiceParams } from './i-call-service-params.ts';

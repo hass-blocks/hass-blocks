@@ -7,8 +7,8 @@ import type {
   IEventBus,
   IFullBlocksClient,
   IHass,
-  ITarget,
   ITrigger,
+  ITarget,
 } from '@types';
 import { mapAsync, md5 } from '@utils';
 

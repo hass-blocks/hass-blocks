@@ -19,21 +19,6 @@ export interface ITarget {
    * @param hass - an initialised Home Assistant instance
    */
   validate(hass: IHass): Promise<void>;
-
-  /**
-   * Entity ids supplied by this target
-   */
-  entityIds: string[];
-
-  /**
-   * Device ids supplied by the target
-   */
-  deviceIds: string[];
-
-  /**
-   * Area ids supplied by the target
-   */
-  areaIds: string[];
 }
 
 /**

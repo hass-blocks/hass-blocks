@@ -1,28 +1,43 @@
-import type { IHass, ITarget, ITargetIds } from '@types';
+import type {
+  IHass,
+  ITargetIds,
+  ITarget,
+  IEntity,
+  IArea,
+  IDevice,
+} from '@types';
+
 import { mapAsync } from '@utils';
 
-import { Target } from './target.ts';
+export class Combination<T extends ReadonlyArray<IEntity | IArea | IDevice>>
+  implements ITarget
+{
+  private theTargets: T;
 
-export class Combination extends Target {
-  public constructor(private targets: ITarget[]) {
-    super();
+  public constructor(...targets: T) {
+    this.theTargets = targets;
   }
 
-  get targetIds(): ITargetIds {
-    return this.targets.reduce<ITargetIds>((accum, target) => {
+  get targetIds(): T[number]['targetIds'] {
+    return this.theTargets.reduce<ITargetIds>((accum, target) => {
       const entities = [
         ...(accum.entity_id ?? []),
-        ...(target.targetIds.entity_id ?? []),
+        ...(('entity_id' in target.targetIds
+          ? target.targetIds.entity_id
+          : []) ?? []),
       ];
 
       const areas = [
         ...(accum.area_id ?? []),
-        ...(target.targetIds.area_id ?? []),
+        ...(('area_id' in target.targetIds ? target.targetIds.area_id : []) ??
+          []),
       ];
 
       const devices = [
         ...(accum.device_id ?? []),
-        ...(target.targetIds.device_id ?? []),
+        ...(('device_id' in target.targetIds
+          ? target.targetIds.device_id
+          : []) ?? []),
       ];
 
       return {
@@ -30,10 +45,30 @@ export class Combination extends Target {
         ...(areas.length > 0 ? { area_id: areas } : {}),
         ...(devices.length > 0 ? { device_id: devices } : {}),
       };
-    }, {});
+    }, {}) as T[number]['targetIds'];
   }
 
-  public override async validate(hass: IHass): Promise<void> {
-    await mapAsync(this.targets, async (target) => await target.validate(hass));
+  public async validate(hass: IHass): Promise<void> {
+    await mapAsync(
+      this.theTargets,
+      async (target) => await target.validate(hass),
+    );
   }
 }
+
+/**
+ * @public
+ * Combine a list of targets
+ *
+ * @returns
+ */
+export const combine = <
+  T extends
+    | ReadonlyArray<IArea>
+    | ReadonlyArray<IEntity>
+    | ReadonlyArray<IDevice>,
+>(
+  ...items: T
+): T[number] => {
+  return new Combination(...items) as T[number];
+};

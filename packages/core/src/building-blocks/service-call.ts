@@ -21,7 +21,7 @@ class ServiceCall<P> extends Action {
       name: serviceConfig.name,
       callback: async (client) => {
         const { target } = this.serviceConfig;
-        const params: CallServiceCommand<P> = {
+        const params: Omit<CallServiceCommand<P>, 'id' | 'type'> = {
           ...serviceConfig.params,
           ...(target ? { target: target.targetIds } : {}),
         };

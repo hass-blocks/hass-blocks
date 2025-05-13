@@ -8,21 +8,23 @@
  */
 
 export { initialiseBlocks, type IBlocksConfig } from '@client';
-export { assertTargetHasEntityIds } from '@types';
 export { ExecutionAbortedError, HassBlocksError } from '@errors';
 
 export { Block, type ITriggerConfig, trigger } from '@core';
-export { area, entity } from '@targets';
+export { area, entity, combine } from '@targets';
 
 export type {
   IBlocksNode,
+  IDevice,
   IBlocksConnection,
   ILogger,
   ITarget,
   ITargetIds,
   IHass,
+  IEntity,
   BaseHassBlocksEvent,
   ITrigger,
+  IArea,
   HassEventBase,
   BlockOutput,
   LifeCycleEvent,

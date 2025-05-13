@@ -16,17 +16,10 @@ import type { State } from '@hass-blocks/hass-ts';
 export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<I, O>;
 
 // @public
-export const area: (...targets: (string | ITarget)[]) => ITarget;
+export const area: (id: string) => IArea;
 
 // @public
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
-
-// @public
-export const assertTargetHasEntityIds: (target: ITarget) => asserts target is ITarget & {
-    targetIds: ITarget['targetIds'] & {
-        entity_id: string[];
-    };
-};
 
 // @public
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
@@ -108,6 +101,9 @@ export interface BlockStarted extends LifeCycleEvent<'block-started'> {
 }
 
 // @public
+export const combine: <T extends ReadonlyArray<IArea> | ReadonlyArray<IEntity> | ReadonlyArray<IDevice>>(...items: T) => T[number];
+
+// @public
 export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(...actions: A) => Block<I, O>;
 
 // @public
@@ -126,7 +122,7 @@ export interface ContinueOutput<O> {
 }
 
 // @public
-export const entity: (...targets: (string | ITarget)[]) => ITarget;
+export const entity: <I extends `${string}.${string}`>(id: I) => IEntity<I>;
 
 // @public
 export class ExecutionAbortedError extends HassBlocksError {
@@ -211,6 +207,13 @@ export interface IActionConfig<I = void, O = void> extends IBaseBlockConfig {
 }
 
 // @public
+export interface IArea extends ITarget {
+    targetIds: {
+        area_id: string[];
+    };
+}
+
+// @public
 export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
     readonly predicate: (client: IHass, input?: I) => Promise<boolean> | boolean | {
         result: boolean;
@@ -291,6 +294,20 @@ export interface ICallServiceParams {
 }
 
 // @public
+export interface IDevice extends ITarget {
+    targetIds: {
+        device_id: string[];
+    };
+}
+
+// @public
+export interface IEntity<I extends `${string}.${string}` = `${string}.${string}`> extends ITarget {
+    targetIds: {
+        entity_id: I[];
+    };
+}
+
+// @public
 export interface IEventBus {
     emit<ET extends HassBlocksEvent['eventType'], T extends HassBlocksEvent & {
         eventType: ET;
@@ -347,9 +364,6 @@ export interface IPluginArgs {
 
 // @public
 export interface ITarget {
-    areaIds: string[];
-    deviceIds: string[];
-    entityIds: string[];
     targetIds: ITargetIds;
     validate(hass: IHass): Promise<void>;
 }

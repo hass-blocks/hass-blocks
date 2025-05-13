@@ -15,6 +15,7 @@ export const buildServiceFunctionParams = (
   iAreaIdentifier: ImportedIdentifier,
   targetIdentifier: Identifier,
   service: Service,
+  addTypes: boolean = true,
 ): ParameterDeclaration[] => {
   return [
     ...(serviceHasTarget(service)
@@ -24,16 +25,18 @@ export const buildServiceFunctionParams = (
             undefined,
             targetIdentifier,
             undefined,
-            factory.createUnionTypeNode([
-              factory.createTypeReferenceNode(
-                iEntityIdentifier.getIdentifier(),
-                buildIentityTypeParam(service),
-              ),
-              factory.createTypeReferenceNode(
-                iAreaIdentifier.getIdentifier(),
-                undefined,
-              ),
-            ]),
+            addTypes
+              ? factory.createUnionTypeNode([
+                  factory.createTypeReferenceNode(
+                    iEntityIdentifier.getIdentifier(),
+                    buildIentityTypeParam(service),
+                  ),
+                  factory.createTypeReferenceNode(
+                    iAreaIdentifier.getIdentifier(),
+                    undefined,
+                  ),
+                ])
+              : undefined,
             undefined,
           ),
         ]
@@ -50,10 +53,12 @@ export const buildServiceFunctionParams = (
                 typeof field === 'object' &&
                 'required' in field &&
                 field.required,
-            )
+            ) || !addTypes
               ? undefined
               : factory.createToken(SyntaxKind.QuestionToken),
-            factory.createTypeReferenceNode(propsIdentifier, undefined),
+            addTypes
+              ? factory.createTypeReferenceNode(propsIdentifier, undefined)
+              : undefined,
             undefined,
           ),
         ]

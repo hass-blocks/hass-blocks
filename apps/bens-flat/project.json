@@ -4,5 +4,29 @@
   "sourceRoot": "packages/bens-flat/src",
   "projectType": "library",
   "tags": [],
-  "targets": {}
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "plugins/publisher/dist",
+        "main": "plugins/publisher/src/index.ts",
+        "tsConfig": "plugins/publisher/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true,
+        "assets": [
+          {
+            "input": "./plugins/publisher/src",
+            "glob": "**/!(*.ts)",
+            "output": "."
+          },
+          {
+            "input": "./plugins/publisher/src",
+            "glob": "**/*.d.ts",
+            "output": "."
+          }
+        ]
+      }
+    }
+  }
 }

@@ -1,4 +1,4 @@
-import { ITarget } from '@hass-blocks/core';
+import type { ITarget } from '@hass-blocks/core';
 import { switchThing } from './switch-thing.ts';
 
 /**

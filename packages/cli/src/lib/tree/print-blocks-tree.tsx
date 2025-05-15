@@ -1,4 +1,4 @@
-import { Block } from '@hass-blocks/core';
+import type { Block } from '@hass-blocks/core';
 import { Box, render } from 'ink';
 import { BlocksTreeNode } from './blocks-tree.tsx';
 

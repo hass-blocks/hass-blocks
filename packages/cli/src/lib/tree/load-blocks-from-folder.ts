@@ -1,6 +1,6 @@
 import { Block } from '@hass-blocks/core';
-import { readdir } from 'fs/promises';
-import { join } from 'path';
+import { readdir } from 'node:fs/promises';
+import { join } from 'node:path';
 
 export const loadBlocksFromFolder = async (automationsDir: string) => {
   const files = await readdir(automationsDir);

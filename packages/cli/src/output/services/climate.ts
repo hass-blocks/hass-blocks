@@ -1,4 +1,4 @@
-import { serviceCall, ITarget } from '@hass-blocks/core';
+import { serviceCall, type ITarget } from '@hass-blocks/core';
 
 export interface TurnOnClimateProps {
   target: ITarget;

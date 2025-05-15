@@ -1,4 +1,4 @@
-import { IBlocksNode } from '@hass-blocks/core';
+import type { IBlocksNode } from '@hass-blocks/core';
 import { Box, Text } from 'ink';
 
 interface BlocksTreeNodeProps {

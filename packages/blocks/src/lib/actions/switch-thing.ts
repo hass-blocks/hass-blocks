@@ -1,4 +1,4 @@
-import { ITarget, serviceCall } from '@hass-blocks/core';
+import { type ITarget, serviceCall } from '@hass-blocks/core';
 
 export const switchThing = (
   target: ITarget,

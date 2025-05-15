@@ -1,4 +1,4 @@
-import { ITarget } from './i-target.ts';
+import type { ITarget } from './i-target.ts';
 
 /**
  * @public

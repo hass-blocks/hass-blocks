@@ -29,6 +29,9 @@
     },
     {
       "path": "./packages/triggers"
+    },
+    {
+      "path": "./packages/hass-mqtt"
     }
   ]
 }

@@ -1,0 +1,41 @@
+{
+  "name": "@hass-blocks/hass-mqtt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/hass-mqtt/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/hass-mqtt/dist",
+        "main": "packages/hass-mqtt/src/index.ts",
+        "tsConfig": "packages/hass-mqtt/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "rollup-api": {
+      "dependsOn": ["build"],
+      "executor": "@hass-blocks/publisher:api-extractor",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/hass-mqtt/dist/index.d.ts",
+        "reportFolder": "packages/hass-mqtt/api",
+        "projectFolder": "packages/hass-mqtt",
+        "strictChecks": true
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/hass-mqtt/dist/index.d.ts",
+        "projectFolder": "packages/hass-mqtt",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

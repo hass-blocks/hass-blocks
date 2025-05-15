@@ -1,0 +1,46 @@
+{
+  "name": "@hass-blocks/hass-mqtt",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "engines": {
+    "node": ">=18"
+  },
+  "types": "./dist/public.d.ts",
+  "bugs": {
+    "url": "https://github.com/benwainwright/hass-blocks/issues",
+    "email": "bwainwright28@gmail.com"
+  },
+  "author": {
+    "name": "Ben Wainwright",
+    "email": "bwainwright28@gmail.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benwainwright/hass-blocks.git",
+    "directory": "packages/hass-mqtt"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/public.d.ts",
+      "development": "./src/index.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "dist",
+    "!**/*.tsbuildinfo"
+  ],
+  "dependencies": {
+    "@swc/helpers": "~0.5.11",
+    "mqtt": "^5.13.0"
+  }
+}

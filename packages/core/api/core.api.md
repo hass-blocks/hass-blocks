@@ -44,6 +44,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
     readonly children?: IBlocksNode[] | undefined;
     readonly id: string;
+    initialise(client: IFullBlocksClient): Promise<void>;
     inputType: I | undefined;
     abstract readonly name: string;
     outputType: O | undefined;
@@ -56,7 +57,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     get trigger(): ITrigger | ITrigger[];
     set trigger(trigger: ITrigger | ITrigger[]);
     abstract readonly typeString: string;
-    validate(client: IHass): Promise<void>;
 }
 
 // @public
@@ -266,8 +266,8 @@ export interface IBlocksConnection {
 export interface IBlocksNode {
     children?: IBlocksNode[] | undefined;
     id: string;
+    initialise(client: IHass): Promise<void>;
     name: string;
-    validate(client: IHass): Promise<void>;
 }
 
 // @public
@@ -364,8 +364,8 @@ export interface IPluginArgs {
 
 // @public
 export interface ITarget {
+    initialise(hass: IFullBlocksClient): Promise<void>;
     targetIds: ITargetIds;
-    validate(hass: IHass): Promise<void>;
 }
 
 // @public

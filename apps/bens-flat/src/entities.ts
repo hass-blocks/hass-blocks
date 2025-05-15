@@ -1,4 +1,4 @@
-import { combine, entity } from '@hass-blocks/core';
+import { combine } from '@hass-blocks/core';
 
 import '@blocks-codegen';
 

@@ -1,6 +1,11 @@
 import { trigger } from '@hass-blocks/core';
 
-export const homeAssistantStarts = () =>
+/**
+ * @public
+ *
+ * Triggered when Home Assistant shuts down
+ */
+export const homeAssistantShutsDown = () =>
   trigger({
     name: `When Home Assistant starts`,
     trigger: {

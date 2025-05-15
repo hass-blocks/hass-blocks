@@ -8,6 +8,8 @@ interface Context {
 }
 
 /**
+ * @public
+ *
  * Triggered when a specific event is fired on the Home Assistant event bus.
  * See {@link https://www.home-assistant.io/docs/configuration/events/}
  *

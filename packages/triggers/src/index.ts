@@ -1,1 +1,1 @@
-export * from './lib/triggers.js';
+export * from './lib/triggers/index.ts';

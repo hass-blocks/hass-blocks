@@ -19,6 +19,4 @@ export {
   selectMediaPlayerSource,
 } from '@actions';
 
-export { stateTurns, stateChanges } from '@triggers';
-
 export { stateIs, stateIsNot, gate } from '@assertions';

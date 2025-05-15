@@ -4,4 +4,4 @@ export {
   imLessThen20kmAway,
 } from './zone.ts';
 
-export { homeModeTurnsOn, homeModeTurnsOff } from './switches.ts';
+// export { homeModeTurnsOn, homeModeTurnsOff } from './switches.ts';

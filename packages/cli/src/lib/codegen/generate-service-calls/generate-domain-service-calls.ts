@@ -1,5 +1,5 @@
 import { join } from 'node:path';
-import { factory, NodeFlags, SyntaxKind } from 'typescript';
+import { factory } from 'typescript';
 
 import type { Service } from '@hass-blocks/hass-ts';
 

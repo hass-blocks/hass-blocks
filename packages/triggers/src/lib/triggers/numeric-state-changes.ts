@@ -41,7 +41,7 @@ export type AboveBelowOptions =
  *
  * Configuration options for the trigger
  */
-type NumericStateChangesProps = {
+export type NumericStateChangesProps = {
   /**
    * The targeted entity
    */

@@ -1,7 +1,12 @@
 import { trigger } from '@hass-blocks/core';
 import { removeUndefined } from '@utils';
 
-interface Context {
+/**
+ * @public
+ *
+ * A Home Assistant context
+ */
+export interface Context {
   user_id?: string | string[];
   id?: string | string[];
   paarent_id?: string | string[];

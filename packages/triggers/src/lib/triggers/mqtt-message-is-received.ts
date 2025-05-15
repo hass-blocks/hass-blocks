@@ -7,7 +7,7 @@ import { removeUndefined } from '@utils';
  * Properties for the mqttMessageIsReceived trigger
  * See {@link https://www.home-assistant.io/docs/automation/trigger/#mqtt-trigger}
  */
-interface MqttMessageIsReceivedProps {
+export interface MqttMessageIsReceivedProps {
   /**
    * Trigger fires if a message is receieved on this topic
    */

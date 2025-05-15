@@ -1,5 +1,5 @@
 import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
-import type { BlockOutput, IHass } from '@types';
+import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
 import type { GetOutputs } from './valid-input-output-sequence.ts';
@@ -24,10 +24,10 @@ class ExecuteConcurrently<
     this.name = this.config.name;
   }
 
-  public override async validate(client: IHass) {
+  public override async initialise(client: IFullBlocksClient) {
     await mapAsync(
       this.config.actions,
-      async (action) => await action.validate(client),
+      async (action) => await action.initialise(client),
     );
   }
 

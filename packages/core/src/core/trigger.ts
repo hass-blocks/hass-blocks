@@ -51,8 +51,8 @@ export class Trigger implements ITrigger {
     this.trigger = config.trigger;
   }
 
-  public async validate(hass: IHass) {
-    await mapAsync(this.config.targets, (target) => target.validate(hass));
+  public async initialise(hass: IFullBlocksClient) {
+    await mapAsync(this.config.targets, (target) => target.initialise(hass));
   }
 
   public async attachToClient(

@@ -1,4 +1,4 @@
-import type { IHass, IEntity } from '@types';
+import type { IHass, IEntity, IFullBlocksClient } from '@types';
 
 import { EntityDoesNotExistError } from '@errors';
 
@@ -17,7 +17,7 @@ export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
     };
   }
 
-  public async validate(hass: IHass): Promise<void> {
+  public async initialise(hass: IFullBlocksClient): Promise<void> {
     try {
       hass.getState(this.theId);
     } catch (error) {

@@ -10,7 +10,7 @@ export class Area implements IArea {
     };
   }
 
-  public async validate(hass: IHass): Promise<void> {
+  public async initialise(hass: IHass): Promise<void> {
     const areas = await hass.getAreas();
 
     const found = areas.find((area) => this.theId === area.area_id);

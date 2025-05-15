@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
 import { RunQueue, BlockExecutionMode, type EventBus, Executor } from '@core';
-import { type IHass, ExecutionMode } from '@types';
+import { type IHass, ExecutionMode, type IFullBlocksClient } from '@types';
 import { ExecutionAbortedError } from '@errors';
 
 import type { Action } from './action.ts';
@@ -24,12 +24,12 @@ describe('automation.validate', () => {
   it('calls all of the validate then on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
-    const mockClient = mock<IHass>();
+    const mockClient = mock<IFullBlocksClient>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
-    mockActionOne.validate.mockResolvedValue();
-    mockActionTwo.validate.mockResolvedValue();
+    mockActionOne.initialise.mockResolvedValue();
+    mockActionTwo.initialise.mockResolvedValue();
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
@@ -40,23 +40,23 @@ describe('automation.validate', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(automation.validate(mockClient)).resolves.not.toThrow();
-    expect(mockActionOne.validate).toHaveBeenCalledWith(mockClient);
-    expect(mockActionTwo.validate).toHaveBeenCalledWith(mockClient);
+    await expect(automation.initialise(mockClient)).resolves.not.toThrow();
+    expect(mockActionOne.initialise).toHaveBeenCalledWith(mockClient);
+    expect(mockActionTwo.initialise).toHaveBeenCalledWith(mockClient);
   });
 
   it('Rethrows any errors thrown by any of its children', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
 
-    const mockClient = mock<IHass>();
+    const mockClient = mock<IFullBlocksClient>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
     const error = new Error('Whoops!');
 
-    mockActionOne.validate.mockResolvedValue();
-    mockActionTwo.validate.mockRejectedValue(error);
+    mockActionOne.initialise.mockResolvedValue();
+    mockActionTwo.initialise.mockRejectedValue(error);
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
@@ -67,7 +67,7 @@ describe('automation.validate', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(automation.validate(mockClient)).rejects.toThrow(error);
+    await expect(automation.initialise(mockClient)).rejects.toThrow(error);
   });
 });
 

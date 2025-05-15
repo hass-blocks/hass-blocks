@@ -1,5 +1,5 @@
 import type {
-  IHass,
+  IFullBlocksClient,
   ITargetIds,
   ITarget,
   IEntity,
@@ -48,10 +48,10 @@ export class Combination<T extends ReadonlyArray<IEntity | IArea | IDevice>>
     }, {}) as T[number]['targetIds'];
   }
 
-  public async validate(hass: IHass): Promise<void> {
+  public async initialise(hass: IFullBlocksClient): Promise<void> {
     await mapAsync(
       this.theTargets,
-      async (target) => await target.validate(hass),
+      async (target) => await target.initialise(hass),
     );
   }
 }

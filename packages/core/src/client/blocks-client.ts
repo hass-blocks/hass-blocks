@@ -106,7 +106,7 @@ export class BlocksClient implements IFullBlocksClient {
       this._automations.push(automation);
       const { trigger } = automation;
 
-      await automation.validate(this);
+      await automation.initialise(this);
 
       const triggers = Array.isArray(trigger) ? trigger : [trigger];
 

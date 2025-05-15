@@ -48,6 +48,6 @@ describe('block.validate', () => {
 
     const client = mock<IHass>();
 
-    await expect(foo.validate(client)).resolves.not.toThrow();
+    await expect(foo.initialise(client)).resolves.not.toThrow();
   });
 });

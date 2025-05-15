@@ -10,7 +10,7 @@ export interface IBlocksNode {
    * If defined, this method will be called when the parent automation is registered.
    * If any configuration is invalid, an error should be thrown
    */
-  validate(client: IHass): Promise<void>;
+  initialise(client: IHass): Promise<void>;
 
   /**
    * String to identify this particular instance of a block. Must be unique

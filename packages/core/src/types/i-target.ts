@@ -1,6 +1,6 @@
 import { AssertionError } from '../errors/assertion-error.ts';
-import type { IHass } from './i-hass.ts';
 import type { ITargetIds } from './i-target-ids.ts';
+import type { IFullBlocksClient } from './i-full-blocks-client.ts';
 
 /**
  * @public
@@ -18,7 +18,7 @@ export interface ITarget {
    * and is operational
    * @param hass - an initialised Home Assistant instance
    */
-  validate(hass: IHass): Promise<void>;
+  initialise(hass: IFullBlocksClient): Promise<void>;
 }
 
 /**

@@ -1,6 +1,6 @@
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 
-import type { IHass, ITarget } from '@types';
+import type { IHass, ITarget, IFullBlocksClient } from '@types';
 import { BlockValidationError } from '@errors';
 import type { Block } from '@core';
 
@@ -31,7 +31,7 @@ class ServiceCall<P> extends Action {
     });
   }
 
-  public override async validate(client: IHass): Promise<void> {
+  public override async initialise(client: IFullBlocksClient): Promise<void> {
     const services = await client.getServices();
 
     const { domain, service } = this.serviceConfig.params;
@@ -42,7 +42,7 @@ class ServiceCall<P> extends Action {
         `${domain}.${service} was not registered with Home Assistant`,
       );
     }
-    await super.validate(client);
+    await super.initialise(client);
   }
 
   public override toJson() {

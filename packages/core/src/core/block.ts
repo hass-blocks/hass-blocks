@@ -2,6 +2,7 @@ import type {
   BlockOutput,
   IEventBus,
   IBlock,
+  IFullBlocksClient,
   ITarget,
   IHass,
   ITrigger,
@@ -76,14 +77,14 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * If defined, this method will be called when the parent automation is registered.
    * If any configuration is invalid, an error should be thrown
    */
-  public async validate(client: IHass): Promise<void> {
+  public async initialise(client: IFullBlocksClient): Promise<void> {
     try {
       await mapAsync(
         this.children,
-        async (action) => await action.validate(client),
+        async (action) => await action.initialise(client),
       );
 
-      await mapAsync(this.targets, async (target) => target.validate(client));
+      await mapAsync(this.targets, async (target) => target.initialise(client));
     } catch (error) {
       EntityDoesNotExistError.RethrowWithNewPath(error, this.name);
     }

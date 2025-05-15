@@ -1,6 +1,6 @@
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 
-import type { IHass, ITarget, IFullBlocksClient } from '@types';
+import type { ITarget, IFullBlocksClient } from '@types';
 import { BlockValidationError } from '@errors';
 import type { Block } from '@core';
 

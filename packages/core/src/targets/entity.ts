@@ -1,4 +1,4 @@
-import type { IHass, IEntity, IFullBlocksClient } from '@types';
+import type { IEntity, IFullBlocksClient } from '@types';
 
 import { EntityDoesNotExistError } from '@errors';
 

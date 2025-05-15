@@ -3,13 +3,7 @@ import { v4 } from 'uuid';
 import { Executor } from './executor.ts';
 import type { Block } from './block.ts';
 
-import type {
-  IEventBus,
-  IFullBlocksClient,
-  IHass,
-  ITrigger,
-  ITarget,
-} from '@types';
+import type { IEventBus, IFullBlocksClient, ITrigger, ITarget } from '@types';
 import { mapAsync, md5 } from '@utils';
 
 /**

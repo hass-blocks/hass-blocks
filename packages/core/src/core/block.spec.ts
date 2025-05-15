@@ -1,7 +1,7 @@
 import { mock } from 'vitest-mock-extended';
 
 import type { BlockOutput } from '@types';
-import type { IHass } from '@types';
+import type { IFullBlocksClient } from '@types';
 
 import { Block } from './block.ts';
 
@@ -46,7 +46,7 @@ describe('block.validate', () => {
 
     const foo = new Foo();
 
-    const client = mock<IHass>();
+    const client = mock<IFullBlocksClient>();
 
     await expect(foo.initialise(client)).resolves.not.toThrow();
   });

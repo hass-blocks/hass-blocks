@@ -3,6 +3,7 @@ import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
 import type { GetOutputs } from './valid-input-output-sequence.ts';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
@@ -24,10 +25,13 @@ class ExecuteConcurrently<
     this.name = this.config.name;
   }
 
-  public override async initialise(client: IFullBlocksClient) {
+  public override async initialise(
+    client: IFullBlocksClient,
+    mqtt: IMQTTConnection,
+  ) {
     await mapAsync(
       this.config.actions,
-      async (action) => await action.initialise(client),
+      async (action) => await action.initialise(client, mqtt),
     );
   }
 

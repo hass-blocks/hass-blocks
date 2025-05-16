@@ -11,6 +11,7 @@ import type {
 
 import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -77,14 +78,19 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * If defined, this method will be called when the parent automation is registered.
    * If any configuration is invalid, an error should be thrown
    */
-  public async initialise(client: IFullBlocksClient): Promise<void> {
+  public async initialise(
+    client: IFullBlocksClient,
+    mqtt: IMQTTConnection,
+  ): Promise<void> {
     try {
       await mapAsync(
         this.children,
-        async (action) => await action.initialise(client),
+        async (action) => await action.initialise(client, mqtt),
       );
 
-      await mapAsync(this.targets, async (target) => target.initialise(client));
+      await mapAsync(this.targets, async (target) =>
+        target.initialise(client, mqtt),
+      );
     } catch (error) {
       EntityDoesNotExistError.RethrowWithNewPath(error, this.name);
     }

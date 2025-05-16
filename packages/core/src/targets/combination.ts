@@ -1,3 +1,4 @@
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type {
   IFullBlocksClient,
   ITargetIds,
@@ -48,10 +49,13 @@ export class Combination<T extends ReadonlyArray<IEntity | IArea | IDevice>>
     }, {}) as T[number]['targetIds'];
   }
 
-  public async initialise(hass: IFullBlocksClient): Promise<void> {
+  public async initialise(
+    hass: IFullBlocksClient,
+    mqtt: IMQTTConnection,
+  ): Promise<void> {
     await mapAsync(
       this.theTargets,
-      async (target) => await target.initialise(hass),
+      async (target) => await target.initialise(hass, mqtt),
     );
   }
 }

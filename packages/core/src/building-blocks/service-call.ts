@@ -5,6 +5,7 @@ import { BlockValidationError } from '@errors';
 import type { Block } from '@core';
 
 import { Action } from './action.ts';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ServiceCall<P> extends Action {
   public override typeString = 'service-call';
@@ -31,7 +32,10 @@ class ServiceCall<P> extends Action {
     });
   }
 
-  public override async initialise(client: IFullBlocksClient): Promise<void> {
+  public override async initialise(
+    client: IFullBlocksClient,
+    mqtt: IMQTTConnection,
+  ): Promise<void> {
     const services = await client.getServices();
 
     const { domain, service } = this.serviceConfig.params;
@@ -42,7 +46,7 @@ class ServiceCall<P> extends Action {
         `${domain}.${service} was not registered with Home Assistant`,
       );
     }
-    await super.initialise(client);
+    await super.initialise(client, mqtt);
   }
 
   public override toJson() {

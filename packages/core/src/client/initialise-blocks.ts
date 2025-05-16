@@ -1,15 +1,12 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import {
-  getConfig,
-  type IHomeAssistant,
-  initialiseHass,
-} from '@hass-blocks/hass-ts';
+import { type IHomeAssistant, initialiseHass } from '@hass-blocks/hass-ts';
 
 import type { IBlocksConnection, IBlocksPlugin, ILogger } from '@types';
-import { EventBus, loadPlugins } from '@core';
+import { EventBus, loadPlugins, getConfig } from '@core';
 
 import { BlocksClient } from './blocks-client.ts';
+import { LazyMqtt } from './lazy-mqtt.ts';
 
 /**
  * @public
@@ -76,7 +73,15 @@ export const initialiseBlocks = async (
 
   const config = getConfig();
   const hassClient = client ?? (await initialiseHass(config));
-  const blocks = new BlocksClient(hassClient, bus);
+
+  const mqtt = new LazyMqtt({
+    username: config.mqttUsername,
+    password: config.mqttPassword,
+    host: config.mqttHost,
+    port: config.mqttPort,
+  });
+
+  const blocks = new BlocksClient(hassClient, bus, mqtt);
 
   if (plugins) {
     await loadPlugins({

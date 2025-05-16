@@ -9,6 +9,7 @@ import type {
 import type { HassEntity, IEventBus, ICallServiceParams, IBlock } from '@types';
 import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
 import type { IFullBlocksClient } from '@types';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import { mapAsync } from '@utils';
 
 type StateChangedCallback = (
@@ -28,6 +29,7 @@ export class BlocksClient implements IFullBlocksClient {
   public constructor(
     private client: IHomeAssistant,
     private bus: IEventBus,
+    private mqtt: IMQTTConnection,
   ) {}
 
   /**
@@ -106,7 +108,7 @@ export class BlocksClient implements IFullBlocksClient {
       this._automations.push(automation);
       const { trigger } = automation;
 
-      await automation.initialise(this);
+      await automation.initialise(this, this.mqtt);
 
       const triggers = Array.isArray(trigger) ? trigger : [trigger];
 

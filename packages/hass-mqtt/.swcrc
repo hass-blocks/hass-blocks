@@ -6,6 +6,12 @@
       "decorators": true,
       "dynamicImport": true
     },
+    "paths": {
+      "@devices": ["src/lib/devices/index.ts"],
+      "@connection": ["src/lib/connection/index.ts"],
+      "@types": ["src/lib/types/index.ts"]
+    },
+    "baseUrl": "./",
     "transform": {
       "decoratorMetadata": true,
       "legacyDecorator": true

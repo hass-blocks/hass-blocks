@@ -23,8 +23,8 @@ export class MqttConnection {
 // @public
 export abstract class MqttDevice {
     constructor(
-    client: MqttConnection, config: MqttDeviceConfig);
-    protected client: MqttConnection;
+    client: IMQTTConnection, config: MqttDeviceConfig);
+    protected client: IMQTTConnection;
     delete(): void;
     protected abstract getDeviceSpecificConfig(): Record<string, unknown>;
     initialise(): void;
@@ -46,7 +46,7 @@ export interface MqttDeviceConfig {
 
 // @public
 export class MqttSwitch extends MqttDevice {
-    constructor(client: MqttConnection, config: SpecificMqttDeviceConfig);
+    constructor(client: IMQTTConnection, config: SpecificMqttDeviceConfig);
     protected getDeviceSpecificConfig(): {
         command_topic: string;
     };

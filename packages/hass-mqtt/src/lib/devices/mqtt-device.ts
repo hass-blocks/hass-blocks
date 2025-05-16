@@ -1,4 +1,4 @@
-import type { MqttConnection } from '@connection';
+import type { IMQTTConnection } from '@types';
 
 /**
  * @public
@@ -50,7 +50,7 @@ export abstract class MqttDevice {
     /**
      * The underlying MQTT client
      */
-    protected client: MqttConnection,
+    protected client: IMQTTConnection,
     config: MqttDeviceConfig,
   ) {
     this.genericConfig = config;

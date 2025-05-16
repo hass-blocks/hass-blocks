@@ -1,6 +1,6 @@
-import type { MqttConnection } from '@connection';
 import { MqttDevice } from './mqtt-device.ts';
 import type { SpecificMqttDeviceConfig } from './specific-mqtt-device-config.ts';
+import { IMQTTConnection } from '@types';
 
 /**
  * @public
@@ -8,7 +8,10 @@ import type { SpecificMqttDeviceConfig } from './specific-mqtt-device-config.ts'
  * A Home Assistant switch (see {@link https://www.home-assistant.io/integrations/switch.mqtt/})
  */
 export class MqttSwitch extends MqttDevice {
-  public constructor(client: MqttConnection, config: SpecificMqttDeviceConfig) {
+  public constructor(
+    client: IMQTTConnection,
+    config: SpecificMqttDeviceConfig,
+  ) {
     super(client, { ...config, type: 'switch' });
     this.client.subscribe(this.commandTopic, this.onStateChange.bind(this));
   }

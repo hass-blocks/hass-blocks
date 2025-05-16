@@ -15,7 +15,7 @@ declare global {
   /**
    * Replaces the source for a plant sensor.
    */
-  var replaceSensorPlant: (params?: ReplaceSensorPlantProps) => Block;
+  var replaceSensorPlant: (params: ReplaceSensorPlantProps) => Block;
 }
 
 globalThis.replaceSensorPlant = (params) =>

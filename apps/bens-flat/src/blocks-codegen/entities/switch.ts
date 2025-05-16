@@ -1,6 +1,7 @@
 import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
+  var livingRoomHeatersSwitch: IEntity<`switch.living_room_heaters`>;
   var adaptiveLightingSleepModeLivingRoomSwitch: IEntity<`switch.adaptive_lighting_sleep_mode_living_room`>;
   var adaptiveLightingAdaptColorLivingRoomSwitch: IEntity<`switch.adaptive_lighting_adapt_color_living_room`>;
   var adaptiveLightingAdaptBrightnessLivingRoomSwitch: IEntity<`switch.adaptive_lighting_adapt_brightness_living_room`>;
@@ -17,19 +18,6 @@ declare global {
   var adaptiveLightingAdaptColorBedroomSwitch: IEntity<`switch.adaptive_lighting_adapt_color_bedroom`>;
   var adaptiveLightingAdaptBrightnessBedroomSwitch: IEntity<`switch.adaptive_lighting_adapt_brightness_bedroom`>;
   var adaptiveLightingBedroomSwitch: IEntity<`switch.adaptive_lighting_bedroom`>;
-  var boilerBoostSwitch: IEntity<`switch.boiler_boost`>;
-  var shellyemA4e57cba73f5Switch: IEntity<`switch.shellyem_a4e57cba73f5`>;
-  var boilerSwitch: IEntity<`switch.boiler`>;
-  var livingRoomTvOnSwitch: IEntity<`switch.living_room_tv_on`>;
-  var imacProOnSwitch: IEntity<`switch.imac_pro_on`>;
-  var scheduleLivingRoomThermostatTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_training_days`>;
-  var scheduleBedroomThermostatWeekendSwitch: IEntity<`switch.schedule_bedroom_thermostat_weekend`>;
-  var scheduleLivingRoomThermostatWeekendSwitch: IEntity<`switch.schedule_living_room_thermostat_weekend`>;
-  var scheduleBedroomThermostatWeekdaysSwitch: IEntity<`switch.schedule_bedroom_thermostat_weekdays`>;
-  var scheduleBoilerSwitch: IEntity<`switch.schedule_boiler`>;
-  var scheduleLivingRoomThermostatFridaySwitch: IEntity<`switch.schedule_living_room_thermostat_friday`>;
-  var scheduleLivingRoomThermostatNonTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_non_training_days`>;
-  var frontDoorMotionDetectionSwitch: IEntity<`switch.front_door_motion_detection`>;
   var genericRemoteControlCardPreReleaseSwitch: IEntity<`switch.generic_remote_control_card_pre_release`>;
   var sonosAlarmPreReleaseSwitch: IEntity<`switch.sonos_alarm_pre_release`>;
   var adguardHomeProtectionSwitch: IEntity<`switch.adguard_home_protection`>;
@@ -37,24 +25,45 @@ declare global {
   var adguardHomeSafeSearchSwitch: IEntity<`switch.adguard_home_safe_search`>;
   var adguardHomeSafeBrowsingSwitch: IEntity<`switch.adguard_home_safe_browsing`>;
   var adguardHomeFilteringSwitch: IEntity<`switch.adguard_home_filtering`>;
+  var qbittorrentAlternativeSpeedSwitch: IEntity<`switch.qbittorrent_alternative_speed`>;
   var adguardHomeQueryLogSwitch: IEntity<`switch.adguard_home_query_log`>;
+  var scheduleLivingRoomThermostatTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_training_days`>;
+  var scheduleBedroomThermostatWeekendSwitch: IEntity<`switch.schedule_bedroom_thermostat_weekend`>;
+  var scheduleLivingRoomThermostatWeekendSwitch: IEntity<`switch.schedule_living_room_thermostat_weekend`>;
+  var scheduleBedroomThermostatWeekdaysSwitch: IEntity<`switch.schedule_bedroom_thermostat_weekdays`>;
+  var scheduleBoilerSwitch: IEntity<`switch.schedule_boiler`>;
+  var scheduleLivingRoomThermostatFridaySwitch: IEntity<`switch.schedule_living_room_thermostat_friday`>;
+  var scheduleLivingRoomThermostatNonTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_non_training_days`>;
+  var boilerBoostSwitch: IEntity<`switch.boiler_boost`>;
+  var diningTableHeaterSwitch: IEntity<`switch.dining_table_heater`>;
+  var bookshelfHeaterSwitch: IEntity<`switch.bookshelf_heater`>;
+  var hallwayHeaterSwitch: IEntity<`switch.hallway_heater`>;
+  var tvHeaterSwitch: IEntity<`switch.tv_heater`>;
+  var boilerSwitch: IEntity<`switch.boiler`>;
+  var shellyemA4e57cba73f5Switch: IEntity<`switch.shellyem_a4e57cba73f5`>;
+  var livingRoomTvOnSwitch: IEntity<`switch.living_room_tv_on`>;
+  var imacProOnSwitch: IEntity<`switch.imac_pro_on`>;
+  var bedroomHeatingSwitchSwitch: IEntity<`switch.bedroom_heating_switch`>;
+  var gymHeatingSwitchSwitch: IEntity<`switch.gym_heating_switch`>;
+  var frontDoorMotionDetectionSwitch: IEntity<`switch.front_door_motion_detection`>;
   var automationWakeUpSwitch: IEntity<`switch.automation_wake_up`>;
   var automationLeavingHomeSwitch: IEntity<`switch.automation_leaving_home`>;
+  var assistMicrophoneMuteSwitch: IEntity<`switch.assist_microphone_mute`>;
   var tumbleDryerSmartPlugSwitch: IEntity<`switch.tumble_dryer_smart_plug`>;
   var tumbleDryerSmartPlugAutoOffEnabledSwitch: IEntity<`switch.tumble_dryer_smart_plug_auto_off_enabled`>;
   var tumbleDryerSmartPlugAutoUpdateEnabledSwitch: IEntity<`switch.tumble_dryer_smart_plug_auto_update_enabled`>;
   var tumbleDryerSmartPlugLedSwitch: IEntity<`switch.tumble_dryer_smart_plug_led`>;
+  var bedroomSpeakerCrossfadeSwitch: IEntity<`switch.bedroom_speaker_crossfade`>;
+  var bedroomSpeakerLoudnessSwitch: IEntity<`switch.bedroom_speaker_loudness`>;
+  var bathroomMotionSensorLedIndicationSwitch: IEntity<`switch.bathroom_motion_sensor_led_indication`>;
+  var hallwayMotionSensorLedIndicationSwitch: IEntity<`switch.hallway_motion_sensor_led_indication`>;
+  var zigbee2mqttBridgePermitJoinSwitch: IEntity<`switch.zigbee2mqtt_bridge_permit_join`>;
   var sonosArcUltraCrossfadeSwitch: IEntity<`switch.sonos_arc_ultra_crossfade`>;
   var sonosArcUltraLoudnessSwitch: IEntity<`switch.sonos_arc_ultra_loudness`>;
   var sonosArcUltraSurroundMusicFullVolumeSwitch: IEntity<`switch.sonos_arc_ultra_surround_music_full_volume`>;
   var sonosArcUltraNightSoundSwitch: IEntity<`switch.sonos_arc_ultra_night_sound`>;
   var sonosArcUltraSpeechEnhancementSwitch: IEntity<`switch.sonos_arc_ultra_speech_enhancement`>;
   var sonosArcUltraSurroundEnabledSwitch: IEntity<`switch.sonos_arc_ultra_surround_enabled`>;
-  var bedroomSpeakerCrossfadeSwitch: IEntity<`switch.bedroom_speaker_crossfade`>;
-  var bedroomSpeakerLoudnessSwitch: IEntity<`switch.bedroom_speaker_loudness`>;
-  var bathroomMotionSensorLedIndicationSwitch: IEntity<`switch.bathroom_motion_sensor_led_indication`>;
-  var hallwayMotionSensorLedIndicationSwitch: IEntity<`switch.hallway_motion_sensor_led_indication`>;
-  var zigbee2mqttBridgePermitJoinSwitch: IEntity<`switch.zigbee2mqtt_bridge_permit_join`>;
   var benSSonosOneSecondEditionDoNotDisturbSwitchSwitch: IEntity<`switch.ben_s_sonos_one_second_edition_do_not_disturb_switch`>;
   var benSSonosOneSecondEditionShuffleSwitchSwitch: IEntity<`switch.ben_s_sonos_one_second_edition_shuffle_switch`>;
   var benSSonosOneSecondEditionRepeatSwitchSwitch: IEntity<`switch.ben_s_sonos_one_second_edition_repeat_switch`>;
@@ -84,8 +93,6 @@ declare global {
   var officeLoudnessSwitch: IEntity<`switch.office_loudness`>;
   var livingRoomMainTurnonSwitch: IEntity<`switch.living_room_main_turnon`>;
   var livingRoomHeatingSwitchSwitch: IEntity<`switch.living_room_heating_switch`>;
-  var bedroomHeatingSwitchSwitch: IEntity<`switch.bedroom_heating_switch`>;
-  var gymHeatingSwitchSwitch: IEntity<`switch.gym_heating_switch`>;
   var holidayModeSwitch: IEntity<`switch.holiday_mode`>;
   var sleepModeSwitch: IEntity<`switch.sleep_mode`>;
   var homeAssistantServerSwitch: IEntity<`switch.home_assistant_server`>;
@@ -120,13 +127,12 @@ declare global {
   var livingRoomBlindsLeftCentreWindowSwitch: IEntity<`switch.living_room_blinds_left_centre_window`>;
   var livingRoomBlindsRightCentreWindowSwitch: IEntity<`switch.living_room_blinds_right_centre_window`>;
   var livingRoomBlindsRightWindowSwitch: IEntity<`switch.living_room_blinds_right_window`>;
-  var qbittorrentAlternativeSpeedSwitch: IEntity<`switch.qbittorrent_alternative_speed`>;
-  var assistMicrophoneMuteSwitch: IEntity<`switch.assist_microphone_mute`>;
   var quetModeSwitch: IEntity<`switch.quet_mode`>;
   var quietModeSwitch: IEntity<`switch.quiet_mode`>;
-  var livingRoomHeaterDiningTableSwitch: IEntity<`switch.living_room_heater_dining_table`>;
+  var myTestingSwitchMqttSwitchSwitch: IEntity<`switch.my_testing_switch_mqtt_switch`>;
 }
 
+globalThis.livingRoomHeatersSwitch = entity('switch.living_room_heaters');
 globalThis.adaptiveLightingSleepModeLivingRoomSwitch = entity(
   'switch.adaptive_lighting_sleep_mode_living_room',
 );
@@ -175,33 +181,6 @@ globalThis.adaptiveLightingAdaptBrightnessBedroomSwitch = entity(
 globalThis.adaptiveLightingBedroomSwitch = entity(
   'switch.adaptive_lighting_bedroom',
 );
-globalThis.boilerBoostSwitch = entity('switch.boiler_boost');
-globalThis.shellyemA4e57cba73f5Switch = entity('switch.shellyem_a4e57cba73f5');
-globalThis.boilerSwitch = entity('switch.boiler');
-globalThis.livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
-globalThis.imacProOnSwitch = entity('switch.imac_pro_on');
-globalThis.scheduleLivingRoomThermostatTrainingDaysSwitch = entity(
-  'switch.schedule_living_room_thermostat_training_days',
-);
-globalThis.scheduleBedroomThermostatWeekendSwitch = entity(
-  'switch.schedule_bedroom_thermostat_weekend',
-);
-globalThis.scheduleLivingRoomThermostatWeekendSwitch = entity(
-  'switch.schedule_living_room_thermostat_weekend',
-);
-globalThis.scheduleBedroomThermostatWeekdaysSwitch = entity(
-  'switch.schedule_bedroom_thermostat_weekdays',
-);
-globalThis.scheduleBoilerSwitch = entity('switch.schedule_boiler');
-globalThis.scheduleLivingRoomThermostatFridaySwitch = entity(
-  'switch.schedule_living_room_thermostat_friday',
-);
-globalThis.scheduleLivingRoomThermostatNonTrainingDaysSwitch = entity(
-  'switch.schedule_living_room_thermostat_non_training_days',
-);
-globalThis.frontDoorMotionDetectionSwitch = entity(
-  'switch.front_door_motion_detection',
-);
 globalThis.genericRemoteControlCardPreReleaseSwitch = entity(
   'switch.generic_remote_control_card_pre_release',
 );
@@ -221,11 +200,48 @@ globalThis.adguardHomeSafeBrowsingSwitch = entity(
   'switch.adguard_home_safe_browsing',
 );
 globalThis.adguardHomeFilteringSwitch = entity('switch.adguard_home_filtering');
+globalThis.qbittorrentAlternativeSpeedSwitch = entity(
+  'switch.qbittorrent_alternative_speed',
+);
 globalThis.adguardHomeQueryLogSwitch = entity('switch.adguard_home_query_log');
+globalThis.scheduleLivingRoomThermostatTrainingDaysSwitch = entity(
+  'switch.schedule_living_room_thermostat_training_days',
+);
+globalThis.scheduleBedroomThermostatWeekendSwitch = entity(
+  'switch.schedule_bedroom_thermostat_weekend',
+);
+globalThis.scheduleLivingRoomThermostatWeekendSwitch = entity(
+  'switch.schedule_living_room_thermostat_weekend',
+);
+globalThis.scheduleBedroomThermostatWeekdaysSwitch = entity(
+  'switch.schedule_bedroom_thermostat_weekdays',
+);
+globalThis.scheduleBoilerSwitch = entity('switch.schedule_boiler');
+globalThis.scheduleLivingRoomThermostatFridaySwitch = entity(
+  'switch.schedule_living_room_thermostat_friday',
+);
+globalThis.scheduleLivingRoomThermostatNonTrainingDaysSwitch = entity(
+  'switch.schedule_living_room_thermostat_non_training_days',
+);
+globalThis.boilerBoostSwitch = entity('switch.boiler_boost');
+globalThis.diningTableHeaterSwitch = entity('switch.dining_table_heater');
+globalThis.bookshelfHeaterSwitch = entity('switch.bookshelf_heater');
+globalThis.hallwayHeaterSwitch = entity('switch.hallway_heater');
+globalThis.tvHeaterSwitch = entity('switch.tv_heater');
+globalThis.boilerSwitch = entity('switch.boiler');
+globalThis.shellyemA4e57cba73f5Switch = entity('switch.shellyem_a4e57cba73f5');
+globalThis.livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
+globalThis.imacProOnSwitch = entity('switch.imac_pro_on');
+globalThis.bedroomHeatingSwitchSwitch = entity('switch.bedroom_heating_switch');
+globalThis.gymHeatingSwitchSwitch = entity('switch.gym_heating_switch');
+globalThis.frontDoorMotionDetectionSwitch = entity(
+  'switch.front_door_motion_detection',
+);
 globalThis.automationWakeUpSwitch = entity('switch.automation_wake_up');
 globalThis.automationLeavingHomeSwitch = entity(
   'switch.automation_leaving_home',
 );
+globalThis.assistMicrophoneMuteSwitch = entity('switch.assist_microphone_mute');
 globalThis.tumbleDryerSmartPlugSwitch = entity(
   'switch.tumble_dryer_smart_plug',
 );
@@ -237,6 +253,21 @@ globalThis.tumbleDryerSmartPlugAutoUpdateEnabledSwitch = entity(
 );
 globalThis.tumbleDryerSmartPlugLedSwitch = entity(
   'switch.tumble_dryer_smart_plug_led',
+);
+globalThis.bedroomSpeakerCrossfadeSwitch = entity(
+  'switch.bedroom_speaker_crossfade',
+);
+globalThis.bedroomSpeakerLoudnessSwitch = entity(
+  'switch.bedroom_speaker_loudness',
+);
+globalThis.bathroomMotionSensorLedIndicationSwitch = entity(
+  'switch.bathroom_motion_sensor_led_indication',
+);
+globalThis.hallwayMotionSensorLedIndicationSwitch = entity(
+  'switch.hallway_motion_sensor_led_indication',
+);
+globalThis.zigbee2mqttBridgePermitJoinSwitch = entity(
+  'switch.zigbee2mqtt_bridge_permit_join',
 );
 globalThis.sonosArcUltraCrossfadeSwitch = entity(
   'switch.sonos_arc_ultra_crossfade',
@@ -255,21 +286,6 @@ globalThis.sonosArcUltraSpeechEnhancementSwitch = entity(
 );
 globalThis.sonosArcUltraSurroundEnabledSwitch = entity(
   'switch.sonos_arc_ultra_surround_enabled',
-);
-globalThis.bedroomSpeakerCrossfadeSwitch = entity(
-  'switch.bedroom_speaker_crossfade',
-);
-globalThis.bedroomSpeakerLoudnessSwitch = entity(
-  'switch.bedroom_speaker_loudness',
-);
-globalThis.bathroomMotionSensorLedIndicationSwitch = entity(
-  'switch.bathroom_motion_sensor_led_indication',
-);
-globalThis.hallwayMotionSensorLedIndicationSwitch = entity(
-  'switch.hallway_motion_sensor_led_indication',
-);
-globalThis.zigbee2mqttBridgePermitJoinSwitch = entity(
-  'switch.zigbee2mqtt_bridge_permit_join',
 );
 globalThis.benSSonosOneSecondEditionDoNotDisturbSwitchSwitch = entity(
   'switch.ben_s_sonos_one_second_edition_do_not_disturb_switch',
@@ -350,8 +366,6 @@ globalThis.livingRoomMainTurnonSwitch = entity(
 globalThis.livingRoomHeatingSwitchSwitch = entity(
   'switch.living_room_heating_switch',
 );
-globalThis.bedroomHeatingSwitchSwitch = entity('switch.bedroom_heating_switch');
-globalThis.gymHeatingSwitchSwitch = entity('switch.gym_heating_switch');
 globalThis.holidayModeSwitch = entity('switch.holiday_mode');
 globalThis.sleepModeSwitch = entity('switch.sleep_mode');
 globalThis.homeAssistantServerSwitch = entity('switch.home_assistant_server');
@@ -426,12 +440,8 @@ globalThis.livingRoomBlindsRightCentreWindowSwitch = entity(
 globalThis.livingRoomBlindsRightWindowSwitch = entity(
   'switch.living_room_blinds_right_window',
 );
-globalThis.qbittorrentAlternativeSpeedSwitch = entity(
-  'switch.qbittorrent_alternative_speed',
-);
-globalThis.assistMicrophoneMuteSwitch = entity('switch.assist_microphone_mute');
 globalThis.quetModeSwitch = entity('switch.quet_mode');
 globalThis.quietModeSwitch = entity('switch.quiet_mode');
-globalThis.livingRoomHeaterDiningTableSwitch = entity(
-  'switch.living_room_heater_dining_table',
+globalThis.myTestingSwitchMqttSwitchSwitch = entity(
+  'switch.my_testing_switch_mqtt_switch',
 );

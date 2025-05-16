@@ -22,7 +22,7 @@ declare global {
    */
   var turnOnFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: TurnOnFanProps,
+    params?: TurnOnFanProps,
   ) => Block;
 
   /**
@@ -47,7 +47,7 @@ declare global {
    */
   var increaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: IncreaseSpeedFanProps,
+    params?: IncreaseSpeedFanProps,
   ) => Block;
 
   interface DecreaseSpeedFanProps {
@@ -62,7 +62,7 @@ declare global {
    */
   var decreaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params: DecreaseSpeedFanProps,
+    params?: DecreaseSpeedFanProps,
   ) => Block;
 
   interface OscillateFanProps {
@@ -77,7 +77,7 @@ declare global {
    */
   var oscillateFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: OscillateFanProps,
+    params: OscillateFanProps,
   ) => Block;
 
   interface SetDirectionFanProps {
@@ -92,7 +92,7 @@ declare global {
    */
   var setDirectionFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: SetDirectionFanProps,
+    params: SetDirectionFanProps,
   ) => Block;
 
   interface SetPercentageFanProps {
@@ -107,7 +107,7 @@ declare global {
    */
   var setPercentageFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: SetPercentageFanProps,
+    params: SetPercentageFanProps,
   ) => Block;
 
   interface SetPresetModeFanProps {
@@ -122,7 +122,7 @@ declare global {
    */
   var setPresetModeFan: (
     target: IEntity<`fan.${string}`> | IArea,
-    params?: SetPresetModeFanProps,
+    params: SetPresetModeFanProps,
   ) => Block;
 }
 

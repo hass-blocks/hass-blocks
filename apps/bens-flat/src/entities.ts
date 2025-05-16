@@ -1,4 +1,10 @@
-import { combine } from '@hass-blocks/core';
+import { combine, aSwitch } from '@hass-blocks/core';
+
+export const livingRoomMotionSensor = aSwitch({
+  create: true,
+  id: 'switch.livingroom_motion_sensor',
+  friendlyName: 'Living Room Motion Sensor',
+});
 
 import '@blocks-codegen';
 

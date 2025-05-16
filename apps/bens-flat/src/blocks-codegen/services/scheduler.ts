@@ -19,7 +19,7 @@ declare global {
   /**
    * Execute the action of a schedule, optionally at a given time.
    */
-  var runActionScheduler: (params?: RunActionSchedulerProps) => Block;
+  var runActionScheduler: (params: RunActionSchedulerProps) => Block;
 
   interface AddSchedulerProps {
     /**
@@ -51,7 +51,7 @@ declare global {
   /**
    * Create a new schedule entity
    */
-  var addScheduler: (params?: AddSchedulerProps) => Block;
+  var addScheduler: (params: AddSchedulerProps) => Block;
 
   interface EditSchedulerProps {
     /**
@@ -87,7 +87,7 @@ declare global {
   /**
    * Edit a schedule entity
    */
-  var editScheduler: (params?: EditSchedulerProps) => Block;
+  var editScheduler: (params: EditSchedulerProps) => Block;
 
   interface RemoveSchedulerProps {
     /**
@@ -99,7 +99,7 @@ declare global {
   /**
    * Remove a schedule entity
    */
-  var removeScheduler: (params?: RemoveSchedulerProps) => Block;
+  var removeScheduler: (params: RemoveSchedulerProps) => Block;
 
   interface CopySchedulerProps {
     /**
@@ -115,7 +115,7 @@ declare global {
   /**
    * Duplicate a schedule entity
    */
-  var copyScheduler: (params?: CopySchedulerProps) => Block;
+  var copyScheduler: (params: CopySchedulerProps) => Block;
 
   /**
    * Disables all schedules

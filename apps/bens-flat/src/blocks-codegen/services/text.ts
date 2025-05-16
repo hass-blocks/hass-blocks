@@ -18,7 +18,7 @@ declare global {
    */
   var setValueText: (
     target: IEntity<`text.${string}`> | IArea,
-    params?: SetValueTextProps,
+    params: SetValueTextProps,
   ) => Block;
 }
 

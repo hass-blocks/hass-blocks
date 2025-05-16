@@ -23,7 +23,7 @@ declare global {
   /**
    * Launches a conversation from a transcribed text.
    */
-  var processConversation: (params?: ProcessConversationProps) => Block;
+  var processConversation: (params: ProcessConversationProps) => Block;
 
   interface ReloadConversationProps {
     /**
@@ -39,7 +39,7 @@ declare global {
   /**
    * Reloads the intent configuration.
    */
-  var reloadConversation: (params: ReloadConversationProps) => Block;
+  var reloadConversation: (params?: ReloadConversationProps) => Block;
 }
 
 globalThis.processConversation = (params) =>

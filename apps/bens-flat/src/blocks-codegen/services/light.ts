@@ -39,7 +39,7 @@ declare global {
    */
   var turnOnLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params: TurnOnLightProps,
+    params?: TurnOnLightProps,
   ) => Block;
 
   interface TurnOffLightProps {
@@ -55,7 +55,7 @@ declare global {
    */
   var turnOffLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params: TurnOffLightProps,
+    params?: TurnOffLightProps,
   ) => Block;
 
   interface ToggleLightProps {
@@ -87,7 +87,7 @@ declare global {
    */
   var toggleLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params: ToggleLightProps,
+    params?: ToggleLightProps,
   ) => Block;
 }
 

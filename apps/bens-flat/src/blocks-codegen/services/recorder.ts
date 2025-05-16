@@ -19,7 +19,7 @@ declare global {
   /**
    * Starts purge task - to clean up old data from your database.
    */
-  var purgeRecorder: (params: PurgeRecorderProps) => Block;
+  var purgeRecorder: (params?: PurgeRecorderProps) => Block;
 
   interface PurgeEntitiesRecorderProps {
     /**
@@ -43,7 +43,7 @@ declare global {
   /**
    * Starts a purge task to remove the data related to specific entities from your database.
    */
-  var purgeEntitiesRecorder: (params: PurgeEntitiesRecorderProps) => Block;
+  var purgeEntitiesRecorder: (params?: PurgeEntitiesRecorderProps) => Block;
 
   /**
    * Starts the recording of events and state changes.

@@ -28,7 +28,7 @@ declare global {
    */
   var selectNextSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params: SelectNextSelectProps,
+    params?: SelectNextSelectProps,
   ) => Block;
 
   interface SelectOptionSelectProps {
@@ -43,7 +43,7 @@ declare global {
    */
   var selectOptionSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params?: SelectOptionSelectProps,
+    params: SelectOptionSelectProps,
   ) => Block;
 
   interface SelectPreviousSelectProps {
@@ -58,7 +58,7 @@ declare global {
    */
   var selectPreviousSelect: (
     target: IEntity<`select.${string}`> | IArea,
-    params: SelectPreviousSelectProps,
+    params?: SelectPreviousSelectProps,
   ) => Block;
 }
 

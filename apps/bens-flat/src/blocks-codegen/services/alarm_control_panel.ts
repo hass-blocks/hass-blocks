@@ -18,7 +18,7 @@ declare global {
    */
   var alarmDisarmAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmDisarmAlarmControlPanelProps,
+    params?: AlarmDisarmAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmArmHomeAlarmControlPanelProps {
@@ -33,7 +33,7 @@ declare global {
    */
   var alarmArmHomeAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmArmHomeAlarmControlPanelProps,
+    params?: AlarmArmHomeAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmArmAwayAlarmControlPanelProps {
@@ -48,7 +48,7 @@ declare global {
    */
   var alarmArmAwayAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmArmAwayAlarmControlPanelProps,
+    params?: AlarmArmAwayAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmArmNightAlarmControlPanelProps {
@@ -63,7 +63,7 @@ declare global {
    */
   var alarmArmNightAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmArmNightAlarmControlPanelProps,
+    params?: AlarmArmNightAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmArmVacationAlarmControlPanelProps {
@@ -78,7 +78,7 @@ declare global {
    */
   var alarmArmVacationAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmArmVacationAlarmControlPanelProps,
+    params?: AlarmArmVacationAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmArmCustomBypassAlarmControlPanelProps {
@@ -93,7 +93,7 @@ declare global {
    */
   var alarmArmCustomBypassAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmArmCustomBypassAlarmControlPanelProps,
+    params?: AlarmArmCustomBypassAlarmControlPanelProps,
   ) => Block;
 
   interface AlarmTriggerAlarmControlPanelProps {
@@ -108,7 +108,7 @@ declare global {
    */
   var alarmTriggerAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params: AlarmTriggerAlarmControlPanelProps,
+    params?: AlarmTriggerAlarmControlPanelProps,
   ) => Block;
 }
 

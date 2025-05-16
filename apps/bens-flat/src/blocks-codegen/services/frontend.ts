@@ -15,7 +15,7 @@ declare global {
   /**
    * Sets the default theme Home Assistant uses. Can be overridden by a user.
    */
-  var setThemeFrontend: (params?: SetThemeFrontendProps) => Block;
+  var setThemeFrontend: (params: SetThemeFrontendProps) => Block;
 
   /**
    * Reloads themes from the YAML-configuration.

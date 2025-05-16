@@ -34,7 +34,7 @@ declare global {
    */
   var speakTts: (
     target: IEntity<`tts.${string}`> | IArea,
-    params?: SpeakTtsProps,
+    params: SpeakTtsProps,
   ) => Block;
 
   /**
@@ -53,7 +53,7 @@ declare global {
   /**
    * Say something using text-to-speech on a media player with google_translate.
    */
-  var googleTranslateSayTts: (params?: GoogleTranslateSayTtsProps) => Block;
+  var googleTranslateSayTts: (params: GoogleTranslateSayTtsProps) => Block;
 
   interface CloudSayTtsProps {
     entity_id: string;
@@ -66,7 +66,7 @@ declare global {
   /**
    * Say something using text-to-speech on a media player with cloud.
    */
-  var cloudSayTts: (params?: CloudSayTtsProps) => Block;
+  var cloudSayTts: (params: CloudSayTtsProps) => Block;
 }
 
 globalThis.speakTts = (target, params) =>

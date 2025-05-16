@@ -20,7 +20,7 @@ declare global {
   /**
    * Takes a snapshot of a media player.
    */
-  var snapshotSonos: (params: SnapshotSonosProps) => Block;
+  var snapshotSonos: (params?: SnapshotSonosProps) => Block;
 
   interface RestoreSonosProps {
     /**
@@ -36,7 +36,7 @@ declare global {
   /**
    * Restores a snapshot of a media player.
    */
-  var restoreSonos: (params: RestoreSonosProps) => Block;
+  var restoreSonos: (params?: RestoreSonosProps) => Block;
 
   interface SetSleepTimerSonosProps {
     /**
@@ -50,7 +50,7 @@ declare global {
    */
   var setSleepTimerSonos: (
     target: IEntity | IArea,
-    params: SetSleepTimerSonosProps,
+    params?: SetSleepTimerSonosProps,
   ) => Block;
 
   /**
@@ -86,7 +86,7 @@ declare global {
    */
   var updateAlarmSonos: (
     target: IEntity | IArea,
-    params?: UpdateAlarmSonosProps,
+    params: UpdateAlarmSonosProps,
   ) => Block;
 
   interface PlayQueueSonosProps {
@@ -101,7 +101,7 @@ declare global {
    */
   var playQueueSonos: (
     target: IEntity | IArea,
-    params: PlayQueueSonosProps,
+    params?: PlayQueueSonosProps,
   ) => Block;
 
   interface RemoveFromQueueSonosProps {
@@ -116,7 +116,7 @@ declare global {
    */
   var removeFromQueueSonos: (
     target: IEntity | IArea,
-    params: RemoveFromQueueSonosProps,
+    params?: RemoveFromQueueSonosProps,
   ) => Block;
 
   /**

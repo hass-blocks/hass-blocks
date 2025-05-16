@@ -39,7 +39,7 @@ declare global {
    */
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params?: SetModeHumidifierProps,
+    params: SetModeHumidifierProps,
   ) => Block;
 
   interface SetHumidityHumidifierProps {
@@ -54,7 +54,7 @@ declare global {
    */
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params?: SetHumidityHumidifierProps,
+    params: SetHumidityHumidifierProps,
   ) => Block;
 }
 

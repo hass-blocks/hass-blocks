@@ -26,7 +26,7 @@ declare global {
    */
   var turnOnSiren: (
     target: IEntity<`siren.${string}`> | IArea,
-    params: TurnOnSirenProps,
+    params?: TurnOnSirenProps,
   ) => Block;
 
   /**

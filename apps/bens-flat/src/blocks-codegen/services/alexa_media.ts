@@ -11,7 +11,7 @@ declare global {
   /**
    * Force account to logout. Used mainly for debugging.
    */
-  var forceLogoutAlexaMedia: (params: ForceLogoutAlexaMediaProps) => Block;
+  var forceLogoutAlexaMedia: (params?: ForceLogoutAlexaMediaProps) => Block;
 
   interface UpdateLastCalledAlexaMediaProps {
     /**
@@ -24,7 +24,7 @@ declare global {
    * Forces update of last_called echo device for each Alexa account.
    */
   var updateLastCalledAlexaMedia: (
-    params: UpdateLastCalledAlexaMediaProps,
+    params?: UpdateLastCalledAlexaMediaProps,
   ) => Block;
 
   interface RestoreVolumeAlexaMediaProps {
@@ -37,7 +37,7 @@ declare global {
   /**
    * Restore previous volume level on Alexa media player device
    */
-  var restoreVolumeAlexaMedia: (params?: RestoreVolumeAlexaMediaProps) => Block;
+  var restoreVolumeAlexaMedia: (params: RestoreVolumeAlexaMediaProps) => Block;
 
   interface GetHistoryRecordsAlexaMediaProps {
     /**
@@ -54,7 +54,7 @@ declare global {
    * Parses the history records for the specified device
    */
   var getHistoryRecordsAlexaMedia: (
-    params?: GetHistoryRecordsAlexaMediaProps,
+    params: GetHistoryRecordsAlexaMediaProps,
   ) => Block;
 }
 

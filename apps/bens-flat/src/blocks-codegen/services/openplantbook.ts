@@ -11,7 +11,7 @@ declare global {
   /**
    * Searches Openplantbook for a plant
    */
-  var searchOpenplantbook: (params?: SearchOpenplantbookProps) => Block;
+  var searchOpenplantbook: (params: SearchOpenplantbookProps) => Block;
 
   interface GetOpenplantbookProps {
     /**
@@ -23,7 +23,7 @@ declare global {
   /**
    * Fetches data for a single species
    */
-  var getOpenplantbook: (params?: GetOpenplantbookProps) => Block;
+  var getOpenplantbook: (params: GetOpenplantbookProps) => Block;
 
   interface CleanCacheOpenplantbookProps {
     /**
@@ -35,7 +35,7 @@ declare global {
   /**
    * Clean up the cached entries from Openplantbook
    */
-  var cleanCacheOpenplantbook: (params: CleanCacheOpenplantbookProps) => Block;
+  var cleanCacheOpenplantbook: (params?: CleanCacheOpenplantbookProps) => Block;
 
   /**
    * Upload sensors data of all plant instances

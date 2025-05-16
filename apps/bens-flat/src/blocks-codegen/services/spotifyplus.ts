@@ -28,7 +28,7 @@ declare global {
    * Add one or more items to the end of the user's current Spotify Player playback queue.
    */
   var addPlayerQueueItemsSpotifyplus: (
-    params?: AddPlayerQueueItemsSpotifyplusProps,
+    params: AddPlayerQueueItemsSpotifyplusProps,
   ) => Block;
 
   interface CheckAlbumFavoritesSpotifyplusProps {
@@ -46,7 +46,7 @@ declare global {
    * Check if one or more albums (or the currently playing album) exists in the current user's 'Your Library' favorites.
    */
   var checkAlbumFavoritesSpotifyplus: (
-    params?: CheckAlbumFavoritesSpotifyplusProps,
+    params: CheckAlbumFavoritesSpotifyplusProps,
   ) => Block;
 
   interface CheckArtistsFollowingSpotifyplusProps {
@@ -64,7 +64,7 @@ declare global {
    * Check if one or more artists (or the currently playing artists) is followed in the current user's 'Your Library' favorites.
    */
   var checkArtistsFollowingSpotifyplus: (
-    params?: CheckArtistsFollowingSpotifyplusProps,
+    params: CheckArtistsFollowingSpotifyplusProps,
   ) => Block;
 
   interface CheckAudiobookFavoritesSpotifyplusProps {
@@ -82,7 +82,7 @@ declare global {
    * Check if one or more audiobooks (or the currently playing audiobook) exists in the current user's 'Your Library' favorites.
    */
   var checkAudiobookFavoritesSpotifyplus: (
-    params?: CheckAudiobookFavoritesSpotifyplusProps,
+    params: CheckAudiobookFavoritesSpotifyplusProps,
   ) => Block;
 
   interface CheckEpisodeFavoritesSpotifyplusProps {
@@ -100,7 +100,7 @@ declare global {
    * Check if one or more episodes (or the currently playing episode) exists in the current user's 'Your Library' favorites.
    */
   var checkEpisodeFavoritesSpotifyplus: (
-    params?: CheckEpisodeFavoritesSpotifyplusProps,
+    params: CheckEpisodeFavoritesSpotifyplusProps,
   ) => Block;
 
   interface CheckPlaylistFollowersSpotifyplusProps {
@@ -122,7 +122,7 @@ declare global {
    * Check to see if the current user is following a specified playlist.
    */
   var checkPlaylistFollowersSpotifyplus: (
-    params?: CheckPlaylistFollowersSpotifyplusProps,
+    params: CheckPlaylistFollowersSpotifyplusProps,
   ) => Block;
 
   interface CheckShowFavoritesSpotifyplusProps {
@@ -140,7 +140,7 @@ declare global {
    * Check if one or more shows (or the currently playing show) exists in the current user's 'Your Library' favorites.
    */
   var checkShowFavoritesSpotifyplus: (
-    params?: CheckShowFavoritesSpotifyplusProps,
+    params: CheckShowFavoritesSpotifyplusProps,
   ) => Block;
 
   interface CheckTrackFavoritesSpotifyplusProps {
@@ -158,7 +158,7 @@ declare global {
    * Check if one or more tracks (or the currently playing track) exists in the current user's 'Your Library' favorites.
    */
   var checkTrackFavoritesSpotifyplus: (
-    params?: CheckTrackFavoritesSpotifyplusProps,
+    params: CheckTrackFavoritesSpotifyplusProps,
   ) => Block;
 
   interface CheckUsersFollowingSpotifyplusProps {
@@ -176,7 +176,7 @@ declare global {
    * Check to see if the current user is following one or more users.
    */
   var checkUsersFollowingSpotifyplus: (
-    params?: CheckUsersFollowingSpotifyplusProps,
+    params: CheckUsersFollowingSpotifyplusProps,
   ) => Block;
 
   interface FollowArtistsSpotifyplusProps {
@@ -194,7 +194,7 @@ declare global {
    * Add the current user as a follower of one or more artists.
    */
   var followArtistsSpotifyplus: (
-    params?: FollowArtistsSpotifyplusProps,
+    params: FollowArtistsSpotifyplusProps,
   ) => Block;
 
   interface FollowPlaylistSpotifyplusProps {
@@ -216,7 +216,7 @@ declare global {
    * Add the current user as a follower of a playlist.
    */
   var followPlaylistSpotifyplus: (
-    params?: FollowPlaylistSpotifyplusProps,
+    params: FollowPlaylistSpotifyplusProps,
   ) => Block;
 
   interface FollowUsersSpotifyplusProps {
@@ -233,7 +233,7 @@ declare global {
   /**
    * Add the current user as a follower of one or more users.
    */
-  var followUsersSpotifyplus: (params?: FollowUsersSpotifyplusProps) => Block;
+  var followUsersSpotifyplus: (params: FollowUsersSpotifyplusProps) => Block;
 
   interface GetAlbumSpotifyplusProps {
     /**
@@ -253,7 +253,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single album.
    */
-  var getAlbumSpotifyplus: (params?: GetAlbumSpotifyplusProps) => Block;
+  var getAlbumSpotifyplus: (params: GetAlbumSpotifyplusProps) => Block;
 
   interface GetAlbumFavoritesSpotifyplusProps {
     /**
@@ -286,7 +286,7 @@ declare global {
    * Get a list of the albums saved in the current Spotify user's 'Your Library'.
    */
   var getAlbumFavoritesSpotifyplus: (
-    params?: GetAlbumFavoritesSpotifyplusProps,
+    params: GetAlbumFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetAlbumNewReleasesSpotifyplusProps {
@@ -320,7 +320,7 @@ declare global {
    * Get a list of new album releases featured in Spotify.
    */
   var getAlbumNewReleasesSpotifyplus: (
-    params?: GetAlbumNewReleasesSpotifyplusProps,
+    params: GetAlbumNewReleasesSpotifyplusProps,
   ) => Block;
 
   interface GetAlbumTracksSpotifyplusProps {
@@ -354,7 +354,7 @@ declare global {
    * Get Spotify catalog information about an album's tracks.
    */
   var getAlbumTracksSpotifyplus: (
-    params?: GetAlbumTracksSpotifyplusProps,
+    params: GetAlbumTracksSpotifyplusProps,
   ) => Block;
 
   interface GetArtistSpotifyplusProps {
@@ -371,7 +371,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single artist.
    */
-  var getArtistSpotifyplus: (params?: GetArtistSpotifyplusProps) => Block;
+  var getArtistSpotifyplus: (params: GetArtistSpotifyplusProps) => Block;
 
   interface GetArtistAlbumsSpotifyplusProps {
     /**
@@ -412,7 +412,7 @@ declare global {
    * Get Spotify catalog information about an artist's albums.
    */
   var getArtistAlbumsSpotifyplus: (
-    params?: GetArtistAlbumsSpotifyplusProps,
+    params: GetArtistAlbumsSpotifyplusProps,
   ) => Block;
 
   interface GetArtistInfoSpotifyplusProps {
@@ -430,7 +430,7 @@ declare global {
    * Get artist about information from the Spotify Artist Biography page for the specified Spotify artist ID.
    */
   var getArtistInfoSpotifyplus: (
-    params?: GetArtistInfoSpotifyplusProps,
+    params: GetArtistInfoSpotifyplusProps,
   ) => Block;
 
   interface GetArtistRelatedArtistsSpotifyplusProps {
@@ -452,7 +452,7 @@ declare global {
    * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
    */
   var getArtistRelatedArtistsSpotifyplus: (
-    params?: GetArtistRelatedArtistsSpotifyplusProps,
+    params: GetArtistRelatedArtistsSpotifyplusProps,
   ) => Block;
 
   interface GetArtistTopTracksSpotifyplusProps {
@@ -478,7 +478,7 @@ declare global {
    * Get Spotify catalog information about an artist's top tracks by country.
    */
   var getArtistTopTracksSpotifyplus: (
-    params?: GetArtistTopTracksSpotifyplusProps,
+    params: GetArtistTopTracksSpotifyplusProps,
   ) => Block;
 
   interface GetArtistsFollowedSpotifyplusProps {
@@ -508,7 +508,7 @@ declare global {
    * Get the current user's followed artists.
    */
   var getArtistsFollowedSpotifyplus: (
-    params?: GetArtistsFollowedSpotifyplusProps,
+    params: GetArtistsFollowedSpotifyplusProps,
   ) => Block;
 
   interface GetAudiobookSpotifyplusProps {
@@ -529,7 +529,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single audiobook.
    */
-  var getAudiobookSpotifyplus: (params?: GetAudiobookSpotifyplusProps) => Block;
+  var getAudiobookSpotifyplus: (params: GetAudiobookSpotifyplusProps) => Block;
 
   interface GetAudiobookChaptersSpotifyplusProps {
     /**
@@ -562,7 +562,7 @@ declare global {
    * Get Spotify catalog information about an audiobook's chapters.
    */
   var getAudiobookChaptersSpotifyplus: (
-    params?: GetAudiobookChaptersSpotifyplusProps,
+    params: GetAudiobookChaptersSpotifyplusProps,
   ) => Block;
 
   interface GetAudiobookFavoritesSpotifyplusProps {
@@ -592,7 +592,7 @@ declare global {
    * Get a list of the audiobooks saved in the current Spotify user's 'Your Library'.
    */
   var getAudiobookFavoritesSpotifyplus: (
-    params?: GetAudiobookFavoritesSpotifyplusProps,
+    params: GetAudiobookFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetBrowseCategorysListSpotifyplusProps {
@@ -618,7 +618,7 @@ declare global {
    * Get a sorted list of ALL categories used to tag items in Spotify.
    */
   var getBrowseCategorysListSpotifyplus: (
-    params?: GetBrowseCategorysListSpotifyplusProps,
+    params: GetBrowseCategorysListSpotifyplusProps,
   ) => Block;
 
   interface GetCategoryPlaylistsSpotifyplusProps {
@@ -656,7 +656,7 @@ declare global {
    * Get a list of Spotify playlists tagged with a particular category.
    */
   var getCategoryPlaylistsSpotifyplus: (
-    params?: GetCategoryPlaylistsSpotifyplusProps,
+    params: GetCategoryPlaylistsSpotifyplusProps,
   ) => Block;
 
   interface GetChapterSpotifyplusProps {
@@ -677,7 +677,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single chapter.
    */
-  var getChapterSpotifyplus: (params?: GetChapterSpotifyplusProps) => Block;
+  var getChapterSpotifyplus: (params: GetChapterSpotifyplusProps) => Block;
 
   interface GetCoverImageFileSpotifyplusProps {
     /**
@@ -698,7 +698,7 @@ declare global {
    * Gets the contents of an image url and transfers the contents to the local file system.
    */
   var getCoverImageFileSpotifyplus: (
-    params?: GetCoverImageFileSpotifyplusProps,
+    params: GetCoverImageFileSpotifyplusProps,
   ) => Block;
 
   interface GetEpisodeSpotifyplusProps {
@@ -719,7 +719,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single episode.
    */
-  var getEpisodeSpotifyplus: (params?: GetEpisodeSpotifyplusProps) => Block;
+  var getEpisodeSpotifyplus: (params: GetEpisodeSpotifyplusProps) => Block;
 
   interface GetEpisodeFavoritesSpotifyplusProps {
     /**
@@ -748,7 +748,7 @@ declare global {
    * Get a list of the episodes saved in the current Spotify user's 'Your Library'.
    */
   var getEpisodeFavoritesSpotifyplus: (
-    params?: GetEpisodeFavoritesSpotifyplusProps,
+    params: GetEpisodeFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetFeaturedPlaylistsSpotifyplusProps {
@@ -790,7 +790,7 @@ declare global {
    * Get a list of Spotify featured playlists.
    */
   var getFeaturedPlaylistsSpotifyplus: (
-    params?: GetFeaturedPlaylistsSpotifyplusProps,
+    params: GetFeaturedPlaylistsSpotifyplusProps,
   ) => Block;
 
   interface GetImageVibrantColorsSpotifyplusProps {
@@ -816,7 +816,7 @@ declare global {
    * Get vibrant color palette values from the specified image source.
    */
   var getImageVibrantColorsSpotifyplus: (
-    params?: GetImageVibrantColorsSpotifyplusProps,
+    params: GetImageVibrantColorsSpotifyplusProps,
   ) => Block;
 
   interface GetPlayerDevicesSpotifyplusProps {
@@ -838,7 +838,7 @@ declare global {
    * Get information about a user's available Spotify Connect player devices.  Some device models are not supported and will not be listed in the API response.
    */
   var getPlayerDevicesSpotifyplus: (
-    params?: GetPlayerDevicesSpotifyplusProps,
+    params: GetPlayerDevicesSpotifyplusProps,
   ) => Block;
 
   interface GetPlayerPlaybackStateSpotifyplusProps {
@@ -860,7 +860,7 @@ declare global {
    * Get information about the user's current playback state, including track or episode, progress, and active device.
    */
   var getPlayerPlaybackStateSpotifyplus: (
-    params?: GetPlayerPlaybackStateSpotifyplusProps,
+    params: GetPlayerPlaybackStateSpotifyplusProps,
   ) => Block;
 
   interface GetPlayerNowPlayingSpotifyplusProps {
@@ -882,7 +882,7 @@ declare global {
    * Get the object currently being played on the user's Spotify account.
    */
   var getPlayerNowPlayingSpotifyplus: (
-    params?: GetPlayerNowPlayingSpotifyplusProps,
+    params: GetPlayerNowPlayingSpotifyplusProps,
   ) => Block;
 
   interface GetPlayerQueueInfoSpotifyplusProps {
@@ -896,7 +896,7 @@ declare global {
    * Get the list of objects that make up the user's playback queue.
    */
   var getPlayerQueueInfoSpotifyplus: (
-    params?: GetPlayerQueueInfoSpotifyplusProps,
+    params: GetPlayerQueueInfoSpotifyplusProps,
   ) => Block;
 
   interface GetPlayerRecentTracksSpotifyplusProps {
@@ -926,7 +926,7 @@ declare global {
    * Get tracks from the current user's recently played tracks; currently doesn't support podcast episodes, and only 50 items may be returned due to spotify limits.
    */
   var getPlayerRecentTracksSpotifyplus: (
-    params?: GetPlayerRecentTracksSpotifyplusProps,
+    params: GetPlayerRecentTracksSpotifyplusProps,
   ) => Block;
 
   interface GetPlaylistSpotifyplusProps {
@@ -955,7 +955,7 @@ declare global {
   /**
    * Get a playlist owned by a Spotify user.
    */
-  var getPlaylistSpotifyplus: (params?: GetPlaylistSpotifyplusProps) => Block;
+  var getPlaylistSpotifyplus: (params: GetPlaylistSpotifyplusProps) => Block;
 
   interface GetPlaylistCoverImageSpotifyplusProps {
     /**
@@ -972,7 +972,7 @@ declare global {
    * Get the current image associated with a specific playlist.
    */
   var getPlaylistCoverImageSpotifyplus: (
-    params?: GetPlaylistCoverImageSpotifyplusProps,
+    params: GetPlaylistCoverImageSpotifyplusProps,
   ) => Block;
 
   interface GetPlaylistFavoritesSpotifyplusProps {
@@ -1002,7 +1002,7 @@ declare global {
    * Get a list of the playlists owned or followed by the current Spotify user.
    */
   var getPlaylistFavoritesSpotifyplus: (
-    params?: GetPlaylistFavoritesSpotifyplusProps,
+    params: GetPlaylistFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetPlaylistItemsSpotifyplusProps {
@@ -1044,7 +1044,7 @@ declare global {
    * Get full details of the items of a playlist owned by a Spotify user.
    */
   var getPlaylistItemsSpotifyplus: (
-    params?: GetPlaylistItemsSpotifyplusProps,
+    params: GetPlaylistItemsSpotifyplusProps,
   ) => Block;
 
   interface GetPlaylistsForUserSpotifyplusProps {
@@ -1078,7 +1078,7 @@ declare global {
    * Get a list of the playlists owned or followed by the current Spotify user.
    */
   var getPlaylistsForUserSpotifyplus: (
-    params?: GetPlaylistsForUserSpotifyplusProps,
+    params: GetPlaylistsForUserSpotifyplusProps,
   ) => Block;
 
   interface GetShowSpotifyplusProps {
@@ -1099,7 +1099,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single show.
    */
-  var getShowSpotifyplus: (params?: GetShowSpotifyplusProps) => Block;
+  var getShowSpotifyplus: (params: GetShowSpotifyplusProps) => Block;
 
   interface GetShowEpisodesSpotifyplusProps {
     /**
@@ -1132,7 +1132,7 @@ declare global {
    * Get Spotify catalog information about a show's episodes.
    */
   var getShowEpisodesSpotifyplus: (
-    params?: GetShowEpisodesSpotifyplusProps,
+    params: GetShowEpisodesSpotifyplusProps,
   ) => Block;
 
   interface GetShowFavoritesSpotifyplusProps {
@@ -1166,7 +1166,7 @@ declare global {
    * Get a list of the shows saved in the current Spotify user's 'Your Library'.
    */
   var getShowFavoritesSpotifyplus: (
-    params?: GetShowFavoritesSpotifyplusProps,
+    params: GetShowFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetSpotifyConnectDeviceSpotifyplusProps {
@@ -1204,7 +1204,7 @@ declare global {
    * Get information about a specific Spotify Connect player device, and (optionally) activate the device if it requires it.
    */
   var getSpotifyConnectDeviceSpotifyplus: (
-    params?: GetSpotifyConnectDeviceSpotifyplusProps,
+    params: GetSpotifyConnectDeviceSpotifyplusProps,
   ) => Block;
 
   interface GetSpotifyConnectDevicesSpotifyplusProps {
@@ -1226,7 +1226,7 @@ declare global {
    * Get information about all available Spotify Connect player (both static and dynamic) devices.
    */
   var getSpotifyConnectDevicesSpotifyplus: (
-    params?: GetSpotifyConnectDevicesSpotifyplusProps,
+    params: GetSpotifyConnectDevicesSpotifyplusProps,
   ) => Block;
 
   interface GetTrackSpotifyplusProps {
@@ -1243,7 +1243,7 @@ declare global {
   /**
    * Get Spotify catalog information for a single track.
    */
-  var getTrackSpotifyplus: (params?: GetTrackSpotifyplusProps) => Block;
+  var getTrackSpotifyplus: (params: GetTrackSpotifyplusProps) => Block;
 
   interface GetTrackAudioFeaturesSpotifyplusProps {
     /**
@@ -1260,7 +1260,7 @@ declare global {
    * Get audio feature information for a single track identified by its unique Spotify ID.
    */
   var getTrackAudioFeaturesSpotifyplus: (
-    params?: GetTrackAudioFeaturesSpotifyplusProps,
+    params: GetTrackAudioFeaturesSpotifyplusProps,
   ) => Block;
 
   interface GetTrackFavoritesSpotifyplusProps {
@@ -1294,7 +1294,7 @@ declare global {
    * Get a list of the tracks saved in the current Spotify user's 'Your Library'.
    */
   var getTrackFavoritesSpotifyplus: (
-    params?: GetTrackFavoritesSpotifyplusProps,
+    params: GetTrackFavoritesSpotifyplusProps,
   ) => Block;
 
   interface GetTrackRecommendationsSpotifyplusProps {
@@ -1496,7 +1496,7 @@ declare global {
    * Get track recommendations for specified criteria.
    */
   var getTrackRecommendationsSpotifyplus: (
-    params?: GetTrackRecommendationsSpotifyplusProps,
+    params: GetTrackRecommendationsSpotifyplusProps,
   ) => Block;
 
   interface GetTracksAudioFeaturesSpotifyplusProps {
@@ -1514,7 +1514,7 @@ declare global {
    * Get audio features for multiple tracks based on their Spotify IDs.
    */
   var getTracksAudioFeaturesSpotifyplus: (
-    params?: GetTracksAudioFeaturesSpotifyplusProps,
+    params: GetTracksAudioFeaturesSpotifyplusProps,
   ) => Block;
 
   interface GetUsersTopArtistsSpotifyplusProps {
@@ -1548,7 +1548,7 @@ declare global {
    * Get the current user's top artists based on calculated affinity.
    */
   var getUsersTopArtistsSpotifyplus: (
-    params?: GetUsersTopArtistsSpotifyplusProps,
+    params: GetUsersTopArtistsSpotifyplusProps,
   ) => Block;
 
   interface GetUsersTopTracksSpotifyplusProps {
@@ -1582,7 +1582,7 @@ declare global {
    * Get the current user's top tracks based on calculated affinity.
    */
   var getUsersTopTracksSpotifyplus: (
-    params?: GetUsersTopTracksSpotifyplusProps,
+    params: GetUsersTopTracksSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaPauseSpotifyplusProps {
@@ -1604,7 +1604,7 @@ declare global {
    * Pause media play for the specified Spotify Connect device.
    */
   var playerMediaPauseSpotifyplus: (
-    params?: PlayerMediaPauseSpotifyplusProps,
+    params: PlayerMediaPauseSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaPlayContextSpotifyplusProps {
@@ -1642,7 +1642,7 @@ declare global {
    * Start playing one or more tracks of the specified context on a Spotify Connect device.
    */
   var playerMediaPlayContextSpotifyplus: (
-    params?: PlayerMediaPlayContextSpotifyplusProps,
+    params: PlayerMediaPlayContextSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaPlayTrackFavoritesSpotifyplusProps {
@@ -1676,7 +1676,7 @@ declare global {
    * Start playing track favorites on the specified Spotify Connect device.
    */
   var playerMediaPlayTrackFavoritesSpotifyplus: (
-    params?: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
+    params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaPlayTracksSpotifyplusProps {
@@ -1706,7 +1706,7 @@ declare global {
    * Start playing one or more tracks on the specified Spotify Connect device.
    */
   var playerMediaPlayTracksSpotifyplus: (
-    params?: PlayerMediaPlayTracksSpotifyplusProps,
+    params: PlayerMediaPlayTracksSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaResumeSpotifyplusProps {
@@ -1728,7 +1728,7 @@ declare global {
    * Resume media play for the specified Spotify Connect device.
    */
   var playerMediaResumeSpotifyplus: (
-    params?: PlayerMediaResumeSpotifyplusProps,
+    params: PlayerMediaResumeSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaSeekSpotifyplusProps {
@@ -1758,7 +1758,7 @@ declare global {
    * Seeks to the given absolute or relative position in the user's currently playing track for the specified Spotify Connect device.
    */
   var playerMediaSeekSpotifyplus: (
-    params?: PlayerMediaSeekSpotifyplusProps,
+    params: PlayerMediaSeekSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaSkipNextSpotifyplusProps {
@@ -1780,7 +1780,7 @@ declare global {
    * Skips to next track in the user's queue for the specified Spotify Connect device.
    */
   var playerMediaSkipNextSpotifyplus: (
-    params?: PlayerMediaSkipNextSpotifyplusProps,
+    params: PlayerMediaSkipNextSpotifyplusProps,
   ) => Block;
 
   interface PlayerMediaSkipPreviousSpotifyplusProps {
@@ -1802,7 +1802,7 @@ declare global {
    * Skips to previous track in the user's queue for the specified Spotify Connect device.
    */
   var playerMediaSkipPreviousSpotifyplus: (
-    params?: PlayerMediaSkipPreviousSpotifyplusProps,
+    params: PlayerMediaSkipPreviousSpotifyplusProps,
   ) => Block;
 
   interface PlayerSetRepeatModeSpotifyplusProps {
@@ -1828,7 +1828,7 @@ declare global {
    * Set repeat mode for the specified Spotify Connect device.
    */
   var playerSetRepeatModeSpotifyplus: (
-    params?: PlayerSetRepeatModeSpotifyplusProps,
+    params: PlayerSetRepeatModeSpotifyplusProps,
   ) => Block;
 
   interface PlayerSetShuffleModeSpotifyplusProps {
@@ -1854,7 +1854,7 @@ declare global {
    * Set shuffle mode for the specified Spotify Connect device.
    */
   var playerSetShuffleModeSpotifyplus: (
-    params?: PlayerSetShuffleModeSpotifyplusProps,
+    params: PlayerSetShuffleModeSpotifyplusProps,
   ) => Block;
 
   interface PlayerSetVolumeLevelSpotifyplusProps {
@@ -1880,7 +1880,7 @@ declare global {
    * Set volume level for the specified Spotify Connect device.
    */
   var playerSetVolumeLevelSpotifyplus: (
-    params?: PlayerSetVolumeLevelSpotifyplusProps,
+    params: PlayerSetVolumeLevelSpotifyplusProps,
   ) => Block;
 
   interface PlayerTransferPlaybackSpotifyplusProps {
@@ -1918,7 +1918,7 @@ declare global {
    * Transfer playback to a new Spotify Connect device and optionally begin playback.
    */
   var playerTransferPlaybackSpotifyplus: (
-    params?: PlayerTransferPlaybackSpotifyplusProps,
+    params: PlayerTransferPlaybackSpotifyplusProps,
   ) => Block;
 
   interface PlaylistCoverImageAddSpotifyplusProps {
@@ -1940,7 +1940,7 @@ declare global {
    * Replace the image used to represent a specific playlist.
    */
   var playlistCoverImageAddSpotifyplus: (
-    params?: PlaylistCoverImageAddSpotifyplusProps,
+    params: PlaylistCoverImageAddSpotifyplusProps,
   ) => Block;
 
   interface PlaylistChangeSpotifyplusProps {
@@ -1978,7 +1978,7 @@ declare global {
    * Change a playlist's details (name, description, and public / private state).
    */
   var playlistChangeSpotifyplus: (
-    params?: PlaylistChangeSpotifyplusProps,
+    params: PlaylistChangeSpotifyplusProps,
   ) => Block;
 
   interface PlaylistCreateSpotifyplusProps {
@@ -2016,7 +2016,7 @@ declare global {
    * Create an empty playlist for a Spotify user.  The playlist will remain empty until you add tracks.
    */
   var playlistCreateSpotifyplus: (
-    params?: PlaylistCreateSpotifyplusProps,
+    params: PlaylistCreateSpotifyplusProps,
   ) => Block;
 
   interface PlaylistItemsAddSpotifyplusProps {
@@ -2042,7 +2042,7 @@ declare global {
    * Add one or more items to a user's playlist.  Items are added in the order they are listed in the `uris` argument.
    */
   var playlistItemsAddSpotifyplus: (
-    params?: PlaylistItemsAddSpotifyplusProps,
+    params: PlaylistItemsAddSpotifyplusProps,
   ) => Block;
 
   interface PlaylistItemsClearSpotifyplusProps {
@@ -2060,7 +2060,7 @@ declare global {
    * Removes (clears) all items from a user's playlist.
    */
   var playlistItemsClearSpotifyplus: (
-    params?: PlaylistItemsClearSpotifyplusProps,
+    params: PlaylistItemsClearSpotifyplusProps,
   ) => Block;
 
   interface PlaylistItemsRemoveSpotifyplusProps {
@@ -2086,7 +2086,7 @@ declare global {
    * Remove one or more items from a user's playlist.
    */
   var playlistItemsRemoveSpotifyplus: (
-    params?: PlaylistItemsRemoveSpotifyplusProps,
+    params: PlaylistItemsRemoveSpotifyplusProps,
   ) => Block;
 
   interface PlaylistItemsReorderSpotifyplusProps {
@@ -2120,7 +2120,7 @@ declare global {
    * Reorder items in a user's playlist.
    */
   var playlistItemsReorderSpotifyplus: (
-    params?: PlaylistItemsReorderSpotifyplusProps,
+    params: PlaylistItemsReorderSpotifyplusProps,
   ) => Block;
 
   interface PlaylistItemsReplaceSpotifyplusProps {
@@ -2142,7 +2142,7 @@ declare global {
    * Replace one or more items in a user's playlist. Replacing items in a playlist will overwrite its existing items. This service can also be used to clear a playlist.
    */
   var playlistItemsReplaceSpotifyplus: (
-    params?: PlaylistItemsReplaceSpotifyplusProps,
+    params: PlaylistItemsReplaceSpotifyplusProps,
   ) => Block;
 
   interface RemoveAlbumFavoritesSpotifyplusProps {
@@ -2160,7 +2160,7 @@ declare global {
    * Remove one or more albums from the current user's 'Your Library'.
    */
   var removeAlbumFavoritesSpotifyplus: (
-    params?: RemoveAlbumFavoritesSpotifyplusProps,
+    params: RemoveAlbumFavoritesSpotifyplusProps,
   ) => Block;
 
   interface RemoveAudiobookFavoritesSpotifyplusProps {
@@ -2178,7 +2178,7 @@ declare global {
    * Remove one or more audiobooks from the current user's 'Your Library'.
    */
   var removeAudiobookFavoritesSpotifyplus: (
-    params?: RemoveAudiobookFavoritesSpotifyplusProps,
+    params: RemoveAudiobookFavoritesSpotifyplusProps,
   ) => Block;
 
   interface RemoveEpisodeFavoritesSpotifyplusProps {
@@ -2196,7 +2196,7 @@ declare global {
    * Remove one or more episodes from the current user's 'Your Library'.
    */
   var removeEpisodeFavoritesSpotifyplus: (
-    params?: RemoveEpisodeFavoritesSpotifyplusProps,
+    params: RemoveEpisodeFavoritesSpotifyplusProps,
   ) => Block;
 
   interface RemoveShowFavoritesSpotifyplusProps {
@@ -2214,7 +2214,7 @@ declare global {
    * Remove one or more albums from the current user's 'Your Library'.
    */
   var removeShowFavoritesSpotifyplus: (
-    params?: RemoveShowFavoritesSpotifyplusProps,
+    params: RemoveShowFavoritesSpotifyplusProps,
   ) => Block;
 
   interface RemoveTrackFavoritesSpotifyplusProps {
@@ -2232,7 +2232,7 @@ declare global {
    * Remove one or more tracks from the current user's 'Your Library'.
    */
   var removeTrackFavoritesSpotifyplus: (
-    params?: RemoveTrackFavoritesSpotifyplusProps,
+    params: RemoveTrackFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SaveAlbumFavoritesSpotifyplusProps {
@@ -2250,7 +2250,7 @@ declare global {
    * Save one or more albums to the current user's 'Your Library'.
    */
   var saveAlbumFavoritesSpotifyplus: (
-    params?: SaveAlbumFavoritesSpotifyplusProps,
+    params: SaveAlbumFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SaveAudiobookFavoritesSpotifyplusProps {
@@ -2268,7 +2268,7 @@ declare global {
    * Save one or more audiobook to the current user's 'Your Library'.
    */
   var saveAudiobookFavoritesSpotifyplus: (
-    params?: SaveAudiobookFavoritesSpotifyplusProps,
+    params: SaveAudiobookFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SaveEpisodeFavoritesSpotifyplusProps {
@@ -2286,7 +2286,7 @@ declare global {
    * Save one or more episodes to the current user's 'Your Library'.
    */
   var saveEpisodeFavoritesSpotifyplus: (
-    params?: SaveEpisodeFavoritesSpotifyplusProps,
+    params: SaveEpisodeFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SaveShowFavoritesSpotifyplusProps {
@@ -2304,7 +2304,7 @@ declare global {
    * Save one or more shows to the current user's 'Your Library'.
    */
   var saveShowFavoritesSpotifyplus: (
-    params?: SaveShowFavoritesSpotifyplusProps,
+    params: SaveShowFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SaveTrackFavoritesSpotifyplusProps {
@@ -2322,7 +2322,7 @@ declare global {
    * Save one or more tracks to the current user's 'Your Library'.
    */
   var saveTrackFavoritesSpotifyplus: (
-    params?: SaveTrackFavoritesSpotifyplusProps,
+    params: SaveTrackFavoritesSpotifyplusProps,
   ) => Block;
 
   interface SearchAlbumsSpotifyplusProps {
@@ -2359,7 +2359,7 @@ declare global {
   /**
    * Get Spotify catalog information about Albums that match a keyword string.
    */
-  var searchAlbumsSpotifyplus: (params?: SearchAlbumsSpotifyplusProps) => Block;
+  var searchAlbumsSpotifyplus: (params: SearchAlbumsSpotifyplusProps) => Block;
 
   interface SearchArtistsSpotifyplusProps {
     /**
@@ -2396,7 +2396,7 @@ declare global {
    * Get Spotify catalog information about Artists that match a keyword string.
    */
   var searchArtistsSpotifyplus: (
-    params?: SearchArtistsSpotifyplusProps,
+    params: SearchArtistsSpotifyplusProps,
   ) => Block;
 
   interface SearchAudiobooksSpotifyplusProps {
@@ -2434,7 +2434,7 @@ declare global {
    * Get Spotify catalog information about Audiobooks that match a keyword string.
    */
   var searchAudiobooksSpotifyplus: (
-    params?: SearchAudiobooksSpotifyplusProps,
+    params: SearchAudiobooksSpotifyplusProps,
   ) => Block;
 
   interface SearchEpisodesSpotifyplusProps {
@@ -2472,7 +2472,7 @@ declare global {
    * Get Spotify catalog information about Episodes that match a keyword string.
    */
   var searchEpisodesSpotifyplus: (
-    params?: SearchEpisodesSpotifyplusProps,
+    params: SearchEpisodesSpotifyplusProps,
   ) => Block;
 
   interface SearchPlaylistsSpotifyplusProps {
@@ -2510,7 +2510,7 @@ declare global {
    * Get Spotify catalog information about Playlists that match a keyword string.
    */
   var searchPlaylistsSpotifyplus: (
-    params?: SearchPlaylistsSpotifyplusProps,
+    params: SearchPlaylistsSpotifyplusProps,
   ) => Block;
 
   interface SearchShowsSpotifyplusProps {
@@ -2547,7 +2547,7 @@ declare global {
   /**
    * Get Spotify catalog information about Shows that match a keyword string.
    */
-  var searchShowsSpotifyplus: (params?: SearchShowsSpotifyplusProps) => Block;
+  var searchShowsSpotifyplus: (params: SearchShowsSpotifyplusProps) => Block;
 
   interface SearchTracksSpotifyplusProps {
     /**
@@ -2583,7 +2583,7 @@ declare global {
   /**
    * Get Spotify catalog information about Tracks that match a keyword string.
    */
-  var searchTracksSpotifyplus: (params?: SearchTracksSpotifyplusProps) => Block;
+  var searchTracksSpotifyplus: (params: SearchTracksSpotifyplusProps) => Block;
 
   interface TriggerScanIntervalSpotifyplusProps {
     /**
@@ -2596,7 +2596,7 @@ declare global {
    * Triggers a scan interval sequence, which will update HA State values from content currently being played on the user's Spotify account.
    */
   var triggerScanIntervalSpotifyplus: (
-    params?: TriggerScanIntervalSpotifyplusProps,
+    params: TriggerScanIntervalSpotifyplusProps,
   ) => Block;
 
   interface UnfollowArtistsSpotifyplusProps {
@@ -2614,7 +2614,7 @@ declare global {
    * Remove the current user as a follower of one or more artists.
    */
   var unfollowArtistsSpotifyplus: (
-    params?: UnfollowArtistsSpotifyplusProps,
+    params: UnfollowArtistsSpotifyplusProps,
   ) => Block;
 
   interface UnfollowPlaylistSpotifyplusProps {
@@ -2632,7 +2632,7 @@ declare global {
    * Remove the current user as a follower of a playlist.
    */
   var unfollowPlaylistSpotifyplus: (
-    params?: UnfollowPlaylistSpotifyplusProps,
+    params: UnfollowPlaylistSpotifyplusProps,
   ) => Block;
 
   interface UnfollowUsersSpotifyplusProps {
@@ -2650,7 +2650,7 @@ declare global {
    * Remove the current user as a follower of one or more users.
    */
   var unfollowUsersSpotifyplus: (
-    params?: UnfollowUsersSpotifyplusProps,
+    params: UnfollowUsersSpotifyplusProps,
   ) => Block;
 
   interface ZeroconfDeviceConnectSpotifyplusProps {
@@ -2708,7 +2708,7 @@ declare global {
    * Calls the `addUser` Spotify Zeroconf API endpoint to issue a call to SpConnectionLoginBlob.  If successful, the associated device id is added to the Spotify Connect active device list for the specified user account.  This will also issue a `resetUsers` call prior to the `addUser` call.
    */
   var zeroconfDeviceConnectSpotifyplus: (
-    params?: ZeroconfDeviceConnectSpotifyplusProps,
+    params: ZeroconfDeviceConnectSpotifyplusProps,
   ) => Block;
 
   interface ZeroconfDeviceDisconnectSpotifyplusProps {
@@ -2746,7 +2746,7 @@ declare global {
    * Calls the `resetUsers` Spotify Zeroconf API endpoint to issue a call to SpConnectionLogout. The currently logged in user (if any) will be logged out of Spotify Connect, and the device id removed from the active Spotify Connect device list.
    */
   var zeroconfDeviceDisconnectSpotifyplus: (
-    params?: ZeroconfDeviceDisconnectSpotifyplusProps,
+    params: ZeroconfDeviceDisconnectSpotifyplusProps,
   ) => Block;
 
   interface ZeroconfDeviceGetinfoSpotifyplusProps {
@@ -2780,7 +2780,7 @@ declare global {
    * Calls the `getInfo` Spotify Zeroconf API endpoint to return information about the device.
    */
   var zeroconfDeviceGetinfoSpotifyplus: (
-    params?: ZeroconfDeviceGetinfoSpotifyplusProps,
+    params: ZeroconfDeviceGetinfoSpotifyplusProps,
   ) => Block;
 
   interface ZeroconfDiscoverDevicesSpotifyplusProps {
@@ -2798,7 +2798,7 @@ declare global {
    * Discover Spotify Connect devices on the local network via the ZeroConf (aka MDNS) service, and return details about each device.
    */
   var zeroconfDiscoverDevicesSpotifyplus: (
-    params?: ZeroconfDiscoverDevicesSpotifyplusProps,
+    params: ZeroconfDiscoverDevicesSpotifyplusProps,
   ) => Block;
 
   interface TestTokenExpireSpotifyplusProps {
@@ -2812,7 +2812,7 @@ declare global {
    * Forces Spotify Authorization token to expire within 10 seconds; used to test token refresh processing.
    */
   var testTokenExpireSpotifyplus: (
-    params?: TestTokenExpireSpotifyplusProps,
+    params: TestTokenExpireSpotifyplusProps,
   ) => Block;
 
   interface VolumeSetStepSpotifyplusProps {
@@ -2830,7 +2830,7 @@ declare global {
    * Set level used for volume step services.
    */
   var volumeSetStepSpotifyplus: (
-    params?: VolumeSetStepSpotifyplusProps,
+    params: VolumeSetStepSpotifyplusProps,
   ) => Block;
 }
 

@@ -18,7 +18,7 @@ declare global {
    */
   var getForecastsWeather: (
     target: IEntity<`weather.${string}`> | IArea,
-    params?: GetForecastsWeatherProps,
+    params: GetForecastsWeatherProps,
   ) => Block;
 }
 

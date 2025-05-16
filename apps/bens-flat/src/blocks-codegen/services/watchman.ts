@@ -12,7 +12,7 @@ declare global {
   /**
    * Run the Watchman report
    */
-  var reportWatchman: (params: ReportWatchmanProps) => Block;
+  var reportWatchman: (params?: ReportWatchmanProps) => Block;
 }
 
 globalThis.reportWatchman = (params) =>

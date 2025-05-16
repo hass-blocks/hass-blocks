@@ -46,7 +46,7 @@ declare global {
    */
   var createEventCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params?: CreateEventCalendarProps,
+    params: CreateEventCalendarProps,
   ) => Block;
 
   interface GetEventsCalendarProps {
@@ -69,7 +69,7 @@ declare global {
    */
   var getEventsCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params: GetEventsCalendarProps,
+    params?: GetEventsCalendarProps,
   ) => Block;
 }
 

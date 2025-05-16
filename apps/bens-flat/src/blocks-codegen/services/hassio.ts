@@ -11,7 +11,7 @@ declare global {
   /**
    * Starts an add-on.
    */
-  var addonStartHassio: (params?: AddonStartHassioProps) => Block;
+  var addonStartHassio: (params: AddonStartHassioProps) => Block;
 
   interface AddonStopHassioProps {
     /**
@@ -23,7 +23,7 @@ declare global {
   /**
    * Stops an add-on.
    */
-  var addonStopHassio: (params?: AddonStopHassioProps) => Block;
+  var addonStopHassio: (params: AddonStopHassioProps) => Block;
 
   interface AddonRestartHassioProps {
     /**
@@ -35,7 +35,7 @@ declare global {
   /**
    * Restarts an add-on.
    */
-  var addonRestartHassio: (params?: AddonRestartHassioProps) => Block;
+  var addonRestartHassio: (params: AddonRestartHassioProps) => Block;
 
   interface AddonStdinHassioProps {
     /**
@@ -47,7 +47,7 @@ declare global {
   /**
    * Writes data to the add-on's standard input.
    */
-  var addonStdinHassio: (params?: AddonStdinHassioProps) => Block;
+  var addonStdinHassio: (params: AddonStdinHassioProps) => Block;
 
   /**
    * Powers off the host system.
@@ -85,7 +85,7 @@ declare global {
   /**
    * Creates a full backup.
    */
-  var backupFullHassio: (params: BackupFullHassioProps) => Block;
+  var backupFullHassio: (params?: BackupFullHassioProps) => Block;
 
   interface BackupPartialHassioProps {
     /**
@@ -125,7 +125,7 @@ declare global {
   /**
    * Creates a partial backup.
    */
-  var backupPartialHassio: (params: BackupPartialHassioProps) => Block;
+  var backupPartialHassio: (params?: BackupPartialHassioProps) => Block;
 
   interface RestoreFullHassioProps {
     /**
@@ -141,7 +141,7 @@ declare global {
   /**
    * Restores from full backup.
    */
-  var restoreFullHassio: (params?: RestoreFullHassioProps) => Block;
+  var restoreFullHassio: (params: RestoreFullHassioProps) => Block;
 
   interface RestorePartialHassioProps {
     /**
@@ -169,7 +169,7 @@ declare global {
   /**
    * Restores from a partial backup.
    */
-  var restorePartialHassio: (params?: RestorePartialHassioProps) => Block;
+  var restorePartialHassio: (params: RestorePartialHassioProps) => Block;
 }
 
 globalThis.addonStartHassio = (params) =>

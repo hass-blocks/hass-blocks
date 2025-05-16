@@ -52,7 +52,7 @@ declare global {
    * Forces one or more entities to update their data.
    */
   var updateEntityHomeassistant: (
-    params?: UpdateEntityHomeassistantProps,
+    params: UpdateEntityHomeassistantProps,
   ) => Block;
 
   /**
@@ -79,7 +79,7 @@ declare global {
    * Updates the Home Assistant location.
    */
   var setLocationHomeassistant: (
-    params?: SetLocationHomeassistantProps,
+    params: SetLocationHomeassistantProps,
   ) => Block;
 
   /**
@@ -99,7 +99,7 @@ declare global {
    */
   var reloadConfigEntryHomeassistant: (
     target: IEntity | IArea,
-    params: ReloadConfigEntryHomeassistantProps,
+    params?: ReloadConfigEntryHomeassistantProps,
   ) => Block;
 
   /**

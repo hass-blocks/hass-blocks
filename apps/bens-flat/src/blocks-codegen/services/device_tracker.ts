@@ -35,7 +35,7 @@ declare global {
   /**
    * Manually update the records of a seen legacy device tracker in the known_devices.yaml file.
    */
-  var seeDeviceTracker: (params: SeeDeviceTrackerProps) => Block;
+  var seeDeviceTracker: (params?: SeeDeviceTrackerProps) => Block;
 }
 
 globalThis.seeDeviceTracker = (params) =>

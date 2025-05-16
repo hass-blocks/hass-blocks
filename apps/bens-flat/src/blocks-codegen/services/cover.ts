@@ -28,7 +28,7 @@ declare global {
    */
   var setCoverPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
-    params?: SetCoverPositionCoverProps,
+    params: SetCoverPositionCoverProps,
   ) => Block;
 
   /**
@@ -70,7 +70,7 @@ declare global {
    */
   var setCoverTiltPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
-    params?: SetCoverTiltPositionCoverProps,
+    params: SetCoverTiltPositionCoverProps,
   ) => Block;
 
   /**

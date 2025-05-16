@@ -23,7 +23,7 @@ declare global {
    */
   var joinOctoplusSavingSessionEventOctopusEnergy: (
     target: IEntity<`event.${string}`> | IArea,
-    params: JoinOctoplusSavingSessionEventOctopusEnergyProps,
+    params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
   ) => Block;
 
   interface RefreshPreviousConsumptionDataOctopusEnergyProps {
@@ -38,7 +38,7 @@ declare global {
    */
   var refreshPreviousConsumptionDataOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params?: RefreshPreviousConsumptionDataOctopusEnergyProps,
+    params: RefreshPreviousConsumptionDataOctopusEnergyProps,
   ) => Block;
 
   /**
@@ -60,7 +60,7 @@ declare global {
    */
   var registerRateWeightingsOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params: RegisterRateWeightingsOctopusEnergyProps,
+    params?: RegisterRateWeightingsOctopusEnergyProps,
   ) => Block;
 }
 

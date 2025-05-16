@@ -15,7 +15,7 @@ declare global {
   /**
    * Adds a new filter subscription to AdGuard Home.
    */
-  var addUrlAdguard: (params?: AddUrlAdguardProps) => Block;
+  var addUrlAdguard: (params: AddUrlAdguardProps) => Block;
 
   interface RemoveUrlAdguardProps {
     /**
@@ -27,7 +27,7 @@ declare global {
   /**
    * Removes a filter subscription from AdGuard Home.
    */
-  var removeUrlAdguard: (params?: RemoveUrlAdguardProps) => Block;
+  var removeUrlAdguard: (params: RemoveUrlAdguardProps) => Block;
 
   interface EnableUrlAdguardProps {
     /**
@@ -39,7 +39,7 @@ declare global {
   /**
    * Enables a filter subscription in AdGuard Home.
    */
-  var enableUrlAdguard: (params?: EnableUrlAdguardProps) => Block;
+  var enableUrlAdguard: (params: EnableUrlAdguardProps) => Block;
 
   interface DisableUrlAdguardProps {
     /**
@@ -51,7 +51,7 @@ declare global {
   /**
    * Disables a filter subscription in AdGuard Home.
    */
-  var disableUrlAdguard: (params?: DisableUrlAdguardProps) => Block;
+  var disableUrlAdguard: (params: DisableUrlAdguardProps) => Block;
 
   interface RefreshAdguardProps {
     /**
@@ -63,7 +63,7 @@ declare global {
   /**
    * Refreshes all filter subscriptions in AdGuard Home.
    */
-  var refreshAdguard: (params: RefreshAdguardProps) => Block;
+  var refreshAdguard: (params?: RefreshAdguardProps) => Block;
 }
 
 globalThis.addUrlAdguard = (params) =>

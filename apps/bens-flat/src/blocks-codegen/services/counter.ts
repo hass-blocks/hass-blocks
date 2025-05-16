@@ -33,7 +33,7 @@ declare global {
    */
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea,
-    params?: SetValueCounterProps,
+    params: SetValueCounterProps,
   ) => Block;
 }
 

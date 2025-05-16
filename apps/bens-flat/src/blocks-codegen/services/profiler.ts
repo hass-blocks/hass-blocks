@@ -11,7 +11,7 @@ declare global {
   /**
    * Starts the Profiler.
    */
-  var startProfiler: (params: StartProfilerProps) => Block;
+  var startProfiler: (params?: StartProfilerProps) => Block;
 
   interface MemoryProfilerProps {
     /**
@@ -23,7 +23,7 @@ declare global {
   /**
    * Starts the Memory Profiler.
    */
-  var memoryProfiler: (params: MemoryProfilerProps) => Block;
+  var memoryProfiler: (params?: MemoryProfilerProps) => Block;
 
   interface StartLogObjectsProfilerProps {
     /**
@@ -35,7 +35,7 @@ declare global {
   /**
    * Starts logging growth of objects in memory.
    */
-  var startLogObjectsProfiler: (params: StartLogObjectsProfilerProps) => Block;
+  var startLogObjectsProfiler: (params?: StartLogObjectsProfilerProps) => Block;
 
   /**
    * Stops logging growth of objects in memory.
@@ -57,7 +57,7 @@ declare global {
    * Starts logging sources of new objects in memory.
    */
   var startLogObjectSourcesProfiler: (
-    params: StartLogObjectSourcesProfilerProps,
+    params?: StartLogObjectSourcesProfilerProps,
   ) => Block;
 
   /**
@@ -75,7 +75,7 @@ declare global {
   /**
    * Dumps the repr of all matching objects to the log.
    */
-  var dumpLogObjectsProfiler: (params?: DumpLogObjectsProfilerProps) => Block;
+  var dumpLogObjectsProfiler: (params: DumpLogObjectsProfilerProps) => Block;
 
   /**
    * Logs the stats of all lru caches.
@@ -102,7 +102,7 @@ declare global {
   /**
    * Enable or disable asyncio debug.
    */
-  var setAsyncioDebugProfiler: (params: SetAsyncioDebugProfilerProps) => Block;
+  var setAsyncioDebugProfiler: (params?: SetAsyncioDebugProfilerProps) => Block;
 
   /**
    * Logs all the current asyncio tasks.

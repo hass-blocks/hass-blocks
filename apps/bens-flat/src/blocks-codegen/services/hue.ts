@@ -30,7 +30,7 @@ declare global {
    */
   var activateSceneHue: (
     target: IEntity<`scene.${string}`> | IArea,
-    params: ActivateSceneHueProps,
+    params?: ActivateSceneHueProps,
   ) => Block;
 
   interface HueActivateSceneHueProps {
@@ -51,7 +51,7 @@ declare global {
   /**
    * Activates a Hue scene stored in the Hue hub.
    */
-  var hueActivateSceneHue: (params: HueActivateSceneHueProps) => Block;
+  var hueActivateSceneHue: (params?: HueActivateSceneHueProps) => Block;
 }
 
 globalThis.activateSceneHue = (target, params) =>

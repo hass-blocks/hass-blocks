@@ -20,7 +20,7 @@ declare global {
   /**
    * hello_world example using pyscript.
    */
-  var helloWorldPyscript: (params: HelloWorldPyscriptProps) => Block;
+  var helloWorldPyscript: (params?: HelloWorldPyscriptProps) => Block;
 
   interface ReloadPyscriptProps {
     /**
@@ -32,7 +32,7 @@ declare global {
   /**
    * Reloads all available pyscripts and restart triggers
    */
-  var reloadPyscript: (params: ReloadPyscriptProps) => Block;
+  var reloadPyscript: (params?: ReloadPyscriptProps) => Block;
 
   interface JupyterKernelStartPyscriptProps {
     /**
@@ -81,7 +81,7 @@ declare global {
    * Starts a jupyter kernel for interactive use; Called by Jupyter front end and should generally not be used by users
    */
   var jupyterKernelStartPyscript: (
-    params?: JupyterKernelStartPyscriptProps,
+    params: JupyterKernelStartPyscriptProps,
   ) => Block;
 }
 

@@ -37,7 +37,7 @@ declare global {
    */
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SelectNextInputSelectProps,
+    params?: SelectNextInputSelectProps,
   ) => Block;
 
   interface SelectOptionInputSelectProps {
@@ -52,7 +52,7 @@ declare global {
    */
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectOptionInputSelectProps,
+    params: SelectOptionInputSelectProps,
   ) => Block;
 
   interface SelectPreviousInputSelectProps {
@@ -67,7 +67,7 @@ declare global {
    */
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SelectPreviousInputSelectProps,
+    params?: SelectPreviousInputSelectProps,
   ) => Block;
 
   interface SetOptionsInputSelectProps {
@@ -82,7 +82,7 @@ declare global {
    */
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SetOptionsInputSelectProps,
+    params: SetOptionsInputSelectProps,
   ) => Block;
 }
 

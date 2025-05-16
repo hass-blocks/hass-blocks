@@ -6,6 +6,21 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
+  interface TurnOnSceneProps {
+    /**
+     * Time it takes the devices to transition into the states defined in the scene.
+     */
+    transition?: number;
+  }
+
+  /**
+   * Activates a scene.
+   */
+  var turnOnScene: (
+    target: IEntity<`scene.${string}`> | IArea,
+    params?: TurnOnSceneProps,
+  ) => Block;
+
   /**
    * Reloads the scenes from the YAML-configuration.
    */
@@ -25,7 +40,7 @@ declare global {
   /**
    * Activates a scene with configuration.
    */
-  var applyScene: (params?: ApplySceneProps) => Block;
+  var applyScene: (params: ApplySceneProps) => Block;
 
   interface CreateSceneProps {
     /**
@@ -45,28 +60,24 @@ declare global {
   /**
    * Creates a new scene.
    */
-  var createScene: (params?: CreateSceneProps) => Block;
+  var createScene: (params: CreateSceneProps) => Block;
 
   /**
    * Deletes a dynamically created scene.
    */
   var deleteScene: (target: IEntity<`scene.${string}`> | IArea) => Block;
-
-  interface TurnOnSceneProps {
-    /**
-     * Time it takes the devices to transition into the states defined in the scene.
-     */
-    transition?: number;
-  }
-
-  /**
-   * Activates a scene.
-   */
-  var turnOnScene: (
-    target: IEntity<`scene.${string}`> | IArea,
-    params: TurnOnSceneProps,
-  ) => Block;
 }
+
+globalThis.turnOnScene = (target, params) =>
+  serviceCall({
+    name: `Call scene.turn_on`,
+    params: {
+      domain: 'scene',
+      service: 'turn_on',
+      service_data: params,
+    },
+    target,
+  });
 
 globalThis.reloadScene = () =>
   serviceCall({
@@ -103,17 +114,6 @@ globalThis.deleteScene = (target) =>
     params: {
       domain: 'scene',
       service: 'delete',
-    },
-    target,
-  });
-
-globalThis.turnOnScene = (target, params) =>
-  serviceCall({
-    name: `Call scene.turn_on`,
-    params: {
-      domain: 'scene',
-      service: 'turn_on',
-      service_data: params,
     },
     target,
   });

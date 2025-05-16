@@ -49,7 +49,7 @@ declare global {
    * Changes the configuration parameters of your Z-Wave devices.
    */
   var setConfigParameterZwaveJs: (
-    params?: SetConfigParameterZwaveJsProps,
+    params: SetConfigParameterZwaveJsProps,
   ) => Block;
 
   interface BulkSetPartialConfigParametersZwaveJsProps {
@@ -83,7 +83,7 @@ declare global {
    * Allows for bulk setting partial parameters. Useful when multiple partial parameters have to be set at the same time.
    */
   var bulkSetPartialConfigParametersZwaveJs: (
-    params?: BulkSetPartialConfigParametersZwaveJsProps,
+    params: BulkSetPartialConfigParametersZwaveJsProps,
   ) => Block;
 
   interface RefreshValueZwaveJsProps {
@@ -100,7 +100,7 @@ declare global {
   /**
    * Force updates the values of a Z-Wave entity.
    */
-  var refreshValueZwaveJs: (params?: RefreshValueZwaveJsProps) => Block;
+  var refreshValueZwaveJs: (params: RefreshValueZwaveJsProps) => Block;
 
   interface SetValueZwaveJsProps {
     /**
@@ -148,7 +148,7 @@ declare global {
   /**
    * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
    */
-  var setValueZwaveJs: (params?: SetValueZwaveJsProps) => Block;
+  var setValueZwaveJs: (params: SetValueZwaveJsProps) => Block;
 
   interface MulticastSetValueZwaveJsProps {
     /**
@@ -197,7 +197,7 @@ declare global {
    * Changes any value that Z-Wave recognizes on multiple Z-Wave devices using multicast, so all devices receive the message simultaneously. This action has minimal validation so only use this action if you know what you are doing.
    */
   var multicastSetValueZwaveJs: (
-    params?: MulticastSetValueZwaveJsProps,
+    params: MulticastSetValueZwaveJsProps,
   ) => Block;
 
   interface PingZwaveJsProps {
@@ -218,7 +218,7 @@ declare global {
   /**
    * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
    */
-  var pingZwaveJs: (params: PingZwaveJsProps) => Block;
+  var pingZwaveJs: (params?: PingZwaveJsProps) => Block;
 
   interface InvokeCcApiZwaveJsProps {
     /**
@@ -254,7 +254,7 @@ declare global {
   /**
    * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
    */
-  var invokeCcApiZwaveJs: (params?: InvokeCcApiZwaveJsProps) => Block;
+  var invokeCcApiZwaveJs: (params: InvokeCcApiZwaveJsProps) => Block;
 
   interface RefreshNotificationsZwaveJsProps {
     /**
@@ -283,7 +283,7 @@ declare global {
    * Refreshes notifications on a node based on notification type and optionally notification event.
    */
   var refreshNotificationsZwaveJs: (
-    params?: RefreshNotificationsZwaveJsProps,
+    params: RefreshNotificationsZwaveJsProps,
   ) => Block;
 
   interface SetLockUsercodeZwaveJsProps {
@@ -302,7 +302,7 @@ declare global {
    */
   var setLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: SetLockUsercodeZwaveJsProps,
+    params: SetLockUsercodeZwaveJsProps,
   ) => Block;
 
   interface ClearLockUsercodeZwaveJsProps {
@@ -317,7 +317,7 @@ declare global {
    */
   var clearLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: ClearLockUsercodeZwaveJsProps,
+    params: ClearLockUsercodeZwaveJsProps,
   ) => Block;
 
   interface SetLockConfigurationZwaveJsProps {
@@ -352,7 +352,7 @@ declare global {
    */
   var setLockConfigurationZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params?: SetLockConfigurationZwaveJsProps,
+    params: SetLockConfigurationZwaveJsProps,
   ) => Block;
 
   interface ResetMeterZwaveJsProps {
@@ -381,7 +381,7 @@ declare global {
   /**
    * Resets the meters on a node.
    */
-  var resetMeterZwaveJs: (params: ResetMeterZwaveJsProps) => Block;
+  var resetMeterZwaveJs: (params?: ResetMeterZwaveJsProps) => Block;
 }
 
 globalThis.setConfigParameterZwaveJs = (params) =>

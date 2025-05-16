@@ -20,7 +20,7 @@ declare global {
    * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.
    */
   var sendMagicPacketWakeOnLan: (
-    params?: SendMagicPacketWakeOnLanProps,
+    params: SendMagicPacketWakeOnLanProps,
   ) => Block;
 }
 

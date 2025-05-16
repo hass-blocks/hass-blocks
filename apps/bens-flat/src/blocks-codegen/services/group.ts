@@ -40,7 +40,7 @@ declare global {
   /**
    * Creates/Updates a group.
    */
-  var setGroup: (params?: SetGroupProps) => Block;
+  var setGroup: (params: SetGroupProps) => Block;
 
   interface RemoveGroupProps {
     /**
@@ -52,7 +52,7 @@ declare global {
   /**
    * Removes a group.
    */
-  var removeGroup: (params?: RemoveGroupProps) => Block;
+  var removeGroup: (params: RemoveGroupProps) => Block;
 }
 
 globalThis.reloadGroup = () =>

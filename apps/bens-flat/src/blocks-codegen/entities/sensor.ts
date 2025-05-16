@@ -6,52 +6,35 @@ declare global {
   var backupBackupManagerStateSensor: IEntity<`sensor.backup_backup_manager_state`>;
   var backupNextScheduledAutomaticBackupSensor: IEntity<`sensor.backup_next_scheduled_automatic_backup`>;
   var backupLastSuccessfulAutomaticBackupSensor: IEntity<`sensor.backup_last_successful_automatic_backup`>;
+  var dateTimeIsoSensor: IEntity<`sensor.date_time_iso`>;
   var sunNextDawnSensor: IEntity<`sensor.sun_next_dawn`>;
   var sunNextDuskSensor: IEntity<`sensor.sun_next_dusk`>;
   var sunNextMidnightSensor: IEntity<`sensor.sun_next_midnight`>;
   var sunNextNoonSensor: IEntity<`sensor.sun_next_noon`>;
   var sunNextRisingSensor: IEntity<`sensor.sun_next_rising`>;
   var sunNextSettingSensor: IEntity<`sensor.sun_next_setting`>;
-  var dateTimeIsoSensor: IEntity<`sensor.date_time_iso`>;
-  var boilerBoostTemperatureSensor: IEntity<`sensor.boiler_boost_temperature`>;
-  var shellyemA4e57cba73f5Channel_1PowerSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_power`>;
-  var shellyemA4e57cba73f5Channel_1EnergySensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy`>;
-  var shellyemA4e57cba73f5Channel_1EnergyReturnedSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy_returned`>;
-  var shellyemA4e57cba73f5Channel_1VoltageSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_voltage`>;
-  var shellyemA4e57cba73f5Channel_1PowerFactorSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_power_factor`>;
-  var shellyemA4e57cba73f5Channel_2PowerSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_power`>;
-  var shellyemA4e57cba73f5Channel_2EnergySensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_energy`>;
-  var shellyemA4e57cba73f5Channel_2EnergyReturnedSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_energy_returned`>;
-  var shellyemA4e57cba73f5Channel_2VoltageSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_voltage`>;
-  var shellyemA4e57cba73f5Channel_2PowerFactorSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_power_factor`>;
-  var octopusEnergyA_11077925WheelOfFortuneSpinsElectricitySensor: IEntity<`sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_electricity`>;
-  var octopusEnergyA_11077925WheelOfFortuneSpinsGasSensor: IEntity<`sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_gas`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495CurrentRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_current_rate`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495PreviousRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_rate`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495NextRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_next_rate`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495CurrentStandingChargeSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_current_standing_charge`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeConsumptionSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_consumption`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeCostSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_cost`>;
-  var availableUpdatesCountSensor: IEntity<`sensor.available_updates_count`>;
-  var aliceSoilMistureFixedSensor: IEntity<`sensor.alice_soil_misture_fixed`>;
-  var lowBatteryCountSensor: IEntity<`sensor.low_battery_count`>;
-  var availableUpdatesSensor: IEntity<`sensor.available_updates`>;
-  var imacScreenOffSensor: IEntity<`sensor.imac_screen_off`>;
-  var todaysEventsSensor: IEntity<`sensor.todays_events`>;
-  var weatherForecastSensor: IEntity<`sensor.weather_forecast`>;
-  var currentTvSourceSensor: IEntity<`sensor.current_tv_source`>;
-  var livingRoomTemperatureSensor: IEntity<`sensor.living_room_temperature`>;
-  var livingRoomTargetTemperatureSensor: IEntity<`sensor.living_room_target_temperature`>;
-  var boilerTargetTemperatureSensor: IEntity<`sensor.boiler_target_temperature`>;
-  var livingRoomHeatingModeSensor: IEntity<`sensor.living_room_heating_mode`>;
-  var bedroomTemperatureSensor: IEntity<`sensor.bedroom_temperature`>;
-  var bedroomTargetTemperatureSensor: IEntity<`sensor.bedroom_target_temperature`>;
-  var bedroomHeatingModeSensor: IEntity<`sensor.bedroom_heating_mode`>;
-  var gymTemperatureSensor: IEntity<`sensor.gym_temperature`>;
-  var gymTargetTemperatureSensor: IEntity<`sensor.gym_target_temperature`>;
-  var gymHeatingModeSensor: IEntity<`sensor.gym_heating_mode`>;
-  var lastTimeLivingRoomMotionSensorWasTriggeredSensor: IEntity<`sensor.last_time_living_room_motion_sensor_was_triggered`>;
   var electricMeterSensor: IEntity<`sensor.electric_meter`>;
+  var adguardHomeDnsQueriesSensor: IEntity<`sensor.adguard_home_dns_queries`>;
+  var adguardHomeDnsQueriesBlockedSensor: IEntity<`sensor.adguard_home_dns_queries_blocked`>;
+  var adguardHomeDnsQueriesBlockedRatioSensor: IEntity<`sensor.adguard_home_dns_queries_blocked_ratio`>;
+  var adguardHomeParentalControlBlockedSensor: IEntity<`sensor.adguard_home_parental_control_blocked`>;
+  var adguardHomeSafeBrowsingBlockedSensor: IEntity<`sensor.adguard_home_safe_browsing_blocked`>;
+  var watchmanLastUpdatedSensor: IEntity<`sensor.watchman_last_updated`>;
+  var watchmanMissingEntitiesSensor: IEntity<`sensor.watchman_missing_entities`>;
+  var watchmanMissingActionsSensor: IEntity<`sensor.watchman_missing_actions`>;
+  var adguardHomeSafeSearchesEnforcedSensor: IEntity<`sensor.adguard_home_safe_searches_enforced`>;
+  var adguardHomeAverageProcessingSpeedSensor: IEntity<`sensor.adguard_home_average_processing_speed`>;
+  var qbittorrentStatusSensor: IEntity<`sensor.qbittorrent_status`>;
+  var qbittorrentConnectionStatusSensor: IEntity<`sensor.qbittorrent_connection_status`>;
+  var qbittorrentDownloadSpeedSensor: IEntity<`sensor.qbittorrent_download_speed`>;
+  var qbittorrentUploadSpeedSensor: IEntity<`sensor.qbittorrent_upload_speed`>;
+  var qbittorrentAllTimeDownloadSensor: IEntity<`sensor.qbittorrent_all_time_download`>;
+  var qbittorrentAllTimeUploadSensor: IEntity<`sensor.qbittorrent_all_time_upload`>;
+  var qbittorrentAllTorrentsSensor: IEntity<`sensor.qbittorrent_all_torrents`>;
+  var qbittorrentActiveTorrentsSensor: IEntity<`sensor.qbittorrent_active_torrents`>;
+  var qbittorrentInactiveTorrentsSensor: IEntity<`sensor.qbittorrent_inactive_torrents`>;
+  var qbittorrentPausedTorrentsSensor: IEntity<`sensor.qbittorrent_paused_torrents`>;
+  var tahomaSwitchScHomekitSetupCodeSensor: IEntity<`sensor.tahoma_switch_sc_homekit_setup_code`>;
   var mumsPhoneBatteryLevelSensor: IEntity<`sensor.mums_phone_battery_level`>;
   var mumsPhoneBatteryStateSensor: IEntity<`sensor.mums_phone_battery_state`>;
   var mumsPhoneChargerTypeSensor: IEntity<`sensor.mums_phone_charger_type`>;
@@ -133,23 +116,16 @@ declare global {
   var tomSPixel_7BatteryLevelSensor: IEntity<`sensor.tom_s_pixel_7_battery_level`>;
   var tomSPixel_7BatteryStateSensor: IEntity<`sensor.tom_s_pixel_7_battery_state`>;
   var tomSPixel_7ChargerTypeSensor: IEntity<`sensor.tom_s_pixel_7_charger_type`>;
-  var frontDoorBattery_2Sensor: IEntity<`sensor.front_door_battery_2`>;
-  var frontDoorLastActivitySensor: IEntity<`sensor.front_door_last_activity`>;
-  var watchmanLastUpdatedSensor: IEntity<`sensor.watchman_last_updated`>;
-  var watchmanMissingEntitiesSensor: IEntity<`sensor.watchman_missing_entities`>;
-  var watchmanMissingActionsSensor: IEntity<`sensor.watchman_missing_actions`>;
-  var shellyemA4e57cba73f5Channel_1EnergyCostSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy_cost`>;
-  var adguardHomeDnsQueriesSensor: IEntity<`sensor.adguard_home_dns_queries`>;
-  var adguardHomeSafeBrowsingBlockedSensor: IEntity<`sensor.adguard_home_safe_browsing_blocked`>;
-  var adguardHomeDnsQueriesBlockedSensor: IEntity<`sensor.adguard_home_dns_queries_blocked`>;
-  var adguardHomeDnsQueriesBlockedRatioSensor: IEntity<`sensor.adguard_home_dns_queries_blocked_ratio`>;
-  var adguardHomeParentalControlBlockedSensor: IEntity<`sensor.adguard_home_parental_control_blocked`>;
-  var systemMonitorDiskFreeSslSensor: IEntity<`sensor.system_monitor_disk_free_ssl`>;
-  var systemMonitorDiskFreeMediaSensor: IEntity<`sensor.system_monitor_disk_free_media`>;
-  var systemMonitorDiskFreeShareSensor: IEntity<`sensor.system_monitor_disk_free_share`>;
-  var systemMonitorDiskFreeRunAudioSensor: IEntity<`sensor.system_monitor_disk_free_run_audio`>;
-  var systemMonitorDiskFreeConfigSensor: IEntity<`sensor.system_monitor_disk_free_config`>;
+  var wearingClapper2TrophyLevelSensor: IEntity<`sensor.wearing_clapper2_trophy_level`>;
+  var wearingClapper2StatusSensor: IEntity<`sensor.wearing_clapper2_status`>;
+  var playstationPlaystationPlusSensor: IEntity<`sensor.playstation_playstation_plus`>;
+  var playstationAboutMeSensor: IEntity<`sensor.playstation_about_me`>;
   var systemMonitorDiskFreeSensor: IEntity<`sensor.system_monitor_disk_free`>;
+  var systemMonitorDiskFreeShareSensor: IEntity<`sensor.system_monitor_disk_free_share`>;
+  var systemMonitorDiskFreeSslSensor: IEntity<`sensor.system_monitor_disk_free_ssl`>;
+  var systemMonitorDiskFreeConfigSensor: IEntity<`sensor.system_monitor_disk_free_config`>;
+  var systemMonitorDiskFreeMediaSensor: IEntity<`sensor.system_monitor_disk_free_media`>;
+  var systemMonitorDiskFreeRunAudioSensor: IEntity<`sensor.system_monitor_disk_free_run_audio`>;
   var systemMonitorDiskUseSensor: IEntity<`sensor.system_monitor_disk_use`>;
   var systemMonitorDiskUsageSensor: IEntity<`sensor.system_monitor_disk_usage`>;
   var systemMonitorIpv4AddressEnp1s0Sensor: IEntity<`sensor.system_monitor_ipv4_address_enp1s0`>;
@@ -172,8 +148,45 @@ declare global {
   var systemMonitorSwapFreeSensor: IEntity<`sensor.system_monitor_swap_free`>;
   var systemMonitorSwapUseSensor: IEntity<`sensor.system_monitor_swap_use`>;
   var systemMonitorSwapUsageSensor: IEntity<`sensor.system_monitor_swap_usage`>;
-  var adguardHomeSafeSearchesEnforcedSensor: IEntity<`sensor.adguard_home_safe_searches_enforced`>;
-  var adguardHomeAverageProcessingSpeedSensor: IEntity<`sensor.adguard_home_average_processing_speed`>;
+  var boilerBoostTemperatureSensor: IEntity<`sensor.boiler_boost_temperature`>;
+  var diningTableHeaterPowerSensor: IEntity<`sensor.dining_table_heater_power`>;
+  var diningTableHeaterEnergySensor: IEntity<`sensor.dining_table_heater_energy`>;
+  var bookshelfHeaterPowerSensor: IEntity<`sensor.bookshelf_heater_power`>;
+  var bookshelfHeaterEnergySensor: IEntity<`sensor.bookshelf_heater_energy`>;
+  var hallwayHeaterPowerSensor: IEntity<`sensor.hallway_heater_power`>;
+  var hallwayHeaterEnergySensor: IEntity<`sensor.hallway_heater_energy`>;
+  var tvHeaterPowerSensor: IEntity<`sensor.tv_heater_power`>;
+  var tvHeaterEnergySensor: IEntity<`sensor.tv_heater_energy`>;
+  var shellyemA4e57cba73f5Channel_1PowerSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_power`>;
+  var shellyemA4e57cba73f5Channel_1EnergySensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy`>;
+  var shellyemA4e57cba73f5Channel_1EnergyReturnedSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy_returned`>;
+  var shellyemA4e57cba73f5Channel_1VoltageSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_voltage`>;
+  var shellyemA4e57cba73f5Channel_1PowerFactorSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_power_factor`>;
+  var shellyemA4e57cba73f5Channel_2PowerSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_power`>;
+  var shellyemA4e57cba73f5Channel_2EnergySensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_energy`>;
+  var shellyemA4e57cba73f5Channel_2EnergyReturnedSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_energy_returned`>;
+  var shellyemA4e57cba73f5Channel_2VoltageSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_voltage`>;
+  var shellyemA4e57cba73f5Channel_2PowerFactorSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_2_power_factor`>;
+  var shellyemA4e57cba73f5Channel_1EnergyCostSensor: IEntity<`sensor.shellyem_a4e57cba73f5_channel_1_energy_cost`>;
+  var availableUpdatesCountSensor: IEntity<`sensor.available_updates_count`>;
+  var aliceSoilMistureFixedSensor: IEntity<`sensor.alice_soil_misture_fixed`>;
+  var lowBatteryCountSensor: IEntity<`sensor.low_battery_count`>;
+  var availableUpdatesSensor: IEntity<`sensor.available_updates`>;
+  var imacScreenOffSensor: IEntity<`sensor.imac_screen_off`>;
+  var todaysEventsSensor: IEntity<`sensor.todays_events`>;
+  var weatherForecastSensor: IEntity<`sensor.weather_forecast`>;
+  var currentTvSourceSensor: IEntity<`sensor.current_tv_source`>;
+  var livingRoomTemperatureSensor: IEntity<`sensor.living_room_temperature`>;
+  var livingRoomTargetTemperatureSensor: IEntity<`sensor.living_room_target_temperature`>;
+  var boilerTargetTemperatureSensor: IEntity<`sensor.boiler_target_temperature`>;
+  var livingRoomHeatingModeSensor: IEntity<`sensor.living_room_heating_mode`>;
+  var bedroomTemperatureSensor: IEntity<`sensor.bedroom_temperature`>;
+  var bedroomTargetTemperatureSensor: IEntity<`sensor.bedroom_target_temperature`>;
+  var bedroomHeatingModeSensor: IEntity<`sensor.bedroom_heating_mode`>;
+  var gymTemperatureSensor: IEntity<`sensor.gym_temperature`>;
+  var gymTargetTemperatureSensor: IEntity<`sensor.gym_target_temperature`>;
+  var gymHeatingModeSensor: IEntity<`sensor.gym_heating_mode`>;
+  var lastTimeLivingRoomMotionSensorWasTriggeredSensor: IEntity<`sensor.last_time_living_room_motion_sensor_was_triggered`>;
   var homeNearestDeviceSensor: IEntity<`sensor.home_nearest_device`>;
   var homeNearestDistanceSensor: IEntity<`sensor.home_nearest_distance`>;
   var homeNearestDirectionOfTravelSensor: IEntity<`sensor.home_nearest_direction_of_travel`>;
@@ -184,7 +197,36 @@ declare global {
   var home_2NearestDirectionOfTravelSensor: IEntity<`sensor.home_2_nearest_direction_of_travel`>;
   var home_2MeDistanceSensor: IEntity<`sensor.home_2_me_distance`>;
   var home_2MeDirectionOfTravelSensor: IEntity<`sensor.home_2_me_direction_of_travel`>;
-  var tahomaSwitchScHomekitSetupCodeSensor: IEntity<`sensor.tahoma_switch_sc_homekit_setup_code`>;
+  var zStickGen5UsbControllerStatusSensor: IEntity<`sensor.z_stick_gen5_usb_controller_status`>;
+  var livingRoomHeatingSwitchNodeStatusSensor: IEntity<`sensor.living_room_heating_switch_node_status`>;
+  var livingRoomHeatingSwitchLastSeenSensor: IEntity<`sensor.living_room_heating_switch_last_seen`>;
+  var bedroomHeatingSwitchNodeStatusSensor: IEntity<`sensor.bedroom_heating_switch_node_status`>;
+  var bedroomHeatingSwitchLastSeenSensor: IEntity<`sensor.bedroom_heating_switch_last_seen`>;
+  var gymHeatingSwitchNodeStatusSensor: IEntity<`sensor.gym_heating_switch_node_status`>;
+  var gymHeatingSwitchLastSeenSensor: IEntity<`sensor.gym_heating_switch_last_seen`>;
+  var livingRoomSensorNodeStatusSensor: IEntity<`sensor.living_room_sensor_node_status`>;
+  var livingRoomSensorLastSeenSensor: IEntity<`sensor.living_room_sensor_last_seen`>;
+  var gymSensorNodeStatusSensor: IEntity<`sensor.gym_sensor_node_status`>;
+  var gymSensorLastSeenSensor: IEntity<`sensor.gym_sensor_last_seen`>;
+  var bedroomSensorNodeStatusSensor: IEntity<`sensor.bedroom_sensor_node_status`>;
+  var bedroomSensorLastSeenSensor: IEntity<`sensor.bedroom_sensor_last_seen`>;
+  var livingRoomSensorAirTemperatureSensor: IEntity<`sensor.living_room_sensor_air_temperature`>;
+  var livingRoomSensorIlluminanceSensor: IEntity<`sensor.living_room_sensor_illuminance`>;
+  var livingRoomSensorAlarmTypeSensor: IEntity<`sensor.living_room_sensor_alarm_type`>;
+  var livingRoomSensorAlarmLevelSensor: IEntity<`sensor.living_room_sensor_alarm_level`>;
+  var livingRoomSensorBatteryLevelSensor: IEntity<`sensor.living_room_sensor_battery_level`>;
+  var gymSensorAirTemperatureSensor: IEntity<`sensor.gym_sensor_air_temperature`>;
+  var gymSensorIlluminanceSensor: IEntity<`sensor.gym_sensor_illuminance`>;
+  var gymSensorAlarmTypeSensor: IEntity<`sensor.gym_sensor_alarm_type`>;
+  var gymSensorAlarmLevelSensor: IEntity<`sensor.gym_sensor_alarm_level`>;
+  var gymSensorBatteryLevelSensor: IEntity<`sensor.gym_sensor_battery_level`>;
+  var bedroomSensorAirTemperatureSensor: IEntity<`sensor.bedroom_sensor_air_temperature`>;
+  var bedroomSensorIlluminanceSensor: IEntity<`sensor.bedroom_sensor_illuminance`>;
+  var bedroomSensorAlarmTypeSensor: IEntity<`sensor.bedroom_sensor_alarm_type`>;
+  var bedroomSensorAlarmLevelSensor: IEntity<`sensor.bedroom_sensor_alarm_level`>;
+  var bedroomSensorBatteryLevelSensor: IEntity<`sensor.bedroom_sensor_battery_level`>;
+  var frontDoorBattery_2Sensor: IEntity<`sensor.front_door_battery_2`>;
+  var frontDoorLastActivitySensor: IEntity<`sensor.front_door_last_activity`>;
   var zteRouterDataReceivedSensor: IEntity<`sensor.zte_router_data_received`>;
   var zteRouterDataSentSensor: IEntity<`sensor.zte_router_data_sent`>;
   var zteRouterExternalIpSensor: IEntity<`sensor.zte_router_external_ip`>;
@@ -198,10 +240,6 @@ declare global {
   var tumbleDryerSmartPlugThisMonthSConsumptionSensor: IEntity<`sensor.tumble_dryer_smart_plug_this_month_s_consumption`>;
   var tumbleDryerSmartPlugVoltageSensor: IEntity<`sensor.tumble_dryer_smart_plug_voltage`>;
   var tumbleDryerSmartPlugCurrentSensor: IEntity<`sensor.tumble_dryer_smart_plug_current`>;
-  var wearingClapper2TrophyLevelSensor: IEntity<`sensor.wearing_clapper2_trophy_level`>;
-  var wearingClapper2StatusSensor: IEntity<`sensor.wearing_clapper2_status`>;
-  var playstationPlaystationPlusSensor: IEntity<`sensor.playstation_playstation_plus`>;
-  var playstationAboutMeSensor: IEntity<`sensor.playstation_about_me`>;
   var aliceIlluminanceSensor: IEntity<`sensor.alice_illuminance`>;
   var aliceConductivitySensor: IEntity<`sensor.alice_conductivity`>;
   var aliceSoilMoistureSensor: IEntity<`sensor.alice_soil_moisture`>;
@@ -212,44 +250,31 @@ declare global {
   var aliceDliSensor: IEntity<`sensor.alice_dli`>;
   var frontDoorBatterySensor: IEntity<`sensor.front_door_battery`>;
   var frontDoorFirmwareVersionSensor: IEntity<`sensor.front_door_firmware_version`>;
-  var sonosArcUltraAudioInputFormatSensor: IEntity<`sensor.sonos_arc_ultra_audio_input_format`>;
   var bathroomMotionSensorTemperatureSensor: IEntity<`sensor.bathroom_motion_sensor_temperature`>;
   var bathroomMotionSensorBatterySensor: IEntity<`sensor.bathroom_motion_sensor_battery`>;
   var hallwayMotionSensorTemperatureSensor: IEntity<`sensor.hallway_motion_sensor_temperature`>;
   var hallwayMotionSensorBatterySensor: IEntity<`sensor.hallway_motion_sensor_battery`>;
   var zigbee2mqttBridgeVersionSensor: IEntity<`sensor.zigbee2mqtt_bridge_version`>;
-  var gw1100aIndoorHumiditySensor: IEntity<`sensor.gw1100a_indoor_humidity`>;
-  var gw1100aSoilMoisture_1Sensor: IEntity<`sensor.gw1100a_soil_moisture_1`>;
-  var aliceMoistureSensor: IEntity<`sensor.alice_moisture`>;
-  var gw1100aSoilMoisture_3Sensor: IEntity<`sensor.gw1100a_soil_moisture_3`>;
-  var gw1100aSoilMoisture_4Sensor: IEntity<`sensor.gw1100a_soil_moisture_4`>;
-  var gw1100aSoilBattery_1Sensor: IEntity<`sensor.gw1100a_soil_battery_1`>;
-  var gw1100aSoilBattery_2Sensor: IEntity<`sensor.gw1100a_soil_battery_2`>;
-  var gw1100aSoilBattery_3Sensor: IEntity<`sensor.gw1100a_soil_battery_3`>;
-  var gw1100aSoilBattery_4Sensor: IEntity<`sensor.gw1100a_soil_battery_4`>;
-  var gw1100aIndoorTemperatureSensor: IEntity<`sensor.gw1100a_indoor_temperature`>;
-  var gw1100aRelativePressureSensor: IEntity<`sensor.gw1100a_relative_pressure`>;
-  var gw1100aAbsolutePressureSensor: IEntity<`sensor.gw1100a_absolute_pressure`>;
-  var gw1100aIndoorDewpointSensor: IEntity<`sensor.gw1100a_indoor_dewpoint`>;
+  var sonosArcUltraAudioInputFormatSensor: IEntity<`sensor.sonos_arc_ultra_audio_input_format`>;
   var icloud3EventLogSensor: IEntity<`sensor.icloud3_event_log`>;
   var icloud3WazehistTrackSensor: IEntity<`sensor.icloud3_wazehist_track`>;
-  var bensIphoneNameSensor: IEntity<`sensor.bens_iphone_name`>;
-  var bensIphoneNextUpdateSensor: IEntity<`sensor.bens_iphone_next_update`>;
-  var bensIphoneLastLocatedSensor: IEntity<`sensor.bens_iphone_last_located`>;
-  var bensIphoneDirOfTravelSensor: IEntity<`sensor.bens_iphone_dir_of_travel`>;
-  var bensIphoneTravelTimeSensor: IEntity<`sensor.bens_iphone_travel_time`>;
-  var bensIphoneBatterySensor: IEntity<`sensor.bens_iphone_battery`>;
-  var bensIphoneIntervalSensor: IEntity<`sensor.bens_iphone_interval`>;
-  var bensIphoneZoneDistanceSensor: IEntity<`sensor.bens_iphone_zone_distance`>;
-  var bensIphoneInfoSensor: IEntity<`sensor.bens_iphone_info`>;
-  var bensIphoneBadgeSensor: IEntity<`sensor.bens_iphone_badge`>;
-  var bensIphoneZoneNameSensor: IEntity<`sensor.bens_iphone_zone_name`>;
-  var bensIphoneLastUpdateSensor: IEntity<`sensor.bens_iphone_last_update`>;
-  var bensIphoneTravelTimeMinSensor: IEntity<`sensor.bens_iphone_travel_time_min`>;
-  var bensIphoneHomeDistanceSensor: IEntity<`sensor.bens_iphone_home_distance`>;
   var bensIphoneArrivalTimeSensor: IEntity<`sensor.bens_iphone_arrival_time`>;
-  var bensIphoneBatteryStatusSensor: IEntity<`sensor.bens_iphone_battery_status`>;
+  var bensIphoneLastUpdateSensor: IEntity<`sensor.bens_iphone_last_update`>;
+  var bensIphoneZoneNameSensor: IEntity<`sensor.bens_iphone_zone_name`>;
+  var bensIphoneLastLocatedSensor: IEntity<`sensor.bens_iphone_last_located`>;
+  var bensIphoneHomeDistanceSensor: IEntity<`sensor.bens_iphone_home_distance`>;
+  var bensIphoneDirOfTravelSensor: IEntity<`sensor.bens_iphone_dir_of_travel`>;
+  var bensIphoneIntervalSensor: IEntity<`sensor.bens_iphone_interval`>;
+  var bensIphoneNameSensor: IEntity<`sensor.bens_iphone_name`>;
+  var bensIphoneTravelTimeSensor: IEntity<`sensor.bens_iphone_travel_time`>;
   var bensIphoneMovedDistanceSensor: IEntity<`sensor.bens_iphone_moved_distance`>;
+  var bensIphoneZoneDistanceSensor: IEntity<`sensor.bens_iphone_zone_distance`>;
+  var bensIphoneTravelTimeMinSensor: IEntity<`sensor.bens_iphone_travel_time_min`>;
+  var bensIphoneBadgeSensor: IEntity<`sensor.bens_iphone_badge`>;
+  var bensIphoneNextUpdateSensor: IEntity<`sensor.bens_iphone_next_update`>;
+  var bensIphoneBatteryStatusSensor: IEntity<`sensor.bens_iphone_battery_status`>;
+  var bensIphoneInfoSensor: IEntity<`sensor.bens_iphone_info`>;
+  var bensIphoneBatterySensor: IEntity<`sensor.bens_iphone_battery`>;
   var icalBenSCalendarEvent_0Sensor: IEntity<`sensor.ical_ben_s_calendar_event_0`>;
   var icalBenSCalendarEvent_1Sensor: IEntity<`sensor.ical_ben_s_calendar_event_1`>;
   var icalBenSCalendarEvent_2Sensor: IEntity<`sensor.ical_ben_s_calendar_event_2`>;
@@ -287,41 +312,34 @@ declare global {
   var thisDeviceNextAlarm_2Sensor: IEntity<`sensor.this_device_next_alarm_2`>;
   var thisDeviceNextTimer_2Sensor: IEntity<`sensor.this_device_next_timer_2`>;
   var thisDeviceNextReminder_2Sensor: IEntity<`sensor.this_device_next_reminder_2`>;
-  var livingRoomSensorAirTemperatureSensor: IEntity<`sensor.living_room_sensor_air_temperature`>;
-  var livingRoomSensorBatteryLevelSensor: IEntity<`sensor.living_room_sensor_battery_level`>;
-  var livingRoomSensorIlluminanceSensor: IEntity<`sensor.living_room_sensor_illuminance`>;
-  var livingRoomSensorAlarmLevelSensor: IEntity<`sensor.living_room_sensor_alarm_level`>;
-  var livingRoomSensorAlarmTypeSensor: IEntity<`sensor.living_room_sensor_alarm_type`>;
+  var gw1100aIndoorHumiditySensor: IEntity<`sensor.gw1100a_indoor_humidity`>;
+  var gw1100aSoilMoisture_1Sensor: IEntity<`sensor.gw1100a_soil_moisture_1`>;
+  var aliceMoistureSensor: IEntity<`sensor.alice_moisture`>;
+  var gw1100aSoilMoisture_3Sensor: IEntity<`sensor.gw1100a_soil_moisture_3`>;
+  var gw1100aSoilMoisture_4Sensor: IEntity<`sensor.gw1100a_soil_moisture_4`>;
+  var gw1100aSoilBattery_1Sensor: IEntity<`sensor.gw1100a_soil_battery_1`>;
+  var gw1100aSoilBattery_2Sensor: IEntity<`sensor.gw1100a_soil_battery_2`>;
+  var gw1100aSoilBattery_3Sensor: IEntity<`sensor.gw1100a_soil_battery_3`>;
+  var gw1100aSoilBattery_4Sensor: IEntity<`sensor.gw1100a_soil_battery_4`>;
+  var gw1100aIndoorTemperatureSensor: IEntity<`sensor.gw1100a_indoor_temperature`>;
+  var gw1100aRelativePressureSensor: IEntity<`sensor.gw1100a_relative_pressure`>;
+  var gw1100aAbsolutePressureSensor: IEntity<`sensor.gw1100a_absolute_pressure`>;
+  var gw1100aIndoorDewpointSensor: IEntity<`sensor.gw1100a_indoor_dewpoint`>;
+  var octopusEnergyA_11077925WheelOfFortuneSpinsElectricitySensor: IEntity<`sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_electricity`>;
+  var octopusEnergyA_11077925WheelOfFortuneSpinsGasSensor: IEntity<`sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_gas`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495CurrentRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_current_rate`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495PreviousRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_rate`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495NextRateSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_next_rate`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495CurrentStandingChargeSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_current_standing_charge`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeConsumptionSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_consumption`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeCostSensor: IEntity<`sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_cost`>;
   var livingRoomSensorCoverStatusSensor: IEntity<`sensor.living_room_sensor_cover_status`>;
   var livingRoomSensorMotionSensorStatusSensor: IEntity<`sensor.living_room_sensor_motion_sensor_status`>;
-  var gymSensorAirTemperatureSensor: IEntity<`sensor.gym_sensor_air_temperature`>;
-  var gymSensorBatteryLevelSensor: IEntity<`sensor.gym_sensor_battery_level`>;
-  var gymSensorIlluminanceSensor: IEntity<`sensor.gym_sensor_illuminance`>;
-  var gymSensorAlarmLevelSensor: IEntity<`sensor.gym_sensor_alarm_level`>;
-  var gymSensorAlarmTypeSensor: IEntity<`sensor.gym_sensor_alarm_type`>;
   var gymSensorCoverStatusSensor: IEntity<`sensor.gym_sensor_cover_status`>;
   var gymSensorMotionSensorStatusSensor: IEntity<`sensor.gym_sensor_motion_sensor_status`>;
-  var bedroomSensorAirTemperatureSensor: IEntity<`sensor.bedroom_sensor_air_temperature`>;
-  var bedroomSensorBatteryLevelSensor: IEntity<`sensor.bedroom_sensor_battery_level`>;
-  var bedroomSensorIlluminanceSensor: IEntity<`sensor.bedroom_sensor_illuminance`>;
-  var bedroomSensorAlarmLevelSensor: IEntity<`sensor.bedroom_sensor_alarm_level`>;
-  var bedroomSensorAlarmTypeSensor: IEntity<`sensor.bedroom_sensor_alarm_type`>;
   var bedroomSensorCoverStatusSensor: IEntity<`sensor.bedroom_sensor_cover_status`>;
   var bedroomSensorMotionSensorStatusSensor: IEntity<`sensor.bedroom_sensor_motion_sensor_status`>;
-  var bedroomHeatingSwitchNodeStatusSensor: IEntity<`sensor.bedroom_heating_switch_node_status`>;
-  var bedroomSensorNodeStatusSensor: IEntity<`sensor.bedroom_sensor_node_status`>;
-  var gymHeatingSwitchNodeStatusSensor: IEntity<`sensor.gym_heating_switch_node_status`>;
-  var livingRoomSensorNodeStatusSensor: IEntity<`sensor.living_room_sensor_node_status`>;
-  var livingRoomHeatingSwitchNodeStatusSensor: IEntity<`sensor.living_room_heating_switch_node_status`>;
-  var gymSensorNodeStatusSensor: IEntity<`sensor.gym_sensor_node_status`>;
-  var zStickGen5UsbControllerStatusSensor: IEntity<`sensor.z_stick_gen5_usb_controller_status`>;
   var automationLogEntitySensor: IEntity<`sensor.automation_log_entity`>;
-  var livingRoomHeatingSwitchLastSeenSensor: IEntity<`sensor.living_room_heating_switch_last_seen`>;
-  var bedroomHeatingSwitchLastSeenSensor: IEntity<`sensor.bedroom_heating_switch_last_seen`>;
-  var gymHeatingSwitchLastSeenSensor: IEntity<`sensor.gym_heating_switch_last_seen`>;
-  var livingRoomSensorLastSeenSensor: IEntity<`sensor.living_room_sensor_last_seen`>;
-  var gymSensorLastSeenSensor: IEntity<`sensor.gym_sensor_last_seen`>;
-  var bedroomSensorLastSeenSensor: IEntity<`sensor.bedroom_sensor_last_seen`>;
   var zStickGen5UsbControllerBasicSensor: IEntity<`sensor.z_stick_gen5_usb_controller_basic`>;
   var goodMorningMessageSensor: IEntity<`sensor.good_morning_message`>;
   var livingRoomOccupiedSensor: IEntity<`sensor.living_room_occupied`>;
@@ -345,13 +363,6 @@ declare global {
   var frontDoorDoorbellMqttBattery_3Sensor: IEntity<`sensor.front_door_doorbell_mqtt_battery_3`>;
   var frontDoorDoorbellMqttInfoSensor: IEntity<`sensor.front_door_doorbell_mqtt_info`>;
   var frontDoorDoorbellMqttWirelessSensor: IEntity<`sensor.front_door_doorbell_mqtt_wireless`>;
-  var qbittorrentStatusSensor: IEntity<`sensor.qbittorrent_status`>;
-  var qbittorrentDownloadSpeedSensor: IEntity<`sensor.qbittorrent_download_speed`>;
-  var qbittorrentUploadSpeedSensor: IEntity<`sensor.qbittorrent_upload_speed`>;
-  var qbittorrentAllTorrentsSensor: IEntity<`sensor.qbittorrent_all_torrents`>;
-  var qbittorrentActiveTorrentsSensor: IEntity<`sensor.qbittorrent_active_torrents`>;
-  var qbittorrentInactiveTorrentsSensor: IEntity<`sensor.qbittorrent_inactive_torrents`>;
-  var qbittorrentPausedTorrentsSensor: IEntity<`sensor.qbittorrent_paused_torrents`>;
   var batterySensor: IEntity<`sensor.battery`>;
   var battery_2Sensor: IEntity<`sensor.battery_2`>;
   var magicKeyboardWithNumericKeypadBatteryBatterySensor: IEntity<`sensor.magic_keyboard_with_numeric_keypad_battery_battery`>;
@@ -379,11 +390,6 @@ declare global {
   var imacSmartPlugVoltageSensor: IEntity<`sensor.imac_smart_plug_voltage`>;
   var imacSmartPlugCurrentSensor: IEntity<`sensor.imac_smart_plug_current`>;
   var boilerBoostTimeRemainingSensor: IEntity<`sensor.boiler_boost_time_remaining`>;
-  var qbittorrentConnectionStatusSensor: IEntity<`sensor.qbittorrent_connection_status`>;
-  var qbittorrentAllTimeDownloadSensor: IEntity<`sensor.qbittorrent_all_time_download`>;
-  var qbittorrentAllTimeUploadSensor: IEntity<`sensor.qbittorrent_all_time_upload`>;
-  var livingRoomHeaterDiningTableEnergySensor: IEntity<`sensor.living_room_heater_dining_table_energy`>;
-  var livingRoomHeaterDiningTablePowerSensor: IEntity<`sensor.living_room_heater_dining_table_power`>;
 }
 
 globalThis.ringMqttWithVideoStreamingCpuPercentSensor = entity(
@@ -401,112 +407,73 @@ globalThis.backupNextScheduledAutomaticBackupSensor = entity(
 globalThis.backupLastSuccessfulAutomaticBackupSensor = entity(
   'sensor.backup_last_successful_automatic_backup',
 );
+globalThis.dateTimeIsoSensor = entity('sensor.date_time_iso');
 globalThis.sunNextDawnSensor = entity('sensor.sun_next_dawn');
 globalThis.sunNextDuskSensor = entity('sensor.sun_next_dusk');
 globalThis.sunNextMidnightSensor = entity('sensor.sun_next_midnight');
 globalThis.sunNextNoonSensor = entity('sensor.sun_next_noon');
 globalThis.sunNextRisingSensor = entity('sensor.sun_next_rising');
 globalThis.sunNextSettingSensor = entity('sensor.sun_next_setting');
-globalThis.dateTimeIsoSensor = entity('sensor.date_time_iso');
-globalThis.boilerBoostTemperatureSensor = entity(
-  'sensor.boiler_boost_temperature',
-);
-globalThis.shellyemA4e57cba73f5Channel_1PowerSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_power',
-);
-globalThis.shellyemA4e57cba73f5Channel_1EnergySensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_energy',
-);
-globalThis.shellyemA4e57cba73f5Channel_1EnergyReturnedSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_energy_returned',
-);
-globalThis.shellyemA4e57cba73f5Channel_1VoltageSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_voltage',
-);
-globalThis.shellyemA4e57cba73f5Channel_1PowerFactorSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_power_factor',
-);
-globalThis.shellyemA4e57cba73f5Channel_2PowerSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_2_power',
-);
-globalThis.shellyemA4e57cba73f5Channel_2EnergySensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_2_energy',
-);
-globalThis.shellyemA4e57cba73f5Channel_2EnergyReturnedSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_2_energy_returned',
-);
-globalThis.shellyemA4e57cba73f5Channel_2VoltageSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_2_voltage',
-);
-globalThis.shellyemA4e57cba73f5Channel_2PowerFactorSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_2_power_factor',
-);
-globalThis.octopusEnergyA_11077925WheelOfFortuneSpinsElectricitySensor = entity(
-  'sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_electricity',
-);
-globalThis.octopusEnergyA_11077925WheelOfFortuneSpinsGasSensor = entity(
-  'sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_gas',
-);
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495CurrentRateSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_current_rate',
-  );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousRateSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_rate',
-  );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495NextRateSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_next_rate',
-  );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495CurrentStandingChargeSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_current_standing_charge',
-  );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeConsumptionSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_consumption',
-  );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeCostSensor =
-  entity(
-    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_cost',
-  );
-globalThis.availableUpdatesCountSensor = entity(
-  'sensor.available_updates_count',
-);
-globalThis.aliceSoilMistureFixedSensor = entity(
-  'sensor.alice_soil_misture_fixed',
-);
-globalThis.lowBatteryCountSensor = entity('sensor.low_battery_count');
-globalThis.availableUpdatesSensor = entity('sensor.available_updates');
-globalThis.imacScreenOffSensor = entity('sensor.imac_screen_off');
-globalThis.todaysEventsSensor = entity('sensor.todays_events');
-globalThis.weatherForecastSensor = entity('sensor.weather_forecast');
-globalThis.currentTvSourceSensor = entity('sensor.current_tv_source');
-globalThis.livingRoomTemperatureSensor = entity(
-  'sensor.living_room_temperature',
-);
-globalThis.livingRoomTargetTemperatureSensor = entity(
-  'sensor.living_room_target_temperature',
-);
-globalThis.boilerTargetTemperatureSensor = entity(
-  'sensor.boiler_target_temperature',
-);
-globalThis.livingRoomHeatingModeSensor = entity(
-  'sensor.living_room_heating_mode',
-);
-globalThis.bedroomTemperatureSensor = entity('sensor.bedroom_temperature');
-globalThis.bedroomTargetTemperatureSensor = entity(
-  'sensor.bedroom_target_temperature',
-);
-globalThis.bedroomHeatingModeSensor = entity('sensor.bedroom_heating_mode');
-globalThis.gymTemperatureSensor = entity('sensor.gym_temperature');
-globalThis.gymTargetTemperatureSensor = entity('sensor.gym_target_temperature');
-globalThis.gymHeatingModeSensor = entity('sensor.gym_heating_mode');
-globalThis.lastTimeLivingRoomMotionSensorWasTriggeredSensor = entity(
-  'sensor.last_time_living_room_motion_sensor_was_triggered',
-);
 globalThis.electricMeterSensor = entity('sensor.electric_meter');
+globalThis.adguardHomeDnsQueriesSensor = entity(
+  'sensor.adguard_home_dns_queries',
+);
+globalThis.adguardHomeDnsQueriesBlockedSensor = entity(
+  'sensor.adguard_home_dns_queries_blocked',
+);
+globalThis.adguardHomeDnsQueriesBlockedRatioSensor = entity(
+  'sensor.adguard_home_dns_queries_blocked_ratio',
+);
+globalThis.adguardHomeParentalControlBlockedSensor = entity(
+  'sensor.adguard_home_parental_control_blocked',
+);
+globalThis.adguardHomeSafeBrowsingBlockedSensor = entity(
+  'sensor.adguard_home_safe_browsing_blocked',
+);
+globalThis.watchmanLastUpdatedSensor = entity('sensor.watchman_last_updated');
+globalThis.watchmanMissingEntitiesSensor = entity(
+  'sensor.watchman_missing_entities',
+);
+globalThis.watchmanMissingActionsSensor = entity(
+  'sensor.watchman_missing_actions',
+);
+globalThis.adguardHomeSafeSearchesEnforcedSensor = entity(
+  'sensor.adguard_home_safe_searches_enforced',
+);
+globalThis.adguardHomeAverageProcessingSpeedSensor = entity(
+  'sensor.adguard_home_average_processing_speed',
+);
+globalThis.qbittorrentStatusSensor = entity('sensor.qbittorrent_status');
+globalThis.qbittorrentConnectionStatusSensor = entity(
+  'sensor.qbittorrent_connection_status',
+);
+globalThis.qbittorrentDownloadSpeedSensor = entity(
+  'sensor.qbittorrent_download_speed',
+);
+globalThis.qbittorrentUploadSpeedSensor = entity(
+  'sensor.qbittorrent_upload_speed',
+);
+globalThis.qbittorrentAllTimeDownloadSensor = entity(
+  'sensor.qbittorrent_all_time_download',
+);
+globalThis.qbittorrentAllTimeUploadSensor = entity(
+  'sensor.qbittorrent_all_time_upload',
+);
+globalThis.qbittorrentAllTorrentsSensor = entity(
+  'sensor.qbittorrent_all_torrents',
+);
+globalThis.qbittorrentActiveTorrentsSensor = entity(
+  'sensor.qbittorrent_active_torrents',
+);
+globalThis.qbittorrentInactiveTorrentsSensor = entity(
+  'sensor.qbittorrent_inactive_torrents',
+);
+globalThis.qbittorrentPausedTorrentsSensor = entity(
+  'sensor.qbittorrent_paused_torrents',
+);
+globalThis.tahomaSwitchScHomekitSetupCodeSensor = entity(
+  'sensor.tahoma_switch_sc_homekit_setup_code',
+);
 globalThis.mumsPhoneBatteryLevelSensor = entity(
   'sensor.mums_phone_battery_level',
 );
@@ -700,52 +667,33 @@ globalThis.tomSPixel_7BatteryStateSensor = entity(
 globalThis.tomSPixel_7ChargerTypeSensor = entity(
   'sensor.tom_s_pixel_7_charger_type',
 );
-globalThis.frontDoorBattery_2Sensor = entity('sensor.front_door_battery_2');
-globalThis.frontDoorLastActivitySensor = entity(
-  'sensor.front_door_last_activity',
+globalThis.wearingClapper2TrophyLevelSensor = entity(
+  'sensor.wearing_clapper2_trophy_level',
 );
-globalThis.watchmanLastUpdatedSensor = entity('sensor.watchman_last_updated');
-globalThis.watchmanMissingEntitiesSensor = entity(
-  'sensor.watchman_missing_entities',
+globalThis.wearingClapper2StatusSensor = entity(
+  'sensor.wearing_clapper2_status',
 );
-globalThis.watchmanMissingActionsSensor = entity(
-  'sensor.watchman_missing_actions',
+globalThis.playstationPlaystationPlusSensor = entity(
+  'sensor.playstation_playstation_plus',
 );
-globalThis.shellyemA4e57cba73f5Channel_1EnergyCostSensor = entity(
-  'sensor.shellyem_a4e57cba73f5_channel_1_energy_cost',
-);
-globalThis.adguardHomeDnsQueriesSensor = entity(
-  'sensor.adguard_home_dns_queries',
-);
-globalThis.adguardHomeSafeBrowsingBlockedSensor = entity(
-  'sensor.adguard_home_safe_browsing_blocked',
-);
-globalThis.adguardHomeDnsQueriesBlockedSensor = entity(
-  'sensor.adguard_home_dns_queries_blocked',
-);
-globalThis.adguardHomeDnsQueriesBlockedRatioSensor = entity(
-  'sensor.adguard_home_dns_queries_blocked_ratio',
-);
-globalThis.adguardHomeParentalControlBlockedSensor = entity(
-  'sensor.adguard_home_parental_control_blocked',
-);
-globalThis.systemMonitorDiskFreeSslSensor = entity(
-  'sensor.system_monitor_disk_free_ssl',
-);
-globalThis.systemMonitorDiskFreeMediaSensor = entity(
-  'sensor.system_monitor_disk_free_media',
+globalThis.playstationAboutMeSensor = entity('sensor.playstation_about_me');
+globalThis.systemMonitorDiskFreeSensor = entity(
+  'sensor.system_monitor_disk_free',
 );
 globalThis.systemMonitorDiskFreeShareSensor = entity(
   'sensor.system_monitor_disk_free_share',
 );
-globalThis.systemMonitorDiskFreeRunAudioSensor = entity(
-  'sensor.system_monitor_disk_free_run_audio',
+globalThis.systemMonitorDiskFreeSslSensor = entity(
+  'sensor.system_monitor_disk_free_ssl',
 );
 globalThis.systemMonitorDiskFreeConfigSensor = entity(
   'sensor.system_monitor_disk_free_config',
 );
-globalThis.systemMonitorDiskFreeSensor = entity(
-  'sensor.system_monitor_disk_free',
+globalThis.systemMonitorDiskFreeMediaSensor = entity(
+  'sensor.system_monitor_disk_free_media',
+);
+globalThis.systemMonitorDiskFreeRunAudioSensor = entity(
+  'sensor.system_monitor_disk_free_run_audio',
 );
 globalThis.systemMonitorDiskUseSensor = entity(
   'sensor.system_monitor_disk_use',
@@ -809,11 +757,90 @@ globalThis.systemMonitorSwapUseSensor = entity(
 globalThis.systemMonitorSwapUsageSensor = entity(
   'sensor.system_monitor_swap_usage',
 );
-globalThis.adguardHomeSafeSearchesEnforcedSensor = entity(
-  'sensor.adguard_home_safe_searches_enforced',
+globalThis.boilerBoostTemperatureSensor = entity(
+  'sensor.boiler_boost_temperature',
 );
-globalThis.adguardHomeAverageProcessingSpeedSensor = entity(
-  'sensor.adguard_home_average_processing_speed',
+globalThis.diningTableHeaterPowerSensor = entity(
+  'sensor.dining_table_heater_power',
+);
+globalThis.diningTableHeaterEnergySensor = entity(
+  'sensor.dining_table_heater_energy',
+);
+globalThis.bookshelfHeaterPowerSensor = entity('sensor.bookshelf_heater_power');
+globalThis.bookshelfHeaterEnergySensor = entity(
+  'sensor.bookshelf_heater_energy',
+);
+globalThis.hallwayHeaterPowerSensor = entity('sensor.hallway_heater_power');
+globalThis.hallwayHeaterEnergySensor = entity('sensor.hallway_heater_energy');
+globalThis.tvHeaterPowerSensor = entity('sensor.tv_heater_power');
+globalThis.tvHeaterEnergySensor = entity('sensor.tv_heater_energy');
+globalThis.shellyemA4e57cba73f5Channel_1PowerSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_power',
+);
+globalThis.shellyemA4e57cba73f5Channel_1EnergySensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_energy',
+);
+globalThis.shellyemA4e57cba73f5Channel_1EnergyReturnedSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_energy_returned',
+);
+globalThis.shellyemA4e57cba73f5Channel_1VoltageSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_voltage',
+);
+globalThis.shellyemA4e57cba73f5Channel_1PowerFactorSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_power_factor',
+);
+globalThis.shellyemA4e57cba73f5Channel_2PowerSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_2_power',
+);
+globalThis.shellyemA4e57cba73f5Channel_2EnergySensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_2_energy',
+);
+globalThis.shellyemA4e57cba73f5Channel_2EnergyReturnedSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_2_energy_returned',
+);
+globalThis.shellyemA4e57cba73f5Channel_2VoltageSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_2_voltage',
+);
+globalThis.shellyemA4e57cba73f5Channel_2PowerFactorSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_2_power_factor',
+);
+globalThis.shellyemA4e57cba73f5Channel_1EnergyCostSensor = entity(
+  'sensor.shellyem_a4e57cba73f5_channel_1_energy_cost',
+);
+globalThis.availableUpdatesCountSensor = entity(
+  'sensor.available_updates_count',
+);
+globalThis.aliceSoilMistureFixedSensor = entity(
+  'sensor.alice_soil_misture_fixed',
+);
+globalThis.lowBatteryCountSensor = entity('sensor.low_battery_count');
+globalThis.availableUpdatesSensor = entity('sensor.available_updates');
+globalThis.imacScreenOffSensor = entity('sensor.imac_screen_off');
+globalThis.todaysEventsSensor = entity('sensor.todays_events');
+globalThis.weatherForecastSensor = entity('sensor.weather_forecast');
+globalThis.currentTvSourceSensor = entity('sensor.current_tv_source');
+globalThis.livingRoomTemperatureSensor = entity(
+  'sensor.living_room_temperature',
+);
+globalThis.livingRoomTargetTemperatureSensor = entity(
+  'sensor.living_room_target_temperature',
+);
+globalThis.boilerTargetTemperatureSensor = entity(
+  'sensor.boiler_target_temperature',
+);
+globalThis.livingRoomHeatingModeSensor = entity(
+  'sensor.living_room_heating_mode',
+);
+globalThis.bedroomTemperatureSensor = entity('sensor.bedroom_temperature');
+globalThis.bedroomTargetTemperatureSensor = entity(
+  'sensor.bedroom_target_temperature',
+);
+globalThis.bedroomHeatingModeSensor = entity('sensor.bedroom_heating_mode');
+globalThis.gymTemperatureSensor = entity('sensor.gym_temperature');
+globalThis.gymTargetTemperatureSensor = entity('sensor.gym_target_temperature');
+globalThis.gymHeatingModeSensor = entity('sensor.gym_heating_mode');
+globalThis.lastTimeLivingRoomMotionSensorWasTriggeredSensor = entity(
+  'sensor.last_time_living_room_motion_sensor_was_triggered',
 );
 globalThis.homeNearestDeviceSensor = entity('sensor.home_nearest_device');
 globalThis.homeNearestDistanceSensor = entity('sensor.home_nearest_distance');
@@ -835,8 +862,83 @@ globalThis.home_2MeDistanceSensor = entity('sensor.home_2_me_distance');
 globalThis.home_2MeDirectionOfTravelSensor = entity(
   'sensor.home_2_me_direction_of_travel',
 );
-globalThis.tahomaSwitchScHomekitSetupCodeSensor = entity(
-  'sensor.tahoma_switch_sc_homekit_setup_code',
+globalThis.zStickGen5UsbControllerStatusSensor = entity(
+  'sensor.z_stick_gen5_usb_controller_status',
+);
+globalThis.livingRoomHeatingSwitchNodeStatusSensor = entity(
+  'sensor.living_room_heating_switch_node_status',
+);
+globalThis.livingRoomHeatingSwitchLastSeenSensor = entity(
+  'sensor.living_room_heating_switch_last_seen',
+);
+globalThis.bedroomHeatingSwitchNodeStatusSensor = entity(
+  'sensor.bedroom_heating_switch_node_status',
+);
+globalThis.bedroomHeatingSwitchLastSeenSensor = entity(
+  'sensor.bedroom_heating_switch_last_seen',
+);
+globalThis.gymHeatingSwitchNodeStatusSensor = entity(
+  'sensor.gym_heating_switch_node_status',
+);
+globalThis.gymHeatingSwitchLastSeenSensor = entity(
+  'sensor.gym_heating_switch_last_seen',
+);
+globalThis.livingRoomSensorNodeStatusSensor = entity(
+  'sensor.living_room_sensor_node_status',
+);
+globalThis.livingRoomSensorLastSeenSensor = entity(
+  'sensor.living_room_sensor_last_seen',
+);
+globalThis.gymSensorNodeStatusSensor = entity('sensor.gym_sensor_node_status');
+globalThis.gymSensorLastSeenSensor = entity('sensor.gym_sensor_last_seen');
+globalThis.bedroomSensorNodeStatusSensor = entity(
+  'sensor.bedroom_sensor_node_status',
+);
+globalThis.bedroomSensorLastSeenSensor = entity(
+  'sensor.bedroom_sensor_last_seen',
+);
+globalThis.livingRoomSensorAirTemperatureSensor = entity(
+  'sensor.living_room_sensor_air_temperature',
+);
+globalThis.livingRoomSensorIlluminanceSensor = entity(
+  'sensor.living_room_sensor_illuminance',
+);
+globalThis.livingRoomSensorAlarmTypeSensor = entity(
+  'sensor.living_room_sensor_alarm_type',
+);
+globalThis.livingRoomSensorAlarmLevelSensor = entity(
+  'sensor.living_room_sensor_alarm_level',
+);
+globalThis.livingRoomSensorBatteryLevelSensor = entity(
+  'sensor.living_room_sensor_battery_level',
+);
+globalThis.gymSensorAirTemperatureSensor = entity(
+  'sensor.gym_sensor_air_temperature',
+);
+globalThis.gymSensorIlluminanceSensor = entity('sensor.gym_sensor_illuminance');
+globalThis.gymSensorAlarmTypeSensor = entity('sensor.gym_sensor_alarm_type');
+globalThis.gymSensorAlarmLevelSensor = entity('sensor.gym_sensor_alarm_level');
+globalThis.gymSensorBatteryLevelSensor = entity(
+  'sensor.gym_sensor_battery_level',
+);
+globalThis.bedroomSensorAirTemperatureSensor = entity(
+  'sensor.bedroom_sensor_air_temperature',
+);
+globalThis.bedroomSensorIlluminanceSensor = entity(
+  'sensor.bedroom_sensor_illuminance',
+);
+globalThis.bedroomSensorAlarmTypeSensor = entity(
+  'sensor.bedroom_sensor_alarm_type',
+);
+globalThis.bedroomSensorAlarmLevelSensor = entity(
+  'sensor.bedroom_sensor_alarm_level',
+);
+globalThis.bedroomSensorBatteryLevelSensor = entity(
+  'sensor.bedroom_sensor_battery_level',
+);
+globalThis.frontDoorBattery_2Sensor = entity('sensor.front_door_battery_2');
+globalThis.frontDoorLastActivitySensor = entity(
+  'sensor.front_door_last_activity',
 );
 globalThis.zteRouterDataReceivedSensor = entity(
   'sensor.zte_router_data_received',
@@ -871,16 +973,6 @@ globalThis.tumbleDryerSmartPlugVoltageSensor = entity(
 globalThis.tumbleDryerSmartPlugCurrentSensor = entity(
   'sensor.tumble_dryer_smart_plug_current',
 );
-globalThis.wearingClapper2TrophyLevelSensor = entity(
-  'sensor.wearing_clapper2_trophy_level',
-);
-globalThis.wearingClapper2StatusSensor = entity(
-  'sensor.wearing_clapper2_status',
-);
-globalThis.playstationPlaystationPlusSensor = entity(
-  'sensor.playstation_playstation_plus',
-);
-globalThis.playstationAboutMeSensor = entity('sensor.playstation_about_me');
 globalThis.aliceIlluminanceSensor = entity('sensor.alice_illuminance');
 globalThis.aliceConductivitySensor = entity('sensor.alice_conductivity');
 globalThis.aliceSoilMoistureSensor = entity('sensor.alice_soil_moisture');
@@ -894,9 +986,6 @@ globalThis.aliceDliSensor = entity('sensor.alice_dli');
 globalThis.frontDoorBatterySensor = entity('sensor.front_door_battery');
 globalThis.frontDoorFirmwareVersionSensor = entity(
   'sensor.front_door_firmware_version',
-);
-globalThis.sonosArcUltraAudioInputFormatSensor = entity(
-  'sensor.sonos_arc_ultra_audio_input_format',
 );
 globalThis.bathroomMotionSensorTemperatureSensor = entity(
   'sensor.bathroom_motion_sensor_temperature',
@@ -913,76 +1002,50 @@ globalThis.hallwayMotionSensorBatterySensor = entity(
 globalThis.zigbee2mqttBridgeVersionSensor = entity(
   'sensor.zigbee2mqtt_bridge_version',
 );
-globalThis.gw1100aIndoorHumiditySensor = entity(
-  'sensor.gw1100a_indoor_humidity',
-);
-globalThis.gw1100aSoilMoisture_1Sensor = entity(
-  'sensor.gw1100a_soil_moisture_1',
-);
-globalThis.aliceMoistureSensor = entity('sensor.alice_moisture');
-globalThis.gw1100aSoilMoisture_3Sensor = entity(
-  'sensor.gw1100a_soil_moisture_3',
-);
-globalThis.gw1100aSoilMoisture_4Sensor = entity(
-  'sensor.gw1100a_soil_moisture_4',
-);
-globalThis.gw1100aSoilBattery_1Sensor = entity('sensor.gw1100a_soil_battery_1');
-globalThis.gw1100aSoilBattery_2Sensor = entity('sensor.gw1100a_soil_battery_2');
-globalThis.gw1100aSoilBattery_3Sensor = entity('sensor.gw1100a_soil_battery_3');
-globalThis.gw1100aSoilBattery_4Sensor = entity('sensor.gw1100a_soil_battery_4');
-globalThis.gw1100aIndoorTemperatureSensor = entity(
-  'sensor.gw1100a_indoor_temperature',
-);
-globalThis.gw1100aRelativePressureSensor = entity(
-  'sensor.gw1100a_relative_pressure',
-);
-globalThis.gw1100aAbsolutePressureSensor = entity(
-  'sensor.gw1100a_absolute_pressure',
-);
-globalThis.gw1100aIndoorDewpointSensor = entity(
-  'sensor.gw1100a_indoor_dewpoint',
+globalThis.sonosArcUltraAudioInputFormatSensor = entity(
+  'sensor.sonos_arc_ultra_audio_input_format',
 );
 globalThis.icloud3EventLogSensor = entity('sensor.icloud3_event_log');
 globalThis.icloud3WazehistTrackSensor = entity('sensor.icloud3_wazehist_track');
-globalThis.bensIphoneNameSensor = entity('sensor.bens_iphone_name');
-globalThis.bensIphoneNextUpdateSensor = entity(
-  'sensor.bens_iphone_next_update',
+globalThis.bensIphoneArrivalTimeSensor = entity(
+  'sensor.bens_iphone_arrival_time',
 );
-globalThis.bensIphoneLastLocatedSensor = entity(
-  'sensor.bens_iphone_last_located',
-);
-globalThis.bensIphoneDirOfTravelSensor = entity(
-  'sensor.bens_iphone_dir_of_travel',
-);
-globalThis.bensIphoneTravelTimeSensor = entity(
-  'sensor.bens_iphone_travel_time',
-);
-globalThis.bensIphoneBatterySensor = entity('sensor.bens_iphone_battery');
-globalThis.bensIphoneIntervalSensor = entity('sensor.bens_iphone_interval');
-globalThis.bensIphoneZoneDistanceSensor = entity(
-  'sensor.bens_iphone_zone_distance',
-);
-globalThis.bensIphoneInfoSensor = entity('sensor.bens_iphone_info');
-globalThis.bensIphoneBadgeSensor = entity('sensor.bens_iphone_badge');
-globalThis.bensIphoneZoneNameSensor = entity('sensor.bens_iphone_zone_name');
 globalThis.bensIphoneLastUpdateSensor = entity(
   'sensor.bens_iphone_last_update',
 );
-globalThis.bensIphoneTravelTimeMinSensor = entity(
-  'sensor.bens_iphone_travel_time_min',
+globalThis.bensIphoneZoneNameSensor = entity('sensor.bens_iphone_zone_name');
+globalThis.bensIphoneLastLocatedSensor = entity(
+  'sensor.bens_iphone_last_located',
 );
 globalThis.bensIphoneHomeDistanceSensor = entity(
   'sensor.bens_iphone_home_distance',
 );
-globalThis.bensIphoneArrivalTimeSensor = entity(
-  'sensor.bens_iphone_arrival_time',
+globalThis.bensIphoneDirOfTravelSensor = entity(
+  'sensor.bens_iphone_dir_of_travel',
 );
-globalThis.bensIphoneBatteryStatusSensor = entity(
-  'sensor.bens_iphone_battery_status',
+globalThis.bensIphoneIntervalSensor = entity('sensor.bens_iphone_interval');
+globalThis.bensIphoneNameSensor = entity('sensor.bens_iphone_name');
+globalThis.bensIphoneTravelTimeSensor = entity(
+  'sensor.bens_iphone_travel_time',
 );
 globalThis.bensIphoneMovedDistanceSensor = entity(
   'sensor.bens_iphone_moved_distance',
 );
+globalThis.bensIphoneZoneDistanceSensor = entity(
+  'sensor.bens_iphone_zone_distance',
+);
+globalThis.bensIphoneTravelTimeMinSensor = entity(
+  'sensor.bens_iphone_travel_time_min',
+);
+globalThis.bensIphoneBadgeSensor = entity('sensor.bens_iphone_badge');
+globalThis.bensIphoneNextUpdateSensor = entity(
+  'sensor.bens_iphone_next_update',
+);
+globalThis.bensIphoneBatteryStatusSensor = entity(
+  'sensor.bens_iphone_battery_status',
+);
+globalThis.bensIphoneInfoSensor = entity('sensor.bens_iphone_info');
+globalThis.bensIphoneBatterySensor = entity('sensor.bens_iphone_battery');
 globalThis.icalBenSCalendarEvent_0Sensor = entity(
   'sensor.ical_ben_s_calendar_event_0',
 );
@@ -1084,56 +1147,76 @@ globalThis.thisDeviceNextTimer_2Sensor = entity(
 globalThis.thisDeviceNextReminder_2Sensor = entity(
   'sensor.this_device_next_reminder_2',
 );
-globalThis.livingRoomSensorAirTemperatureSensor = entity(
-  'sensor.living_room_sensor_air_temperature',
+globalThis.gw1100aIndoorHumiditySensor = entity(
+  'sensor.gw1100a_indoor_humidity',
 );
-globalThis.livingRoomSensorBatteryLevelSensor = entity(
-  'sensor.living_room_sensor_battery_level',
+globalThis.gw1100aSoilMoisture_1Sensor = entity(
+  'sensor.gw1100a_soil_moisture_1',
 );
-globalThis.livingRoomSensorIlluminanceSensor = entity(
-  'sensor.living_room_sensor_illuminance',
+globalThis.aliceMoistureSensor = entity('sensor.alice_moisture');
+globalThis.gw1100aSoilMoisture_3Sensor = entity(
+  'sensor.gw1100a_soil_moisture_3',
 );
-globalThis.livingRoomSensorAlarmLevelSensor = entity(
-  'sensor.living_room_sensor_alarm_level',
+globalThis.gw1100aSoilMoisture_4Sensor = entity(
+  'sensor.gw1100a_soil_moisture_4',
 );
-globalThis.livingRoomSensorAlarmTypeSensor = entity(
-  'sensor.living_room_sensor_alarm_type',
+globalThis.gw1100aSoilBattery_1Sensor = entity('sensor.gw1100a_soil_battery_1');
+globalThis.gw1100aSoilBattery_2Sensor = entity('sensor.gw1100a_soil_battery_2');
+globalThis.gw1100aSoilBattery_3Sensor = entity('sensor.gw1100a_soil_battery_3');
+globalThis.gw1100aSoilBattery_4Sensor = entity('sensor.gw1100a_soil_battery_4');
+globalThis.gw1100aIndoorTemperatureSensor = entity(
+  'sensor.gw1100a_indoor_temperature',
 );
+globalThis.gw1100aRelativePressureSensor = entity(
+  'sensor.gw1100a_relative_pressure',
+);
+globalThis.gw1100aAbsolutePressureSensor = entity(
+  'sensor.gw1100a_absolute_pressure',
+);
+globalThis.gw1100aIndoorDewpointSensor = entity(
+  'sensor.gw1100a_indoor_dewpoint',
+);
+globalThis.octopusEnergyA_11077925WheelOfFortuneSpinsElectricitySensor = entity(
+  'sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_electricity',
+);
+globalThis.octopusEnergyA_11077925WheelOfFortuneSpinsGasSensor = entity(
+  'sensor.octopus_energy_a_11077925_wheel_of_fortune_spins_gas',
+);
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495CurrentRateSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_current_rate',
+  );
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousRateSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_rate',
+  );
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495NextRateSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_next_rate',
+  );
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495CurrentStandingChargeSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_current_standing_charge',
+  );
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeConsumptionSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_consumption',
+  );
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495PreviousAccumulativeCostSensor =
+  entity(
+    'sensor.octopus_energy_electricity_19l3210845_1630000030495_previous_accumulative_cost',
+  );
 globalThis.livingRoomSensorCoverStatusSensor = entity(
   'sensor.living_room_sensor_cover_status',
 );
 globalThis.livingRoomSensorMotionSensorStatusSensor = entity(
   'sensor.living_room_sensor_motion_sensor_status',
 );
-globalThis.gymSensorAirTemperatureSensor = entity(
-  'sensor.gym_sensor_air_temperature',
-);
-globalThis.gymSensorBatteryLevelSensor = entity(
-  'sensor.gym_sensor_battery_level',
-);
-globalThis.gymSensorIlluminanceSensor = entity('sensor.gym_sensor_illuminance');
-globalThis.gymSensorAlarmLevelSensor = entity('sensor.gym_sensor_alarm_level');
-globalThis.gymSensorAlarmTypeSensor = entity('sensor.gym_sensor_alarm_type');
 globalThis.gymSensorCoverStatusSensor = entity(
   'sensor.gym_sensor_cover_status',
 );
 globalThis.gymSensorMotionSensorStatusSensor = entity(
   'sensor.gym_sensor_motion_sensor_status',
-);
-globalThis.bedroomSensorAirTemperatureSensor = entity(
-  'sensor.bedroom_sensor_air_temperature',
-);
-globalThis.bedroomSensorBatteryLevelSensor = entity(
-  'sensor.bedroom_sensor_battery_level',
-);
-globalThis.bedroomSensorIlluminanceSensor = entity(
-  'sensor.bedroom_sensor_illuminance',
-);
-globalThis.bedroomSensorAlarmLevelSensor = entity(
-  'sensor.bedroom_sensor_alarm_level',
-);
-globalThis.bedroomSensorAlarmTypeSensor = entity(
-  'sensor.bedroom_sensor_alarm_type',
 );
 globalThis.bedroomSensorCoverStatusSensor = entity(
   'sensor.bedroom_sensor_cover_status',
@@ -1141,42 +1224,7 @@ globalThis.bedroomSensorCoverStatusSensor = entity(
 globalThis.bedroomSensorMotionSensorStatusSensor = entity(
   'sensor.bedroom_sensor_motion_sensor_status',
 );
-globalThis.bedroomHeatingSwitchNodeStatusSensor = entity(
-  'sensor.bedroom_heating_switch_node_status',
-);
-globalThis.bedroomSensorNodeStatusSensor = entity(
-  'sensor.bedroom_sensor_node_status',
-);
-globalThis.gymHeatingSwitchNodeStatusSensor = entity(
-  'sensor.gym_heating_switch_node_status',
-);
-globalThis.livingRoomSensorNodeStatusSensor = entity(
-  'sensor.living_room_sensor_node_status',
-);
-globalThis.livingRoomHeatingSwitchNodeStatusSensor = entity(
-  'sensor.living_room_heating_switch_node_status',
-);
-globalThis.gymSensorNodeStatusSensor = entity('sensor.gym_sensor_node_status');
-globalThis.zStickGen5UsbControllerStatusSensor = entity(
-  'sensor.z_stick_gen5_usb_controller_status',
-);
 globalThis.automationLogEntitySensor = entity('sensor.automation_log_entity');
-globalThis.livingRoomHeatingSwitchLastSeenSensor = entity(
-  'sensor.living_room_heating_switch_last_seen',
-);
-globalThis.bedroomHeatingSwitchLastSeenSensor = entity(
-  'sensor.bedroom_heating_switch_last_seen',
-);
-globalThis.gymHeatingSwitchLastSeenSensor = entity(
-  'sensor.gym_heating_switch_last_seen',
-);
-globalThis.livingRoomSensorLastSeenSensor = entity(
-  'sensor.living_room_sensor_last_seen',
-);
-globalThis.gymSensorLastSeenSensor = entity('sensor.gym_sensor_last_seen');
-globalThis.bedroomSensorLastSeenSensor = entity(
-  'sensor.bedroom_sensor_last_seen',
-);
 globalThis.zStickGen5UsbControllerBasicSensor = entity(
   'sensor.z_stick_gen5_usb_controller_basic',
 );
@@ -1239,25 +1287,6 @@ globalThis.frontDoorDoorbellMqttInfoSensor = entity(
 );
 globalThis.frontDoorDoorbellMqttWirelessSensor = entity(
   'sensor.front_door_doorbell_mqtt_wireless',
-);
-globalThis.qbittorrentStatusSensor = entity('sensor.qbittorrent_status');
-globalThis.qbittorrentDownloadSpeedSensor = entity(
-  'sensor.qbittorrent_download_speed',
-);
-globalThis.qbittorrentUploadSpeedSensor = entity(
-  'sensor.qbittorrent_upload_speed',
-);
-globalThis.qbittorrentAllTorrentsSensor = entity(
-  'sensor.qbittorrent_all_torrents',
-);
-globalThis.qbittorrentActiveTorrentsSensor = entity(
-  'sensor.qbittorrent_active_torrents',
-);
-globalThis.qbittorrentInactiveTorrentsSensor = entity(
-  'sensor.qbittorrent_inactive_torrents',
-);
-globalThis.qbittorrentPausedTorrentsSensor = entity(
-  'sensor.qbittorrent_paused_torrents',
 );
 globalThis.batterySensor = entity('sensor.battery');
 globalThis.battery_2Sensor = entity('sensor.battery_2');
@@ -1331,19 +1360,4 @@ globalThis.imacSmartPlugCurrentSensor = entity(
 );
 globalThis.boilerBoostTimeRemainingSensor = entity(
   'sensor.boiler_boost_time_remaining',
-);
-globalThis.qbittorrentConnectionStatusSensor = entity(
-  'sensor.qbittorrent_connection_status',
-);
-globalThis.qbittorrentAllTimeDownloadSensor = entity(
-  'sensor.qbittorrent_all_time_download',
-);
-globalThis.qbittorrentAllTimeUploadSensor = entity(
-  'sensor.qbittorrent_all_time_upload',
-);
-globalThis.livingRoomHeaterDiningTableEnergySensor = entity(
-  'sensor.living_room_heater_dining_table_energy',
-);
-globalThis.livingRoomHeaterDiningTablePowerSensor = entity(
-  'sensor.living_room_heater_dining_table_power',
 );

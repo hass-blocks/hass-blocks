@@ -23,7 +23,7 @@ declare global {
   /**
    * Creates a custom entry in the logbook.
    */
-  var logLogbook: (params?: LogLogbookProps) => Block;
+  var logLogbook: (params: LogLogbookProps) => Block;
 }
 
 globalThis.logLogbook = (params) =>

@@ -59,7 +59,7 @@ declare global {
   /**
    * Creates a new task and add it to a project.
    */
-  var newTaskTodoist: (params?: NewTaskTodoistProps) => Block;
+  var newTaskTodoist: (params: NewTaskTodoistProps) => Block;
 }
 
 globalThis.newTaskTodoist = (params) =>

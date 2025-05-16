@@ -40,7 +40,7 @@ declare global {
   /**
    * Performs a global search on the Music Assistant library and all providers.
    */
-  var searchMusicAssistant: (params?: SearchMusicAssistantProps) => Block;
+  var searchMusicAssistant: (params: SearchMusicAssistantProps) => Block;
 
   interface GetLibraryMusicAssistantProps {
     /**
@@ -85,7 +85,7 @@ declare global {
    * Retrieves items from a Music Assistant library.
    */
   var getLibraryMusicAssistant: (
-    params?: GetLibraryMusicAssistantProps,
+    params: GetLibraryMusicAssistantProps,
   ) => Block;
 
   interface PlayMediaMusicAssistantProps {
@@ -120,7 +120,7 @@ declare global {
    */
   var playMediaMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params?: PlayMediaMusicAssistantProps,
+    params: PlayMediaMusicAssistantProps,
   ) => Block;
 
   interface PlayAnnouncementMusicAssistantProps {
@@ -143,7 +143,7 @@ declare global {
    */
   var playAnnouncementMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params?: PlayAnnouncementMusicAssistantProps,
+    params: PlayAnnouncementMusicAssistantProps,
   ) => Block;
 
   interface TransferQueueMusicAssistantProps {
@@ -162,7 +162,7 @@ declare global {
    */
   var transferQueueMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: TransferQueueMusicAssistantProps,
+    params?: TransferQueueMusicAssistantProps,
   ) => Block;
 
   /**

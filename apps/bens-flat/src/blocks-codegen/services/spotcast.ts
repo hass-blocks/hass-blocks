@@ -103,7 +103,7 @@ declare global {
   /**
    * Starts spotify playback on chromecast devices
    */
-  var startSpotcast: (params: StartSpotcastProps) => Block;
+  var startSpotcast: (params?: StartSpotcastProps) => Block;
 }
 
 globalThis.startSpotcast = (params) =>

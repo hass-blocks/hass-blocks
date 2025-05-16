@@ -24,7 +24,7 @@ declare global {
   /**
    * Write log entry.
    */
-  var writeSystemLog: (params?: WriteSystemLogProps) => Block;
+  var writeSystemLog: (params: WriteSystemLogProps) => Block;
 }
 
 globalThis.clearSystemLog = () =>

@@ -22,7 +22,7 @@ declare global {
    */
   var installUpdate: (
     target: IEntity<`update.${string}`> | IArea,
-    params: InstallUpdateProps,
+    params?: InstallUpdateProps,
   ) => Block;
 
   /**

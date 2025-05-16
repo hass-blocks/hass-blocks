@@ -23,7 +23,7 @@ declare global {
    */
   var turnOnRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: TurnOnRemoteProps,
+    params?: TurnOnRemoteProps,
   ) => Block;
 
   /**
@@ -59,7 +59,7 @@ declare global {
    */
   var sendCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: SendCommandRemoteProps,
+    params: SendCommandRemoteProps,
   ) => Block;
 
   interface LearnCommandRemoteProps {
@@ -90,7 +90,7 @@ declare global {
    */
   var learnCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: LearnCommandRemoteProps,
+    params?: LearnCommandRemoteProps,
   ) => Block;
 
   interface DeleteCommandRemoteProps {
@@ -109,7 +109,7 @@ declare global {
    */
   var deleteCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: DeleteCommandRemoteProps,
+    params: DeleteCommandRemoteProps,
   ) => Block;
 }
 

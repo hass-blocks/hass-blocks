@@ -33,7 +33,7 @@ declare global {
    */
   var setHvacModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetHvacModeClimateProps,
+    params?: SetHvacModeClimateProps,
   ) => Block;
 
   interface SetPresetModeClimateProps {
@@ -48,7 +48,7 @@ declare global {
    */
   var setPresetModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetPresetModeClimateProps,
+    params: SetPresetModeClimateProps,
   ) => Block;
 
   interface SetAuxHeatClimateProps {
@@ -63,7 +63,7 @@ declare global {
    */
   var setAuxHeatClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetAuxHeatClimateProps,
+    params: SetAuxHeatClimateProps,
   ) => Block;
 
   interface SetTemperatureClimateProps {
@@ -90,7 +90,7 @@ declare global {
    */
   var setTemperatureClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetTemperatureClimateProps,
+    params?: SetTemperatureClimateProps,
   ) => Block;
 
   interface SetHumidityClimateProps {
@@ -105,7 +105,7 @@ declare global {
    */
   var setHumidityClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetHumidityClimateProps,
+    params: SetHumidityClimateProps,
   ) => Block;
 
   interface SetFanModeClimateProps {
@@ -120,7 +120,7 @@ declare global {
    */
   var setFanModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetFanModeClimateProps,
+    params: SetFanModeClimateProps,
   ) => Block;
 
   interface SetSwingModeClimateProps {
@@ -135,7 +135,7 @@ declare global {
    */
   var setSwingModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetSwingModeClimateProps,
+    params: SetSwingModeClimateProps,
   ) => Block;
 
   interface SetSwingHorizontalModeClimateProps {
@@ -150,7 +150,7 @@ declare global {
    */
   var setSwingHorizontalModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetSwingHorizontalModeClimateProps,
+    params: SetSwingHorizontalModeClimateProps,
   ) => Block;
 }
 

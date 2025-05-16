@@ -30,7 +30,7 @@ declare global {
    */
   var announceAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
-    params: AnnounceAssistSatelliteProps,
+    params?: AnnounceAssistSatelliteProps,
   ) => Block;
 
   interface StartConversationAssistSatelliteProps {
@@ -61,7 +61,7 @@ declare global {
    */
   var startConversationAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
-    params: StartConversationAssistSatelliteProps,
+    params?: StartConversationAssistSatelliteProps,
   ) => Block;
 }
 

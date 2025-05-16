@@ -12,7 +12,7 @@ declare global {
   /**
    * Run a sequence of services
    */
-  var sequenceBrowserMod: (params: SequenceBrowserModProps) => Block;
+  var sequenceBrowserMod: (params?: SequenceBrowserModProps) => Block;
 
   interface DelayBrowserModProps {
     browser_id?: never;
@@ -25,7 +25,7 @@ declare global {
   /**
    * Wait for a time
    */
-  var delayBrowserMod: (params: DelayBrowserModProps) => Block;
+  var delayBrowserMod: (params?: DelayBrowserModProps) => Block;
 
   interface PopupBrowserModProps {
     browser_id?: never;
@@ -83,7 +83,7 @@ declare global {
   /**
    * Display a popup
    */
-  var popupBrowserMod: (params?: PopupBrowserModProps) => Block;
+  var popupBrowserMod: (params: PopupBrowserModProps) => Block;
 
   interface MoreInfoBrowserModProps {
     browser_id?: never;
@@ -95,7 +95,7 @@ declare global {
   /**
    * Show more-info dialog
    */
-  var moreInfoBrowserMod: (params?: MoreInfoBrowserModProps) => Block;
+  var moreInfoBrowserMod: (params: MoreInfoBrowserModProps) => Block;
 
   interface ClosePopupBrowserModProps {
     browser_id?: never;
@@ -104,7 +104,7 @@ declare global {
   /**
    * Close a popup
    */
-  var closePopupBrowserMod: (params: ClosePopupBrowserModProps) => Block;
+  var closePopupBrowserMod: (params?: ClosePopupBrowserModProps) => Block;
 
   interface NotificationBrowserModProps {
     browser_id?: never;
@@ -129,7 +129,7 @@ declare global {
   /**
    * Display a short notification
    */
-  var notificationBrowserMod: (params?: NotificationBrowserModProps) => Block;
+  var notificationBrowserMod: (params: NotificationBrowserModProps) => Block;
 
   interface NavigateBrowserModProps {
     browser_id?: never;
@@ -142,7 +142,7 @@ declare global {
   /**
    * Navigate browser to a different page
    */
-  var navigateBrowserMod: (params: NavigateBrowserModProps) => Block;
+  var navigateBrowserMod: (params?: NavigateBrowserModProps) => Block;
 
   interface RefreshBrowserModProps {
     browser_id?: never;
@@ -151,7 +151,7 @@ declare global {
   /**
    * Refresh page
    */
-  var refreshBrowserMod: (params: RefreshBrowserModProps) => Block;
+  var refreshBrowserMod: (params?: RefreshBrowserModProps) => Block;
 
   interface SetThemeBrowserModProps {
     browser_id?: never;
@@ -176,7 +176,7 @@ declare global {
   /**
    * Change the current theme
    */
-  var setThemeBrowserMod: (params: SetThemeBrowserModProps) => Block;
+  var setThemeBrowserMod: (params?: SetThemeBrowserModProps) => Block;
 
   interface ConsoleBrowserModProps {
     browser_id?: never;
@@ -189,7 +189,7 @@ declare global {
   /**
    * Print text to browser console
    */
-  var consoleBrowserMod: (params: ConsoleBrowserModProps) => Block;
+  var consoleBrowserMod: (params?: ConsoleBrowserModProps) => Block;
 
   interface JavascriptBrowserModProps {
     browser_id?: never;
@@ -202,7 +202,7 @@ declare global {
   /**
    * Run arbitrary JavaScript code
    */
-  var javascriptBrowserMod: (params: JavascriptBrowserModProps) => Block;
+  var javascriptBrowserMod: (params?: JavascriptBrowserModProps) => Block;
 }
 
 globalThis.sequenceBrowserMod = (params) =>

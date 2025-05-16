@@ -48,74 +48,77 @@ declare global {
   var musicAssistantServerBetaUpdateUpdate: IEntity<`update.music_assistant_server_beta_update`>;
   var lmsLyrionMusicServerFormerlyLogitechMediaServerUpdateUpdate: IEntity<`update.lms_lyrion_music_server_formerly_logitech_media_server_update`>;
   var homeAssistantOperatingSystemUpdateUpdate: IEntity<`update.home_assistant_operating_system_update`>;
-  var boilerBoostFirmwareUpdateUpdate: IEntity<`update.boiler_boost_firmware_update`>;
-  var bannerCardUpdateUpdate: IEntity<`update.banner_card_update`>;
-  var slateThemeUpdateUpdate: IEntity<`update.slate_theme_update`>;
-  var streamAssistUpdateUpdate: IEntity<`update.stream_assist_update`>;
-  var climateThermostatCardUpdateUpdate: IEntity<`update.climate_thermostat_card_update`>;
-  var betterThermostatUiUpdateUpdate: IEntity<`update.better_thermostat_ui_update`>;
-  var wavesUpdateUpdate: IEntity<`update.waves_update`>;
-  var noctisUpdateUpdate: IEntity<`update.noctis_update`>;
-  var icsCalendarIcalendarUpdateUpdate: IEntity<`update.ics_calendar_icalendar_update`>;
-  var sonosCardUpdateUpdate: IEntity<`update.sonos_card_update`>;
-  var autoEntitiesUpdateUpdate: IEntity<`update.auto_entities_update`>;
-  var nukiBtUpdateUpdate: IEntity<`update.nuki_bt_update`>;
-  var stateSwitchUpdateUpdate: IEntity<`update.state_switch_update`>;
-  var stackInCardUpdateUpdate: IEntity<`update.stack_in_card_update`>;
-  var firemoteCardUpdateUpdate: IEntity<`update.firemote_card_update`>;
-  var icloud3V3IdeviceTrackerUpdateUpdate: IEntity<`update.icloud3_v3_idevice_tracker_update`>;
-  var cardModUpdateUpdate: IEntity<`update.card_mod_update`>;
-  var browserModUpdateUpdate: IEntity<`update.browser_mod_update`>;
-  var alexaMediaPlayerUpdateUpdate: IEntity<`update.alexa_media_player_update`>;
-  var circadianLightingUpdateUpdate: IEntity<`update.circadian_lighting_update`>;
-  var mushroomUpdateUpdate: IEntity<`update.mushroom_update`>;
-  var octopusEnergyUpdateUpdate: IEntity<`update.octopus_energy_update`>;
-  var openaiTtsSpeechServiceUpdateUpdate: IEntity<`update.openai_tts_speech_service_update`>;
-  var homeAssistantPlantUpdateUpdate: IEntity<`update.home_assistant_plant_update`>;
-  var candySimplyFiUpdateUpdate: IEntity<`update.candy_simply_fi_update`>;
-  var miniMediaPlayerUpdateUpdate: IEntity<`update.mini_media_player_update`>;
-  var openplantbookUpdateUpdate: IEntity<`update.openplantbook_update`>;
-  var spotifyplusUpdateUpdate: IEntity<`update.spotifyplus_update`>;
-  var iphoneDeviceTrackerUpdateUpdate: IEntity<`update.iphone_device_tracker_update`>;
-  var maxiMediaPlayerUpdateUpdate: IEntity<`update.maxi_media_player_update`>;
-  var spotifyLovelaceCardUpdateUpdate: IEntity<`update.spotify_lovelace_card_update`>;
-  var lovelaceHomeFeedCardUpdateUpdate: IEntity<`update.lovelace_home_feed_card_update`>;
-  var nukiLockUpdateUpdate: IEntity<`update.nuki_lock_update`>;
-  var galleryCardUpdateUpdate: IEntity<`update.gallery_card_update`>;
-  var spotcastUpdateUpdate: IEntity<`update.spotcast_update`>;
-  var googleCloudSpeechToTextUpdateUpdate: IEntity<`update.google_cloud_speech_to_text_update`>;
-  var yourNameUpdateUpdate: IEntity<`update.your_name_update`>;
-  var configTemplateCardUpdateUpdate: IEntity<`update.config_template_card_update`>;
-  var kioskModeUpdateUpdate: IEntity<`update.kiosk_mode_update`>;
-  var watchmanUpdateUpdate: IEntity<`update.watchman_update`>;
-  var batteryStateCardEntityRowUpdateUpdate: IEntity<`update.battery_state_card_entity_row_update`>;
-  var icalSensorUpdateUpdate: IEntity<`update.ical_sensor_update`>;
-  var catppuccinThemeUpdateUpdate: IEntity<`update.catppuccin_theme_update`>;
-  var selectListCardUpdateUpdate: IEntity<`update.select_list_card_update`>;
-  var schedulerComponentUpdateUpdate: IEntity<`update.scheduler_component_update`>;
-  var schedulerCardUpdateUpdate: IEntity<`update.scheduler_card_update`>;
-  var blankCardUpdateUpdate: IEntity<`update.blank_card_update`>;
-  var overkizBySomfyCustomComponentUpdateUpdate: IEntity<`update.overkiz_by_somfy_custom_component_update`>;
-  var hacsUpdateUpdate: IEntity<`update.hacs_update`>;
-  var adaptiveLightingUpdateUpdate: IEntity<`update.adaptive_lighting_update`>;
-  var miniGraphCardUpdateUpdate: IEntity<`update.mini_graph_card_update`>;
   var iosThemesDarkModeAndLightModeUpdateUpdate: IEntity<`update.ios_themes_dark_mode_and_light_mode_update`>;
   var nodeRedCompanionUpdateUpdate: IEntity<`update.node_red_companion_update`>;
   var flowerCardUpdateUpdate: IEntity<`update.flower_card_update`>;
+  var bannerCardUpdateUpdate: IEntity<`update.banner_card_update`>;
+  var spotifyplusUpdateUpdate: IEntity<`update.spotifyplus_update`>;
+  var iphoneDeviceTrackerUpdateUpdate: IEntity<`update.iphone_device_tracker_update`>;
+  var streamAssistUpdateUpdate: IEntity<`update.stream_assist_update`>;
+  var maxiMediaPlayerUpdateUpdate: IEntity<`update.maxi_media_player_update`>;
+  var climateThermostatCardUpdateUpdate: IEntity<`update.climate_thermostat_card_update`>;
+  var spotifyLovelaceCardUpdateUpdate: IEntity<`update.spotify_lovelace_card_update`>;
   var layoutCardUpdateUpdate: IEntity<`update.layout_card_update`>;
-  var pyscriptUpdateUpdate: IEntity<`update.pyscript_update`>;
-  var genericRemoteControlCardUpdateUpdate: IEntity<`update.generic_remote_control_card_update`>;
-  var sonosAlarmUpdateUpdate: IEntity<`update.sonos_alarm_update`>;
-  var playstationNetworkUpdateUpdate: IEntity<`update.playstation_network_update`>;
+  var homeAssistantPlantUpdateUpdate: IEntity<`update.home_assistant_plant_update`>;
+  var miniGraphCardUpdateUpdate: IEntity<`update.mini_graph_card_update`>;
+  var candySimplyFiUpdateUpdate: IEntity<`update.candy_simply_fi_update`>;
+  var miniMediaPlayerUpdateUpdate: IEntity<`update.mini_media_player_update`>;
+  var openplantbookUpdateUpdate: IEntity<`update.openplantbook_update`>;
+  var blankCardUpdateUpdate: IEntity<`update.blank_card_update`>;
+  var circadianLightingUpdateUpdate: IEntity<`update.circadian_lighting_update`>;
+  var overkizBySomfyCustomComponentUpdateUpdate: IEntity<`update.overkiz_by_somfy_custom_component_update`>;
+  var mushroomUpdateUpdate: IEntity<`update.mushroom_update`>;
+  var hacsUpdateUpdate: IEntity<`update.hacs_update`>;
+  var slateThemeUpdateUpdate: IEntity<`update.slate_theme_update`>;
+  var adaptiveLightingUpdateUpdate: IEntity<`update.adaptive_lighting_update`>;
+  var octopusEnergyUpdateUpdate: IEntity<`update.octopus_energy_update`>;
+  var openaiTtsSpeechServiceUpdateUpdate: IEntity<`update.openai_tts_speech_service_update`>;
+  var schedulerComponentUpdateUpdate: IEntity<`update.scheduler_component_update`>;
+  var selectListCardUpdateUpdate: IEntity<`update.select_list_card_update`>;
+  var schedulerCardUpdateUpdate: IEntity<`update.scheduler_card_update`>;
+  var batteryStateCardEntityRowUpdateUpdate: IEntity<`update.battery_state_card_entity_row_update`>;
+  var icalSensorUpdateUpdate: IEntity<`update.ical_sensor_update`>;
+  var catppuccinThemeUpdateUpdate: IEntity<`update.catppuccin_theme_update`>;
+  var browserModUpdateUpdate: IEntity<`update.browser_mod_update`>;
+  var stackInCardUpdateUpdate: IEntity<`update.stack_in_card_update`>;
+  var kioskModeUpdateUpdate: IEntity<`update.kiosk_mode_update`>;
+  var wavesUpdateUpdate: IEntity<`update.waves_update`>;
+  var firemoteCardUpdateUpdate: IEntity<`update.firemote_card_update`>;
+  var alexaMediaPlayerUpdateUpdate: IEntity<`update.alexa_media_player_update`>;
+  var noctisUpdateUpdate: IEntity<`update.noctis_update`>;
   var universalRemoteCardUpdateUpdate: IEntity<`update.universal_remote_card_update`>;
+  var icloud3V3IdeviceTrackerUpdateUpdate: IEntity<`update.icloud3_v3_idevice_tracker_update`>;
+  var cardModUpdateUpdate: IEntity<`update.card_mod_update`>;
   var bubbleCardUpdateUpdate: IEntity<`update.bubble_card_update`>;
   var extendedOpenaiConversationUpdateUpdate: IEntity<`update.extended_openai_conversation_update`>;
-  var bathroomMotionSensorUpdate: IEntity<`update.bathroom_motion_sensor`>;
-  var hallwayMotionSensorUpdate: IEntity<`update.hallway_motion_sensor`>;
+  var watchmanUpdateUpdate: IEntity<`update.watchman_update`>;
+  var autoEntitiesUpdateUpdate: IEntity<`update.auto_entities_update`>;
+  var nukiBtUpdateUpdate: IEntity<`update.nuki_bt_update`>;
+  var galleryCardUpdateUpdate: IEntity<`update.gallery_card_update`>;
+  var spotcastUpdateUpdate: IEntity<`update.spotcast_update`>;
+  var googleCloudSpeechToTextUpdateUpdate: IEntity<`update.google_cloud_speech_to_text_update`>;
+  var genericRemoteControlCardUpdateUpdate: IEntity<`update.generic_remote_control_card_update`>;
+  var icsCalendarIcalendarUpdateUpdate: IEntity<`update.ics_calendar_icalendar_update`>;
+  var sonosAlarmUpdateUpdate: IEntity<`update.sonos_alarm_update`>;
+  var yourNameUpdateUpdate: IEntity<`update.your_name_update`>;
+  var playstationNetworkUpdateUpdate: IEntity<`update.playstation_network_update`>;
+  var stateSwitchUpdateUpdate: IEntity<`update.state_switch_update`>;
+  var configTemplateCardUpdateUpdate: IEntity<`update.config_template_card_update`>;
+  var sonosCardUpdateUpdate: IEntity<`update.sonos_card_update`>;
+  var betterThermostatUiUpdateUpdate: IEntity<`update.better_thermostat_ui_update`>;
+  var lovelaceHomeFeedCardUpdateUpdate: IEntity<`update.lovelace_home_feed_card_update`>;
+  var pyscriptUpdateUpdate: IEntity<`update.pyscript_update`>;
+  var nukiLockUpdateUpdate: IEntity<`update.nuki_lock_update`>;
+  var boilerBoostFirmwareUpdateUpdate: IEntity<`update.boiler_boost_firmware_update`>;
+  var livingRoomHeaderByTheTableFirmwareUpdate: IEntity<`update.living_room_header_by_the_table_firmware`>;
+  var bookshelfHeaterFirmwareUpdate: IEntity<`update.bookshelf_heater_firmware`>;
+  var hallwayHeaterFirmwareUpdate: IEntity<`update.hallway_heater_firmware`>;
+  var tvHeaterFirmwareUpdate: IEntity<`update.tv_heater_firmware`>;
   var livingRoomSensorFirmwareUpdate: IEntity<`update.living_room_sensor_firmware`>;
   var gymSensorFirmwareUpdate: IEntity<`update.gym_sensor_firmware`>;
   var bedroomSensorFirmwareUpdate: IEntity<`update.bedroom_sensor_firmware`>;
-  var livingRoomHeaderByTheTableFirmwareUpdate: IEntity<`update.living_room_header_by_the_table_firmware`>;
+  var bathroomMotionSensorUpdate: IEntity<`update.bathroom_motion_sensor`>;
+  var hallwayMotionSensorUpdate: IEntity<`update.hallway_motion_sensor`>;
 }
 
 globalThis.homeAssistantSupervisorUpdateUpdate = entity(
@@ -199,101 +202,6 @@ globalThis.lmsLyrionMusicServerFormerlyLogitechMediaServerUpdateUpdate = entity(
 globalThis.homeAssistantOperatingSystemUpdateUpdate = entity(
   'update.home_assistant_operating_system_update',
 );
-globalThis.boilerBoostFirmwareUpdateUpdate = entity(
-  'update.boiler_boost_firmware_update',
-);
-globalThis.bannerCardUpdateUpdate = entity('update.banner_card_update');
-globalThis.slateThemeUpdateUpdate = entity('update.slate_theme_update');
-globalThis.streamAssistUpdateUpdate = entity('update.stream_assist_update');
-globalThis.climateThermostatCardUpdateUpdate = entity(
-  'update.climate_thermostat_card_update',
-);
-globalThis.betterThermostatUiUpdateUpdate = entity(
-  'update.better_thermostat_ui_update',
-);
-globalThis.wavesUpdateUpdate = entity('update.waves_update');
-globalThis.noctisUpdateUpdate = entity('update.noctis_update');
-globalThis.icsCalendarIcalendarUpdateUpdate = entity(
-  'update.ics_calendar_icalendar_update',
-);
-globalThis.sonosCardUpdateUpdate = entity('update.sonos_card_update');
-globalThis.autoEntitiesUpdateUpdate = entity('update.auto_entities_update');
-globalThis.nukiBtUpdateUpdate = entity('update.nuki_bt_update');
-globalThis.stateSwitchUpdateUpdate = entity('update.state_switch_update');
-globalThis.stackInCardUpdateUpdate = entity('update.stack_in_card_update');
-globalThis.firemoteCardUpdateUpdate = entity('update.firemote_card_update');
-globalThis.icloud3V3IdeviceTrackerUpdateUpdate = entity(
-  'update.icloud3_v3_idevice_tracker_update',
-);
-globalThis.cardModUpdateUpdate = entity('update.card_mod_update');
-globalThis.browserModUpdateUpdate = entity('update.browser_mod_update');
-globalThis.alexaMediaPlayerUpdateUpdate = entity(
-  'update.alexa_media_player_update',
-);
-globalThis.circadianLightingUpdateUpdate = entity(
-  'update.circadian_lighting_update',
-);
-globalThis.mushroomUpdateUpdate = entity('update.mushroom_update');
-globalThis.octopusEnergyUpdateUpdate = entity('update.octopus_energy_update');
-globalThis.openaiTtsSpeechServiceUpdateUpdate = entity(
-  'update.openai_tts_speech_service_update',
-);
-globalThis.homeAssistantPlantUpdateUpdate = entity(
-  'update.home_assistant_plant_update',
-);
-globalThis.candySimplyFiUpdateUpdate = entity('update.candy_simply_fi_update');
-globalThis.miniMediaPlayerUpdateUpdate = entity(
-  'update.mini_media_player_update',
-);
-globalThis.openplantbookUpdateUpdate = entity('update.openplantbook_update');
-globalThis.spotifyplusUpdateUpdate = entity('update.spotifyplus_update');
-globalThis.iphoneDeviceTrackerUpdateUpdate = entity(
-  'update.iphone_device_tracker_update',
-);
-globalThis.maxiMediaPlayerUpdateUpdate = entity(
-  'update.maxi_media_player_update',
-);
-globalThis.spotifyLovelaceCardUpdateUpdate = entity(
-  'update.spotify_lovelace_card_update',
-);
-globalThis.lovelaceHomeFeedCardUpdateUpdate = entity(
-  'update.lovelace_home_feed_card_update',
-);
-globalThis.nukiLockUpdateUpdate = entity('update.nuki_lock_update');
-globalThis.galleryCardUpdateUpdate = entity('update.gallery_card_update');
-globalThis.spotcastUpdateUpdate = entity('update.spotcast_update');
-globalThis.googleCloudSpeechToTextUpdateUpdate = entity(
-  'update.google_cloud_speech_to_text_update',
-);
-globalThis.yourNameUpdateUpdate = entity('update.your_name_update');
-globalThis.configTemplateCardUpdateUpdate = entity(
-  'update.config_template_card_update',
-);
-globalThis.kioskModeUpdateUpdate = entity('update.kiosk_mode_update');
-globalThis.watchmanUpdateUpdate = entity('update.watchman_update');
-globalThis.batteryStateCardEntityRowUpdateUpdate = entity(
-  'update.battery_state_card_entity_row_update',
-);
-globalThis.icalSensorUpdateUpdate = entity('update.ical_sensor_update');
-globalThis.catppuccinThemeUpdateUpdate = entity(
-  'update.catppuccin_theme_update',
-);
-globalThis.selectListCardUpdateUpdate = entity(
-  'update.select_list_card_update',
-);
-globalThis.schedulerComponentUpdateUpdate = entity(
-  'update.scheduler_component_update',
-);
-globalThis.schedulerCardUpdateUpdate = entity('update.scheduler_card_update');
-globalThis.blankCardUpdateUpdate = entity('update.blank_card_update');
-globalThis.overkizBySomfyCustomComponentUpdateUpdate = entity(
-  'update.overkiz_by_somfy_custom_component_update',
-);
-globalThis.hacsUpdateUpdate = entity('update.hacs_update');
-globalThis.adaptiveLightingUpdateUpdate = entity(
-  'update.adaptive_lighting_update',
-);
-globalThis.miniGraphCardUpdateUpdate = entity('update.mini_graph_card_update');
 globalThis.iosThemesDarkModeAndLightModeUpdateUpdate = entity(
   'update.ios_themes_dark_mode_and_light_mode_update',
 );
@@ -301,24 +209,127 @@ globalThis.nodeRedCompanionUpdateUpdate = entity(
   'update.node_red_companion_update',
 );
 globalThis.flowerCardUpdateUpdate = entity('update.flower_card_update');
+globalThis.bannerCardUpdateUpdate = entity('update.banner_card_update');
+globalThis.spotifyplusUpdateUpdate = entity('update.spotifyplus_update');
+globalThis.iphoneDeviceTrackerUpdateUpdate = entity(
+  'update.iphone_device_tracker_update',
+);
+globalThis.streamAssistUpdateUpdate = entity('update.stream_assist_update');
+globalThis.maxiMediaPlayerUpdateUpdate = entity(
+  'update.maxi_media_player_update',
+);
+globalThis.climateThermostatCardUpdateUpdate = entity(
+  'update.climate_thermostat_card_update',
+);
+globalThis.spotifyLovelaceCardUpdateUpdate = entity(
+  'update.spotify_lovelace_card_update',
+);
 globalThis.layoutCardUpdateUpdate = entity('update.layout_card_update');
-globalThis.pyscriptUpdateUpdate = entity('update.pyscript_update');
-globalThis.genericRemoteControlCardUpdateUpdate = entity(
-  'update.generic_remote_control_card_update',
+globalThis.homeAssistantPlantUpdateUpdate = entity(
+  'update.home_assistant_plant_update',
 );
-globalThis.sonosAlarmUpdateUpdate = entity('update.sonos_alarm_update');
-globalThis.playstationNetworkUpdateUpdate = entity(
-  'update.playstation_network_update',
+globalThis.miniGraphCardUpdateUpdate = entity('update.mini_graph_card_update');
+globalThis.candySimplyFiUpdateUpdate = entity('update.candy_simply_fi_update');
+globalThis.miniMediaPlayerUpdateUpdate = entity(
+  'update.mini_media_player_update',
 );
+globalThis.openplantbookUpdateUpdate = entity('update.openplantbook_update');
+globalThis.blankCardUpdateUpdate = entity('update.blank_card_update');
+globalThis.circadianLightingUpdateUpdate = entity(
+  'update.circadian_lighting_update',
+);
+globalThis.overkizBySomfyCustomComponentUpdateUpdate = entity(
+  'update.overkiz_by_somfy_custom_component_update',
+);
+globalThis.mushroomUpdateUpdate = entity('update.mushroom_update');
+globalThis.hacsUpdateUpdate = entity('update.hacs_update');
+globalThis.slateThemeUpdateUpdate = entity('update.slate_theme_update');
+globalThis.adaptiveLightingUpdateUpdate = entity(
+  'update.adaptive_lighting_update',
+);
+globalThis.octopusEnergyUpdateUpdate = entity('update.octopus_energy_update');
+globalThis.openaiTtsSpeechServiceUpdateUpdate = entity(
+  'update.openai_tts_speech_service_update',
+);
+globalThis.schedulerComponentUpdateUpdate = entity(
+  'update.scheduler_component_update',
+);
+globalThis.selectListCardUpdateUpdate = entity(
+  'update.select_list_card_update',
+);
+globalThis.schedulerCardUpdateUpdate = entity('update.scheduler_card_update');
+globalThis.batteryStateCardEntityRowUpdateUpdate = entity(
+  'update.battery_state_card_entity_row_update',
+);
+globalThis.icalSensorUpdateUpdate = entity('update.ical_sensor_update');
+globalThis.catppuccinThemeUpdateUpdate = entity(
+  'update.catppuccin_theme_update',
+);
+globalThis.browserModUpdateUpdate = entity('update.browser_mod_update');
+globalThis.stackInCardUpdateUpdate = entity('update.stack_in_card_update');
+globalThis.kioskModeUpdateUpdate = entity('update.kiosk_mode_update');
+globalThis.wavesUpdateUpdate = entity('update.waves_update');
+globalThis.firemoteCardUpdateUpdate = entity('update.firemote_card_update');
+globalThis.alexaMediaPlayerUpdateUpdate = entity(
+  'update.alexa_media_player_update',
+);
+globalThis.noctisUpdateUpdate = entity('update.noctis_update');
 globalThis.universalRemoteCardUpdateUpdate = entity(
   'update.universal_remote_card_update',
 );
+globalThis.icloud3V3IdeviceTrackerUpdateUpdate = entity(
+  'update.icloud3_v3_idevice_tracker_update',
+);
+globalThis.cardModUpdateUpdate = entity('update.card_mod_update');
 globalThis.bubbleCardUpdateUpdate = entity('update.bubble_card_update');
 globalThis.extendedOpenaiConversationUpdateUpdate = entity(
   'update.extended_openai_conversation_update',
 );
-globalThis.bathroomMotionSensorUpdate = entity('update.bathroom_motion_sensor');
-globalThis.hallwayMotionSensorUpdate = entity('update.hallway_motion_sensor');
+globalThis.watchmanUpdateUpdate = entity('update.watchman_update');
+globalThis.autoEntitiesUpdateUpdate = entity('update.auto_entities_update');
+globalThis.nukiBtUpdateUpdate = entity('update.nuki_bt_update');
+globalThis.galleryCardUpdateUpdate = entity('update.gallery_card_update');
+globalThis.spotcastUpdateUpdate = entity('update.spotcast_update');
+globalThis.googleCloudSpeechToTextUpdateUpdate = entity(
+  'update.google_cloud_speech_to_text_update',
+);
+globalThis.genericRemoteControlCardUpdateUpdate = entity(
+  'update.generic_remote_control_card_update',
+);
+globalThis.icsCalendarIcalendarUpdateUpdate = entity(
+  'update.ics_calendar_icalendar_update',
+);
+globalThis.sonosAlarmUpdateUpdate = entity('update.sonos_alarm_update');
+globalThis.yourNameUpdateUpdate = entity('update.your_name_update');
+globalThis.playstationNetworkUpdateUpdate = entity(
+  'update.playstation_network_update',
+);
+globalThis.stateSwitchUpdateUpdate = entity('update.state_switch_update');
+globalThis.configTemplateCardUpdateUpdate = entity(
+  'update.config_template_card_update',
+);
+globalThis.sonosCardUpdateUpdate = entity('update.sonos_card_update');
+globalThis.betterThermostatUiUpdateUpdate = entity(
+  'update.better_thermostat_ui_update',
+);
+globalThis.lovelaceHomeFeedCardUpdateUpdate = entity(
+  'update.lovelace_home_feed_card_update',
+);
+globalThis.pyscriptUpdateUpdate = entity('update.pyscript_update');
+globalThis.nukiLockUpdateUpdate = entity('update.nuki_lock_update');
+globalThis.boilerBoostFirmwareUpdateUpdate = entity(
+  'update.boiler_boost_firmware_update',
+);
+globalThis.livingRoomHeaderByTheTableFirmwareUpdate = entity(
+  'update.living_room_header_by_the_table_firmware',
+);
+globalThis.bookshelfHeaterFirmwareUpdate = entity(
+  'update.bookshelf_heater_firmware',
+);
+globalThis.hallwayHeaterFirmwareUpdate = entity(
+  'update.hallway_heater_firmware',
+);
+globalThis.tvHeaterFirmwareUpdate = entity('update.tv_heater_firmware');
 globalThis.livingRoomSensorFirmwareUpdate = entity(
   'update.living_room_sensor_firmware',
 );
@@ -326,6 +337,5 @@ globalThis.gymSensorFirmwareUpdate = entity('update.gym_sensor_firmware');
 globalThis.bedroomSensorFirmwareUpdate = entity(
   'update.bedroom_sensor_firmware',
 );
-globalThis.livingRoomHeaderByTheTableFirmwareUpdate = entity(
-  'update.living_room_header_by_the_table_firmware',
-);
+globalThis.bathroomMotionSensorUpdate = entity('update.bathroom_motion_sensor');
+globalThis.hallwayMotionSensorUpdate = entity('update.hallway_motion_sensor');

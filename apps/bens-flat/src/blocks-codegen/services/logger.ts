@@ -11,7 +11,7 @@ declare global {
   /**
    * Sets the default log level for integrations.
    */
-  var setDefaultLevelLogger: (params: SetDefaultLevelLoggerProps) => Block;
+  var setDefaultLevelLogger: (params?: SetDefaultLevelLoggerProps) => Block;
 
   /**
    * Sets the log level for one or more integrations.

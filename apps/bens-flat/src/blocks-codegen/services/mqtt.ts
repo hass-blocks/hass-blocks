@@ -27,7 +27,7 @@ declare global {
   /**
    * Publishes a message to an MQTT topic.
    */
-  var publishMqtt: (params?: PublishMqttProps) => Block;
+  var publishMqtt: (params: PublishMqttProps) => Block;
 
   interface DumpMqttProps {
     /**
@@ -43,7 +43,7 @@ declare global {
   /**
    * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
    */
-  var dumpMqtt: (params: DumpMqttProps) => Block;
+  var dumpMqtt: (params?: DumpMqttProps) => Block;
 
   /**
    * Reloads MQTT entities from the YAML-configuration.

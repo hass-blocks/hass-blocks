@@ -22,7 +22,7 @@ declare global {
    */
   var sendMessageNotify: (
     target: IEntity<`notify.${string}`> | IArea,
-    params?: SendMessageNotifyProps,
+    params: SendMessageNotifyProps,
   ) => Block;
 
   interface PersistentNotificationNotifyProps {
@@ -44,7 +44,7 @@ declare global {
    * Sends a notification that is visible in the notifications panel.
    */
   var persistentNotificationNotify: (
-    params?: PersistentNotificationNotifyProps,
+    params: PersistentNotificationNotifyProps,
   ) => Block;
 
   interface EmailNotifyProps {
@@ -57,7 +57,21 @@ declare global {
   /**
    * Sends a notification message using the email service.
    */
-  var emailNotify: (params?: EmailNotifyProps) => Block;
+  var emailNotify: (params: EmailNotifyProps) => Block;
+
+  interface PlaystationNetworkNotifyProps {
+    message: string;
+    title?: string;
+    target?: never;
+    data?: never;
+  }
+
+  /**
+   * Sends a notification message using the playstation_network service.
+   */
+  var playstationNetworkNotify: (
+    params: PlaystationNetworkNotifyProps,
+  ) => Block;
 
   interface MobileAppMumsPhoneNotifyProps {
     message: string;
@@ -70,7 +84,7 @@ declare global {
    * Sends a notification message using the mobile_app_mums_phone integration.
    */
   var mobileAppMumsPhoneNotify: (
-    params?: MobileAppMumsPhoneNotifyProps,
+    params: MobileAppMumsPhoneNotifyProps,
   ) => Block;
 
   interface MobileAppBensImacProNotifyProps {
@@ -84,7 +98,7 @@ declare global {
    * Sends a notification message using the mobile_app_bens_imac_pro integration.
    */
   var mobileAppBensImacProNotify: (
-    params?: MobileAppBensImacProNotifyProps,
+    params: MobileAppBensImacProNotifyProps,
   ) => Block;
 
   interface MobileAppBensIphoneNotifyProps {
@@ -98,7 +112,7 @@ declare global {
    * Sends a notification message using the mobile_app_bens_iphone integration.
    */
   var mobileAppBensIphoneNotify: (
-    params?: MobileAppBensIphoneNotifyProps,
+    params: MobileAppBensIphoneNotifyProps,
   ) => Block;
 
   interface MobileAppBensImacNotifyProps {
@@ -111,7 +125,7 @@ declare global {
   /**
    * Sends a notification message using the mobile_app_bens_imac integration.
    */
-  var mobileAppBensImacNotify: (params?: MobileAppBensImacNotifyProps) => Block;
+  var mobileAppBensImacNotify: (params: MobileAppBensImacNotifyProps) => Block;
 
   interface MobileAppRyansIphoneNotifyProps {
     message: string;
@@ -124,7 +138,7 @@ declare global {
    * Sends a notification message using the mobile_app_ryans_iphone integration.
    */
   var mobileAppRyansIphoneNotify: (
-    params?: MobileAppRyansIphoneNotifyProps,
+    params: MobileAppRyansIphoneNotifyProps,
   ) => Block;
 
   interface MobileAppPixel_6ProNotifyProps {
@@ -138,7 +152,7 @@ declare global {
    * Sends a notification message using the mobile_app_pixel_6_pro integration.
    */
   var mobileAppPixel_6ProNotify: (
-    params?: MobileAppPixel_6ProNotifyProps,
+    params: MobileAppPixel_6ProNotifyProps,
   ) => Block;
 
   interface MobileAppTomSPixel_7NotifyProps {
@@ -152,7 +166,7 @@ declare global {
    * Sends a notification message using the mobile_app_tom_s_pixel_7 integration.
    */
   var mobileAppTomSPixel_7Notify: (
-    params?: MobileAppTomSPixel_7NotifyProps,
+    params: MobileAppTomSPixel_7NotifyProps,
   ) => Block;
 
   interface NotifyNotifyProps {
@@ -165,7 +179,7 @@ declare global {
   /**
    * Sends a notification message using the notify service.
    */
-  var notifyNotify: (params?: NotifyNotifyProps) => Block;
+  var notifyNotify: (params: NotifyNotifyProps) => Block;
 
   interface LgWebosTvOled55c8plaNotifyProps {
     message: string;
@@ -178,21 +192,7 @@ declare global {
    * Sends a notification message using the lg_webos_tv_oled55c8pla service.
    */
   var lgWebosTvOled55c8plaNotify: (
-    params?: LgWebosTvOled55c8plaNotifyProps,
-  ) => Block;
-
-  interface PlaystationNetworkNotifyProps {
-    message: string;
-    title?: string;
-    target?: never;
-    data?: never;
-  }
-
-  /**
-   * Sends a notification message using the playstation_network service.
-   */
-  var playstationNetworkNotify: (
-    params?: PlaystationNetworkNotifyProps,
+    params: LgWebosTvOled55c8plaNotifyProps,
   ) => Block;
 
   interface AlexaMediaBedroomSonosOneNotifyProps {
@@ -206,7 +206,7 @@ declare global {
    * Sends a notification message using the alexa_media_bedroom_sonos_one integration.
    */
   var alexaMediaBedroomSonosOneNotify: (
-    params?: AlexaMediaBedroomSonosOneNotifyProps,
+    params: AlexaMediaBedroomSonosOneNotifyProps,
   ) => Block;
 
   interface AlexaMediaBedroomSpeaker_2NotifyProps {
@@ -220,7 +220,7 @@ declare global {
    * Sends a notification message using the alexa_media_bedroom_speaker_2 integration.
    */
   var alexaMediaBedroomSpeaker_2Notify: (
-    params?: AlexaMediaBedroomSpeaker_2NotifyProps,
+    params: AlexaMediaBedroomSpeaker_2NotifyProps,
   ) => Block;
 
   interface AlexaMediaOffice_2NotifyProps {
@@ -234,7 +234,7 @@ declare global {
    * Sends a notification message using the alexa_media_office_2 integration.
    */
   var alexaMediaOffice_2Notify: (
-    params?: AlexaMediaOffice_2NotifyProps,
+    params: AlexaMediaOffice_2NotifyProps,
   ) => Block;
 
   interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
@@ -248,7 +248,7 @@ declare global {
    * Sends a notification message using the alexa_media_ben_s_2nd_sonos_one_second_edition integration.
    */
   var alexaMediaBenS_2ndSonosOneSecondEditionNotify: (
-    params?: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
+    params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
   ) => Block;
 
   interface AlexaMediaLivingRoomSonosOneNotifyProps {
@@ -262,7 +262,7 @@ declare global {
    * Sends a notification message using the alexa_media_living_room_sonos_one integration.
    */
   var alexaMediaLivingRoomSonosOneNotify: (
-    params?: AlexaMediaLivingRoomSonosOneNotifyProps,
+    params: AlexaMediaLivingRoomSonosOneNotifyProps,
   ) => Block;
 
   interface AlexaMediaLivingRoomNotifyProps {
@@ -276,7 +276,7 @@ declare global {
    * Sends a notification message using the alexa_media_living_room integration.
    */
   var alexaMediaLivingRoomNotify: (
-    params?: AlexaMediaLivingRoomNotifyProps,
+    params: AlexaMediaLivingRoomNotifyProps,
   ) => Block;
 
   interface AlexaMediaSonosArcUltra_2NotifyProps {
@@ -290,7 +290,7 @@ declare global {
    * Sends a notification message using the alexa_media_sonos_arc_ultra_2 integration.
    */
   var alexaMediaSonosArcUltra_2Notify: (
-    params?: AlexaMediaSonosArcUltra_2NotifyProps,
+    params: AlexaMediaSonosArcUltra_2NotifyProps,
   ) => Block;
 
   interface AlexaMediaLivingRoomSonosNotifyProps {
@@ -304,7 +304,7 @@ declare global {
    * Sends a notification message using the alexa_media_living_room_sonos integration.
    */
   var alexaMediaLivingRoomSonosNotify: (
-    params?: AlexaMediaLivingRoomSonosNotifyProps,
+    params: AlexaMediaLivingRoomSonosNotifyProps,
   ) => Block;
 
   interface AlexaMediaThisDevice_2NotifyProps {
@@ -318,7 +318,7 @@ declare global {
    * Sends a notification message using the alexa_media_this_device_2 integration.
    */
   var alexaMediaThisDevice_2Notify: (
-    params?: AlexaMediaThisDevice_2NotifyProps,
+    params: AlexaMediaThisDevice_2NotifyProps,
   ) => Block;
 
   interface AlexaMediaNotifyProps {
@@ -331,9 +331,9 @@ declare global {
   /**
    * Sends a notification message using the alexa_media service.
    */
-  var alexaMediaNotify: (params?: AlexaMediaNotifyProps) => Block;
+  var alexaMediaNotify: (params: AlexaMediaNotifyProps) => Block;
 
-  interface AlexaMediaLastCalledBwainwright28GmailComNotifyProps {
+  interface AlexaMediaLastCalledNotifyProps {
     message: string;
     title?: string;
     target?: never;
@@ -341,10 +341,10 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_last_called_bwainwright28_gmail_com integration.
+   * Sends a notification message using the alexa_media_last_called integration.
    */
-  var alexaMediaLastCalledBwainwright28GmailComNotify: (
-    params?: AlexaMediaLastCalledBwainwright28GmailComNotifyProps,
+  var alexaMediaLastCalledNotify: (
+    params: AlexaMediaLastCalledNotifyProps,
   ) => Block;
 }
 
@@ -375,6 +375,16 @@ globalThis.emailNotify = (params) =>
     params: {
       domain: 'notify',
       service: 'email',
+      service_data: params,
+    },
+  });
+
+globalThis.playstationNetworkNotify = (params) =>
+  serviceCall({
+    name: `Call notify.playstation_network`,
+    params: {
+      domain: 'notify',
+      service: 'playstation_network',
       service_data: params,
     },
   });
@@ -465,16 +475,6 @@ globalThis.lgWebosTvOled55c8plaNotify = (params) =>
     params: {
       domain: 'notify',
       service: 'lg_webos_tv_oled55c8pla',
-      service_data: params,
-    },
-  });
-
-globalThis.playstationNetworkNotify = (params) =>
-  serviceCall({
-    name: `Call notify.playstation_network`,
-    params: {
-      domain: 'notify',
-      service: 'playstation_network',
       service_data: params,
     },
   });
@@ -579,12 +579,12 @@ globalThis.alexaMediaNotify = (params) =>
     },
   });
 
-globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (params) =>
+globalThis.alexaMediaLastCalledNotify = (params) =>
   serviceCall({
-    name: `Call notify.alexa_media_last_called_bwainwright28_gmail_com`,
+    name: `Call notify.alexa_media_last_called`,
     params: {
       domain: 'notify',
-      service: 'alexa_media_last_called_bwainwright28_gmail_com',
+      service: 'alexa_media_last_called',
       service_data: params,
     },
   });

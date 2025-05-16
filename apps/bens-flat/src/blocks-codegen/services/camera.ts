@@ -42,7 +42,7 @@ declare global {
    */
   var snapshotCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params?: SnapshotCameraProps,
+    params: SnapshotCameraProps,
   ) => Block;
 
   interface PlayStreamCameraProps {
@@ -61,7 +61,7 @@ declare global {
    */
   var playStreamCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params?: PlayStreamCameraProps,
+    params: PlayStreamCameraProps,
   ) => Block;
 
   interface RecordCameraProps {
@@ -84,7 +84,7 @@ declare global {
    */
   var recordCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params?: RecordCameraProps,
+    params: RecordCameraProps,
   ) => Block;
 }
 

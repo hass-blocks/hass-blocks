@@ -22,7 +22,7 @@ declare global {
    */
   var triggerNodered: (
     target: IEntity<`switch.${string}`> | IArea,
-    params: TriggerNoderedProps,
+    params?: TriggerNoderedProps,
   ) => Block;
 }
 

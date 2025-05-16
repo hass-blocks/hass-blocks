@@ -18,7 +18,7 @@ declare global {
    */
   var snapshotImage: (
     target: IEntity<`image.${string}`> | IArea,
-    params?: SnapshotImageProps,
+    params: SnapshotImageProps,
   ) => Block;
 }
 

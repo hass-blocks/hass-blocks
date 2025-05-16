@@ -23,7 +23,7 @@ declare global {
    */
   var calibrateUtilityMeter: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params?: CalibrateUtilityMeterProps,
+    params: CalibrateUtilityMeterProps,
   ) => Block;
 }
 

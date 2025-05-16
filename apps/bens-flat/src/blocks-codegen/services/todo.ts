@@ -30,7 +30,7 @@ declare global {
    */
   var addItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params?: AddItemTodoProps,
+    params: AddItemTodoProps,
   ) => Block;
 
   interface UpdateItemTodoProps {
@@ -65,7 +65,7 @@ declare global {
    */
   var updateItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params?: UpdateItemTodoProps,
+    params: UpdateItemTodoProps,
   ) => Block;
 
   interface RemoveItemTodoProps {
@@ -80,7 +80,7 @@ declare global {
    */
   var removeItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params?: RemoveItemTodoProps,
+    params: RemoveItemTodoProps,
   ) => Block;
 
   interface GetItemsTodoProps {
@@ -95,7 +95,7 @@ declare global {
    */
   var getItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params: GetItemsTodoProps,
+    params?: GetItemsTodoProps,
   ) => Block;
 
   /**

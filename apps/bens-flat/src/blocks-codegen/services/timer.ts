@@ -23,7 +23,7 @@ declare global {
    */
   var startTimer: (
     target: IEntity<`timer.${string}`> | IArea,
-    params: StartTimerProps,
+    params?: StartTimerProps,
   ) => Block;
 
   /**
@@ -53,7 +53,7 @@ declare global {
    */
   var changeTimer: (
     target: IEntity<`timer.${string}`> | IArea,
-    params?: ChangeTimerProps,
+    params: ChangeTimerProps,
   ) => Block;
 }
 

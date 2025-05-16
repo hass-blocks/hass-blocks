@@ -18,7 +18,7 @@ declare global {
    */
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params: TriggerAutomationProps,
+    params?: TriggerAutomationProps,
   ) => Block;
 
   /**
@@ -47,7 +47,7 @@ declare global {
    */
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params: TurnOffAutomationProps,
+    params?: TurnOffAutomationProps,
   ) => Block;
 
   /**

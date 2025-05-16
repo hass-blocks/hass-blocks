@@ -23,7 +23,7 @@ declare global {
   /**
    * Downloads a file to the download location.
    */
-  var downloadFileDownloader: (params?: DownloadFileDownloaderProps) => Block;
+  var downloadFileDownloader: (params: DownloadFileDownloaderProps) => Block;
 }
 
 globalThis.downloadFileDownloader = (params) =>

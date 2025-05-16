@@ -15,7 +15,7 @@ declare global {
   /**
    * This service will send operational commands to iCloud3
    */
-  var actionIcloud3: (params?: ActionIcloud3Props) => Block;
+  var actionIcloud3: (params: ActionIcloud3Props) => Block;
 
   /**
    * The Update service has been replaced by the Action service
@@ -37,7 +37,7 @@ declare global {
   /**
    * This service will send an alert tone to the device that you want to find
    */
-  var findIphoneAlertIcloud3: (params?: FindIphoneAlertIcloud3Props) => Block;
+  var findIphoneAlertIcloud3: (params: FindIphoneAlertIcloud3Props) => Block;
 
   interface LostDeviceAlertIcloud3Props {
     /**
@@ -57,7 +57,7 @@ declare global {
   /**
    * This service will send a Message and Phone number to the lost iPhone
    */
-  var lostDeviceAlertIcloud3: (params?: LostDeviceAlertIcloud3Props) => Block;
+  var lostDeviceAlertIcloud3: (params: LostDeviceAlertIcloud3Props) => Block;
 }
 
 globalThis.actionIcloud3 = (params) =>

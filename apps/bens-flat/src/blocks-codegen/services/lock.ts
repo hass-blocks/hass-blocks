@@ -18,7 +18,7 @@ declare global {
    */
   var unlockLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: UnlockLockProps,
+    params?: UnlockLockProps,
   ) => Block;
 
   interface LockLockProps {
@@ -33,7 +33,7 @@ declare global {
    */
   var lockLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: LockLockProps,
+    params?: LockLockProps,
   ) => Block;
 
   interface OpenLockProps {
@@ -48,7 +48,7 @@ declare global {
    */
   var openLock: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: OpenLockProps,
+    params?: OpenLockProps,
   ) => Block;
 }
 

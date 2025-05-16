@@ -20,7 +20,7 @@ declare global {
    * Sends a conversational query to ChatGPT including any attached image or PDF files
    */
   var generateContentOpenaiConversation: (
-    params?: GenerateContentOpenaiConversationProps,
+    params: GenerateContentOpenaiConversationProps,
   ) => Block;
 
   interface GenerateImageOpenaiConversationProps {
@@ -50,7 +50,7 @@ declare global {
    * Turns a prompt into an image
    */
   var generateImageOpenaiConversation: (
-    params?: GenerateImageOpenaiConversationProps,
+    params: GenerateImageOpenaiConversationProps,
   ) => Block;
 }
 

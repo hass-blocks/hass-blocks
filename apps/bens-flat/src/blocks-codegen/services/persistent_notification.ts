@@ -20,7 +20,7 @@ declare global {
    * Shows a notification on the notifications panel.
    */
   var createPersistentNotification: (
-    params?: CreatePersistentNotificationProps,
+    params: CreatePersistentNotificationProps,
   ) => Block;
 
   interface DismissPersistentNotificationProps {
@@ -34,7 +34,7 @@ declare global {
    * Deletes a notification from the notifications panel.
    */
   var dismissPersistentNotification: (
-    params?: DismissPersistentNotificationProps,
+    params: DismissPersistentNotificationProps,
   ) => Block;
 
   /**

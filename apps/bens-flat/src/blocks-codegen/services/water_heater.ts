@@ -32,7 +32,7 @@ declare global {
    */
   var setAwayModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params?: SetAwayModeWaterHeaterProps,
+    params: SetAwayModeWaterHeaterProps,
   ) => Block;
 
   interface SetTemperatureWaterHeaterProps {
@@ -51,7 +51,7 @@ declare global {
    */
   var setTemperatureWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params?: SetTemperatureWaterHeaterProps,
+    params: SetTemperatureWaterHeaterProps,
   ) => Block;
 
   interface SetOperationModeWaterHeaterProps {
@@ -66,7 +66,7 @@ declare global {
    */
   var setOperationModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params?: SetOperationModeWaterHeaterProps,
+    params: SetOperationModeWaterHeaterProps,
   ) => Block;
 }
 

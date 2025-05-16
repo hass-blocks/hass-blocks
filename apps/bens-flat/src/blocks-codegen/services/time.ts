@@ -18,7 +18,7 @@ declare global {
    */
   var setValueTime: (
     target: IEntity<`time.${string}`> | IArea,
-    params?: SetValueTimeProps,
+    params: SetValueTimeProps,
   ) => Block;
 }
 

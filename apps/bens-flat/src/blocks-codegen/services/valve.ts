@@ -28,7 +28,7 @@ declare global {
    */
   var setValvePositionValve: (
     target: IEntity<`valve.${string}`> | IArea,
-    params?: SetValvePositionValveProps,
+    params: SetValvePositionValveProps,
   ) => Block;
 
   /**

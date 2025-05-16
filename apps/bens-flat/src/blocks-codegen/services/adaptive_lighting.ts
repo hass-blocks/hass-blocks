@@ -35,7 +35,7 @@ declare global {
   /**
    * Applies the current Adaptive Lighting settings to lights.
    */
-  var applyAdaptiveLighting: (params: ApplyAdaptiveLightingProps) => Block;
+  var applyAdaptiveLighting: (params?: ApplyAdaptiveLightingProps) => Block;
 
   interface SetManualControlAdaptiveLightingProps {
     /**
@@ -56,7 +56,7 @@ declare global {
    * Mark whether a light is 'manually controlled'.
    */
   var setManualControlAdaptiveLighting: (
-    params: SetManualControlAdaptiveLightingProps,
+    params?: SetManualControlAdaptiveLightingProps,
   ) => Block;
 
   interface ChangeSwitchSettingsAdaptiveLightingProps {
@@ -182,7 +182,7 @@ declare global {
    * Change any settings you'd like in the switch. All options here are the same as in the config flow.
    */
   var changeSwitchSettingsAdaptiveLighting: (
-    params?: ChangeSwitchSettingsAdaptiveLightingProps,
+    params: ChangeSwitchSettingsAdaptiveLightingProps,
   ) => Block;
 }
 

@@ -35,7 +35,7 @@ declare global {
    */
   var setDatetimeInputDatetime: (
     target: IEntity<`input_datetime.${string}`> | IArea,
-    params: SetDatetimeInputDatetimeProps,
+    params?: SetDatetimeInputDatetimeProps,
   ) => Block;
 }
 

@@ -15,7 +15,7 @@ declare global {
   /**
    * Sends a button press command.
    */
-  var buttonWebostv: (params?: ButtonWebostvProps) => Block;
+  var buttonWebostv: (params: ButtonWebostvProps) => Block;
 
   interface CommandWebostvProps {
     /**
@@ -35,7 +35,7 @@ declare global {
   /**
    * Sends a command.
    */
-  var commandWebostv: (params?: CommandWebostvProps) => Block;
+  var commandWebostv: (params: CommandWebostvProps) => Block;
 
   interface SelectSoundOutputWebostvProps {
     /**
@@ -52,7 +52,7 @@ declare global {
    * Sends the TV the command to change sound output.
    */
   var selectSoundOutputWebostv: (
-    params?: SelectSoundOutputWebostvProps,
+    params: SelectSoundOutputWebostvProps,
   ) => Block;
 }
 

@@ -50,7 +50,7 @@ declare global {
    */
   var setFanSpeedVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
-    params?: SetFanSpeedVacuumProps,
+    params: SetFanSpeedVacuumProps,
   ) => Block;
 
   interface SendCommandVacuumProps {
@@ -69,7 +69,7 @@ declare global {
    */
   var sendCommandVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
-    params?: SendCommandVacuumProps,
+    params: SendCommandVacuumProps,
   ) => Block;
 }
 

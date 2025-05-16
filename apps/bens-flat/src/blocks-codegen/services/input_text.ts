@@ -23,7 +23,7 @@ declare global {
    */
   var setValueInputText: (
     target: IEntity<`input_text.${string}`> | IArea,
-    params?: SetValueInputTextProps,
+    params: SetValueInputTextProps,
   ) => Block;
 }
 

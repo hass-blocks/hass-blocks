@@ -15,7 +15,7 @@ declare global {
   /**
    * Gets a list of current torrents
    */
-  var getTorrentsQbittorrent: (params?: GetTorrentsQbittorrentProps) => Block;
+  var getTorrentsQbittorrent: (params: GetTorrentsQbittorrentProps) => Block;
 
   interface GetAllTorrentsQbittorrentProps {
     /**
@@ -28,7 +28,7 @@ declare global {
    * Gets a list of current torrents from all instances of qBittorrent
    */
   var getAllTorrentsQbittorrent: (
-    params?: GetAllTorrentsQbittorrentProps,
+    params: GetAllTorrentsQbittorrentProps,
   ) => Block;
 }
 

@@ -6,7 +6,6 @@
 
 import { Block } from '@hass-blocks/core';
 import { ITarget } from '@hass-blocks/core';
-import { ITrigger } from '@hass-blocks/core';
 
 // @public
 export const closeCover: (target: ITarget) => Block<void, void>;
@@ -38,16 +37,10 @@ export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<
 export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<void, void>;
 
 // @public
-export const stateChanges: (target: ITarget) => ITrigger;
-
-// @public
 export const stateIs: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
 export const stateIsNot: (target: ITarget, state: string) => Block<void, void>;
-
-// @public
-export const stateTurns: (entityId: ITarget, onOrOff: "on" | "off") => ITrigger;
 
 // @public
 export const stopMediaPlayer: (target: ITarget) => Block<void, void>;

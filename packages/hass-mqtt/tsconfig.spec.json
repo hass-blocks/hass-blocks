@@ -2,6 +2,10 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./out-tsc/vitest",
+    "paths": {
+      "@devices": ["./src/lib/devices/index.ts"],
+      "@connection": ["./src/lib/connection/index.ts"]
+    },
     "types": [
       "vitest/globals",
       "vitest/importMeta",

@@ -1,4 +1,4 @@
-import type { MqttConnection } from '../mqtt-connection.ts';
+import type { MqttConnection } from '@connection';
 import { MqttDevice } from './mqtt-device.ts';
 import type { SpecificMqttDeviceConfig } from './specific-mqtt-device-config.ts';
 

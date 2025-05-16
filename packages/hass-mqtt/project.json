@@ -24,7 +24,8 @@
         "mainEntrypointFile": "packages/hass-mqtt/dist/index.d.ts",
         "reportFolder": "packages/hass-mqtt/api",
         "projectFolder": "packages/hass-mqtt",
-        "strictChecks": true
+        "strictChecks": true,
+        "replacePaths": true
       }
     },
     "doc-model": {

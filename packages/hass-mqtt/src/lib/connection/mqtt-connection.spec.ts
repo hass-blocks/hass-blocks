@@ -119,7 +119,7 @@ describe('MQTT connection', () => {
             }
 
             if (name === 'message') {
-              // @ts-expect-error
+              // @ts-expect-error - error
               callback('foo', JSON.stringify(packet, null, 2), mock());
             }
             return mock();
@@ -131,7 +131,7 @@ describe('MQTT connection', () => {
         });
 
         mockMqtt.subscribe.mockImplementation(
-          // @ts-expect-error
+          // @ts-expect-error - error
           (
             topic: string | string[] | ISubscriptionMap,
             callback?: ClientSubscribeCallback,

@@ -1,4 +1,4 @@
-import type { MqttConnection } from '../mqtt-connection.ts';
+import type { MqttConnection } from '@connection';
 
 /**
  * @public

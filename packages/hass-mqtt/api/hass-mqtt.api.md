@@ -7,6 +7,12 @@
 import { IClientOptions } from 'mqtt';
 
 // @public
+export interface IMQTTConnection {
+    publish(topic: string, data: Record<string, unknown> | string): void;
+    subscribe(topic: string, handler: (message: string) => void): void;
+}
+
+// @public
 export class MqttConnection {
     connect(): Promise<void>;
     static create(options: IClientOptions): Promise<MqttConnection>;

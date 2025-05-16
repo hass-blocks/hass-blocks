@@ -3,5 +3,8 @@ export {
   MqttSwitch,
   type MqttDeviceConfig,
   type SpecificMqttDeviceConfig,
-} from './devices/index.ts';
-export { MqttConnection } from './mqtt-connection.ts';
+} from '@devices';
+
+export { MqttConnection } from '@connection';
+
+export type { IMQTTConnection } from '@types';

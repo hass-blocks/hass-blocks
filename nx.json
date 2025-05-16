@@ -73,6 +73,9 @@
     "rollup-api": {
       "dependsOn": ["typecheck"]
     },
+    "typecheck": {
+      "dependsOn": ["^rollup-api"]
+    },
     "test": {
       "dependsOn": ["^build"]
     },

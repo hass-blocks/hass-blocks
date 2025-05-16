@@ -48,7 +48,7 @@ export const buildServiceFunctionParams = (
             undefined,
             undefined,
             factory.createIdentifier('params'),
-            !propsIdentifier.allOptional() || !addTypes
+            propsIdentifier.allOptional() || !addTypes
               ? undefined
               : factory.createToken(SyntaxKind.QuestionToken),
             addTypes

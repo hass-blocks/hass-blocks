@@ -45,7 +45,7 @@ export class MqttConnection {
    * @param topic - The key of the topic to publish to
    * @param data - The data to publish
    */
-  public publish(topic: string, data: Record<string, unknown> | string) {
+  public async publish(topic: string, data: Record<string, unknown> | string) {
     const dataString =
       typeof data !== 'string' ? JSON.stringify(data, null, 2) : data;
     console.log(`${topic} -> ${dataString}`);
@@ -58,7 +58,7 @@ export class MqttConnection {
    * @param topic - The topic to subscribe to
    * @param handler - Will be called when there is a new message on the topic
    */
-  public subscribe(topic: string, handler: (message: string) => void) {
+  public async subscribe(topic: string, handler: (message: string) => void) {
     this.client.subscribe(topic, () => {
       console.log(`Successfully subscribed to ${topic}`);
       this.client.on('message', async (messageTopic, message) => {

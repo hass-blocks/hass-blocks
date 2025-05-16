@@ -8,16 +8,16 @@ import { IClientOptions } from 'mqtt';
 
 // @public
 export interface IMQTTConnection {
-    publish(topic: string, data: Record<string, unknown> | string): void;
-    subscribe(topic: string, handler: (message: string) => void): void;
+    publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
+    subscribe(topic: string, handler: (message: string) => void): Promise<void>;
 }
 
 // @public
 export class MqttConnection {
     connect(): Promise<void>;
     static create(options: IClientOptions): Promise<MqttConnection>;
-    publish(topic: string, data: Record<string, unknown> | string): void;
-    subscribe(topic: string, handler: (message: string) => void): void;
+    publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
+    subscribe(topic: string, handler: (message: string) => void): Promise<void>;
 }
 
 // @public

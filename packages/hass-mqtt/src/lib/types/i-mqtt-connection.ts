@@ -10,7 +10,7 @@ export interface IMQTTConnection {
    * @param topic - The key of the topic to publish to
    * @param data - The data to publish
    */
-  subscribe(topic: string, handler: (message: string) => void): void;
+  subscribe(topic: string, handler: (message: string) => void): Promise<void>;
 
   /**
    *  Subscribe to a specific MQTT topic
@@ -18,5 +18,5 @@ export interface IMQTTConnection {
    * @param topic - The topic to subscribe to
    * @param handler - Will be called when there is a new message on the topic
    */
-  publish(topic: string, data: Record<string, unknown> | string): void;
+  publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
 }

@@ -45,8 +45,8 @@ describe('automation.validate', () => {
     await expect(
       automation.initialise(mockClient, mqtt),
     ).resolves.not.toThrow();
-    expect(mockActionOne.initialise).toHaveBeenCalledWith(mockClient);
-    expect(mockActionTwo.initialise).toHaveBeenCalledWith(mockClient);
+    expect(mockActionOne.initialise).toHaveBeenCalledWith(mockClient, mqtt);
+    expect(mockActionTwo.initialise).toHaveBeenCalledWith(mockClient, mqtt);
   });
 
   it('Rethrows any errors thrown by any of its children', async () => {

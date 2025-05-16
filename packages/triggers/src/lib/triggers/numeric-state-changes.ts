@@ -70,6 +70,8 @@ export type NumericStateChangesProps = {
 } & AboveBelowOptions;
 
 /**
+ * @public
+ *
  * Triggers when the numeric state of an entity changes. See {@link https://www.home-assistant.io/docs/automation/trigger/#numeric-state-trigger}
  *
  * @param props - Configuration options for trigger

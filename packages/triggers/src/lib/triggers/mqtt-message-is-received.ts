@@ -27,6 +27,8 @@ export interface MqttMessageIsReceivedProps {
 }
 
 /**
+ * An automation trigger that fires when an MQTT message is received
+ *
  * @public
  * @param props - configuration options for the trigger
  * Triggered when an MQTT message is received. See {@link https://www.home-assistant.io/docs/automation/trigger/#mqtt-trigger}

@@ -7,9 +7,20 @@ import { removeUndefined } from '@utils';
  * A Home Assistant context
  */
 export interface Context {
+  /**
+   * The user ID that triggered the event
+   */
   user_id?: string | string[];
+
+  /**
+   * The event id
+   */
   id?: string | string[];
-  paarent_id?: string | string[];
+
+  /**
+   * The context parent
+   */
+  parent_id?: string | string[];
 }
 
 /**

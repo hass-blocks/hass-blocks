@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/blocks",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -41,7 +41,7 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/core": "3.13.2",
+    "@hass-blocks/core": "3.14.0",
     "@swc/helpers": "~0.5.11"
   }
 }

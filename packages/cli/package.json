@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/cli",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -40,8 +40,8 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/core": "workspace:3.13.2",
-    "@hass-blocks/hass-ts": "workspace:0.11.0",
+    "@hass-blocks/core": "3.14.0",
+    "@hass-blocks/hass-ts": "0.11.1",
     "@swc/helpers": "~0.5.11",
     "clipanion": "4.0.0-rc.4",
     "flexible-tree-printer": "^1.0.3",

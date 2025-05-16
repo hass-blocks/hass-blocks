@@ -1,3 +1,17 @@
+## 0.11.1 (2025-05-16)
+
+### 🩹 Fixes
+
+- **many:** tweak packages to support codegen ([ef9d3971](https://github.com/hass-blocks/hass-blocks/commit/ef9d3971))
+- **hass-ts:** added remaining tsconfig paths config ([9a124c8c](https://github.com/hass-blocks/hass-blocks/commit/9a124c8c))
+- **hass-ts:** fixed some broken paths ([59de11b0](https://github.com/hass-blocks/hass-blocks/commit/59de11b0))
+- **hass-ts:** correct property on API ([b0e6f57e](https://github.com/hass-blocks/hass-blocks/commit/b0e6f57e))
+- **hass-ts:** correct incorrect typing in client ([c157b417](https://github.com/hass-blocks/hass-blocks/commit/c157b417))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.11.0 (2025-04-28)
 
 ### 🚀 Features

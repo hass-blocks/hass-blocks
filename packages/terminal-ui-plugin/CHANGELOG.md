@@ -1,3 +1,18 @@
+## 0.3.2 (2025-05-16)
+
+### 🩹 Fixes
+
+- **root:** correct build ([262b95d0](https://github.com/hass-blocks/hass-blocks/commit/262b95d0))
+- **ui-plugin:** remove unused import ([c52fc78d](https://github.com/hass-blocks/hass-blocks/commit/c52fc78d))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/core to 3.14.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.0 (2025-05-03)
 
 ### 🚀 Features

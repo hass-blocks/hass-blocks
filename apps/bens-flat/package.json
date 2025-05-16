@@ -1,6 +1,6 @@
 {
   "name": "bens-flat",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -8,8 +8,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@hass-blocks/blocks": "workspace:*",
-    "@hass-blocks/terminal-ui-plugin": "workspace:*",
-    "@hass-blocks/core": "3.13.2"
+    "@hass-blocks/blocks": "0.0.3",
+    "@hass-blocks/terminal-ui-plugin": "0.3.2",
+    "@hass-blocks/core": "3.14.0"
   }
 }

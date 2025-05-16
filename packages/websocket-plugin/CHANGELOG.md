@@ -1,3 +1,9 @@
+## 0.5.1 (2025-05-16)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/core to 3.14.0
+
 ## 0.5.0 (2025-05-03)
 
 ### 🚀 Features

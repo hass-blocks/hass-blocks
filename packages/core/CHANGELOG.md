@@ -1,3 +1,50 @@
+## 3.14.0 (2025-05-16)
+
+### 🚀 Features
+
+- **core:** update core to support specific targets ([11259c4f](https://github.com/hass-blocks/hass-blocks/commit/11259c4f))
+- **core:** add cli ([fe928f0b](https://github.com/hass-blocks/hass-blocks/commit/fe928f0b))
+- **core:** add stuff to nodes ([ea3f10e0](https://github.com/hass-blocks/hass-blocks/commit/ea3f10e0))
+- **core:** add areas to core ([e727c18e](https://github.com/hass-blocks/hass-blocks/commit/e727c18e))
+- **core:** add target checking to all blocks ([af58551f](https://github.com/hass-blocks/hass-blocks/commit/af58551f))
+- **core:** add fixable entities ([1ff26353](https://github.com/hass-blocks/hass-blocks/commit/1ff26353))
+- **core:** fix broken import ([022245a7](https://github.com/hass-blocks/hass-blocks/commit/022245a7))
+- **bens-flat:** change to support entity targets ([4ba2d185](https://github.com/hass-blocks/hass-blocks/commit/4ba2d185))
+- **core:** validate service call targes on iniitialisation ([08c4490b](https://github.com/hass-blocks/hass-blocks/commit/08c4490b))
+- **core:** export framework errors so custom blocks can throw them ([55f64adf](https://github.com/hass-blocks/hass-blocks/commit/55f64adf))
+- **core:** add service-call validation ([a6a829d2](https://github.com/hass-blocks/hass-blocks/commit/a6a829d2))
+
+### 🩹 Fixes
+
+- **all:** type error ([79b6fdf3](https://github.com/hass-blocks/hass-blocks/commit/79b6fdf3))
+- **all:** linting ([ef0c6021](https://github.com/hass-blocks/hass-blocks/commit/ef0c6021))
+- **all:** linting ([3092b42d](https://github.com/hass-blocks/hass-blocks/commit/3092b42d))
+- **core:** rename entity ([85081e4c](https://github.com/hass-blocks/hass-blocks/commit/85081e4c))
+- **core:** corrected type errors ([66dee1e3](https://github.com/hass-blocks/hass-blocks/commit/66dee1e3))
+- **core:** add better logging for missing entity errors ([42b112f1](https://github.com/hass-blocks/hass-blocks/commit/42b112f1))
+- **many:** tweak packages to support codegen ([ef9d3971](https://github.com/hass-blocks/hass-blocks/commit/ef9d3971))
+- **core:** remove the show module from core ([88d551e3](https://github.com/hass-blocks/hass-blocks/commit/88d551e3))
+- **core:** update core to support the api changes in hass-ts ([9ac9fb6b](https://github.com/hass-blocks/hass-blocks/commit/9ac9fb6b))
+- **core:** export trigger from core ([82621282](https://github.com/hass-blocks/hass-blocks/commit/82621282))
+- **core:** allow entity ids that don't have domains ([62646176](https://github.com/hass-blocks/hass-blocks/commit/62646176))
+- **core:** combination was adding empty arrays even for zero ids ([455c9c75](https://github.com/hass-blocks/hass-blocks/commit/455c9c75))
+- **core:** fix circular dependencies ([19109fa3](https://github.com/hass-blocks/hass-blocks/commit/19109fa3))
+- **core:** correct broken import ([58506192](https://github.com/hass-blocks/hass-blocks/commit/58506192))
+- **core:** add triggers to the node graph ([c805f936](https://github.com/hass-blocks/hass-blocks/commit/c805f936))
+- **core:** correct linting error ([399ca1bf](https://github.com/hass-blocks/hass-blocks/commit/399ca1bf))
+- **core:** make targets optional ([795ff806](https://github.com/hass-blocks/hass-blocks/commit/795ff806))
+- **core:** correct missing import ([90ae3189](https://github.com/hass-blocks/hass-blocks/commit/90ae3189))
+- **core:** correctly validate service ([2c3c0f39](https://github.com/hass-blocks/hass-blocks/commit/2c3c0f39))
+- **blocks:** renamed blocks to core ([e41a04f6](https://github.com/hass-blocks/hass-blocks/commit/e41a04f6))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.11.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.13.2 (2025-05-03)
 
 ### 🩹 Fixes

@@ -313,19 +313,19 @@ importers:
   apps/bens-flat:
     dependencies:
       '@hass-blocks/blocks':
-        specifier: workspace:*
+        specifier: 0.0.3
         version: link:../../packages/blocks
       '@hass-blocks/core':
-        specifier: 3.13.2
+        specifier: 3.14.0
         version: link:../../packages/core
       '@hass-blocks/terminal-ui-plugin':
-        specifier: workspace:*
+        specifier: 0.3.2
         version: link:../../packages/terminal-ui-plugin
 
   packages/blocks:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.13.2
+        specifier: 3.14.0
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -334,10 +334,10 @@ importers:
   packages/cli:
     dependencies:
       '@hass-blocks/core':
-        specifier: workspace:3.13.2
+        specifier: 3.14.0
         version: link:../core
       '@hass-blocks/hass-ts':
-        specifier: workspace:0.11.0
+        specifier: 0.11.1
         version: link:../hass-ts
       '@swc/helpers':
         specifier: ~0.5.11
@@ -358,7 +358,7 @@ importers:
   packages/core:
     dependencies:
       '@hass-blocks/hass-ts':
-        specifier: 0.11.0
+        specifier: 0.11.1
         version: link:../hass-ts
       '@swc/helpers':
         specifier: ~0.5.11
@@ -454,7 +454,7 @@ importers:
   packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.13.2
+        specifier: 3.14.0
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -472,10 +472,10 @@ importers:
   packages/triggers:
     dependencies:
       '@hass-blocks/core':
-        specifier: workspace:^
+        specifier: 3.14.0
         version: link:../core
       '@hass-blocks/hass-ts':
-        specifier: workspace:^
+        specifier: 0.11.1
         version: link:../hass-ts
       '@swc/helpers':
         specifier: ~0.5.11
@@ -484,7 +484,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.13.2
+        specifier: 3.14.0
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -8203,6 +8203,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-emoji@2.2.0:
     resolution: {integrity: sha512-Z3lTE9pLaJF47NyMhd4ww1yFTAP8YhYI8SleJiHzM46Fgpm5cnNzSl9XfzFNqbaz+VlJrIj3fXQ4DeN1Rjm6cw==}

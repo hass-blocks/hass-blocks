@@ -9,6 +9,7 @@ import type { Event as Event_2 } from '@hass-blocks/hass-ts';
 import type { HassArea } from '@hass-blocks/hass-ts';
 import type { HassConfig } from '@hass-blocks/hass-ts';
 import { IHomeAssistant } from '@hass-blocks/hass-ts';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
 
@@ -20,6 +21,12 @@ export const area: (id: string) => IArea;
 
 // @public
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
+
+// @public
+export function aSwitch<TId extends `switch.${string}`>(config: SwitchConfig<TId> | SwitchConfigForCreation<TId>): IEntity<TId>;
+
+// @public
+export function aSwitch<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
 
 // @public
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
@@ -44,7 +51,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
     readonly children?: IBlocksNode[] | undefined;
     readonly id: string;
-    initialise(client: IFullBlocksClient): Promise<void>;
+    initialise(client: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
     inputType: I | undefined;
     abstract readonly name: string;
     outputType: O | undefined;
@@ -266,7 +273,7 @@ export interface IBlocksConnection {
 export interface IBlocksNode {
     children?: IBlocksNode[] | undefined;
     id: string;
-    initialise(client: IHass): Promise<void>;
+    initialise(client: IHass, mqtt: IMQTTConnection): Promise<void>;
     name: string;
 }
 
@@ -364,7 +371,7 @@ export interface IPluginArgs {
 
 // @public
 export interface ITarget {
-    initialise(hass: IFullBlocksClient): Promise<void>;
+    initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
     targetIds: ITargetIds;
 }
 
@@ -463,6 +470,19 @@ export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> 
 // @public
 export interface StopOutput {
     continue: false;
+}
+
+// @public
+export interface SwitchConfig<TId extends `switch.${string}`> {
+    create: false;
+    id: TId;
+}
+
+// @public
+export interface SwitchConfigForCreation<TId extends `switch.${string}`> {
+    create: true;
+    friendlyName: string;
+    id: TId;
 }
 
 // @public

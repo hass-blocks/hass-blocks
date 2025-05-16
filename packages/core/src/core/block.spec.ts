@@ -4,6 +4,7 @@ import type { BlockOutput } from '@types';
 import type { IFullBlocksClient } from '@types';
 
 import { Block } from './block.ts';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 describe('block.toJson', () => {
   it('returns a serialised version of the block', () => {
@@ -47,7 +48,8 @@ describe('block.validate', () => {
     const foo = new Foo();
 
     const client = mock<IFullBlocksClient>();
+    const mqtt = mock<IMQTTConnection>();
 
-    await expect(foo.initialise(client)).resolves.not.toThrow();
+    await expect(foo.initialise(client, mqtt)).resolves.not.toThrow();
   });
 });

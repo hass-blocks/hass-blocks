@@ -7,6 +7,7 @@ import { ExecutionAbortedError } from '@errors';
 
 import type { Action } from './action.ts';
 import { Automation } from './automation.ts';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 vi.mock('@core', async (importOriginal) => {
   return {
@@ -25,6 +26,7 @@ describe('automation.validate', () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
     const mockClient = mock<IFullBlocksClient>();
+    const mqtt = mock<IMQTTConnection>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -40,7 +42,9 @@ describe('automation.validate', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(automation.initialise(mockClient)).resolves.not.toThrow();
+    await expect(
+      automation.initialise(mockClient, mqtt),
+    ).resolves.not.toThrow();
     expect(mockActionOne.initialise).toHaveBeenCalledWith(mockClient);
     expect(mockActionTwo.initialise).toHaveBeenCalledWith(mockClient);
   });
@@ -50,6 +54,7 @@ describe('automation.validate', () => {
     const mockActionTwo = mock<Action<string, string>>();
 
     const mockClient = mock<IFullBlocksClient>();
+    const mqtt = mock<IMQTTConnection>();
 
     const then = [mockActionOne, mockActionTwo] as const;
 
@@ -67,7 +72,9 @@ describe('automation.validate', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(automation.initialise(mockClient)).rejects.toThrow(error);
+    await expect(automation.initialise(mockClient, mqtt)).rejects.toThrow(
+      error,
+    );
   });
 });
 

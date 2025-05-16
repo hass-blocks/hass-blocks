@@ -5,6 +5,7 @@ import type { Block } from './block.ts';
 
 import type { IEventBus, IFullBlocksClient, ITrigger, ITarget } from '@types';
 import { mapAsync, md5 } from '@utils';
+import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -45,8 +46,10 @@ export class Trigger implements ITrigger {
     this.trigger = config.trigger;
   }
 
-  public async initialise(hass: IFullBlocksClient) {
-    await mapAsync(this.config.targets, (target) => target.initialise(hass));
+  public async initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection) {
+    await mapAsync(this.config.targets, (target) =>
+      target.initialise(hass, mqtt),
+    );
   }
 
   public async attachToClient(

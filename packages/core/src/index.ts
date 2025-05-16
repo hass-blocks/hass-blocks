@@ -11,7 +11,14 @@ export { initialiseBlocks, type IBlocksConfig } from '@client';
 export { ExecutionAbortedError, HassBlocksError } from '@errors';
 
 export { Block, type ITriggerConfig, trigger } from '@core';
-export { area, entity, combine } from '@targets';
+export {
+  area,
+  entity,
+  combine,
+  aSwitch,
+  type SwitchConfig,
+  type SwitchConfigForCreation,
+} from '@targets';
 
 export type {
   IBlocksNode,

@@ -23,12 +23,6 @@ export const area: (id: string) => IArea;
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
 
 // @public
-export function aSwitch<TId extends `switch.${string}`>(config: SwitchConfig<TId> | SwitchConfigForCreation<TId>): IEntity<TId>;
-
-// @public
-export function aSwitch<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
-
-// @public
 export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
 
 // @public
@@ -484,6 +478,12 @@ export interface SwitchConfigForCreation<TId extends `switch.${string}`> {
     friendlyName: string;
     id: TId;
 }
+
+// @public
+export function toggle<TId extends `switch.${string}`>(config: SwitchConfig<TId> | SwitchConfigForCreation<TId>): IEntity<TId>;
+
+// @public
+export function toggle<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
 
 // @public
 export const trigger: (config: ITriggerConfig) => ITrigger;

@@ -1,12 +1,30 @@
-import { combine, aSwitch } from '@hass-blocks/core';
+import '@blocks-codegen';
 
-export const livingRoomMotionSensor = aSwitch({
+import { combine, toggle } from '@hass-blocks/core';
+
+export const livingRoomMotionLights = toggle({
   create: true,
-  id: 'switch.livingroom_motion_sensor',
-  friendlyName: 'Living Room Motion Sensor',
+  id: 'switch.living_room_motion_lights',
+  friendlyName: 'Living Room Motion Lights',
 });
 
-import '@blocks-codegen';
+export const bathroomMotionLights = toggle({
+  create: true,
+  id: 'switch.bathroom_motion_lights',
+  friendlyName: 'Bathroom Motion Lights',
+});
+
+export const hallwayMotionLights = toggle({
+  create: true,
+  id: 'switch.hallway_motion_lights',
+  friendlyName: 'Bathroom Motion Lights',
+});
+
+export const bedroomMotionLights = toggle({
+  create: true,
+  id: 'switch.bedroom_motion_lights',
+  friendlyName: 'Bedroom Motion Lights',
+});
 
 export const allLights = combine(
   hallwayLight,

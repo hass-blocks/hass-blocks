@@ -49,7 +49,7 @@ describe('MQTT connection', () => {
       when<ConnectFunc>(connect).calledWith(config).thenReturn(mockMqtt);
 
       // No assertion because this is mostly just testing the promise resolves
-      await MqttConnection.create(config);
+      await MqttConnection.create(config, mock());
     });
   });
 
@@ -84,7 +84,7 @@ describe('MQTT connection', () => {
 
       when<ConnectFunc>(connect).calledWith(config).thenReturn(mockMqtt);
 
-      const client = await MqttConnection.create(config);
+      const client = await MqttConnection.create(config, mock());
 
       client.publish('foo', { baz: 'bop' });
 
@@ -148,7 +148,7 @@ describe('MQTT connection', () => {
 
         when<ConnectFunc>(connect).calledWith(config).thenReturn(mockMqtt);
 
-        const client = await MqttConnection.create(config);
+        const client = await MqttConnection.create(config, mock());
 
         const mockHandler = vi.fn();
 

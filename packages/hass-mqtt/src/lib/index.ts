@@ -7,4 +7,4 @@ export {
 
 export { MqttConnection } from '@connection';
 
-export type { IMQTTConnection } from '@types';
+export type { IMQTTConnection, ILogger } from '@types';

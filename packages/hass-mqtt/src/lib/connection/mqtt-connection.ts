@@ -1,3 +1,4 @@
+import { ILogger } from '@types';
 import mqtt, { type IClientOptions, type MqttClient } from 'mqtt';
 
 /**
@@ -8,14 +9,17 @@ import mqtt, { type IClientOptions, type MqttClient } from 'mqtt';
 export class MqttConnection {
   private _client: MqttClient | undefined;
 
-  private constructor(private options: IClientOptions) {}
+  private constructor(
+    private options: IClientOptions,
+    private logger: ILogger,
+  ) {}
 
   private get client(): MqttClient {
     if (!this._client) {
       this._client = mqtt.connect(this.options);
 
       this.client.on('error', (message) => {
-        console.log(message);
+        this.logger.error(message.message);
       });
     }
     return this._client;
@@ -48,7 +52,7 @@ export class MqttConnection {
   public async publish(topic: string, data: Record<string, unknown> | string) {
     const dataString =
       typeof data !== 'string' ? JSON.stringify(data, null, 2) : data;
-    console.log(`${topic} -> ${dataString}`);
+    this.logger.trace(`${topic} -> ${dataString}`);
     this.client.publish(topic, dataString);
   }
 
@@ -60,7 +64,7 @@ export class MqttConnection {
    */
   public async subscribe(topic: string, handler: (message: string) => void) {
     this.client.subscribe(topic, () => {
-      console.log(`Successfully subscribed to ${topic}`);
+      this.logger.info(`Successfully subscribed to ${topic}`);
       this.client.on('message', async (messageTopic, message) => {
         if (messageTopic === topic) {
           handler(message.toString());
@@ -75,8 +79,8 @@ export class MqttConnection {
    * @param options - Options for the MQTT client
    * @returns
    */
-  public static async create(options: IClientOptions) {
-    const connection = new MqttConnection(options);
+  public static async create(options: IClientOptions, logger: ILogger) {
+    const connection = new MqttConnection(options, logger);
     await connection.connect();
     return connection;
   }

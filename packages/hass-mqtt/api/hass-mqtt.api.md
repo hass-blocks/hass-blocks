@@ -7,6 +7,16 @@
 import { IClientOptions } from 'mqtt';
 
 // @public
+export interface ILogger {
+    debug(message: string): void;
+    error(message: string): void;
+    fatal: (message: string) => void;
+    info(message: string): void;
+    trace(message: string): void;
+    warn(message: string): void;
+}
+
+// @public
 export interface IMQTTConnection {
     publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
     subscribe(topic: string, handler: (message: string) => void): Promise<void>;
@@ -15,7 +25,7 @@ export interface IMQTTConnection {
 // @public
 export class MqttConnection {
     connect(): Promise<void>;
-    static create(options: IClientOptions): Promise<MqttConnection>;
+    static create(options: IClientOptions, logger: ILogger): Promise<MqttConnection>;
     publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
     subscribe(topic: string, handler: (message: string) => void): Promise<void>;
 }

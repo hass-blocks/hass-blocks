@@ -88,7 +88,7 @@ export class Switch<TId extends `switch.${string}`> extends Entity<TId> {
  *
  * @param config - switch config
  */
-export function aSwitch<TId extends `switch.${string}`>(
+export function toggle<TId extends `switch.${string}`>(
   config: SwitchConfig<TId> | SwitchConfigForCreation<TId>,
 ): IEntity<TId>;
 /**
@@ -98,7 +98,7 @@ export function aSwitch<TId extends `switch.${string}`>(
  *
  * @param id - An entity id
  */
-export function aSwitch<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
+export function toggle<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
 
 /**
  * @public
@@ -107,7 +107,7 @@ export function aSwitch<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
  *
  * @param config - either an entity id or an object
  */
-export function aSwitch<TId extends `switch.${string}`>(
+export function toggle<TId extends `switch.${string}`>(
   id: TId | SwitchConfig<TId> | SwitchConfigForCreation<TId>,
 ) {
   return new Switch<TId>(typeof id === 'string' ? { id, create: false } : id);

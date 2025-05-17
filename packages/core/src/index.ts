@@ -15,7 +15,7 @@ export {
   area,
   entity,
   combine,
-  aSwitch,
+  toggle,
   type SwitchConfig,
   type SwitchConfigForCreation,
 } from '@targets';

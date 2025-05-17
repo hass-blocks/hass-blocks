@@ -1,5 +1,6 @@
 import { HassBlocksError } from '@errors';
 import { type IMQTTConnection, MqttConnection } from '@hass-blocks/hass-mqtt';
+import { ILogger } from '@types';
 
 interface LazyMqttOptions {
   host: string | undefined;
@@ -11,7 +12,10 @@ interface LazyMqttOptions {
 export class LazyMqtt implements IMQTTConnection {
   private theConnection: MqttConnection | undefined;
 
-  public constructor(private config: LazyMqttOptions) {}
+  public constructor(
+    private config: LazyMqttOptions,
+    private logger: ILogger,
+  ) {}
 
   private async initialisedConnection(): Promise<MqttConnection> {
     if (!this.theConnection) {
@@ -21,12 +25,15 @@ export class LazyMqtt implements IMQTTConnection {
           `Could not load MQTT client - missing credentials`,
         );
       }
-      this.theConnection = await MqttConnection.create({
-        host,
-        port,
-        username,
-        password,
-      });
+      this.theConnection = await MqttConnection.create(
+        {
+          host,
+          port,
+          username,
+          password,
+        },
+        this.logger,
+      );
     }
     return this.theConnection;
   }

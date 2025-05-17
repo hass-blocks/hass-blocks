@@ -74,12 +74,15 @@ export const initialiseBlocks = async (
   const config = getConfig();
   const hassClient = client ?? (await initialiseHass(config));
 
-  const mqtt = new LazyMqtt({
-    username: config.mqttUsername,
-    password: config.mqttPassword,
-    host: config.mqttHost,
-    port: config.mqttPort,
-  });
+  const mqtt = new LazyMqtt(
+    {
+      username: config.mqttUsername,
+      password: config.mqttPassword,
+      host: config.mqttHost,
+      port: config.mqttPort,
+    },
+    theLogger,
+  );
 
   const blocks = new BlocksClient(hassClient, bus, mqtt);
 

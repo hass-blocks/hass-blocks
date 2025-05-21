@@ -2,6 +2,13 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "outDir": "./out-tsc/vitest",
+    "paths": {
+      "@actions": ["src/lib/actions/index.ts"],
+      "@assertions": ["src/lib/assertions/index.ts"],
+      "@triggers": ["src/lib/triggers/index.ts"],
+      "@utils": ["src/lib/utils/index.ts"]
+    },
+    "baseUrl": ".",
     "types": [
       "vitest/globals",
       "vitest/importMeta",

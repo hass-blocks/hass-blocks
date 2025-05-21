@@ -324,6 +324,9 @@ importers:
       '@hass-blocks/terminal-ui-plugin':
         specifier: 0.3.2
         version: link:../../packages/terminal-ui-plugin
+      '@hass-blocks/triggers':
+        specifier: workspace:^
+        version: link:../../packages/triggers
 
   packages/blocks:
     dependencies:

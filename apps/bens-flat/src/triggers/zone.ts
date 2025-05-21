@@ -1,4 +1,5 @@
 import { trigger } from '@hass-blocks/core';
+import '@blocks-codegen';
 
 export const homeBecomesEmpty = trigger({
   name: 'Home has no occupants',

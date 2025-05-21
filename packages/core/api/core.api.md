@@ -9,7 +9,7 @@ import type { Event as Event_2 } from '@hass-blocks/hass-ts';
 import type { HassArea } from '@hass-blocks/hass-ts';
 import type { HassConfig } from '@hass-blocks/hass-ts';
 import { IHomeAssistant } from '@hass-blocks/hass-ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
 

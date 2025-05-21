@@ -15,7 +15,6 @@
     "jsx": "react-jsx",
     "strict": true,
     "target": "es2022",
-    "customConditions": ["development"],
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,

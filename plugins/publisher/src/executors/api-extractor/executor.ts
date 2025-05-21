@@ -10,7 +10,7 @@ const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
 
   logger.info(`Starting API extractor...`);
 
-  const result = apiExtractor({
+  const result = await apiExtractor({
     workspaceRoot: root,
     outputDir: options.reportFolder,
     dtsRollup: true,

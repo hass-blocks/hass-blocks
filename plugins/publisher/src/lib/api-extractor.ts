@@ -9,6 +9,7 @@ import { workspaceRoot } from '@nx/devkit';
 import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
+import { readFile } from 'node:fs/promises';
 
 interface ApiExractorArgs {
   workspaceRoot: string;
@@ -21,7 +22,7 @@ interface ApiExractorArgs {
   replacePaths?: boolean;
 }
 
-export const apiExtractor = (options: ApiExractorArgs) => {
+export const apiExtractor = async (options: ApiExractorArgs) => {
   createDirIfNotExists(options.outputDir);
 
   const packageName = basename(options.projectFolder);
@@ -43,6 +44,13 @@ export const apiExtractor = (options: ApiExractorArgs) => {
   const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
+
+  const tsConfig = JSON.parse(await readFile(tsconfigFilePath, 'utf8'));
+
+  const modifiedTsConfig = {
+    ...tsConfig,
+    compilerOptions: { ...tsConfig.compilerOptions, customConditions: [] },
+  };
 
   if (options.replacePaths) {
     tsconfigReplacePaths({
@@ -95,7 +103,7 @@ export const apiExtractor = (options: ApiExractorArgs) => {
     packageJsonFullPath,
     configObject: {
       compiler: {
-        tsconfigFilePath,
+        overrideTsconfig: modifiedTsConfig,
       },
       mainEntryPointFilePath: options.mainEntrypointFile,
       projectFolder: workspaceRoot,

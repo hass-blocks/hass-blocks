@@ -1,9 +1,9 @@
 {
   "executors": {
-    "api-extractor": {
-      "implementation": "./dist/executors/api-extractor/executor",
-      "schema": "./dist/executors/api-extractor/schema.json",
-      "description": "api-extractor executor"
+    "generate-types": {
+      "implementation": "./dist/executors/generate-types/executor",
+      "schema": "./dist/executors/generate-types/schema.json",
+      "description": "Generate types executor"
     },
     "doc-model": {
       "implementation": "./dist/executors/doc-model/executor",

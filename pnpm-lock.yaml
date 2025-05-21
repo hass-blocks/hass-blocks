@@ -406,6 +406,9 @@ importers:
 
   packages/hass-ts:
     dependencies:
+      '@hass-blocks/local-hass':
+        specifier: 0.1.1
+        version: link:../local-hass
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -416,9 +419,6 @@ importers:
         specifier: 8.18.1
         version: 8.18.1
     devDependencies:
-      '@hass-blocks/local-hass':
-        specifier: 0.1.1
-        version: link:../local-hass
       '@types/ws':
         specifier: 8.18.1
         version: 8.18.1

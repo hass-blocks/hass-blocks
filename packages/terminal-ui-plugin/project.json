@@ -16,14 +16,11 @@
         "stripLeadingPaths": true
       }
     },
-    "rollup-api": {
-      "executor": "@hass-blocks/publisher:api-extractor",
+    "generate-types": {
+      "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/terminal-ui-plugin/dist/index.d.ts",
-        "reportFolder": "packages/terminal-ui-plugin/api",
-        "projectFolder": "packages/terminal-ui-plugin",
-        "strictChecks": true
+        "projectFolder": "packages/terminal-ui-plugin"
       }
     },
     "doc-model": {

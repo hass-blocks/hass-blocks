@@ -16,15 +16,11 @@
         "stripLeadingPaths": true
       }
     },
-    "rollup-api": {
-      "executor": "@hass-blocks/publisher:api-extractor",
+    "generate-types": {
+      "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/hass-mqtt/dist/index.d.ts",
-        "reportFolder": "packages/hass-mqtt/api",
-        "projectFolder": "packages/hass-mqtt",
-        "strictChecks": true,
-        "replacePaths": true
+        "projectFolder": "packages/hass-mqtt"
       }
     },
     "doc-model": {

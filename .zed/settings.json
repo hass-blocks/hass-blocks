@@ -7,6 +7,13 @@
     "vtsls": {
       "settings": {
         "typescript": {
+          "preferGoToSourceDefinition": true,
+          "updateImportsOnFileMove": {
+            "enabled": "always"
+          },
+          "preferences": {
+            "preferTypeOnlyAutoImports": true
+          },
           "tsserver": {
             "experimental": {
               "enableProjectDiagnostics": true

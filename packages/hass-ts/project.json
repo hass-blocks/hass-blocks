@@ -16,15 +16,12 @@
         "stripLeadingPaths": true
       }
     },
-    "rollup-api": {
+    "generate-types": {
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/hass-ts/dist/index.d.ts",
-        "reportFolder": "packages/hass-ts/api",
         "strictChecks": false,
-        "projectFolder": "packages/hass-ts",
-        "replacePaths": true
+        "projectFolder": "packages/hass-ts"
       }
     },
     "doc-model": {

@@ -1,20 +1,21 @@
 import { type PromiseExecutor, logger } from '@nx/devkit';
-import type { ApiExtractorExecutorSchema } from './schema.ts';
-import { apiExtractor } from '../../lib/api-extractor.ts';
+import type { GenerateTypesExecutorSchema } from './schema.ts';
+import { generateTypes } from '../../lib/generate-types.ts';
 
-const runExecutor: PromiseExecutor<ApiExtractorExecutorSchema> = async (
+const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
   options,
   context,
 ) => {
   const { root } = context;
 
-  logger.info(`Starting API extractor...`);
+  logger.info(`Generating types for ${context.projectName}`);
 
-  const result = await apiExtractor({
+  const result = await generateTypes({
     workspaceRoot: root,
-    outputDir: options.reportFolder,
     dtsRollup: true,
     ...options,
+    strictChecks: options.strictChecks ?? true,
+    replacePaths: options.replacePaths ?? true,
   });
 
   if (

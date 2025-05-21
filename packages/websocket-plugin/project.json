@@ -16,13 +16,10 @@
         "stripLeadingPaths": true
       }
     },
-    "rollup-api": {
+    "generate-types": {
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "strictChecks": true,
-        "mainEntrypointFile": "packages/websocket-plugin/dist/index.d.ts",
-        "reportFolder": "packages/websocket-plugin/api",
         "projectFolder": "packages/websocket-plugin"
       }
     },

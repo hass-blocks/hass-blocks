@@ -1,3 +1,4 @@
+import { logger } from '@nx/devkit';
 import {
   Extractor,
   ExtractorConfig,
@@ -12,25 +13,32 @@ import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 import { readFile } from 'node:fs/promises';
 
-interface ApiExractorArgs {
+interface GenerateTypesArgs {
   workspaceRoot: string;
   projectFolder: string;
-  mainEntrypointFile: string;
-  outputDir: string;
   docModel?: boolean;
   dtsRollup?: boolean;
   strictChecks?: boolean;
   replacePaths?: boolean;
 }
 
-export const apiExtractor = async (options: ApiExractorArgs) => {
-  createDirIfNotExists(options.outputDir);
+export const generateTypes = async (options: GenerateTypesArgs) => {
+  const projectRoot = join(workspaceRoot, options.projectFolder);
+  const apiFolder = join(projectRoot, 'api');
+  process.chdir(projectRoot);
+  const packageJsonFullPath = join(projectRoot, `package.json`);
+  const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
+  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
+  const srcDir = join(projectRoot, `src`);
+  const distDir = join(projectRoot, `dist`);
+
+  createDirIfNotExists(apiFolder);
 
   const packageName = basename(options.projectFolder);
 
   const docModel: IConfigFile['docModel'] = {
     enabled: true,
-    apiJsonFilePath: `${options.outputDir}/${packageName}.api.json`,
+    apiJsonFilePath: join(apiFolder, `${packageName}.api.json`),
   };
 
   const withDocModel = options.docModel
@@ -39,14 +47,7 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
       }
     : {};
 
-  const projectRoot = join(workspaceRoot, options.projectFolder);
-  process.chdir(projectRoot);
-  const packageJsonFullPath = join(projectRoot, `package.json`);
-  const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
-  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
-  const srcDir = join(projectRoot, `src`);
-  const distDir = join(projectRoot, `dist`);
-
+  logger.info('Starting Typescript Compile');
   tsc.build({
     configFilePath: tsconfigFilePath,
     basePath: projectRoot,
@@ -58,15 +59,12 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
 
   const tsConfig = JSON.parse(await readFile(tsconfigFilePath, 'utf8'));
 
-  const removeCommonPart = (first: string, second: string) => {
-    return first.split(second)[first.split(second).length - 1] ?? '';
-  };
-
   const modifiedTsConfig = {
     ...tsConfig,
     compilerOptions: { ...tsConfig.compilerOptions, customConditions: [] },
   };
 
+  logger.info('Replacing paths');
   if (options.replacePaths) {
     tsconfigReplacePaths({
       project: tsconfigFilePath,
@@ -120,20 +118,17 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
       compiler: {
         overrideTsconfig: modifiedTsConfig,
       },
-      mainEntryPointFilePath: `.${removeCommonPart(
-        options.mainEntrypointFile,
-        options.projectFolder,
-      )}`,
+      mainEntryPointFilePath: `./dist/index.d.ts`,
       projectFolder: projectRoot,
 
       apiReport: {
         enabled: true,
-        reportFolder: `./${removeCommonPart(options.outputDir, options.projectFolder)}`,
+        reportFolder: `./api`,
         reportTempFolder: join(
           projectRoot,
           `.api-extractor`,
           `temp`,
-          options.outputDir,
+          options.projectFolder,
         ),
       },
       ...withStrictChecks,
@@ -144,6 +139,7 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
 
   const config = ExtractorConfig.prepare(prepareOptions);
 
+  logger.info('Generating DTS Rollup');
   return Extractor.invoke(config, {
     localBuild: true,
     showVerboseMessages: true,

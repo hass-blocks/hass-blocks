@@ -27,7 +27,6 @@ export type HassEventBase = {
  */
 export type HassEvent = HassEventBase & {
   event_type: string;
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   data: { [key: string]: any };
 };
 

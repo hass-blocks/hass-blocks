@@ -14,14 +14,14 @@ export const Automation = ({ automation, events }: AutomationProps) => {
   );
   const lastEvent = sortedEvents[sortedEvents.length - 1];
   return (
-    <Box paddingX={2} flexDirection="column">
+    <Box paddingX={2} flexDirection="column" borderStyle="single" width={50}>
       <Box flexDirection="row">
         <Text bold color="green">
           {automation.name}
         </Text>
       </Box>
       <Box flexDirection="row">
-        {lastEvent && <ExecutionLine event={lastEvent} />}
+        {lastEvent ? <ExecutionLine event={lastEvent} /> : <Text>Idle</Text>}
       </Box>
     </Box>
   );

@@ -40,7 +40,7 @@ export const AutomationList = ({ hass, bus }: AutomationListProps) => {
   }, []);
 
   return (
-    <Box flexDirection="column" gap={1}>
+    <Box flexDirection="column" gap={1} padding={2} flexWrap="wrap" height={40}>
       {automations.map((automation) => (
         <Automation
           key={`automation-box-${automation.id}`}

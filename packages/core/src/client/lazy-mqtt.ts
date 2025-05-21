@@ -1,6 +1,6 @@
 import { HassBlocksError } from '@errors';
 import { type IMQTTConnection, MqttConnection } from '@hass-blocks/hass-mqtt';
-import { ILogger } from '@types';
+import type { ILogger } from '@types';
 
 interface LazyMqttOptions {
   host: string | undefined;

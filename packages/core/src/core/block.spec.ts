@@ -4,7 +4,7 @@ import type { BlockOutput } from '@types';
 import type { IFullBlocksClient } from '@types';
 
 import { Block } from './block.ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 describe('block.toJson', () => {
   it('returns a serialised version of the block', () => {

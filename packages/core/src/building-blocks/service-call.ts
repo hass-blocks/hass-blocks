@@ -5,7 +5,7 @@ import { BlockValidationError } from '@errors';
 import type { Block } from '@core';
 
 import { Action } from './action.ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ServiceCall<P> extends Action {
   public override typeString = 'service-call';

@@ -3,7 +3,7 @@ import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
 import type { GetOutputs } from './valid-input-output-sequence.ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],

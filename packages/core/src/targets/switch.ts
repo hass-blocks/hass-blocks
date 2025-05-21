@@ -1,6 +1,6 @@
-import { IFullBlocksClient, IEntity } from '@types';
+import type { IFullBlocksClient, IEntity } from '@types';
 import { Entity } from './entity.ts';
-import { IMQTTConnection, MqttSwitch } from '@hass-blocks/hass-mqtt';
+import { type IMQTTConnection, MqttSwitch } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public

@@ -1,7 +1,7 @@
 import { AssertionError } from '../errors/assertion-error.ts';
 import type { ITargetIds } from './i-target-ids.ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public

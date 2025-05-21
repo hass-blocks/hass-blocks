@@ -1,4 +1,4 @@
-import { IEntity, ITrigger, trigger } from '@hass-blocks/core';
+import { type IEntity, type ITrigger, trigger } from '@hass-blocks/core';
 import { removeUndefined } from '@utils';
 
 /**

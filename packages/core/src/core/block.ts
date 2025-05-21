@@ -11,7 +11,7 @@ import type {
 
 import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public

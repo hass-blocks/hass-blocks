@@ -1,7 +1,7 @@
 import type { IEntity, IFullBlocksClient } from '@types';
 
 import { EntityDoesNotExistError } from '@errors';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public

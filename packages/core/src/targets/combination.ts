@@ -1,4 +1,4 @@
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type {
   IFullBlocksClient,
   ITargetIds,

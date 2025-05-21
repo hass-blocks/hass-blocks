@@ -7,7 +7,7 @@ import { ExecutionAbortedError } from '@errors';
 
 import type { Action } from './action.ts';
 import { Automation } from './automation.ts';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 vi.mock('@core', async (importOriginal) => {
   return {

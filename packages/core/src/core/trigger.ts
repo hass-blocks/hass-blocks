@@ -5,7 +5,7 @@ import type { Block } from './block.ts';
 
 import type { IEventBus, IFullBlocksClient, ITrigger, ITarget } from '@types';
 import { mapAsync, md5 } from '@utils';
-import { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public

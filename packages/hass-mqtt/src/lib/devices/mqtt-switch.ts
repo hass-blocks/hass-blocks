@@ -1,6 +1,6 @@
 import { MqttDevice } from './mqtt-device.ts';
 import type { SpecificMqttDeviceConfig } from './specific-mqtt-device-config.ts';
-import { IMQTTConnection } from '@types';
+import type { IMQTTConnection } from '@types';
 
 /**
  * @public

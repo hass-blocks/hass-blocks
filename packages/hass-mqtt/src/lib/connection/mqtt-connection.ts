@@ -1,4 +1,4 @@
-import { ILogger } from '@types';
+import type { ILogger } from '@types';
 import mqtt, { type IClientOptions, type MqttClient } from 'mqtt';
 
 /**

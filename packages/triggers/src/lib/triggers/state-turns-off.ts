@@ -1,4 +1,4 @@
-import { IEntity } from '@hass-blocks/core';
+import type { IEntity } from '@hass-blocks/core';
 import { stateChanges } from './state-changes.ts';
 
 /**

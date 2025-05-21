@@ -67,8 +67,8 @@
     }
   },
   "targetDefaults": {
-    "rollup-api": {
-      "dependsOn": ["^rollup-api"]
+    "generate-types": {
+      "dependsOn": ["^generate-types"]
     },
     "test": {
       "dependsOn": ["^build"]

@@ -17,7 +17,7 @@
       }
     },
     "generate-types": {
-      "executor": "@hass-blocks/publisher:api-extractor",
+      "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
         "projectFolder": "packages/websocket-plugin"

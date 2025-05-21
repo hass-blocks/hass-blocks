@@ -16,7 +16,11 @@
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
-  "references": [],
+  "references": [
+    {
+      "path": "../../packages/core"
+    }
+  ],
   "exclude": [
     "dist/**",
     "vite.config.ts",

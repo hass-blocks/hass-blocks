@@ -67,7 +67,7 @@
     }
   },
   "targetDefaults": {
-    "typecheck": {
+    "rollup-api": {
       "dependsOn": ["^rollup-api"]
     },
     "test": {

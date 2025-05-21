@@ -1,5 +1,4 @@
-import type { IBlock, IEventBus } from '@hass-blocks/core';
-import type { IFullBlocksClient } from '@hass-blocks/core';
+import type { IBlock, IEventBus, IFullBlocksClient } from '@hass-blocks/core';
 import { useEffect, useState } from 'react';
 import { Automation } from '../automation/automation.tsx';
 import type { LifeCycleEvent } from '../../types/index.ts';

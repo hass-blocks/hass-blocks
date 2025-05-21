@@ -21,7 +21,11 @@
     "types": ["node"]
   },
   "include": ["src/**/*.ts"],
-  "references": [],
+  "references": [
+    {
+      "path": "../../packages/local-hass"
+    }
+  ],
   "exclude": [
     "dist",
     "vite.config.ts",

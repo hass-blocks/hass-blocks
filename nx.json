@@ -17,9 +17,6 @@
     {
       "plugin": "@nx/js/typescript",
       "options": {
-        "typecheck": {
-          "targetName": "typecheck"
-        },
         "build": {
           "targetName": "build",
           "configName": "tsconfig.lib.json",
@@ -70,9 +67,6 @@
     }
   },
   "targetDefaults": {
-    "rollup-api": {
-      "dependsOn": ["typecheck"]
-    },
     "typecheck": {
       "dependsOn": ["^rollup-api"]
     },

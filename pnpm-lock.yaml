@@ -258,6 +258,9 @@ importers:
       tsc-files:
         specifier: ^1.1.4
         version: 1.1.4(typescript@5.8.3)
+      tsc-prog:
+        specifier: ^2.3.0
+        version: 2.3.0(typescript@5.8.3)
       tslib:
         specifier: ^2.8.1
         version: 2.8.1
@@ -10398,6 +10401,12 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=3'
+
+  tsc-prog@2.3.0:
+    resolution: {integrity: sha512-ycET2d75EgcX7y8EmG4KiZkLAwUzbY4xRhA6NU0uVbHkY4ZjrAAuzTMxXI85kOwATqPnBI5C/7y7rlpY0xdqHA==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      typescript: '>=4'
 
   tsconfck@3.1.5:
     resolution: {integrity: sha512-CLDfGgUp7XPswWnezWwsCRxNmgQjhYq3VXHM0/XIRxhVrKw0M1if9agzryh1QS3nxjCROvV+xWxoJO1YctzzWg==}
@@ -24228,6 +24237,10 @@ snapshots:
       '@swc/core': 1.5.29(@swc/helpers@0.5.17)
 
   tsc-files@1.1.4(typescript@5.8.3):
+    dependencies:
+      typescript: 5.8.3
+
+  tsc-prog@2.3.0(typescript@5.8.3):
     dependencies:
       typescript: 5.8.3
 

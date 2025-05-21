@@ -5,6 +5,7 @@ import {
   type IConfigFile,
   type IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';
+import * as tsc from 'tsc-prog';
 import { workspaceRoot } from '@nx/devkit';
 import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
@@ -39,13 +40,27 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
     : {};
 
   const projectRoot = join(workspaceRoot, options.projectFolder);
+  process.chdir(projectRoot);
   const packageJsonFullPath = join(projectRoot, `package.json`);
   const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
   const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
 
+  tsc.build({
+    configFilePath: tsconfigFilePath,
+    basePath: projectRoot,
+    compilerOptions: {
+      // @ts-expect-error - types from package are out of date
+      customConditions: [],
+    },
+  });
+
   const tsConfig = JSON.parse(await readFile(tsconfigFilePath, 'utf8'));
+
+  const removeCommonPart = (first: string, second: string) => {
+    return first.split(second)[first.split(second).length - 1] ?? '';
+  };
 
   const modifiedTsConfig = {
     ...tsConfig,
@@ -105,12 +120,15 @@ export const apiExtractor = async (options: ApiExractorArgs) => {
       compiler: {
         overrideTsconfig: modifiedTsConfig,
       },
-      mainEntryPointFilePath: options.mainEntrypointFile,
-      projectFolder: workspaceRoot,
+      mainEntryPointFilePath: `.${removeCommonPart(
+        options.mainEntrypointFile,
+        options.projectFolder,
+      )}`,
+      projectFolder: projectRoot,
 
       apiReport: {
         enabled: true,
-        reportFolder: options.outputDir,
+        reportFolder: `./${removeCommonPart(options.outputDir, options.projectFolder)}`,
         reportTempFolder: join(
           projectRoot,
           `.api-extractor`,

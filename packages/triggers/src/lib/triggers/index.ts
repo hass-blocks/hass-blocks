@@ -18,3 +18,7 @@ export { homeAssistantShutsDown } from './home-assistant-shuts-down.ts';
 export { homeAssistantStarts } from './home-assistant-starts.ts';
 
 export { stateChanges, type StateChangesProps } from './state-changes.ts';
+
+export { stateTurnsOn } from './state-turns-on.ts';
+
+export { stateTurnsOff } from './state-turns-off.ts';

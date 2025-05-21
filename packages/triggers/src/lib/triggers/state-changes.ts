@@ -1,4 +1,4 @@
-import { IEntity, trigger } from '@hass-blocks/core';
+import { IEntity, ITrigger, trigger } from '@hass-blocks/core';
 import { removeUndefined } from '@utils';
 
 /**
@@ -47,23 +47,45 @@ export interface StateChangesProps {
 }
 /**
  * @public
- * Triggers when the state of an entity changes. See {@link https://www.home-assistant.io/docs/automation/trigger/#state-trigger}
+ * Triggers when any kind of state change occurrs for a given entity. See {@link https://www.home-assistant.io/docs/automation/trigger/#state-trigger}
  *
- * @param props - Configuration options for trigger
+ * @param entity - The entity to monitor
  */
-export const stateChanges = (props: StateChangesProps) => {
-  return trigger({
-    targets: [props.entity],
-    name: 'When numeric state changes',
-    trigger: removeUndefined({
-      platform: 'numeric_state',
-      entity_id: props.entity.targetIds.entity_id,
-      attribute_name: props.attribute,
-      for: props.for,
-      from: props.from,
-      not_from: props.not_from,
-      to: props.to,
-      not_to: props.not_to,
-    }),
-  });
-};
+export function stateChanges(entity: IEntity): ITrigger;
+
+/**
+ * @public
+ * Triggers when a state change occurrs for a given entity. See {@link https://www.home-assistant.io/docs/automation/trigger/#state-trigger}
+ *
+ * @param entity - Configuration options for trigger
+ */
+export function stateChanges(props: StateChangesProps): ITrigger;
+export function stateChanges(
+  propsOrEntity: StateChangesProps | IEntity,
+): ITrigger {
+  const params =
+    'targetIds' in propsOrEntity
+      ? {
+          targets: [propsOrEntity],
+          name: 'When numeric state changes',
+          trigger: {
+            platform: 'state',
+            entity_id: propsOrEntity.targetIds.entity_id,
+          },
+        }
+      : {
+          targets: [propsOrEntity.entity],
+          name: 'When numeric state changes',
+          trigger: removeUndefined({
+            platform: 'state',
+            entity_id: propsOrEntity.entity.targetIds.entity_id,
+            attribute_name: propsOrEntity.attribute,
+            for: propsOrEntity.for,
+            from: propsOrEntity.from,
+            not_from: propsOrEntity.not_from,
+            to: propsOrEntity.to,
+            not_to: propsOrEntity.not_to,
+          }),
+        };
+  return trigger(params);
+}

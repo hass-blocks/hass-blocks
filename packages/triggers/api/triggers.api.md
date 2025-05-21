@@ -70,7 +70,10 @@ export type NumericStateChangesProps = {
 } & AboveBelowOptions;
 
 // @public
-export const stateChanges: (props: StateChangesProps) => ITrigger;
+export function stateChanges(entity: IEntity): ITrigger;
+
+// @public
+export function stateChanges(props: StateChangesProps): ITrigger;
 
 // @public
 export interface StateChangesProps {
@@ -88,6 +91,12 @@ export interface StateChangesProps {
     not_to?: string | null;
     to?: string | null;
 }
+
+// @public
+export const stateTurnsOff: (entity: IEntity) => ITrigger;
+
+// @public
+export const stateTurnsOn: (entity: IEntity) => ITrigger;
 
 // (No @packageDocumentation comment for this package)
 

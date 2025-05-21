@@ -23,7 +23,8 @@
         "mainEntrypointFile": "packages/triggers/dist/index.d.ts",
         "reportFolder": "packages/triggers/api",
         "projectFolder": "packages/triggers",
-        "strictChecks": true
+        "strictChecks": true,
+        "replacePaths": true
       }
     },
     "doc-model": {

@@ -5,6 +5,7 @@
     "declarationMap": true,
     "composite": true,
     "emitDeclarationOnly": true,
+    "incremental": true,
     "importHelpers": true,
     "isolatedModules": true,
     "customConditions": ["development"],

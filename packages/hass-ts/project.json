@@ -17,7 +17,6 @@
       }
     },
     "rollup-api": {
-      "dependsOn": ["build"],
       "executor": "@hass-blocks/publisher:api-extractor",
       "outputs": ["{options.outputPath}"],
       "options": {
@@ -29,7 +28,6 @@
       }
     },
     "doc-model": {
-      "dependsOn": ["typecheck"],
       "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],
       "options": {

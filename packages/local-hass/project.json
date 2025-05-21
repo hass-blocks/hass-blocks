@@ -1,5 +1,5 @@
 {
-  "name": "local-hass",
+  "name": "@hass-blocks/local-hass",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "packages/local-hass/src",
   "projectType": "library",
@@ -14,6 +14,17 @@
         "tsConfig": "packages/local-hass/tsconfig.lib.json",
         "skipTypeCheck": true,
         "stripLeadingPaths": true
+      }
+    },
+    "rollup-api": {
+      "executor": "@hass-blocks/publisher:api-extractor",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/local-hass/dist/index.d.ts",
+        "reportFolder": "packages/local-hass/api",
+        "strictChecks": false,
+        "projectFolder": "packages/local-hass",
+        "replacePaths": true
       }
     }
   }

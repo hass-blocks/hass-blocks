@@ -8,6 +8,11 @@ import { TEST_HASS_TOKEN } from './hass-server-credentials.ts';
 const configDir = path.join(__dirname, `..`, `..`, `hass-config`);
 const dockerFile = path.join(__dirname, `..`, `..`);
 
+/**
+ * @public
+ *
+ * @returns a pair of functions that allow you to start and stop hass
+ */
 export const hass = () => {
   let port: number | undefined;
   const startHass = async () => {

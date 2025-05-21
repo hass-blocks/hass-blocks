@@ -69,6 +69,26 @@ export type NumericStateChangesProps = {
     };
 } & AboveBelowOptions;
 
+// @public
+export const stateChanges: (props: StateChangesProps) => ITrigger;
+
+// @public
+export interface StateChangesProps {
+    attribute?: string;
+    entity: IEntity;
+    for?: {
+        days?: number;
+        hours: number;
+        minutes: number;
+        seconds: number;
+        milliseconds?: number;
+    };
+    from?: string | null;
+    not_from?: string | null;
+    not_to?: string | null;
+    to?: string | null;
+}
+
 // (No @packageDocumentation comment for this package)
 
 ```

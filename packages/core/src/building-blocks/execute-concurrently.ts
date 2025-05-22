@@ -70,7 +70,11 @@ class ExecuteConcurrently<
       return { continue: false };
     }
 
-    return { continue: true, output: successes, outputType: 'block' };
+    return {
+      continue: true,
+      output: successes as unknown as O,
+      outputType: 'block',
+    };
   }
 }
 

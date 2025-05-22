@@ -1,4 +1,3 @@
-import { AssertionError } from '../errors/assertion-error.ts';
 import type { ITargetIds } from './i-target-ids.ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
@@ -22,21 +21,3 @@ export interface ITarget {
    */
   initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
 }
-
-/**
- * @public
- *
- * Will throw an error if the supplied target doesn't provide
- * entity ids
- *
- * @param target - A home assistant target
- */
-export const assertTargetHasEntityIds: (
-  target: ITarget,
-) => asserts target is ITarget & {
-  targetIds: ITarget['targetIds'] & { entity_id: string[] };
-} = (target) => {
-  if (!target.targetIds) {
-    throw new AssertionError(`Target must have entity ids`);
-  }
-};

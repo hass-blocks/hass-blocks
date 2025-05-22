@@ -22,7 +22,7 @@ export default defineConfig(() => ({
         'src/index.ts',
         'src/test-support/**/*',
         'src/tests/**/*',
-        '*test-d.ts',
+        'src/**/*test-d.ts',
       ],
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,

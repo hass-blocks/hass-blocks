@@ -21,8 +21,8 @@ afterEach(() => {
   vi.resetAllMocks();
 });
 
-describe('automation.validate', () => {
-  it('calls all of the validate then on its children, passing the client through completing silently if none of them reject', async () => {
+describe('automation.initialise', () => {
+  it('calls all of the initialise methods on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
     const mockClient = mock<IFullBlocksClient>();

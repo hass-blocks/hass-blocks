@@ -2,18 +2,14 @@ import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
 import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
-import type {
-  GetOutputs,
-  InputType,
-  OutputType,
-} from './valid-input-output-sequence.ts';
+import type { GetOutputs, InputType } from './valid-input-output-sequence.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
+  O extends GetOutputs<A>[],
   I = void,
-  O = void,
-> extends Block<I, O> {
+> extends Block<I, O[]> {
   public override name: string;
 
   public override readonly typeString = 'execute-concurrently';
@@ -33,10 +29,9 @@ class ExecuteConcurrently<
     client: IFullBlocksClient,
     mqtt: IMQTTConnection,
   ) {
-    await mapAsync(
-      this.config.actions,
-      async (action) => await action.initialise(client, mqtt),
-    );
+    await mapAsync(this.config.actions, async (action) => {
+      await action.initialise(client, mqtt);
+    });
   }
 
   public override async run(
@@ -44,7 +39,7 @@ class ExecuteConcurrently<
     input: I,
     events?: EventBus,
     triggerId?: string,
-  ): Promise<BlockOutput<O>> {
+  ): Promise<BlockOutput<O[]>> {
     if (!events) {
       throw new Error('Must configure an event bus');
     }
@@ -67,21 +62,15 @@ class ExecuteConcurrently<
 
     const results = await executor.finished();
 
-    const failed = results.find((result) => !result?.continue);
+    const successes = results.flatMap((result) =>
+      result?.continue ? [result.output] : [],
+    );
 
-    if (failed) {
+    if (successes.length !== results.length) {
       return { continue: false };
     }
 
-    const successes = results.flatMap((result) =>
-      result?.success && result.continue ? [result] : [],
-    );
-
-    const outputs = successes.map(
-      (success) => success.output,
-    ) as unknown as GetOutputs<A>;
-
-    return { continue: true, output: outputs as O, outputType: 'block' };
+    return { continue: true, output: successes, outputType: 'block' };
   }
 }
 
@@ -93,12 +82,12 @@ class ExecuteConcurrently<
  */
 export const concurrently = <
   A extends readonly Block<unknown, unknown>[],
+  O extends GetOutputs<A>[],
   I = InputType<A[number]>,
-  O = OutputType<A[number]>,
 >(
   ...actions: A
-): Block<I, O> => {
-  return new ExecuteConcurrently<A, I, O>({
+): Block<I, O[]> => {
+  return new ExecuteConcurrently<A, O, I>({
     name: 'Execute Concurrently',
     actions,
   });

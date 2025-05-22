@@ -13,7 +13,7 @@ import type {
 } from './messages/index.ts';
 
 export class WebsocketClient {
-  private socket: WebSocket;
+  private socket: WebSocket | undefined;
   private connected = false;
   private readonly path: string;
   private messageCallbacks: ((
@@ -44,13 +44,12 @@ export class WebsocketClient {
     if (this.port < 0) {
       throw new HassTsError(ERRORS.portCannotBeNegative);
     }
-
-    this.socket = new WebSocket(`ws://${this.host}:${this.port}${this.path}`);
   }
 
   public async init(): Promise<void> {
+    this.socket = new WebSocket(`ws://${this.host}:${this.port}${this.path}`);
     this.socket.on('open', () => {
-      this.socket.on('message', async (data: Buffer) => {
+      this.socket?.on('message', async (data: Buffer) => {
         const message = safeJsonParse<MessageFromServer>(
           data.toString('utf-8'),
         );
@@ -64,7 +63,7 @@ export class WebsocketClient {
   public async close(): Promise<void> {
     if (this.connected) {
       await this.waitTillAuthFinished();
-      this.socket.close();
+      this.socket?.close();
     }
   }
 
@@ -146,7 +145,7 @@ export class WebsocketClient {
 
   private sendToSocket<T extends Record<string, unknown>>(message: T) {
     this.logger.trace(`Sent (ws): ${JSON.stringify(message)}`);
-    this.socket.send(JSON.stringify(message));
+    this.socket?.send(JSON.stringify(message));
   }
 
   private onAuthComplete(accept: () => void, reject: () => void) {

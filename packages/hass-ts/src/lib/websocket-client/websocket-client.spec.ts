@@ -20,12 +20,12 @@ const version = '1.2.3';
 
 let server: ReturnType<typeof initialiseMockHassWebsocket>;
 
-beforeAll(() => {
+beforeEach(() => {
   vi.useFakeTimers();
   server = initialiseMockHassWebsocket(port, token, version);
 });
 
-afterAll(() => {
+afterEach(() => {
   vi.useRealTimers();
   server.close();
 });

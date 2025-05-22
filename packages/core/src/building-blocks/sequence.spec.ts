@@ -8,6 +8,10 @@ import type { Block } from '@core';
 
 vi.mock('./automation.ts');
 
+beforeEach(() => {
+  vi.resetAllMocks();
+});
+
 describe('sequence', () => {
   it('creates an automation under the hood', () => {
     const mockActionOne = mock<Action<string, string>>();

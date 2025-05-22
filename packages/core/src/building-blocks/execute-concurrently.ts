@@ -7,9 +7,9 @@ import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
-  O extends GetOutputs<A>[],
+  O extends GetOutputs<A>,
   I = void,
-> extends Block<I, O[]> {
+> extends Block<I, O> {
   public override name: string;
 
   public override readonly typeString = 'execute-concurrently';
@@ -39,7 +39,7 @@ class ExecuteConcurrently<
     input: I,
     events?: EventBus,
     triggerId?: string,
-  ): Promise<BlockOutput<O[]>> {
+  ): Promise<BlockOutput<O>> {
     if (!events) {
       throw new Error('Must configure an event bus');
     }
@@ -82,11 +82,11 @@ class ExecuteConcurrently<
  */
 export const concurrently = <
   A extends readonly Block<unknown, unknown>[],
-  O extends GetOutputs<A>[],
+  O extends GetOutputs<A>,
   I = InputType<A[number]>,
 >(
   ...actions: A
-): Block<I, O[]> => {
+): Block<I, O> => {
   return new ExecuteConcurrently<A, O, I>({
     name: 'Execute Concurrently',
     actions,

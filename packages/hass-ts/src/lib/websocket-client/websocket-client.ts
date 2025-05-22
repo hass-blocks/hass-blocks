@@ -65,6 +65,7 @@ export class WebsocketClient {
       await this.waitTillAuthFinished();
       this.socket?.close();
     }
+    this.socket = undefined;
   }
 
   public async sendCommand<T extends MessageToServer, R>(

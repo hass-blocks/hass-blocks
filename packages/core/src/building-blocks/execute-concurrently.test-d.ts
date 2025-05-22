@@ -1,0 +1,20 @@
+import type { Block } from '@core';
+import { Action } from './action.ts';
+import { concurrently } from './execute-concurrently.ts';
+
+describe('concurrently', () => {
+  it('should correctly type the block when there is only one item and that item has inputs and outputs', () => {
+    const oneAction = new Action({
+      name: 'This thing',
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      callback: (_client, _input: string) => {
+        const foo = 3;
+        return foo;
+      },
+    });
+
+    const foo = concurrently(oneAction);
+
+    expectTypeOf(foo).toExtend<Block<string, number>>();
+  });
+});

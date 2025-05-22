@@ -2,7 +2,11 @@ import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
 import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
-import type { GetOutputs } from './valid-input-output-sequence.ts';
+import type {
+  GetOutputs,
+  InputType,
+  OutputType,
+} from './valid-input-output-sequence.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
@@ -89,8 +93,8 @@ class ExecuteConcurrently<
  */
 export const concurrently = <
   A extends readonly Block<unknown, unknown>[],
-  I = void,
-  O = void,
+  I = InputType<A[number]>,
+  O = OutputType<A[number]>,
 >(
   ...actions: A
 ): Block<I, O> => {

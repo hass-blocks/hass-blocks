@@ -2,14 +2,12 @@ import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
 import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
 import { mapAsync, md5 } from '@utils';
 
-import type { GetOutputs, InputType } from './valid-input-output-sequence.ts';
+import type { InputType, OutputType } from './valid-input-output-sequence.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
   A extends readonly Block<unknown, unknown>[],
-  O extends GetOutputs<A>,
-  I = void,
-> extends Block<I, O> {
+> extends Block<InputType<A[number]>, OutputType<A[number]>[]> {
   public override name: string;
 
   public override readonly typeString = 'execute-concurrently';
@@ -36,10 +34,10 @@ class ExecuteConcurrently<
 
   public override async run(
     client: IHass,
-    input: I,
+    input: InputType<A[number]>,
     events?: EventBus,
     triggerId?: string,
-  ): Promise<BlockOutput<O>> {
+  ): Promise<BlockOutput<OutputType<A[number]>[]>> {
     if (!events) {
       throw new Error('Must configure an event bus');
     }
@@ -48,7 +46,7 @@ class ExecuteConcurrently<
       throw new Error('Must pass a triggerId');
     }
 
-    const executor = new Executor<I, O>(
+    const executor = new Executor<InputType<A[number]>, OutputType<A[number]>>(
       [...this.config.actions],
       client,
       events,
@@ -72,7 +70,7 @@ class ExecuteConcurrently<
 
     return {
       continue: true,
-      output: successes as unknown as O,
+      output: successes,
       outputType: 'block',
     };
   }
@@ -84,14 +82,10 @@ class ExecuteConcurrently<
  * When executed, this block will execute all the blocks passed in as the first argument concurrently. Once complete
  * the outputs from all the blocks will be returned as an array
  */
-export const concurrently = <
-  A extends readonly Block<unknown, unknown>[],
-  O extends GetOutputs<A>,
-  I = InputType<A[number]>,
->(
+export const concurrently = <A extends readonly Block<unknown, unknown>[]>(
   ...actions: A
-): Block<I, O> => {
-  return new ExecuteConcurrently<A, O, I>({
+): Block<InputType<A[number]>, OutputType<A[number]>[]> => {
+  return new ExecuteConcurrently<A>({
     name: 'Execute Concurrently',
     actions,
   });

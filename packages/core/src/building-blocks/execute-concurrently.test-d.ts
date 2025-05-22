@@ -15,7 +15,7 @@ describe('concurrently', () => {
 
     const foo = concurrently(oneAction);
 
-    expectTypeOf(foo).toExtend<Block<string, readonly [number]>>();
+    expectTypeOf(foo).toExtend<Block<string, number[]>>();
   });
 
   it('should correctly combine the outputs of multiple blocks', () => {
@@ -39,6 +39,6 @@ describe('concurrently', () => {
 
     const foo = concurrently(oneAction, twoAction);
 
-    expectTypeOf(foo).toExtend<Block<string, readonly [number, string]>>();
+    expectTypeOf(foo).toExtend<Block<string, (string | number)[]>>();
   });
 });

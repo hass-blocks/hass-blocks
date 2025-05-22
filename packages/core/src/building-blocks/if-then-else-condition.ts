@@ -34,12 +34,12 @@ export interface IIfThenElseConditionConfig<
   /**
    * Execute this block if the predicate passes
    */
-  readonly then: Block<PO, TO>;
+  readonly then: Block<PO | PO[], TO>;
 
   /**
    * Execute this block if the predicate fails
    */
-  readonly else: Block<PO, EO>;
+  readonly else: Block<PO | PO[], EO>;
 }
 
 /**

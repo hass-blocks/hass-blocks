@@ -17,14 +17,10 @@
       }
     },
     "generate-types": {
-      "dependsOn": ["build"],
-      "executor": "@hass-blocks/publisher:api-extractor",
+      "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "<%= packageDir %>/dist/index.d.ts",
-        "reportFolder": "<%= packageDir %>/api",
-        "projectFolder": "<%= packageDir %>",
-        "strictChecks": true
+        "projectFolder": "<%= packageDir %>"
       }
     },
     "doc-model": {

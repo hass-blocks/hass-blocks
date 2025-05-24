@@ -46,6 +46,7 @@ export interface EntityTarget {
   integration: string;
   domain: string | string[];
   supported_feature: string[];
+  multiple: boolean;
 }
 
 export interface EntitySelector {

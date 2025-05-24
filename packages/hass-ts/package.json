@@ -53,10 +53,10 @@
   "dependencies": {
     "dotenv": "16.4.7",
     "ws": "8.18.1",
-    "@swc/helpers": "~0.5.11",
-    "@hass-blocks/local-hass": "0.1.1"
+    "@swc/helpers": "~0.5.11"
   },
   "devDependencies": {
+    "@hass-blocks/local-hass": "0.1.1",
     "type-fest": "4.40.0",
     "execa": "^9.5.2",
     "@types/ws": "8.18.1",

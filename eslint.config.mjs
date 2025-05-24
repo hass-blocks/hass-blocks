@@ -14,9 +14,12 @@ export default [
   ...nx.configs['flat/javascript'],
   {
     ignores: [
+      '**/out-tsc',
       '**/dist',
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
+      '**/blocks-codegen/**/*',
+      '**/.astro/**/*',
     ],
   },
   {

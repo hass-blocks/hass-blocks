@@ -18,9 +18,9 @@ export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   public async initialise(
     hass: IFullBlocksClient,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     _mqtt: IMQTTConnection,
   ): Promise<void> {
     try {

@@ -35,6 +35,7 @@ const getPropertyType = (selector: ServiceField['selector']) => {
     }
 
     if ('object' in selector) {
+      // NOOP
     }
 
     if ('time' in selector) {

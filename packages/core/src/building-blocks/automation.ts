@@ -24,8 +24,7 @@ import type {
  * Configuration object for automation blocks
  */
 export interface IAutomationConfig<
-  // biome-ignore lint/suspicious/noExplicitAny: constraint
-  A extends readonly any[],
+  A extends readonly Block<unknown, unknown>[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 > extends IBaseBlockConfig {
@@ -46,8 +45,7 @@ export interface IAutomationConfig<
 }
 
 export class Automation<
-  // biome-ignore lint/suspicious/noExplicitAny: type constraint
-  const A extends readonly any[],
+  const A extends readonly Block<unknown, unknown>[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 > extends Block<I, O> {
@@ -137,8 +135,7 @@ export class Automation<
  * or in parallel. When passed into
  */
 export const automation = <
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const A extends readonly any[],
+  const A extends readonly Block<unknown, unknown>[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 >(

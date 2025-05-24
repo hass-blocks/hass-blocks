@@ -19,8 +19,7 @@ export const tsconfigReplacePaths = ({
   src: flagSrc,
   verbose = false,
 }: ReplaacePathsArgs = {}) => {
-  // biome-ignore lint/suspicious/noExplicitAny: Fine in tooling
-  const verboseLog = (...args: any[]): void => {
+  const verboseLog = (...args: unknown[]): void => {
     if (verbose) {
       console.log(...args);
     }
@@ -34,15 +33,13 @@ export const tsconfigReplacePaths = ({
 
   verboseLog(`Using tsconfig: ${configFile}`);
 
-  // biome-ignore lint/suspicious/noExplicitAny: Fine in tooling
-  const exitingErr = (): any => {
+  const exitingErr = (): void => {
     throw new Error(
       '--- exiting tsconfig-replace-paths due to parameters missing ---',
     );
   };
 
-  // biome-ignore lint/suspicious/noExplicitAny: Fine in tooling
-  const missingConfigErr = (property: string): any => {
+  const missingConfigErr = (property: string): void => {
     console.error(
       `Whoops! Please set ${property} in your tsconfig or supply a flag`,
     );
@@ -50,7 +47,7 @@ export const tsconfigReplacePaths = ({
   };
 
   // biome-ignore lint/suspicious/noExplicitAny: Fine in tooling
-  const missingDirectoryErr = (directory: string, flag: string): any => {
+  const missingDirectoryErr = (directory: string, flag: string): void => {
     console.error(
       `Whoops! ${directory} must be specified in your project => --project ${project}, or flagged with directory => ${flag} './path'`,
     );
@@ -244,9 +241,9 @@ export const tsconfigReplacePaths = ({
 
   const files = sync(filesPath, {
     dot: true,
+    // @ts-expect-error - types are apparrently wrong for this package
     noDir: true,
-    // biome-ignore lint/suspicious/noExplicitAny: Fine in tooling
-  } as any).map((x) => resolve(x));
+  }).map((x) => resolve(x));
 
   let changedFileCount = 0;
 

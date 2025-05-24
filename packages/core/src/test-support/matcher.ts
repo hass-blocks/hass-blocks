@@ -11,7 +11,7 @@ interface CustomMatchers<R = unknown> {
 }
 
 declare module 'vitest' {
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface, @typescript-eslint/no-explicit-any
   interface Assertion<T = any> extends CustomMatchers<T> {}
 
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type, @typescript-eslint/no-empty-interface

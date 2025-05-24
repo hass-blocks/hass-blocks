@@ -2,7 +2,7 @@ type DeepRecord<K extends string, V> = K extends `${infer K0}.${infer KR}`
   ? { [P in K0]: DeepRecord<KR, V> }
   : { [P in K]: V };
 
-// biome-ignore lint/complexity/noBannedTypes: <explanation>
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 type DeepIntersect<T> = [T] extends [Function]
   ? T
   : T extends object

@@ -16,8 +16,7 @@ import { automation } from './automation.ts';
  * in parallel
  */
 export const sequence = <
-  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-  const A extends readonly any[],
+  const A extends readonly Block<unknown, unknown>[],
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 >(

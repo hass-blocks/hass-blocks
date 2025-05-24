@@ -21,6 +21,11 @@ const getPropertyType = (selector: ServiceField['selector']) => {
     }
 
     if ('entity' in selector) {
+      if (selector.entity?.multiple) {
+        return factory.createArrayTypeNode(
+          factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+        );
+      }
       return factory.createKeywordTypeNode(SyntaxKind.StringKeyword);
     }
 
@@ -35,7 +40,13 @@ const getPropertyType = (selector: ServiceField['selector']) => {
     }
 
     if ('object' in selector) {
-      // NOOP
+      return factory.createTypeReferenceNode(
+        factory.createIdentifier('Record'),
+        [
+          factory.createKeywordTypeNode(SyntaxKind.StringKeyword),
+          factory.createKeywordTypeNode(SyntaxKind.UnknownKeyword),
+        ],
+      );
     }
 
     if ('time' in selector) {

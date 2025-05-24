@@ -37,7 +37,7 @@ export const eventIsFired = (event: {
    */
   type: string[];
   data?: Record<string, unknown>;
-  context: Context;
+  context?: Context;
   name?: string;
 }) => {
   return trigger({

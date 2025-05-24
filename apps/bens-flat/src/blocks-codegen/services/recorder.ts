@@ -25,15 +25,15 @@ declare global {
     /**
      * List of entities for which the data is to be removed from the Recorder database.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * List of domains for which the data needs to be removed from the Recorder database.
      */
-    domains?: never;
+    domains?: Record<string, unknown>;
     /**
      * List of glob patterns used to select the entities for which the data is to be removed from the Recorder database.
      */
-    entity_globs?: never;
+    entity_globs?: Record<string, unknown>;
     /**
      * Number of days to keep the data for rows matching the filter. Starting today, counting backward. A value of `7` means that everything older than a week will be purged. The default of 0 days will remove all matching rows immediately.
      */

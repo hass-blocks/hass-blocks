@@ -14,7 +14,7 @@ declare global {
     /**
      * The message object that will be sent to the next node.
      */
-    message?: never;
+    message?: Record<string, unknown>;
   }
 
   /**

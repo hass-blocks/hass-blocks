@@ -2,6 +2,12 @@ import '@blocks-codegen';
 
 import { combine, toggle } from '@hass-blocks/core';
 
+export const toggleSleepMode = toggle({
+  create: true,
+  id: 'switch.toggle_sleep_mode',
+  friendlyName: 'Sleep Mode',
+});
+
 export const livingRoomMotionLights = toggle({
   create: true,
   id: 'switch.living_room_motion_lights',
@@ -31,6 +37,20 @@ export const allLights = combine(
   bedroomLight,
   livingRoomLight,
   mainBathroomLight,
+);
+
+export const allAdaptiveLightingSwitches = combine(
+  adaptiveLightingBedroomSwitch,
+  adaptiveLightingLivingRoomSwitch,
+  adaptiveLightingBathroomSwitch,
+  adaptiveLightingHallwaySwitch,
+);
+
+export const allAdaptiveLightingSleepModeSwitches = combine(
+  adaptiveLightingSleepModeBedroomSwitch,
+  adaptiveLightingSleepModeHallwaySwitch,
+  adaptiveLightingSleepModeBathroomSwitch,
+  adaptiveLightingSleepModeLivingRoomSwitch,
 );
 
 export const allSpeakers = combine(

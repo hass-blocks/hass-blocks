@@ -139,7 +139,7 @@ declare global {
     /**
      * The players which will be synced with the playback specified in 'Targets'.
      */
-    group_members: string;
+    group_members: string[];
   }
 
   /**

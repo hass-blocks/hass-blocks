@@ -61,7 +61,7 @@ declare global {
     /**
      * Parameters for the command. The parameters are integration-specific.
      */
-    params?: never;
+    params?: Record<string, unknown>;
   }
 
   /**

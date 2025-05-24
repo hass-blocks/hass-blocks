@@ -22,15 +22,15 @@ declare global {
     /**
      * List of all members in the group. Cannot be used in combination with `Add entities` or `Remove entities`.
      */
-    entities?: string;
+    entities?: string[];
     /**
      * List of members to be added to the group. Cannot be used in combination with `Entities` or `Remove entities`.
      */
-    add_entities?: string;
+    add_entities?: string[];
     /**
      * List of members to be removed from a group. Cannot be used in combination with `Entities` or `Add entities`.
      */
-    remove_entities?: string;
+    remove_entities?: string[];
     /**
      * Enable this option if the group should only be used when all entities are in state `on`.
      */
@@ -46,7 +46,7 @@ declare global {
     /**
      * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id].
      */
-    object_id: never;
+    object_id: Record<string, unknown>;
   }
 
   /**

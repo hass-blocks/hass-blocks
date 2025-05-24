@@ -3,10 +3,11 @@ import { serviceCall, type Block } from '@hass-blocks/core';
 declare global {
   interface SequenceBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * List of services to run
      */
-    sequence?: never;
+    sequence?: Record<string, unknown>;
   }
 
   /**
@@ -16,6 +17,7 @@ declare global {
 
   interface DelayBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Time to wait (ms)
      */
@@ -29,6 +31,7 @@ declare global {
 
   interface PopupBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Popup title
      */
@@ -36,7 +39,7 @@ declare global {
     /**
      * Popup content (Test or lovelace card configuration)
      */
-    content: never;
+    content: Record<string, unknown>;
     size?: never;
     /**
      * Text of the right button
@@ -45,7 +48,7 @@ declare global {
     /**
      * Action to perform when the right button is pressed
      */
-    right_button_action?: never;
+    right_button_action?: Record<string, unknown>;
     /**
      * Text of the left button
      */
@@ -53,7 +56,7 @@ declare global {
     /**
      * Action to perform when left button is pressed
      */
-    left_button_action?: never;
+    left_button_action?: Record<string, unknown>;
     /**
      * Whether the popup can be closed by the user without action
      */
@@ -61,7 +64,7 @@ declare global {
     /**
      * Action to perform when popup is dismissed
      */
-    dismiss_action?: never;
+    dismiss_action?: Record<string, unknown>;
     /**
      * Close the popup automatically on mouse, pointer or keyboard activity
      */
@@ -73,7 +76,15 @@ declare global {
     /**
      * Action to perform when popup is closed by timeout
      */
-    timeout_action?: never;
+    timeout_action?: Record<string, unknown>;
+    /**
+     * Hide timeout progress bar
+     */
+    timeout_hide_progress?: boolean;
+    /**
+     * Allow nested more-info dialogs to be opened from this popup
+     */
+    allow_nested_more_info?: boolean;
     /**
      * CSS code to apply to the popup window
      */
@@ -87,6 +98,7 @@ declare global {
 
   interface MoreInfoBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     entity: string;
     large?: boolean;
     ignore_popup_card?: boolean;
@@ -99,6 +111,7 @@ declare global {
 
   interface ClosePopupBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
   }
 
   /**
@@ -108,6 +121,7 @@ declare global {
 
   interface NotificationBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Message to display
      */
@@ -123,7 +137,7 @@ declare global {
     /**
      * Action to perform when the action button is pressed
      */
-    action?: never;
+    action?: Record<string, unknown>;
   }
 
   /**
@@ -133,6 +147,7 @@ declare global {
 
   interface NavigateBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Target path
      */
@@ -146,6 +161,7 @@ declare global {
 
   interface RefreshBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
   }
 
   /**
@@ -155,6 +171,7 @@ declare global {
 
   interface SetThemeBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Name of theme or 'auto'
      */
@@ -180,6 +197,7 @@ declare global {
 
   interface ConsoleBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * Text to print
      */
@@ -193,16 +211,36 @@ declare global {
 
   interface JavascriptBrowserModProps {
     browser_id?: never;
+    user_id?: string[];
     /**
      * JavaScript code to run
      */
-    code?: never;
+    code?: Record<string, unknown>;
   }
 
   /**
    * Run arbitrary JavaScript code
    */
   var javascriptBrowserMod: (params?: JavascriptBrowserModProps) => Block;
+
+  interface DeregisterBrowserBrowserModProps {
+    browser_id?: never;
+    /**
+     * Exclude browser from deregister
+     */
+    browser_id_exclude?: never;
+    /**
+     * Exclude browsers in area from deregister
+     */
+    area_id_exclude?: never;
+  }
+
+  /**
+   * Deregister a browser. Include at leaset one paremeter. Calling wiith either exclude parameter will deregister all browsers except those excluded.
+   */
+  var deregisterBrowserBrowserMod: (
+    params?: DeregisterBrowserBrowserModProps,
+  ) => Block;
 }
 
 globalThis.sequenceBrowserMod = (params) =>
@@ -311,6 +349,16 @@ globalThis.javascriptBrowserMod = (params) =>
     params: {
       domain: 'browser_mod',
       service: 'javascript',
+      service_data: params,
+    },
+  });
+
+globalThis.deregisterBrowserBrowserMod = (params) =>
+  serviceCall({
+    name: `Call browser_mod.deregister_browser`,
+    params: {
+      domain: 'browser_mod',
+      service: 'deregister_browser',
       service_data: params,
     },
   });

@@ -18,7 +18,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The configuration parameter's endpoint.
      */
@@ -64,7 +64,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The configuration parameter's endpoint.
      */
@@ -76,7 +76,7 @@ declare global {
     /**
      * The new value(s) to set for this configuration parameter. Can either be a raw integer value to represent the bulk change or a mapping where the key is the bitmask (either in hex or integer form) and the value is the new value you want to set for that partial parameter.
      */
-    value: never;
+    value: Record<string, unknown>;
   }
 
   /**
@@ -90,7 +90,7 @@ declare global {
     /**
      * Entities to refresh.
      */
-    entity_id: string;
+    entity_id: string[];
     /**
      * Whether to refresh all values or just the primary value.
      */
@@ -114,7 +114,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The ID of the command class for the value.
      */
@@ -134,11 +134,11 @@ declare global {
     /**
      * The new value to set.
      */
-    value: never;
+    value: Record<string, unknown>;
     /**
      * Set value options map. Refer to the Z-Wave documentation for more information on what options can be set.
      */
-    options?: never;
+    options?: Record<string, unknown>;
     /**
      * Whether to wait for a response from the node. If not included in the payload, the integration will decide whether to wait or not. If enabled, the action can take a while if setting a value on an asleep battery device.
      */
@@ -162,7 +162,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * Whether the command should be broadcast to all devices on the network.
      */
@@ -186,11 +186,11 @@ declare global {
     /**
      * Set value options map. Refer to the Z-Wave documentation for more information on what options can be set.
      */
-    options?: never;
+    options?: Record<string, unknown>;
     /**
      * The new value to set.
      */
-    value: never;
+    value: Record<string, unknown>;
   }
 
   /**
@@ -212,7 +212,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
   }
 
   /**
@@ -232,7 +232,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The ID of the command class that you want to issue a command to.
      */
@@ -248,7 +248,7 @@ declare global {
     /**
      * A list of parameters to pass to the API method. Refer to the Z-Wave Command Class API documentation (https://zwave-js.github.io/node-zwave-js/#/api/CCs/index) for parameters.
      */
-    parameters: never;
+    parameters: Record<string, unknown>;
   }
 
   /**
@@ -268,7 +268,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The Notification Type number as defined in the Z-Wave specs.
      */
@@ -367,7 +367,7 @@ declare global {
     /**
      * The entity ID(s) to target for this action.
      */
-    entity_id?: string;
+    entity_id?: string[];
     /**
      * The type of meter to reset. Not all meters support the ability to pick a meter type to reset.
      */

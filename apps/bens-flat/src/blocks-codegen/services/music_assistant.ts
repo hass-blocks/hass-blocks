@@ -92,7 +92,7 @@ declare global {
     /**
      * URI or name of the item you want to play. Specify a list if you want to play/enqueue multiple items.
      */
-    media_id: never;
+    media_id: Record<string, unknown>;
     /**
      * The type of the content to play. Such as artist, album, track or playlist. Will be auto-determined if omitted.
      */

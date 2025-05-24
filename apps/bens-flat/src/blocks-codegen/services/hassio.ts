@@ -99,11 +99,11 @@ declare global {
     /**
      * List of add-ons to include in the backup. Use the name slug of each add-on.
      */
-    addons?: never;
+    addons?: Record<string, unknown>;
     /**
      * List of directories to include in the backup.
      */
-    folders?: never;
+    folders?: Record<string, unknown>;
     /**
      * Optional (default = current date and time).
      */
@@ -155,11 +155,11 @@ declare global {
     /**
      * List of directories to restore from the backup.
      */
-    folders?: never;
+    folders?: Record<string, unknown>;
     /**
      * List of add-ons to restore from the backup. Use the name slug of each add-on.
      */
-    addons?: never;
+    addons?: Record<string, unknown>;
     /**
      * Optional password.
      */

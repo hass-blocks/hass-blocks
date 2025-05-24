@@ -45,7 +45,7 @@ declare global {
     /**
      * List of entities to force update.
      */
-    entity_id: string;
+    entity_id: string[];
   }
 
   /**

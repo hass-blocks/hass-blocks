@@ -1,7 +1,6 @@
 import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var icalBenSCalendarCalendar: IEntity<`calendar.ical_ben_s_calendar`>;
   var inboxCalendar: IEntity<`calendar.inbox`>;
   var personalCalendar: IEntity<`calendar.personal`>;
   var workCalendar: IEntity<`calendar.work`>;
@@ -15,9 +14,9 @@ declare global {
   var healthCalendar: IEntity<`calendar.health`>;
   var automationCalendar: IEntity<`calendar.automation`>;
   var socialCalendar: IEntity<`calendar.social`>;
+  var icalBenSCalendarCalendar: IEntity<`calendar.ical_ben_s_calendar`>;
 }
 
-globalThis.icalBenSCalendarCalendar = entity('calendar.ical_ben_s_calendar');
 globalThis.inboxCalendar = entity('calendar.inbox');
 globalThis.personalCalendar = entity('calendar.personal');
 globalThis.workCalendar = entity('calendar.work');
@@ -31,3 +30,4 @@ globalThis.adminCalendar = entity('calendar.admin');
 globalThis.healthCalendar = entity('calendar.health');
 globalThis.automationCalendar = entity('calendar.automation');
 globalThis.socialCalendar = entity('calendar.social');
+globalThis.icalBenSCalendarCalendar = entity('calendar.ical_ben_s_calendar');

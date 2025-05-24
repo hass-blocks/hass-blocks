@@ -52,7 +52,7 @@ declare global {
     /**
      * The collection of time periods and associated weightings to apply.
      */
-    weightings?: never;
+    weightings?: Record<string, unknown>;
   }
 
   /**

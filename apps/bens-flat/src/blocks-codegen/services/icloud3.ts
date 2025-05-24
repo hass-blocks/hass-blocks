@@ -58,6 +58,28 @@ declare global {
    * This service will send a Message and Phone number to the lost iPhone
    */
   var lostDeviceAlertIcloud3: (params: LostDeviceAlertIcloud3Props) => Block;
+
+  interface DisplayMessageAlertIcloud3Props {
+    /**
+     * Device the message should be displayed on
+     */
+    device_name: never;
+    /**
+     * The message to be sent
+     */
+    message: string;
+    /**
+     * If a sound is to be played along with message
+     */
+    sounds: string;
+  }
+
+  /**
+   * This service will display a message on the device and can also play an alert tone
+   */
+  var displayMessageAlertIcloud3: (
+    params: DisplayMessageAlertIcloud3Props,
+  ) => Block;
 }
 
 globalThis.actionIcloud3 = (params) =>
@@ -104,6 +126,16 @@ globalThis.lostDeviceAlertIcloud3 = (params) =>
     params: {
       domain: 'icloud3',
       service: 'lost_device_alert',
+      service_data: params,
+    },
+  });
+
+globalThis.displayMessageAlertIcloud3 = (params) =>
+  serviceCall({
+    name: `Call icloud3.display_message_alert`,
+    params: {
+      domain: 'icloud3',
+      service: 'display_message_alert',
       service_data: params,
     },
   });

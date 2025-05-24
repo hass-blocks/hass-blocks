@@ -9,7 +9,7 @@ declare global {
     /**
      * A light (or list of lights) to apply the settings to. 💡
      */
-    lights?: string;
+    lights?: string[];
     /**
      * Duration of transition when lights change, in seconds. 🕑
      */
@@ -45,7 +45,7 @@ declare global {
     /**
      * entity_id(s) of lights, if not specified, all lights in the switch are selected. 💡
      */
-    lights?: string;
+    lights?: string[];
     /**
      * Whether to add ("true") or remove ("false") the light from the "manual_control" list. 🔒
      */

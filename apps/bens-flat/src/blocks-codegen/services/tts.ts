@@ -26,7 +26,7 @@ declare global {
     /**
      * A dictionary containing integration-specific options.
      */
-    options?: never;
+    options?: Record<string, unknown>;
   }
 
   /**
@@ -47,7 +47,7 @@ declare global {
     message: string;
     cache?: boolean;
     language?: string;
-    options?: never;
+    options?: Record<string, unknown>;
   }
 
   /**
@@ -60,7 +60,7 @@ declare global {
     message: string;
     cache?: boolean;
     language?: string;
-    options?: never;
+    options?: Record<string, unknown>;
   }
 
   /**

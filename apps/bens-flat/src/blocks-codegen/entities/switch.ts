@@ -18,15 +18,6 @@ declare global {
   var adaptiveLightingAdaptColorBedroomSwitch: IEntity<`switch.adaptive_lighting_adapt_color_bedroom`>;
   var adaptiveLightingAdaptBrightnessBedroomSwitch: IEntity<`switch.adaptive_lighting_adapt_brightness_bedroom`>;
   var adaptiveLightingBedroomSwitch: IEntity<`switch.adaptive_lighting_bedroom`>;
-  var genericRemoteControlCardPreReleaseSwitch: IEntity<`switch.generic_remote_control_card_pre_release`>;
-  var sonosAlarmPreReleaseSwitch: IEntity<`switch.sonos_alarm_pre_release`>;
-  var adguardHomeProtectionSwitch: IEntity<`switch.adguard_home_protection`>;
-  var adguardHomeParentalControlSwitch: IEntity<`switch.adguard_home_parental_control`>;
-  var adguardHomeSafeSearchSwitch: IEntity<`switch.adguard_home_safe_search`>;
-  var adguardHomeSafeBrowsingSwitch: IEntity<`switch.adguard_home_safe_browsing`>;
-  var adguardHomeFilteringSwitch: IEntity<`switch.adguard_home_filtering`>;
-  var qbittorrentAlternativeSpeedSwitch: IEntity<`switch.qbittorrent_alternative_speed`>;
-  var adguardHomeQueryLogSwitch: IEntity<`switch.adguard_home_query_log`>;
   var scheduleLivingRoomThermostatTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_training_days`>;
   var scheduleBedroomThermostatWeekendSwitch: IEntity<`switch.schedule_bedroom_thermostat_weekend`>;
   var scheduleLivingRoomThermostatWeekendSwitch: IEntity<`switch.schedule_living_room_thermostat_weekend`>;
@@ -34,30 +25,38 @@ declare global {
   var scheduleBoilerSwitch: IEntity<`switch.schedule_boiler`>;
   var scheduleLivingRoomThermostatFridaySwitch: IEntity<`switch.schedule_living_room_thermostat_friday`>;
   var scheduleLivingRoomThermostatNonTrainingDaysSwitch: IEntity<`switch.schedule_living_room_thermostat_non_training_days`>;
-  var boilerBoostSwitch: IEntity<`switch.boiler_boost`>;
-  var diningTableHeaterSwitch: IEntity<`switch.dining_table_heater`>;
-  var bookshelfHeaterSwitch: IEntity<`switch.bookshelf_heater`>;
-  var hallwayHeaterSwitch: IEntity<`switch.hallway_heater`>;
-  var tvHeaterSwitch: IEntity<`switch.tv_heater`>;
-  var boilerSwitch: IEntity<`switch.boiler`>;
-  var shellyemA4e57cba73f5Switch: IEntity<`switch.shellyem_a4e57cba73f5`>;
-  var livingRoomTvOnSwitch: IEntity<`switch.living_room_tv_on`>;
-  var imacProOnSwitch: IEntity<`switch.imac_pro_on`>;
   var bedroomHeatingSwitchSwitch: IEntity<`switch.bedroom_heating_switch`>;
   var gymHeatingSwitchSwitch: IEntity<`switch.gym_heating_switch`>;
+  var sonosAlarmPreReleaseSwitch: IEntity<`switch.sonos_alarm_pre_release`>;
+  var genericRemoteControlCardPreReleaseSwitch: IEntity<`switch.generic_remote_control_card_pre_release`>;
+  var livingRoomTvOnSwitch: IEntity<`switch.living_room_tv_on`>;
+  var imacProOnSwitch: IEntity<`switch.imac_pro_on`>;
+  var boilerBoostSwitch: IEntity<`switch.boiler_boost`>;
+  var tvHeaterSwitch: IEntity<`switch.tv_heater`>;
+  var diningTableHeaterSwitch: IEntity<`switch.dining_table_heater`>;
+  var hallwayHeaterSwitch: IEntity<`switch.hallway_heater`>;
+  var bookshelfHeaterSwitch: IEntity<`switch.bookshelf_heater`>;
+  var shellyemA4e57cba73f5Switch: IEntity<`switch.shellyem_a4e57cba73f5`>;
   var frontDoorMotionDetectionSwitch: IEntity<`switch.front_door_motion_detection`>;
+  var adguardHomeProtectionSwitch: IEntity<`switch.adguard_home_protection`>;
+  var adguardHomeParentalControlSwitch: IEntity<`switch.adguard_home_parental_control`>;
+  var adguardHomeSafeSearchSwitch: IEntity<`switch.adguard_home_safe_search`>;
+  var adguardHomeSafeBrowsingSwitch: IEntity<`switch.adguard_home_safe_browsing`>;
+  var adguardHomeFilteringSwitch: IEntity<`switch.adguard_home_filtering`>;
   var automationWakeUpSwitch: IEntity<`switch.automation_wake_up`>;
   var automationLeavingHomeSwitch: IEntity<`switch.automation_leaving_home`>;
+  var adguardHomeQueryLogSwitch: IEntity<`switch.adguard_home_query_log`>;
+  var qbittorrentAlternativeSpeedSwitch: IEntity<`switch.qbittorrent_alternative_speed`>;
   var assistMicrophoneMuteSwitch: IEntity<`switch.assist_microphone_mute`>;
   var tumbleDryerSmartPlugSwitch: IEntity<`switch.tumble_dryer_smart_plug`>;
   var tumbleDryerSmartPlugAutoOffEnabledSwitch: IEntity<`switch.tumble_dryer_smart_plug_auto_off_enabled`>;
   var tumbleDryerSmartPlugAutoUpdateEnabledSwitch: IEntity<`switch.tumble_dryer_smart_plug_auto_update_enabled`>;
   var tumbleDryerSmartPlugLedSwitch: IEntity<`switch.tumble_dryer_smart_plug_led`>;
-  var bedroomSpeakerCrossfadeSwitch: IEntity<`switch.bedroom_speaker_crossfade`>;
-  var bedroomSpeakerLoudnessSwitch: IEntity<`switch.bedroom_speaker_loudness`>;
   var bathroomMotionSensorLedIndicationSwitch: IEntity<`switch.bathroom_motion_sensor_led_indication`>;
   var hallwayMotionSensorLedIndicationSwitch: IEntity<`switch.hallway_motion_sensor_led_indication`>;
   var zigbee2mqttBridgePermitJoinSwitch: IEntity<`switch.zigbee2mqtt_bridge_permit_join`>;
+  var bedroomSpeakerCrossfadeSwitch: IEntity<`switch.bedroom_speaker_crossfade`>;
+  var bedroomSpeakerLoudnessSwitch: IEntity<`switch.bedroom_speaker_loudness`>;
   var sonosArcUltraCrossfadeSwitch: IEntity<`switch.sonos_arc_ultra_crossfade`>;
   var sonosArcUltraLoudnessSwitch: IEntity<`switch.sonos_arc_ultra_loudness`>;
   var sonosArcUltraSurroundMusicFullVolumeSwitch: IEntity<`switch.sonos_arc_ultra_surround_music_full_volume`>;
@@ -93,6 +92,7 @@ declare global {
   var officeLoudnessSwitch: IEntity<`switch.office_loudness`>;
   var livingRoomMainTurnonSwitch: IEntity<`switch.living_room_main_turnon`>;
   var livingRoomHeatingSwitchSwitch: IEntity<`switch.living_room_heating_switch`>;
+  var boilerSwitch: IEntity<`switch.boiler`>;
   var holidayModeSwitch: IEntity<`switch.holiday_mode`>;
   var sleepModeSwitch: IEntity<`switch.sleep_mode`>;
   var homeAssistantServerSwitch: IEntity<`switch.home_assistant_server`>;
@@ -130,6 +130,11 @@ declare global {
   var quetModeSwitch: IEntity<`switch.quet_mode`>;
   var quietModeSwitch: IEntity<`switch.quiet_mode`>;
   var myTestingSwitchMqttSwitchSwitch: IEntity<`switch.my_testing_switch_mqtt_switch`>;
+  var livingroomMotionSensorSwitch: IEntity<`switch.livingroom_motion_sensor`>;
+  var livingRoomMotionLightsSwitch: IEntity<`switch.living_room_motion_lights`>;
+  var bedroomMotionLightsSwitch: IEntity<`switch.bedroom_motion_lights`>;
+  var hallwayMotionLightsSwitch: IEntity<`switch.hallway_motion_lights`>;
+  var bathroomMotionLightsSwitch: IEntity<`switch.bathroom_motion_lights`>;
 }
 
 globalThis.livingRoomHeatersSwitch = entity('switch.living_room_heaters');
@@ -181,29 +186,6 @@ globalThis.adaptiveLightingAdaptBrightnessBedroomSwitch = entity(
 globalThis.adaptiveLightingBedroomSwitch = entity(
   'switch.adaptive_lighting_bedroom',
 );
-globalThis.genericRemoteControlCardPreReleaseSwitch = entity(
-  'switch.generic_remote_control_card_pre_release',
-);
-globalThis.sonosAlarmPreReleaseSwitch = entity(
-  'switch.sonos_alarm_pre_release',
-);
-globalThis.adguardHomeProtectionSwitch = entity(
-  'switch.adguard_home_protection',
-);
-globalThis.adguardHomeParentalControlSwitch = entity(
-  'switch.adguard_home_parental_control',
-);
-globalThis.adguardHomeSafeSearchSwitch = entity(
-  'switch.adguard_home_safe_search',
-);
-globalThis.adguardHomeSafeBrowsingSwitch = entity(
-  'switch.adguard_home_safe_browsing',
-);
-globalThis.adguardHomeFilteringSwitch = entity('switch.adguard_home_filtering');
-globalThis.qbittorrentAlternativeSpeedSwitch = entity(
-  'switch.qbittorrent_alternative_speed',
-);
-globalThis.adguardHomeQueryLogSwitch = entity('switch.adguard_home_query_log');
 globalThis.scheduleLivingRoomThermostatTrainingDaysSwitch = entity(
   'switch.schedule_living_room_thermostat_training_days',
 );
@@ -223,23 +205,45 @@ globalThis.scheduleLivingRoomThermostatFridaySwitch = entity(
 globalThis.scheduleLivingRoomThermostatNonTrainingDaysSwitch = entity(
   'switch.schedule_living_room_thermostat_non_training_days',
 );
-globalThis.boilerBoostSwitch = entity('switch.boiler_boost');
-globalThis.diningTableHeaterSwitch = entity('switch.dining_table_heater');
-globalThis.bookshelfHeaterSwitch = entity('switch.bookshelf_heater');
-globalThis.hallwayHeaterSwitch = entity('switch.hallway_heater');
-globalThis.tvHeaterSwitch = entity('switch.tv_heater');
-globalThis.boilerSwitch = entity('switch.boiler');
-globalThis.shellyemA4e57cba73f5Switch = entity('switch.shellyem_a4e57cba73f5');
-globalThis.livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
-globalThis.imacProOnSwitch = entity('switch.imac_pro_on');
 globalThis.bedroomHeatingSwitchSwitch = entity('switch.bedroom_heating_switch');
 globalThis.gymHeatingSwitchSwitch = entity('switch.gym_heating_switch');
+globalThis.sonosAlarmPreReleaseSwitch = entity(
+  'switch.sonos_alarm_pre_release',
+);
+globalThis.genericRemoteControlCardPreReleaseSwitch = entity(
+  'switch.generic_remote_control_card_pre_release',
+);
+globalThis.livingRoomTvOnSwitch = entity('switch.living_room_tv_on');
+globalThis.imacProOnSwitch = entity('switch.imac_pro_on');
+globalThis.boilerBoostSwitch = entity('switch.boiler_boost');
+globalThis.tvHeaterSwitch = entity('switch.tv_heater');
+globalThis.diningTableHeaterSwitch = entity('switch.dining_table_heater');
+globalThis.hallwayHeaterSwitch = entity('switch.hallway_heater');
+globalThis.bookshelfHeaterSwitch = entity('switch.bookshelf_heater');
+globalThis.shellyemA4e57cba73f5Switch = entity('switch.shellyem_a4e57cba73f5');
 globalThis.frontDoorMotionDetectionSwitch = entity(
   'switch.front_door_motion_detection',
 );
+globalThis.adguardHomeProtectionSwitch = entity(
+  'switch.adguard_home_protection',
+);
+globalThis.adguardHomeParentalControlSwitch = entity(
+  'switch.adguard_home_parental_control',
+);
+globalThis.adguardHomeSafeSearchSwitch = entity(
+  'switch.adguard_home_safe_search',
+);
+globalThis.adguardHomeSafeBrowsingSwitch = entity(
+  'switch.adguard_home_safe_browsing',
+);
+globalThis.adguardHomeFilteringSwitch = entity('switch.adguard_home_filtering');
 globalThis.automationWakeUpSwitch = entity('switch.automation_wake_up');
 globalThis.automationLeavingHomeSwitch = entity(
   'switch.automation_leaving_home',
+);
+globalThis.adguardHomeQueryLogSwitch = entity('switch.adguard_home_query_log');
+globalThis.qbittorrentAlternativeSpeedSwitch = entity(
+  'switch.qbittorrent_alternative_speed',
 );
 globalThis.assistMicrophoneMuteSwitch = entity('switch.assist_microphone_mute');
 globalThis.tumbleDryerSmartPlugSwitch = entity(
@@ -254,12 +258,6 @@ globalThis.tumbleDryerSmartPlugAutoUpdateEnabledSwitch = entity(
 globalThis.tumbleDryerSmartPlugLedSwitch = entity(
   'switch.tumble_dryer_smart_plug_led',
 );
-globalThis.bedroomSpeakerCrossfadeSwitch = entity(
-  'switch.bedroom_speaker_crossfade',
-);
-globalThis.bedroomSpeakerLoudnessSwitch = entity(
-  'switch.bedroom_speaker_loudness',
-);
 globalThis.bathroomMotionSensorLedIndicationSwitch = entity(
   'switch.bathroom_motion_sensor_led_indication',
 );
@@ -268,6 +266,12 @@ globalThis.hallwayMotionSensorLedIndicationSwitch = entity(
 );
 globalThis.zigbee2mqttBridgePermitJoinSwitch = entity(
   'switch.zigbee2mqtt_bridge_permit_join',
+);
+globalThis.bedroomSpeakerCrossfadeSwitch = entity(
+  'switch.bedroom_speaker_crossfade',
+);
+globalThis.bedroomSpeakerLoudnessSwitch = entity(
+  'switch.bedroom_speaker_loudness',
 );
 globalThis.sonosArcUltraCrossfadeSwitch = entity(
   'switch.sonos_arc_ultra_crossfade',
@@ -366,6 +370,7 @@ globalThis.livingRoomMainTurnonSwitch = entity(
 globalThis.livingRoomHeatingSwitchSwitch = entity(
   'switch.living_room_heating_switch',
 );
+globalThis.boilerSwitch = entity('switch.boiler');
 globalThis.holidayModeSwitch = entity('switch.holiday_mode');
 globalThis.sleepModeSwitch = entity('switch.sleep_mode');
 globalThis.homeAssistantServerSwitch = entity('switch.home_assistant_server');
@@ -445,3 +450,12 @@ globalThis.quietModeSwitch = entity('switch.quiet_mode');
 globalThis.myTestingSwitchMqttSwitchSwitch = entity(
   'switch.my_testing_switch_mqtt_switch',
 );
+globalThis.livingroomMotionSensorSwitch = entity(
+  'switch.livingroom_motion_sensor',
+);
+globalThis.livingRoomMotionLightsSwitch = entity(
+  'switch.living_room_motion_lights',
+);
+globalThis.bedroomMotionLightsSwitch = entity('switch.bedroom_motion_lights');
+globalThis.hallwayMotionLightsSwitch = entity('switch.hallway_motion_lights');
+globalThis.bathroomMotionLightsSwitch = entity('switch.bathroom_motion_lights');

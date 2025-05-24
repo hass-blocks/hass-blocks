@@ -29,7 +29,7 @@ declare global {
     /**
      * An optional payload to provide to the endpoint in the format of key value pair(s).
      */
-    payload?: never;
+    payload?: Record<string, unknown>;
   }
 
   /**

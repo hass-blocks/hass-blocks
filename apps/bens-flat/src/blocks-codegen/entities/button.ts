@@ -1,17 +1,6 @@
 import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var newDeviceMyPositionButton: IEntity<`button.new_device_my_position`>;
-  var leftWindowMyPositionButton: IEntity<`button.left_window_my_position`>;
-  var rollerBlindMyPositionButton: IEntity<`button.roller_blind_my_position`>;
-  var rollerBlindMyPosition_2Button: IEntity<`button.roller_blind_my_position_2`>;
-  var boilerBoostRebootButton: IEntity<`button.boiler_boost_reboot`>;
-  var livingRoomHeaderByTheTableRebootButton: IEntity<`button.living_room_header_by_the_table_reboot`>;
-  var bookshelfHeaterRebootButton: IEntity<`button.bookshelf_heater_reboot`>;
-  var hallwayHeaterRebootButton: IEntity<`button.hallway_heater_reboot`>;
-  var tvHeaterRebootButton: IEntity<`button.tv_heater_reboot`>;
-  var boilerRebootButton: IEntity<`button.boiler_reboot`>;
-  var shellyemA4e57cba73f5RebootButton: IEntity<`button.shellyem_a4e57cba73f5_reboot`>;
   var livingRoomHeatingSwitchPingButton: IEntity<`button.living_room_heating_switch_ping`>;
   var bedroomHeatingSwitchPingButton: IEntity<`button.bedroom_heating_switch_ping`>;
   var gymHeatingSwitchPingButton: IEntity<`button.gym_heating_switch_ping`>;
@@ -24,10 +13,21 @@ declare global {
   var gymSensorIdleMotionSensorStatusButton: IEntity<`button.gym_sensor_idle_motion_sensor_status`>;
   var bedroomSensorIdleCoverStatusButton: IEntity<`button.bedroom_sensor_idle_cover_status`>;
   var bedroomSensorIdleMotionSensorStatusButton: IEntity<`button.bedroom_sensor_idle_motion_sensor_status`>;
+  var newDeviceMyPositionButton: IEntity<`button.new_device_my_position`>;
+  var leftWindowMyPositionButton: IEntity<`button.left_window_my_position`>;
+  var rollerBlindMyPositionButton: IEntity<`button.roller_blind_my_position`>;
+  var rollerBlindMyPosition_2Button: IEntity<`button.roller_blind_my_position_2`>;
+  var boilerBoostRebootButton: IEntity<`button.boiler_boost_reboot`>;
+  var tvHeaterRebootButton: IEntity<`button.tv_heater_reboot`>;
+  var livingRoomHeaderByTheTableRebootButton: IEntity<`button.living_room_header_by_the_table_reboot`>;
+  var hallwayHeaterRebootButton: IEntity<`button.hallway_heater_reboot`>;
+  var bookshelfHeaterRebootButton: IEntity<`button.bookshelf_heater_reboot`>;
+  var shellyemA4e57cba73f5RebootButton: IEntity<`button.shellyem_a4e57cba73f5_reboot`>;
   var frontDoorUnlatchButton: IEntity<`button.front_door_unlatch`>;
   var frontDoorLockNGoButton: IEntity<`button.front_door_lock_n_go`>;
   var frontDoorLockNGoWithUnlatchButton: IEntity<`button.front_door_lock_n_go_with_unlatch`>;
   var zigbee2mqttBridgeRestartButton: IEntity<`button.zigbee2mqtt_bridge_restart`>;
+  var boilerRebootButton: IEntity<`button.boiler_reboot`>;
   var frontDoorDoorbellMqttTakeSnapshotButton: IEntity<`button.front_door_doorbell_mqtt_take_snapshot`>;
   var boostBoilerButton: IEntity<`button.boost_boiler`>;
   var readOutMyCalendarButton: IEntity<`button.read_out_my_calendar`>;
@@ -39,29 +39,6 @@ declare global {
   var tvSlideshowButton: IEntity<`button.tv_slideshow`>;
 }
 
-globalThis.newDeviceMyPositionButton = entity('button.new_device_my_position');
-globalThis.leftWindowMyPositionButton = entity(
-  'button.left_window_my_position',
-);
-globalThis.rollerBlindMyPositionButton = entity(
-  'button.roller_blind_my_position',
-);
-globalThis.rollerBlindMyPosition_2Button = entity(
-  'button.roller_blind_my_position_2',
-);
-globalThis.boilerBoostRebootButton = entity('button.boiler_boost_reboot');
-globalThis.livingRoomHeaderByTheTableRebootButton = entity(
-  'button.living_room_header_by_the_table_reboot',
-);
-globalThis.bookshelfHeaterRebootButton = entity(
-  'button.bookshelf_heater_reboot',
-);
-globalThis.hallwayHeaterRebootButton = entity('button.hallway_heater_reboot');
-globalThis.tvHeaterRebootButton = entity('button.tv_heater_reboot');
-globalThis.boilerRebootButton = entity('button.boiler_reboot');
-globalThis.shellyemA4e57cba73f5RebootButton = entity(
-  'button.shellyem_a4e57cba73f5_reboot',
-);
 globalThis.livingRoomHeatingSwitchPingButton = entity(
   'button.living_room_heating_switch_ping',
 );
@@ -94,6 +71,28 @@ globalThis.bedroomSensorIdleCoverStatusButton = entity(
 globalThis.bedroomSensorIdleMotionSensorStatusButton = entity(
   'button.bedroom_sensor_idle_motion_sensor_status',
 );
+globalThis.newDeviceMyPositionButton = entity('button.new_device_my_position');
+globalThis.leftWindowMyPositionButton = entity(
+  'button.left_window_my_position',
+);
+globalThis.rollerBlindMyPositionButton = entity(
+  'button.roller_blind_my_position',
+);
+globalThis.rollerBlindMyPosition_2Button = entity(
+  'button.roller_blind_my_position_2',
+);
+globalThis.boilerBoostRebootButton = entity('button.boiler_boost_reboot');
+globalThis.tvHeaterRebootButton = entity('button.tv_heater_reboot');
+globalThis.livingRoomHeaderByTheTableRebootButton = entity(
+  'button.living_room_header_by_the_table_reboot',
+);
+globalThis.hallwayHeaterRebootButton = entity('button.hallway_heater_reboot');
+globalThis.bookshelfHeaterRebootButton = entity(
+  'button.bookshelf_heater_reboot',
+);
+globalThis.shellyemA4e57cba73f5RebootButton = entity(
+  'button.shellyem_a4e57cba73f5_reboot',
+);
 globalThis.frontDoorUnlatchButton = entity('button.front_door_unlatch');
 globalThis.frontDoorLockNGoButton = entity('button.front_door_lock_n_go');
 globalThis.frontDoorLockNGoWithUnlatchButton = entity(
@@ -102,6 +101,7 @@ globalThis.frontDoorLockNGoWithUnlatchButton = entity(
 globalThis.zigbee2mqttBridgeRestartButton = entity(
   'button.zigbee2mqtt_bridge_restart',
 );
+globalThis.boilerRebootButton = entity('button.boiler_reboot');
 globalThis.frontDoorDoorbellMqttTakeSnapshotButton = entity(
   'button.front_door_doorbell_mqtt_take_snapshot',
 );

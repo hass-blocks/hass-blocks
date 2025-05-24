@@ -17,27 +17,6 @@ declare global {
   var bensImacActiveBinarySensor: IEntity<`binary_sensor.bens_imac_active`>;
   var bensImacFocusBinarySensor: IEntity<`binary_sensor.bens_imac_focus`>;
   var ryansIphoneFocusBinarySensor: IEntity<`binary_sensor.ryans_iphone_focus`>;
-  var systemMonitorProcessPython3BinarySensor: IEntity<`binary_sensor.system_monitor_process_python3`>;
-  var livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overheating`>;
-  var livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overpowering`>;
-  var livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overvoltage`>;
-  var livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overcurrent`>;
-  var bookshelfHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overheating`>;
-  var bookshelfHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overpowering`>;
-  var bookshelfHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overvoltage`>;
-  var bookshelfHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overcurrent`>;
-  var hallwayHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overheating`>;
-  var hallwayHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overpowering`>;
-  var hallwayHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overvoltage`>;
-  var hallwayHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overcurrent`>;
-  var tvHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overheating`>;
-  var tvHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overpowering`>;
-  var tvHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overvoltage`>;
-  var tvHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overcurrent`>;
-  var shellyemA4e57cba73f5OverpoweringBinarySensor: IEntity<`binary_sensor.shellyem_a4e57cba73f5_overpowering`>;
-  var livingRoomOccupancyBinarySensor: IEntity<`binary_sensor.living_room_occupancy`>;
-  var benIsHomeBinarySensor: IEntity<`binary_sensor.ben_is_home`>;
-  var inBedBinarySensor: IEntity<`binary_sensor.in_bed`>;
   var livingRoomSensorSensorStateTamperBinarySensor: IEntity<`binary_sensor.living_room_sensor_sensor_state_tamper`>;
   var livingRoomSensorSensorStateMotionBinarySensor: IEntity<`binary_sensor.living_room_sensor_sensor_state_motion`>;
   var livingRoomSensorTamperingProductCoverRemovedBinarySensor: IEntity<`binary_sensor.living_room_sensor_tampering_product_cover_removed`>;
@@ -53,10 +32,33 @@ declare global {
   var bedroomSensorTamperingProductCoverRemovedBinarySensor: IEntity<`binary_sensor.bedroom_sensor_tampering_product_cover_removed`>;
   var bedroomSensorMotionDetectionBinarySensor: IEntity<`binary_sensor.bedroom_sensor_motion_detection`>;
   var bedroomSensorLowBatteryLevelBinarySensor: IEntity<`binary_sensor.bedroom_sensor_low_battery_level`>;
-  var zteRouterWanStatusBinarySensor: IEntity<`binary_sensor.zte_router_wan_status`>;
+  var livingRoomOccupancyBinarySensor: IEntity<`binary_sensor.living_room_occupancy`>;
+  var benIsHomeBinarySensor: IEntity<`binary_sensor.ben_is_home`>;
+  var inBedBinarySensor: IEntity<`binary_sensor.in_bed`>;
+  var tvHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overheating`>;
+  var tvHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overpowering`>;
+  var tvHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overvoltage`>;
+  var tvHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.tv_heater_switch_0_overcurrent`>;
+  var livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overheating`>;
+  var livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overpowering`>;
+  var livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overvoltage`>;
+  var livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.living_room_header_by_the_table_switch_0_overcurrent`>;
+  var hallwayHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overheating`>;
+  var hallwayHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overpowering`>;
+  var hallwayHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overvoltage`>;
+  var hallwayHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.hallway_heater_switch_0_overcurrent`>;
+  var bookshelfHeaterSwitch_0OverheatingBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overheating`>;
+  var bookshelfHeaterSwitch_0OverpoweringBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overpowering`>;
+  var bookshelfHeaterSwitch_0OvervoltageBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overvoltage`>;
+  var bookshelfHeaterSwitch_0OvercurrentBinarySensor: IEntity<`binary_sensor.bookshelf_heater_switch_0_overcurrent`>;
+  var shellyemA4e57cba73f5OverpoweringBinarySensor: IEntity<`binary_sensor.shellyem_a4e57cba73f5_overpowering`>;
+  var systemMonitorProcessPython3BinarySensor: IEntity<`binary_sensor.system_monitor_process_python3`>;
   var ilightshowIosEntertainmentConfigurationBinarySensor: IEntity<`binary_sensor.ilightshow_ios_entertainment_configuration`>;
   var livingRoomEntertainmentConfigurationBinarySensor: IEntity<`binary_sensor.living_room_entertainment_configuration`>;
   var bedroomBinarySensor: IEntity<`binary_sensor.bedroom`>;
+  var zteRouterWanStatusBinarySensor: IEntity<`binary_sensor.zte_router_wan_status`>;
+  var octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor: IEntity<`binary_sensor.octopus_energy_a_11077925_octoplus_saving_sessions`>;
+  var octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor: IEntity<`binary_sensor.octopus_energy_electricity_19l3210845_1630000030495_off_peak`>;
   var assistMicrophoneAssistInProgressBinarySensor: IEntity<`binary_sensor.assist_microphone_assist_in_progress`>;
   var tumbleDryerSmartPlugCloudConnectionBinarySensor: IEntity<`binary_sensor.tumble_dryer_smart_plug_cloud_connection`>;
   var tumbleDryerSmartPlugOverheatedBinarySensor: IEntity<`binary_sensor.tumble_dryer_smart_plug_overheated`>;
@@ -67,10 +69,8 @@ declare global {
   var bathroomMotionSensorOccupancyBinarySensor: IEntity<`binary_sensor.bathroom_motion_sensor_occupancy`>;
   var hallwayMotionSensorOccupancyBinarySensor: IEntity<`binary_sensor.hallway_motion_sensor_occupancy`>;
   var zigbee2mqttBridgeConnectionStateBinarySensor: IEntity<`binary_sensor.zigbee2mqtt_bridge_connection_state`>;
-  var bedroomSpeakerMicrophoneBinarySensor: IEntity<`binary_sensor.bedroom_speaker_microphone`>;
   var sonosArcUltraMicrophoneBinarySensor: IEntity<`binary_sensor.sonos_arc_ultra_microphone`>;
-  var octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor: IEntity<`binary_sensor.octopus_energy_a_11077925_octoplus_saving_sessions`>;
-  var octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor: IEntity<`binary_sensor.octopus_energy_electricity_19l3210845_1630000030495_off_peak`>;
+  var bedroomSpeakerMicrophoneBinarySensor: IEntity<`binary_sensor.bedroom_speaker_microphone`>;
   var officeMicrophoneBinarySensor: IEntity<`binary_sensor.office_microphone`>;
   var livingRoomOccupiedBinarySensor: IEntity<`binary_sensor.living_room_occupied`>;
   var bedroomOccupiedBinarySensor: IEntity<`binary_sensor.bedroom_occupied`>;
@@ -144,65 +144,6 @@ globalThis.bensImacFocusBinarySensor = entity('binary_sensor.bens_imac_focus');
 globalThis.ryansIphoneFocusBinarySensor = entity(
   'binary_sensor.ryans_iphone_focus',
 );
-globalThis.systemMonitorProcessPython3BinarySensor = entity(
-  'binary_sensor.system_monitor_process_python3',
-);
-globalThis.livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor = entity(
-  'binary_sensor.living_room_header_by_the_table_switch_0_overheating',
-);
-globalThis.livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor = entity(
-  'binary_sensor.living_room_header_by_the_table_switch_0_overpowering',
-);
-globalThis.livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor = entity(
-  'binary_sensor.living_room_header_by_the_table_switch_0_overvoltage',
-);
-globalThis.livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor = entity(
-  'binary_sensor.living_room_header_by_the_table_switch_0_overcurrent',
-);
-globalThis.bookshelfHeaterSwitch_0OverheatingBinarySensor = entity(
-  'binary_sensor.bookshelf_heater_switch_0_overheating',
-);
-globalThis.bookshelfHeaterSwitch_0OverpoweringBinarySensor = entity(
-  'binary_sensor.bookshelf_heater_switch_0_overpowering',
-);
-globalThis.bookshelfHeaterSwitch_0OvervoltageBinarySensor = entity(
-  'binary_sensor.bookshelf_heater_switch_0_overvoltage',
-);
-globalThis.bookshelfHeaterSwitch_0OvercurrentBinarySensor = entity(
-  'binary_sensor.bookshelf_heater_switch_0_overcurrent',
-);
-globalThis.hallwayHeaterSwitch_0OverheatingBinarySensor = entity(
-  'binary_sensor.hallway_heater_switch_0_overheating',
-);
-globalThis.hallwayHeaterSwitch_0OverpoweringBinarySensor = entity(
-  'binary_sensor.hallway_heater_switch_0_overpowering',
-);
-globalThis.hallwayHeaterSwitch_0OvervoltageBinarySensor = entity(
-  'binary_sensor.hallway_heater_switch_0_overvoltage',
-);
-globalThis.hallwayHeaterSwitch_0OvercurrentBinarySensor = entity(
-  'binary_sensor.hallway_heater_switch_0_overcurrent',
-);
-globalThis.tvHeaterSwitch_0OverheatingBinarySensor = entity(
-  'binary_sensor.tv_heater_switch_0_overheating',
-);
-globalThis.tvHeaterSwitch_0OverpoweringBinarySensor = entity(
-  'binary_sensor.tv_heater_switch_0_overpowering',
-);
-globalThis.tvHeaterSwitch_0OvervoltageBinarySensor = entity(
-  'binary_sensor.tv_heater_switch_0_overvoltage',
-);
-globalThis.tvHeaterSwitch_0OvercurrentBinarySensor = entity(
-  'binary_sensor.tv_heater_switch_0_overcurrent',
-);
-globalThis.shellyemA4e57cba73f5OverpoweringBinarySensor = entity(
-  'binary_sensor.shellyem_a4e57cba73f5_overpowering',
-);
-globalThis.livingRoomOccupancyBinarySensor = entity(
-  'binary_sensor.living_room_occupancy',
-);
-globalThis.benIsHomeBinarySensor = entity('binary_sensor.ben_is_home');
-globalThis.inBedBinarySensor = entity('binary_sensor.in_bed');
 globalThis.livingRoomSensorSensorStateTamperBinarySensor = entity(
   'binary_sensor.living_room_sensor_sensor_state_tamper',
 );
@@ -248,8 +189,64 @@ globalThis.bedroomSensorMotionDetectionBinarySensor = entity(
 globalThis.bedroomSensorLowBatteryLevelBinarySensor = entity(
   'binary_sensor.bedroom_sensor_low_battery_level',
 );
-globalThis.zteRouterWanStatusBinarySensor = entity(
-  'binary_sensor.zte_router_wan_status',
+globalThis.livingRoomOccupancyBinarySensor = entity(
+  'binary_sensor.living_room_occupancy',
+);
+globalThis.benIsHomeBinarySensor = entity('binary_sensor.ben_is_home');
+globalThis.inBedBinarySensor = entity('binary_sensor.in_bed');
+globalThis.tvHeaterSwitch_0OverheatingBinarySensor = entity(
+  'binary_sensor.tv_heater_switch_0_overheating',
+);
+globalThis.tvHeaterSwitch_0OverpoweringBinarySensor = entity(
+  'binary_sensor.tv_heater_switch_0_overpowering',
+);
+globalThis.tvHeaterSwitch_0OvervoltageBinarySensor = entity(
+  'binary_sensor.tv_heater_switch_0_overvoltage',
+);
+globalThis.tvHeaterSwitch_0OvercurrentBinarySensor = entity(
+  'binary_sensor.tv_heater_switch_0_overcurrent',
+);
+globalThis.livingRoomHeaderByTheTableSwitch_0OverheatingBinarySensor = entity(
+  'binary_sensor.living_room_header_by_the_table_switch_0_overheating',
+);
+globalThis.livingRoomHeaderByTheTableSwitch_0OverpoweringBinarySensor = entity(
+  'binary_sensor.living_room_header_by_the_table_switch_0_overpowering',
+);
+globalThis.livingRoomHeaderByTheTableSwitch_0OvervoltageBinarySensor = entity(
+  'binary_sensor.living_room_header_by_the_table_switch_0_overvoltage',
+);
+globalThis.livingRoomHeaderByTheTableSwitch_0OvercurrentBinarySensor = entity(
+  'binary_sensor.living_room_header_by_the_table_switch_0_overcurrent',
+);
+globalThis.hallwayHeaterSwitch_0OverheatingBinarySensor = entity(
+  'binary_sensor.hallway_heater_switch_0_overheating',
+);
+globalThis.hallwayHeaterSwitch_0OverpoweringBinarySensor = entity(
+  'binary_sensor.hallway_heater_switch_0_overpowering',
+);
+globalThis.hallwayHeaterSwitch_0OvervoltageBinarySensor = entity(
+  'binary_sensor.hallway_heater_switch_0_overvoltage',
+);
+globalThis.hallwayHeaterSwitch_0OvercurrentBinarySensor = entity(
+  'binary_sensor.hallway_heater_switch_0_overcurrent',
+);
+globalThis.bookshelfHeaterSwitch_0OverheatingBinarySensor = entity(
+  'binary_sensor.bookshelf_heater_switch_0_overheating',
+);
+globalThis.bookshelfHeaterSwitch_0OverpoweringBinarySensor = entity(
+  'binary_sensor.bookshelf_heater_switch_0_overpowering',
+);
+globalThis.bookshelfHeaterSwitch_0OvervoltageBinarySensor = entity(
+  'binary_sensor.bookshelf_heater_switch_0_overvoltage',
+);
+globalThis.bookshelfHeaterSwitch_0OvercurrentBinarySensor = entity(
+  'binary_sensor.bookshelf_heater_switch_0_overcurrent',
+);
+globalThis.shellyemA4e57cba73f5OverpoweringBinarySensor = entity(
+  'binary_sensor.shellyem_a4e57cba73f5_overpowering',
+);
+globalThis.systemMonitorProcessPython3BinarySensor = entity(
+  'binary_sensor.system_monitor_process_python3',
 );
 globalThis.ilightshowIosEntertainmentConfigurationBinarySensor = entity(
   'binary_sensor.ilightshow_ios_entertainment_configuration',
@@ -258,6 +255,16 @@ globalThis.livingRoomEntertainmentConfigurationBinarySensor = entity(
   'binary_sensor.living_room_entertainment_configuration',
 );
 globalThis.bedroomBinarySensor = entity('binary_sensor.bedroom');
+globalThis.zteRouterWanStatusBinarySensor = entity(
+  'binary_sensor.zte_router_wan_status',
+);
+globalThis.octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor = entity(
+  'binary_sensor.octopus_energy_a_11077925_octoplus_saving_sessions',
+);
+globalThis.octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor =
+  entity(
+    'binary_sensor.octopus_energy_electricity_19l3210845_1630000030495_off_peak',
+  );
 globalThis.assistMicrophoneAssistInProgressBinarySensor = entity(
   'binary_sensor.assist_microphone_assist_in_progress',
 );
@@ -288,19 +295,12 @@ globalThis.hallwayMotionSensorOccupancyBinarySensor = entity(
 globalThis.zigbee2mqttBridgeConnectionStateBinarySensor = entity(
   'binary_sensor.zigbee2mqtt_bridge_connection_state',
 );
-globalThis.bedroomSpeakerMicrophoneBinarySensor = entity(
-  'binary_sensor.bedroom_speaker_microphone',
-);
 globalThis.sonosArcUltraMicrophoneBinarySensor = entity(
   'binary_sensor.sonos_arc_ultra_microphone',
 );
-globalThis.octopusEnergyA_11077925OctoplusSavingSessionsBinarySensor = entity(
-  'binary_sensor.octopus_energy_a_11077925_octoplus_saving_sessions',
+globalThis.bedroomSpeakerMicrophoneBinarySensor = entity(
+  'binary_sensor.bedroom_speaker_microphone',
 );
-globalThis.octopusEnergyElectricity_19l3210845_1630000030495OffPeakBinarySensor =
-  entity(
-    'binary_sensor.octopus_energy_electricity_19l3210845_1630000030495_off_peak',
-  );
 globalThis.officeMicrophoneBinarySensor = entity(
   'binary_sensor.office_microphone',
 );

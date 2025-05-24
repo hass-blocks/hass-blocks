@@ -9,6 +9,9 @@
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
     "paths": {
+      "@assertions": ["./src/assertions/index.ts"],
+      "@entities": ["./src/entities.ts"],
+      "@actions": ["./src/actions/index.ts"],
       "@blocks-codegen": ["./src/blocks-codegen/index.ts"]
     }
   },

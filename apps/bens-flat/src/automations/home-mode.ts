@@ -7,18 +7,13 @@ import {
   ExecutionMode,
   sequence,
 } from '@hass-blocks/core';
-
 import { notifyMyPhone } from '../actions/index.ts';
-
 import { ifIamOut, ifHomeIsNotEmpty } from '../assertions/index.ts';
-
 import { homeBecomesEmpty } from '../triggers/index.ts';
-
 import {
   playMyDiscoverWeeklyEveryWhere,
   setVolumeOnSpeakers,
 } from '../actions/media.ts';
-
 import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-apple-tv.ts';
 import { allLights, allSpeakers } from '../entities.ts';
 

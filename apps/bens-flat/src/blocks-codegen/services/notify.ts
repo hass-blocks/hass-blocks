@@ -37,7 +37,7 @@ declare global {
     /**
      * Some integrations provide extended functionality via this field. For more information, refer to the integration documentation.
      */
-    data?: never;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -50,8 +50,8 @@ declare global {
   interface EmailNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -59,25 +59,11 @@ declare global {
    */
   var emailNotify: (params: EmailNotifyProps) => Block;
 
-  interface PlaystationNetworkNotifyProps {
-    message: string;
-    title?: string;
-    target?: never;
-    data?: never;
-  }
-
-  /**
-   * Sends a notification message using the playstation_network service.
-   */
-  var playstationNetworkNotify: (
-    params: PlaystationNetworkNotifyProps,
-  ) => Block;
-
   interface MobileAppMumsPhoneNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -90,8 +76,8 @@ declare global {
   interface MobileAppBensImacProNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -104,8 +90,8 @@ declare global {
   interface MobileAppBensIphoneNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -118,8 +104,8 @@ declare global {
   interface MobileAppBensImacNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -130,8 +116,8 @@ declare global {
   interface MobileAppRyansIphoneNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -144,8 +130,8 @@ declare global {
   interface MobileAppPixel_6ProNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -158,8 +144,8 @@ declare global {
   interface MobileAppTomSPixel_7NotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -172,8 +158,8 @@ declare global {
   interface NotifyNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -184,8 +170,8 @@ declare global {
   interface LgWebosTvOled55c8plaNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -195,11 +181,25 @@ declare global {
     params: LgWebosTvOled55c8plaNotifyProps,
   ) => Block;
 
+  interface PlaystationNetworkNotifyProps {
+    message: string;
+    title?: string;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
+  }
+
+  /**
+   * Sends a notification message using the playstation_network service.
+   */
+  var playstationNetworkNotify: (
+    params: PlaystationNetworkNotifyProps,
+  ) => Block;
+
   interface AlexaMediaBedroomSonosOneNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -212,8 +212,8 @@ declare global {
   interface AlexaMediaBedroomSpeaker_2NotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -226,8 +226,8 @@ declare global {
   interface AlexaMediaOffice_2NotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -240,8 +240,8 @@ declare global {
   interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -254,8 +254,8 @@ declare global {
   interface AlexaMediaLivingRoomSonosOneNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -268,8 +268,8 @@ declare global {
   interface AlexaMediaLivingRoomNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -282,8 +282,8 @@ declare global {
   interface AlexaMediaSonosArcUltra_2NotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -296,8 +296,8 @@ declare global {
   interface AlexaMediaLivingRoomSonosNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -310,8 +310,8 @@ declare global {
   interface AlexaMediaThisDevice_2NotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
@@ -321,31 +321,31 @@ declare global {
     params: AlexaMediaThisDevice_2NotifyProps,
   ) => Block;
 
+  interface AlexaMediaLastCalledBwainwright28GmailComNotifyProps {
+    message: string;
+    title?: string;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
+  }
+
+  /**
+   * Sends a notification message using the alexa_media_last_called_bwainwright28_gmail_com integration.
+   */
+  var alexaMediaLastCalledBwainwright28GmailComNotify: (
+    params: AlexaMediaLastCalledBwainwright28GmailComNotifyProps,
+  ) => Block;
+
   interface AlexaMediaNotifyProps {
     message: string;
     title?: string;
-    target?: never;
-    data?: never;
+    target?: Record<string, unknown>;
+    data?: Record<string, unknown>;
   }
 
   /**
    * Sends a notification message using the alexa_media service.
    */
   var alexaMediaNotify: (params: AlexaMediaNotifyProps) => Block;
-
-  interface AlexaMediaLastCalledNotifyProps {
-    message: string;
-    title?: string;
-    target?: never;
-    data?: never;
-  }
-
-  /**
-   * Sends a notification message using the alexa_media_last_called integration.
-   */
-  var alexaMediaLastCalledNotify: (
-    params: AlexaMediaLastCalledNotifyProps,
-  ) => Block;
 }
 
 globalThis.sendMessageNotify = (target, params) =>
@@ -375,16 +375,6 @@ globalThis.emailNotify = (params) =>
     params: {
       domain: 'notify',
       service: 'email',
-      service_data: params,
-    },
-  });
-
-globalThis.playstationNetworkNotify = (params) =>
-  serviceCall({
-    name: `Call notify.playstation_network`,
-    params: {
-      domain: 'notify',
-      service: 'playstation_network',
       service_data: params,
     },
   });
@@ -479,6 +469,16 @@ globalThis.lgWebosTvOled55c8plaNotify = (params) =>
     },
   });
 
+globalThis.playstationNetworkNotify = (params) =>
+  serviceCall({
+    name: `Call notify.playstation_network`,
+    params: {
+      domain: 'notify',
+      service: 'playstation_network',
+      service_data: params,
+    },
+  });
+
 globalThis.alexaMediaBedroomSonosOneNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media_bedroom_sonos_one`,
@@ -569,22 +569,22 @@ globalThis.alexaMediaThisDevice_2Notify = (params) =>
     },
   });
 
+globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (params) =>
+  serviceCall({
+    name: `Call notify.alexa_media_last_called_bwainwright28_gmail_com`,
+    params: {
+      domain: 'notify',
+      service: 'alexa_media_last_called_bwainwright28_gmail_com',
+      service_data: params,
+    },
+  });
+
 globalThis.alexaMediaNotify = (params) =>
   serviceCall({
     name: `Call notify.alexa_media`,
     params: {
       domain: 'notify',
       service: 'alexa_media',
-      service_data: params,
-    },
-  });
-
-globalThis.alexaMediaLastCalledNotify = (params) =>
-  serviceCall({
-    name: `Call notify.alexa_media_last_called`,
-    params: {
-      domain: 'notify',
-      service: 'alexa_media_last_called',
       service_data: params,
     },
   });

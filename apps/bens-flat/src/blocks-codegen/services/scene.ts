@@ -30,7 +30,7 @@ declare global {
     /**
      * List of entities and their target state.
      */
-    entities: never;
+    entities: Record<string, unknown>;
     /**
      * Time it takes the devices to transition into the states defined in the scene.
      */
@@ -50,11 +50,11 @@ declare global {
     /**
      * List of entities and their target state. If your entities are already in the target state right now, use 'Entities snapshot' instead.
      */
-    entities?: never;
+    entities?: Record<string, unknown>;
     /**
      * List of entities to be included in the snapshot. By taking a snapshot, you record the current state of those entities. If you do not want to use the current state of all your entities for this scene, you can combine 'Entities snapshot' with 'Entity states'.
      */
-    snapshot_entities?: string;
+    snapshot_entities?: string[];
   }
 
   /**

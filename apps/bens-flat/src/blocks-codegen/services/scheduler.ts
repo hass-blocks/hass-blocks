@@ -25,19 +25,19 @@ declare global {
     /**
      * Days of the week for which the schedule should be repeated
      */
-    weekdays?: never;
+    weekdays?: Record<string, unknown>;
     /**
      * Date from which schedule should be executed
      */
-    start_date?: never;
+    start_date?: Record<string, unknown>;
     /**
      * Date until which schedule should be executed
      */
-    end_date?: never;
+    end_date?: Record<string, unknown>;
     /**
      * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
      */
-    timeslots: never;
+    timeslots: Record<string, unknown>;
     /**
      * Control what happens after the schedule is triggered
      */
@@ -61,19 +61,19 @@ declare global {
     /**
      * Days of the week for which the schedule should be repeated
      */
-    weekdays?: never;
+    weekdays?: Record<string, unknown>;
     /**
      * Date from which schedule should be executed
      */
-    start_date?: never;
+    start_date?: Record<string, unknown>;
     /**
      * Date until which schedule should be executed
      */
-    end_date?: never;
+    end_date?: Record<string, unknown>;
     /**
      * list of timeslots with their actions and optionally conditions (should be kept the same for all timeslots)
      */
-    timeslots?: never;
+    timeslots?: Record<string, unknown>;
     /**
      * Control what happens after the schedule is triggered
      */

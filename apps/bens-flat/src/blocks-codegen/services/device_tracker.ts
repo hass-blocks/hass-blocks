@@ -21,7 +21,7 @@ declare global {
     /**
      * GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539]).
      */
-    gps?: never;
+    gps?: Record<string, unknown>;
     /**
      * Accuracy of the GPS coordinates.
      */

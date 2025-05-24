@@ -39,7 +39,7 @@ declare global {
     /**
      * A single command or a list of commands to send.
      */
-    command: never;
+    command: Record<string, unknown>;
     /**
      * The number of times you want to repeat the commands.
      */
@@ -70,7 +70,7 @@ declare global {
     /**
      * A single command or a list of commands to learn.
      */
-    command?: never;
+    command?: Record<string, unknown>;
     /**
      * The type of command to be learned.
      */
@@ -101,7 +101,7 @@ declare global {
     /**
      * The single command or the list of commands to be deleted.
      */
-    command: never;
+    command: Record<string, unknown>;
   }
 
   /**

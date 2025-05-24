@@ -19,4 +19,4 @@ export {
   selectMediaPlayerSource,
 } from '@actions';
 
-export { stateIs, stateIsNot, gate } from '@assertions';
+export { stateIs, stateIsNot, gate, entityExists } from '@assertions';

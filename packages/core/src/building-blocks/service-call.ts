@@ -7,24 +7,31 @@ import type { Block } from '@core';
 import { Action } from './action.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
-class ServiceCall<P> extends Action {
+type ServiceCallArgs<P> = {
+  target?: ITarget;
+  params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
+};
+
+class ServiceCall<P> extends Action<ServiceCallArgs<P>, void> {
   public override typeString = 'service-call';
 
   public constructor(
     private readonly serviceConfig: {
       name: string;
-      target?: ITarget;
-      params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
-    },
+    } & ServiceCallArgs<P>,
   ) {
     super({
       ...(serviceConfig.target ? { targets: [serviceConfig.target] } : {}),
       name: serviceConfig.name,
-      callback: async (client) => {
+      callback: async (client, input) => {
         const { target } = this.serviceConfig;
+        const { target: passedTarget, ...passedParams } = input;
+
         const params: Omit<CallServiceCommand<P>, 'id' | 'type'> = {
           ...serviceConfig.params,
+          ...passedParams,
           ...(target ? { target: target.targetIds } : {}),
+          ...(passedTarget ? { target: passedTarget.targetIds } : {}),
         };
 
         return await client.callService(params);

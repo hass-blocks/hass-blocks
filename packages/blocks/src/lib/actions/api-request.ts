@@ -35,18 +35,21 @@ export interface ApiRequestProps {
  * @param props - request configuration
  */
 export const apiRequest = <R>(props: ApiRequestProps) => {
-  return action<void, R>({
+  return action<ApiRequestProps, R>({
     name: 'API Request',
-    callback: async () => {
-      const response = await fetch(
-        props.url,
-        removeUndefined({
+    callback: async (_client, input) => {
+      const response = await fetch(input.url ?? props.url, {
+        ...removeUndefined({
           method: props.method,
           headers: props.headers,
           body: props.body,
         }),
-      );
-
+        ...removeUndefined({
+          method: input.method,
+          headers: input.headers,
+          body: input.body,
+        }),
+      });
       if (!response.ok) {
         throw new HassBlocksError(
           `Returned status code ${response.status} with response ${await response.text()}`,

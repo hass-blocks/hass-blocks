@@ -8,6 +8,7 @@ export {
   waitUntilStateIsNot,
   waitSeconds,
 } from './utils.ts';
+export { apiRequest } from './api-request.ts';
 export { sendRemoteCommands } from './send-remote-commands.ts';
 export { selectMediaPlayerSource } from './select-media-player-source.ts';
 export { stopMediaPlayer } from './stop-media-player.ts';

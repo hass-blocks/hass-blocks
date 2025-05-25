@@ -72,6 +72,7 @@ export { ExecutionMode } from '@types';
 
 export {
   when,
+  loop,
   action,
   concurrently,
   sequence,
@@ -82,6 +83,7 @@ export {
 
 export type {
   IActionConfig,
+  ILoopConfig,
   IAutomationConfig,
   IAssertionConfig,
   IfThenElseConditionConfig,

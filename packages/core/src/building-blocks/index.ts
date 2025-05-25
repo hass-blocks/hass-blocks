@@ -9,6 +9,7 @@ export { concurrently } from './execute-concurrently.ts';
 export { sequence } from './sequence.ts';
 export { serviceCall } from './service-call.ts';
 export { assertion } from './assertion.ts';
+export { type ILoopConfig, loop } from './loop.ts';
 export type { IAssertionConfig } from './assertion.ts';
 export type {
   ValidInputOutputSequence,

@@ -1,4 +1,5 @@
 import { action, HassBlocksError } from '@hass-blocks/core';
+import z, { type ZodTypeAny } from 'zod/v3';
 import { removeUndefined } from '@utils';
 
 /**
@@ -17,14 +18,24 @@ export interface ApiRequestProps {
    */
   headers: Record<string, unknown>;
   /**
-   * The URL to send the request to
+   * The base URL for the request
    */
-  url: string;
+  baseUrl: string;
+
+  /**
+   * The path segment for the request
+   */
+  path: string;
 
   /**
    * Body of the request
    */
   body?: Record<string, unknown>;
+
+  /**
+   * Zod schema for the response
+   */
+  responseSchema?: ZodTypeAny;
 }
 
 /**
@@ -34,11 +45,27 @@ export interface ApiRequestProps {
  *
  * @param props - request configuration
  */
-export const apiRequest = <R>(props: ApiRequestProps) => {
-  return action<ApiRequestProps, R>({
+
+export const apiRequest = <
+  TProps extends Partial<ApiRequestProps>,
+  TInputProps extends Partial<ApiRequestProps>,
+>(
+  props: TProps,
+) => {
+  return action<
+    TInputProps,
+    z.output<Exclude<TProps['responseSchema'], undefined>>
+  >({
     name: 'API Request',
-    callback: async (_client, input) => {
-      const response = await fetch(input.url ?? props.url, {
+    callback: async (
+      _client,
+      input,
+    ): Promise<z.output<Exclude<TProps['responseSchema'], undefined>>> => {
+      const basePath = input.baseUrl ?? props.baseUrl;
+      const thePath = input.path ?? props.path;
+      const finalUrl = `${basePath?.endsWith('/') ? basePath.slice(0, -1) : basePath}${thePath?.startsWith('/') ? thePath : `/${thePath}`}`;
+
+      const response = await fetch(finalUrl, {
         ...removeUndefined({
           method: props.method,
           headers: props.headers,
@@ -56,7 +83,15 @@ export const apiRequest = <R>(props: ApiRequestProps) => {
         );
       }
 
-      return (await response.json()) as R;
+      const responseJson = await response.json();
+
+      const { responseSchema } = props;
+
+      if (typeof responseSchema !== 'undefined') {
+        return responseSchema.parse(responseJson);
+      }
+
+      return responseJson;
     },
   });
 };

@@ -18,6 +18,7 @@ export {
   setMediaPlayerVolume,
   selectMediaPlayerSource,
   apiRequest,
+  type ApiRequestProps,
 } from '@actions';
 
 export { stateIs, stateIsNot, gate, entityExists } from '@assertions';

@@ -146,6 +146,32 @@ describe('the automation class', () => {
     expectTypeOf(foo).toExtend<Block<void, number>>();
   });
 
+  it('should not complain if the right hand properties are optional', () => {
+    const oneAction = new Action({
+      name: 'This thing',
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      callback: (_client, _input: string) => {
+        return {
+          two: 'foo',
+        };
+      },
+    });
+
+    const twoAction = new Action<{ two?: string }, number>({
+      name: 'This thing',
+      callback: () => {
+        console.log('something');
+        return 2;
+      },
+    });
+
+    automation({
+      name: 'this automation',
+      // Should not produce a type error here
+      then: [oneAction, twoAction],
+    });
+  });
+
   it('should correctly type the start of the sequence when there is two items and the one at the start has an input and the one at the end has an output', () => {
     const oneAction = new Action({
       name: 'This thing',

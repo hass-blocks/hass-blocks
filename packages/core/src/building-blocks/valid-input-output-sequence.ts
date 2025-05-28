@@ -69,7 +69,7 @@ export type ValidInputOutputSequence<
   O,
   A extends readonly Block<unknown, unknown>[],
 > = A extends readonly [infer Only extends Block<unknown, unknown>]
-  ? InputType<Only> extends I
+  ? InputType<Only> extends Partial<I>
     ? OutputType<Only> extends O
       ? readonly [Only]
       : never
@@ -78,7 +78,7 @@ export type ValidInputOutputSequence<
         infer First extends Block<unknown, unknown>,
         ...infer Rest extends readonly Block<unknown, unknown>[],
       ]
-    ? InputType<First> extends I
+    ? InputType<First> extends Partial<I>
       ? readonly [
           First,
           ...ValidInputOutputSequence<OutputType<First>, O, Rest>,

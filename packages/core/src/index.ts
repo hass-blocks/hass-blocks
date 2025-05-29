@@ -83,6 +83,7 @@ export {
 
 export type {
   IActionConfig,
+  IDoWhileConfig,
   ILoopConfig,
   IAutomationConfig,
   IAssertionConfig,

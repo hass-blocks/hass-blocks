@@ -13,27 +13,55 @@ import { md5 } from '@utils';
  *
  * Configuration for loop block
  */
-export interface ILoopConfig<I = void, AO = void, O = void>
+export interface ILoopConfig<TInput = void, TOutput = void, TBlockOutput = void>
   extends IBaseBlockConfig {
   /**
    * Will execute this assertion for each iteration of the loop. If it succeeds, the 'then' block is executed
    */
-  while: Block<I | O, AO>;
+  while: Block<TInput | TBlockOutput, TOutput>;
 
   /**
    * Block to be executed
    */
-  then: Block<AO, O>;
+  then: Block<TOutput, TBlockOutput>;
 }
 
-class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
+/**
+ * @public
+ *
+ * Configuration for loop block (do-while variant)
+ */
+export interface IDoWhileConfig<
+  TInput = void,
+  TOutput = void,
+  TBlockOutput = void,
+> extends IBaseBlockConfig {
+  /**
+   * Will execute this assertion for each iteration of the loop. If it succeeds, the 'then' block is executed
+   */
+  while: Block<TBlockOutput, TOutput>;
+
+  /**
+   * Block to be executed
+   */
+  do: Block<TInput | TOutput, TBlockOutput>;
+}
+
+class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
+  TInput,
+  TOutput
+> {
   public override name: string;
 
   public override typeString = 'loop';
 
-  public constructor(public readonly config: ILoopConfig<I, AO, O>) {
+  public constructor(
+    public readonly config:
+      | ILoopConfig<TInput, TOutput, TActionOutput>
+      | IDoWhileConfig<TInput, TOutput, TActionOutput>,
+  ) {
     super(config.id ?? md5(config.name), config.targets, [
-      config.then,
+      'then' in config ? config.then : config.do,
       config.while,
     ]);
     this.name = this.config.name;
@@ -41,7 +69,7 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
 
   public override async run(
     client: IHass,
-    input: I,
+    input: TInput,
     events?: IEventBus,
     triggerId?: string,
   ) {
@@ -53,7 +81,7 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
       throw new Error('You must supply a trigger id');
     }
 
-    let assertionExecutor = new Executor<I | O, AO>(
+    let assertionExecutor = new Executor<TInput | TActionOutput, TOutput>(
       [this.config.while],
       client,
       events,
@@ -62,26 +90,33 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
       BlockExecutionMode.Sequence,
     );
 
-    await assertionExecutor.run();
-    let [result] = await assertionExecutor.finished();
+    if ('then' in this.config) {
+      await assertionExecutor.run();
+    }
+    let [result] =
+      'then' in this.config ? await assertionExecutor.finished() : [undefined];
 
-    if (!result || result?.continue === false) {
+    if ('then' in this.config && (!result || result?.continue === false)) {
       return { continue: false } as StopOutput;
     }
 
-    let lastAssertionOutput: AO | O = result.output;
+    let nextActionInput = result && 'output' in result && result.output;
 
     while (
-      result?.continue &&
-      result.outputType === 'conditional' &&
-      result.conditionResult === true
+      (result?.continue &&
+        result.outputType === 'conditional' &&
+        result.conditionResult === true) ||
+      'do' in this.config
     ) {
-      const actionExecutor = new Executor<AO, O>(
-        [this.config.then],
+      const actionExecutor = new Executor<
+        TOutput | TInput | TActionOutput,
+        TActionOutput
+      >(
+        ['then' in this.config ? this.config.then : this.config.do],
         client,
         events,
         triggerId,
-        lastAssertionOutput,
+        nextActionInput || input,
         BlockExecutionMode.Sequence,
       );
 
@@ -92,7 +127,7 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
         ? actionResult.output
         : undefined;
 
-      assertionExecutor = new Executor<I | O, AO>(
+      assertionExecutor = new Executor<TInput | TActionOutput, TOutput>(
         [this.config.while],
         client,
         events,
@@ -112,13 +147,17 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
         return { continue: false } satisfies StopOutput;
       }
 
-      lastAssertionOutput = result.output;
+      nextActionInput = result.output;
     }
 
-    const returnVal: ContinueOutput<AO> = {
+    if (!nextActionInput) {
+      return { continue: false } satisfies StopOutput;
+    }
+
+    const returnVal: ContinueOutput<TOutput> = {
       continue: true,
       outputType: 'block',
-      output: lastAssertionOutput,
+      output: nextActionInput,
     };
 
     return returnVal;
@@ -131,8 +170,23 @@ class Loop<I = void, AO = void, O = void> extends Block<I, AO> {
  *
  * @param config - Configuration for loop
  */
-export const loop = <I = void, AO = void, O = void>(
-  config: ILoopConfig<I, AO, O>,
-): Block<I, AO> => {
-  return new Loop<I, AO, O>(config);
-};
+export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
+  config: ILoopConfig<TInput, TOutput, TBlockOutput>,
+): Block<TInput, TOutput>;
+
+/**
+ * @public
+ * Continues to execute a block until an assertion fails (do-while variant)
+ *
+ * @param config - Configuration for loop
+ */
+export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
+  config: IDoWhileConfig<TInput, TOutput, TBlockOutput>,
+): Block<TInput, TOutput>;
+export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
+  config:
+    | ILoopConfig<TInput, TOutput, TBlockOutput>
+    | IDoWhileConfig<TInput, TOutput, TBlockOutput>,
+): Block<TInput, TOutput> {
+  return new Loop<TInput, TOutput, TBlockOutput>(config);
+}

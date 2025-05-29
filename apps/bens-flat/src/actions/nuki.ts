@@ -1,11 +1,10 @@
-import { apiRequest, waitMinutes, waitSeconds } from '@hass-blocks/blocks';
-import z, { type keyof } from 'zod/v4';
+import { apiRequest, waitSeconds } from '@hass-blocks/blocks';
+import z from 'zod/v4';
 import {
   action,
   assertion,
   loop,
   sequence,
-  type Block,
   type IHass,
 } from '@hass-blocks/core';
 
@@ -163,8 +162,8 @@ export const getLastUnlockDetailsFromLock = sequence(
     do: sequence(
       setRequestParams,
       getLockLogs,
+      waitSeconds(5),
       hydrateStatuses,
-      waitSeconds<{ action: (typeof nukiAction)[keyof typeof nukiAction] }>(5),
     ),
     while: notUnlock,
   }),

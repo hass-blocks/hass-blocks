@@ -6,7 +6,6 @@ import {
   concurrently,
   ExecutionMode,
   sequence,
-  type ValidInputOutputSequence,
 } from '@hass-blocks/core';
 import { notifyMyPhone } from '../actions/index.ts';
 import { ifIamOut, ifHomeIsNotEmpty } from '../assertions/index.ts';
@@ -32,13 +31,6 @@ export const onLastExit = automation({
   then: [ifZoneExitChecksAllowed, turnOffSwitch(homeModeSwitch)],
 });
 
-const theSequence = sequence(
-  waitMinutes<void>(5),
-  ifIamOut,
-  allowZoneExitChecks,
-  turnOffSwitch(homeModeSwitch),
-);
-
 export const homeModeDetection = automation({
   name: 'Home mode detection',
   when: [
@@ -50,10 +42,10 @@ export const homeModeDetection = automation({
   then: [
     concurrently(
       sequence(
-        waitMinutes<void>(5),
         ifIamOut,
         allowZoneExitChecks,
         turnOffSwitch(homeModeSwitch),
+        waitMinutes(5),
       ),
       sequence(
         stateIs(homeModeSwitch, 'off'),

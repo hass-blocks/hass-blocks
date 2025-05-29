@@ -18,8 +18,8 @@ export const livingRoomLightsAutomation = automation({
   then: [
     stateIs(livingRoomMotionLights, 'on'),
     stateIs(tvModeSwitch, 'off'),
+    waitMinutes<void>(30),
     turnOnLight(livingRoom),
-    waitMinutes(30),
     turnOffLight(livingRoom),
   ],
 });
@@ -31,7 +31,7 @@ export const bedroomLights = automation({
     stateIs(sleepModeSwitch, 'off'),
     stateIs(bedroomMotionLights, 'on'),
     turnOnLight(bedroom),
-    waitMinutes(10),
+    waitMinutes<void>(10),
     turnOffLight(bedroom),
   ],
 });
@@ -42,7 +42,7 @@ export const hallwayLights = automation({
   then: [
     stateIs(hallwayMotionLights, 'on'),
     turnOnLight(hallway),
-    waitMinutes(2),
+    waitMinutes<void>(2),
     turnOffLight(hallway),
   ],
 });
@@ -53,7 +53,7 @@ export const bathroomLights = automation({
   then: [
     stateIs(bathroomMotionLights, 'on'),
     turnOnLight(bathroom),
-    waitMinutes(10),
+    waitMinutes<void>(10),
     turnOffLight(bathroom),
   ],
 });

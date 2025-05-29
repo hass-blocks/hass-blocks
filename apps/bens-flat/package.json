@@ -11,6 +11,7 @@
     "@hass-blocks/blocks": "0.0.3",
     "@hass-blocks/core": "3.14.0",
     "@hass-blocks/terminal-ui-plugin": "0.3.2",
-    "@hass-blocks/triggers": "workspace:^"
+    "@hass-blocks/triggers": "workspace:^",
+    "zod": "3.25.28"
   }
 }

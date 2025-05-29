@@ -1,4 +1,5 @@
-import { serviceCall } from '@hass-blocks/core';
+import { stateIs } from '@hass-blocks/blocks';
+import { concurrently, serviceCall, when } from '@hass-blocks/core';
 
 export const notifyMyPhone = ({
   message,
@@ -18,3 +19,25 @@ export const notifyMyPhone = ({
       },
     },
   });
+
+export const notifyAllMyDevices = ({
+  message,
+  title,
+}: {
+  message: string;
+  title: string;
+}) =>
+  concurrently(
+    mobileAppBensImacNotify({
+      message,
+      title,
+    }),
+    mobileAppBensIphoneNotify({
+      message,
+      title,
+    }),
+    when(stateIs(wearingClapper2Ps5ConsoleMediaPlayer, 'on'), {
+      then: playstationNetworkNotify({ message, title }),
+      else: lgWebosTvOled55c8plaNotify({ message, title }),
+    }),
+  );

@@ -11,24 +11,17 @@ import {
   stateTurnsOn,
 } from '@hass-blocks/triggers';
 
-import {
-  turnOffMacScreen,
-  restoreAfterTvMode,
-  recordStateOfLivingRoom,
-} from '@actions';
+import { restoreAfterTvMode, recordStateOfLivingRoom } from '@actions';
 
 export const tvModeOn = automation({
   name: 'TV Mode Switches On',
   when: stateTurnsOn(tvModeSwitch),
   then: [
-    sequence(
-      recordStateOfLivingRoom,
-      concurrently(
-        turnOffMacScreen,
-        turnOnScene(tvLightsScene),
-        turnOffSwitch(adaptiveLightingLivingRoomSwitch),
-        closeCoverCover(livingRoomBlindsCover),
-      ),
+    recordStateOfLivingRoom,
+    concurrently(
+      turnOnScene(tvLightsScene),
+      turnOffSwitch(adaptiveLightingLivingRoomSwitch),
+      closeCoverCover(livingRoomBlindsCover),
     ),
   ],
 });

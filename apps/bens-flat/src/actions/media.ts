@@ -17,6 +17,12 @@ export const playMyDiscoverWeeklyEveryWhere = playMediaMediaPlayer(
   },
 );
 
+export const playDing = playMediaMediaPlayer(allSpeakers, {
+  media_content_id: 'media-source://media_source/local/doorbell.mp3',
+  media_content_type: 'audio/mpeg',
+  announce: false,
+});
+
 export const setVolumeOnSpeakers = (volume: number) =>
   volumeSetMediaPlayer(allSpeakers, {
     volume_level: volume,

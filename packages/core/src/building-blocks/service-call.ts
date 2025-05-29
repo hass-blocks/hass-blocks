@@ -76,6 +76,6 @@ export const serviceCall = <P>(serviceConfig: {
   name: string;
   target?: ITarget;
   params: Omit<CallServiceCommand<P>, 'id' | 'type'>;
-}): Block => {
+}): Block<ServiceCallArgs<P>, void> => {
   return new ServiceCall<P>(serviceConfig);
 };

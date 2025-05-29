@@ -3,7 +3,6 @@ import {
   HassBlocksError,
   type ITarget,
   type IHass,
-  type Block,
 } from '@hass-blocks/core';
 
 import { waitInSeconds, waitInMinutes } from '@utils';
@@ -17,10 +16,10 @@ import { waitInSeconds, waitInMinutes } from '@utils';
  * @param minutes - how many minutes to wait for
  */
 export const waitMinutes = (minutes: number) =>
-  action<void, void>({
+  action<'pass', 'pass'>({
     name: `Wait ${minutes} minutes`,
 
-    callback: async (_client, input: I) => {
+    callback: async (_client, input) => {
       await waitInMinutes(minutes);
       return input;
     },
@@ -75,10 +74,10 @@ export const waitUntilState = (
       await waitForState(target, client, expectedState);
     }
   };
-  return action({
+  return action<'pass', 'pass'>({
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     targets: [target],
-    callback: async (client) => {
+    callback: async (client, input) => {
       const { entity_id } = target.targetIds;
       const ids = (Array.isArray(entity_id) ? entity_id : [entity_id]).flatMap(
         (id) => (id ? [id] : []),
@@ -96,6 +95,7 @@ export const waitUntilState = (
           }
         }),
       );
+      return input;
     },
   });
 };
@@ -132,10 +132,10 @@ export const waitUntilStateIsNot = (
       await waitForState(target, client, expectedState);
     }
   };
-  return action({
+  return action<'pass', 'pass'>({
     targets: [target],
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
-    callback: async (client) => {
+    callback: async (client, input) => {
       const { entity_id } = target.targetIds;
       const ids = (Array.isArray(entity_id) ? entity_id : [entity_id]).flatMap(
         (id) => (id ? [id] : []),
@@ -153,6 +153,7 @@ export const waitUntilStateIsNot = (
           }
         }),
       );
+      return input;
     },
   });
 };

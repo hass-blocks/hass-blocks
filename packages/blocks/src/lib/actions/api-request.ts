@@ -1,5 +1,5 @@
 import { action, HassBlocksError } from '@hass-blocks/core';
-import z, { type ZodTypeAny } from 'zod/v3';
+import z from 'zod/v4';
 import { removeUndefined } from '@utils';
 
 /**
@@ -35,7 +35,7 @@ export interface ApiRequestProps {
   /**
    * Zod schema for the response
    */
-  responseSchema?: ZodTypeAny;
+  responseSchema?: z.core.$ZodType;
 }
 
 /**
@@ -88,7 +88,7 @@ export const apiRequest = <
       const { responseSchema } = props;
 
       if (typeof responseSchema !== 'undefined') {
-        return responseSchema.parse(responseJson);
+        return z.parse(responseSchema, responseJson);
       }
 
       return responseJson;

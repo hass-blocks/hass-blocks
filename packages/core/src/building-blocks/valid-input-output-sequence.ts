@@ -6,10 +6,12 @@ import type { Block } from '@core';
  * @public
  */
 export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
-  T extends readonly [infer First, ...unknown[]]
-    ? First extends Block<unknown, unknown>
-      ? InputType<First>
-      : never
+  T extends readonly [infer First, ...infer Rest]
+    ? First extends Block<'pass', 'pass'>
+      ? GetSequenceInput<Rest>
+      : First extends Block<unknown, unknown>
+        ? InputType<First>
+        : never
     : never;
 
 /**
@@ -18,10 +20,12 @@ export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
  * @public
  */
 export type GetSequenceOutput<T extends ReadonlyArray<unknown>> =
-  T extends readonly [...unknown[], infer Last]
-    ? Last extends Block<unknown, unknown>
-      ? OutputType<Last>
-      : never
+  T extends readonly [...infer Rest, infer Last]
+    ? Last extends Block<'pass', 'pass'>
+      ? GetSequenceOutput<Rest>
+      : Last extends Block<unknown, unknown>
+        ? OutputType<Last>
+        : never
     : never;
 
 /**
@@ -68,23 +72,42 @@ export type ValidInputOutputSequence<
   I,
   O,
   A extends readonly Block<unknown, unknown>[],
-> = A extends readonly [infer Only extends Block<unknown, unknown>]
-  ? InputType<Only> extends Partial<I>
-    ? OutputType<Only> extends O
-      ? readonly [Only]
+> = A extends readonly [infer Only extends Block<'pass', 'pass'>]
+  ? readonly [Only]
+  : A extends readonly [infer Only extends Block<unknown, unknown>]
+    ? InputType<Only> extends Partial<I>
+      ? OutputType<Only> extends O
+        ? readonly [Only]
+        : never
       : never
-    : never
-  : A extends readonly [
-        infer First extends Block<unknown, unknown>,
-        ...infer Rest extends readonly Block<unknown, unknown>[],
-      ]
-    ? InputType<First> extends Partial<I>
-      ? readonly [
-          First,
-          ...ValidInputOutputSequence<OutputType<First>, O, Rest>,
+    : A extends readonly [
+          infer First extends Block<'pass', 'pass'>,
+          infer Next extends Block<unknown, unknown>,
         ]
-      : never
-    : never;
+      ? readonly [First, Next]
+      : A extends readonly [
+            infer First extends Block<'pass', 'pass'>,
+            infer Next extends Block<unknown, unknown>,
+            ...infer Rest extends readonly Block<unknown, unknown>[],
+          ]
+        ? InputType<Next> extends Partial<I>
+          ? readonly [
+              First,
+              Next,
+              ...ValidInputOutputSequence<OutputType<Next>, O, Rest>,
+            ]
+          : never
+        : A extends readonly [
+              infer First extends Block<unknown, unknown>,
+              ...infer Rest extends readonly Block<unknown, unknown>[],
+            ]
+          ? InputType<First> extends Partial<I>
+            ? readonly [
+                First,
+                ...ValidInputOutputSequence<OutputType<First>, O, Rest>,
+              ]
+            : never
+          : never;
 
 /**
  * Get all of the outputs of a sequence of blocks

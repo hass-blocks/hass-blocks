@@ -3,6 +3,7 @@ import {
   HassBlocksError,
   type ITarget,
   type IHass,
+  type Block,
 } from '@hass-blocks/core';
 
 import { waitInSeconds, waitInMinutes } from '@utils';
@@ -16,11 +17,12 @@ import { waitInSeconds, waitInMinutes } from '@utils';
  * @param minutes - how many minutes to wait for
  */
 export const waitMinutes = (minutes: number) =>
-  action({
+  action<void, void>({
     name: `Wait ${minutes} minutes`,
 
-    callback: async () => {
+    callback: async (_client, input: I) => {
       await waitInMinutes(minutes);
+      return input;
     },
   });
 
@@ -33,11 +35,12 @@ export const waitMinutes = (minutes: number) =>
  * @param minutes - how many minutes to wait for
  */
 export const waitSeconds = (seconds: number) =>
-  action({
+  action<'pass', 'pass'>({
     name: `Wait ${seconds} minutes`,
 
-    callback: async () => {
+    callback: async (_client, input) => {
       await waitInSeconds(seconds);
+      return input;
     },
   });
 

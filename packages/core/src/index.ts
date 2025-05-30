@@ -82,6 +82,7 @@ export {
 } from '@building-blocks';
 
 export type {
+  ServiceCallArgs,
   IActionConfig,
   IDoWhileConfig,
   ILoopConfig,

@@ -7,7 +7,7 @@ export { action } from './action.ts';
 export type { IActionConfig } from './action.ts';
 export { concurrently } from './execute-concurrently.ts';
 export { sequence } from './sequence.ts';
-export { serviceCall } from './service-call.ts';
+export { type ServiceCallArgs, serviceCall } from './service-call.ts';
 export { assertion } from './assertion.ts';
 export { type ILoopConfig, loop, type IDoWhileConfig } from './loop.ts';
 export type { IAssertionConfig } from './assertion.ts';

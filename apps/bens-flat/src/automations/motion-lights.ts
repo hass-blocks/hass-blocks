@@ -1,6 +1,5 @@
 import { automation } from '@hass-blocks/core';
 import { stateIs, waitMinutes } from '@hass-blocks/blocks';
-import { stateTurns } from '../triggers/state-turns.ts';
 
 import { bathroom, bedroom, hallway, livingRoom } from '../areas.ts';
 
@@ -11,10 +10,11 @@ import {
   hallwayMotionLights,
   livingRoomMotionLights,
 } from '../entities.ts';
+import { stateTurnsOn } from '@hass-blocks/triggers';
 
 export const livingRoomLightsAutomation = automation({
   name: 'Living room Lights',
-  when: stateTurns(livingRoomSensorSensorStateMotionBinarySensor, 'on'),
+  when: stateTurnsOn(livingRoomSensorSensorStateMotionBinarySensor),
   then: [
     stateIs(livingRoomMotionLights, 'on'),
     stateIs(tvModeSwitch, 'off'),
@@ -26,7 +26,7 @@ export const livingRoomLightsAutomation = automation({
 
 export const bedroomLights = automation({
   name: 'Bedroom Lights',
-  when: stateTurns(bedroomSensorSensorStateMotionBinarySensor, 'on'),
+  when: stateTurnsOn(bedroomSensorSensorStateMotionBinarySensor),
   then: [
     stateIs(sleepModeSwitch, 'off'),
     stateIs(bedroomMotionLights, 'on'),
@@ -38,7 +38,7 @@ export const bedroomLights = automation({
 
 export const hallwayLights = automation({
   name: 'Hallway Lights',
-  when: stateTurns(hallwayMotionSensorOccupancyBinarySensor, 'on'),
+  when: stateTurnsOn(hallwayMotionSensorOccupancyBinarySensor),
   then: [
     stateIs(hallwayMotionLights, 'on'),
     turnOnLight(hallway),
@@ -49,7 +49,7 @@ export const hallwayLights = automation({
 
 export const bathroomLights = automation({
   name: 'Bathroom Lights',
-  when: stateTurns(hallwayMotionSensorOccupancyBinarySensor, 'on'),
+  when: stateTurnsOn(hallwayMotionSensorOccupancyBinarySensor),
   then: [
     stateIs(bathroomMotionLights, 'on'),
     turnOnLight(bathroom),

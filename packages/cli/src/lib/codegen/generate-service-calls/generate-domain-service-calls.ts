@@ -25,6 +25,7 @@ export const generateDomainServiceCalls = async (
   const iEntityIdentifier = coreImport.newIdentifier('IEntity', true);
   const targetIdentifier = factory.createIdentifier('target');
   const iAreaIdentifier = coreImport.newIdentifier('IArea', true);
+  const serviceCallArgs = coreImport.newIdentifier('ServiceCallArgs', true);
 
   const serviceTypeDeclarations = Object.entries(services).map(
     ([serviceId, details]) => {
@@ -42,6 +43,7 @@ export const generateDomainServiceCalls = async (
             targetIdentifier,
             blockIdentifier,
             iAreaIdentifier,
+            serviceCallArgs,
             props,
           ),
         ],

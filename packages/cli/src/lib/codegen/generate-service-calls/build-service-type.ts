@@ -1,4 +1,4 @@
-import { factory, type Identifier, NodeFlags } from 'typescript';
+import { factory, type Identifier, NodeFlags, SyntaxKind } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import type { Service } from '@hass-blocks/hass-ts';
 import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
@@ -12,6 +12,7 @@ export const buildServiceType = (
   targetIdentifier: Identifier,
   blockIdentifier: ImportedIdentifier,
   iAreaIdentifer: ImportedIdentifier,
+  serviceCallArgs: ImportedIdentifier,
   props: PropsInterface,
 ) => {
   const varStatement = factory.createVariableStatement(
@@ -32,7 +33,25 @@ export const buildServiceType = (
             ),
             factory.createTypeReferenceNode(
               blockIdentifier.getIdentifier(true),
-              undefined,
+              [
+                factory.createUnionTypeNode([
+                  factory.createTypeReferenceNode(
+                    factory.createIdentifier('Partial'),
+                    [
+                      factory.createTypeReferenceNode(
+                        serviceCallArgs.getIdentifier(),
+                        [
+                          factory.createKeywordTypeNode(
+                            SyntaxKind.UnknownKeyword,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  factory.createKeywordTypeNode(SyntaxKind.UndefinedKeyword),
+                ]),
+                factory.createKeywordTypeNode(SyntaxKind.VoidKeyword),
+              ],
             ),
           ),
           undefined,

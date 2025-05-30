@@ -7,7 +7,7 @@ import type { Block } from '@core';
  */
 export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
   T extends readonly [infer First, ...infer Rest]
-    ? First extends Block<'pass', 'pass'>
+    ? First extends Block<Pass, Pass>
       ? GetSequenceInput<Rest>
       : First extends Block<unknown, unknown>
         ? InputType<First>
@@ -21,7 +21,7 @@ export type GetSequenceInput<T extends ReadonlyArray<unknown>> =
  */
 export type GetSequenceOutput<T extends ReadonlyArray<unknown>> =
   T extends readonly [...infer Rest, infer Last]
-    ? Last extends Block<'pass', 'pass'>
+    ? Last extends Block<Pass, Pass>
       ? GetSequenceOutput<Rest>
       : Last extends Block<unknown, unknown>
         ? OutputType<Last>
@@ -51,6 +51,15 @@ export type OutputType<T extends Block<unknown, unknown>> =
 /**
  * @public
  *
+ * Assign to the input and output paramters of a block to indicate a passthrough block
+ */
+export interface Pass {
+  __pass: 'pass';
+}
+
+/**
+ * @public
+ *
  * Block output type without undefined
  */
 export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<
@@ -72,25 +81,25 @@ export type ValidInputOutputSequence<
   I,
   O,
   A extends readonly Block<unknown, unknown>[],
-> = A extends readonly [infer Only extends Block<'pass', 'pass'>]
+> = A extends readonly [infer Only extends Block<Pass, Pass>]
   ? readonly [Only]
   : A extends readonly [infer Only extends Block<unknown, unknown>]
-    ? InputType<Only> extends Partial<I>
+    ? InputType<Only> extends I
       ? OutputType<Only> extends O
         ? readonly [Only]
         : never
       : never
     : A extends readonly [
-          infer First extends Block<'pass', 'pass'>,
+          infer First extends Block<Pass, Pass>,
           infer Next extends Block<unknown, unknown>,
         ]
       ? readonly [First, Next]
       : A extends readonly [
-            infer First extends Block<'pass', 'pass'>,
+            infer First extends Block<Pass, Pass>,
             infer Next extends Block<unknown, unknown>,
             ...infer Rest extends readonly Block<unknown, unknown>[],
           ]
-        ? InputType<Next> extends Partial<I>
+        ? InputType<Next> extends I
           ? readonly [
               First,
               Next,

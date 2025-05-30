@@ -293,10 +293,11 @@ test('state change part way through sequence is registered by assertions', async
     },
   });
 
-  const waitForTenMinutes = action({
+  const waitForTenMinutes = action<'pass', 'pass'>({
     name: 'Wait for 10 minutes',
-    callback: async () => {
+    callback: async (_client, input) => {
       await new Promise((accept) => setInterval(accept, 1_000 * 60 * 10));
+      return input;
     },
   });
 

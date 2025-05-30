@@ -3,6 +3,7 @@ import {
   HassBlocksError,
   type ITarget,
   type IHass,
+  type Pass,
 } from '@hass-blocks/core';
 
 import { waitInSeconds, waitInMinutes } from '@utils';
@@ -16,7 +17,7 @@ import { waitInSeconds, waitInMinutes } from '@utils';
  * @param minutes - how many minutes to wait for
  */
 export const waitMinutes = (minutes: number) =>
-  action<'pass', 'pass'>({
+  action<Pass, Pass>({
     name: `Wait ${minutes} minutes`,
 
     callback: async (_client, input) => {
@@ -34,7 +35,7 @@ export const waitMinutes = (minutes: number) =>
  * @param minutes - how many minutes to wait for
  */
 export const waitSeconds = (seconds: number) =>
-  action<'pass', 'pass'>({
+  action<Pass, Pass>({
     name: `Wait ${seconds} minutes`,
 
     callback: async (_client, input) => {
@@ -74,7 +75,7 @@ export const waitUntilState = (
       await waitForState(target, client, expectedState);
     }
   };
-  return action<'pass', 'pass'>({
+  return action<Pass, Pass>({
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     targets: [target],
     callback: async (client, input) => {
@@ -132,7 +133,7 @@ export const waitUntilStateIsNot = (
       await waitForState(target, client, expectedState);
     }
   };
-  return action<'pass', 'pass'>({
+  return action<Pass, Pass>({
     targets: [target],
     name: `Wait ${timeout} minutes until entity is in state ${state}`,
     callback: async (client, input) => {

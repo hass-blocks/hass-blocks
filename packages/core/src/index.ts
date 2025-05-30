@@ -92,6 +92,7 @@ export type {
   ValidInputOutputSequence,
   GetSequenceInput,
   GetSequenceOutput,
+  Pass,
   OutputType,
   InputType,
   OutputTypeKeepPromise,

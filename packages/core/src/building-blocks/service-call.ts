@@ -12,7 +12,7 @@ type ServiceCallArgs<P> = {
   params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
 };
 
-class ServiceCall<P> extends Action<ServiceCallArgs<P>, void> {
+class ServiceCall<P> extends Action<Partial<ServiceCallArgs<P>>, void> {
   public override typeString = 'service-call';
 
   public constructor(
@@ -76,6 +76,6 @@ export const serviceCall = <P>(serviceConfig: {
   name: string;
   target?: ITarget;
   params: Omit<CallServiceCommand<P>, 'id' | 'type'>;
-}): Block<ServiceCallArgs<P>, void> => {
+}): Block<Partial<ServiceCallArgs<P>>, void> => {
   return new ServiceCall<P>(serviceConfig);
 };

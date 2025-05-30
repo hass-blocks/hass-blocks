@@ -14,6 +14,7 @@ export type { IAssertionConfig } from './assertion.ts';
 export type {
   ValidInputOutputSequence,
   GetSequenceInput,
+  Pass,
   GetSequenceOutput,
   InputType,
   OutputType,

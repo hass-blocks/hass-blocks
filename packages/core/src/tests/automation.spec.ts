@@ -2,7 +2,13 @@ import { mock } from 'vitest-mock-extended';
 import type { Service, State } from '@hass-blocks/hass-ts';
 
 import { initialiseTestBlocks } from '@test-support';
-import { action, assertion, automation, serviceCall } from '@building-blocks';
+import {
+  action,
+  assertion,
+  automation,
+  serviceCall,
+  type Pass,
+} from '@building-blocks';
 import { trigger } from '@core';
 import { entity } from '@targets';
 
@@ -82,7 +88,7 @@ test('test a simple automation with just a series of actions', async () => {
     },
   });
 
-  const waitForTenMinutes = action({
+  const waitForTenMinutes = action<void, void>({
     name: 'Wait for 10 minutes',
     callback: async () => {
       await new Promise((accept) => setInterval(accept, 1_000 * 60 * 10));
@@ -293,7 +299,7 @@ test('state change part way through sequence is registered by assertions', async
     },
   });
 
-  const waitForTenMinutes = action<'pass', 'pass'>({
+  const waitForTenMinutes = action<Pass, Pass>({
     name: 'Wait for 10 minutes',
     callback: async (_client, input) => {
       await new Promise((accept) => setInterval(accept, 1_000 * 60 * 10));

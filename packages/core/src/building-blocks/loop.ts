@@ -106,7 +106,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
       (result?.continue &&
         result.outputType === 'conditional' &&
         result.conditionResult === true) ||
-      'do' in this.config
+      ('do' in this.config && !result)
     ) {
       const actionExecutor = new Executor<
         TOutput | TInput | TActionOutput,

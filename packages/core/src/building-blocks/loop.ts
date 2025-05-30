@@ -69,7 +69,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
 
   public override async run(
     client: IHass,
-    input: TInput,
+    input?: TInput,
     events?: IEventBus,
     triggerId?: string,
   ) {
@@ -183,6 +183,7 @@ export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
 export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
   config: IDoWhileConfig<TInput, TOutput, TBlockOutput>,
 ): Block<TInput, TOutput>;
+
 export function loop<TInput = void, TOutput = void, TBlockOutput = void>(
   config:
     | ILoopConfig<TInput, TOutput, TBlockOutput>

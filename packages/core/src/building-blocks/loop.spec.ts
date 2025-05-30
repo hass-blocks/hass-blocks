@@ -56,8 +56,8 @@ describe('loop.run', () => {
   });
 
   it('Runs the block before the assertion when using the doWhile variant', async () => {
-    const assertionBlock = mock<Block<number, void>>();
-    const actionBlock = mock<Block<void, string>>();
+    const assertionBlock = mock<Block<string, void>>();
+    const actionBlock = mock<Block<number, string>>();
 
     const theLoop = loop({
       name: 'Testing loop',

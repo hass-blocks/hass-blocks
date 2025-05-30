@@ -62,17 +62,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * Friendly name for the block - for use in user interfaces
    */
   public abstract readonly name: string;
-  /**
-   * There is no reason to actually use this property. It exists as a typescript hack
-   * in order to allow the type of a subclass to be inferred from the abstract version
-   */
-  public inputType: I | undefined;
-
-  /**
-   * There is no reason to actually use this property. It exists as a typescript hack
-   * in order to allow the type of a subclass to be inferred from the abstract version
-   */
-  public outputType: O | undefined;
 
   /**
    * If defined, this method will be called when the parent automation is registered.

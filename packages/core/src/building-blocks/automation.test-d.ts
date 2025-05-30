@@ -289,7 +289,7 @@ describe('the automation class', () => {
       },
     });
 
-    const twoAction = new Action({
+    const twoAction = new Action<string, number>({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       callback: async (_client, _input: string) => {

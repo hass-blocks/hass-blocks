@@ -13,6 +13,7 @@ export { type ILoopConfig, loop, type IDoWhileConfig } from './loop.ts';
 export type { IAssertionConfig } from './assertion.ts';
 export type {
   ValidInputOutputSequence,
+  ExtractOutput,
   GetSequenceInput,
   Pass,
   GetSequenceOutput,
@@ -21,5 +22,7 @@ export type {
   OutputTypeKeepPromise,
   GetOutputs,
   GetResults,
+  MustIncludeUndefined,
+  Prettify,
   BlockRetainType,
 } from './valid-input-output-sequence.ts';

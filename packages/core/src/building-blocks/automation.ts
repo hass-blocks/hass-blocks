@@ -31,7 +31,9 @@ export interface IAutomationConfig<
   /**
    * Sequence of blocks to execute when the trigger is fired
    */
-  then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+  then:
+    | (BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>)
+    | Block<I, O>;
 
   /**
    * Trigger will result in this block being executed
@@ -55,7 +57,7 @@ export class Automation<
 
   public constructor(public config: IAutomationConfig<A, I, O>) {
     super(config.id ?? md5(config.name), config.targets, [
-      ...config.then,
+      ...(Array.isArray(config.then) ? config.then : [config.then]),
       ...(config.when
         ? Array.isArray(config.when)
           ? config.when
@@ -72,7 +74,7 @@ export class Automation<
 
   public override async run(
     client: IHass,
-    input?: I,
+    input: I,
     events?: IEventBus,
     triggerId?: string,
   ): Promise<BlockOutput<O>> {
@@ -86,7 +88,11 @@ export class Automation<
 
     try {
       const executor = new Executor<I, O>(
-        [...this.config.then],
+        [
+          ...(Array.isArray(this.config.then)
+            ? this.config.then
+            : [this.config.then]),
+        ],
         client,
         events,
         triggerId,

@@ -39,54 +39,48 @@ export const homeModeDetection = automation({
     stateTurnsOn(hallwayMotionSensorOccupancyBinarySensor),
     stateTurnsOn(bathroomMotionSensorOccupancyBinarySensor),
   ],
-  then: [
-    concurrently(
-      sequence(
-        ifIamOut,
-        allowZoneExitChecks,
-        turnOffSwitch(homeModeSwitch),
-        waitMinutes(5),
-      ),
-      sequence(
-        stateIs(homeModeSwitch, 'off'),
-        ifHomeIsNotEmpty,
-        disallowZoneExitChecks,
-        turnOnSwitch(homeModeSwitch),
-      ),
+  then: concurrently(
+    sequence(
+      ifIamOut,
+      allowZoneExitChecks,
+      turnOffSwitch(homeModeSwitch),
+      waitMinutes(5),
     ),
-  ],
+    sequence(
+      stateIs(homeModeSwitch, 'off'),
+      ifHomeIsNotEmpty,
+      disallowZoneExitChecks,
+      turnOnSwitch(homeModeSwitch),
+    ),
+  ),
   mode: ExecutionMode.Restart,
 });
 
 export const whenIGoOut = automation({
   name: 'When I go out',
   when: stateTurnsOff(homeModeSwitch),
-  then: [
-    concurrently(
-      turnOnLight(allLights),
-      mediaStopMediaPlayer(allSpeakers),
-      turnOffSwitch(imacProOnSwitch),
-      closeCoverCover(livingRoomBlindsCover),
-      notifyMyPhone({
-        title: 'Leaving flat',
-        message: 'Home empty detected - turning everything off',
-      }),
-    ),
-  ],
+  then: concurrently(
+    turnOnLight(allLights),
+    mediaStopMediaPlayer(allSpeakers),
+    turnOffSwitch(imacProOnSwitch),
+    closeCoverCover(livingRoomBlindsCover),
+    notifyMyPhone({
+      title: 'Leaving flat',
+      message: 'Home empty detected - turning everything off',
+    }),
+  ),
 });
 
 export const whenIGetHome = automation({
   name: 'When I get home',
   when: stateTurnsOff(homeModeSwitch),
-  then: [
-    concurrently(
-      playMyDiscoverWeeklyEveryWhere,
-      setVolumeOnSpeakers(0.3),
-      sequence(
-        stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
-        openCoverCover(livingRoomBlindsCover),
-      ),
-      startSlideshowOnAppleTv,
+  then: concurrently(
+    playMyDiscoverWeeklyEveryWhere,
+    setVolumeOnSpeakers(0.3),
+    sequence(
+      stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
+      openCoverCover(livingRoomBlindsCover),
     ),
-  ],
+    startSlideshowOnAppleTv,
+  ),
 });

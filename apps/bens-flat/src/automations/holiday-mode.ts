@@ -23,17 +23,15 @@ export const holidayModeOff = automation({
 export const holidayModeTurnsOn = automation({
   name: 'Holiday Mode Turns on',
   when: stateTurnsOn(homeModeSwitch),
-  then: [
-    concurrently(
-      notifyMyPhone({
-        message: 'Holiday mode turned on. Enjoy your time away!',
-        title: 'Holiday mode',
-      }),
-      turnOffClimate(allRooms),
-      turnOffSwitch(allHeatingAndBoilerSwitches),
-      enableAllScheduler(),
-    ),
-  ],
+  then: concurrently(
+    notifyMyPhone({
+      message: 'Holiday mode turned on. Enjoy your time away!',
+      title: 'Holiday mode',
+    }),
+    turnOffClimate(allRooms),
+    turnOffSwitch(allHeatingAndBoilerSwitches),
+    enableAllScheduler(),
+  ),
 });
 
 export const holidayModeTurnsOff = automation({

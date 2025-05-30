@@ -43,5 +43,5 @@ export const sleepModeTurnedOn = automation({
 export const sleepModeTurnedOff = automation({
   name: 'Sleep mode turned off',
   when: stateTurnsOff(toggleSleepMode),
-  then: [turnOffSwitch(allAdaptiveLightingSleepModeSwitches)],
+  then: turnOffSwitch(allAdaptiveLightingSleepModeSwitches),
 });

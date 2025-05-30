@@ -8,7 +8,7 @@ export const doorbell = automation({
   when: eventIsFired({
     type: ['front_door_ding'],
   }),
-  then: [playDing],
+  then: playDing,
 });
 
 export const frontDoorLocked = automation({
@@ -17,10 +17,8 @@ export const frontDoorLocked = automation({
     entity: frontDoorLock,
     to: 'locked',
   }),
-  then: [
-    notifyAllMyDevices({
-      message: 'The front door was locked',
-      title: 'Front Door',
-    }),
-  ],
+  then: notifyAllMyDevices({
+    message: 'The front door was locked',
+    title: 'Front Door',
+  }),
 });

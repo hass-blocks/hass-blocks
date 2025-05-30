@@ -47,6 +47,7 @@ export const setRequestParams = action({
 
 const lockLogsResponse = z.array(
   z.object({
+    name: z.string(),
     deviceType: z.number(),
     action: z.number(),
     trigger: z.number(),
@@ -149,13 +150,16 @@ const notUnlock = assertion({
   name: 'If the last action was an unlock',
   predicate: (
     _client: IHass,
-    config?: { action: (typeof nukiAction)[keyof typeof nukiAction] },
+    config?: {
+      name: string;
+      action: (typeof nukiAction)[keyof typeof nukiAction];
+    },
   ) => {
-    return config?.action !== 'unlock';
+    return { result: config?.action !== 'unlock', output: config?.name ?? '' };
   },
 });
 
-export const getLastUnlockDetailsFromLock = sequence(
+export const getNameOfLastUnlockerFromLock = sequence(
   getSmartlocksFromNuki,
   loop({
     name: 'Loop while waiting for an unlock',

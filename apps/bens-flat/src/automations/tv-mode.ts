@@ -29,19 +29,17 @@ export const tvModeOn = automation({
 export const tvModeOff = automation({
   name: 'TV Mode Switches Off',
   when: stateTurnsOff(tvModeSwitch),
-  then: [
-    concurrently(
-      sequence(
-        entityExists(restoreAfterTvMode),
-        turnOnScene(restoreAfterTvMode),
-        deleteScene(restoreAfterTvMode),
-      ),
-      waitMinutes(5),
-      stateIs(tvModeSwitch, 'off'),
-      stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
-      openCoverCover(livingRoomBlindsCover),
+  then: concurrently(
+    sequence(
+      entityExists(restoreAfterTvMode),
+      turnOnScene(restoreAfterTvMode),
+      deleteScene(restoreAfterTvMode),
     ),
-  ],
+    waitMinutes(5),
+    stateIs(tvModeSwitch, 'off'),
+    stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
+    openCoverCover(livingRoomBlindsCover),
+  ),
 });
 
 // TODO handle youtube and spotify. Also add XBOX back
@@ -56,10 +54,8 @@ export const turnTvModeOnFromPs5 = automation({
     stateChanges(wearingClapper2Ps5ConsoleMediaPlayer),
     stateChanges(bensAppleTvMediaPlayer),
   ],
-  then: [
-    when(tvModeShouldBeOff, {
-      then: turnOffSwitch(tvModeSwitch),
-      else: turnOnSwitch(tvModeSwitch),
-    }),
-  ],
+  then: when(tvModeShouldBeOff, {
+    then: turnOffSwitch(tvModeSwitch),
+    else: turnOnSwitch(tvModeSwitch),
+  }),
 });

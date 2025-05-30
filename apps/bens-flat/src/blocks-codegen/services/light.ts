@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -40,7 +41,7 @@ declare global {
   var turnOnLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: TurnOnLightProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TurnOffLightProps {
     /**
@@ -56,7 +57,7 @@ declare global {
   var turnOffLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: TurnOffLightProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ToggleLightProps {
     /**
@@ -88,7 +89,7 @@ declare global {
   var toggleLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: ToggleLightProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnLight = (target, params) =>

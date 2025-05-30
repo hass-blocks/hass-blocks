@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -11,21 +12,21 @@ declare global {
    */
   var turnOnHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns the humidifier off.
    */
   var turnOffHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles the humidifier on/off.
    */
   var toggleHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetModeHumidifierProps {
     /**
@@ -40,7 +41,7 @@ declare global {
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
     params: SetModeHumidifierProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetHumidityHumidifierProps {
     /**
@@ -55,7 +56,7 @@ declare global {
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
     params: SetHumidityHumidifierProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnHumidifier = (target) =>

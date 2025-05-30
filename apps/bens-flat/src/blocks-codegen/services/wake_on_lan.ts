@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface SendMagicPacketWakeOnLanProps {
@@ -21,7 +25,7 @@ declare global {
    */
   var sendMagicPacketWakeOnLan: (
     params: SendMagicPacketWakeOnLanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.sendMagicPacketWakeOnLan = (params) =>

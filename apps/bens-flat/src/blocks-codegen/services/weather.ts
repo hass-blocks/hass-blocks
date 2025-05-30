@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -19,7 +20,7 @@ declare global {
   var getForecastsWeather: (
     target: IEntity<`weather.${string}`> | IArea,
     params: GetForecastsWeatherProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.getForecastsWeather = (target, params) =>

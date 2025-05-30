@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface CreatePersistentNotificationProps {
@@ -21,7 +25,7 @@ declare global {
    */
   var createPersistentNotification: (
     params: CreatePersistentNotificationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DismissPersistentNotificationProps {
     /**
@@ -35,12 +39,15 @@ declare global {
    */
   var dismissPersistentNotification: (
     params: DismissPersistentNotificationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Deletes all notifications from the notifications panel.
    */
-  var dismissAllPersistentNotification: () => Block;
+  var dismissAllPersistentNotification: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.createPersistentNotification = (params) =>

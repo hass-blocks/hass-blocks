@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -47,7 +48,7 @@ declare global {
   var createEventCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
     params: CreateEventCalendarProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetEventsCalendarProps {
     /**
@@ -70,7 +71,7 @@ declare global {
   var getEventsCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
     params?: GetEventsCalendarProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.createEventCalendar = (target, params) =>

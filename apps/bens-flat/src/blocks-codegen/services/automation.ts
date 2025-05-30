@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -19,21 +20,21 @@ declare global {
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
     params?: TriggerAutomationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles (enable / disable) an automation.
    */
   var toggleAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Enables an automation.
    */
   var turnOnAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TurnOffAutomationProps {
     /**
@@ -48,12 +49,15 @@ declare global {
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
     params?: TurnOffAutomationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Reloads the automation configuration.
    */
-  var reloadAutomation: () => Block;
+  var reloadAutomation: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.triggerAutomation = (target, params) =>

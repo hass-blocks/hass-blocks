@@ -3,43 +3,62 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Saves the persistent states immediately. Maintains the normal periodic saving interval.
    */
-  var savePersistentStatesHomeassistant: () => Block;
+  var savePersistentStatesHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Generic action to turn devices off under any domain.
    */
-  var turnOffHomeassistant: (target: IEntity | IArea) => Block;
+  var turnOffHomeassistant: (
+    target: IEntity | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Generic action to turn devices on under any domain.
    */
-  var turnOnHomeassistant: (target: IEntity | IArea) => Block;
+  var turnOnHomeassistant: (
+    target: IEntity | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Generic action to toggle devices on/off under any domain.
    */
-  var toggleHomeassistant: (target: IEntity | IArea) => Block;
+  var toggleHomeassistant: (
+    target: IEntity | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops Home Assistant.
    */
-  var stopHomeassistant: () => Block;
+  var stopHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Restarts Home Assistant.
    */
-  var restartHomeassistant: () => Block;
+  var restartHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Checks the Home Assistant YAML-configuration files for errors. Errors will be shown in the Home Assistant logs.
    */
-  var checkConfigHomeassistant: () => Block;
+  var checkConfigHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface UpdateEntityHomeassistantProps {
     /**
@@ -53,12 +72,15 @@ declare global {
    */
   var updateEntityHomeassistant: (
     params: UpdateEntityHomeassistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Reloads the Core configuration from the YAML-configuration.
    */
-  var reloadCoreConfigHomeassistant: () => Block;
+  var reloadCoreConfigHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface SetLocationHomeassistantProps {
     /**
@@ -80,12 +102,15 @@ declare global {
    */
   var setLocationHomeassistant: (
     params: SetLocationHomeassistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
    */
-  var reloadCustomTemplatesHomeassistant: () => Block;
+  var reloadCustomTemplatesHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface ReloadConfigEntryHomeassistantProps {
     /**
@@ -100,12 +125,15 @@ declare global {
   var reloadConfigEntryHomeassistant: (
     target: IEntity | IArea,
     params?: ReloadConfigEntryHomeassistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.
    */
-  var reloadAllHomeassistant: () => Block;
+  var reloadAllHomeassistant: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.savePersistentStatesHomeassistant = () =>

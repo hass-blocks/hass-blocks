@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface NewTaskTodoistProps {
@@ -59,7 +63,9 @@ declare global {
   /**
    * Creates a new task and add it to a project.
    */
-  var newTaskTodoist: (params: NewTaskTodoistProps) => Block;
+  var newTaskTodoist: (
+    params: NewTaskTodoistProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.newTaskTodoist = (params) =>

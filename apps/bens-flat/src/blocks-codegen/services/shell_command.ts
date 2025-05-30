@@ -1,9 +1,19 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
-  var imacOffShellCommand: () => Block;
+  var imacOffShellCommand: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var updateConfigShellCommand: () => Block;
+  var updateConfigShellCommand: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.imacOffShellCommand = () =>

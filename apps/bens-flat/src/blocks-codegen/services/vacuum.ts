@@ -3,40 +3,51 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Starts or resumes the cleaning task.
    */
-  var startVacuum: (target: IEntity<`vacuum.${string}`> | IArea) => Block;
+  var startVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Pauses the cleaning task.
    */
-  var pauseVacuum: (target: IEntity<`vacuum.${string}`> | IArea) => Block;
+  var pauseVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tells the vacuum cleaner to return to its dock.
    */
   var returnToBaseVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tells the vacuum cleaner to do a spot clean-up.
    */
-  var cleanSpotVacuum: (target: IEntity<`vacuum.${string}`> | IArea) => Block;
+  var cleanSpotVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Locates the vacuum cleaner robot.
    */
-  var locateVacuum: (target: IEntity<`vacuum.${string}`> | IArea) => Block;
+  var locateVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops the current cleaning task.
    */
-  var stopVacuum: (target: IEntity<`vacuum.${string}`> | IArea) => Block;
+  var stopVacuum: (
+    target: IEntity<`vacuum.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetFanSpeedVacuumProps {
     /**
@@ -51,7 +62,7 @@ declare global {
   var setFanSpeedVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
     params: SetFanSpeedVacuumProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SendCommandVacuumProps {
     /**
@@ -70,7 +81,7 @@ declare global {
   var sendCommandVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
     params: SendCommandVacuumProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.startVacuum = (target) =>

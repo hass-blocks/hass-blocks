@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ApplyAdaptiveLightingProps {
@@ -35,7 +39,9 @@ declare global {
   /**
    * Applies the current Adaptive Lighting settings to lights.
    */
-  var applyAdaptiveLighting: (params?: ApplyAdaptiveLightingProps) => Block;
+  var applyAdaptiveLighting: (
+    params?: ApplyAdaptiveLightingProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetManualControlAdaptiveLightingProps {
     /**
@@ -57,7 +63,7 @@ declare global {
    */
   var setManualControlAdaptiveLighting: (
     params?: SetManualControlAdaptiveLightingProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ChangeSwitchSettingsAdaptiveLightingProps {
     /**
@@ -183,7 +189,7 @@ declare global {
    */
   var changeSwitchSettingsAdaptiveLighting: (
     params: ChangeSwitchSettingsAdaptiveLightingProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.applyAdaptiveLighting = (params) =>

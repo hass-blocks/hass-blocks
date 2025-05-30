@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface SequenceBrowserModProps {
@@ -13,7 +17,9 @@ declare global {
   /**
    * Run a sequence of services
    */
-  var sequenceBrowserMod: (params?: SequenceBrowserModProps) => Block;
+  var sequenceBrowserMod: (
+    params?: SequenceBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DelayBrowserModProps {
     browser_id?: never;
@@ -27,7 +33,9 @@ declare global {
   /**
    * Wait for a time
    */
-  var delayBrowserMod: (params?: DelayBrowserModProps) => Block;
+  var delayBrowserMod: (
+    params?: DelayBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PopupBrowserModProps {
     browser_id?: never;
@@ -94,7 +102,9 @@ declare global {
   /**
    * Display a popup
    */
-  var popupBrowserMod: (params: PopupBrowserModProps) => Block;
+  var popupBrowserMod: (
+    params: PopupBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface MoreInfoBrowserModProps {
     browser_id?: never;
@@ -107,7 +117,9 @@ declare global {
   /**
    * Show more-info dialog
    */
-  var moreInfoBrowserMod: (params: MoreInfoBrowserModProps) => Block;
+  var moreInfoBrowserMod: (
+    params: MoreInfoBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ClosePopupBrowserModProps {
     browser_id?: never;
@@ -117,7 +129,9 @@ declare global {
   /**
    * Close a popup
    */
-  var closePopupBrowserMod: (params?: ClosePopupBrowserModProps) => Block;
+  var closePopupBrowserMod: (
+    params?: ClosePopupBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface NotificationBrowserModProps {
     browser_id?: never;
@@ -143,7 +157,9 @@ declare global {
   /**
    * Display a short notification
    */
-  var notificationBrowserMod: (params: NotificationBrowserModProps) => Block;
+  var notificationBrowserMod: (
+    params: NotificationBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface NavigateBrowserModProps {
     browser_id?: never;
@@ -157,7 +173,9 @@ declare global {
   /**
    * Navigate browser to a different page
    */
-  var navigateBrowserMod: (params?: NavigateBrowserModProps) => Block;
+  var navigateBrowserMod: (
+    params?: NavigateBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RefreshBrowserModProps {
     browser_id?: never;
@@ -167,7 +185,9 @@ declare global {
   /**
    * Refresh page
    */
-  var refreshBrowserMod: (params?: RefreshBrowserModProps) => Block;
+  var refreshBrowserMod: (
+    params?: RefreshBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetThemeBrowserModProps {
     browser_id?: never;
@@ -193,7 +213,9 @@ declare global {
   /**
    * Change the current theme
    */
-  var setThemeBrowserMod: (params?: SetThemeBrowserModProps) => Block;
+  var setThemeBrowserMod: (
+    params?: SetThemeBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ConsoleBrowserModProps {
     browser_id?: never;
@@ -207,7 +229,9 @@ declare global {
   /**
    * Print text to browser console
    */
-  var consoleBrowserMod: (params?: ConsoleBrowserModProps) => Block;
+  var consoleBrowserMod: (
+    params?: ConsoleBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface JavascriptBrowserModProps {
     browser_id?: never;
@@ -221,7 +245,9 @@ declare global {
   /**
    * Run arbitrary JavaScript code
    */
-  var javascriptBrowserMod: (params?: JavascriptBrowserModProps) => Block;
+  var javascriptBrowserMod: (
+    params?: JavascriptBrowserModProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DeregisterBrowserBrowserModProps {
     browser_id?: never;
@@ -240,7 +266,7 @@ declare global {
    */
   var deregisterBrowserBrowserMod: (
     params?: DeregisterBrowserBrowserModProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.sequenceBrowserMod = (params) =>

@@ -3,18 +3,23 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Selects the first option.
    */
-  var selectFirstSelect: (target: IEntity<`select.${string}`> | IArea) => Block;
+  var selectFirstSelect: (
+    target: IEntity<`select.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Selects the last option.
    */
-  var selectLastSelect: (target: IEntity<`select.${string}`> | IArea) => Block;
+  var selectLastSelect: (
+    target: IEntity<`select.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectNextSelectProps {
     /**
@@ -29,7 +34,7 @@ declare global {
   var selectNextSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params?: SelectNextSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectOptionSelectProps {
     /**
@@ -44,7 +49,7 @@ declare global {
   var selectOptionSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params: SelectOptionSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectPreviousSelectProps {
     /**
@@ -59,7 +64,7 @@ declare global {
   var selectPreviousSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params?: SelectPreviousSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.selectFirstSelect = (target) =>

@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface AddPlayerQueueItemsSpotifyplusProps {
@@ -29,7 +33,7 @@ declare global {
    */
   var addPlayerQueueItemsSpotifyplus: (
     params: AddPlayerQueueItemsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckAlbumFavoritesSpotifyplusProps {
     /**
@@ -47,7 +51,7 @@ declare global {
    */
   var checkAlbumFavoritesSpotifyplus: (
     params: CheckAlbumFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckArtistsFollowingSpotifyplusProps {
     /**
@@ -65,7 +69,7 @@ declare global {
    */
   var checkArtistsFollowingSpotifyplus: (
     params: CheckArtistsFollowingSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckAudiobookFavoritesSpotifyplusProps {
     /**
@@ -83,7 +87,7 @@ declare global {
    */
   var checkAudiobookFavoritesSpotifyplus: (
     params: CheckAudiobookFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckEpisodeFavoritesSpotifyplusProps {
     /**
@@ -101,7 +105,7 @@ declare global {
    */
   var checkEpisodeFavoritesSpotifyplus: (
     params: CheckEpisodeFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckPlaylistFollowersSpotifyplusProps {
     /**
@@ -123,7 +127,7 @@ declare global {
    */
   var checkPlaylistFollowersSpotifyplus: (
     params: CheckPlaylistFollowersSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckShowFavoritesSpotifyplusProps {
     /**
@@ -141,7 +145,7 @@ declare global {
    */
   var checkShowFavoritesSpotifyplus: (
     params: CheckShowFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckTrackFavoritesSpotifyplusProps {
     /**
@@ -159,7 +163,7 @@ declare global {
    */
   var checkTrackFavoritesSpotifyplus: (
     params: CheckTrackFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CheckUsersFollowingSpotifyplusProps {
     /**
@@ -177,7 +181,7 @@ declare global {
    */
   var checkUsersFollowingSpotifyplus: (
     params: CheckUsersFollowingSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface FollowArtistsSpotifyplusProps {
     /**
@@ -195,7 +199,7 @@ declare global {
    */
   var followArtistsSpotifyplus: (
     params: FollowArtistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface FollowPlaylistSpotifyplusProps {
     /**
@@ -217,7 +221,7 @@ declare global {
    */
   var followPlaylistSpotifyplus: (
     params: FollowPlaylistSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface FollowUsersSpotifyplusProps {
     /**
@@ -233,7 +237,9 @@ declare global {
   /**
    * Add the current user as a follower of one or more users.
    */
-  var followUsersSpotifyplus: (params: FollowUsersSpotifyplusProps) => Block;
+  var followUsersSpotifyplus: (
+    params: FollowUsersSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAlbumSpotifyplusProps {
     /**
@@ -253,7 +259,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single album.
    */
-  var getAlbumSpotifyplus: (params: GetAlbumSpotifyplusProps) => Block;
+  var getAlbumSpotifyplus: (
+    params: GetAlbumSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAlbumFavoritesSpotifyplusProps {
     /**
@@ -287,7 +295,7 @@ declare global {
    */
   var getAlbumFavoritesSpotifyplus: (
     params: GetAlbumFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAlbumNewReleasesSpotifyplusProps {
     /**
@@ -321,7 +329,7 @@ declare global {
    */
   var getAlbumNewReleasesSpotifyplus: (
     params: GetAlbumNewReleasesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAlbumTracksSpotifyplusProps {
     /**
@@ -355,7 +363,7 @@ declare global {
    */
   var getAlbumTracksSpotifyplus: (
     params: GetAlbumTracksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistSpotifyplusProps {
     /**
@@ -371,7 +379,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single artist.
    */
-  var getArtistSpotifyplus: (params: GetArtistSpotifyplusProps) => Block;
+  var getArtistSpotifyplus: (
+    params: GetArtistSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistAlbumsSpotifyplusProps {
     /**
@@ -413,7 +423,7 @@ declare global {
    */
   var getArtistAlbumsSpotifyplus: (
     params: GetArtistAlbumsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistInfoSpotifyplusProps {
     /**
@@ -431,7 +441,7 @@ declare global {
    */
   var getArtistInfoSpotifyplus: (
     params: GetArtistInfoSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistRelatedArtistsSpotifyplusProps {
     /**
@@ -453,7 +463,7 @@ declare global {
    */
   var getArtistRelatedArtistsSpotifyplus: (
     params: GetArtistRelatedArtistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistTopTracksSpotifyplusProps {
     /**
@@ -479,7 +489,7 @@ declare global {
    */
   var getArtistTopTracksSpotifyplus: (
     params: GetArtistTopTracksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetArtistsFollowedSpotifyplusProps {
     /**
@@ -509,7 +519,7 @@ declare global {
    */
   var getArtistsFollowedSpotifyplus: (
     params: GetArtistsFollowedSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAudiobookSpotifyplusProps {
     /**
@@ -529,7 +539,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single audiobook.
    */
-  var getAudiobookSpotifyplus: (params: GetAudiobookSpotifyplusProps) => Block;
+  var getAudiobookSpotifyplus: (
+    params: GetAudiobookSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAudiobookChaptersSpotifyplusProps {
     /**
@@ -563,7 +575,7 @@ declare global {
    */
   var getAudiobookChaptersSpotifyplus: (
     params: GetAudiobookChaptersSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetAudiobookFavoritesSpotifyplusProps {
     /**
@@ -593,7 +605,7 @@ declare global {
    */
   var getAudiobookFavoritesSpotifyplus: (
     params: GetAudiobookFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetBrowseCategorysListSpotifyplusProps {
     /**
@@ -619,7 +631,7 @@ declare global {
    */
   var getBrowseCategorysListSpotifyplus: (
     params: GetBrowseCategorysListSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetCategoryPlaylistsSpotifyplusProps {
     /**
@@ -657,7 +669,7 @@ declare global {
    */
   var getCategoryPlaylistsSpotifyplus: (
     params: GetCategoryPlaylistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetChapterSpotifyplusProps {
     /**
@@ -677,7 +689,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single chapter.
    */
-  var getChapterSpotifyplus: (params: GetChapterSpotifyplusProps) => Block;
+  var getChapterSpotifyplus: (
+    params: GetChapterSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetCoverImageFileSpotifyplusProps {
     /**
@@ -699,7 +713,7 @@ declare global {
    */
   var getCoverImageFileSpotifyplus: (
     params: GetCoverImageFileSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetEpisodeSpotifyplusProps {
     /**
@@ -719,7 +733,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single episode.
    */
-  var getEpisodeSpotifyplus: (params: GetEpisodeSpotifyplusProps) => Block;
+  var getEpisodeSpotifyplus: (
+    params: GetEpisodeSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetEpisodeFavoritesSpotifyplusProps {
     /**
@@ -749,7 +765,7 @@ declare global {
    */
   var getEpisodeFavoritesSpotifyplus: (
     params: GetEpisodeFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetFeaturedPlaylistsSpotifyplusProps {
     /**
@@ -791,7 +807,7 @@ declare global {
    */
   var getFeaturedPlaylistsSpotifyplus: (
     params: GetFeaturedPlaylistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetImageVibrantColorsSpotifyplusProps {
     /**
@@ -817,7 +833,7 @@ declare global {
    */
   var getImageVibrantColorsSpotifyplus: (
     params: GetImageVibrantColorsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlayerDevicesSpotifyplusProps {
     /**
@@ -839,7 +855,7 @@ declare global {
    */
   var getPlayerDevicesSpotifyplus: (
     params: GetPlayerDevicesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlayerPlaybackStateSpotifyplusProps {
     /**
@@ -861,7 +877,7 @@ declare global {
    */
   var getPlayerPlaybackStateSpotifyplus: (
     params: GetPlayerPlaybackStateSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlayerNowPlayingSpotifyplusProps {
     /**
@@ -883,7 +899,7 @@ declare global {
    */
   var getPlayerNowPlayingSpotifyplus: (
     params: GetPlayerNowPlayingSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlayerQueueInfoSpotifyplusProps {
     /**
@@ -897,7 +913,7 @@ declare global {
    */
   var getPlayerQueueInfoSpotifyplus: (
     params: GetPlayerQueueInfoSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlayerRecentTracksSpotifyplusProps {
     /**
@@ -927,7 +943,7 @@ declare global {
    */
   var getPlayerRecentTracksSpotifyplus: (
     params: GetPlayerRecentTracksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlaylistSpotifyplusProps {
     /**
@@ -955,7 +971,9 @@ declare global {
   /**
    * Get a playlist owned by a Spotify user.
    */
-  var getPlaylistSpotifyplus: (params: GetPlaylistSpotifyplusProps) => Block;
+  var getPlaylistSpotifyplus: (
+    params: GetPlaylistSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlaylistCoverImageSpotifyplusProps {
     /**
@@ -973,7 +991,7 @@ declare global {
    */
   var getPlaylistCoverImageSpotifyplus: (
     params: GetPlaylistCoverImageSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlaylistFavoritesSpotifyplusProps {
     /**
@@ -1003,7 +1021,7 @@ declare global {
    */
   var getPlaylistFavoritesSpotifyplus: (
     params: GetPlaylistFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlaylistItemsSpotifyplusProps {
     /**
@@ -1045,7 +1063,7 @@ declare global {
    */
   var getPlaylistItemsSpotifyplus: (
     params: GetPlaylistItemsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetPlaylistsForUserSpotifyplusProps {
     /**
@@ -1079,7 +1097,7 @@ declare global {
    */
   var getPlaylistsForUserSpotifyplus: (
     params: GetPlaylistsForUserSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetShowSpotifyplusProps {
     /**
@@ -1099,7 +1117,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single show.
    */
-  var getShowSpotifyplus: (params: GetShowSpotifyplusProps) => Block;
+  var getShowSpotifyplus: (
+    params: GetShowSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetShowEpisodesSpotifyplusProps {
     /**
@@ -1133,7 +1153,7 @@ declare global {
    */
   var getShowEpisodesSpotifyplus: (
     params: GetShowEpisodesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetShowFavoritesSpotifyplusProps {
     /**
@@ -1167,7 +1187,7 @@ declare global {
    */
   var getShowFavoritesSpotifyplus: (
     params: GetShowFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetSpotifyConnectDeviceSpotifyplusProps {
     /**
@@ -1205,7 +1225,7 @@ declare global {
    */
   var getSpotifyConnectDeviceSpotifyplus: (
     params: GetSpotifyConnectDeviceSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetSpotifyConnectDevicesSpotifyplusProps {
     /**
@@ -1227,7 +1247,7 @@ declare global {
    */
   var getSpotifyConnectDevicesSpotifyplus: (
     params: GetSpotifyConnectDevicesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetTrackSpotifyplusProps {
     /**
@@ -1243,7 +1263,9 @@ declare global {
   /**
    * Get Spotify catalog information for a single track.
    */
-  var getTrackSpotifyplus: (params: GetTrackSpotifyplusProps) => Block;
+  var getTrackSpotifyplus: (
+    params: GetTrackSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetTrackAudioFeaturesSpotifyplusProps {
     /**
@@ -1261,7 +1283,7 @@ declare global {
    */
   var getTrackAudioFeaturesSpotifyplus: (
     params: GetTrackAudioFeaturesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetTrackFavoritesSpotifyplusProps {
     /**
@@ -1295,7 +1317,7 @@ declare global {
    */
   var getTrackFavoritesSpotifyplus: (
     params: GetTrackFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetTrackRecommendationsSpotifyplusProps {
     /**
@@ -1497,7 +1519,7 @@ declare global {
    */
   var getTrackRecommendationsSpotifyplus: (
     params: GetTrackRecommendationsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetTracksAudioFeaturesSpotifyplusProps {
     /**
@@ -1515,7 +1537,7 @@ declare global {
    */
   var getTracksAudioFeaturesSpotifyplus: (
     params: GetTracksAudioFeaturesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetUsersTopArtistsSpotifyplusProps {
     /**
@@ -1549,7 +1571,7 @@ declare global {
    */
   var getUsersTopArtistsSpotifyplus: (
     params: GetUsersTopArtistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetUsersTopTracksSpotifyplusProps {
     /**
@@ -1583,7 +1605,7 @@ declare global {
    */
   var getUsersTopTracksSpotifyplus: (
     params: GetUsersTopTracksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaPauseSpotifyplusProps {
     /**
@@ -1605,7 +1627,7 @@ declare global {
    */
   var playerMediaPauseSpotifyplus: (
     params: PlayerMediaPauseSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaPlayContextSpotifyplusProps {
     /**
@@ -1643,7 +1665,7 @@ declare global {
    */
   var playerMediaPlayContextSpotifyplus: (
     params: PlayerMediaPlayContextSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaPlayTrackFavoritesSpotifyplusProps {
     /**
@@ -1677,7 +1699,7 @@ declare global {
    */
   var playerMediaPlayTrackFavoritesSpotifyplus: (
     params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaPlayTracksSpotifyplusProps {
     /**
@@ -1707,7 +1729,7 @@ declare global {
    */
   var playerMediaPlayTracksSpotifyplus: (
     params: PlayerMediaPlayTracksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaResumeSpotifyplusProps {
     /**
@@ -1729,7 +1751,7 @@ declare global {
    */
   var playerMediaResumeSpotifyplus: (
     params: PlayerMediaResumeSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaSeekSpotifyplusProps {
     /**
@@ -1759,7 +1781,7 @@ declare global {
    */
   var playerMediaSeekSpotifyplus: (
     params: PlayerMediaSeekSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaSkipNextSpotifyplusProps {
     /**
@@ -1781,7 +1803,7 @@ declare global {
    */
   var playerMediaSkipNextSpotifyplus: (
     params: PlayerMediaSkipNextSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerMediaSkipPreviousSpotifyplusProps {
     /**
@@ -1803,7 +1825,7 @@ declare global {
    */
   var playerMediaSkipPreviousSpotifyplus: (
     params: PlayerMediaSkipPreviousSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerSetRepeatModeSpotifyplusProps {
     /**
@@ -1829,7 +1851,7 @@ declare global {
    */
   var playerSetRepeatModeSpotifyplus: (
     params: PlayerSetRepeatModeSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerSetShuffleModeSpotifyplusProps {
     /**
@@ -1855,7 +1877,7 @@ declare global {
    */
   var playerSetShuffleModeSpotifyplus: (
     params: PlayerSetShuffleModeSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerSetVolumeLevelSpotifyplusProps {
     /**
@@ -1881,7 +1903,7 @@ declare global {
    */
   var playerSetVolumeLevelSpotifyplus: (
     params: PlayerSetVolumeLevelSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayerTransferPlaybackSpotifyplusProps {
     /**
@@ -1919,7 +1941,7 @@ declare global {
    */
   var playerTransferPlaybackSpotifyplus: (
     params: PlayerTransferPlaybackSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistCoverImageAddSpotifyplusProps {
     /**
@@ -1941,7 +1963,7 @@ declare global {
    */
   var playlistCoverImageAddSpotifyplus: (
     params: PlaylistCoverImageAddSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistChangeSpotifyplusProps {
     /**
@@ -1979,7 +2001,7 @@ declare global {
    */
   var playlistChangeSpotifyplus: (
     params: PlaylistChangeSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistCreateSpotifyplusProps {
     /**
@@ -2017,7 +2039,7 @@ declare global {
    */
   var playlistCreateSpotifyplus: (
     params: PlaylistCreateSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistItemsAddSpotifyplusProps {
     /**
@@ -2043,7 +2065,7 @@ declare global {
    */
   var playlistItemsAddSpotifyplus: (
     params: PlaylistItemsAddSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistItemsClearSpotifyplusProps {
     /**
@@ -2061,7 +2083,7 @@ declare global {
    */
   var playlistItemsClearSpotifyplus: (
     params: PlaylistItemsClearSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistItemsRemoveSpotifyplusProps {
     /**
@@ -2087,7 +2109,7 @@ declare global {
    */
   var playlistItemsRemoveSpotifyplus: (
     params: PlaylistItemsRemoveSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistItemsReorderSpotifyplusProps {
     /**
@@ -2121,7 +2143,7 @@ declare global {
    */
   var playlistItemsReorderSpotifyplus: (
     params: PlaylistItemsReorderSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlaylistItemsReplaceSpotifyplusProps {
     /**
@@ -2143,7 +2165,7 @@ declare global {
    */
   var playlistItemsReplaceSpotifyplus: (
     params: PlaylistItemsReplaceSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveAlbumFavoritesSpotifyplusProps {
     /**
@@ -2161,7 +2183,7 @@ declare global {
    */
   var removeAlbumFavoritesSpotifyplus: (
     params: RemoveAlbumFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveAudiobookFavoritesSpotifyplusProps {
     /**
@@ -2179,7 +2201,7 @@ declare global {
    */
   var removeAudiobookFavoritesSpotifyplus: (
     params: RemoveAudiobookFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveEpisodeFavoritesSpotifyplusProps {
     /**
@@ -2197,7 +2219,7 @@ declare global {
    */
   var removeEpisodeFavoritesSpotifyplus: (
     params: RemoveEpisodeFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveShowFavoritesSpotifyplusProps {
     /**
@@ -2215,7 +2237,7 @@ declare global {
    */
   var removeShowFavoritesSpotifyplus: (
     params: RemoveShowFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveTrackFavoritesSpotifyplusProps {
     /**
@@ -2233,7 +2255,7 @@ declare global {
    */
   var removeTrackFavoritesSpotifyplus: (
     params: RemoveTrackFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SaveAlbumFavoritesSpotifyplusProps {
     /**
@@ -2251,7 +2273,7 @@ declare global {
    */
   var saveAlbumFavoritesSpotifyplus: (
     params: SaveAlbumFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SaveAudiobookFavoritesSpotifyplusProps {
     /**
@@ -2269,7 +2291,7 @@ declare global {
    */
   var saveAudiobookFavoritesSpotifyplus: (
     params: SaveAudiobookFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SaveEpisodeFavoritesSpotifyplusProps {
     /**
@@ -2287,7 +2309,7 @@ declare global {
    */
   var saveEpisodeFavoritesSpotifyplus: (
     params: SaveEpisodeFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SaveShowFavoritesSpotifyplusProps {
     /**
@@ -2305,7 +2327,7 @@ declare global {
    */
   var saveShowFavoritesSpotifyplus: (
     params: SaveShowFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SaveTrackFavoritesSpotifyplusProps {
     /**
@@ -2323,7 +2345,7 @@ declare global {
    */
   var saveTrackFavoritesSpotifyplus: (
     params: SaveTrackFavoritesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchAlbumsSpotifyplusProps {
     /**
@@ -2359,7 +2381,9 @@ declare global {
   /**
    * Get Spotify catalog information about Albums that match a keyword string.
    */
-  var searchAlbumsSpotifyplus: (params: SearchAlbumsSpotifyplusProps) => Block;
+  var searchAlbumsSpotifyplus: (
+    params: SearchAlbumsSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchArtistsSpotifyplusProps {
     /**
@@ -2397,7 +2421,7 @@ declare global {
    */
   var searchArtistsSpotifyplus: (
     params: SearchArtistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchAudiobooksSpotifyplusProps {
     /**
@@ -2435,7 +2459,7 @@ declare global {
    */
   var searchAudiobooksSpotifyplus: (
     params: SearchAudiobooksSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchEpisodesSpotifyplusProps {
     /**
@@ -2473,7 +2497,7 @@ declare global {
    */
   var searchEpisodesSpotifyplus: (
     params: SearchEpisodesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchPlaylistsSpotifyplusProps {
     /**
@@ -2511,7 +2535,7 @@ declare global {
    */
   var searchPlaylistsSpotifyplus: (
     params: SearchPlaylistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchShowsSpotifyplusProps {
     /**
@@ -2547,7 +2571,9 @@ declare global {
   /**
    * Get Spotify catalog information about Shows that match a keyword string.
    */
-  var searchShowsSpotifyplus: (params: SearchShowsSpotifyplusProps) => Block;
+  var searchShowsSpotifyplus: (
+    params: SearchShowsSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SearchTracksSpotifyplusProps {
     /**
@@ -2583,7 +2609,9 @@ declare global {
   /**
    * Get Spotify catalog information about Tracks that match a keyword string.
    */
-  var searchTracksSpotifyplus: (params: SearchTracksSpotifyplusProps) => Block;
+  var searchTracksSpotifyplus: (
+    params: SearchTracksSpotifyplusProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TriggerScanIntervalSpotifyplusProps {
     /**
@@ -2597,7 +2625,7 @@ declare global {
    */
   var triggerScanIntervalSpotifyplus: (
     params: TriggerScanIntervalSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UnfollowArtistsSpotifyplusProps {
     /**
@@ -2615,7 +2643,7 @@ declare global {
    */
   var unfollowArtistsSpotifyplus: (
     params: UnfollowArtistsSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UnfollowPlaylistSpotifyplusProps {
     /**
@@ -2633,7 +2661,7 @@ declare global {
    */
   var unfollowPlaylistSpotifyplus: (
     params: UnfollowPlaylistSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UnfollowUsersSpotifyplusProps {
     /**
@@ -2651,7 +2679,7 @@ declare global {
    */
   var unfollowUsersSpotifyplus: (
     params: UnfollowUsersSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ZeroconfDeviceConnectSpotifyplusProps {
     /**
@@ -2709,7 +2737,7 @@ declare global {
    */
   var zeroconfDeviceConnectSpotifyplus: (
     params: ZeroconfDeviceConnectSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ZeroconfDeviceDisconnectSpotifyplusProps {
     /**
@@ -2747,7 +2775,7 @@ declare global {
    */
   var zeroconfDeviceDisconnectSpotifyplus: (
     params: ZeroconfDeviceDisconnectSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ZeroconfDeviceGetinfoSpotifyplusProps {
     /**
@@ -2781,7 +2809,7 @@ declare global {
    */
   var zeroconfDeviceGetinfoSpotifyplus: (
     params: ZeroconfDeviceGetinfoSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ZeroconfDiscoverDevicesSpotifyplusProps {
     /**
@@ -2799,7 +2827,7 @@ declare global {
    */
   var zeroconfDiscoverDevicesSpotifyplus: (
     params: ZeroconfDiscoverDevicesSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TestTokenExpireSpotifyplusProps {
     /**
@@ -2813,7 +2841,7 @@ declare global {
    */
   var testTokenExpireSpotifyplus: (
     params: TestTokenExpireSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface VolumeSetStepSpotifyplusProps {
     /**
@@ -2831,7 +2859,7 @@ declare global {
    */
   var volumeSetStepSpotifyplus: (
     params: VolumeSetStepSpotifyplusProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.addPlayerQueueItemsSpotifyplus = (params) =>

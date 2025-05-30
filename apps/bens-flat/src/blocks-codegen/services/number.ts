@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -19,7 +20,7 @@ declare global {
   var setValueNumber: (
     target: IEntity<`number.${string}`> | IArea,
     params: SetValueNumberProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.setValueNumber = (target, params) =>

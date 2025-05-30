@@ -3,13 +3,17 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads timers from the YAML-configuration.
    */
-  var reloadTimer: () => Block;
+  var reloadTimer: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface StartTimerProps {
     /**
@@ -24,22 +28,28 @@ declare global {
   var startTimer: (
     target: IEntity<`timer.${string}`> | IArea,
     params?: StartTimerProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Pauses a running timer, retaining the remaining duration for later continuation.
    */
-  var pauseTimer: (target: IEntity<`timer.${string}`> | IArea) => Block;
+  var pauseTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Resets a timer's duration to the last known initial value without firing the timer finished event.
    */
-  var cancelTimer: (target: IEntity<`timer.${string}`> | IArea) => Block;
+  var cancelTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Finishes a running timer earlier than scheduled.
    */
-  var finishTimer: (target: IEntity<`timer.${string}`> | IArea) => Block;
+  var finishTimer: (
+    target: IEntity<`timer.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ChangeTimerProps {
     /**
@@ -54,7 +64,7 @@ declare global {
   var changeTimer: (
     target: IEntity<`timer.${string}`> | IArea,
     params: ChangeTimerProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reloadTimer = () =>

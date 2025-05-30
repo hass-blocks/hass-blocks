@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ReplaceSensorPlantProps {
@@ -15,7 +19,9 @@ declare global {
   /**
    * Replaces the source for a plant sensor.
    */
-  var replaceSensorPlant: (params: ReplaceSensorPlantProps) => Block;
+  var replaceSensorPlant: (
+    params: ReplaceSensorPlantProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.replaceSensorPlant = (params) =>

@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface StartProfilerProps {
@@ -11,7 +15,9 @@ declare global {
   /**
    * Starts the Profiler.
    */
-  var startProfiler: (params?: StartProfilerProps) => Block;
+  var startProfiler: (
+    params?: StartProfilerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface MemoryProfilerProps {
     /**
@@ -23,7 +29,9 @@ declare global {
   /**
    * Starts the Memory Profiler.
    */
-  var memoryProfiler: (params?: MemoryProfilerProps) => Block;
+  var memoryProfiler: (
+    params?: MemoryProfilerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface StartLogObjectsProfilerProps {
     /**
@@ -35,12 +43,17 @@ declare global {
   /**
    * Starts logging growth of objects in memory.
    */
-  var startLogObjectsProfiler: (params?: StartLogObjectsProfilerProps) => Block;
+  var startLogObjectsProfiler: (
+    params?: StartLogObjectsProfilerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops logging growth of objects in memory.
    */
-  var stopLogObjectsProfiler: () => Block;
+  var stopLogObjectsProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface StartLogObjectSourcesProfilerProps {
     /**
@@ -58,12 +71,15 @@ declare global {
    */
   var startLogObjectSourcesProfiler: (
     params?: StartLogObjectSourcesProfilerProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops logging sources of new objects in memory.
    */
-  var stopLogObjectSourcesProfiler: () => Block;
+  var stopLogObjectSourcesProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface DumpLogObjectsProfilerProps {
     /**
@@ -75,22 +91,33 @@ declare global {
   /**
    * Dumps the repr of all matching objects to the log.
    */
-  var dumpLogObjectsProfiler: (params: DumpLogObjectsProfilerProps) => Block;
+  var dumpLogObjectsProfiler: (
+    params: DumpLogObjectsProfilerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Logs the stats of all lru caches.
    */
-  var lruStatsProfiler: () => Block;
+  var lruStatsProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Logs the current frames for all threads.
    */
-  var logThreadFramesProfiler: () => Block;
+  var logThreadFramesProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Logs what is scheduled in the event loop.
    */
-  var logEventLoopScheduledProfiler: () => Block;
+  var logEventLoopScheduledProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface SetAsyncioDebugProfilerProps {
     /**
@@ -102,12 +129,17 @@ declare global {
   /**
    * Enable or disable asyncio debug.
    */
-  var setAsyncioDebugProfiler: (params?: SetAsyncioDebugProfilerProps) => Block;
+  var setAsyncioDebugProfiler: (
+    params?: SetAsyncioDebugProfilerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Logs all the current asyncio tasks.
    */
-  var logCurrentTasksProfiler: () => Block;
+  var logCurrentTasksProfiler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.startProfiler = (params) =>

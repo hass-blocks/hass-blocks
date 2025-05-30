@@ -3,27 +3,31 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputSelect: () => Block;
+  var reloadInputSelect: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Selects the first option.
    */
   var selectFirstInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Selects the last option.
    */
   var selectLastInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectNextInputSelectProps {
     /**
@@ -38,7 +42,7 @@ declare global {
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectNextInputSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectOptionInputSelectProps {
     /**
@@ -53,7 +57,7 @@ declare global {
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params: SelectOptionInputSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectPreviousInputSelectProps {
     /**
@@ -68,7 +72,7 @@ declare global {
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectPreviousInputSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetOptionsInputSelectProps {
     /**
@@ -83,7 +87,7 @@ declare global {
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params: SetOptionsInputSelectProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reloadInputSelect = () =>

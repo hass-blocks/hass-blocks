@@ -3,23 +3,30 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Increments a counter by its step size.
    */
-  var incrementCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+  var incrementCounter: (
+    target: IEntity<`counter.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Decrements a counter by its step size.
    */
-  var decrementCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+  var decrementCounter: (
+    target: IEntity<`counter.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Resets a counter to its initial value.
    */
-  var resetCounter: (target: IEntity<`counter.${string}`> | IArea) => Block;
+  var resetCounter: (
+    target: IEntity<`counter.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetValueCounterProps {
     /**
@@ -34,7 +41,7 @@ declare global {
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea,
     params: SetValueCounterProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.incrementCounter = (target) =>

@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -40,7 +41,9 @@ declare global {
   /**
    * Performs a global search on the Music Assistant library and all providers.
    */
-  var searchMusicAssistant: (params: SearchMusicAssistantProps) => Block;
+  var searchMusicAssistant: (
+    params: SearchMusicAssistantProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetLibraryMusicAssistantProps {
     /**
@@ -86,7 +89,7 @@ declare global {
    */
   var getLibraryMusicAssistant: (
     params: GetLibraryMusicAssistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayMediaMusicAssistantProps {
     /**
@@ -121,7 +124,7 @@ declare global {
   var playMediaMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params: PlayMediaMusicAssistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayAnnouncementMusicAssistantProps {
     /**
@@ -144,7 +147,7 @@ declare global {
   var playAnnouncementMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params: PlayAnnouncementMusicAssistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TransferQueueMusicAssistantProps {
     /**
@@ -163,14 +166,14 @@ declare global {
   var transferQueueMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params?: TransferQueueMusicAssistantProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Retrieves the details of the currently active queue of a Music Assistant player.
    */
   var getQueueMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.searchMusicAssistant = (params) =>

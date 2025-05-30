@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ButtonWebostvProps {
@@ -15,7 +19,9 @@ declare global {
   /**
    * Sends a button press command.
    */
-  var buttonWebostv: (params: ButtonWebostvProps) => Block;
+  var buttonWebostv: (
+    params: ButtonWebostvProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CommandWebostvProps {
     /**
@@ -35,7 +41,9 @@ declare global {
   /**
    * Sends a command.
    */
-  var commandWebostv: (params: CommandWebostvProps) => Block;
+  var commandWebostv: (
+    params: CommandWebostvProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectSoundOutputWebostvProps {
     /**
@@ -53,7 +61,7 @@ declare global {
    */
   var selectSoundOutputWebostv: (
     params: SelectSoundOutputWebostvProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.buttonWebostv = (params) =>

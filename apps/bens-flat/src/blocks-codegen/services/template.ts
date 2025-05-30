@@ -1,10 +1,17 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads template entities from the YAML-configuration.
    */
-  var reloadTemplate: () => Block;
+  var reloadTemplate: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.reloadTemplate = () =>

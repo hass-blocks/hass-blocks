@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ActionIcloud3Props {
@@ -15,17 +19,25 @@ declare global {
   /**
    * This service will send operational commands to iCloud3
    */
-  var actionIcloud3: (params: ActionIcloud3Props) => Block;
+  var actionIcloud3: (
+    params: ActionIcloud3Props,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * The Update service has been replaced by the Action service
    */
-  var updateIcloud3: () => Block;
+  var updateIcloud3: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * This service will restart iCloud3
    */
-  var restartIcloud3: () => Block;
+  var restartIcloud3: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface FindIphoneAlertIcloud3Props {
     /**
@@ -37,7 +49,9 @@ declare global {
   /**
    * This service will send an alert tone to the device that you want to find
    */
-  var findIphoneAlertIcloud3: (params: FindIphoneAlertIcloud3Props) => Block;
+  var findIphoneAlertIcloud3: (
+    params: FindIphoneAlertIcloud3Props,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface LostDeviceAlertIcloud3Props {
     /**
@@ -57,7 +71,9 @@ declare global {
   /**
    * This service will send a Message and Phone number to the lost iPhone
    */
-  var lostDeviceAlertIcloud3: (params: LostDeviceAlertIcloud3Props) => Block;
+  var lostDeviceAlertIcloud3: (
+    params: LostDeviceAlertIcloud3Props,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DisplayMessageAlertIcloud3Props {
     /**
@@ -79,7 +95,7 @@ declare global {
    */
   var displayMessageAlertIcloud3: (
     params: DisplayMessageAlertIcloud3Props,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.actionIcloud3 = (params) =>

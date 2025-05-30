@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface GenerateContentOpenaiConversationProps {
@@ -21,7 +25,7 @@ declare global {
    */
   var generateContentOpenaiConversation: (
     params: GenerateContentOpenaiConversationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GenerateImageOpenaiConversationProps {
     /**
@@ -51,7 +55,7 @@ declare global {
    */
   var generateImageOpenaiConversation: (
     params: GenerateImageOpenaiConversationProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.generateContentOpenaiConversation = (params) =>

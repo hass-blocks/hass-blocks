@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -19,12 +20,15 @@ declare global {
   var turnOnScene: (
     target: IEntity<`scene.${string}`> | IArea,
     params?: TurnOnSceneProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Reloads the scenes from the YAML-configuration.
    */
-  var reloadScene: () => Block;
+  var reloadScene: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface ApplySceneProps {
     /**
@@ -40,7 +44,9 @@ declare global {
   /**
    * Activates a scene with configuration.
    */
-  var applyScene: (params: ApplySceneProps) => Block;
+  var applyScene: (
+    params: ApplySceneProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CreateSceneProps {
     /**
@@ -60,12 +66,16 @@ declare global {
   /**
    * Creates a new scene.
    */
-  var createScene: (params: CreateSceneProps) => Block;
+  var createScene: (
+    params: CreateSceneProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Deletes a dynamically created scene.
    */
-  var deleteScene: (target: IEntity<`scene.${string}`> | IArea) => Block;
+  var deleteScene: (
+    target: IEntity<`scene.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnScene = (target, params) =>

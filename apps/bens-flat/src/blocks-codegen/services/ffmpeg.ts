@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface StartFfmpegProps {
@@ -11,7 +15,9 @@ declare global {
   /**
    * Sends a start command to an FFmpeg-based sensor.
    */
-  var startFfmpeg: (params?: StartFfmpegProps) => Block;
+  var startFfmpeg: (
+    params?: StartFfmpegProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface StopFfmpegProps {
     /**
@@ -23,7 +29,9 @@ declare global {
   /**
    * Sends a stop command to an FFmpeg-based sensor.
    */
-  var stopFfmpeg: (params?: StopFfmpegProps) => Block;
+  var stopFfmpeg: (
+    params?: StopFfmpegProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RestartFfmpegProps {
     /**
@@ -35,7 +43,9 @@ declare global {
   /**
    * Sends a restart command to an FFmpeg-based sensor.
    */
-  var restartFfmpeg: (params?: RestartFfmpegProps) => Block;
+  var restartFfmpeg: (
+    params?: RestartFfmpegProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.startFfmpeg = (params) =>

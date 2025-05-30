@@ -1,10 +1,17 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads group configuration, entities, and notify services from YAML-configuration.
    */
-  var reloadGroup: () => Block;
+  var reloadGroup: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface SetGroupProps {
     /**
@@ -40,7 +47,9 @@ declare global {
   /**
    * Creates/Updates a group.
    */
-  var setGroup: (params: SetGroupProps) => Block;
+  var setGroup: (
+    params: SetGroupProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveGroupProps {
     /**
@@ -52,7 +61,9 @@ declare global {
   /**
    * Removes a group.
    */
-  var removeGroup: (params: RemoveGroupProps) => Block;
+  var removeGroup: (
+    params: RemoveGroupProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reloadGroup = () =>

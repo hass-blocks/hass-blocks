@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -23,7 +24,7 @@ declare global {
   var triggerNodered: (
     target: IEntity<`switch.${string}`> | IArea,
     params?: TriggerNoderedProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.triggerNodered = (target, params) =>

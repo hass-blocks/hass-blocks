@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -23,19 +24,21 @@ declare global {
   var installUpdate: (
     target: IEntity<`update.${string}`> | IArea,
     params?: InstallUpdateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Marks currently available update as skipped.
    */
-  var skipUpdate: (target: IEntity<`update.${string}`> | IArea) => Block;
+  var skipUpdate: (
+    target: IEntity<`update.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Removes the skipped version marker from an update.
    */
   var clearSkippedUpdate: (
     target: IEntity<`update.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.installUpdate = (target, params) =>

@@ -3,13 +3,16 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Sends the turn off command.
    */
-  var turnOffRemote: (target: IEntity<`remote.${string}`> | IArea) => Block;
+  var turnOffRemote: (
+    target: IEntity<`remote.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TurnOnRemoteProps {
     /**
@@ -24,12 +27,14 @@ declare global {
   var turnOnRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params?: TurnOnRemoteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Sends the toggle command.
    */
-  var toggleRemote: (target: IEntity<`remote.${string}`> | IArea) => Block;
+  var toggleRemote: (
+    target: IEntity<`remote.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SendCommandRemoteProps {
     /**
@@ -60,7 +65,7 @@ declare global {
   var sendCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params: SendCommandRemoteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface LearnCommandRemoteProps {
     /**
@@ -91,7 +96,7 @@ declare global {
   var learnCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params?: LearnCommandRemoteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DeleteCommandRemoteProps {
     /**
@@ -110,7 +115,7 @@ declare global {
   var deleteCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params: DeleteCommandRemoteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOffRemote = (target) =>

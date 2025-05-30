@@ -3,29 +3,46 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
-  var turnTvOnScript: () => Block;
+  var turnTvOnScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var turnTvModeOnScript: () => Block;
+  var turnTvModeOnScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var boostBoilerScript: () => Block;
+  var boostBoilerScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var updateAllHacsItemsScript: () => Block;
+  var updateAllHacsItemsScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface TodoListScriptProps {
     player: string;
   }
 
-  var todoListScript: (params: TodoListScriptProps) => Block;
+  var todoListScript: (
+    params: TodoListScriptProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface OpenAiTtsScriptProps {
     message: string;
     player: string;
   }
 
-  var openAiTtsScript: (params: OpenAiTtsScriptProps) => Block;
+  var openAiTtsScript: (
+    params: OpenAiTtsScriptProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ReadTodaySCalendarScriptProps {
     player?: string;
@@ -33,37 +50,61 @@ declare global {
 
   var readTodaySCalendarScript: (
     params?: ReadTodaySCalendarScriptProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  var goodMorningRoutineScript: () => Block;
+  var goodMorningRoutineScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var turnEverythingOff_2Script: () => Block;
+  var turnEverythingOff_2Script: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var dismissWelcomeMessageScript: () => Block;
+  var dismissWelcomeMessageScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var groupSpeakersScript: () => Block;
+  var groupSpeakersScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
-  var unjoinSpeakersScript: () => Block;
+  var unjoinSpeakersScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Reloads all the available scripts.
    */
-  var reloadScript: () => Block;
+  var reloadScript: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Runs the sequence of actions defined in a script.
    */
-  var turnOnScript: (target: IEntity<`script.${string}`> | IArea) => Block;
+  var turnOnScript: (
+    target: IEntity<`script.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops a running script.
    */
-  var turnOffScript: (target: IEntity<`script.${string}`> | IArea) => Block;
+  var turnOffScript: (
+    target: IEntity<`script.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Starts a script if it isn't running, stops it otherwise.
    */
-  var toggleScript: (target: IEntity<`script.${string}`> | IArea) => Block;
+  var toggleScript: (
+    target: IEntity<`script.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnTvOnScript = () =>

@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface LogLogbookProps {
@@ -23,7 +27,9 @@ declare global {
   /**
    * Creates a custom entry in the logbook.
    */
-  var logLogbook: (params: LogLogbookProps) => Block;
+  var logLogbook: (
+    params: LogLogbookProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.logLogbook = (params) =>

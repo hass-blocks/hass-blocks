@@ -3,23 +3,30 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Turns a switch off.
    */
-  var turnOffSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
+  var turnOffSwitch: (
+    target: IEntity<`switch.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns a switch on.
    */
-  var turnOnSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
+  var turnOnSwitch: (
+    target: IEntity<`switch.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a switch on/off.
    */
-  var toggleSwitch: (target: IEntity<`switch.${string}`> | IArea) => Block;
+  var toggleSwitch: (
+    target: IEntity<`switch.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOffSwitch = (target) =>

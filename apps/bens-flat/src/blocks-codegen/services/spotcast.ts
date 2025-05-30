@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface StartSpotcastProps {
@@ -103,7 +107,9 @@ declare global {
   /**
    * Starts spotify playback on chromecast devices
    */
-  var startSpotcast: (params?: StartSpotcastProps) => Block;
+  var startSpotcast: (
+    params?: StartSpotcastProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.startSpotcast = (params) =>

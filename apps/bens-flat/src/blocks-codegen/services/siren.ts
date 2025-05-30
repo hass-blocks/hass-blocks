@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -27,17 +28,21 @@ declare global {
   var turnOnSiren: (
     target: IEntity<`siren.${string}`> | IArea,
     params?: TurnOnSirenProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns the siren off.
    */
-  var turnOffSiren: (target: IEntity<`siren.${string}`> | IArea) => Block;
+  var turnOffSiren: (
+    target: IEntity<`siren.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles the siren on/off.
    */
-  var toggleSiren: (target: IEntity<`siren.${string}`> | IArea) => Block;
+  var toggleSiren: (
+    target: IEntity<`siren.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnSiren = (target, params) =>

@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -20,7 +21,9 @@ declare global {
   /**
    * Takes a snapshot of a media player.
    */
-  var snapshotSonos: (params?: SnapshotSonosProps) => Block;
+  var snapshotSonos: (
+    params?: SnapshotSonosProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RestoreSonosProps {
     /**
@@ -36,7 +39,9 @@ declare global {
   /**
    * Restores a snapshot of a media player.
    */
-  var restoreSonos: (params?: RestoreSonosProps) => Block;
+  var restoreSonos: (
+    params?: RestoreSonosProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetSleepTimerSonosProps {
     /**
@@ -51,12 +56,14 @@ declare global {
   var setSleepTimerSonos: (
     target: IEntity | IArea,
     params?: SetSleepTimerSonosProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Clears a Sonos timer.
    */
-  var clearSleepTimerSonos: (target: IEntity | IArea) => Block;
+  var clearSleepTimerSonos: (
+    target: IEntity | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UpdateAlarmSonosProps {
     /**
@@ -87,7 +94,7 @@ declare global {
   var updateAlarmSonos: (
     target: IEntity | IArea,
     params: UpdateAlarmSonosProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayQueueSonosProps {
     /**
@@ -102,7 +109,7 @@ declare global {
   var playQueueSonos: (
     target: IEntity | IArea,
     params?: PlayQueueSonosProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveFromQueueSonosProps {
     /**
@@ -117,14 +124,14 @@ declare global {
   var removeFromQueueSonos: (
     target: IEntity | IArea,
     params?: RemoveFromQueueSonosProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Returns the contents of the queue.
    */
   var getQueueSonos: (
     target: IEntity<`media_player.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.snapshotSonos = (params) =>

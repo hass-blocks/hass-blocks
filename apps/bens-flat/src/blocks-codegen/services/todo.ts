@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -31,7 +32,7 @@ declare global {
   var addItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: AddItemTodoProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UpdateItemTodoProps {
     /**
@@ -66,7 +67,7 @@ declare global {
   var updateItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: UpdateItemTodoProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveItemTodoProps {
     /**
@@ -81,7 +82,7 @@ declare global {
   var removeItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: RemoveItemTodoProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetItemsTodoProps {
     /**
@@ -96,14 +97,14 @@ declare global {
   var getItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params?: GetItemsTodoProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Removes all to-do list items that have been completed.
    */
   var removeCompletedItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.addItemTodo = (target, params) =>

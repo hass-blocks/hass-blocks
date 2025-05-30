@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -11,24 +12,28 @@ declare global {
    */
   var enableMotionDetectionCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Disables the motion detection.
    */
   var disableMotionDetectionCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns off the camera.
    */
-  var turnOffCamera: (target: IEntity<`camera.${string}`> | IArea) => Block;
+  var turnOffCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns on the camera.
    */
-  var turnOnCamera: (target: IEntity<`camera.${string}`> | IArea) => Block;
+  var turnOnCamera: (
+    target: IEntity<`camera.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SnapshotCameraProps {
     /**
@@ -43,7 +48,7 @@ declare global {
   var snapshotCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: SnapshotCameraProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PlayStreamCameraProps {
     /**
@@ -62,7 +67,7 @@ declare global {
   var playStreamCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: PlayStreamCameraProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RecordCameraProps {
     /**
@@ -85,7 +90,7 @@ declare global {
   var recordCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: RecordCameraProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.enableMotionDetectionCamera = (target) =>

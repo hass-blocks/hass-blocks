@@ -3,13 +3,17 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Removes external statistics for all meters that don't have an active tariff
    */
-  var purgeInvalidExternalStatisticIdsOctopusEnergy: () => Block;
+  var purgeInvalidExternalStatisticIdsOctopusEnergy: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface JoinOctoplusSavingSessionEventOctopusEnergyProps {
     /**
@@ -24,7 +28,7 @@ declare global {
   var joinOctoplusSavingSessionEventOctopusEnergy: (
     target: IEntity<`event.${string}`> | IArea,
     params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RefreshPreviousConsumptionDataOctopusEnergyProps {
     /**
@@ -39,14 +43,14 @@ declare global {
   var refreshPreviousConsumptionDataOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
     params: RefreshPreviousConsumptionDataOctopusEnergyProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Spins the wheel of fortune for a given energy type
    */
   var spinWheelOfFortuneOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RegisterRateWeightingsOctopusEnergyProps {
     /**
@@ -61,7 +65,7 @@ declare global {
   var registerRateWeightingsOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
     params?: RegisterRateWeightingsOctopusEnergyProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = () =>

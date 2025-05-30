@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -31,7 +32,7 @@ declare global {
   var announceAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
     params?: AnnounceAssistSatelliteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface StartConversationAssistSatelliteProps {
     /**
@@ -62,7 +63,7 @@ declare global {
   var startConversationAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
     params?: StartConversationAssistSatelliteProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.announceAssistSatellite = (target, params) =>

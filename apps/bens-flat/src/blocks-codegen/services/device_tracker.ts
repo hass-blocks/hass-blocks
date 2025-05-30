@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface SeeDeviceTrackerProps {
@@ -35,7 +39,9 @@ declare global {
   /**
    * Manually update the records of a seen legacy device tracker in the known_devices.yaml file.
    */
-  var seeDeviceTracker: (params?: SeeDeviceTrackerProps) => Block;
+  var seeDeviceTracker: (
+    params?: SeeDeviceTrackerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.seeDeviceTracker = (params) =>

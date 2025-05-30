@@ -3,34 +3,38 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputBoolean: () => Block;
+  var reloadInputBoolean: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Turns on the helper.
    */
   var turnOnInputBoolean: (
     target: IEntity<`input_boolean.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns off the helper.
    */
   var turnOffInputBoolean: (
     target: IEntity<`input_boolean.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles the helper on/off.
    */
   var toggleInputBoolean: (
     target: IEntity<`input_boolean.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reloadInputBoolean = () =>

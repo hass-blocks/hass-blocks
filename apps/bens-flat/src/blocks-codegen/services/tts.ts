@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -35,12 +36,15 @@ declare global {
   var speakTts: (
     target: IEntity<`tts.${string}`> | IArea,
     params: SpeakTtsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Removes all cached text-to-speech files and purges the memory.
    */
-  var clearCacheTts: () => Block;
+  var clearCacheTts: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface GoogleTranslateSayTtsProps {
     entity_id: string;
@@ -53,7 +57,9 @@ declare global {
   /**
    * Say something using text-to-speech on a media player with google_translate.
    */
-  var googleTranslateSayTts: (params: GoogleTranslateSayTtsProps) => Block;
+  var googleTranslateSayTts: (
+    params: GoogleTranslateSayTtsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CloudSayTtsProps {
     entity_id: string;
@@ -66,7 +72,9 @@ declare global {
   /**
    * Say something using text-to-speech on a media player with cloud.
    */
-  var cloudSayTts: (params: CloudSayTtsProps) => Block;
+  var cloudSayTts: (
+    params: CloudSayTtsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.speakTts = (target, params) =>

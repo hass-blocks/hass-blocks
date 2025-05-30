@@ -3,13 +3,17 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Reloads helpers from the YAML-configuration.
    */
-  var reloadInputNumber: () => Block;
+  var reloadInputNumber: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface SetValueInputNumberProps {
     /**
@@ -24,21 +28,21 @@ declare global {
   var setValueInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
     params: SetValueInputNumberProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Increments the current value by 1 step.
    */
   var incrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Decrements the current value by 1 step.
    */
   var decrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reloadInputNumber = () =>

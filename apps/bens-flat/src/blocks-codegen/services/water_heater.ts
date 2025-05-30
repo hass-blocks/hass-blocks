@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -11,14 +12,14 @@ declare global {
    */
   var turnOnWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns water heater off.
    */
   var turnOffWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetAwayModeWaterHeaterProps {
     /**
@@ -33,7 +34,7 @@ declare global {
   var setAwayModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetAwayModeWaterHeaterProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetTemperatureWaterHeaterProps {
     /**
@@ -52,7 +53,7 @@ declare global {
   var setTemperatureWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetTemperatureWaterHeaterProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetOperationModeWaterHeaterProps {
     /**
@@ -67,7 +68,7 @@ declare global {
   var setOperationModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetOperationModeWaterHeaterProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnWaterHeater = (target) =>

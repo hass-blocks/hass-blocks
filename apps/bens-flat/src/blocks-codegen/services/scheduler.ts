@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface RunActionSchedulerProps {
@@ -19,7 +23,9 @@ declare global {
   /**
    * Execute the action of a schedule, optionally at a given time.
    */
-  var runActionScheduler: (params: RunActionSchedulerProps) => Block;
+  var runActionScheduler: (
+    params: RunActionSchedulerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface AddSchedulerProps {
     /**
@@ -51,7 +57,9 @@ declare global {
   /**
    * Create a new schedule entity
    */
-  var addScheduler: (params: AddSchedulerProps) => Block;
+  var addScheduler: (
+    params: AddSchedulerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface EditSchedulerProps {
     /**
@@ -87,7 +95,9 @@ declare global {
   /**
    * Edit a schedule entity
    */
-  var editScheduler: (params: EditSchedulerProps) => Block;
+  var editScheduler: (
+    params: EditSchedulerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RemoveSchedulerProps {
     /**
@@ -99,7 +109,9 @@ declare global {
   /**
    * Remove a schedule entity
    */
-  var removeScheduler: (params: RemoveSchedulerProps) => Block;
+  var removeScheduler: (
+    params: RemoveSchedulerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CopySchedulerProps {
     /**
@@ -115,17 +127,25 @@ declare global {
   /**
    * Duplicate a schedule entity
    */
-  var copyScheduler: (params: CopySchedulerProps) => Block;
+  var copyScheduler: (
+    params: CopySchedulerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Disables all schedules
    */
-  var disableAllScheduler: () => Block;
+  var disableAllScheduler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Enables all schedules
    */
-  var enableAllScheduler: () => Block;
+  var enableAllScheduler: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.runActionScheduler = (params) =>

@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -50,7 +51,7 @@ declare global {
    */
   var setConfigParameterZwaveJs: (
     params: SetConfigParameterZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface BulkSetPartialConfigParametersZwaveJsProps {
     /**
@@ -84,7 +85,7 @@ declare global {
    */
   var bulkSetPartialConfigParametersZwaveJs: (
     params: BulkSetPartialConfigParametersZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RefreshValueZwaveJsProps {
     /**
@@ -100,7 +101,9 @@ declare global {
   /**
    * Force updates the values of a Z-Wave entity.
    */
-  var refreshValueZwaveJs: (params: RefreshValueZwaveJsProps) => Block;
+  var refreshValueZwaveJs: (
+    params: RefreshValueZwaveJsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetValueZwaveJsProps {
     /**
@@ -148,7 +151,9 @@ declare global {
   /**
    * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
    */
-  var setValueZwaveJs: (params: SetValueZwaveJsProps) => Block;
+  var setValueZwaveJs: (
+    params: SetValueZwaveJsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface MulticastSetValueZwaveJsProps {
     /**
@@ -198,7 +203,7 @@ declare global {
    */
   var multicastSetValueZwaveJs: (
     params: MulticastSetValueZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PingZwaveJsProps {
     /**
@@ -218,7 +223,9 @@ declare global {
   /**
    * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
    */
-  var pingZwaveJs: (params?: PingZwaveJsProps) => Block;
+  var pingZwaveJs: (
+    params?: PingZwaveJsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface InvokeCcApiZwaveJsProps {
     /**
@@ -254,7 +261,9 @@ declare global {
   /**
    * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
    */
-  var invokeCcApiZwaveJs: (params: InvokeCcApiZwaveJsProps) => Block;
+  var invokeCcApiZwaveJs: (
+    params: InvokeCcApiZwaveJsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RefreshNotificationsZwaveJsProps {
     /**
@@ -284,7 +293,7 @@ declare global {
    */
   var refreshNotificationsZwaveJs: (
     params: RefreshNotificationsZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetLockUsercodeZwaveJsProps {
     /**
@@ -303,7 +312,7 @@ declare global {
   var setLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
     params: SetLockUsercodeZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ClearLockUsercodeZwaveJsProps {
     /**
@@ -318,7 +327,7 @@ declare global {
   var clearLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
     params: ClearLockUsercodeZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetLockConfigurationZwaveJsProps {
     /**
@@ -353,7 +362,7 @@ declare global {
   var setLockConfigurationZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
     params: SetLockConfigurationZwaveJsProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ResetMeterZwaveJsProps {
     /**
@@ -381,7 +390,9 @@ declare global {
   /**
    * Resets the meters on a node.
    */
-  var resetMeterZwaveJs: (params?: ResetMeterZwaveJsProps) => Block;
+  var resetMeterZwaveJs: (
+    params?: ResetMeterZwaveJsProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.setConfigParameterZwaveJs = (params) =>

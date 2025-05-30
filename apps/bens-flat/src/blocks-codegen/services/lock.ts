@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -19,7 +20,7 @@ declare global {
   var unlockLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: UnlockLockProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface LockLockProps {
     /**
@@ -34,7 +35,7 @@ declare global {
   var lockLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: LockLockProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface OpenLockProps {
     /**
@@ -49,7 +50,7 @@ declare global {
   var openLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: OpenLockProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.unlockLock = (target, params) =>

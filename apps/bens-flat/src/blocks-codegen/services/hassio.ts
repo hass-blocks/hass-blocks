@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface AddonStartHassioProps {
@@ -11,7 +15,9 @@ declare global {
   /**
    * Starts an add-on.
    */
-  var addonStartHassio: (params: AddonStartHassioProps) => Block;
+  var addonStartHassio: (
+    params: AddonStartHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface AddonStopHassioProps {
     /**
@@ -23,7 +29,9 @@ declare global {
   /**
    * Stops an add-on.
    */
-  var addonStopHassio: (params: AddonStopHassioProps) => Block;
+  var addonStopHassio: (
+    params: AddonStopHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface AddonRestartHassioProps {
     /**
@@ -35,7 +43,9 @@ declare global {
   /**
    * Restarts an add-on.
    */
-  var addonRestartHassio: (params: AddonRestartHassioProps) => Block;
+  var addonRestartHassio: (
+    params: AddonRestartHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface AddonStdinHassioProps {
     /**
@@ -47,17 +57,25 @@ declare global {
   /**
    * Writes data to the add-on's standard input.
    */
-  var addonStdinHassio: (params: AddonStdinHassioProps) => Block;
+  var addonStdinHassio: (
+    params: AddonStdinHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Powers off the host system.
    */
-  var hostShutdownHassio: () => Block;
+  var hostShutdownHassio: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Reboots the host system.
    */
-  var hostRebootHassio: () => Block;
+  var hostRebootHassio: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   interface BackupFullHassioProps {
     /**
@@ -85,7 +103,9 @@ declare global {
   /**
    * Creates a full backup.
    */
-  var backupFullHassio: (params?: BackupFullHassioProps) => Block;
+  var backupFullHassio: (
+    params?: BackupFullHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface BackupPartialHassioProps {
     /**
@@ -125,7 +145,9 @@ declare global {
   /**
    * Creates a partial backup.
    */
-  var backupPartialHassio: (params?: BackupPartialHassioProps) => Block;
+  var backupPartialHassio: (
+    params?: BackupPartialHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RestoreFullHassioProps {
     /**
@@ -141,7 +163,9 @@ declare global {
   /**
    * Restores from full backup.
    */
-  var restoreFullHassio: (params: RestoreFullHassioProps) => Block;
+  var restoreFullHassio: (
+    params: RestoreFullHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RestorePartialHassioProps {
     /**
@@ -169,7 +193,9 @@ declare global {
   /**
    * Restores from a partial backup.
    */
-  var restorePartialHassio: (params: RestorePartialHassioProps) => Block;
+  var restorePartialHassio: (
+    params: RestorePartialHassioProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.addonStartHassio = (params) =>

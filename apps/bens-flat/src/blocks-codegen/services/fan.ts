@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -23,17 +24,21 @@ declare global {
   var turnOnFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: TurnOnFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns fan off.
    */
-  var turnOffFan: (target: IEntity<`fan.${string}`> | IArea) => Block;
+  var turnOffFan: (
+    target: IEntity<`fan.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a fan on/off.
    */
-  var toggleFan: (target: IEntity<`fan.${string}`> | IArea) => Block;
+  var toggleFan: (
+    target: IEntity<`fan.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface IncreaseSpeedFanProps {
     /**
@@ -48,7 +53,7 @@ declare global {
   var increaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: IncreaseSpeedFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface DecreaseSpeedFanProps {
     /**
@@ -63,7 +68,7 @@ declare global {
   var decreaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: DecreaseSpeedFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface OscillateFanProps {
     /**
@@ -78,7 +83,7 @@ declare global {
   var oscillateFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: OscillateFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetDirectionFanProps {
     /**
@@ -93,7 +98,7 @@ declare global {
   var setDirectionFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetDirectionFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetPercentageFanProps {
     /**
@@ -108,7 +113,7 @@ declare global {
   var setPercentageFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetPercentageFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetPresetModeFanProps {
     /**
@@ -123,7 +128,7 @@ declare global {
   var setPresetModeFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetPresetModeFanProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnFan = (target, params) =>

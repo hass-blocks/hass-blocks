@@ -3,18 +3,23 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Opens a cover.
    */
-  var openCoverCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var openCoverCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Closes a cover.
    */
-  var closeCoverCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var closeCoverCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetCoverPositionCoverProps {
     /**
@@ -29,34 +34,42 @@ declare global {
   var setCoverPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverPositionCoverProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops the cover movement.
    */
-  var stopCoverCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var stopCoverCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a cover open/closed.
    */
-  var toggleCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var toggleCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tilts a cover open.
    */
-  var openCoverTiltCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var openCoverTiltCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tilts a cover to close.
    */
   var closeCoverTiltCover: (
     target: IEntity<`cover.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops a tilting cover movement.
    */
-  var stopCoverTiltCover: (target: IEntity<`cover.${string}`> | IArea) => Block;
+  var stopCoverTiltCover: (
+    target: IEntity<`cover.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetCoverTiltPositionCoverProps {
     /**
@@ -71,14 +84,14 @@ declare global {
   var setCoverTiltPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverTiltPositionCoverProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a cover tilt open/closed.
    */
   var toggleCoverTiltCover: (
     target: IEntity<`cover.${string}`> | IArea,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.openCoverCover = (target) =>

@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ForceLogoutAlexaMediaProps {
@@ -11,7 +15,9 @@ declare global {
   /**
    * Force account to logout. Used mainly for debugging.
    */
-  var forceLogoutAlexaMedia: (params?: ForceLogoutAlexaMediaProps) => Block;
+  var forceLogoutAlexaMedia: (
+    params?: ForceLogoutAlexaMediaProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UpdateLastCalledAlexaMediaProps {
     /**
@@ -25,7 +31,7 @@ declare global {
    */
   var updateLastCalledAlexaMedia: (
     params?: UpdateLastCalledAlexaMediaProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RestoreVolumeAlexaMediaProps {
     /**
@@ -37,7 +43,9 @@ declare global {
   /**
    * Restore previous volume level on Alexa media player device
    */
-  var restoreVolumeAlexaMedia: (params: RestoreVolumeAlexaMediaProps) => Block;
+  var restoreVolumeAlexaMedia: (
+    params: RestoreVolumeAlexaMediaProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface GetHistoryRecordsAlexaMediaProps {
     /**
@@ -55,7 +63,7 @@ declare global {
    */
   var getHistoryRecordsAlexaMedia: (
     params: GetHistoryRecordsAlexaMediaProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.forceLogoutAlexaMedia = (params) =>

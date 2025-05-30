@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface ReportWatchmanProps {
@@ -12,7 +16,9 @@ declare global {
   /**
    * Run the Watchman report
    */
-  var reportWatchman: (params?: ReportWatchmanProps) => Block;
+  var reportWatchman: (
+    params?: ReportWatchmanProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.reportWatchman = (params) =>

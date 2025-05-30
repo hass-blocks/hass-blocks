@@ -3,6 +3,7 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -31,7 +32,7 @@ declare global {
   var activateSceneHue: (
     target: IEntity<`scene.${string}`> | IArea,
     params?: ActivateSceneHueProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface HueActivateSceneHueProps {
     /**
@@ -51,7 +52,9 @@ declare global {
   /**
    * Activates a Hue scene stored in the Hue hub.
    */
-  var hueActivateSceneHue: (params?: HueActivateSceneHueProps) => Block;
+  var hueActivateSceneHue: (
+    params?: HueActivateSceneHueProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.activateSceneHue = (target, params) =>

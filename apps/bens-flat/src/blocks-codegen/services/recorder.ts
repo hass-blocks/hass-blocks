@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface PurgeRecorderProps {
@@ -19,7 +23,9 @@ declare global {
   /**
    * Starts purge task - to clean up old data from your database.
    */
-  var purgeRecorder: (params?: PurgeRecorderProps) => Block;
+  var purgeRecorder: (
+    params?: PurgeRecorderProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface PurgeEntitiesRecorderProps {
     /**
@@ -43,17 +49,25 @@ declare global {
   /**
    * Starts a purge task to remove the data related to specific entities from your database.
    */
-  var purgeEntitiesRecorder: (params?: PurgeEntitiesRecorderProps) => Block;
+  var purgeEntitiesRecorder: (
+    params?: PurgeEntitiesRecorderProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Starts the recording of events and state changes.
    */
-  var enableRecorder: () => Block;
+  var enableRecorder: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 
   /**
    * Stops the recording of events and state changes.
    */
-  var disableRecorder: () => Block;
+  var disableRecorder: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.purgeRecorder = (params) =>

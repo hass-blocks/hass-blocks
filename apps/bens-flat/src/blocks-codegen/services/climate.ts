@@ -3,23 +3,30 @@ import {
   type Block,
   type IEntity,
   type IArea,
+  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
    * Turns climate device on.
    */
-  var turnOnClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+  var turnOnClimate: (
+    target: IEntity<`climate.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns climate device off.
    */
-  var turnOffClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+  var turnOffClimate: (
+    target: IEntity<`climate.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles climate device, from on to off, or off to on.
    */
-  var toggleClimate: (target: IEntity<`climate.${string}`> | IArea) => Block;
+  var toggleClimate: (
+    target: IEntity<`climate.${string}`> | IArea,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetHvacModeClimateProps {
     /**
@@ -34,7 +41,7 @@ declare global {
   var setHvacModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params?: SetHvacModeClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetPresetModeClimateProps {
     /**
@@ -49,7 +56,7 @@ declare global {
   var setPresetModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetPresetModeClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetAuxHeatClimateProps {
     /**
@@ -64,7 +71,7 @@ declare global {
   var setAuxHeatClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetAuxHeatClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetTemperatureClimateProps {
     /**
@@ -91,7 +98,7 @@ declare global {
   var setTemperatureClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params?: SetTemperatureClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetHumidityClimateProps {
     /**
@@ -106,7 +113,7 @@ declare global {
   var setHumidityClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetHumidityClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetFanModeClimateProps {
     /**
@@ -121,7 +128,7 @@ declare global {
   var setFanModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetFanModeClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetSwingModeClimateProps {
     /**
@@ -136,7 +143,7 @@ declare global {
   var setSwingModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetSwingModeClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetSwingHorizontalModeClimateProps {
     /**
@@ -151,7 +158,7 @@ declare global {
   var setSwingHorizontalModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
     params: SetSwingHorizontalModeClimateProps,
-  ) => Block;
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.turnOnClimate = (target) =>

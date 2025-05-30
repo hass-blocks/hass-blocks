@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface DownloadFileDownloaderProps {
@@ -23,7 +27,9 @@ declare global {
   /**
    * Downloads a file to the download location.
    */
-  var downloadFileDownloader: (params: DownloadFileDownloaderProps) => Block;
+  var downloadFileDownloader: (
+    params: DownloadFileDownloaderProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
 globalThis.downloadFileDownloader = (params) =>

@@ -1,4 +1,8 @@
-import { serviceCall, type Block } from '@hass-blocks/core';
+import {
+  serviceCall,
+  type Block,
+  type ServiceCallArgs,
+} from '@hass-blocks/core';
 
 declare global {
   interface SetDefaultLevelLoggerProps {
@@ -11,12 +15,17 @@ declare global {
   /**
    * Sets the default log level for integrations.
    */
-  var setDefaultLevelLogger: (params?: SetDefaultLevelLoggerProps) => Block;
+  var setDefaultLevelLogger: (
+    params?: SetDefaultLevelLoggerProps,
+  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Sets the log level for one or more integrations.
    */
-  var setLevelLogger: () => Block;
+  var setLevelLogger: () => Block<
+    Partial<ServiceCallArgs<unknown>> | undefined,
+    void
+  >;
 }
 
 globalThis.setDefaultLevelLogger = (params) =>

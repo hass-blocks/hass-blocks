@@ -4,10 +4,11 @@ import type { Service } from '@hass-blocks/hass-ts';
 import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
 import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 import type { PropsInterface } from './props-interface.ts';
+import type { ServiceName } from '../utils/service.ts';
 
 export const buildServiceType = (
   service: Service,
-  serviceName: string,
+  serviceName: ServiceName,
   iEntityIdentifier: ImportedIdentifier,
   targetIdentifier: Identifier,
   blockIdentifier: ImportedIdentifier,
@@ -20,7 +21,7 @@ export const buildServiceType = (
     factory.createVariableDeclarationList(
       [
         factory.createVariableDeclaration(
-          factory.createIdentifier(serviceName),
+          serviceName.identifier,
           undefined,
           factory.createFunctionTypeNode(
             undefined,

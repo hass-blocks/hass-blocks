@@ -1,10 +1,7 @@
-import { join } from 'node:path';
 import { factory } from 'typescript';
 
 import type { Service } from '@hass-blocks/hass-ts';
 
-import { generateTsFile } from '@lib/codegen/utils/generate-ts-file.ts';
-import { toCamel } from '@lib/codegen/utils/to-camel.ts';
 import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
 
 import { buildServiceType } from './build-service-type.ts';
@@ -12,11 +9,13 @@ import { buildServiceCall } from './build-service-call.ts';
 import { PropsInterface } from './props-interface.ts';
 import { newLine } from './new-line.ts';
 import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
+import type { GlobalNames } from '../utils/global-names.ts';
 
-export const generateDomainServiceCalls = async (
+export const generateDomainServiceCalls = (
   folder: string,
   domain: string,
   services: Record<string, Service>,
+  names: GlobalNames,
 ) => {
   const coreImport = new ImportStatement('@hass-blocks/core');
 
@@ -29,10 +28,10 @@ export const generateDomainServiceCalls = async (
 
   const serviceTypeDeclarations = Object.entries(services).map(
     ([serviceId, details]) => {
-      const serviceName = toCamel(`${serviceId}_${domain}`);
+      const serviceName = names.addService(domain, serviceId);
       const props = new PropsInterface(serviceName, details.fields);
       return {
-        type: [
+        type: () => [
           newLine(),
           props,
           newLine(),
@@ -47,39 +46,39 @@ export const generateDomainServiceCalls = async (
             props,
           ),
         ],
-        call: buildServiceCall(
-          domain,
-          serviceId,
-          details,
-          iEntityIdentifier,
-          iAreaIdentifier,
-          targetIdentifier,
-          serviceCallIdentifier,
-          props,
-        ),
+        call: () =>
+          buildServiceCall(
+            domain,
+            serviceId,
+            details,
+            iEntityIdentifier,
+            iAreaIdentifier,
+            targetIdentifier,
+            serviceCallIdentifier,
+            props,
+            serviceName,
+          ),
       };
     },
   );
 
-  const globalBlock = new DeclareGlobalBlock(
+  const declareGlobalBlock = new DeclareGlobalBlock(
     serviceTypeDeclarations
-      .flatMap((item) => item.type)
+      .flatMap((item) => item.type())
       .filter((item) => !('hasProps' in item) || item.hasProps())
       .map((item) => (!('hasProps' in item) ? item : item.buildNode())),
   );
 
-  const serviceNodes = factory.createNodeArray(
-    serviceTypeDeclarations.flatMap((item) => item.call),
-  );
+  const generateServiceNodes = () =>
+    factory.createNodeArray(
+      serviceTypeDeclarations.flatMap((item) => item.call()),
+    );
 
-  await generateTsFile(
-    join(folder, `services`),
-    `${domain}.ts`,
-    factory.createNodeArray([
-      coreImport.buildNode(),
-      newLine(),
-      globalBlock.buildNode(),
-      ...serviceNodes,
-    ]),
-  );
+  return {
+    folder,
+    domain,
+    declareGlobalBlock,
+    generateServiceNodes,
+    coreImport,
+  };
 };

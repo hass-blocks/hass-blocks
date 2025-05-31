@@ -3,20 +3,27 @@ import type { INodeBuilder } from '../utils/i-node-builder.ts';
 import { type Identifier, factory } from 'typescript';
 import { buildPropsPropertyNode } from './build-props-property-node.ts';
 import { uppercaseFirstLetter } from '../utils/uppercase-first-letter.ts';
+import type { ServiceName } from '../utils/service.ts';
 
 export class PropsInterface implements INodeBuilder {
-  private _identifier: Identifier;
+  private _identifier: Identifier | undefined;
 
   public constructor(
-    serviceName: string,
+    private serviceName: ServiceName,
     private fields: ServiceFields,
-  ) {
-    this._identifier = factory.createIdentifier(
-      uppercaseFirstLetter(`${serviceName}Props`),
+  ) {}
+
+  private generateName() {
+    return factory.createIdentifier(
+      uppercaseFirstLetter(this.serviceName.name),
     );
   }
 
-  public get identifier() {
+  public get identifier(): Identifier {
+    if (!this._identifier) {
+      const name = this.generateName();
+      this._identifier = name;
+    }
     return this._identifier;
   }
 
@@ -33,7 +40,7 @@ export class PropsInterface implements INodeBuilder {
   public buildNode() {
     return factory.createInterfaceDeclaration(
       [],
-      this._identifier,
+      this.identifier,
       undefined,
       undefined,
       Object.entries(this.fields).map(([name, details]) =>

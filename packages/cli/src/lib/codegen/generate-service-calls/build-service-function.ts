@@ -5,12 +5,13 @@ import { factory, type Identifier, SyntaxKind } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 import type { PropsInterface } from './props-interface.ts';
+import type { ServiceName } from '../utils/service.ts';
 
 export const buildServiceFunction = (
   domain: string,
   serviceId: string,
   details: Service,
-  serviceName: string,
+  serviceName: ServiceName,
   propsIdentifier: PropsInterface,
   iEntityIdentifier: ImportedIdentifier,
   iAreaIdentifier: ImportedIdentifier,
@@ -21,7 +22,7 @@ export const buildServiceFunction = (
     factory.createBinaryExpression(
       factory.createPropertyAccessExpression(
         factory.createIdentifier('globalThis'),
-        factory.createIdentifier(serviceName),
+        serviceName.identifier,
       ),
       factory.createToken(SyntaxKind.EqualsToken),
       factory.createArrowFunction(

@@ -17,7 +17,10 @@ declare global {
    */
   var forceLogoutAlexaMedia: (
     params?: ForceLogoutAlexaMediaProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ForceLogoutAlexaMediaProps>> | undefined,
+    void
+  >;
 
   interface UpdateLastCalledAlexaMediaProps {
     /**
@@ -31,7 +34,10 @@ declare global {
    */
   var updateLastCalledAlexaMedia: (
     params?: UpdateLastCalledAlexaMediaProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<UpdateLastCalledAlexaMediaProps>> | undefined,
+    void
+  >;
 
   interface RestoreVolumeAlexaMediaProps {
     /**
@@ -45,7 +51,10 @@ declare global {
    */
   var restoreVolumeAlexaMedia: (
     params: RestoreVolumeAlexaMediaProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<RestoreVolumeAlexaMediaProps>> | undefined,
+    void
+  >;
 
   interface GetHistoryRecordsAlexaMediaProps {
     /**
@@ -63,7 +72,10 @@ declare global {
    */
   var getHistoryRecordsAlexaMedia: (
     params: GetHistoryRecordsAlexaMediaProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetHistoryRecordsAlexaMediaProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.forceLogoutAlexaMedia = (params) =>

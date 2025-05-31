@@ -34,7 +34,7 @@ declare global {
   var selectNextSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params?: SelectNextSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SelectNextSelectProps>> | undefined, void>;
 
   interface SelectOptionSelectProps {
     /**
@@ -49,7 +49,10 @@ declare global {
   var selectOptionSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params: SelectOptionSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectOptionSelectProps>> | undefined,
+    void
+  >;
 
   interface SelectPreviousSelectProps {
     /**
@@ -64,7 +67,10 @@ declare global {
   var selectPreviousSelect: (
     target: IEntity<`select.${string}`> | IArea,
     params?: SelectPreviousSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectPreviousSelectProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.selectFirstSelect = (target) =>

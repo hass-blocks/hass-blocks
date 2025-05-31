@@ -29,7 +29,10 @@ declare global {
    */
   var downloadFileDownloader: (
     params: DownloadFileDownloaderProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DownloadFileDownloaderProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.downloadFileDownloader = (params) =>

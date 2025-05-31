@@ -21,7 +21,10 @@ declare global {
    */
   var replaceSensorPlant: (
     params: ReplaceSensorPlantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ReplaceSensorPlantProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.replaceSensorPlant = (params) =>

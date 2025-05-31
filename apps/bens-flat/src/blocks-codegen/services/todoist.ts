@@ -65,7 +65,7 @@ declare global {
    */
   var newTaskTodoist: (
     params: NewTaskTodoistProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<NewTaskTodoistProps>> | undefined, void>;
 }
 
 globalThis.newTaskTodoist = (params) =>

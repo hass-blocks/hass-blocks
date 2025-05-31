@@ -23,7 +23,7 @@ declare global {
    */
   var snapshotSonos: (
     params?: SnapshotSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SnapshotSonosProps>> | undefined, void>;
 
   interface RestoreSonosProps {
     /**
@@ -41,7 +41,7 @@ declare global {
    */
   var restoreSonos: (
     params?: RestoreSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RestoreSonosProps>> | undefined, void>;
 
   interface SetSleepTimerSonosProps {
     /**
@@ -56,7 +56,10 @@ declare global {
   var setSleepTimerSonos: (
     target: IEntity | IArea,
     params?: SetSleepTimerSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetSleepTimerSonosProps>> | undefined,
+    void
+  >;
 
   /**
    * Clears a Sonos timer.
@@ -94,7 +97,7 @@ declare global {
   var updateAlarmSonos: (
     target: IEntity | IArea,
     params: UpdateAlarmSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<UpdateAlarmSonosProps>> | undefined, void>;
 
   interface PlayQueueSonosProps {
     /**
@@ -109,7 +112,7 @@ declare global {
   var playQueueSonos: (
     target: IEntity | IArea,
     params?: PlayQueueSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<PlayQueueSonosProps>> | undefined, void>;
 
   interface RemoveFromQueueSonosProps {
     /**
@@ -124,7 +127,10 @@ declare global {
   var removeFromQueueSonos: (
     target: IEntity | IArea,
     params?: RemoveFromQueueSonosProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<RemoveFromQueueSonosProps>> | undefined,
+    void
+  >;
 
   /**
    * Returns the contents of the queue.

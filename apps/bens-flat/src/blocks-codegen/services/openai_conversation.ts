@@ -25,7 +25,11 @@ declare global {
    */
   var generateContentOpenaiConversation: (
     params: GenerateContentOpenaiConversationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<GenerateContentOpenaiConversationProps>>
+    | undefined,
+    void
+  >;
 
   interface GenerateImageOpenaiConversationProps {
     /**
@@ -55,7 +59,10 @@ declare global {
    */
   var generateImageOpenaiConversation: (
     params: GenerateImageOpenaiConversationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GenerateImageOpenaiConversationProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.generateContentOpenaiConversation = (params) =>

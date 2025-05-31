@@ -21,7 +21,10 @@ declare global {
    */
   var getTorrentsQbittorrent: (
     params: GetTorrentsQbittorrentProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetTorrentsQbittorrentProps>> | undefined,
+    void
+  >;
 
   interface GetAllTorrentsQbittorrentProps {
     /**
@@ -35,7 +38,10 @@ declare global {
    */
   var getAllTorrentsQbittorrent: (
     params: GetAllTorrentsQbittorrentProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetAllTorrentsQbittorrentProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.getTorrentsQbittorrent = (params) =>

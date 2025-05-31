@@ -34,7 +34,10 @@ declare global {
   var setCoverPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverPositionCoverProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetCoverPositionCoverProps>> | undefined,
+    void
+  >;
 
   /**
    * Stops the cover movement.
@@ -84,7 +87,10 @@ declare global {
   var setCoverTiltPositionCover: (
     target: IEntity<`cover.${string}`> | IArea,
     params: SetCoverTiltPositionCoverProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetCoverTiltPositionCoverProps>> | undefined,
+    void
+  >;
 
   /**
    * Toggles a cover tilt open/closed.

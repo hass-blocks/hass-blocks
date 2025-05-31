@@ -20,7 +20,10 @@ declare global {
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
     params?: TriggerAutomationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<TriggerAutomationProps>> | undefined,
+    void
+  >;
 
   /**
    * Toggles (enable / disable) an automation.
@@ -49,7 +52,10 @@ declare global {
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
     params?: TurnOffAutomationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<TurnOffAutomationProps>> | undefined,
+    void
+  >;
 
   /**
    * Reloads the automation configuration.

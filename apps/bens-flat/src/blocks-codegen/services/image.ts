@@ -20,7 +20,7 @@ declare global {
   var snapshotImage: (
     target: IEntity<`image.${string}`> | IArea,
     params: SnapshotImageProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SnapshotImageProps>> | undefined, void>;
 }
 
 globalThis.snapshotImage = (target, params) =>

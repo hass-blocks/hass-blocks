@@ -29,7 +29,10 @@ declare global {
    */
   var helloWorldPyscript: (
     params?: HelloWorldPyscriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<HelloWorldPyscriptProps>> | undefined,
+    void
+  >;
 
   interface ReloadPyscriptProps {
     /**
@@ -43,7 +46,7 @@ declare global {
    */
   var reloadPyscript: (
     params?: ReloadPyscriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ReloadPyscriptProps>> | undefined, void>;
 
   interface JupyterKernelStartPyscriptProps {
     /**
@@ -93,7 +96,10 @@ declare global {
    */
   var jupyterKernelStartPyscript: (
     params: JupyterKernelStartPyscriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<JupyterKernelStartPyscriptProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.autocompleteGeneratorPyscript = () =>

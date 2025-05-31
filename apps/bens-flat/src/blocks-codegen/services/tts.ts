@@ -36,7 +36,7 @@ declare global {
   var speakTts: (
     target: IEntity<`tts.${string}`> | IArea,
     params: SpeakTtsProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SpeakTtsProps>> | undefined, void>;
 
   /**
    * Removes all cached text-to-speech files and purges the memory.
@@ -59,7 +59,10 @@ declare global {
    */
   var googleTranslateSayTts: (
     params: GoogleTranslateSayTtsProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GoogleTranslateSayTtsProps>> | undefined,
+    void
+  >;
 
   interface CloudSayTtsProps {
     entity_id: string;
@@ -74,7 +77,7 @@ declare global {
    */
   var cloudSayTts: (
     params: CloudSayTtsProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<CloudSayTtsProps>> | undefined, void>;
 }
 
 globalThis.speakTts = (target, params) =>

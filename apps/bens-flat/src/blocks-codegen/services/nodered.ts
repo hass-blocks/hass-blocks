@@ -24,7 +24,7 @@ declare global {
   var triggerNodered: (
     target: IEntity<`switch.${string}`> | IArea,
     params?: TriggerNoderedProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TriggerNoderedProps>> | undefined, void>;
 }
 
 globalThis.triggerNodered = (target, params) =>

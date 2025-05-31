@@ -24,7 +24,7 @@ declare global {
   var installUpdate: (
     target: IEntity<`update.${string}`> | IArea,
     params?: InstallUpdateProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<InstallUpdateProps>> | undefined, void>;
 
   /**
    * Marks currently available update as skipped.

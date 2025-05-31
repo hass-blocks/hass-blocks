@@ -41,7 +41,10 @@ declare global {
    */
   var applyAdaptiveLighting: (
     params?: ApplyAdaptiveLightingProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ApplyAdaptiveLightingProps>> | undefined,
+    void
+  >;
 
   interface SetManualControlAdaptiveLightingProps {
     /**
@@ -63,7 +66,10 @@ declare global {
    */
   var setManualControlAdaptiveLighting: (
     params?: SetManualControlAdaptiveLightingProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetManualControlAdaptiveLightingProps>> | undefined,
+    void
+  >;
 
   interface ChangeSwitchSettingsAdaptiveLightingProps {
     /**
@@ -189,7 +195,11 @@ declare global {
    */
   var changeSwitchSettingsAdaptiveLighting: (
     params: ChangeSwitchSettingsAdaptiveLightingProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<ChangeSwitchSettingsAdaptiveLightingProps>>
+    | undefined,
+    void
+  >;
 }
 
 globalThis.applyAdaptiveLighting = (params) =>

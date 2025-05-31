@@ -17,7 +17,7 @@ declare global {
    */
   var startFfmpeg: (
     params?: StartFfmpegProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<StartFfmpegProps>> | undefined, void>;
 
   interface StopFfmpegProps {
     /**
@@ -31,7 +31,7 @@ declare global {
    */
   var stopFfmpeg: (
     params?: StopFfmpegProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<StopFfmpegProps>> | undefined, void>;
 
   interface RestartFfmpegProps {
     /**
@@ -45,7 +45,7 @@ declare global {
    */
   var restartFfmpeg: (
     params?: RestartFfmpegProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RestartFfmpegProps>> | undefined, void>;
 }
 
 globalThis.startFfmpeg = (params) =>

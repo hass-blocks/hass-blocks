@@ -40,7 +40,10 @@ declare global {
   var setDatetimeInputDatetime: (
     target: IEntity<`input_datetime.${string}`> | IArea,
     params?: SetDatetimeInputDatetimeProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetDatetimeInputDatetimeProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.reloadInputDatetime = () =>

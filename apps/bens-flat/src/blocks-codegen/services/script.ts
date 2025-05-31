@@ -33,7 +33,7 @@ declare global {
 
   var todoListScript: (
     params: TodoListScriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TodoListScriptProps>> | undefined, void>;
 
   interface OpenAiTtsScriptProps {
     message: string;
@@ -42,7 +42,7 @@ declare global {
 
   var openAiTtsScript: (
     params: OpenAiTtsScriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<OpenAiTtsScriptProps>> | undefined, void>;
 
   interface ReadTodaySCalendarScriptProps {
     player?: string;
@@ -50,7 +50,10 @@ declare global {
 
   var readTodaySCalendarScript: (
     params?: ReadTodaySCalendarScriptProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ReadTodaySCalendarScriptProps>> | undefined,
+    void
+  >;
 
   var goodMorningRoutineScript: () => Block<
     Partial<ServiceCallArgs<unknown>> | undefined,

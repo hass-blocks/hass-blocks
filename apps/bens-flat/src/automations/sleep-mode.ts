@@ -1,4 +1,5 @@
 import { turnOffMyMac } from '@actions';
+
 import {
   allAdaptiveLightingSleepModeSwitches,
   allAdaptiveLightingSwitches,

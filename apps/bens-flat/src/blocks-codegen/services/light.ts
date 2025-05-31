@@ -41,7 +41,7 @@ declare global {
   var turnOnLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: TurnOnLightProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOnLightProps>> | undefined, void>;
 
   interface TurnOffLightProps {
     /**
@@ -57,7 +57,7 @@ declare global {
   var turnOffLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: TurnOffLightProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOffLightProps>> | undefined, void>;
 
   interface ToggleLightProps {
     /**
@@ -89,7 +89,7 @@ declare global {
   var toggleLight: (
     target: IEntity<`light.${string}`> | IArea,
     params?: ToggleLightProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ToggleLightProps>> | undefined, void>;
 }
 
 globalThis.turnOnLight = (target, params) =>

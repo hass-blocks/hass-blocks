@@ -62,7 +62,10 @@ declare global {
   var setFanSpeedVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
     params: SetFanSpeedVacuumProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetFanSpeedVacuumProps>> | undefined,
+    void
+  >;
 
   interface SendCommandVacuumProps {
     /**
@@ -81,7 +84,10 @@ declare global {
   var sendCommandVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
     params: SendCommandVacuumProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SendCommandVacuumProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.startVacuum = (target) =>

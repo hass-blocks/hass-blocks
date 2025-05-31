@@ -1,12 +1,6 @@
 import { stateIs, turnSwitch } from '@hass-blocks/blocks';
 import { stateChanges } from '@hass-blocks/triggers';
-import {
-  automation,
-  sequence,
-  when,
-  type GetSequenceInput,
-  type GetSequenceOutput,
-} from '@hass-blocks/core';
+import { automation, sequence, when } from '@hass-blocks/core';
 
 import '@blocks-codegen';
 

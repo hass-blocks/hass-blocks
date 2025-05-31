@@ -28,7 +28,10 @@ declare global {
   var setValueInputText: (
     target: IEntity<`input_text.${string}`> | IArea,
     params: SetValueInputTextProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetValueInputTextProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.reloadInputText = () =>

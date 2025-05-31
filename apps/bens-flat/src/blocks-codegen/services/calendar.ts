@@ -48,7 +48,10 @@ declare global {
   var createEventCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
     params: CreateEventCalendarProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<CreateEventCalendarProps>> | undefined,
+    void
+  >;
 
   interface GetEventsCalendarProps {
     /**
@@ -71,7 +74,10 @@ declare global {
   var getEventsCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
     params?: GetEventsCalendarProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetEventsCalendarProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.createEventCalendar = (target, params) =>

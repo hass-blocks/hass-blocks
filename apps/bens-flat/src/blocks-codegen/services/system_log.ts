@@ -33,7 +33,7 @@ declare global {
    */
   var writeSystemLog: (
     params: WriteSystemLogProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<WriteSystemLogProps>> | undefined, void>;
 }
 
 globalThis.clearSystemLog = () =>

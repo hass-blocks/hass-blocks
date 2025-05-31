@@ -28,7 +28,7 @@ declare global {
   var startTimer: (
     target: IEntity<`timer.${string}`> | IArea,
     params?: StartTimerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<StartTimerProps>> | undefined, void>;
 
   /**
    * Pauses a running timer, retaining the remaining duration for later continuation.
@@ -64,7 +64,7 @@ declare global {
   var changeTimer: (
     target: IEntity<`timer.${string}`> | IArea,
     params: ChangeTimerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ChangeTimerProps>> | undefined, void>;
 }
 
 globalThis.reloadTimer = () =>

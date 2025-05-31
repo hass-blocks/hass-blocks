@@ -41,7 +41,7 @@ declare global {
    */
   var seeDeviceTracker: (
     params?: SeeDeviceTrackerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SeeDeviceTrackerProps>> | undefined, void>;
 }
 
 globalThis.seeDeviceTracker = (params) =>

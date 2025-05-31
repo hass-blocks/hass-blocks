@@ -34,7 +34,10 @@ declare global {
   var setAwayModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetAwayModeWaterHeaterProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetAwayModeWaterHeaterProps>> | undefined,
+    void
+  >;
 
   interface SetTemperatureWaterHeaterProps {
     /**
@@ -53,7 +56,10 @@ declare global {
   var setTemperatureWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetTemperatureWaterHeaterProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetTemperatureWaterHeaterProps>> | undefined,
+    void
+  >;
 
   interface SetOperationModeWaterHeaterProps {
     /**
@@ -68,7 +74,10 @@ declare global {
   var setOperationModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
     params: SetOperationModeWaterHeaterProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetOperationModeWaterHeaterProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.turnOnWaterHeater = (target) =>

@@ -17,7 +17,7 @@ export const holidayModeOn = automation({
 export const holidayModeOff = automation({
   name: 'Holiday Mode Off',
   when: imLessThen20kmAway,
-  then: [turnOffSwitch(homeModeSwitch)],
+  then: turnOffSwitch(homeModeSwitch),
 });
 
 export const holidayModeTurnsOn = automation({

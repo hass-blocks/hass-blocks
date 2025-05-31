@@ -29,7 +29,7 @@ declare global {
    */
   var logLogbook: (
     params: LogLogbookProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<LogLogbookProps>> | undefined, void>;
 }
 
 globalThis.logLogbook = (params) =>

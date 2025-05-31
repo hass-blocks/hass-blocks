@@ -72,7 +72,10 @@ declare global {
    */
   var updateEntityHomeassistant: (
     params: UpdateEntityHomeassistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<UpdateEntityHomeassistantProps>> | undefined,
+    void
+  >;
 
   /**
    * Reloads the Core configuration from the YAML-configuration.
@@ -102,7 +105,10 @@ declare global {
    */
   var setLocationHomeassistant: (
     params: SetLocationHomeassistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetLocationHomeassistantProps>> | undefined,
+    void
+  >;
 
   /**
    * Reloads Jinja2 templates found in the `custom_templates` folder in your config. New values will be applied on the next render of the template.
@@ -125,7 +131,10 @@ declare global {
   var reloadConfigEntryHomeassistant: (
     target: IEntity | IArea,
     params?: ReloadConfigEntryHomeassistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ReloadConfigEntryHomeassistantProps>> | undefined,
+    void
+  >;
 
   /**
    * Reloads all YAML configuration that can be reloaded without restarting Home Assistant.

@@ -27,7 +27,10 @@ declare global {
   var calibrateUtilityMeter: (
     target: IEntity<`sensor.${string}`> | IArea,
     params: CalibrateUtilityMeterProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<CalibrateUtilityMeterProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.resetUtilityMeter = (target) =>

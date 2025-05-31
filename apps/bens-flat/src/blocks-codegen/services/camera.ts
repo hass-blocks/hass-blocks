@@ -48,7 +48,7 @@ declare global {
   var snapshotCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: SnapshotCameraProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SnapshotCameraProps>> | undefined, void>;
 
   interface PlayStreamCameraProps {
     /**
@@ -67,7 +67,7 @@ declare global {
   var playStreamCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: PlayStreamCameraProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<PlayStreamCameraProps>> | undefined, void>;
 
   interface RecordCameraProps {
     /**
@@ -90,7 +90,7 @@ declare global {
   var recordCamera: (
     target: IEntity<`camera.${string}`> | IArea,
     params: RecordCameraProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RecordCameraProps>> | undefined, void>;
 }
 
 globalThis.enableMotionDetectionCamera = (target) =>

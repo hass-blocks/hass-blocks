@@ -21,7 +21,7 @@ declare global {
    */
   var actionIcloud3: (
     params: ActionIcloud3Props,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ActionIcloud3Props>> | undefined, void>;
 
   /**
    * The Update service has been replaced by the Action service
@@ -51,7 +51,10 @@ declare global {
    */
   var findIphoneAlertIcloud3: (
     params: FindIphoneAlertIcloud3Props,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<FindIphoneAlertIcloud3Props>> | undefined,
+    void
+  >;
 
   interface LostDeviceAlertIcloud3Props {
     /**
@@ -73,7 +76,10 @@ declare global {
    */
   var lostDeviceAlertIcloud3: (
     params: LostDeviceAlertIcloud3Props,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<LostDeviceAlertIcloud3Props>> | undefined,
+    void
+  >;
 
   interface DisplayMessageAlertIcloud3Props {
     /**
@@ -95,7 +101,10 @@ declare global {
    */
   var displayMessageAlertIcloud3: (
     params: DisplayMessageAlertIcloud3Props,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DisplayMessageAlertIcloud3Props>> | undefined,
+    void
+  >;
 }
 
 globalThis.actionIcloud3 = (params) =>

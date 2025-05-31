@@ -25,7 +25,10 @@ declare global {
    */
   var sendMagicPacketWakeOnLan: (
     params: SendMagicPacketWakeOnLanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SendMagicPacketWakeOnLanProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.sendMagicPacketWakeOnLan = (params) =>

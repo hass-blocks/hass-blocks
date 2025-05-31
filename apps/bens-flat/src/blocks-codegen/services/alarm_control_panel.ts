@@ -20,7 +20,10 @@ declare global {
   var alarmDisarmAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmDisarmAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlarmDisarmAlarmControlPanelProps>> | undefined,
+    void
+  >;
 
   interface AlarmArmHomeAlarmControlPanelProps {
     /**
@@ -35,7 +38,10 @@ declare global {
   var alarmArmHomeAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmHomeAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlarmArmHomeAlarmControlPanelProps>> | undefined,
+    void
+  >;
 
   interface AlarmArmAwayAlarmControlPanelProps {
     /**
@@ -50,7 +56,10 @@ declare global {
   var alarmArmAwayAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmAwayAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlarmArmAwayAlarmControlPanelProps>> | undefined,
+    void
+  >;
 
   interface AlarmArmNightAlarmControlPanelProps {
     /**
@@ -65,7 +74,10 @@ declare global {
   var alarmArmNightAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmNightAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlarmArmNightAlarmControlPanelProps>> | undefined,
+    void
+  >;
 
   interface AlarmArmVacationAlarmControlPanelProps {
     /**
@@ -80,7 +92,11 @@ declare global {
   var alarmArmVacationAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmVacationAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<AlarmArmVacationAlarmControlPanelProps>>
+    | undefined,
+    void
+  >;
 
   interface AlarmArmCustomBypassAlarmControlPanelProps {
     /**
@@ -95,7 +111,11 @@ declare global {
   var alarmArmCustomBypassAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmArmCustomBypassAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<AlarmArmCustomBypassAlarmControlPanelProps>>
+    | undefined,
+    void
+  >;
 
   interface AlarmTriggerAlarmControlPanelProps {
     /**
@@ -110,7 +130,10 @@ declare global {
   var alarmTriggerAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
     params?: AlarmTriggerAlarmControlPanelProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlarmTriggerAlarmControlPanelProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.alarmDisarmAlarmControlPanel = (target, params) =>

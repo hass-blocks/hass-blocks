@@ -24,7 +24,7 @@ declare global {
   var turnOnFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: TurnOnFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOnFanProps>> | undefined, void>;
 
   /**
    * Turns fan off.
@@ -53,7 +53,7 @@ declare global {
   var increaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: IncreaseSpeedFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<IncreaseSpeedFanProps>> | undefined, void>;
 
   interface DecreaseSpeedFanProps {
     /**
@@ -68,7 +68,7 @@ declare global {
   var decreaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params?: DecreaseSpeedFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<DecreaseSpeedFanProps>> | undefined, void>;
 
   interface OscillateFanProps {
     /**
@@ -83,7 +83,7 @@ declare global {
   var oscillateFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: OscillateFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<OscillateFanProps>> | undefined, void>;
 
   interface SetDirectionFanProps {
     /**
@@ -98,7 +98,7 @@ declare global {
   var setDirectionFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetDirectionFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetDirectionFanProps>> | undefined, void>;
 
   interface SetPercentageFanProps {
     /**
@@ -113,7 +113,7 @@ declare global {
   var setPercentageFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetPercentageFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetPercentageFanProps>> | undefined, void>;
 
   interface SetPresetModeFanProps {
     /**
@@ -128,7 +128,7 @@ declare global {
   var setPresetModeFan: (
     target: IEntity<`fan.${string}`> | IArea,
     params: SetPresetModeFanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetPresetModeFanProps>> | undefined, void>;
 }
 
 globalThis.turnOnFan = (target, params) =>

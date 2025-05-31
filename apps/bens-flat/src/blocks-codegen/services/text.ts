@@ -20,7 +20,7 @@ declare global {
   var setValueText: (
     target: IEntity<`text.${string}`> | IArea,
     params: SetValueTextProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetValueTextProps>> | undefined, void>;
 }
 
 globalThis.setValueText = (target, params) =>

@@ -28,7 +28,10 @@ declare global {
   var setValueInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
     params: SetValueInputNumberProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetValueInputNumberProps>> | undefined,
+    void
+  >;
 
   /**
    * Increments the current value by 1 step.

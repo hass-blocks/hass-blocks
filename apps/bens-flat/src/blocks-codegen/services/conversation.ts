@@ -29,7 +29,10 @@ declare global {
    */
   var processConversation: (
     params: ProcessConversationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ProcessConversationProps>> | undefined,
+    void
+  >;
 
   interface ReloadConversationProps {
     /**
@@ -47,7 +50,10 @@ declare global {
    */
   var reloadConversation: (
     params?: ReloadConversationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<ReloadConversationProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.processConversation = (params) =>

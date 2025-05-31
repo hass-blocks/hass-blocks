@@ -41,7 +41,10 @@ declare global {
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
     params: SetModeHumidifierProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetModeHumidifierProps>> | undefined,
+    void
+  >;
 
   interface SetHumidityHumidifierProps {
     /**
@@ -56,7 +59,10 @@ declare global {
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
     params: SetHumidityHumidifierProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetHumidityHumidifierProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.turnOnHumidifier = (target) =>

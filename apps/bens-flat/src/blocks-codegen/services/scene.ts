@@ -20,7 +20,7 @@ declare global {
   var turnOnScene: (
     target: IEntity<`scene.${string}`> | IArea,
     params?: TurnOnSceneProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOnSceneProps>> | undefined, void>;
 
   /**
    * Reloads the scenes from the YAML-configuration.
@@ -46,7 +46,7 @@ declare global {
    */
   var applyScene: (
     params: ApplySceneProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ApplySceneProps>> | undefined, void>;
 
   interface CreateSceneProps {
     /**
@@ -68,7 +68,7 @@ declare global {
    */
   var createScene: (
     params: CreateSceneProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<CreateSceneProps>> | undefined, void>;
 
   /**
    * Deletes a dynamically created scene.

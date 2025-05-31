@@ -27,7 +27,7 @@ declare global {
   var turnOnRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params?: TurnOnRemoteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOnRemoteProps>> | undefined, void>;
 
   /**
    * Sends the toggle command.
@@ -65,7 +65,10 @@ declare global {
   var sendCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params: SendCommandRemoteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SendCommandRemoteProps>> | undefined,
+    void
+  >;
 
   interface LearnCommandRemoteProps {
     /**
@@ -96,7 +99,10 @@ declare global {
   var learnCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params?: LearnCommandRemoteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<LearnCommandRemoteProps>> | undefined,
+    void
+  >;
 
   interface DeleteCommandRemoteProps {
     /**
@@ -115,7 +121,10 @@ declare global {
   var deleteCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
     params: DeleteCommandRemoteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DeleteCommandRemoteProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.turnOffRemote = (target) =>

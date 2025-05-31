@@ -42,7 +42,10 @@ declare global {
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectNextInputSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectNextInputSelectProps>> | undefined,
+    void
+  >;
 
   interface SelectOptionInputSelectProps {
     /**
@@ -57,7 +60,10 @@ declare global {
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params: SelectOptionInputSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectOptionInputSelectProps>> | undefined,
+    void
+  >;
 
   interface SelectPreviousInputSelectProps {
     /**
@@ -72,7 +78,10 @@ declare global {
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params?: SelectPreviousInputSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectPreviousInputSelectProps>> | undefined,
+    void
+  >;
 
   interface SetOptionsInputSelectProps {
     /**
@@ -87,7 +96,10 @@ declare global {
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
     params: SetOptionsInputSelectProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetOptionsInputSelectProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.reloadInputSelect = () =>

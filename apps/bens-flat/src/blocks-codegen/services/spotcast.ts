@@ -109,7 +109,7 @@ declare global {
    */
   var startSpotcast: (
     params?: StartSpotcastProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<StartSpotcastProps>> | undefined, void>;
 }
 
 globalThis.startSpotcast = (params) =>

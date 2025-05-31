@@ -24,7 +24,10 @@ declare global {
   var sendMessageNotify: (
     target: IEntity<`notify.${string}`> | IArea,
     params: SendMessageNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SendMessageNotifyProps>> | undefined,
+    void
+  >;
 
   interface PersistentNotificationNotifyProps {
     /**
@@ -46,7 +49,10 @@ declare global {
    */
   var persistentNotificationNotify: (
     params: PersistentNotificationNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<PersistentNotificationNotifyProps>> | undefined,
+    void
+  >;
 
   interface EmailNotifyProps {
     message: string;
@@ -60,7 +66,7 @@ declare global {
    */
   var emailNotify: (
     params: EmailNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<EmailNotifyProps>> | undefined, void>;
 
   interface MobileAppMumsPhoneNotifyProps {
     message: string;
@@ -74,7 +80,10 @@ declare global {
    */
   var mobileAppMumsPhoneNotify: (
     params: MobileAppMumsPhoneNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppMumsPhoneNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppBensImacProNotifyProps {
     message: string;
@@ -88,7 +97,10 @@ declare global {
    */
   var mobileAppBensImacProNotify: (
     params: MobileAppBensImacProNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppBensImacProNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppBensIphoneNotifyProps {
     message: string;
@@ -102,7 +114,10 @@ declare global {
    */
   var mobileAppBensIphoneNotify: (
     params: MobileAppBensIphoneNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppBensIphoneNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppBensImacNotifyProps {
     message: string;
@@ -116,7 +131,10 @@ declare global {
    */
   var mobileAppBensImacNotify: (
     params: MobileAppBensImacNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppBensImacNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppRyansIphoneNotifyProps {
     message: string;
@@ -130,7 +148,10 @@ declare global {
    */
   var mobileAppRyansIphoneNotify: (
     params: MobileAppRyansIphoneNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppRyansIphoneNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppPixel_6ProNotifyProps {
     message: string;
@@ -144,7 +165,10 @@ declare global {
    */
   var mobileAppPixel_6ProNotify: (
     params: MobileAppPixel_6ProNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppPixel_6ProNotifyProps>> | undefined,
+    void
+  >;
 
   interface MobileAppTomSPixel_7NotifyProps {
     message: string;
@@ -158,7 +182,10 @@ declare global {
    */
   var mobileAppTomSPixel_7Notify: (
     params: MobileAppTomSPixel_7NotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<MobileAppTomSPixel_7NotifyProps>> | undefined,
+    void
+  >;
 
   interface NotifyNotifyProps {
     message: string;
@@ -172,7 +199,7 @@ declare global {
    */
   var notifyNotify: (
     params: NotifyNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<NotifyNotifyProps>> | undefined, void>;
 
   interface LgWebosTvOled55c8plaNotifyProps {
     message: string;
@@ -186,7 +213,10 @@ declare global {
    */
   var lgWebosTvOled55c8plaNotify: (
     params: LgWebosTvOled55c8plaNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<LgWebosTvOled55c8plaNotifyProps>> | undefined,
+    void
+  >;
 
   interface PlaystationNetworkNotifyProps {
     message: string;
@@ -200,7 +230,10 @@ declare global {
    */
   var playstationNetworkNotify: (
     params: PlaystationNetworkNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<PlaystationNetworkNotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaBedroomSonosOneNotifyProps {
     message: string;
@@ -214,7 +247,10 @@ declare global {
    */
   var alexaMediaBedroomSonosOneNotify: (
     params: AlexaMediaBedroomSonosOneNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaBedroomSonosOneNotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaBedroomSpeaker_2NotifyProps {
     message: string;
@@ -228,7 +264,10 @@ declare global {
    */
   var alexaMediaBedroomSpeaker_2Notify: (
     params: AlexaMediaBedroomSpeaker_2NotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaBedroomSpeaker_2NotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaOffice_2NotifyProps {
     message: string;
@@ -242,7 +281,10 @@ declare global {
    */
   var alexaMediaOffice_2Notify: (
     params: AlexaMediaOffice_2NotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaOffice_2NotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
     message: string;
@@ -256,7 +298,13 @@ declare global {
    */
   var alexaMediaBenS_2ndSonosOneSecondEditionNotify: (
     params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<
+        ServiceCallArgs<AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps>
+      >
+    | undefined,
+    void
+  >;
 
   interface AlexaMediaLivingRoomSonosOneNotifyProps {
     message: string;
@@ -270,7 +318,11 @@ declare global {
    */
   var alexaMediaLivingRoomSonosOneNotify: (
     params: AlexaMediaLivingRoomSonosOneNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosOneNotifyProps>>
+    | undefined,
+    void
+  >;
 
   interface AlexaMediaLivingRoomNotifyProps {
     message: string;
@@ -284,7 +336,10 @@ declare global {
    */
   var alexaMediaLivingRoomNotify: (
     params: AlexaMediaLivingRoomNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaLivingRoomNotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaSonosArcUltra_2NotifyProps {
     message: string;
@@ -298,7 +353,10 @@ declare global {
    */
   var alexaMediaSonosArcUltra_2Notify: (
     params: AlexaMediaSonosArcUltra_2NotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaSonosArcUltra_2NotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaLivingRoomSonosNotifyProps {
     message: string;
@@ -312,7 +370,10 @@ declare global {
    */
   var alexaMediaLivingRoomSonosNotify: (
     params: AlexaMediaLivingRoomSonosNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosNotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaThisDevice_2NotifyProps {
     message: string;
@@ -326,7 +387,10 @@ declare global {
    */
   var alexaMediaThisDevice_2Notify: (
     params: AlexaMediaThisDevice_2NotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaThisDevice_2NotifyProps>> | undefined,
+    void
+  >;
 
   interface AlexaMediaNotifyProps {
     message: string;
@@ -340,7 +404,7 @@ declare global {
    */
   var alexaMediaNotify: (
     params: AlexaMediaNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<AlexaMediaNotifyProps>> | undefined, void>;
 
   interface AlexaMediaLastCalledNotifyProps {
     message: string;
@@ -354,7 +418,10 @@ declare global {
    */
   var alexaMediaLastCalledNotify: (
     params: AlexaMediaLastCalledNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AlexaMediaLastCalledNotifyProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.sendMessageNotify = (target, params) =>

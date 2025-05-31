@@ -20,7 +20,10 @@ declare global {
   var getForecastsWeather: (
     target: IEntity<`weather.${string}`> | IArea,
     params: GetForecastsWeatherProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetForecastsWeatherProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.getForecastsWeather = (target, params) =>

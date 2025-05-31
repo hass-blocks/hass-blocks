@@ -17,7 +17,10 @@ declare global {
    */
   var searchOpenplantbook: (
     params: SearchOpenplantbookProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SearchOpenplantbookProps>> | undefined,
+    void
+  >;
 
   interface GetOpenplantbookProps {
     /**
@@ -31,7 +34,7 @@ declare global {
    */
   var getOpenplantbook: (
     params: GetOpenplantbookProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<GetOpenplantbookProps>> | undefined, void>;
 
   interface CleanCacheOpenplantbookProps {
     /**
@@ -45,7 +48,10 @@ declare global {
    */
   var cleanCacheOpenplantbook: (
     params?: CleanCacheOpenplantbookProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<CleanCacheOpenplantbookProps>> | undefined,
+    void
+  >;
 
   /**
    * Upload sensors data of all plant instances

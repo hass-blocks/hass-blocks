@@ -18,7 +18,7 @@ declare global {
    */
   var reportWatchman: (
     params?: ReportWatchmanProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ReportWatchmanProps>> | undefined, void>;
 }
 
 globalThis.reportWatchman = (params) =>

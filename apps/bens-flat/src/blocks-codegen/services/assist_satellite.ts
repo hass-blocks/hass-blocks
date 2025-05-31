@@ -32,7 +32,10 @@ declare global {
   var announceAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
     params?: AnnounceAssistSatelliteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<AnnounceAssistSatelliteProps>> | undefined,
+    void
+  >;
 
   interface StartConversationAssistSatelliteProps {
     /**
@@ -63,7 +66,10 @@ declare global {
   var startConversationAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
     params?: StartConversationAssistSatelliteProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<StartConversationAssistSatelliteProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.announceAssistSatellite = (target, params) =>

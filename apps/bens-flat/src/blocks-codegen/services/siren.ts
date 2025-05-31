@@ -28,7 +28,7 @@ declare global {
   var turnOnSiren: (
     target: IEntity<`siren.${string}`> | IArea,
     params?: TurnOnSirenProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<TurnOnSirenProps>> | undefined, void>;
 
   /**
    * Turns the siren off.

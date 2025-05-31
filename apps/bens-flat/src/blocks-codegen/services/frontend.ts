@@ -21,7 +21,7 @@ declare global {
    */
   var setThemeFrontend: (
     params: SetThemeFrontendProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetThemeFrontendProps>> | undefined, void>;
 
   /**
    * Reloads themes from the YAML-configuration.

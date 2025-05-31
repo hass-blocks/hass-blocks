@@ -21,7 +21,7 @@ declare global {
    */
   var buttonWebostv: (
     params: ButtonWebostvProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ButtonWebostvProps>> | undefined, void>;
 
   interface CommandWebostvProps {
     /**
@@ -43,7 +43,7 @@ declare global {
    */
   var commandWebostv: (
     params: CommandWebostvProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<CommandWebostvProps>> | undefined, void>;
 
   interface SelectSoundOutputWebostvProps {
     /**
@@ -61,7 +61,10 @@ declare global {
    */
   var selectSoundOutputWebostv: (
     params: SelectSoundOutputWebostvProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SelectSoundOutputWebostvProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.buttonWebostv = (params) =>

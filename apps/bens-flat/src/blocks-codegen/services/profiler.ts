@@ -17,7 +17,7 @@ declare global {
    */
   var startProfiler: (
     params?: StartProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<StartProfilerProps>> | undefined, void>;
 
   interface MemoryProfilerProps {
     /**
@@ -31,7 +31,7 @@ declare global {
    */
   var memoryProfiler: (
     params?: MemoryProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<MemoryProfilerProps>> | undefined, void>;
 
   interface StartLogObjectsProfilerProps {
     /**
@@ -45,7 +45,10 @@ declare global {
    */
   var startLogObjectsProfiler: (
     params?: StartLogObjectsProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<StartLogObjectsProfilerProps>> | undefined,
+    void
+  >;
 
   /**
    * Stops logging growth of objects in memory.
@@ -71,7 +74,10 @@ declare global {
    */
   var startLogObjectSourcesProfiler: (
     params?: StartLogObjectSourcesProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<StartLogObjectSourcesProfilerProps>> | undefined,
+    void
+  >;
 
   /**
    * Stops logging sources of new objects in memory.
@@ -93,7 +99,10 @@ declare global {
    */
   var dumpLogObjectsProfiler: (
     params: DumpLogObjectsProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DumpLogObjectsProfilerProps>> | undefined,
+    void
+  >;
 
   /**
    * Logs the stats of all lru caches.
@@ -131,7 +140,10 @@ declare global {
    */
   var setAsyncioDebugProfiler: (
     params?: SetAsyncioDebugProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetAsyncioDebugProfilerProps>> | undefined,
+    void
+  >;
 
   /**
    * Logs all the current asyncio tasks.

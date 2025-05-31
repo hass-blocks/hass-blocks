@@ -20,7 +20,7 @@ declare global {
   var setValueTime: (
     target: IEntity<`time.${string}`> | IArea,
     params: SetValueTimeProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetValueTimeProps>> | undefined, void>;
 }
 
 globalThis.setValueTime = (target, params) =>

@@ -25,7 +25,10 @@ declare global {
    */
   var createPersistentNotification: (
     params: CreatePersistentNotificationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<CreatePersistentNotificationProps>> | undefined,
+    void
+  >;
 
   interface DismissPersistentNotificationProps {
     /**
@@ -39,7 +42,10 @@ declare global {
    */
   var dismissPersistentNotification: (
     params: DismissPersistentNotificationProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DismissPersistentNotificationProps>> | undefined,
+    void
+  >;
 
   /**
    * Deletes all notifications from the notifications panel.

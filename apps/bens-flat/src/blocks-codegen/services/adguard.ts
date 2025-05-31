@@ -21,7 +21,7 @@ declare global {
    */
   var addUrlAdguard: (
     params: AddUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<AddUrlAdguardProps>> | undefined, void>;
 
   interface RemoveUrlAdguardProps {
     /**
@@ -35,7 +35,7 @@ declare global {
    */
   var removeUrlAdguard: (
     params: RemoveUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RemoveUrlAdguardProps>> | undefined, void>;
 
   interface EnableUrlAdguardProps {
     /**
@@ -49,7 +49,7 @@ declare global {
    */
   var enableUrlAdguard: (
     params: EnableUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<EnableUrlAdguardProps>> | undefined, void>;
 
   interface DisableUrlAdguardProps {
     /**
@@ -63,7 +63,10 @@ declare global {
    */
   var disableUrlAdguard: (
     params: DisableUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<DisableUrlAdguardProps>> | undefined,
+    void
+  >;
 
   interface RefreshAdguardProps {
     /**
@@ -77,7 +80,7 @@ declare global {
    */
   var refreshAdguard: (
     params?: RefreshAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RefreshAdguardProps>> | undefined, void>;
 }
 
 globalThis.addUrlAdguard = (params) =>

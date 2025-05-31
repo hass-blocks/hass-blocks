@@ -17,7 +17,10 @@ declare global {
    */
   var setDefaultLevelLogger: (
     params?: SetDefaultLevelLoggerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetDefaultLevelLoggerProps>> | undefined,
+    void
+  >;
 
   /**
    * Sets the log level for one or more integrations.

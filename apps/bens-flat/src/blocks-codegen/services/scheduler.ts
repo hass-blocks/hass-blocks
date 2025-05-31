@@ -25,7 +25,10 @@ declare global {
    */
   var runActionScheduler: (
     params: RunActionSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<RunActionSchedulerProps>> | undefined,
+    void
+  >;
 
   interface AddSchedulerProps {
     /**
@@ -59,7 +62,7 @@ declare global {
    */
   var addScheduler: (
     params: AddSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<AddSchedulerProps>> | undefined, void>;
 
   interface EditSchedulerProps {
     /**
@@ -97,7 +100,7 @@ declare global {
    */
   var editScheduler: (
     params: EditSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<EditSchedulerProps>> | undefined, void>;
 
   interface RemoveSchedulerProps {
     /**
@@ -111,7 +114,7 @@ declare global {
    */
   var removeScheduler: (
     params: RemoveSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RemoveSchedulerProps>> | undefined, void>;
 
   interface CopySchedulerProps {
     /**
@@ -129,7 +132,7 @@ declare global {
    */
   var copyScheduler: (
     params: CopySchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<CopySchedulerProps>> | undefined, void>;
 
   /**
    * Disables all schedules

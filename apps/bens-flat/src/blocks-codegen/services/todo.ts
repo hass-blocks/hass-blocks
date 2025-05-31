@@ -32,7 +32,7 @@ declare global {
   var addItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: AddItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<AddItemTodoProps>> | undefined, void>;
 
   interface UpdateItemTodoProps {
     /**
@@ -67,7 +67,7 @@ declare global {
   var updateItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: UpdateItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<UpdateItemTodoProps>> | undefined, void>;
 
   interface RemoveItemTodoProps {
     /**
@@ -82,7 +82,7 @@ declare global {
   var removeItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params: RemoveItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RemoveItemTodoProps>> | undefined, void>;
 
   interface GetItemsTodoProps {
     /**
@@ -97,7 +97,7 @@ declare global {
   var getItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea,
     params?: GetItemsTodoProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<GetItemsTodoProps>> | undefined, void>;
 
   /**
    * Removes all to-do list items that have been completed.

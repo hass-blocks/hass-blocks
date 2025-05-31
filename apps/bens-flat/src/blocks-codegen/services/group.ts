@@ -49,7 +49,7 @@ declare global {
    */
   var setGroup: (
     params: SetGroupProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetGroupProps>> | undefined, void>;
 
   interface RemoveGroupProps {
     /**
@@ -63,7 +63,7 @@ declare global {
    */
   var removeGroup: (
     params: RemoveGroupProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<RemoveGroupProps>> | undefined, void>;
 }
 
 globalThis.reloadGroup = () =>

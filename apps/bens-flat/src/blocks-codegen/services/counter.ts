@@ -41,7 +41,7 @@ declare global {
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea,
     params: SetValueCounterProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<SetValueCounterProps>> | undefined, void>;
 }
 
 globalThis.incrementCounter = (target) =>

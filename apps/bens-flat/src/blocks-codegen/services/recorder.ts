@@ -25,7 +25,7 @@ declare global {
    */
   var purgeRecorder: (
     params?: PurgeRecorderProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<PurgeRecorderProps>> | undefined, void>;
 
   interface PurgeEntitiesRecorderProps {
     /**
@@ -51,7 +51,10 @@ declare global {
    */
   var purgeEntitiesRecorder: (
     params?: PurgeEntitiesRecorderProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<PurgeEntitiesRecorderProps>> | undefined,
+    void
+  >;
 
   /**
    * Starts the recording of events and state changes.

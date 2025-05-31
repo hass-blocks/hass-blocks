@@ -32,7 +32,7 @@ declare global {
   var activateSceneHue: (
     target: IEntity<`scene.${string}`> | IArea,
     params?: ActivateSceneHueProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<ActivateSceneHueProps>> | undefined, void>;
 
   interface HueActivateSceneHueProps {
     /**
@@ -54,7 +54,10 @@ declare global {
    */
   var hueActivateSceneHue: (
     params?: HueActivateSceneHueProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<HueActivateSceneHueProps>> | undefined,
+    void
+  >;
 }
 
 globalThis.activateSceneHue = (target, params) =>

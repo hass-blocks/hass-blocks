@@ -20,7 +20,7 @@ declare global {
   var unlockLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: UnlockLockProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<UnlockLockProps>> | undefined, void>;
 
   interface LockLockProps {
     /**
@@ -35,7 +35,7 @@ declare global {
   var lockLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: LockLockProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<LockLockProps>> | undefined, void>;
 
   interface OpenLockProps {
     /**
@@ -50,7 +50,7 @@ declare global {
   var openLock: (
     target: IEntity<`lock.${string}`> | IArea,
     params?: OpenLockProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<OpenLockProps>> | undefined, void>;
 }
 
 globalThis.unlockLock = (target, params) =>

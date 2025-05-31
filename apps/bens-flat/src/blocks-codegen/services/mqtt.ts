@@ -33,7 +33,7 @@ declare global {
    */
   var publishMqtt: (
     params: PublishMqttProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<PublishMqttProps>> | undefined, void>;
 
   interface DumpMqttProps {
     /**
@@ -51,7 +51,7 @@ declare global {
    */
   var dumpMqtt: (
     params?: DumpMqttProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<ServiceCallArgs<DumpMqttProps>> | undefined, void>;
 
   /**
    * Reloads MQTT entities from the YAML-configuration.

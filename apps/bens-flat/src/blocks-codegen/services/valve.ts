@@ -34,7 +34,10 @@ declare global {
   var setValvePositionValve: (
     target: IEntity<`valve.${string}`> | IArea,
     params: SetValvePositionValveProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SetValvePositionValveProps>> | undefined,
+    void
+  >;
 
   /**
    * Stops the valve movement.

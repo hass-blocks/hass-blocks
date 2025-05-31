@@ -28,7 +28,11 @@ declare global {
   var joinOctoplusSavingSessionEventOctopusEnergy: (
     target: IEntity<`event.${string}`> | IArea,
     params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<JoinOctoplusSavingSessionEventOctopusEnergyProps>>
+    | undefined,
+    void
+  >;
 
   interface RefreshPreviousConsumptionDataOctopusEnergyProps {
     /**
@@ -43,7 +47,11 @@ declare global {
   var refreshPreviousConsumptionDataOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
     params: RefreshPreviousConsumptionDataOctopusEnergyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<RefreshPreviousConsumptionDataOctopusEnergyProps>>
+    | undefined,
+    void
+  >;
 
   /**
    * Spins the wheel of fortune for a given energy type
@@ -65,7 +73,11 @@ declare global {
   var registerRateWeightingsOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
     params?: RegisterRateWeightingsOctopusEnergyProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    | Partial<ServiceCallArgs<RegisterRateWeightingsOctopusEnergyProps>>
+    | undefined,
+    void
+  >;
 }
 
 globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = () =>

@@ -43,7 +43,10 @@ declare global {
    */
   var searchMusicAssistant: (
     params: SearchMusicAssistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<SearchMusicAssistantProps>> | undefined,
+    void
+  >;
 
   interface GetLibraryMusicAssistantProps {
     /**
@@ -89,7 +92,10 @@ declare global {
    */
   var getLibraryMusicAssistant: (
     params: GetLibraryMusicAssistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<GetLibraryMusicAssistantProps>> | undefined,
+    void
+  >;
 
   interface PlayMediaMusicAssistantProps {
     /**
@@ -124,7 +130,10 @@ declare global {
   var playMediaMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params: PlayMediaMusicAssistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<PlayMediaMusicAssistantProps>> | undefined,
+    void
+  >;
 
   interface PlayAnnouncementMusicAssistantProps {
     /**
@@ -147,7 +156,10 @@ declare global {
   var playAnnouncementMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params: PlayAnnouncementMusicAssistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<PlayAnnouncementMusicAssistantProps>> | undefined,
+    void
+  >;
 
   interface TransferQueueMusicAssistantProps {
     /**
@@ -166,7 +178,10 @@ declare global {
   var transferQueueMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
     params?: TransferQueueMusicAssistantProps,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<
+    Partial<ServiceCallArgs<TransferQueueMusicAssistantProps>> | undefined,
+    void
+  >;
 
   /**
    * Retrieves the details of the currently active queue of a Music Assistant player.

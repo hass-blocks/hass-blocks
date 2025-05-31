@@ -74,7 +74,7 @@ describe('The Hass SDK', () => {
       const services = await client.getServices();
       console.log(
         JSON.stringify(
-          Object.entries(services).filter(([key, value]) => key === 'scene'),
+          Object.entries(services).filter(([key]) => key === 'scene'),
           null,
           2,
         ),

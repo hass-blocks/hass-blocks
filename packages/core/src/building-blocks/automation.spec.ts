@@ -112,10 +112,13 @@ describe('automation.run', () => {
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
-
+    const then = [
+      mock<Action<string, string>>(),
+      mock<Action<string, string>>(),
+    ] as const;
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -123,7 +126,7 @@ describe('automation.run', () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        expect.anything(),
+        [...then],
         mockClient,
         events,
         triggerId,
@@ -157,7 +160,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -208,7 +211,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -248,7 +251,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Queue,
     });
 
@@ -290,7 +293,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Restart,
     });
 
@@ -342,7 +345,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
     });
 
     const mockExecutor = mock<Executor<string, string>>();
@@ -393,7 +396,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
+      then,
       mode: ExecutionMode.Parallel,
     });
 

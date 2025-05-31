@@ -41,9 +41,11 @@ export const buildServiceType = (
                       factory.createTypeReferenceNode(
                         serviceCallArgs.getIdentifier(),
                         [
-                          factory.createKeywordTypeNode(
-                            SyntaxKind.UnknownKeyword,
-                          ),
+                          props.hasProps()
+                            ? factory.createTypeReferenceNode(props.identifier)
+                            : factory.createKeywordTypeNode(
+                                SyntaxKind.UnknownKeyword,
+                              ),
                         ],
                       ),
                     ],

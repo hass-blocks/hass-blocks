@@ -12,6 +12,7 @@
       "@building-blocks": ["src/building-blocks/index.ts"],
       "@client": ["src/client/index.ts"],
       "@core": ["src/core/index.ts"],
+      "@sequence-validator": ["src/sequence-validator/index.ts"],
       "@errors": ["src/errors/index.ts"],
       "@show": ["src/show/index.ts"],
       "@targets": ["src/targets/index.ts"],

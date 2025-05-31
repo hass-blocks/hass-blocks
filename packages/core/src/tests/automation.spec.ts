@@ -1,14 +1,9 @@
 import { mock } from 'vitest-mock-extended';
 import type { Service, State } from '@hass-blocks/hass-ts';
+import type { Pass } from '@sequence-validator';
 
 import { initialiseTestBlocks } from '@test-support';
-import {
-  action,
-  assertion,
-  automation,
-  serviceCall,
-  type Pass,
-} from '@building-blocks';
+import { action, assertion, automation, serviceCall } from '@building-blocks';
 import { trigger } from '@core';
 import { entity } from '@targets';
 

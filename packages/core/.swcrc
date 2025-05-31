@@ -5,6 +5,7 @@
     "paths": {
       "@building-blocks": ["src/building-blocks/index.ts"],
       "@client": ["src/client/index.ts"],
+      "@sequence-validator": ["src/sequence-validator/index.ts"],
       "@core": ["src/core/index.ts"],
       "@errors": ["src/errors/index.ts"],
       "@show": ["src/show/index.ts"],

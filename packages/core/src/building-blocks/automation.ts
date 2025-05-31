@@ -14,9 +14,9 @@ import {
 import type {
   GetSequenceInput,
   GetSequenceOutput,
+  ValidateSequence,
   BlockRetainType,
-  ValidInputOutputSequence,
-} from './valid-input-output-sequence.ts';
+} from '@sequence-validator';
 
 /**
  * @public
@@ -31,9 +31,7 @@ export interface IAutomationConfig<
   /**
    * Sequence of blocks to execute when the trigger is fired
    */
-  then:
-    | (BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>)
-    | Block<I, O>;
+  then: (BlockRetainType<A> & A & ValidateSequence<I, O, A>) | Block<I, O>;
 
   /**
    * Trigger will result in this block being executed

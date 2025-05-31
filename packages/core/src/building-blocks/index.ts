@@ -11,20 +11,3 @@ export { type ServiceCallArgs, serviceCall } from './service-call.ts';
 export { assertion } from './assertion.ts';
 export { type ILoopConfig, loop, type IDoWhileConfig } from './loop.ts';
 export type { IAssertionConfig } from './assertion.ts';
-export type {
-  BlockOutputIsCompatibleWithSequence,
-  ResolveToAnythingIfCompatible as BlockInputIsCompatibleWithSequence,
-  ValidInputOutputSequence,
-  ExtractOutput,
-  GetSequenceInput,
-  Pass,
-  GetSequenceOutput,
-  InputType,
-  OutputType,
-  OutputTypeKeepPromise,
-  GetOutputs,
-  GetResults,
-  MustIncludeUndefined,
-  Prettify,
-  BlockRetainType,
-} from './valid-input-output-sequence.ts';

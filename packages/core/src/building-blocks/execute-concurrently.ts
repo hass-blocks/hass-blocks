@@ -1,8 +1,8 @@
 import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
 import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
+import type { InputType, OutputType } from '@sequence-validator';
 import { mapAsync, md5 } from '@utils';
 
-import type { InputType, OutputType } from './valid-input-output-sequence.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<

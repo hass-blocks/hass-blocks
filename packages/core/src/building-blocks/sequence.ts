@@ -1,13 +1,13 @@
 import { ExecutionMode } from '@types';
 import type { Block } from '@core';
 
+import { automation } from './automation.ts';
 import type {
-  ValidInputOutputSequence,
   BlockRetainType,
   GetSequenceInput,
   GetSequenceOutput,
-} from './valid-input-output-sequence.ts';
-import { automation } from './automation.ts';
+  ValidateSequence,
+} from '@sequence-validator';
 
 /**
  * @public
@@ -16,15 +16,15 @@ import { automation } from './automation.ts';
  * in parallel
  */
 export const sequence = <
-  const A extends readonly Block<unknown, unknown>[],
-  I = GetSequenceInput<A>,
-  O = GetSequenceOutput<A>,
+  const TSequence extends readonly Block<unknown, unknown>[],
+  TInput = GetSequenceInput<TSequence>,
+  TOutput = GetSequenceOutput<TSequence>,
 >(
-  ...actions: BlockRetainType<A> &
-    A &
-    Exclude<ValidInputOutputSequence<I, O, A>, { __error: true }>
-): Block<I, O> => {
-  return automation({
+  ...actions: BlockRetainType<TSequence> &
+    TSequence &
+    ValidateSequence<TInput, TOutput, TSequence>
+): Block<TInput, TOutput> => {
+  return automation<TSequence, TInput, TOutput>({
     name: 'Sequence',
     mode: ExecutionMode.Parallel,
     then: actions,

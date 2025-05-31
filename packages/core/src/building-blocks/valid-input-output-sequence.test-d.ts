@@ -46,7 +46,7 @@ describe('rollup errors', () => {
       },
     ];
 
-    type Actual = RollupErrors<[], Sequence>;
+    type Actual = RollupErrors<Sequence>;
 
     expectTypeOf<Actual>().toExtend<{
       context: {
@@ -81,27 +81,27 @@ describe('rollup errors', () => {
 });
 
 describe('validInputOutputSequence', () => {
-  // it('handles multiple pass blocks in a row', () => {
-  //   type Sequence = [
-  //     Block<void, void>,
-  //     Block<void, void>,
-  //     Block<Pass, Pass>,
-  //     Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
-  //     Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
-  //   ];
+  it('handles multiple pass blocks in a row', () => {
+    type Sequence = [
+      Block<void, void>,
+      Block<void, void>,
+      Block<Pass, Pass>,
+      Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+      Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+    ];
 
-  //   type Actual = ValidInputOutputSequence<void, void, Sequence>;
+    type Actual = ValidInputOutputSequence<void, void, Sequence>;
 
-  //   expectTypeOf<Actual>().toExtend<
-  //     readonly [
-  //       Block<void, void>,
-  //       Block<void, void>,
-  //       Block<Pass, Pass>,
-  //       Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
-  //       Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
-  //     ]
-  //   >();
-  // });
+    expectTypeOf<Actual>().toExtend<
+      readonly [
+        Block<void, void>,
+        Block<void, void>,
+        Block<Pass, Pass>,
+        Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+        Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+      ]
+    >();
+  });
 
   it('doesnt fail if input props are optional', () => {
     type Sequence = [

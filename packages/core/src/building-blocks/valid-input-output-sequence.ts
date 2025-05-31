@@ -147,7 +147,6 @@ type PossibleRecursion =
       readonly Block<unknown, unknown>[],
       string
     >;
-
 export type RecurseSequenceDebug<
   TBefore extends PossibleRecursion[],
   TInput,
@@ -158,13 +157,14 @@ export type RecurseSequenceDebug<
   : TSequence extends readonly [infer Error extends { __error: true }]
     ? [Error]
     : TSequence extends readonly [
-          infer Recurse extends RecurseInstruction<
-            unknown,
-            unknown,
-            readonly Block<unknown, unknown>[]
-          >,
+          infer Recurse extends {
+            __recurse: true;
+            in: unknown;
+            out: unknown;
+            sequence: readonly Block<unknown, unknown>[];
+          },
         ]
-      ? [...TBefore, Recurse]
+      ? [Recurse]
       : TSequence extends readonly [
             infer First extends Block<unknown, unknown>,
             ...infer Rest extends PossibleRecursion[],
@@ -316,7 +316,7 @@ type MultiPassSequence<
   infer Next extends Block<unknown, unknown>,
   ...infer Rest extends readonly Block<unknown, unknown>[],
 ]
-  ? InputType<Next> extends TInput
+  ? BlockTypeIsCompabibleWithSequence<InputType<Next>, TInput> extends true
     ? readonly [
         First,
         Next,
@@ -334,7 +334,22 @@ type MultiPassSequence<
         ]
   : never;
 
-export type RollupErrors<
+export type HasErrors<TSequence> = TSequence extends readonly [infer Only]
+  ? Only extends { __error: true; sequence: unknown }
+    ? true
+    : false
+  : TSequence extends readonly [infer First, ...infer Rest]
+    ? First extends { __error: true; sequence: unknown }
+      ? true
+      : HasErrors<Rest>
+    : false;
+
+export type RollupErrors<TSequence> =
+  HasErrors<TSequence> extends true
+    ? RollupErrorsRecurse<[], TSequence>
+    : TSequence;
+
+export type RollupErrorsRecurse<
   TBefore extends unknown[],
   TSequence,
 > = TSequence extends readonly [infer Only]
@@ -344,7 +359,7 @@ export type RollupErrors<
   : TSequence extends readonly [infer First, ...infer Rest]
     ? First extends { __error: true; sequence: unknown }
       ? PresentError<First, First['sequence'], TBefore>
-      : RollupErrors<[...TBefore, First], Rest>
+      : RollupErrorsRecurse<[...TBefore, First], Rest>
     : [];
 
 export type PresentError<T, TSequence, TBefore> = T extends {

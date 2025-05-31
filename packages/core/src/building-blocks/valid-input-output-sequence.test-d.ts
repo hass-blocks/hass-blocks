@@ -5,12 +5,104 @@ import type {
   InputType,
   OutputType,
   Pass,
+  RollupErrors,
   ValidInputOutputSequence,
 } from './valid-input-output-sequence.ts';
 import { Block } from '@core';
 import type { ITarget } from '@types';
+import type { ServiceCallArgs } from './service-call.ts';
+
+describe('rollup errors', () => {
+  it('correctly rolls up a single error sequence', () => {
+    type Sequence = readonly [
+      Block<void, void>,
+      Block<void, void>,
+      {
+        input: void;
+        output: void;
+        sequence: [
+          Block<Pass, Pass>,
+          Block<
+            | Partial<
+                ServiceCallArgs<{
+                  foo: string;
+                }>
+              >
+            | undefined,
+            void
+          >,
+          Block<
+            | Partial<
+                ServiceCallArgs<{
+                  foo: string;
+                }>
+              >
+            | undefined,
+            void
+          >,
+        ];
+        message: 'Multi pass sequence not compatible';
+        __error: true;
+      },
+    ];
+
+    type Actual = RollupErrors<[], Sequence>;
+
+    expectTypeOf<Actual>().toExtend<{
+      context: {
+        before: [Block<void, void>, Block<void, void>];
+        sequence: [
+          Block<Pass, Pass>,
+          Block<
+            | Partial<
+                ServiceCallArgs<{
+                  foo: string;
+                }>
+              >
+            | undefined,
+            void
+          >,
+          Block<
+            | Partial<
+                ServiceCallArgs<{
+                  foo: string;
+                }>
+              >
+            | undefined,
+            void
+          >,
+        ];
+      };
+      message: 'Multi pass sequence not compatible';
+      input: void;
+      output: void;
+    }>();
+  });
+});
 
 describe('validInputOutputSequence', () => {
+  // it('handles multiple pass blocks in a row', () => {
+  //   type Sequence = [
+  //     Block<void, void>,
+  //     Block<void, void>,
+  //     Block<Pass, Pass>,
+  //     Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+  //     Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+  //   ];
+
+  //   type Actual = ValidInputOutputSequence<void, void, Sequence>;
+
+  //   expectTypeOf<Actual>().toExtend<
+  //     readonly [
+  //       Block<void, void>,
+  //       Block<void, void>,
+  //       Block<Pass, Pass>,
+  //       Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+  //       Block<Partial<ServiceCallArgs<{ foo: string }>> | undefined, void>,
+  //     ]
+  //   >();
+  // });
+
   it('doesnt fail if input props are optional', () => {
     type Sequence = [
       Block<string, { two: string }>,

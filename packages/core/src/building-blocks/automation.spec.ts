@@ -28,8 +28,6 @@ describe('automation.initialise', () => {
     const mockClient = mock<IFullBlocksClient>();
     const mqtt = mock<IMQTTConnection>();
 
-    const then = [mockActionOne, mockActionTwo] as const;
-
     mockActionOne.initialise.mockResolvedValue();
     mockActionTwo.initialise.mockResolvedValue();
 
@@ -38,7 +36,7 @@ describe('automation.initialise', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mockActionOne, mockActionTwo],
       mode: ExecutionMode.Queue,
     });
 
@@ -56,8 +54,6 @@ describe('automation.initialise', () => {
     const mockClient = mock<IFullBlocksClient>();
     const mqtt = mock<IMQTTConnection>();
 
-    const then = [mockActionOne, mockActionTwo] as const;
-
     const error = new Error('Whoops!');
 
     mockActionOne.initialise.mockResolvedValue();
@@ -68,7 +64,7 @@ describe('automation.initialise', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mockActionOne, mockActionTwo],
       mode: ExecutionMode.Queue,
     });
 
@@ -80,17 +76,13 @@ describe('automation.initialise', () => {
 
 describe('automation.run', () => {
   it('throws an error if there is no event bus', async () => {
-    const then = [
-      mock<Action<string, string>>(),
-      mock<Action<string, string>>(),
-    ] as const;
     const mockClient = mock<IHass>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Queue,
     });
 
@@ -100,28 +92,19 @@ describe('automation.run', () => {
   });
 
   it('throws an error if there is no trigger id', async () => {
-    const then = [
-      mock<Action<string, string>>(),
-      mock<Action<string, string>>(),
-    ] as const;
     const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const input = 'foo';
 
     const automation = new Automation({
       name: 'Test action',
-      then,
-      mode: ExecutionMode.Queue,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
     });
 
     await expect(automation.run(mockClient, input, events)).rejects.toThrow();
   });
 
   it('If result is undefined, throw an error', async () => {
-    const then = [
-      mock<Action<string, string>>(),
-      mock<Action<string, string>>(),
-    ] as const;
     const mockClient = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
@@ -132,7 +115,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Queue,
     });
 
@@ -140,7 +123,7 @@ describe('automation.run', () => {
 
     when(vi.mocked(Executor))
       .calledWith(
-        [...then],
+        expect.anything(),
         mockClient,
         events,
         triggerId,
@@ -174,7 +157,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Queue,
     });
 
@@ -225,7 +208,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Queue,
     });
 
@@ -265,7 +248,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Queue,
     });
 
@@ -307,7 +290,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Restart,
     });
 
@@ -359,7 +342,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
     });
 
     const mockExecutor = mock<Executor<string, string>>();
@@ -410,7 +393,7 @@ describe('automation.run', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then,
+      then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
       mode: ExecutionMode.Parallel,
     });
 

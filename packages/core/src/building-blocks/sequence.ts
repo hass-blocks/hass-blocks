@@ -20,7 +20,9 @@ export const sequence = <
   I = GetSequenceInput<A>,
   O = GetSequenceOutput<A>,
 >(
-  ...actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>
+  ...actions: BlockRetainType<A> &
+    A &
+    Exclude<ValidInputOutputSequence<I, O, A>, { __error: true }>
 ): Block<I, O> => {
   return automation({
     name: 'Sequence',

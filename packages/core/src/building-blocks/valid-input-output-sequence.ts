@@ -248,8 +248,8 @@ type SingleGeneralBlock<
   TInput,
   TOutput,
 > = TSequence extends readonly [infer Only extends Block<unknown, unknown>]
-  ? BlockInputIsCompatibleWithSequence<Only, TInput> extends true
-    ? BlockOutputIsCompatibleWithSequence<Only, TOutput> extends true
+  ? BlockTypeIsCompabibleWithSequence<InputType<Only>, TInput> extends true
+    ? BlockTypeIsCompabibleWithSequence<OutputType<Only>, TOutput> extends true
       ? readonly [Only]
       : [
           SequenceCompatibilityError<
@@ -367,16 +367,27 @@ export type PresentError<T, TSequence, TBefore> = T extends {
  * Compares a block with a sequence and determins of the inputs and outputs
  * are compatible
  */
-type BlockInputIsCompatibleWithSequence<
-  TFirstBlock extends Block<unknown, unknown>,
-  TSequenceInput,
-> = [InputType<TFirstBlock>] extends [
+export type BlockTypeIsCompabibleWithSequence<TFirstBlock, TSequenceInput> = [
+  TFirstBlock,
+] extends [
   TSequenceInput extends void
-    ? MustIncludeUndefined<InputType<TFirstBlock>>
+    ? MustIncludeUndefined<TFirstBlock>
     : Partial<TSequenceInput>,
 ]
   ? true
   : false;
+
+export type ResolveToAnythingIfCompatible<
+  TSequenceInput,
+  TNextBlockInput,
+  TOutput,
+> = [TNextBlockInput] extends [
+  TSequenceInput extends void
+    ? MustIncludeUndefined<TNextBlockInput>
+    : Partial<TSequenceInput>,
+]
+  ? Block<TNextBlockInput, TOutput>
+  : never;
 
 /**
  * @public
@@ -384,7 +395,7 @@ type BlockInputIsCompatibleWithSequence<
  * Compares a block with a sequence and determins of the inputs and outputs
  * are compatible
  */
-type BlockOutputIsCompatibleWithSequence<
+export type BlockOutputIsCompatibleWithSequence<
   TFirstBlock extends Block<unknown, unknown>,
   TSequenceOutput,
 > = [OutputType<TFirstBlock>] extends [
@@ -403,7 +414,7 @@ type NonPassSequence<
   infer First extends Block<unknown, unknown>,
   ...infer Rest extends readonly Block<unknown, unknown>[],
 ]
-  ? BlockInputIsCompatibleWithSequence<First, TInput> extends true
+  ? BlockTypeIsCompabibleWithSequence<InputType<First>, TInput> extends true
     ? readonly [First, RecurseInstruction<OutputType<First>, TOutput, Rest>]
     : [
         SequenceCompatibilityError<

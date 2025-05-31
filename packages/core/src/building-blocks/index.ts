@@ -12,6 +12,8 @@ export { assertion } from './assertion.ts';
 export { type ILoopConfig, loop, type IDoWhileConfig } from './loop.ts';
 export type { IAssertionConfig } from './assertion.ts';
 export type {
+  BlockOutputIsCompatibleWithSequence,
+  ResolveToAnythingIfCompatible as BlockInputIsCompatibleWithSequence,
   ValidInputOutputSequence,
   ExtractOutput,
   GetSequenceInput,

@@ -5,41 +5,32 @@ import { md5 } from '@utils';
 
 /**
  * @public
- */
-export type IConditionPredicate<PO = void, I = void> = (
-  client: IHass,
-  input?: I,
-) =>
-  | Promise<boolean>
-  | boolean
-  | { result: boolean; output: PO }
-  | Promise<{ result: boolean; output: PO }>;
-
-/**
- * @public
  *
  * Configuration object for a condition block
  */
 export interface IIfThenElseConditionConfig<
-  TO = void,
-  EO = void,
-  PO = void,
-  I = void,
+  TInput,
+  TThenInput,
+  TElseInput,
+  TThenOutput,
+  TElseOutput,
 > extends IBaseBlockConfig {
   /**
    * The result of this assertion decides which branch to take
    */
-  readonly assertion: Block<I, PO>;
+  readonly assertion:
+    | Block<TInput, TThenInput & TElseInput>
+    | Block<TInput, void>;
 
   /**
    * Execute this block if the predicate passes
    */
-  readonly then: Block<PO | PO[], TO>;
+  readonly then: Block<TThenInput | void, TThenOutput>;
 
   /**
    * Execute this block if the predicate fails
    */
-  readonly else: Block<PO | PO[], EO>;
+  readonly else: Block<TElseInput | void, TElseOutput>;
 }
 
 /**
@@ -49,17 +40,24 @@ export interface IIfThenElseConditionConfig<
  * Supply two blocks and execute either one of them depending on the result of the assertion
  */
 export class IfThenElseCondition<
-  TO = void,
-  EO = void,
-  PO = void,
-  I = void,
-> extends Block<I, TO | EO> {
+  TInput,
+  TThenInput,
+  TElseInput,
+  TThenOutput,
+  TElseOutput,
+> extends Block<TInput, TThenOutput | TElseOutput> {
   public override name: string;
 
   public override typeString = 'if-then-else';
 
   public constructor(
-    public readonly config: IIfThenElseConditionConfig<TO, EO, PO, I>,
+    public readonly config: IIfThenElseConditionConfig<
+      TInput,
+      TThenInput,
+      TElseInput,
+      TThenOutput,
+      TElseOutput
+    >,
   ) {
     super(config.id ?? md5(config.name), config.targets, [
       config.assertion,
@@ -71,10 +69,10 @@ export class IfThenElseCondition<
 
   public override async run(
     client: IHass,
-    input: I,
+    input: TInput,
     events?: EventBus,
     triggerId?: string,
-  ): Promise<BlockOutput<TO | EO>> {
+  ): Promise<BlockOutput<TThenOutput | TElseOutput>> {
     const assertionResult = await this.config.assertion.run(client, input);
 
     if (!assertionResult.continue) {
@@ -111,11 +109,32 @@ export class IfThenElseCondition<
  * Use in combination with an {@link assertion} block to implement branching logic in your automations.
  * Supply two blocks and execute either one of them depending on the result of the assertion
  */
-export const when = <TO = void, EO = void, PO = void, I = void>(
-  assertion: Block<I, PO>,
-  config: Omit<IIfThenElseConditionConfig<TO, EO, PO, I>, 'assertion' | 'name'>,
-): Block<I, TO | EO> => {
-  return new IfThenElseCondition({
+export const when = <TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>(
+  assertion: IIfThenElseConditionConfig<
+    TInput,
+    TThenInput,
+    TElseInput,
+    TThenOutput,
+    TElseOutput
+  >['assertion'],
+  config: Omit<
+    IIfThenElseConditionConfig<
+      TInput,
+      TThenInput,
+      TElseInput,
+      TThenOutput,
+      TElseOutput
+    >,
+    'assertion' | 'name'
+  >,
+): Block<TInput, TThenOutput | TElseOutput> => {
+  return new IfThenElseCondition<
+    TInput,
+    TThenInput,
+    TElseInput,
+    TThenOutput,
+    TElseOutput
+  >({
     ...config,
     assertion,
     name: `when ${assertion.name} then`,

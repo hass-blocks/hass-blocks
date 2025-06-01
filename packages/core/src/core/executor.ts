@@ -1,16 +1,10 @@
 import EventEmitter from 'node:events';
-import { v4 } from 'uuid';
 
-import type {
-  BlockOutput,
-  Runnable,
-  IHass,
-  IEventBus,
-  HassBlocksEvent,
-} from '@types';
+import type { BlockOutput, Runnable, IHass, IEventBus } from '@types';
 import { ExecutionAbortedError } from '@errors';
 import type { Block } from './block.ts';
 import { Queue } from './queue.ts';
+import { BlockLifecyleManager } from './block-lifecycle-manager.ts';
 
 const EXECUTOR_FINISHED = 'executor-finished';
 const EXECUTOR_ABORTED = 'executor-aborted';
@@ -21,7 +15,6 @@ export enum BlockExecutionMode {
 }
 
 type Result = BlockOutput<unknown> & { success: boolean };
-
 type Output<O> = (BlockOutput<O> & { success: boolean }) | undefined;
 
 /**
@@ -29,10 +22,7 @@ type Output<O> = (BlockOutput<O> & { success: boolean }) | undefined;
  * each execution.
  */
 export class Executor<I, O> implements Runnable {
-  private executionQueue: Queue<{
-    executionId: string;
-    block: Block<unknown, unknown>;
-  }>;
+  private executionQueue: Queue<BlockLifecyleManager>;
   private bus = new EventEmitter();
   private result: Output<O>[] | undefined;
 
@@ -47,10 +37,9 @@ export class Executor<I, O> implements Runnable {
     private executionMode?: BlockExecutionMode,
     private parent?: Block<unknown, unknown>,
   ) {
-    const queueItems = sequence.map((item) => ({
-      executionId: v4(),
-      block: item,
-    }));
+    const queueItems = sequence.map(
+      (block) => new BlockLifecyleManager(events, triggerId, block, parent),
+    );
 
     this.executionQueue = new Queue(...queueItems);
   }
@@ -81,50 +70,35 @@ export class Executor<I, O> implements Runnable {
     });
   }
 
-  private getEventArgs(executeId: string, block: Block<unknown, unknown>) {
-    return {
-      executeId,
-      triggerId: this.triggerId,
-      type: block.typeString,
-      name: block.name,
-      block: block.toJson(),
-      ...(this.parent ? { parent: this.parent.toJson() } : {}),
-    };
-  }
-
-  private emit<
-    ET extends HassBlocksEvent['eventType'],
-    T extends HassBlocksEvent & { eventType: ET },
-  >(type: ET, event: Omit<T, 'id' | 'timestamp' | 'eventType'>) {
-    this.events.emit(type, event);
-    this.events.emit('log-event', {
-      level: 'trace',
-      module: 'executor',
-      message: JSON.stringify({ type, event }),
-    });
-  }
-
-  private async executeBlock<Input = unknown, Out = unknown>(
-    executeId: string,
-    block: Block<Input, Out>,
-    input: Input,
-  ): Promise<BlockOutput<Out> & { success: boolean }> {
-    const eventArgs = this.getEventArgs(executeId, block);
+  private async executeBlock<TInput = unknown, TOutput = unknown>(
+    lifecycleManager: BlockLifecyleManager<TInput, TOutput>,
+    input: TInput,
+  ): Promise<BlockOutput<TOutput> & { success: boolean }> {
     try {
       if (this.aborted) {
         throw new ExecutionAbortedError('Sequence was aborted');
       }
 
-      this.emit('block-started', eventArgs);
+      lifecycleManager.started();
 
       const runner =
         <Input, Output>(block: Block<Input, Output>) =>
-        async (input: Input) =>
-          await this.executeBlock<Input, Output>(executeId, block, input);
+        async (input: Input) => {
+          const childLifecycleManager = new BlockLifecyleManager(
+            this.events,
+            this.triggerId,
+            block,
+            lifecycleManager.block,
+          );
+          return await this.executeBlock<Input, Output>(
+            childLifecycleManager,
+            input,
+          );
+        };
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
-          await block.run({
+          await lifecycleManager.block.run({
             hass: this.client,
             input,
             events: this.events,
@@ -133,25 +107,15 @@ export class Executor<I, O> implements Runnable {
           }),
       );
 
-      this.emit('block-finished', {
-        ...result,
-        ...eventArgs,
-        output: result,
-      });
+      lifecycleManager.finished(result);
 
       return { ...result, success: true };
     } catch (error) {
       if (error instanceof Error) {
         if (error instanceof ExecutionAbortedError) {
-          this.emit('sequence-aborted', {
-            ...eventArgs,
-          });
+          lifecycleManager.aborted();
         } else {
-          this.emit('block-failed', {
-            ...eventArgs,
-            error,
-            message: error.message,
-          });
+          lifecycleManager.failed(error);
         }
         return { continue: false, success: false };
       }
@@ -160,10 +124,7 @@ export class Executor<I, O> implements Runnable {
   }
 
   public emitPendingMessages() {
-    this.executionQueue.toArray().forEach(({ block, executionId }) => {
-      const eventArgs = this.getEventArgs(executionId, block);
-      this.emit('block-pending', eventArgs);
-    });
+    this.executionQueue.toArray().forEach((manager) => manager.pending());
   }
 
   private async waitOrAbort(lastResultPromise: Promise<Result>) {
@@ -196,11 +157,10 @@ export class Executor<I, O> implements Runnable {
         // This should never happen!
         continue;
       }
-      const { block, executionId } = popResult;
+      const blockManager = popResult;
 
       const lastResultPromise = this.executeBlock(
-        executionId,
-        block,
+        blockManager,
         (lastResult?.continue && lastResult.output) ?? this.input,
       );
 

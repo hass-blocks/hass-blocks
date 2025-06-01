@@ -1,5 +1,7 @@
 /**
  * @public
+ *
+ * Configuration for the core `homeassistant` integration
  */
 export interface Config {
   /**

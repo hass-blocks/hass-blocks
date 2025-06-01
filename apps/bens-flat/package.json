@@ -13,6 +13,8 @@
     "@hass-blocks/terminal-ui-plugin": "0.3.2",
     "@hass-blocks/triggers": "workspace:^",
     "@swc/helpers": "~0.5.17",
+    "@types/luxon": "^3.6.2",
+    "luxon": "^3.6.1",
     "zod": "3.25.28"
   }
 }

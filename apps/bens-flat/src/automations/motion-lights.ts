@@ -7,6 +7,7 @@ import {
   bedroomMotionLights,
   hallwayMotionLights,
   livingRoomMotionLights,
+  toggleSleepMode,
 } from '../entities.ts';
 import { stateTurnsOn } from '@hass-blocks/triggers';
 
@@ -26,7 +27,7 @@ export const bedroomLights = automation({
   name: 'Bedroom Lights',
   when: stateTurnsOn(bedroomSensorSensorStateMotionBinarySensor),
   then: [
-    stateIs(sleepMode, 'off'),
+    stateIs(toggleSleepMode, 'off'),
     stateIs(bedroomMotionLights, 'on'),
     turnOnLight(bedroom),
     waitMinutes(10),

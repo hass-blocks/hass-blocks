@@ -4,13 +4,6 @@ import { automation, sequence, when } from '@hass-blocks/core';
 
 import '@blocks-codegen';
 
-sequence(
-  when(stateIs(homeMode, 'on'), {
-    then: openCover(livingRoomBlindsCover),
-    else: closeCover(livingRoomBlindsCover),
-  }),
-);
-
 export const blindsDefaultPosition = automation({
   name: 'Blinds default position changes',
   when: stateChanges(livingRoomBlindsDefaultToOpen),
@@ -23,7 +16,7 @@ export const blindsDefaultPosition = automation({
     ),
     else: closeCover(livingRoomBlindsCover),
   }),
-} as const);
+});
 
 export const livingRoomBlindsLeft = automation({
   name: 'Living room blinds (left window)',

@@ -60,7 +60,7 @@ export const whenIGoOut = automation({
   name: 'When I go out',
   when: stateTurnsOff(homeMode),
   then: concurrently(
-    turnOnLight(allLights),
+    turnOffLight(allLights),
     mediaStopMediaPlayer(allSpeakers),
     turnOffSwitch(imacProOn),
     closeCover(livingRoomBlindsCover),

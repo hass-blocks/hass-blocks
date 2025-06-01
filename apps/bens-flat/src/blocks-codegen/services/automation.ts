@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface TriggerAutomationProps {
+  interface TriggerAutomation {
     /**
      * Defines whether or not the conditions will be skipped.
      */
@@ -19,11 +19,8 @@ declare global {
    */
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: TriggerAutomationProps,
-  ) => Block<
-    Partial<ServiceCallArgs<TriggerAutomationProps>> | undefined,
-    void
-  >;
+    params?: TriggerAutomation,
+  ) => Block<Partial<ServiceCallArgs<TriggerAutomation>> | undefined, void>;
 
   /**
    * Toggles (enable / disable) an automation.
@@ -39,7 +36,7 @@ declare global {
     target: IEntity<`automation.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface TurnOffAutomationProps {
+  interface TurnOffAutomation {
     /**
      * Stops currently running actions.
      */
@@ -51,11 +48,8 @@ declare global {
    */
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea,
-    params?: TurnOffAutomationProps,
-  ) => Block<
-    Partial<ServiceCallArgs<TurnOffAutomationProps>> | undefined,
-    void
-  >;
+    params?: TurnOffAutomation,
+  ) => Block<Partial<ServiceCallArgs<TurnOffAutomation>> | undefined, void>;
 
   /**
    * Reloads the automation configuration.

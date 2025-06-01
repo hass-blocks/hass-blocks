@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface StartSpotcastProps {
+  interface StartSpotcast {
     /**
      * The friendly name of the chromecast or spotify connect device. First checks spotify device list for name (not used together with entity_id and spotify_device_id).
      */
@@ -108,8 +108,8 @@ declare global {
    * Starts spotify playback on chromecast devices
    */
   var startSpotcast: (
-    params?: StartSpotcastProps,
-  ) => Block<Partial<ServiceCallArgs<StartSpotcastProps>> | undefined, void>;
+    params?: StartSpotcast,
+  ) => Block<Partial<ServiceCallArgs<StartSpotcast>> | undefined, void>;
 }
 
 globalThis.startSpotcast = (params) =>

@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface AlarmDisarmAlarmControlPanelProps {
+  interface AlarmDisarmAlarmControlPanel {
     /**
      * Code to disarm the alarm.
      */
@@ -19,13 +19,13 @@ declare global {
    */
   var alarmDisarmAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmDisarmAlarmControlPanelProps,
+    params?: AlarmDisarmAlarmControlPanel,
   ) => Block<
-    Partial<ServiceCallArgs<AlarmDisarmAlarmControlPanelProps>> | undefined,
+    Partial<ServiceCallArgs<AlarmDisarmAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmArmHomeAlarmControlPanelProps {
+  interface AlarmArmHomeAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -37,13 +37,13 @@ declare global {
    */
   var alarmArmHomeAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmHomeAlarmControlPanelProps,
+    params?: AlarmArmHomeAlarmControlPanel,
   ) => Block<
-    Partial<ServiceCallArgs<AlarmArmHomeAlarmControlPanelProps>> | undefined,
+    Partial<ServiceCallArgs<AlarmArmHomeAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmArmAwayAlarmControlPanelProps {
+  interface AlarmArmAwayAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -55,13 +55,13 @@ declare global {
    */
   var alarmArmAwayAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmAwayAlarmControlPanelProps,
+    params?: AlarmArmAwayAlarmControlPanel,
   ) => Block<
-    Partial<ServiceCallArgs<AlarmArmAwayAlarmControlPanelProps>> | undefined,
+    Partial<ServiceCallArgs<AlarmArmAwayAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmArmNightAlarmControlPanelProps {
+  interface AlarmArmNightAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -73,13 +73,13 @@ declare global {
    */
   var alarmArmNightAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmNightAlarmControlPanelProps,
+    params?: AlarmArmNightAlarmControlPanel,
   ) => Block<
-    Partial<ServiceCallArgs<AlarmArmNightAlarmControlPanelProps>> | undefined,
+    Partial<ServiceCallArgs<AlarmArmNightAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmArmVacationAlarmControlPanelProps {
+  interface AlarmArmVacationAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -91,14 +91,13 @@ declare global {
    */
   var alarmArmVacationAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmVacationAlarmControlPanelProps,
+    params?: AlarmArmVacationAlarmControlPanel,
   ) => Block<
-    | Partial<ServiceCallArgs<AlarmArmVacationAlarmControlPanelProps>>
-    | undefined,
+    Partial<ServiceCallArgs<AlarmArmVacationAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmArmCustomBypassAlarmControlPanelProps {
+  interface AlarmArmCustomBypassAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -110,14 +109,13 @@ declare global {
    */
   var alarmArmCustomBypassAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmArmCustomBypassAlarmControlPanelProps,
+    params?: AlarmArmCustomBypassAlarmControlPanel,
   ) => Block<
-    | Partial<ServiceCallArgs<AlarmArmCustomBypassAlarmControlPanelProps>>
-    | undefined,
+    Partial<ServiceCallArgs<AlarmArmCustomBypassAlarmControlPanel>> | undefined,
     void
   >;
 
-  interface AlarmTriggerAlarmControlPanelProps {
+  interface AlarmTriggerAlarmControlPanel {
     /**
      * Code to arm the alarm.
      */
@@ -129,9 +127,9 @@ declare global {
    */
   var alarmTriggerAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea,
-    params?: AlarmTriggerAlarmControlPanelProps,
+    params?: AlarmTriggerAlarmControlPanel,
   ) => Block<
-    Partial<ServiceCallArgs<AlarmTriggerAlarmControlPanelProps>> | undefined,
+    Partial<ServiceCallArgs<AlarmTriggerAlarmControlPanel>> | undefined,
     void
   >;
 }

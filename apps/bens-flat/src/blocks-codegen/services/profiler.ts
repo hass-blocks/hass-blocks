@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface StartProfilerProps {
+  interface StartProfiler {
     /**
      * The number of seconds to run the profiler.
      */
@@ -16,10 +16,10 @@ declare global {
    * Starts the Profiler.
    */
   var startProfiler: (
-    params?: StartProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<StartProfilerProps>> | undefined, void>;
+    params?: StartProfiler,
+  ) => Block<Partial<ServiceCallArgs<StartProfiler>> | undefined, void>;
 
-  interface MemoryProfilerProps {
+  interface MemoryProfiler {
     /**
      * The number of seconds to run the memory profiler.
      */
@@ -30,10 +30,10 @@ declare global {
    * Starts the Memory Profiler.
    */
   var memoryProfiler: (
-    params?: MemoryProfilerProps,
-  ) => Block<Partial<ServiceCallArgs<MemoryProfilerProps>> | undefined, void>;
+    params?: MemoryProfiler,
+  ) => Block<Partial<ServiceCallArgs<MemoryProfiler>> | undefined, void>;
 
-  interface StartLogObjectsProfilerProps {
+  interface StartLogObjectsProfiler {
     /**
      * The number of seconds between logging objects.
      */
@@ -44,9 +44,9 @@ declare global {
    * Starts logging growth of objects in memory.
    */
   var startLogObjectsProfiler: (
-    params?: StartLogObjectsProfilerProps,
+    params?: StartLogObjectsProfiler,
   ) => Block<
-    Partial<ServiceCallArgs<StartLogObjectsProfilerProps>> | undefined,
+    Partial<ServiceCallArgs<StartLogObjectsProfiler>> | undefined,
     void
   >;
 
@@ -58,7 +58,7 @@ declare global {
     void
   >;
 
-  interface StartLogObjectSourcesProfilerProps {
+  interface StartLogObjectSourcesProfiler {
     /**
      * The number of seconds between logging objects.
      */
@@ -73,9 +73,9 @@ declare global {
    * Starts logging sources of new objects in memory.
    */
   var startLogObjectSourcesProfiler: (
-    params?: StartLogObjectSourcesProfilerProps,
+    params?: StartLogObjectSourcesProfiler,
   ) => Block<
-    Partial<ServiceCallArgs<StartLogObjectSourcesProfilerProps>> | undefined,
+    Partial<ServiceCallArgs<StartLogObjectSourcesProfiler>> | undefined,
     void
   >;
 
@@ -87,7 +87,7 @@ declare global {
     void
   >;
 
-  interface DumpLogObjectsProfilerProps {
+  interface DumpLogObjectsProfiler {
     /**
      * The type of objects to dump to the log.
      */
@@ -98,9 +98,9 @@ declare global {
    * Dumps the repr of all matching objects to the log.
    */
   var dumpLogObjectsProfiler: (
-    params: DumpLogObjectsProfilerProps,
+    params: DumpLogObjectsProfiler,
   ) => Block<
-    Partial<ServiceCallArgs<DumpLogObjectsProfilerProps>> | undefined,
+    Partial<ServiceCallArgs<DumpLogObjectsProfiler>> | undefined,
     void
   >;
 
@@ -128,7 +128,7 @@ declare global {
     void
   >;
 
-  interface SetAsyncioDebugProfilerProps {
+  interface SetAsyncioDebugProfiler {
     /**
      * Whether to enable or disable asyncio debug.
      */
@@ -139,9 +139,9 @@ declare global {
    * Enable or disable asyncio debug.
    */
   var setAsyncioDebugProfiler: (
-    params?: SetAsyncioDebugProfilerProps,
+    params?: SetAsyncioDebugProfiler,
   ) => Block<
-    Partial<ServiceCallArgs<SetAsyncioDebugProfilerProps>> | undefined,
+    Partial<ServiceCallArgs<SetAsyncioDebugProfiler>> | undefined,
     void
   >;
 

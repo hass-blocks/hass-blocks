@@ -29,7 +29,7 @@ declare global {
     target: IEntity<`input_select.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SelectNextInputSelectProps {
+  interface SelectNextInputSelect {
     /**
      * If the option should cycle from the last to the first option on the list.
      */
@@ -41,13 +41,10 @@ declare global {
    */
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectNextInputSelectProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectNextInputSelectProps>> | undefined,
-    void
-  >;
+    params?: SelectNextInputSelect,
+  ) => Block<Partial<ServiceCallArgs<SelectNextInputSelect>> | undefined, void>;
 
-  interface SelectOptionInputSelectProps {
+  interface SelectOptionInputSelect {
     /**
      * Option to be selected.
      */
@@ -59,13 +56,13 @@ declare global {
    */
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SelectOptionInputSelectProps,
+    params: SelectOptionInputSelect,
   ) => Block<
-    Partial<ServiceCallArgs<SelectOptionInputSelectProps>> | undefined,
+    Partial<ServiceCallArgs<SelectOptionInputSelect>> | undefined,
     void
   >;
 
-  interface SelectPreviousInputSelectProps {
+  interface SelectPreviousInputSelect {
     /**
      * If the option should cycle from the first to the last option on the list.
      */
@@ -77,13 +74,13 @@ declare global {
    */
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params?: SelectPreviousInputSelectProps,
+    params?: SelectPreviousInputSelect,
   ) => Block<
-    Partial<ServiceCallArgs<SelectPreviousInputSelectProps>> | undefined,
+    Partial<ServiceCallArgs<SelectPreviousInputSelect>> | undefined,
     void
   >;
 
-  interface SetOptionsInputSelectProps {
+  interface SetOptionsInputSelect {
     /**
      * List of options.
      */
@@ -95,11 +92,8 @@ declare global {
    */
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea,
-    params: SetOptionsInputSelectProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetOptionsInputSelectProps>> | undefined,
-    void
-  >;
+    params: SetOptionsInputSelect,
+  ) => Block<Partial<ServiceCallArgs<SetOptionsInputSelect>> | undefined, void>;
 }
 
 globalThis.reloadInputSelect = () =>

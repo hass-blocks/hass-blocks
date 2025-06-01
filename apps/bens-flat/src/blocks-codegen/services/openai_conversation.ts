@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface GenerateContentOpenaiConversationProps {
+  interface GenerateContentOpenaiConversation {
     /**
      * The config entry to use for this action
      */
@@ -24,14 +24,13 @@ declare global {
    * Sends a conversational query to ChatGPT including any attached image or PDF files
    */
   var generateContentOpenaiConversation: (
-    params: GenerateContentOpenaiConversationProps,
+    params: GenerateContentOpenaiConversation,
   ) => Block<
-    | Partial<ServiceCallArgs<GenerateContentOpenaiConversationProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GenerateContentOpenaiConversation>> | undefined,
     void
   >;
 
-  interface GenerateImageOpenaiConversationProps {
+  interface GenerateImageOpenaiConversation {
     /**
      * The config entry to use for this action
      */
@@ -58,9 +57,9 @@ declare global {
    * Turns a prompt into an image
    */
   var generateImageOpenaiConversation: (
-    params: GenerateImageOpenaiConversationProps,
+    params: GenerateImageOpenaiConversation,
   ) => Block<
-    Partial<ServiceCallArgs<GenerateImageOpenaiConversationProps>> | undefined,
+    Partial<ServiceCallArgs<GenerateImageOpenaiConversation>> | undefined,
     void
   >;
 }

@@ -13,7 +13,7 @@ declare global {
     void
   >;
 
-  interface WriteSystemLogProps {
+  interface WriteSystemLog {
     /**
      * Message to log.
      */
@@ -32,8 +32,8 @@ declare global {
    * Write log entry.
    */
   var writeSystemLog: (
-    params: WriteSystemLogProps,
-  ) => Block<Partial<ServiceCallArgs<WriteSystemLogProps>> | undefined, void>;
+    params: WriteSystemLog,
+  ) => Block<Partial<ServiceCallArgs<WriteSystemLog>> | undefined, void>;
 }
 
 globalThis.clearSystemLog = () =>

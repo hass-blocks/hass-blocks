@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SendMessageNotifyProps {
+  interface SendMessageNotify {
     /**
      * Your notification message.
      */
@@ -23,13 +23,10 @@ declare global {
    */
   var sendMessageNotify: (
     target: IEntity<`notify.${string}`> | IArea,
-    params: SendMessageNotifyProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SendMessageNotifyProps>> | undefined,
-    void
-  >;
+    params: SendMessageNotify,
+  ) => Block<Partial<ServiceCallArgs<SendMessageNotify>> | undefined, void>;
 
-  interface PersistentNotificationNotifyProps {
+  interface PersistentNotificationNotify {
     /**
      * Message body of the notification.
      */
@@ -48,13 +45,13 @@ declare global {
    * Sends a notification that is visible in the notifications panel.
    */
   var persistentNotificationNotify: (
-    params: PersistentNotificationNotifyProps,
+    params: PersistentNotificationNotify,
   ) => Block<
-    Partial<ServiceCallArgs<PersistentNotificationNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<PersistentNotificationNotify>> | undefined,
     void
   >;
 
-  interface EmailNotifyProps {
+  interface EmailNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -65,10 +62,10 @@ declare global {
    * Sends a notification message using the email service.
    */
   var emailNotify: (
-    params: EmailNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<EmailNotifyProps>> | undefined, void>;
+    params: EmailNotify,
+  ) => Block<Partial<ServiceCallArgs<EmailNotify>> | undefined, void>;
 
-  interface MobileAppMumsPhoneNotifyProps {
+  interface MobileAppMumsPhoneNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -79,13 +76,13 @@ declare global {
    * Sends a notification message using the mobile_app_mums_phone integration.
    */
   var mobileAppMumsPhoneNotify: (
-    params: MobileAppMumsPhoneNotifyProps,
+    params: MobileAppMumsPhoneNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppMumsPhoneNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppMumsPhoneNotify>> | undefined,
     void
   >;
 
-  interface MobileAppBensImacProNotifyProps {
+  interface MobileAppBensImacProNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -96,13 +93,13 @@ declare global {
    * Sends a notification message using the mobile_app_bens_imac_pro integration.
    */
   var mobileAppBensImacProNotify: (
-    params: MobileAppBensImacProNotifyProps,
+    params: MobileAppBensImacProNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensImacProNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppBensImacProNotify>> | undefined,
     void
   >;
 
-  interface MobileAppBensIphoneNotifyProps {
+  interface MobileAppBensIphoneNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -113,13 +110,13 @@ declare global {
    * Sends a notification message using the mobile_app_bens_iphone integration.
    */
   var mobileAppBensIphoneNotify: (
-    params: MobileAppBensIphoneNotifyProps,
+    params: MobileAppBensIphoneNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensIphoneNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppBensIphoneNotify>> | undefined,
     void
   >;
 
-  interface MobileAppBensImacNotifyProps {
+  interface MobileAppBensImacNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -130,13 +127,13 @@ declare global {
    * Sends a notification message using the mobile_app_bens_imac integration.
    */
   var mobileAppBensImacNotify: (
-    params: MobileAppBensImacNotifyProps,
+    params: MobileAppBensImacNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensImacNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppBensImacNotify>> | undefined,
     void
   >;
 
-  interface MobileAppRyansIphoneNotifyProps {
+  interface MobileAppRyansIphoneNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -147,13 +144,13 @@ declare global {
    * Sends a notification message using the mobile_app_ryans_iphone integration.
    */
   var mobileAppRyansIphoneNotify: (
-    params: MobileAppRyansIphoneNotifyProps,
+    params: MobileAppRyansIphoneNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppRyansIphoneNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppRyansIphoneNotify>> | undefined,
     void
   >;
 
-  interface MobileAppPixel_6ProNotifyProps {
+  interface MobileAppPixel_6ProNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -164,13 +161,13 @@ declare global {
    * Sends a notification message using the mobile_app_pixel_6_pro integration.
    */
   var mobileAppPixel_6ProNotify: (
-    params: MobileAppPixel_6ProNotifyProps,
+    params: MobileAppPixel_6ProNotify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppPixel_6ProNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppPixel_6ProNotify>> | undefined,
     void
   >;
 
-  interface MobileAppTomSPixel_7NotifyProps {
+  interface MobileAppTomSPixel_7Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -181,13 +178,13 @@ declare global {
    * Sends a notification message using the mobile_app_tom_s_pixel_7 integration.
    */
   var mobileAppTomSPixel_7Notify: (
-    params: MobileAppTomSPixel_7NotifyProps,
+    params: MobileAppTomSPixel_7Notify,
   ) => Block<
-    Partial<ServiceCallArgs<MobileAppTomSPixel_7NotifyProps>> | undefined,
+    Partial<ServiceCallArgs<MobileAppTomSPixel_7Notify>> | undefined,
     void
   >;
 
-  interface NotifyNotifyProps {
+  interface Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -197,11 +194,11 @@ declare global {
   /**
    * Sends a notification message using the notify service.
    */
-  var notifyNotify: (
-    params: NotifyNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<NotifyNotifyProps>> | undefined, void>;
+  var notify: (
+    params: Notify,
+  ) => Block<Partial<ServiceCallArgs<Notify>> | undefined, void>;
 
-  interface LgWebosTvOled55c8plaNotifyProps {
+  interface LgWebosTvOled55c8plaNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -212,13 +209,13 @@ declare global {
    * Sends a notification message using the lg_webos_tv_oled55c8pla service.
    */
   var lgWebosTvOled55c8plaNotify: (
-    params: LgWebosTvOled55c8plaNotifyProps,
+    params: LgWebosTvOled55c8plaNotify,
   ) => Block<
-    Partial<ServiceCallArgs<LgWebosTvOled55c8plaNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<LgWebosTvOled55c8plaNotify>> | undefined,
     void
   >;
 
-  interface PlaystationNetworkNotifyProps {
+  interface PlaystationNetworkNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -229,13 +226,13 @@ declare global {
    * Sends a notification message using the playstation_network service.
    */
   var playstationNetworkNotify: (
-    params: PlaystationNetworkNotifyProps,
+    params: PlaystationNetworkNotify,
   ) => Block<
-    Partial<ServiceCallArgs<PlaystationNetworkNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<PlaystationNetworkNotify>> | undefined,
     void
   >;
 
-  interface AlexaMediaBedroomSonosOneNotifyProps {
+  interface AlexaMediaBedroomSonosOneNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -246,13 +243,13 @@ declare global {
    * Sends a notification message using the alexa_media_bedroom_sonos_one integration.
    */
   var alexaMediaBedroomSonosOneNotify: (
-    params: AlexaMediaBedroomSonosOneNotifyProps,
+    params: AlexaMediaBedroomSonosOneNotify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaBedroomSonosOneNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaBedroomSonosOneNotify>> | undefined,
     void
   >;
 
-  interface AlexaMediaBedroomSpeaker_2NotifyProps {
+  interface AlexaMediaBedroomSpeaker_2Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -263,13 +260,13 @@ declare global {
    * Sends a notification message using the alexa_media_bedroom_speaker_2 integration.
    */
   var alexaMediaBedroomSpeaker_2Notify: (
-    params: AlexaMediaBedroomSpeaker_2NotifyProps,
+    params: AlexaMediaBedroomSpeaker_2Notify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaBedroomSpeaker_2NotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaBedroomSpeaker_2Notify>> | undefined,
     void
   >;
 
-  interface AlexaMediaOffice_2NotifyProps {
+  interface AlexaMediaOffice_2Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -280,13 +277,13 @@ declare global {
    * Sends a notification message using the alexa_media_office_2 integration.
    */
   var alexaMediaOffice_2Notify: (
-    params: AlexaMediaOffice_2NotifyProps,
+    params: AlexaMediaOffice_2Notify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaOffice_2NotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaOffice_2Notify>> | undefined,
     void
   >;
 
-  interface AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps {
+  interface AlexaMediaBenS_2ndSonosOneSecondEditionNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -297,16 +294,14 @@ declare global {
    * Sends a notification message using the alexa_media_ben_s_2nd_sonos_one_second_edition integration.
    */
   var alexaMediaBenS_2ndSonosOneSecondEditionNotify: (
-    params: AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps,
+    params: AlexaMediaBenS_2ndSonosOneSecondEditionNotify,
   ) => Block<
-    | Partial<
-        ServiceCallArgs<AlexaMediaBenS_2ndSonosOneSecondEditionNotifyProps>
-      >
+    | Partial<ServiceCallArgs<AlexaMediaBenS_2ndSonosOneSecondEditionNotify>>
     | undefined,
     void
   >;
 
-  interface AlexaMediaLivingRoomSonosOneNotifyProps {
+  interface AlexaMediaLivingRoomSonosOneNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -317,14 +312,13 @@ declare global {
    * Sends a notification message using the alexa_media_living_room_sonos_one integration.
    */
   var alexaMediaLivingRoomSonosOneNotify: (
-    params: AlexaMediaLivingRoomSonosOneNotifyProps,
+    params: AlexaMediaLivingRoomSonosOneNotify,
   ) => Block<
-    | Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosOneNotifyProps>>
-    | undefined,
+    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosOneNotify>> | undefined,
     void
   >;
 
-  interface AlexaMediaLivingRoomNotifyProps {
+  interface AlexaMediaLivingRoomNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -335,13 +329,13 @@ declare global {
    * Sends a notification message using the alexa_media_living_room integration.
    */
   var alexaMediaLivingRoomNotify: (
-    params: AlexaMediaLivingRoomNotifyProps,
+    params: AlexaMediaLivingRoomNotify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLivingRoomNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaLivingRoomNotify>> | undefined,
     void
   >;
 
-  interface AlexaMediaSonosArcUltra_2NotifyProps {
+  interface AlexaMediaSonosArcUltra_2Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -352,13 +346,13 @@ declare global {
    * Sends a notification message using the alexa_media_sonos_arc_ultra_2 integration.
    */
   var alexaMediaSonosArcUltra_2Notify: (
-    params: AlexaMediaSonosArcUltra_2NotifyProps,
+    params: AlexaMediaSonosArcUltra_2Notify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaSonosArcUltra_2NotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaSonosArcUltra_2Notify>> | undefined,
     void
   >;
 
-  interface AlexaMediaLivingRoomSonosNotifyProps {
+  interface AlexaMediaLivingRoomSonosNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -369,13 +363,13 @@ declare global {
    * Sends a notification message using the alexa_media_living_room_sonos integration.
    */
   var alexaMediaLivingRoomSonosNotify: (
-    params: AlexaMediaLivingRoomSonosNotifyProps,
+    params: AlexaMediaLivingRoomSonosNotify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosNotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosNotify>> | undefined,
     void
   >;
 
-  interface AlexaMediaThisDevice_2NotifyProps {
+  interface AlexaMediaThisDevice_2Notify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -386,13 +380,13 @@ declare global {
    * Sends a notification message using the alexa_media_this_device_2 integration.
    */
   var alexaMediaThisDevice_2Notify: (
-    params: AlexaMediaThisDevice_2NotifyProps,
+    params: AlexaMediaThisDevice_2Notify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaThisDevice_2NotifyProps>> | undefined,
+    Partial<ServiceCallArgs<AlexaMediaThisDevice_2Notify>> | undefined,
     void
   >;
 
-  interface AlexaMediaNotifyProps {
+  interface AlexaMediaNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -403,10 +397,10 @@ declare global {
    * Sends a notification message using the alexa_media service.
    */
   var alexaMediaNotify: (
-    params: AlexaMediaNotifyProps,
-  ) => Block<Partial<ServiceCallArgs<AlexaMediaNotifyProps>> | undefined, void>;
+    params: AlexaMediaNotify,
+  ) => Block<Partial<ServiceCallArgs<AlexaMediaNotify>> | undefined, void>;
 
-  interface AlexaMediaLastCalledNotifyProps {
+  interface AlexaMediaLastCalledBwainwright28GmailComNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -414,12 +408,13 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_last_called integration.
+   * Sends a notification message using the alexa_media_last_called_bwainwright28_gmail_com integration.
    */
-  var alexaMediaLastCalledNotify: (
-    params: AlexaMediaLastCalledNotifyProps,
+  var alexaMediaLastCalledBwainwright28GmailComNotify: (
+    params: AlexaMediaLastCalledBwainwright28GmailComNotify,
   ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLastCalledNotifyProps>> | undefined,
+    | Partial<ServiceCallArgs<AlexaMediaLastCalledBwainwright28GmailComNotify>>
+    | undefined,
     void
   >;
 }
@@ -525,7 +520,7 @@ globalThis.mobileAppTomSPixel_7Notify = (params) =>
     },
   });
 
-globalThis.notifyNotify = (params) =>
+globalThis.notify = (params) =>
   serviceCall({
     name: `Call notify.notify`,
     params: {
@@ -655,12 +650,12 @@ globalThis.alexaMediaNotify = (params) =>
     },
   });
 
-globalThis.alexaMediaLastCalledNotify = (params) =>
+globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (params) =>
   serviceCall({
-    name: `Call notify.alexa_media_last_called`,
+    name: `Call notify.alexa_media_last_called_bwainwright28_gmail_com`,
     params: {
       domain: 'notify',
-      service: 'alexa_media_last_called',
+      service: 'alexa_media_last_called_bwainwright28_gmail_com',
       service_data: params,
     },
   });

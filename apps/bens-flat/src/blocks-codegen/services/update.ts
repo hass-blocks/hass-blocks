@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface InstallUpdateProps {
+  interface InstallUpdate {
     /**
      * The version to install. If omitted, the latest version will be installed.
      */
@@ -23,8 +23,8 @@ declare global {
    */
   var installUpdate: (
     target: IEntity<`update.${string}`> | IArea,
-    params?: InstallUpdateProps,
-  ) => Block<Partial<ServiceCallArgs<InstallUpdateProps>> | undefined, void>;
+    params?: InstallUpdate,
+  ) => Block<Partial<ServiceCallArgs<InstallUpdate>> | undefined, void>;
 
   /**
    * Marks currently available update as skipped.

@@ -10,18 +10,18 @@ declare global {
   /**
    * Opens a valve.
    */
-  var openValveValve: (
+  var openValve: (
     target: IEntity<`valve.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Closes a valve.
    */
-  var closeValveValve: (
+  var closeValve: (
     target: IEntity<`valve.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetValvePositionValveProps {
+  interface SetValvePosition {
     /**
      * Target position.
      */
@@ -31,18 +31,15 @@ declare global {
   /**
    * Moves a valve to a specific position.
    */
-  var setValvePositionValve: (
+  var setValvePosition: (
     target: IEntity<`valve.${string}`> | IArea,
-    params: SetValvePositionValveProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetValvePositionValveProps>> | undefined,
-    void
-  >;
+    params: SetValvePosition,
+  ) => Block<Partial<ServiceCallArgs<SetValvePosition>> | undefined, void>;
 
   /**
    * Stops the valve movement.
    */
-  var stopValveValve: (
+  var stopValve: (
     target: IEntity<`valve.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
@@ -54,7 +51,7 @@ declare global {
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
-globalThis.openValveValve = (target) =>
+globalThis.openValve = (target) =>
   serviceCall({
     name: `Call valve.open_valve`,
     params: {
@@ -64,7 +61,7 @@ globalThis.openValveValve = (target) =>
     target,
   });
 
-globalThis.closeValveValve = (target) =>
+globalThis.closeValve = (target) =>
   serviceCall({
     name: `Call valve.close_valve`,
     params: {
@@ -74,7 +71,7 @@ globalThis.closeValveValve = (target) =>
     target,
   });
 
-globalThis.setValvePositionValve = (target, params) =>
+globalThis.setValvePosition = (target, params) =>
   serviceCall({
     name: `Call valve.set_valve_position`,
     params: {
@@ -85,7 +82,7 @@ globalThis.setValvePositionValve = (target, params) =>
     target,
   });
 
-globalThis.stopValveValve = (target) =>
+globalThis.stopValve = (target) =>
   serviceCall({
     name: `Call valve.stop_valve`,
     params: {

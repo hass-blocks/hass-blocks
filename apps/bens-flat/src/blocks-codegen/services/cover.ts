@@ -10,18 +10,18 @@ declare global {
   /**
    * Opens a cover.
    */
-  var openCoverCover: (
+  var openCover: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Closes a cover.
    */
-  var closeCoverCover: (
+  var closeCover: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetCoverPositionCoverProps {
+  interface SetCoverPosition {
     /**
      * Target position.
      */
@@ -31,18 +31,15 @@ declare global {
   /**
    * Moves a cover to a specific position.
    */
-  var setCoverPositionCover: (
+  var setCoverPosition: (
     target: IEntity<`cover.${string}`> | IArea,
-    params: SetCoverPositionCoverProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetCoverPositionCoverProps>> | undefined,
-    void
-  >;
+    params: SetCoverPosition,
+  ) => Block<Partial<ServiceCallArgs<SetCoverPosition>> | undefined, void>;
 
   /**
    * Stops the cover movement.
    */
-  var stopCoverCover: (
+  var stopCover: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
@@ -56,25 +53,25 @@ declare global {
   /**
    * Tilts a cover open.
    */
-  var openCoverTiltCover: (
+  var openCoverTilt: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tilts a cover to close.
    */
-  var closeCoverTiltCover: (
+  var closeCoverTilt: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops a tilting cover movement.
    */
-  var stopCoverTiltCover: (
+  var stopCoverTilt: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetCoverTiltPositionCoverProps {
+  interface SetCoverTiltPosition {
     /**
      * Target tilt positition.
      */
@@ -84,23 +81,20 @@ declare global {
   /**
    * Moves a cover tilt to a specific position.
    */
-  var setCoverTiltPositionCover: (
+  var setCoverTiltPosition: (
     target: IEntity<`cover.${string}`> | IArea,
-    params: SetCoverTiltPositionCoverProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetCoverTiltPositionCoverProps>> | undefined,
-    void
-  >;
+    params: SetCoverTiltPosition,
+  ) => Block<Partial<ServiceCallArgs<SetCoverTiltPosition>> | undefined, void>;
 
   /**
    * Toggles a cover tilt open/closed.
    */
-  var toggleCoverTiltCover: (
+  var toggleCoverTilt: (
     target: IEntity<`cover.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 
-globalThis.openCoverCover = (target) =>
+globalThis.openCover = (target) =>
   serviceCall({
     name: `Call cover.open_cover`,
     params: {
@@ -110,7 +104,7 @@ globalThis.openCoverCover = (target) =>
     target,
   });
 
-globalThis.closeCoverCover = (target) =>
+globalThis.closeCover = (target) =>
   serviceCall({
     name: `Call cover.close_cover`,
     params: {
@@ -120,7 +114,7 @@ globalThis.closeCoverCover = (target) =>
     target,
   });
 
-globalThis.setCoverPositionCover = (target, params) =>
+globalThis.setCoverPosition = (target, params) =>
   serviceCall({
     name: `Call cover.set_cover_position`,
     params: {
@@ -131,7 +125,7 @@ globalThis.setCoverPositionCover = (target, params) =>
     target,
   });
 
-globalThis.stopCoverCover = (target) =>
+globalThis.stopCover = (target) =>
   serviceCall({
     name: `Call cover.stop_cover`,
     params: {
@@ -151,7 +145,7 @@ globalThis.toggleCover = (target) =>
     target,
   });
 
-globalThis.openCoverTiltCover = (target) =>
+globalThis.openCoverTilt = (target) =>
   serviceCall({
     name: `Call cover.open_cover_tilt`,
     params: {
@@ -161,7 +155,7 @@ globalThis.openCoverTiltCover = (target) =>
     target,
   });
 
-globalThis.closeCoverTiltCover = (target) =>
+globalThis.closeCoverTilt = (target) =>
   serviceCall({
     name: `Call cover.close_cover_tilt`,
     params: {
@@ -171,7 +165,7 @@ globalThis.closeCoverTiltCover = (target) =>
     target,
   });
 
-globalThis.stopCoverTiltCover = (target) =>
+globalThis.stopCoverTilt = (target) =>
   serviceCall({
     name: `Call cover.stop_cover_tilt`,
     params: {
@@ -181,7 +175,7 @@ globalThis.stopCoverTiltCover = (target) =>
     target,
   });
 
-globalThis.setCoverTiltPositionCover = (target, params) =>
+globalThis.setCoverTiltPosition = (target, params) =>
   serviceCall({
     name: `Call cover.set_cover_tilt_position`,
     params: {
@@ -192,7 +186,7 @@ globalThis.setCoverTiltPositionCover = (target, params) =>
     target,
   });
 
-globalThis.toggleCoverTiltCover = (target) =>
+globalThis.toggleCoverTilt = (target) =>
   serviceCall({
     name: `Call cover.toggle_cover_tilt`,
     params: {

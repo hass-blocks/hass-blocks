@@ -28,7 +28,7 @@ const {
 export const onLastExit = automation({
   name: 'Last Exit',
   when: homeBecomesEmpty,
-  then: [ifZoneExitChecksAllowed, turnOffSwitch(homeModeSwitch)],
+  then: [ifZoneExitChecksAllowed, turnOffSwitch(homeMode)],
 });
 
 export const homeModeDetection = automation({
@@ -43,14 +43,14 @@ export const homeModeDetection = automation({
     sequence(
       ifIamOut,
       allowZoneExitChecks,
-      turnOffSwitch(homeModeSwitch),
+      turnOffSwitch(homeMode),
       waitMinutes(5),
     ),
     sequence(
-      stateIs(homeModeSwitch, 'off'),
+      stateIs(homeMode, 'off'),
       ifHomeIsNotEmpty,
       disallowZoneExitChecks,
-      turnOnSwitch(homeModeSwitch),
+      turnOnSwitch(homeMode),
     ),
   ),
   mode: ExecutionMode.Restart,
@@ -58,12 +58,12 @@ export const homeModeDetection = automation({
 
 export const whenIGoOut = automation({
   name: 'When I go out',
-  when: stateTurnsOff(homeModeSwitch),
+  when: stateTurnsOff(homeMode),
   then: concurrently(
     turnOnLight(allLights),
     mediaStopMediaPlayer(allSpeakers),
-    turnOffSwitch(imacProOnSwitch),
-    closeCoverCover(livingRoomBlindsCover),
+    turnOffSwitch(imacProOn),
+    closeCover(livingRoomBlindsCover),
     notifyMyPhone({
       title: 'Leaving flat',
       message: 'Home empty detected - turning everything off',
@@ -73,13 +73,13 @@ export const whenIGoOut = automation({
 
 export const whenIGetHome = automation({
   name: 'When I get home',
-  when: stateTurnsOff(homeModeSwitch),
+  when: stateTurnsOff(homeMode),
   then: concurrently(
     playMyDiscoverWeeklyEveryWhere,
     setVolumeOnSpeakers(0.3),
     sequence(
-      stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
-      openCoverCover(livingRoomBlindsCover),
+      stateIs(livingRoomBlindsDefaultToOpen, 'on'),
+      openCover(livingRoomBlindsCover),
     ),
     startSlideshowOnAppleTv,
   ),

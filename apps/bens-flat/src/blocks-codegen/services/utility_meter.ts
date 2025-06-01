@@ -14,7 +14,7 @@ declare global {
     target: IEntity<`select.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface CalibrateUtilityMeterProps {
+  interface CalibrateUtilityMeter {
     /**
      * Value to which set the meter.
      */
@@ -26,11 +26,8 @@ declare global {
    */
   var calibrateUtilityMeter: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params: CalibrateUtilityMeterProps,
-  ) => Block<
-    Partial<ServiceCallArgs<CalibrateUtilityMeterProps>> | undefined,
-    void
-  >;
+    params: CalibrateUtilityMeter,
+  ) => Block<Partial<ServiceCallArgs<CalibrateUtilityMeter>> | undefined, void>;
 }
 
 globalThis.resetUtilityMeter = (target) =>

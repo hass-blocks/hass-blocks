@@ -15,7 +15,7 @@ declare global {
     void
   >;
 
-  interface StartTimerProps {
+  interface StartTimer {
     /**
      * Custom duration to restart the timer with.
      */
@@ -27,8 +27,8 @@ declare global {
    */
   var startTimer: (
     target: IEntity<`timer.${string}`> | IArea,
-    params?: StartTimerProps,
-  ) => Block<Partial<ServiceCallArgs<StartTimerProps>> | undefined, void>;
+    params?: StartTimer,
+  ) => Block<Partial<ServiceCallArgs<StartTimer>> | undefined, void>;
 
   /**
    * Pauses a running timer, retaining the remaining duration for later continuation.
@@ -51,7 +51,7 @@ declare global {
     target: IEntity<`timer.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface ChangeTimerProps {
+  interface ChangeTimer {
     /**
      * Duration to add to or subtract from the running timer.
      */
@@ -63,8 +63,8 @@ declare global {
    */
   var changeTimer: (
     target: IEntity<`timer.${string}`> | IArea,
-    params: ChangeTimerProps,
-  ) => Block<Partial<ServiceCallArgs<ChangeTimerProps>> | undefined, void>;
+    params: ChangeTimer,
+  ) => Block<Partial<ServiceCallArgs<ChangeTimer>> | undefined, void>;
 }
 
 globalThis.reloadTimer = () =>

@@ -28,7 +28,7 @@ export const sleepModeTurnedOn = automation({
   when: stateTurnsOn(toggleSleepMode),
   then: [
     concurrently(
-      turnOffSwitch(livingRoomTvOnSwitch),
+      turnOffSwitch(livingRoomTvOn),
       sequence(
         turnOnSwitch(allAdaptiveLightingSwitches),
         turnOnSwitch(allAdaptiveLightingSleepModeSwitches),

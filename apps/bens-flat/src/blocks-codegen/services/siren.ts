@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface TurnOnSirenProps {
+  interface TurnOnSiren {
     /**
      * The tone to emit. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration.
      */
@@ -27,8 +27,8 @@ declare global {
    */
   var turnOnSiren: (
     target: IEntity<`siren.${string}`> | IArea,
-    params?: TurnOnSirenProps,
-  ) => Block<Partial<ServiceCallArgs<TurnOnSirenProps>> | undefined, void>;
+    params?: TurnOnSiren,
+  ) => Block<Partial<ServiceCallArgs<TurnOnSiren>> | undefined, void>;
 
   /**
    * Turns the siren off.

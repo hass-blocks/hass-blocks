@@ -13,7 +13,7 @@ declare global {
     void
   >;
 
-  interface HelloWorldPyscriptProps {
+  interface HelloWorldPyscript {
     /**
      * argument action
      */
@@ -28,13 +28,10 @@ declare global {
    * hello_world example using pyscript.
    */
   var helloWorldPyscript: (
-    params?: HelloWorldPyscriptProps,
-  ) => Block<
-    Partial<ServiceCallArgs<HelloWorldPyscriptProps>> | undefined,
-    void
-  >;
+    params?: HelloWorldPyscript,
+  ) => Block<Partial<ServiceCallArgs<HelloWorldPyscript>> | undefined, void>;
 
-  interface ReloadPyscriptProps {
+  interface ReloadPyscript {
     /**
      * Only reload this specific global context (file or app)
      */
@@ -45,10 +42,10 @@ declare global {
    * Reloads all available pyscripts and restart triggers
    */
   var reloadPyscript: (
-    params?: ReloadPyscriptProps,
-  ) => Block<Partial<ServiceCallArgs<ReloadPyscriptProps>> | undefined, void>;
+    params?: ReloadPyscript,
+  ) => Block<Partial<ServiceCallArgs<ReloadPyscript>> | undefined, void>;
 
-  interface JupyterKernelStartPyscriptProps {
+  interface JupyterKernelStartPyscript {
     /**
      * Shell port number
      */
@@ -95,9 +92,9 @@ declare global {
    * Starts a jupyter kernel for interactive use; Called by Jupyter front end and should generally not be used by users
    */
   var jupyterKernelStartPyscript: (
-    params: JupyterKernelStartPyscriptProps,
+    params: JupyterKernelStartPyscript,
   ) => Block<
-    Partial<ServiceCallArgs<JupyterKernelStartPyscriptProps>> | undefined,
+    Partial<ServiceCallArgs<JupyterKernelStartPyscript>> | undefined,
     void
   >;
 }

@@ -18,7 +18,7 @@ declare global {
   /**
    * Retrieves the configured time ranges of one or multiple schedules.
    */
-  var getScheduleSchedule: (
+  var getSchedule: (
     target: IEntity<`schedule.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
@@ -32,7 +32,7 @@ globalThis.reloadSchedule = () =>
     },
   });
 
-globalThis.getScheduleSchedule = (target) =>
+globalThis.getSchedule = (target) =>
   serviceCall({
     name: `Call schedule.get_schedule`,
     params: {

@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface LogLogbookProps {
+  interface LogLogbook {
     /**
      * Custom name for an entity, can be referenced using the 'Entity ID' field.
      */
@@ -28,8 +28,8 @@ declare global {
    * Creates a custom entry in the logbook.
    */
   var logLogbook: (
-    params: LogLogbookProps,
-  ) => Block<Partial<ServiceCallArgs<LogLogbookProps>> | undefined, void>;
+    params: LogLogbook,
+  ) => Block<Partial<ServiceCallArgs<LogLogbook>> | undefined, void>;
 }
 
 globalThis.logLogbook = (params) =>

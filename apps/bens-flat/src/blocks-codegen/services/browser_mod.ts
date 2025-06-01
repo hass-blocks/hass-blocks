@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SequenceBrowserModProps {
+  interface SequenceBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -18,13 +18,10 @@ declare global {
    * Run a sequence of services
    */
   var sequenceBrowserMod: (
-    params?: SequenceBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SequenceBrowserModProps>> | undefined,
-    void
-  >;
+    params?: SequenceBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<SequenceBrowserMod>> | undefined, void>;
 
-  interface DelayBrowserModProps {
+  interface DelayBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -37,10 +34,10 @@ declare global {
    * Wait for a time
    */
   var delayBrowserMod: (
-    params?: DelayBrowserModProps,
-  ) => Block<Partial<ServiceCallArgs<DelayBrowserModProps>> | undefined, void>;
+    params?: DelayBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<DelayBrowserMod>> | undefined, void>;
 
-  interface PopupBrowserModProps {
+  interface PopupBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -106,10 +103,10 @@ declare global {
    * Display a popup
    */
   var popupBrowserMod: (
-    params: PopupBrowserModProps,
-  ) => Block<Partial<ServiceCallArgs<PopupBrowserModProps>> | undefined, void>;
+    params: PopupBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<PopupBrowserMod>> | undefined, void>;
 
-  interface MoreInfoBrowserModProps {
+  interface MoreInfoBrowserMod {
     browser_id?: never;
     user_id?: string[];
     entity: string;
@@ -121,13 +118,10 @@ declare global {
    * Show more-info dialog
    */
   var moreInfoBrowserMod: (
-    params: MoreInfoBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<MoreInfoBrowserModProps>> | undefined,
-    void
-  >;
+    params: MoreInfoBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<MoreInfoBrowserMod>> | undefined, void>;
 
-  interface ClosePopupBrowserModProps {
+  interface ClosePopupBrowserMod {
     browser_id?: never;
     user_id?: string[];
   }
@@ -136,13 +130,10 @@ declare global {
    * Close a popup
    */
   var closePopupBrowserMod: (
-    params?: ClosePopupBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ClosePopupBrowserModProps>> | undefined,
-    void
-  >;
+    params?: ClosePopupBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<ClosePopupBrowserMod>> | undefined, void>;
 
-  interface NotificationBrowserModProps {
+  interface NotificationBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -167,13 +158,13 @@ declare global {
    * Display a short notification
    */
   var notificationBrowserMod: (
-    params: NotificationBrowserModProps,
+    params: NotificationBrowserMod,
   ) => Block<
-    Partial<ServiceCallArgs<NotificationBrowserModProps>> | undefined,
+    Partial<ServiceCallArgs<NotificationBrowserMod>> | undefined,
     void
   >;
 
-  interface NavigateBrowserModProps {
+  interface NavigateBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -186,13 +177,10 @@ declare global {
    * Navigate browser to a different page
    */
   var navigateBrowserMod: (
-    params?: NavigateBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<NavigateBrowserModProps>> | undefined,
-    void
-  >;
+    params?: NavigateBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<NavigateBrowserMod>> | undefined, void>;
 
-  interface RefreshBrowserModProps {
+  interface RefreshBrowserMod {
     browser_id?: never;
     user_id?: string[];
   }
@@ -201,13 +189,10 @@ declare global {
    * Refresh page
    */
   var refreshBrowserMod: (
-    params?: RefreshBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<RefreshBrowserModProps>> | undefined,
-    void
-  >;
+    params?: RefreshBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<RefreshBrowserMod>> | undefined, void>;
 
-  interface SetThemeBrowserModProps {
+  interface SetThemeBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -232,13 +217,10 @@ declare global {
    * Change the current theme
    */
   var setThemeBrowserMod: (
-    params?: SetThemeBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetThemeBrowserModProps>> | undefined,
-    void
-  >;
+    params?: SetThemeBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<SetThemeBrowserMod>> | undefined, void>;
 
-  interface ConsoleBrowserModProps {
+  interface ConsoleBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -251,13 +233,10 @@ declare global {
    * Print text to browser console
    */
   var consoleBrowserMod: (
-    params?: ConsoleBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ConsoleBrowserModProps>> | undefined,
-    void
-  >;
+    params?: ConsoleBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<ConsoleBrowserMod>> | undefined, void>;
 
-  interface JavascriptBrowserModProps {
+  interface JavascriptBrowserMod {
     browser_id?: never;
     user_id?: string[];
     /**
@@ -270,13 +249,10 @@ declare global {
    * Run arbitrary JavaScript code
    */
   var javascriptBrowserMod: (
-    params?: JavascriptBrowserModProps,
-  ) => Block<
-    Partial<ServiceCallArgs<JavascriptBrowserModProps>> | undefined,
-    void
-  >;
+    params?: JavascriptBrowserMod,
+  ) => Block<Partial<ServiceCallArgs<JavascriptBrowserMod>> | undefined, void>;
 
-  interface DeregisterBrowserBrowserModProps {
+  interface DeregisterBrowserBrowserMod {
     browser_id?: never;
     /**
      * Exclude browser from deregister
@@ -292,9 +268,9 @@ declare global {
    * Deregister a browser. Include at leaset one paremeter. Calling wiith either exclude parameter will deregister all browsers except those excluded.
    */
   var deregisterBrowserBrowserMod: (
-    params?: DeregisterBrowserBrowserModProps,
+    params?: DeregisterBrowserBrowserMod,
   ) => Block<
-    Partial<ServiceCallArgs<DeregisterBrowserBrowserModProps>> | undefined,
+    Partial<ServiceCallArgs<DeregisterBrowserBrowserMod>> | undefined,
     void
   >;
 }

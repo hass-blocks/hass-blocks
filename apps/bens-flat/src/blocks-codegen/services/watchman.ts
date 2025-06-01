@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ReportWatchmanProps {
+  interface ReportWatchman {
     /**
      * Parse configuration files before generating the report. Usually, this is done automatically by Watchman, so this flag is typically not required.
      */
@@ -17,8 +17,8 @@ declare global {
    * Run the Watchman report
    */
   var reportWatchman: (
-    params?: ReportWatchmanProps,
-  ) => Block<Partial<ServiceCallArgs<ReportWatchmanProps>> | undefined, void>;
+    params?: ReportWatchman,
+  ) => Block<Partial<ServiceCallArgs<ReportWatchman>> | undefined, void>;
 }
 
 globalThis.reportWatchman = (params) =>

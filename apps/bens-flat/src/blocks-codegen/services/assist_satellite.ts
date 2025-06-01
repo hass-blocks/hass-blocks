@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface AnnounceAssistSatelliteProps {
+  interface AnnounceAssistSatellite {
     /**
      * The message to announce.
      */
@@ -31,13 +31,13 @@ declare global {
    */
   var announceAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
-    params?: AnnounceAssistSatelliteProps,
+    params?: AnnounceAssistSatellite,
   ) => Block<
-    Partial<ServiceCallArgs<AnnounceAssistSatelliteProps>> | undefined,
+    Partial<ServiceCallArgs<AnnounceAssistSatellite>> | undefined,
     void
   >;
 
-  interface StartConversationAssistSatelliteProps {
+  interface StartConversationAssistSatellite {
     /**
      * The message to start with.
      */
@@ -65,9 +65,9 @@ declare global {
    */
   var startConversationAssistSatellite: (
     target: IEntity<`assist_satellite.${string}`> | IArea,
-    params?: StartConversationAssistSatelliteProps,
+    params?: StartConversationAssistSatellite,
   ) => Block<
-    Partial<ServiceCallArgs<StartConversationAssistSatelliteProps>> | undefined,
+    Partial<ServiceCallArgs<StartConversationAssistSatellite>> | undefined,
     void
   >;
 }

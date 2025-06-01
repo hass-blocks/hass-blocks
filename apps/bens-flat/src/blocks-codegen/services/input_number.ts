@@ -15,7 +15,7 @@ declare global {
     void
   >;
 
-  interface SetValueInputNumberProps {
+  interface SetValueInputNumber {
     /**
      * The target value.
      */
@@ -27,11 +27,8 @@ declare global {
    */
   var setValueInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea,
-    params: SetValueInputNumberProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetValueInputNumberProps>> | undefined,
-    void
-  >;
+    params: SetValueInputNumber,
+  ) => Block<Partial<ServiceCallArgs<SetValueInputNumber>> | undefined, void>;
 
   /**
    * Increments the current value by 1 step.

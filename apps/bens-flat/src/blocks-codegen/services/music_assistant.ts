@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SearchMusicAssistantProps {
+  interface SearchMusicAssistant {
     /**
      * Select the Music Assistant instance to perform the search on.
      */
@@ -42,13 +42,10 @@ declare global {
    * Performs a global search on the Music Assistant library and all providers.
    */
   var searchMusicAssistant: (
-    params: SearchMusicAssistantProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SearchMusicAssistantProps>> | undefined,
-    void
-  >;
+    params: SearchMusicAssistant,
+  ) => Block<Partial<ServiceCallArgs<SearchMusicAssistant>> | undefined, void>;
 
-  interface GetLibraryMusicAssistantProps {
+  interface GetLibraryMusicAssistant {
     /**
      * Select the Music Assistant instance to perform the search on.
      */
@@ -91,13 +88,13 @@ declare global {
    * Retrieves items from a Music Assistant library.
    */
   var getLibraryMusicAssistant: (
-    params: GetLibraryMusicAssistantProps,
+    params: GetLibraryMusicAssistant,
   ) => Block<
-    Partial<ServiceCallArgs<GetLibraryMusicAssistantProps>> | undefined,
+    Partial<ServiceCallArgs<GetLibraryMusicAssistant>> | undefined,
     void
   >;
 
-  interface PlayMediaMusicAssistantProps {
+  interface PlayMediaMusicAssistant {
     /**
      * URI or name of the item you want to play. Specify a list if you want to play/enqueue multiple items.
      */
@@ -129,13 +126,13 @@ declare global {
    */
   var playMediaMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: PlayMediaMusicAssistantProps,
+    params: PlayMediaMusicAssistant,
   ) => Block<
-    Partial<ServiceCallArgs<PlayMediaMusicAssistantProps>> | undefined,
+    Partial<ServiceCallArgs<PlayMediaMusicAssistant>> | undefined,
     void
   >;
 
-  interface PlayAnnouncementMusicAssistantProps {
+  interface PlayAnnouncementMusicAssistant {
     /**
      * URL to the notification sound.
      */
@@ -155,13 +152,13 @@ declare global {
    */
   var playAnnouncementMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: PlayAnnouncementMusicAssistantProps,
+    params: PlayAnnouncementMusicAssistant,
   ) => Block<
-    Partial<ServiceCallArgs<PlayAnnouncementMusicAssistantProps>> | undefined,
+    Partial<ServiceCallArgs<PlayAnnouncementMusicAssistant>> | undefined,
     void
   >;
 
-  interface TransferQueueMusicAssistantProps {
+  interface TransferQueueMusicAssistant {
     /**
      * The source media player which has the queue you want to transfer. When omitted, the first playing player will be used.
      */
@@ -177,9 +174,9 @@ declare global {
    */
   var transferQueueMusicAssistant: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params?: TransferQueueMusicAssistantProps,
+    params?: TransferQueueMusicAssistant,
   ) => Block<
-    Partial<ServiceCallArgs<TransferQueueMusicAssistantProps>> | undefined,
+    Partial<ServiceCallArgs<TransferQueueMusicAssistant>> | undefined,
     void
   >;
 

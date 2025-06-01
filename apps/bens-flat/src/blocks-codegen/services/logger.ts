@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SetDefaultLevelLoggerProps {
+  interface SetDefaultLevelLogger {
     /**
      * Default severity level for all integrations.
      */
@@ -16,11 +16,8 @@ declare global {
    * Sets the default log level for integrations.
    */
   var setDefaultLevelLogger: (
-    params?: SetDefaultLevelLoggerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetDefaultLevelLoggerProps>> | undefined,
-    void
-  >;
+    params?: SetDefaultLevelLogger,
+  ) => Block<Partial<ServiceCallArgs<SetDefaultLevelLogger>> | undefined, void>;
 
   /**
    * Sets the log level for one or more integrations.

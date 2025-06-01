@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SetConfigParameterZwaveJsProps {
+  interface SetConfigParameterZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -50,13 +50,13 @@ declare global {
    * Changes the configuration parameters of your Z-Wave devices.
    */
   var setConfigParameterZwaveJs: (
-    params: SetConfigParameterZwaveJsProps,
+    params: SetConfigParameterZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<SetConfigParameterZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<SetConfigParameterZwaveJs>> | undefined,
     void
   >;
 
-  interface BulkSetPartialConfigParametersZwaveJsProps {
+  interface BulkSetPartialConfigParametersZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -87,14 +87,13 @@ declare global {
    * Allows for bulk setting partial parameters. Useful when multiple partial parameters have to be set at the same time.
    */
   var bulkSetPartialConfigParametersZwaveJs: (
-    params: BulkSetPartialConfigParametersZwaveJsProps,
+    params: BulkSetPartialConfigParametersZwaveJs,
   ) => Block<
-    | Partial<ServiceCallArgs<BulkSetPartialConfigParametersZwaveJsProps>>
-    | undefined,
+    Partial<ServiceCallArgs<BulkSetPartialConfigParametersZwaveJs>> | undefined,
     void
   >;
 
-  interface RefreshValueZwaveJsProps {
+  interface RefreshValueZwaveJs {
     /**
      * Entities to refresh.
      */
@@ -109,13 +108,10 @@ declare global {
    * Force updates the values of a Z-Wave entity.
    */
   var refreshValueZwaveJs: (
-    params: RefreshValueZwaveJsProps,
-  ) => Block<
-    Partial<ServiceCallArgs<RefreshValueZwaveJsProps>> | undefined,
-    void
-  >;
+    params: RefreshValueZwaveJs,
+  ) => Block<Partial<ServiceCallArgs<RefreshValueZwaveJs>> | undefined, void>;
 
-  interface SetValueZwaveJsProps {
+  interface SetValueZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -162,10 +158,10 @@ declare global {
    * Changes any value that Z-Wave recognizes on a Z-Wave device. This action has minimal validation so only use this action if you know what you are doing.
    */
   var setValueZwaveJs: (
-    params: SetValueZwaveJsProps,
-  ) => Block<Partial<ServiceCallArgs<SetValueZwaveJsProps>> | undefined, void>;
+    params: SetValueZwaveJs,
+  ) => Block<Partial<ServiceCallArgs<SetValueZwaveJs>> | undefined, void>;
 
-  interface MulticastSetValueZwaveJsProps {
+  interface MulticastSetValueZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -212,13 +208,13 @@ declare global {
    * Changes any value that Z-Wave recognizes on multiple Z-Wave devices using multicast, so all devices receive the message simultaneously. This action has minimal validation so only use this action if you know what you are doing.
    */
   var multicastSetValueZwaveJs: (
-    params: MulticastSetValueZwaveJsProps,
+    params: MulticastSetValueZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<MulticastSetValueZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<MulticastSetValueZwaveJs>> | undefined,
     void
   >;
 
-  interface PingZwaveJsProps {
+  interface PingZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -237,10 +233,10 @@ declare global {
    * Forces Z-Wave to try to reach a node. This can be used to update the status of the node in Z-Wave when you think it doesn't accurately reflect reality, e.g. reviving a failed/dead node or marking the node as asleep.
    */
   var pingZwaveJs: (
-    params?: PingZwaveJsProps,
-  ) => Block<Partial<ServiceCallArgs<PingZwaveJsProps>> | undefined, void>;
+    params?: PingZwaveJs,
+  ) => Block<Partial<ServiceCallArgs<PingZwaveJs>> | undefined, void>;
 
-  interface InvokeCcApiZwaveJsProps {
+  interface InvokeCcApiZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -275,13 +271,10 @@ declare global {
    * Calls a Command Class API on a node. Some Command Classes can't be fully controlled via the `set_value` action and require direct calls to the Command Class API.
    */
   var invokeCcApiZwaveJs: (
-    params: InvokeCcApiZwaveJsProps,
-  ) => Block<
-    Partial<ServiceCallArgs<InvokeCcApiZwaveJsProps>> | undefined,
-    void
-  >;
+    params: InvokeCcApiZwaveJs,
+  ) => Block<Partial<ServiceCallArgs<InvokeCcApiZwaveJs>> | undefined, void>;
 
-  interface RefreshNotificationsZwaveJsProps {
+  interface RefreshNotificationsZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -308,13 +301,13 @@ declare global {
    * Refreshes notifications on a node based on notification type and optionally notification event.
    */
   var refreshNotificationsZwaveJs: (
-    params: RefreshNotificationsZwaveJsProps,
+    params: RefreshNotificationsZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<RefreshNotificationsZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<RefreshNotificationsZwaveJs>> | undefined,
     void
   >;
 
-  interface SetLockUsercodeZwaveJsProps {
+  interface SetLockUsercodeZwaveJs {
     /**
      * Code slot to set the code.
      */
@@ -330,13 +323,13 @@ declare global {
    */
   var setLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: SetLockUsercodeZwaveJsProps,
+    params: SetLockUsercodeZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<SetLockUsercodeZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<SetLockUsercodeZwaveJs>> | undefined,
     void
   >;
 
-  interface ClearLockUsercodeZwaveJsProps {
+  interface ClearLockUsercodeZwaveJs {
     /**
      * Code slot to clear code from.
      */
@@ -348,13 +341,13 @@ declare global {
    */
   var clearLockUsercodeZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: ClearLockUsercodeZwaveJsProps,
+    params: ClearLockUsercodeZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<ClearLockUsercodeZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<ClearLockUsercodeZwaveJs>> | undefined,
     void
   >;
 
-  interface SetLockConfigurationZwaveJsProps {
+  interface SetLockConfigurationZwaveJs {
     /**
      * The operation type of the lock.
      */
@@ -386,13 +379,13 @@ declare global {
    */
   var setLockConfigurationZwaveJs: (
     target: IEntity<`lock.${string}`> | IArea,
-    params: SetLockConfigurationZwaveJsProps,
+    params: SetLockConfigurationZwaveJs,
   ) => Block<
-    Partial<ServiceCallArgs<SetLockConfigurationZwaveJsProps>> | undefined,
+    Partial<ServiceCallArgs<SetLockConfigurationZwaveJs>> | undefined,
     void
   >;
 
-  interface ResetMeterZwaveJsProps {
+  interface ResetMeterZwaveJs {
     /**
      * The area(s) to target for this action. If an area is specified, all Z-Wave devices and entities in that area will be targeted for this action.
      */
@@ -419,11 +412,8 @@ declare global {
    * Resets the meters on a node.
    */
   var resetMeterZwaveJs: (
-    params?: ResetMeterZwaveJsProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ResetMeterZwaveJsProps>> | undefined,
-    void
-  >;
+    params?: ResetMeterZwaveJs,
+  ) => Block<Partial<ServiceCallArgs<ResetMeterZwaveJs>> | undefined, void>;
 }
 
 globalThis.setConfigParameterZwaveJs = (params) =>

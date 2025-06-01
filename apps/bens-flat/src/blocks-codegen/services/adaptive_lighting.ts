@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ApplyAdaptiveLightingProps {
+  interface ApplyAdaptiveLighting {
     /**
      * The `entity_id` of the switch with the settings to apply. 📝
      */
@@ -40,13 +40,10 @@ declare global {
    * Applies the current Adaptive Lighting settings to lights.
    */
   var applyAdaptiveLighting: (
-    params?: ApplyAdaptiveLightingProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ApplyAdaptiveLightingProps>> | undefined,
-    void
-  >;
+    params?: ApplyAdaptiveLighting,
+  ) => Block<Partial<ServiceCallArgs<ApplyAdaptiveLighting>> | undefined, void>;
 
-  interface SetManualControlAdaptiveLightingProps {
+  interface SetManualControlAdaptiveLighting {
     /**
      * The `entity_id` of the switch in which to (un)mark the light as being `manually controlled`. 📝
      */
@@ -65,13 +62,13 @@ declare global {
    * Mark whether a light is 'manually controlled'.
    */
   var setManualControlAdaptiveLighting: (
-    params?: SetManualControlAdaptiveLightingProps,
+    params?: SetManualControlAdaptiveLighting,
   ) => Block<
-    Partial<ServiceCallArgs<SetManualControlAdaptiveLightingProps>> | undefined,
+    Partial<ServiceCallArgs<SetManualControlAdaptiveLighting>> | undefined,
     void
   >;
 
-  interface ChangeSwitchSettingsAdaptiveLightingProps {
+  interface ChangeSwitchSettingsAdaptiveLighting {
     /**
      * Entity ID of the switch. 📝
      */
@@ -194,10 +191,9 @@ declare global {
    * Change any settings you'd like in the switch. All options here are the same as in the config flow.
    */
   var changeSwitchSettingsAdaptiveLighting: (
-    params: ChangeSwitchSettingsAdaptiveLightingProps,
+    params: ChangeSwitchSettingsAdaptiveLighting,
   ) => Block<
-    | Partial<ServiceCallArgs<ChangeSwitchSettingsAdaptiveLightingProps>>
-    | undefined,
+    Partial<ServiceCallArgs<ChangeSwitchSettingsAdaptiveLighting>> | undefined,
     void
   >;
 }

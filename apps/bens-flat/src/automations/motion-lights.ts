@@ -17,7 +17,7 @@ export const livingRoomLightsAutomation = automation({
   when: stateTurnsOn(livingRoomSensorSensorStateMotionBinarySensor),
   then: [
     stateIs(livingRoomMotionLights, 'on'),
-    stateIs(tvModeSwitch, 'off'),
+    stateIs(tvMode, 'off'),
     waitMinutes(30),
     turnOnLight(livingRoom),
     turnOffLight(livingRoom),
@@ -28,7 +28,7 @@ export const bedroomLights = automation({
   name: 'Bedroom Lights',
   when: stateTurnsOn(bedroomSensorSensorStateMotionBinarySensor),
   then: [
-    stateIs(sleepModeSwitch, 'off'),
+    stateIs(sleepMode, 'off'),
     stateIs(bedroomMotionLights, 'on'),
     turnOnLight(bedroom),
     waitMinutes(10),

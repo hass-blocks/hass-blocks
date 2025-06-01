@@ -21,7 +21,7 @@ declare global {
     target: IEntity<`water_heater.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetAwayModeWaterHeaterProps {
+  interface SetAwayModeWaterHeater {
     /**
      * New value of away mode.
      */
@@ -33,13 +33,13 @@ declare global {
    */
   var setAwayModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params: SetAwayModeWaterHeaterProps,
+    params: SetAwayModeWaterHeater,
   ) => Block<
-    Partial<ServiceCallArgs<SetAwayModeWaterHeaterProps>> | undefined,
+    Partial<ServiceCallArgs<SetAwayModeWaterHeater>> | undefined,
     void
   >;
 
-  interface SetTemperatureWaterHeaterProps {
+  interface SetTemperatureWaterHeater {
     /**
      * New target temperature for the water heater.
      */
@@ -55,13 +55,13 @@ declare global {
    */
   var setTemperatureWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params: SetTemperatureWaterHeaterProps,
+    params: SetTemperatureWaterHeater,
   ) => Block<
-    Partial<ServiceCallArgs<SetTemperatureWaterHeaterProps>> | undefined,
+    Partial<ServiceCallArgs<SetTemperatureWaterHeater>> | undefined,
     void
   >;
 
-  interface SetOperationModeWaterHeaterProps {
+  interface SetOperationModeWaterHeater {
     /**
      * New value of the operation mode. For a list of possible modes, refer to the integration documentation.
      */
@@ -73,9 +73,9 @@ declare global {
    */
   var setOperationModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea,
-    params: SetOperationModeWaterHeaterProps,
+    params: SetOperationModeWaterHeater,
   ) => Block<
-    Partial<ServiceCallArgs<SetOperationModeWaterHeaterProps>> | undefined,
+    Partial<ServiceCallArgs<SetOperationModeWaterHeater>> | undefined,
     void
   >;
 }

@@ -1,31 +1,92 @@
 import { entity, type IEntity } from '@hass-blocks/core';
 
 declare global {
-  var turnTvOnScript: IEntity<`script.turn_tv_on`>;
-  var turnTvModeOnScript: IEntity<`script.turn_tv_mode_on`>;
-  var boostBoilerScript: IEntity<`script.boost_boiler`>;
-  var updateAllHacsItemsScript: IEntity<`script.update_all_hacs_items`>;
-  var todoListScript: IEntity<`script.todo_list`>;
-  var openAiTtsScript: IEntity<`script.open_ai_tts`>;
-  var readTodaySCalendarScript: IEntity<`script.read_today_s_calendar`>;
-  var goodMorningRoutineScript: IEntity<`script.good_morning_routine`>;
-  var turnEverythingOff_2Script: IEntity<`script.turn_everything_off_2`>;
-  var dismissWelcomeMessageScript: IEntity<`script.dismiss_welcome_message`>;
-  var groupSpeakersScript: IEntity<`script.group_speakers`>;
-  var unjoinSpeakersScript: IEntity<`script.unjoin_speakers`>;
+  /**
+   * Turn TV On
+   */
+  var turnTvOnScript1: IEntity<`script.turn_tv_on`>;
+  /**
+   * Turn TV mode on
+   */
+  var turnTvModeOnScript1: IEntity<`script.turn_tv_mode_on`>;
+  /**
+   * Boost boiler
+   */
+  var boostBoilerScript1: IEntity<`script.boost_boiler`>;
+  /**
+   * Update all HACS items
+   */
+  var updateAllHacsItemsScript1: IEntity<`script.update_all_hacs_items`>;
+  /**
+   * Read today's todo list
+   */
+  var todoListScript1: IEntity<`script.todo_list`>;
+  /**
+   * Open AI TTS
+   */
+  var openAiTtsScript1: IEntity<`script.open_ai_tts`>;
+  /**
+   * Read today's calendar
+   */
+  var readTodaySCalendarScript1: IEntity<`script.read_today_s_calendar`>;
+  /**
+   * Good morning routine
+   */
+  var goodMorningRoutineScript1: IEntity<`script.good_morning_routine`>;
+  /**
+   * Turn everything off
+   */
+  var turnEverythingOff_2Script1: IEntity<`script.turn_everything_off_2`>;
+  /**
+   * Dismiss Welcome Message
+   */
+  var dismissWelcomeMessageScript1: IEntity<`script.dismiss_welcome_message`>;
+  /**
+   * Join Speakers
+   */
+  var groupSpeakersScript1: IEntity<`script.group_speakers`>;
+  /**
+   * Unjoin Speakers
+   */
+  var unjoinSpeakersScript1: IEntity<`script.unjoin_speakers`>;
 }
 
-globalThis.turnTvOnScript = entity('script.turn_tv_on');
-globalThis.turnTvModeOnScript = entity('script.turn_tv_mode_on');
-globalThis.boostBoilerScript = entity('script.boost_boiler');
-globalThis.updateAllHacsItemsScript = entity('script.update_all_hacs_items');
-globalThis.todoListScript = entity('script.todo_list');
-globalThis.openAiTtsScript = entity('script.open_ai_tts');
-globalThis.readTodaySCalendarScript = entity('script.read_today_s_calendar');
-globalThis.goodMorningRoutineScript = entity('script.good_morning_routine');
-globalThis.turnEverythingOff_2Script = entity('script.turn_everything_off_2');
-globalThis.dismissWelcomeMessageScript = entity(
-  'script.dismiss_welcome_message',
+globalThis.turnTvOnScript1 = entity('script.turn_tv_on', 'Turn TV On');
+globalThis.turnTvModeOnScript1 = entity(
+  'script.turn_tv_mode_on',
+  'Turn TV mode on',
 );
-globalThis.groupSpeakersScript = entity('script.group_speakers');
-globalThis.unjoinSpeakersScript = entity('script.unjoin_speakers');
+globalThis.boostBoilerScript1 = entity('script.boost_boiler', 'Boost boiler');
+globalThis.updateAllHacsItemsScript1 = entity(
+  'script.update_all_hacs_items',
+  'Update all HACS items',
+);
+globalThis.todoListScript1 = entity(
+  'script.todo_list',
+  "Read today's todo list",
+);
+globalThis.openAiTtsScript1 = entity('script.open_ai_tts', 'Open AI TTS');
+globalThis.readTodaySCalendarScript1 = entity(
+  'script.read_today_s_calendar',
+  "Read today's calendar",
+);
+globalThis.goodMorningRoutineScript1 = entity(
+  'script.good_morning_routine',
+  'Good morning routine',
+);
+globalThis.turnEverythingOff_2Script1 = entity(
+  'script.turn_everything_off_2',
+  'Turn everything off',
+);
+globalThis.dismissWelcomeMessageScript1 = entity(
+  'script.dismiss_welcome_message',
+  'Dismiss Welcome Message',
+);
+globalThis.groupSpeakersScript1 = entity(
+  'script.group_speakers',
+  'Join Speakers',
+);
+globalThis.unjoinSpeakersScript1 = entity(
+  'script.unjoin_speakers',
+  'Unjoin Speakers',
+);

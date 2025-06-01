@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface TurnOnLightProps {
+  interface TurnOnLight {
     /**
      * Duration it takes to get to next state.
      */
@@ -40,10 +40,10 @@ declare global {
    */
   var turnOnLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params?: TurnOnLightProps,
-  ) => Block<Partial<ServiceCallArgs<TurnOnLightProps>> | undefined, void>;
+    params?: TurnOnLight,
+  ) => Block<Partial<ServiceCallArgs<TurnOnLight>> | undefined, void>;
 
-  interface TurnOffLightProps {
+  interface TurnOffLight {
     /**
      * Duration it takes to get to next state.
      */
@@ -56,10 +56,10 @@ declare global {
    */
   var turnOffLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params?: TurnOffLightProps,
-  ) => Block<Partial<ServiceCallArgs<TurnOffLightProps>> | undefined, void>;
+    params?: TurnOffLight,
+  ) => Block<Partial<ServiceCallArgs<TurnOffLight>> | undefined, void>;
 
-  interface ToggleLightProps {
+  interface ToggleLight {
     /**
      * Duration it takes to get to next state.
      */
@@ -88,8 +88,8 @@ declare global {
    */
   var toggleLight: (
     target: IEntity<`light.${string}`> | IArea,
-    params?: ToggleLightProps,
-  ) => Block<Partial<ServiceCallArgs<ToggleLightProps>> | undefined, void>;
+    params?: ToggleLight,
+  ) => Block<Partial<ServiceCallArgs<ToggleLight>> | undefined, void>;
 }
 
 globalThis.turnOnLight = (target, params) =>

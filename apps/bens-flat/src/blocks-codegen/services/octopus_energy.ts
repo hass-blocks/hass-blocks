@@ -15,7 +15,7 @@ declare global {
     void
   >;
 
-  interface JoinOctoplusSavingSessionEventOctopusEnergyProps {
+  interface JoinOctoplusSavingSessionEventOctopusEnergy {
     /**
      * The code of the event that is to be joined.
      */
@@ -27,14 +27,14 @@ declare global {
    */
   var joinOctoplusSavingSessionEventOctopusEnergy: (
     target: IEntity<`event.${string}`> | IArea,
-    params?: JoinOctoplusSavingSessionEventOctopusEnergyProps,
+    params?: JoinOctoplusSavingSessionEventOctopusEnergy,
   ) => Block<
-    | Partial<ServiceCallArgs<JoinOctoplusSavingSessionEventOctopusEnergyProps>>
+    | Partial<ServiceCallArgs<JoinOctoplusSavingSessionEventOctopusEnergy>>
     | undefined,
     void
   >;
 
-  interface RefreshPreviousConsumptionDataOctopusEnergyProps {
+  interface RefreshPreviousConsumptionDataOctopusEnergy {
     /**
      * The date the data should be loaded from.
      */
@@ -46,9 +46,9 @@ declare global {
    */
   var refreshPreviousConsumptionDataOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params: RefreshPreviousConsumptionDataOctopusEnergyProps,
+    params: RefreshPreviousConsumptionDataOctopusEnergy,
   ) => Block<
-    | Partial<ServiceCallArgs<RefreshPreviousConsumptionDataOctopusEnergyProps>>
+    | Partial<ServiceCallArgs<RefreshPreviousConsumptionDataOctopusEnergy>>
     | undefined,
     void
   >;
@@ -60,7 +60,7 @@ declare global {
     target: IEntity<`sensor.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface RegisterRateWeightingsOctopusEnergyProps {
+  interface RegisterRateWeightingsOctopusEnergy {
     /**
      * The collection of time periods and associated weightings to apply.
      */
@@ -72,10 +72,9 @@ declare global {
    */
   var registerRateWeightingsOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea,
-    params?: RegisterRateWeightingsOctopusEnergyProps,
+    params?: RegisterRateWeightingsOctopusEnergy,
   ) => Block<
-    | Partial<ServiceCallArgs<RegisterRateWeightingsOctopusEnergyProps>>
-    | undefined,
+    Partial<ServiceCallArgs<RegisterRateWeightingsOctopusEnergy>> | undefined,
     void
   >;
 }

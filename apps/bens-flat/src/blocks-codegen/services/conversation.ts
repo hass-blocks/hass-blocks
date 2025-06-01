@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ProcessConversationProps {
+  interface ProcessConversation {
     /**
      * Transcribed text input.
      */
@@ -28,13 +28,10 @@ declare global {
    * Launches a conversation from a transcribed text.
    */
   var processConversation: (
-    params: ProcessConversationProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ProcessConversationProps>> | undefined,
-    void
-  >;
+    params: ProcessConversation,
+  ) => Block<Partial<ServiceCallArgs<ProcessConversation>> | undefined, void>;
 
-  interface ReloadConversationProps {
+  interface ReloadConversation {
     /**
      * Language to clear cached intents for. Defaults to server language.
      */
@@ -49,11 +46,8 @@ declare global {
    * Reloads the intent configuration.
    */
   var reloadConversation: (
-    params?: ReloadConversationProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ReloadConversationProps>> | undefined,
-    void
-  >;
+    params?: ReloadConversation,
+  ) => Block<Partial<ServiceCallArgs<ReloadConversation>> | undefined, void>;
 }
 
 globalThis.processConversation = (params) =>

@@ -40,17 +40,17 @@ export const allLights = combine(
 );
 
 export const allAdaptiveLightingSwitches = combine(
-  adaptiveLightingBedroomSwitch,
-  adaptiveLightingLivingRoomSwitch,
-  adaptiveLightingBathroomSwitch,
-  adaptiveLightingHallwaySwitch,
+  adaptiveLightingBedroom,
+  adaptiveLightingLivingRoom,
+  adaptiveLightingBathroom,
+  adaptiveLightingHallway,
 );
 
 export const allAdaptiveLightingSleepModeSwitches = combine(
-  adaptiveLightingSleepModeBedroomSwitch,
-  adaptiveLightingSleepModeHallwaySwitch,
-  adaptiveLightingSleepModeBathroomSwitch,
-  adaptiveLightingSleepModeLivingRoomSwitch,
+  adaptiveLightingSleepModeBedroom,
+  adaptiveLightingSleepModeHallway,
+  adaptiveLightingSleepModeBathroom,
+  adaptiveLightingSleepModeLivingRoom,
 );
 
 export const allSpeakers = combine(
@@ -59,9 +59,9 @@ export const allSpeakers = combine(
 );
 
 export const allHeatingAndBoilerSwitches = combine(
-  boilerSwitch,
-  bedroomHeatingSwitchSwitch,
-  boilerBoostSwitch,
-  gymHeatingSwitchSwitch,
-  livingRoomHeatingSwitchSwitch,
+  boiler,
+  bedroomHeatingSwitch,
+  boilerBoost,
+  gymHeatingSwitch,
+  livingRoomHeatingSwitch,
 );

@@ -60,7 +60,7 @@ declare global {
     void
   >;
 
-  interface UpdateEntityHomeassistantProps {
+  interface UpdateEntityHomeassistant {
     /**
      * List of entities to force update.
      */
@@ -71,9 +71,9 @@ declare global {
    * Forces one or more entities to update their data.
    */
   var updateEntityHomeassistant: (
-    params: UpdateEntityHomeassistantProps,
+    params: UpdateEntityHomeassistant,
   ) => Block<
-    Partial<ServiceCallArgs<UpdateEntityHomeassistantProps>> | undefined,
+    Partial<ServiceCallArgs<UpdateEntityHomeassistant>> | undefined,
     void
   >;
 
@@ -85,7 +85,7 @@ declare global {
     void
   >;
 
-  interface SetLocationHomeassistantProps {
+  interface SetLocationHomeassistant {
     /**
      * Latitude of your location.
      */
@@ -104,9 +104,9 @@ declare global {
    * Updates the Home Assistant location.
    */
   var setLocationHomeassistant: (
-    params: SetLocationHomeassistantProps,
+    params: SetLocationHomeassistant,
   ) => Block<
-    Partial<ServiceCallArgs<SetLocationHomeassistantProps>> | undefined,
+    Partial<ServiceCallArgs<SetLocationHomeassistant>> | undefined,
     void
   >;
 
@@ -118,7 +118,7 @@ declare global {
     void
   >;
 
-  interface ReloadConfigEntryHomeassistantProps {
+  interface ReloadConfigEntryHomeassistant {
     /**
      * The configuration entry ID of the entry to be reloaded.
      */
@@ -130,9 +130,9 @@ declare global {
    */
   var reloadConfigEntryHomeassistant: (
     target: IEntity | IArea,
-    params?: ReloadConfigEntryHomeassistantProps,
+    params?: ReloadConfigEntryHomeassistant,
   ) => Block<
-    Partial<ServiceCallArgs<ReloadConfigEntryHomeassistantProps>> | undefined,
+    Partial<ServiceCallArgs<ReloadConfigEntryHomeassistant>> | undefined,
     void
   >;
 

@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface RunActionSchedulerProps {
+  interface RunActionScheduler {
     /**
      * Identifier of the scheduler entity.
      */
@@ -24,13 +24,10 @@ declare global {
    * Execute the action of a schedule, optionally at a given time.
    */
   var runActionScheduler: (
-    params: RunActionSchedulerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<RunActionSchedulerProps>> | undefined,
-    void
-  >;
+    params: RunActionScheduler,
+  ) => Block<Partial<ServiceCallArgs<RunActionScheduler>> | undefined, void>;
 
-  interface AddSchedulerProps {
+  interface AddScheduler {
     /**
      * Days of the week for which the schedule should be repeated
      */
@@ -61,10 +58,10 @@ declare global {
    * Create a new schedule entity
    */
   var addScheduler: (
-    params: AddSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<AddSchedulerProps>> | undefined, void>;
+    params: AddScheduler,
+  ) => Block<Partial<ServiceCallArgs<AddScheduler>> | undefined, void>;
 
-  interface EditSchedulerProps {
+  interface EditScheduler {
     /**
      * Identifier of the scheduler entity.
      */
@@ -99,10 +96,10 @@ declare global {
    * Edit a schedule entity
    */
   var editScheduler: (
-    params: EditSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<EditSchedulerProps>> | undefined, void>;
+    params: EditScheduler,
+  ) => Block<Partial<ServiceCallArgs<EditScheduler>> | undefined, void>;
 
-  interface RemoveSchedulerProps {
+  interface RemoveScheduler {
     /**
      * Identifier of the scheduler entity.
      */
@@ -113,10 +110,10 @@ declare global {
    * Remove a schedule entity
    */
   var removeScheduler: (
-    params: RemoveSchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<RemoveSchedulerProps>> | undefined, void>;
+    params: RemoveScheduler,
+  ) => Block<Partial<ServiceCallArgs<RemoveScheduler>> | undefined, void>;
 
-  interface CopySchedulerProps {
+  interface CopyScheduler {
     /**
      * Identifier of the scheduler entity.
      */
@@ -131,8 +128,8 @@ declare global {
    * Duplicate a schedule entity
    */
   var copyScheduler: (
-    params: CopySchedulerProps,
-  ) => Block<Partial<ServiceCallArgs<CopySchedulerProps>> | undefined, void>;
+    params: CopyScheduler,
+  ) => Block<Partial<ServiceCallArgs<CopyScheduler>> | undefined, void>;
 
   /**
    * Disables all schedules

@@ -13,7 +13,7 @@ declare global {
     void
   >;
 
-  interface SetGroupProps {
+  interface SetGroup {
     /**
      * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id].
      */
@@ -48,10 +48,10 @@ declare global {
    * Creates/Updates a group.
    */
   var setGroup: (
-    params: SetGroupProps,
-  ) => Block<Partial<ServiceCallArgs<SetGroupProps>> | undefined, void>;
+    params: SetGroup,
+  ) => Block<Partial<ServiceCallArgs<SetGroup>> | undefined, void>;
 
-  interface RemoveGroupProps {
+  interface RemoveGroup {
     /**
      * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id].
      */
@@ -62,8 +62,8 @@ declare global {
    * Removes a group.
    */
   var removeGroup: (
-    params: RemoveGroupProps,
-  ) => Block<Partial<ServiceCallArgs<RemoveGroupProps>> | undefined, void>;
+    params: RemoveGroup,
+  ) => Block<Partial<ServiceCallArgs<RemoveGroup>> | undefined, void>;
 }
 
 globalThis.reloadGroup = () =>

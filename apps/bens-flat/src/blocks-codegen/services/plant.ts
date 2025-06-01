@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ReplaceSensorPlantProps {
+  interface ReplaceSensorPlant {
     /**
      * The meter entity to replace the sensor for.
      */
@@ -20,11 +20,8 @@ declare global {
    * Replaces the source for a plant sensor.
    */
   var replaceSensorPlant: (
-    params: ReplaceSensorPlantProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ReplaceSensorPlantProps>> | undefined,
-    void
-  >;
+    params: ReplaceSensorPlant,
+  ) => Block<Partial<ServiceCallArgs<ReplaceSensorPlant>> | undefined, void>;
 }
 
 globalThis.replaceSensorPlant = (params) =>

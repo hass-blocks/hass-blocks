@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SetValueNumberProps {
+  interface SetValueNumber {
     /**
      * The target value to set.
      */
@@ -19,8 +19,8 @@ declare global {
    */
   var setValueNumber: (
     target: IEntity<`number.${string}`> | IArea,
-    params: SetValueNumberProps,
-  ) => Block<Partial<ServiceCallArgs<SetValueNumberProps>> | undefined, void>;
+    params: SetValueNumber,
+  ) => Block<Partial<ServiceCallArgs<SetValueNumber>> | undefined, void>;
 }
 
 globalThis.setValueNumber = (target, params) =>

@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface GetForecastsWeatherProps {
+  interface GetForecastsWeather {
     /**
      * The scope of the weather forecast.
      */
@@ -19,11 +19,8 @@ declare global {
    */
   var getForecastsWeather: (
     target: IEntity<`weather.${string}`> | IArea,
-    params: GetForecastsWeatherProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetForecastsWeatherProps>> | undefined,
-    void
-  >;
+    params: GetForecastsWeather,
+  ) => Block<Partial<ServiceCallArgs<GetForecastsWeather>> | undefined, void>;
 }
 
 globalThis.getForecastsWeather = (target, params) =>

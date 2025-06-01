@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SendMagicPacketWakeOnLanProps {
+  interface SendMagicPacketWakeOnLan {
     /**
      * MAC address of the device to wake up.
      */
@@ -24,9 +24,9 @@ declare global {
    * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.
    */
   var sendMagicPacketWakeOnLan: (
-    params: SendMagicPacketWakeOnLanProps,
+    params: SendMagicPacketWakeOnLan,
   ) => Block<
-    Partial<ServiceCallArgs<SendMagicPacketWakeOnLanProps>> | undefined,
+    Partial<ServiceCallArgs<SendMagicPacketWakeOnLan>> | undefined,
     void
   >;
 }

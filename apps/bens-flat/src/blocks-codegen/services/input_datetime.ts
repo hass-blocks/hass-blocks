@@ -15,7 +15,7 @@ declare global {
     void
   >;
 
-  interface SetDatetimeInputDatetimeProps {
+  interface SetDatetimeInputDatetime {
     /**
      * The target date.
      */
@@ -39,9 +39,9 @@ declare global {
    */
   var setDatetimeInputDatetime: (
     target: IEntity<`input_datetime.${string}`> | IArea,
-    params?: SetDatetimeInputDatetimeProps,
+    params?: SetDatetimeInputDatetime,
   ) => Block<
-    Partial<ServiceCallArgs<SetDatetimeInputDatetimeProps>> | undefined,
+    Partial<ServiceCallArgs<SetDatetimeInputDatetime>> | undefined,
     void
   >;
 }

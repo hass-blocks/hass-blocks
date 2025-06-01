@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface AddUrlAdguardProps {
+  interface AddUrlAdguard {
     /**
      * The name of the filter subscription.
      */
@@ -20,10 +20,10 @@ declare global {
    * Adds a new filter subscription to AdGuard Home.
    */
   var addUrlAdguard: (
-    params: AddUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<AddUrlAdguardProps>> | undefined, void>;
+    params: AddUrlAdguard,
+  ) => Block<Partial<ServiceCallArgs<AddUrlAdguard>> | undefined, void>;
 
-  interface RemoveUrlAdguardProps {
+  interface RemoveUrlAdguard {
     /**
      * The filter subscription URL to remove.
      */
@@ -34,10 +34,10 @@ declare global {
    * Removes a filter subscription from AdGuard Home.
    */
   var removeUrlAdguard: (
-    params: RemoveUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<RemoveUrlAdguardProps>> | undefined, void>;
+    params: RemoveUrlAdguard,
+  ) => Block<Partial<ServiceCallArgs<RemoveUrlAdguard>> | undefined, void>;
 
-  interface EnableUrlAdguardProps {
+  interface EnableUrlAdguard {
     /**
      * The filter subscription URL to enable.
      */
@@ -48,10 +48,10 @@ declare global {
    * Enables a filter subscription in AdGuard Home.
    */
   var enableUrlAdguard: (
-    params: EnableUrlAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<EnableUrlAdguardProps>> | undefined, void>;
+    params: EnableUrlAdguard,
+  ) => Block<Partial<ServiceCallArgs<EnableUrlAdguard>> | undefined, void>;
 
-  interface DisableUrlAdguardProps {
+  interface DisableUrlAdguard {
     /**
      * The filter subscription URL to disable.
      */
@@ -62,13 +62,10 @@ declare global {
    * Disables a filter subscription in AdGuard Home.
    */
   var disableUrlAdguard: (
-    params: DisableUrlAdguardProps,
-  ) => Block<
-    Partial<ServiceCallArgs<DisableUrlAdguardProps>> | undefined,
-    void
-  >;
+    params: DisableUrlAdguard,
+  ) => Block<Partial<ServiceCallArgs<DisableUrlAdguard>> | undefined, void>;
 
-  interface RefreshAdguardProps {
+  interface RefreshAdguard {
     /**
      * Force update (bypasses AdGuard Home throttling), omit for a regular refresh.
      */
@@ -79,8 +76,8 @@ declare global {
    * Refreshes all filter subscriptions in AdGuard Home.
    */
   var refreshAdguard: (
-    params?: RefreshAdguardProps,
-  ) => Block<Partial<ServiceCallArgs<RefreshAdguardProps>> | undefined, void>;
+    params?: RefreshAdguard,
+  ) => Block<Partial<ServiceCallArgs<RefreshAdguard>> | undefined, void>;
 }
 
 globalThis.addUrlAdguard = (params) =>

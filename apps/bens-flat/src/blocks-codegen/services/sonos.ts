@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SnapshotSonosProps {
+  interface SnapshotSonos {
     /**
      * Name of entity that will be snapshot.
      */
@@ -22,10 +22,10 @@ declare global {
    * Takes a snapshot of a media player.
    */
   var snapshotSonos: (
-    params?: SnapshotSonosProps,
-  ) => Block<Partial<ServiceCallArgs<SnapshotSonosProps>> | undefined, void>;
+    params?: SnapshotSonos,
+  ) => Block<Partial<ServiceCallArgs<SnapshotSonos>> | undefined, void>;
 
-  interface RestoreSonosProps {
+  interface RestoreSonos {
     /**
      * Name of entity that will be restored.
      */
@@ -40,10 +40,10 @@ declare global {
    * Restores a snapshot of a media player.
    */
   var restoreSonos: (
-    params?: RestoreSonosProps,
-  ) => Block<Partial<ServiceCallArgs<RestoreSonosProps>> | undefined, void>;
+    params?: RestoreSonos,
+  ) => Block<Partial<ServiceCallArgs<RestoreSonos>> | undefined, void>;
 
-  interface SetSleepTimerSonosProps {
+  interface SetSleepTimerSonos {
     /**
      * Number of seconds to set the timer.
      */
@@ -55,11 +55,8 @@ declare global {
    */
   var setSleepTimerSonos: (
     target: IEntity | IArea,
-    params?: SetSleepTimerSonosProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetSleepTimerSonosProps>> | undefined,
-    void
-  >;
+    params?: SetSleepTimerSonos,
+  ) => Block<Partial<ServiceCallArgs<SetSleepTimerSonos>> | undefined, void>;
 
   /**
    * Clears a Sonos timer.
@@ -68,7 +65,7 @@ declare global {
     target: IEntity | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface UpdateAlarmSonosProps {
+  interface UpdateAlarmSonos {
     /**
      * The ID of the alarm to be updated.
      */
@@ -96,10 +93,10 @@ declare global {
    */
   var updateAlarmSonos: (
     target: IEntity | IArea,
-    params: UpdateAlarmSonosProps,
-  ) => Block<Partial<ServiceCallArgs<UpdateAlarmSonosProps>> | undefined, void>;
+    params: UpdateAlarmSonos,
+  ) => Block<Partial<ServiceCallArgs<UpdateAlarmSonos>> | undefined, void>;
 
-  interface PlayQueueSonosProps {
+  interface PlayQueueSonos {
     /**
      * Position of the song in the queue to start playing from.
      */
@@ -111,10 +108,10 @@ declare global {
    */
   var playQueueSonos: (
     target: IEntity | IArea,
-    params?: PlayQueueSonosProps,
-  ) => Block<Partial<ServiceCallArgs<PlayQueueSonosProps>> | undefined, void>;
+    params?: PlayQueueSonos,
+  ) => Block<Partial<ServiceCallArgs<PlayQueueSonos>> | undefined, void>;
 
-  interface RemoveFromQueueSonosProps {
+  interface RemoveFromQueueSonos {
     /**
      * Position in the queue to remove.
      */
@@ -126,11 +123,8 @@ declare global {
    */
   var removeFromQueueSonos: (
     target: IEntity | IArea,
-    params?: RemoveFromQueueSonosProps,
-  ) => Block<
-    Partial<ServiceCallArgs<RemoveFromQueueSonosProps>> | undefined,
-    void
-  >;
+    params?: RemoveFromQueueSonos,
+  ) => Block<Partial<ServiceCallArgs<RemoveFromQueueSonos>> | undefined, void>;
 
   /**
    * Returns the contents of the queue.

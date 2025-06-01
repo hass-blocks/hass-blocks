@@ -15,20 +15,20 @@ import { restoreAfterTvMode, recordStateOfLivingRoom } from '@actions';
 
 export const tvModeOn = automation({
   name: 'TV Mode Switches On',
-  when: stateTurnsOn(tvModeSwitch),
+  when: stateTurnsOn(tvMode),
   then: [
     recordStateOfLivingRoom,
     concurrently(
       turnOnScene(tvLightsScene),
-      turnOffSwitch(adaptiveLightingLivingRoomSwitch),
-      closeCoverCover(livingRoomBlindsCover),
+      turnOffSwitch(adaptiveLightingLivingRoom),
+      closeCover(livingRoomBlindsCover),
     ),
   ],
 });
 
 export const tvModeOff = automation({
   name: 'TV Mode Switches Off',
-  when: stateTurnsOff(tvModeSwitch),
+  when: stateTurnsOff(tvMode),
   then: concurrently(
     sequence(
       entityExists(restoreAfterTvMode),
@@ -36,9 +36,9 @@ export const tvModeOff = automation({
       deleteScene(restoreAfterTvMode),
     ),
     waitMinutes(5),
-    stateIs(tvModeSwitch, 'off'),
-    stateIs(livingRoomBlindsDefaultToOpenSwitch, 'on'),
-    openCoverCover(livingRoomBlindsCover),
+    stateIs(tvMode, 'off'),
+    stateIs(livingRoomBlindsDefaultToOpen, 'on'),
+    openCover(livingRoomBlindsCover),
   ),
 });
 
@@ -55,7 +55,7 @@ export const turnTvModeOnFromPs5 = automation({
     stateChanges(bensAppleTvMediaPlayer),
   ],
   then: when(tvModeShouldBeOff, {
-    then: turnOffSwitch(tvModeSwitch),
-    else: turnOnSwitch(tvModeSwitch),
+    then: turnOffSwitch(tvMode),
+    else: turnOnSwitch(tvMode),
   }),
 });

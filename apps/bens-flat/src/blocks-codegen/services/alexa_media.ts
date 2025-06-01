@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ForceLogoutAlexaMediaProps {
+  interface ForceLogoutAlexaMedia {
     /**
      * Accounts to clear. Empty will clear all.
      */
@@ -16,13 +16,10 @@ declare global {
    * Force account to logout. Used mainly for debugging.
    */
   var forceLogoutAlexaMedia: (
-    params?: ForceLogoutAlexaMediaProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ForceLogoutAlexaMediaProps>> | undefined,
-    void
-  >;
+    params?: ForceLogoutAlexaMedia,
+  ) => Block<Partial<ServiceCallArgs<ForceLogoutAlexaMedia>> | undefined, void>;
 
-  interface UpdateLastCalledAlexaMediaProps {
+  interface UpdateLastCalledAlexaMedia {
     /**
      * List of Alexa accounts to update. If empty, will update all known accounts.
      */
@@ -33,13 +30,13 @@ declare global {
    * Forces update of last_called echo device for each Alexa account.
    */
   var updateLastCalledAlexaMedia: (
-    params?: UpdateLastCalledAlexaMediaProps,
+    params?: UpdateLastCalledAlexaMedia,
   ) => Block<
-    Partial<ServiceCallArgs<UpdateLastCalledAlexaMediaProps>> | undefined,
+    Partial<ServiceCallArgs<UpdateLastCalledAlexaMedia>> | undefined,
     void
   >;
 
-  interface RestoreVolumeAlexaMediaProps {
+  interface RestoreVolumeAlexaMedia {
     /**
      * Entity to restore the previous volume level on
      */
@@ -50,13 +47,13 @@ declare global {
    * Restore previous volume level on Alexa media player device
    */
   var restoreVolumeAlexaMedia: (
-    params: RestoreVolumeAlexaMediaProps,
+    params: RestoreVolumeAlexaMedia,
   ) => Block<
-    Partial<ServiceCallArgs<RestoreVolumeAlexaMediaProps>> | undefined,
+    Partial<ServiceCallArgs<RestoreVolumeAlexaMedia>> | undefined,
     void
   >;
 
-  interface GetHistoryRecordsAlexaMediaProps {
+  interface GetHistoryRecordsAlexaMedia {
     /**
      * Entity to get the history for
      */
@@ -71,9 +68,9 @@ declare global {
    * Parses the history records for the specified device
    */
   var getHistoryRecordsAlexaMedia: (
-    params: GetHistoryRecordsAlexaMediaProps,
+    params: GetHistoryRecordsAlexaMedia,
   ) => Block<
-    Partial<ServiceCallArgs<GetHistoryRecordsAlexaMediaProps>> | undefined,
+    Partial<ServiceCallArgs<GetHistoryRecordsAlexaMedia>> | undefined,
     void
   >;
 }

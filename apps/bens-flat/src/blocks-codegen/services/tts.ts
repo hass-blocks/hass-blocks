@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SpeakTtsProps {
+  interface SpeakTts {
     /**
      * Media players to play the message.
      */
@@ -35,8 +35,8 @@ declare global {
    */
   var speakTts: (
     target: IEntity<`tts.${string}`> | IArea,
-    params: SpeakTtsProps,
-  ) => Block<Partial<ServiceCallArgs<SpeakTtsProps>> | undefined, void>;
+    params: SpeakTts,
+  ) => Block<Partial<ServiceCallArgs<SpeakTts>> | undefined, void>;
 
   /**
    * Removes all cached text-to-speech files and purges the memory.
@@ -46,7 +46,7 @@ declare global {
     void
   >;
 
-  interface GoogleTranslateSayTtsProps {
+  interface GoogleTranslateSayTts {
     entity_id: string;
     message: string;
     cache?: boolean;
@@ -58,13 +58,10 @@ declare global {
    * Say something using text-to-speech on a media player with google_translate.
    */
   var googleTranslateSayTts: (
-    params: GoogleTranslateSayTtsProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GoogleTranslateSayTtsProps>> | undefined,
-    void
-  >;
+    params: GoogleTranslateSayTts,
+  ) => Block<Partial<ServiceCallArgs<GoogleTranslateSayTts>> | undefined, void>;
 
-  interface CloudSayTtsProps {
+  interface CloudSayTts {
     entity_id: string;
     message: string;
     cache?: boolean;
@@ -76,8 +73,8 @@ declare global {
    * Say something using text-to-speech on a media player with cloud.
    */
   var cloudSayTts: (
-    params: CloudSayTtsProps,
-  ) => Block<Partial<ServiceCallArgs<CloudSayTtsProps>> | undefined, void>;
+    params: CloudSayTts,
+  ) => Block<Partial<ServiceCallArgs<CloudSayTts>> | undefined, void>;
 }
 
 globalThis.speakTts = (target, params) =>

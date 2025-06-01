@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SeeDeviceTrackerProps {
+  interface SeeDeviceTracker {
     /**
      * MAC address of the device.
      */
@@ -40,8 +40,8 @@ declare global {
    * Manually update the records of a seen legacy device tracker in the known_devices.yaml file.
    */
   var seeDeviceTracker: (
-    params?: SeeDeviceTrackerProps,
-  ) => Block<Partial<ServiceCallArgs<SeeDeviceTrackerProps>> | undefined, void>;
+    params?: SeeDeviceTracker,
+  ) => Block<Partial<ServiceCallArgs<SeeDeviceTracker>> | undefined, void>;
 }
 
 globalThis.seeDeviceTracker = (params) =>

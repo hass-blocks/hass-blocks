@@ -35,7 +35,7 @@ declare global {
     target: IEntity<`camera.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SnapshotCameraProps {
+  interface SnapshotCamera {
     /**
      * Full path to filename.
      */
@@ -47,10 +47,10 @@ declare global {
    */
   var snapshotCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params: SnapshotCameraProps,
-  ) => Block<Partial<ServiceCallArgs<SnapshotCameraProps>> | undefined, void>;
+    params: SnapshotCamera,
+  ) => Block<Partial<ServiceCallArgs<SnapshotCamera>> | undefined, void>;
 
-  interface PlayStreamCameraProps {
+  interface PlayStreamCamera {
     /**
      * Media players to stream to.
      */
@@ -66,10 +66,10 @@ declare global {
    */
   var playStreamCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params: PlayStreamCameraProps,
-  ) => Block<Partial<ServiceCallArgs<PlayStreamCameraProps>> | undefined, void>;
+    params: PlayStreamCamera,
+  ) => Block<Partial<ServiceCallArgs<PlayStreamCamera>> | undefined, void>;
 
-  interface RecordCameraProps {
+  interface RecordCamera {
     /**
      * Full path to filename. Must be mp4.
      */
@@ -89,8 +89,8 @@ declare global {
    */
   var recordCamera: (
     target: IEntity<`camera.${string}`> | IArea,
-    params: RecordCameraProps,
-  ) => Block<Partial<ServiceCallArgs<RecordCameraProps>> | undefined, void>;
+    params: RecordCamera,
+  ) => Block<Partial<ServiceCallArgs<RecordCamera>> | undefined, void>;
 }
 
 globalThis.enableMotionDetectionCamera = (target) =>

@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SnapshotImageProps {
+  interface SnapshotImage {
     /**
      * Template of a filename. Variable available is `entity_id`.
      */
@@ -19,8 +19,8 @@ declare global {
    */
   var snapshotImage: (
     target: IEntity<`image.${string}`> | IArea,
-    params: SnapshotImageProps,
-  ) => Block<Partial<ServiceCallArgs<SnapshotImageProps>> | undefined, void>;
+    params: SnapshotImage,
+  ) => Block<Partial<ServiceCallArgs<SnapshotImage>> | undefined, void>;
 }
 
 globalThis.snapshotImage = (target, params) =>

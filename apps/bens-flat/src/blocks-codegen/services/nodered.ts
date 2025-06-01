@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface TriggerNoderedProps {
+  interface TriggerNodered {
     /**
      * Comma separated list of paths to send the message to. Zero is used to send the message to all paths.
      */
@@ -23,8 +23,8 @@ declare global {
    */
   var triggerNodered: (
     target: IEntity<`switch.${string}`> | IArea,
-    params?: TriggerNoderedProps,
-  ) => Block<Partial<ServiceCallArgs<TriggerNoderedProps>> | undefined, void>;
+    params?: TriggerNodered,
+  ) => Block<Partial<ServiceCallArgs<TriggerNodered>> | undefined, void>;
 }
 
 globalThis.triggerNodered = (target, params) =>

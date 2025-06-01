@@ -28,7 +28,7 @@ declare global {
     target: IEntity<`climate.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetHvacModeClimateProps {
+  interface SetHvacModeClimate {
     /**
      * HVAC operation mode.
      */
@@ -40,13 +40,10 @@ declare global {
    */
   var setHvacModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetHvacModeClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetHvacModeClimateProps>> | undefined,
-    void
-  >;
+    params?: SetHvacModeClimate,
+  ) => Block<Partial<ServiceCallArgs<SetHvacModeClimate>> | undefined, void>;
 
-  interface SetPresetModeClimateProps {
+  interface SetPresetModeClimate {
     /**
      * Preset mode.
      */
@@ -58,13 +55,10 @@ declare global {
    */
   var setPresetModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetPresetModeClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetPresetModeClimateProps>> | undefined,
-    void
-  >;
+    params: SetPresetModeClimate,
+  ) => Block<Partial<ServiceCallArgs<SetPresetModeClimate>> | undefined, void>;
 
-  interface SetAuxHeatClimateProps {
+  interface SetAuxHeatClimate {
     /**
      * New value of auxiliary heater.
      */
@@ -76,13 +70,10 @@ declare global {
    */
   var setAuxHeatClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetAuxHeatClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetAuxHeatClimateProps>> | undefined,
-    void
-  >;
+    params: SetAuxHeatClimate,
+  ) => Block<Partial<ServiceCallArgs<SetAuxHeatClimate>> | undefined, void>;
 
-  interface SetTemperatureClimateProps {
+  interface SetTemperatureClimate {
     /**
      * The temperature setpoint.
      */
@@ -106,13 +97,10 @@ declare global {
    */
   var setTemperatureClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params?: SetTemperatureClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetTemperatureClimateProps>> | undefined,
-    void
-  >;
+    params?: SetTemperatureClimate,
+  ) => Block<Partial<ServiceCallArgs<SetTemperatureClimate>> | undefined, void>;
 
-  interface SetHumidityClimateProps {
+  interface SetHumidityClimate {
     /**
      * Target humidity.
      */
@@ -124,13 +112,10 @@ declare global {
    */
   var setHumidityClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetHumidityClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetHumidityClimateProps>> | undefined,
-    void
-  >;
+    params: SetHumidityClimate,
+  ) => Block<Partial<ServiceCallArgs<SetHumidityClimate>> | undefined, void>;
 
-  interface SetFanModeClimateProps {
+  interface SetFanModeClimate {
     /**
      * Fan operation mode.
      */
@@ -142,13 +127,10 @@ declare global {
    */
   var setFanModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetFanModeClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetFanModeClimateProps>> | undefined,
-    void
-  >;
+    params: SetFanModeClimate,
+  ) => Block<Partial<ServiceCallArgs<SetFanModeClimate>> | undefined, void>;
 
-  interface SetSwingModeClimateProps {
+  interface SetSwingModeClimate {
     /**
      * Swing operation mode.
      */
@@ -160,13 +142,10 @@ declare global {
    */
   var setSwingModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetSwingModeClimateProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetSwingModeClimateProps>> | undefined,
-    void
-  >;
+    params: SetSwingModeClimate,
+  ) => Block<Partial<ServiceCallArgs<SetSwingModeClimate>> | undefined, void>;
 
-  interface SetSwingHorizontalModeClimateProps {
+  interface SetSwingHorizontalModeClimate {
     /**
      * Horizontal swing operation mode.
      */
@@ -178,9 +157,9 @@ declare global {
    */
   var setSwingHorizontalModeClimate: (
     target: IEntity<`climate.${string}`> | IArea,
-    params: SetSwingHorizontalModeClimateProps,
+    params: SetSwingHorizontalModeClimate,
   ) => Block<
-    Partial<ServiceCallArgs<SetSwingHorizontalModeClimateProps>> | undefined,
+    Partial<ServiceCallArgs<SetSwingHorizontalModeClimate>> | undefined,
     void
   >;
 }

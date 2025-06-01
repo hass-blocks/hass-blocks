@@ -28,7 +28,7 @@ declare global {
     target: IEntity<`humidifier.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetModeHumidifierProps {
+  interface SetModeHumidifier {
     /**
      * Operation mode. For example, "normal", "eco", or "away". For a list of possible values, refer to the integration documentation.
      */
@@ -40,13 +40,10 @@ declare global {
    */
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params: SetModeHumidifierProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetModeHumidifierProps>> | undefined,
-    void
-  >;
+    params: SetModeHumidifier,
+  ) => Block<Partial<ServiceCallArgs<SetModeHumidifier>> | undefined, void>;
 
-  interface SetHumidityHumidifierProps {
+  interface SetHumidityHumidifier {
     /**
      * Target humidity.
      */
@@ -58,11 +55,8 @@ declare global {
    */
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea,
-    params: SetHumidityHumidifierProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetHumidityHumidifierProps>> | undefined,
-    void
-  >;
+    params: SetHumidityHumidifier,
+  ) => Block<Partial<ServiceCallArgs<SetHumidityHumidifier>> | undefined, void>;
 }
 
 globalThis.turnOnHumidifier = (target) =>

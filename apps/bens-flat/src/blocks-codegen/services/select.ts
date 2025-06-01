@@ -10,18 +10,18 @@ declare global {
   /**
    * Selects the first option.
    */
-  var selectFirstSelect: (
+  var selectFirst: (
     target: IEntity<`select.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Selects the last option.
    */
-  var selectLastSelect: (
+  var selectLast: (
     target: IEntity<`select.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SelectNextSelectProps {
+  interface SelectNext {
     /**
      * If the option should cycle from the last to the first.
      */
@@ -31,12 +31,12 @@ declare global {
   /**
    * Selects the next option.
    */
-  var selectNextSelect: (
+  var selectNext: (
     target: IEntity<`select.${string}`> | IArea,
-    params?: SelectNextSelectProps,
-  ) => Block<Partial<ServiceCallArgs<SelectNextSelectProps>> | undefined, void>;
+    params?: SelectNext,
+  ) => Block<Partial<ServiceCallArgs<SelectNext>> | undefined, void>;
 
-  interface SelectOptionSelectProps {
+  interface SelectOption {
     /**
      * Option to be selected.
      */
@@ -46,15 +46,12 @@ declare global {
   /**
    * Selects an option.
    */
-  var selectOptionSelect: (
+  var selectOption: (
     target: IEntity<`select.${string}`> | IArea,
-    params: SelectOptionSelectProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectOptionSelectProps>> | undefined,
-    void
-  >;
+    params: SelectOption,
+  ) => Block<Partial<ServiceCallArgs<SelectOption>> | undefined, void>;
 
-  interface SelectPreviousSelectProps {
+  interface SelectPrevious {
     /**
      * If the option should cycle from the first to the last.
      */
@@ -64,16 +61,13 @@ declare global {
   /**
    * Selects the previous option.
    */
-  var selectPreviousSelect: (
+  var selectPrevious: (
     target: IEntity<`select.${string}`> | IArea,
-    params?: SelectPreviousSelectProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectPreviousSelectProps>> | undefined,
-    void
-  >;
+    params?: SelectPrevious,
+  ) => Block<Partial<ServiceCallArgs<SelectPrevious>> | undefined, void>;
 }
 
-globalThis.selectFirstSelect = (target) =>
+globalThis.selectFirst = (target) =>
   serviceCall({
     name: `Call select.select_first`,
     params: {
@@ -83,7 +77,7 @@ globalThis.selectFirstSelect = (target) =>
     target,
   });
 
-globalThis.selectLastSelect = (target) =>
+globalThis.selectLast = (target) =>
   serviceCall({
     name: `Call select.select_last`,
     params: {
@@ -93,7 +87,7 @@ globalThis.selectLastSelect = (target) =>
     target,
   });
 
-globalThis.selectNextSelect = (target, params) =>
+globalThis.selectNext = (target, params) =>
   serviceCall({
     name: `Call select.select_next`,
     params: {
@@ -104,7 +98,7 @@ globalThis.selectNextSelect = (target, params) =>
     target,
   });
 
-globalThis.selectOptionSelect = (target, params) =>
+globalThis.selectOption = (target, params) =>
   serviceCall({
     name: `Call select.select_option`,
     params: {
@@ -115,7 +109,7 @@ globalThis.selectOptionSelect = (target, params) =>
     target,
   });
 
-globalThis.selectPreviousSelect = (target, params) =>
+globalThis.selectPrevious = (target, params) =>
   serviceCall({
     name: `Call select.select_previous`,
     params: {

@@ -91,7 +91,7 @@ declare global {
     target: IEntity<`media_player.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface VolumeSetMediaPlayerProps {
+  interface VolumeSetMediaPlayer {
     /**
      * The volume. 0 is inaudible, 1 is the maximum volume.
      */
@@ -103,13 +103,10 @@ declare global {
    */
   var volumeSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: VolumeSetMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<VolumeSetMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: VolumeSetMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<VolumeSetMediaPlayer>> | undefined, void>;
 
-  interface VolumeMuteMediaPlayerProps {
+  interface VolumeMuteMediaPlayer {
     /**
      * Defines whether or not it is muted.
      */
@@ -121,13 +118,10 @@ declare global {
    */
   var volumeMuteMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: VolumeMuteMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<VolumeMuteMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: VolumeMuteMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<VolumeMuteMediaPlayer>> | undefined, void>;
 
-  interface MediaSeekMediaPlayerProps {
+  interface MediaSeekMediaPlayer {
     /**
      * Target position in the currently playing media. The format is platform dependent.
      */
@@ -139,13 +133,10 @@ declare global {
    */
   var mediaSeekMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: MediaSeekMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<MediaSeekMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: MediaSeekMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<MediaSeekMediaPlayer>> | undefined, void>;
 
-  interface JoinMediaPlayerProps {
+  interface JoinMediaPlayer {
     /**
      * The players which will be synced with the playback specified in 'Targets'.
      */
@@ -157,10 +148,10 @@ declare global {
    */
   var joinMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: JoinMediaPlayerProps,
-  ) => Block<Partial<ServiceCallArgs<JoinMediaPlayerProps>> | undefined, void>;
+    params: JoinMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<JoinMediaPlayer>> | undefined, void>;
 
-  interface SelectSourceMediaPlayerProps {
+  interface SelectSourceMediaPlayer {
     /**
      * Name of the source to switch to. Platform dependent.
      */
@@ -172,13 +163,13 @@ declare global {
    */
   var selectSourceMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: SelectSourceMediaPlayerProps,
+    params: SelectSourceMediaPlayer,
   ) => Block<
-    Partial<ServiceCallArgs<SelectSourceMediaPlayerProps>> | undefined,
+    Partial<ServiceCallArgs<SelectSourceMediaPlayer>> | undefined,
     void
   >;
 
-  interface SelectSoundModeMediaPlayerProps {
+  interface SelectSoundModeMediaPlayer {
     /**
      * Name of the sound mode to switch to.
      */
@@ -190,13 +181,13 @@ declare global {
    */
   var selectSoundModeMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params?: SelectSoundModeMediaPlayerProps,
+    params?: SelectSoundModeMediaPlayer,
   ) => Block<
-    Partial<ServiceCallArgs<SelectSoundModeMediaPlayerProps>> | undefined,
+    Partial<ServiceCallArgs<SelectSoundModeMediaPlayer>> | undefined,
     void
   >;
 
-  interface PlayMediaMediaPlayerProps {
+  interface PlayMediaMediaPlayer {
     /**
      * The ID of the content to play. Platform dependent.
      */
@@ -220,13 +211,10 @@ declare global {
    */
   var playMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: PlayMediaMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<PlayMediaMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: PlayMediaMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<PlayMediaMediaPlayer>> | undefined, void>;
 
-  interface BrowseMediaMediaPlayerProps {
+  interface BrowseMediaMediaPlayer {
     /**
      * The type of the content to browse, such as image, music, tv show, video, episode, channel, or playlist.
      */
@@ -242,13 +230,13 @@ declare global {
    */
   var browseMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params?: BrowseMediaMediaPlayerProps,
+    params?: BrowseMediaMediaPlayer,
   ) => Block<
-    Partial<ServiceCallArgs<BrowseMediaMediaPlayerProps>> | undefined,
+    Partial<ServiceCallArgs<BrowseMediaMediaPlayer>> | undefined,
     void
   >;
 
-  interface SearchMediaMediaPlayerProps {
+  interface SearchMediaMediaPlayer {
     /**
      * The term to search for.
      */
@@ -272,13 +260,13 @@ declare global {
    */
   var searchMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: SearchMediaMediaPlayerProps,
+    params: SearchMediaMediaPlayer,
   ) => Block<
-    Partial<ServiceCallArgs<SearchMediaMediaPlayerProps>> | undefined,
+    Partial<ServiceCallArgs<SearchMediaMediaPlayer>> | undefined,
     void
   >;
 
-  interface ShuffleSetMediaPlayerProps {
+  interface ShuffleSetMediaPlayer {
     /**
      * Whether the media should be played in randomized order or not.
      */
@@ -290,11 +278,8 @@ declare global {
    */
   var shuffleSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: ShuffleSetMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<ShuffleSetMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: ShuffleSetMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<ShuffleSetMediaPlayer>> | undefined, void>;
 
   /**
    * Removes the player from a group. Only works on platforms which support player groups.
@@ -303,7 +288,7 @@ declare global {
     target: IEntity<`media_player.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface RepeatSetMediaPlayerProps {
+  interface RepeatSetMediaPlayer {
     /**
      * Whether the media (one or all) should be played in a loop or not.
      */
@@ -315,11 +300,8 @@ declare global {
    */
   var repeatSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea,
-    params: RepeatSetMediaPlayerProps,
-  ) => Block<
-    Partial<ServiceCallArgs<RepeatSetMediaPlayerProps>> | undefined,
-    void
-  >;
+    params: RepeatSetMediaPlayer,
+  ) => Block<Partial<ServiceCallArgs<RepeatSetMediaPlayer>> | undefined, void>;
 }
 
 globalThis.turnOnMediaPlayer = (target) =>

@@ -15,7 +15,7 @@ declare global {
     void
   >;
 
-  interface SetValueInputTextProps {
+  interface SetValueInputText {
     /**
      * The target value.
      */
@@ -27,11 +27,8 @@ declare global {
    */
   var setValueInputText: (
     target: IEntity<`input_text.${string}`> | IArea,
-    params: SetValueInputTextProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetValueInputTextProps>> | undefined,
-    void
-  >;
+    params: SetValueInputText,
+  ) => Block<Partial<ServiceCallArgs<SetValueInputText>> | undefined, void>;
 }
 
 globalThis.reloadInputText = () =>

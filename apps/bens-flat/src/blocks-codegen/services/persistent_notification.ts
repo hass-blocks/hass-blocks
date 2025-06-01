@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface CreatePersistentNotificationProps {
+  interface CreatePersistentNotification {
     /**
      * Message body of the notification.
      */
@@ -24,13 +24,13 @@ declare global {
    * Shows a notification on the notifications panel.
    */
   var createPersistentNotification: (
-    params: CreatePersistentNotificationProps,
+    params: CreatePersistentNotification,
   ) => Block<
-    Partial<ServiceCallArgs<CreatePersistentNotificationProps>> | undefined,
+    Partial<ServiceCallArgs<CreatePersistentNotification>> | undefined,
     void
   >;
 
-  interface DismissPersistentNotificationProps {
+  interface DismissPersistentNotification {
     /**
      * ID of the notification to be deleted.
      */
@@ -41,9 +41,9 @@ declare global {
    * Deletes a notification from the notifications panel.
    */
   var dismissPersistentNotification: (
-    params: DismissPersistentNotificationProps,
+    params: DismissPersistentNotification,
   ) => Block<
-    Partial<ServiceCallArgs<DismissPersistentNotificationProps>> | undefined,
+    Partial<ServiceCallArgs<DismissPersistentNotification>> | undefined,
     void
   >;
 

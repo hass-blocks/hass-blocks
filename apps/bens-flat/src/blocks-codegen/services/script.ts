@@ -27,31 +27,31 @@ declare global {
     void
   >;
 
-  interface TodoListScriptProps {
+  interface TodoListScript {
     player: string;
   }
 
   var todoListScript: (
-    params: TodoListScriptProps,
-  ) => Block<Partial<ServiceCallArgs<TodoListScriptProps>> | undefined, void>;
+    params: TodoListScript,
+  ) => Block<Partial<ServiceCallArgs<TodoListScript>> | undefined, void>;
 
-  interface OpenAiTtsScriptProps {
+  interface OpenAiTtsScript {
     message: string;
     player: string;
   }
 
   var openAiTtsScript: (
-    params: OpenAiTtsScriptProps,
-  ) => Block<Partial<ServiceCallArgs<OpenAiTtsScriptProps>> | undefined, void>;
+    params: OpenAiTtsScript,
+  ) => Block<Partial<ServiceCallArgs<OpenAiTtsScript>> | undefined, void>;
 
-  interface ReadTodaySCalendarScriptProps {
+  interface ReadTodaySCalendarScript {
     player?: string;
   }
 
   var readTodaySCalendarScript: (
-    params?: ReadTodaySCalendarScriptProps,
+    params?: ReadTodaySCalendarScript,
   ) => Block<
-    Partial<ServiceCallArgs<ReadTodaySCalendarScriptProps>> | undefined,
+    Partial<ServiceCallArgs<ReadTodaySCalendarScript>> | undefined,
     void
   >;
 

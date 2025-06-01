@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SetValueTextProps {
+  interface SetValueText {
     /**
      * Enter your text.
      */
@@ -19,8 +19,8 @@ declare global {
    */
   var setValueText: (
     target: IEntity<`text.${string}`> | IArea,
-    params: SetValueTextProps,
-  ) => Block<Partial<ServiceCallArgs<SetValueTextProps>> | undefined, void>;
+    params: SetValueText,
+  ) => Block<Partial<ServiceCallArgs<SetValueText>> | undefined, void>;
 }
 
 globalThis.setValueText = (target, params) =>

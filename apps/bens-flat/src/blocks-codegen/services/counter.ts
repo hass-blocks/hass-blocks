@@ -28,7 +28,7 @@ declare global {
     target: IEntity<`counter.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetValueCounterProps {
+  interface SetValueCounter {
     /**
      * The new counter value the entity should be set to.
      */
@@ -40,8 +40,8 @@ declare global {
    */
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea,
-    params: SetValueCounterProps,
-  ) => Block<Partial<ServiceCallArgs<SetValueCounterProps>> | undefined, void>;
+    params: SetValueCounter,
+  ) => Block<Partial<ServiceCallArgs<SetValueCounter>> | undefined, void>;
 }
 
 globalThis.incrementCounter = (target) =>

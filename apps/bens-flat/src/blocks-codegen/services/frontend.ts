@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SetThemeFrontendProps {
+  interface SetThemeFrontend {
     /**
      * Name of a theme.
      */
@@ -20,8 +20,8 @@ declare global {
    * Sets the default theme Home Assistant uses. Can be overridden by a user.
    */
   var setThemeFrontend: (
-    params: SetThemeFrontendProps,
-  ) => Block<Partial<ServiceCallArgs<SetThemeFrontendProps>> | undefined, void>;
+    params: SetThemeFrontend,
+  ) => Block<Partial<ServiceCallArgs<SetThemeFrontend>> | undefined, void>;
 
   /**
    * Reloads themes from the YAML-configuration.

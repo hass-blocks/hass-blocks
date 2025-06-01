@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface PublishMqttProps {
+  interface PublishMqtt {
     /**
      * Topic to publish to.
      */
@@ -32,10 +32,10 @@ declare global {
    * Publishes a message to an MQTT topic.
    */
   var publishMqtt: (
-    params: PublishMqttProps,
-  ) => Block<Partial<ServiceCallArgs<PublishMqttProps>> | undefined, void>;
+    params: PublishMqtt,
+  ) => Block<Partial<ServiceCallArgs<PublishMqtt>> | undefined, void>;
 
-  interface DumpMqttProps {
+  interface DumpMqtt {
     /**
      * Topic to listen to.
      */
@@ -50,8 +50,8 @@ declare global {
    * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
    */
   var dumpMqtt: (
-    params?: DumpMqttProps,
-  ) => Block<Partial<ServiceCallArgs<DumpMqttProps>> | undefined, void>;
+    params?: DumpMqtt,
+  ) => Block<Partial<ServiceCallArgs<DumpMqtt>> | undefined, void>;
 
   /**
    * Reloads MQTT entities from the YAML-configuration.

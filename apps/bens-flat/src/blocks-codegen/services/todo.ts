@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface AddItemTodoProps {
+  interface AddItemTodo {
     /**
      * The name that represents the to-do item.
      */
@@ -31,10 +31,10 @@ declare global {
    */
   var addItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params: AddItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<AddItemTodoProps>> | undefined, void>;
+    params: AddItemTodo,
+  ) => Block<Partial<ServiceCallArgs<AddItemTodo>> | undefined, void>;
 
-  interface UpdateItemTodoProps {
+  interface UpdateItemTodo {
     /**
      * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead.
      */
@@ -66,10 +66,10 @@ declare global {
    */
   var updateItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params: UpdateItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<UpdateItemTodoProps>> | undefined, void>;
+    params: UpdateItemTodo,
+  ) => Block<Partial<ServiceCallArgs<UpdateItemTodo>> | undefined, void>;
 
-  interface RemoveItemTodoProps {
+  interface RemoveItemTodo {
     /**
      * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead.
      */
@@ -81,10 +81,10 @@ declare global {
    */
   var removeItemTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params: RemoveItemTodoProps,
-  ) => Block<Partial<ServiceCallArgs<RemoveItemTodoProps>> | undefined, void>;
+    params: RemoveItemTodo,
+  ) => Block<Partial<ServiceCallArgs<RemoveItemTodo>> | undefined, void>;
 
-  interface GetItemsTodoProps {
+  interface GetItemsTodo {
     /**
      * Only return to-do items with the specified statuses. Returns not completed actions by default.
      */
@@ -96,8 +96,8 @@ declare global {
    */
   var getItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea,
-    params?: GetItemsTodoProps,
-  ) => Block<Partial<ServiceCallArgs<GetItemsTodoProps>> | undefined, void>;
+    params?: GetItemsTodo,
+  ) => Block<Partial<ServiceCallArgs<GetItemsTodo>> | undefined, void>;
 
   /**
    * Removes all to-do list items that have been completed.

@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface DownloadFileDownloaderProps {
+  interface DownloadFileDownloader {
     /**
      * The URL of the file to download.
      */
@@ -28,9 +28,9 @@ declare global {
    * Downloads a file to the download location.
    */
   var downloadFileDownloader: (
-    params: DownloadFileDownloaderProps,
+    params: DownloadFileDownloader,
   ) => Block<
-    Partial<ServiceCallArgs<DownloadFileDownloaderProps>> | undefined,
+    Partial<ServiceCallArgs<DownloadFileDownloader>> | undefined,
     void
   >;
 }

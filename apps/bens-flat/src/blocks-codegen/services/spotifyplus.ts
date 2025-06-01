@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface AddPlayerQueueItemsSpotifyplusProps {
+  interface AddPlayerQueueItemsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -32,13 +32,13 @@ declare global {
    * Add one or more items to the end of the user's current Spotify Player playback queue.
    */
   var addPlayerQueueItemsSpotifyplus: (
-    params: AddPlayerQueueItemsSpotifyplusProps,
+    params: AddPlayerQueueItemsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<AddPlayerQueueItemsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<AddPlayerQueueItemsSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckAlbumFavoritesSpotifyplusProps {
+  interface CheckAlbumFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -53,13 +53,13 @@ declare global {
    * Check if one or more albums (or the currently playing album) exists in the current user's 'Your Library' favorites.
    */
   var checkAlbumFavoritesSpotifyplus: (
-    params: CheckAlbumFavoritesSpotifyplusProps,
+    params: CheckAlbumFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckAlbumFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckAlbumFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckArtistsFollowingSpotifyplusProps {
+  interface CheckArtistsFollowingSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -74,13 +74,13 @@ declare global {
    * Check if one or more artists (or the currently playing artists) is followed in the current user's 'Your Library' favorites.
    */
   var checkArtistsFollowingSpotifyplus: (
-    params: CheckArtistsFollowingSpotifyplusProps,
+    params: CheckArtistsFollowingSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckArtistsFollowingSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckArtistsFollowingSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckAudiobookFavoritesSpotifyplusProps {
+  interface CheckAudiobookFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -95,14 +95,13 @@ declare global {
    * Check if one or more audiobooks (or the currently playing audiobook) exists in the current user's 'Your Library' favorites.
    */
   var checkAudiobookFavoritesSpotifyplus: (
-    params: CheckAudiobookFavoritesSpotifyplusProps,
+    params: CheckAudiobookFavoritesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<CheckAudiobookFavoritesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<CheckAudiobookFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckEpisodeFavoritesSpotifyplusProps {
+  interface CheckEpisodeFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -117,13 +116,13 @@ declare global {
    * Check if one or more episodes (or the currently playing episode) exists in the current user's 'Your Library' favorites.
    */
   var checkEpisodeFavoritesSpotifyplus: (
-    params: CheckEpisodeFavoritesSpotifyplusProps,
+    params: CheckEpisodeFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckEpisodeFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckEpisodeFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckPlaylistFollowersSpotifyplusProps {
+  interface CheckPlaylistFollowersSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -142,14 +141,13 @@ declare global {
    * Check to see if the current user is following a specified playlist.
    */
   var checkPlaylistFollowersSpotifyplus: (
-    params: CheckPlaylistFollowersSpotifyplusProps,
+    params: CheckPlaylistFollowersSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<CheckPlaylistFollowersSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<CheckPlaylistFollowersSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckShowFavoritesSpotifyplusProps {
+  interface CheckShowFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -164,13 +162,13 @@ declare global {
    * Check if one or more shows (or the currently playing show) exists in the current user's 'Your Library' favorites.
    */
   var checkShowFavoritesSpotifyplus: (
-    params: CheckShowFavoritesSpotifyplusProps,
+    params: CheckShowFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckShowFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckShowFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckTrackFavoritesSpotifyplusProps {
+  interface CheckTrackFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -185,13 +183,13 @@ declare global {
    * Check if one or more tracks (or the currently playing track) exists in the current user's 'Your Library' favorites.
    */
   var checkTrackFavoritesSpotifyplus: (
-    params: CheckTrackFavoritesSpotifyplusProps,
+    params: CheckTrackFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckTrackFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckTrackFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface CheckUsersFollowingSpotifyplusProps {
+  interface CheckUsersFollowingSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -206,13 +204,13 @@ declare global {
    * Check to see if the current user is following one or more users.
    */
   var checkUsersFollowingSpotifyplus: (
-    params: CheckUsersFollowingSpotifyplusProps,
+    params: CheckUsersFollowingSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<CheckUsersFollowingSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<CheckUsersFollowingSpotifyplus>> | undefined,
     void
   >;
 
-  interface FollowArtistsSpotifyplusProps {
+  interface FollowArtistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -227,13 +225,13 @@ declare global {
    * Add the current user as a follower of one or more artists.
    */
   var followArtistsSpotifyplus: (
-    params: FollowArtistsSpotifyplusProps,
+    params: FollowArtistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<FollowArtistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<FollowArtistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface FollowPlaylistSpotifyplusProps {
+  interface FollowPlaylistSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -252,13 +250,13 @@ declare global {
    * Add the current user as a follower of a playlist.
    */
   var followPlaylistSpotifyplus: (
-    params: FollowPlaylistSpotifyplusProps,
+    params: FollowPlaylistSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<FollowPlaylistSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<FollowPlaylistSpotifyplus>> | undefined,
     void
   >;
 
-  interface FollowUsersSpotifyplusProps {
+  interface FollowUsersSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -273,13 +271,13 @@ declare global {
    * Add the current user as a follower of one or more users.
    */
   var followUsersSpotifyplus: (
-    params: FollowUsersSpotifyplusProps,
+    params: FollowUsersSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<FollowUsersSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<FollowUsersSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAlbumSpotifyplusProps {
+  interface GetAlbumSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -298,13 +296,10 @@ declare global {
    * Get Spotify catalog information for a single album.
    */
   var getAlbumSpotifyplus: (
-    params: GetAlbumSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetAlbumSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetAlbumSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetAlbumSpotifyplus>> | undefined, void>;
 
-  interface GetAlbumFavoritesSpotifyplusProps {
+  interface GetAlbumFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -335,13 +330,13 @@ declare global {
    * Get a list of the albums saved in the current Spotify user's 'Your Library'.
    */
   var getAlbumFavoritesSpotifyplus: (
-    params: GetAlbumFavoritesSpotifyplusProps,
+    params: GetAlbumFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAlbumFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAlbumFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAlbumNewReleasesSpotifyplusProps {
+  interface GetAlbumNewReleasesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -372,13 +367,13 @@ declare global {
    * Get a list of new album releases featured in Spotify.
    */
   var getAlbumNewReleasesSpotifyplus: (
-    params: GetAlbumNewReleasesSpotifyplusProps,
+    params: GetAlbumNewReleasesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAlbumNewReleasesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAlbumNewReleasesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAlbumTracksSpotifyplusProps {
+  interface GetAlbumTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -409,13 +404,13 @@ declare global {
    * Get Spotify catalog information about an album's tracks.
    */
   var getAlbumTracksSpotifyplus: (
-    params: GetAlbumTracksSpotifyplusProps,
+    params: GetAlbumTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAlbumTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAlbumTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetArtistSpotifyplusProps {
+  interface GetArtistSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -430,13 +425,10 @@ declare global {
    * Get Spotify catalog information for a single artist.
    */
   var getArtistSpotifyplus: (
-    params: GetArtistSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetArtistSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetArtistSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetArtistSpotifyplus>> | undefined, void>;
 
-  interface GetArtistAlbumsSpotifyplusProps {
+  interface GetArtistAlbumsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -475,13 +467,13 @@ declare global {
    * Get Spotify catalog information about an artist's albums.
    */
   var getArtistAlbumsSpotifyplus: (
-    params: GetArtistAlbumsSpotifyplusProps,
+    params: GetArtistAlbumsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetArtistAlbumsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetArtistAlbumsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetArtistInfoSpotifyplusProps {
+  interface GetArtistInfoSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -496,13 +488,13 @@ declare global {
    * Get artist about information from the Spotify Artist Biography page for the specified Spotify artist ID.
    */
   var getArtistInfoSpotifyplus: (
-    params: GetArtistInfoSpotifyplusProps,
+    params: GetArtistInfoSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetArtistInfoSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetArtistInfoSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetArtistRelatedArtistsSpotifyplusProps {
+  interface GetArtistRelatedArtistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -521,14 +513,13 @@ declare global {
    * Get Spotify catalog information about artists similar to a given artist. Similarity is based on analysis of the Spotify community's listening history.
    */
   var getArtistRelatedArtistsSpotifyplus: (
-    params: GetArtistRelatedArtistsSpotifyplusProps,
+    params: GetArtistRelatedArtistsSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetArtistRelatedArtistsSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetArtistRelatedArtistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetArtistTopTracksSpotifyplusProps {
+  interface GetArtistTopTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -551,13 +542,13 @@ declare global {
    * Get Spotify catalog information about an artist's top tracks by country.
    */
   var getArtistTopTracksSpotifyplus: (
-    params: GetArtistTopTracksSpotifyplusProps,
+    params: GetArtistTopTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetArtistTopTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetArtistTopTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetArtistsFollowedSpotifyplusProps {
+  interface GetArtistsFollowedSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -584,13 +575,13 @@ declare global {
    * Get the current user's followed artists.
    */
   var getArtistsFollowedSpotifyplus: (
-    params: GetArtistsFollowedSpotifyplusProps,
+    params: GetArtistsFollowedSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetArtistsFollowedSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetArtistsFollowedSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAudiobookSpotifyplusProps {
+  interface GetAudiobookSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -609,13 +600,13 @@ declare global {
    * Get Spotify catalog information for a single audiobook.
    */
   var getAudiobookSpotifyplus: (
-    params: GetAudiobookSpotifyplusProps,
+    params: GetAudiobookSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAudiobookSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAudiobookSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAudiobookChaptersSpotifyplusProps {
+  interface GetAudiobookChaptersSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -646,13 +637,13 @@ declare global {
    * Get Spotify catalog information about an audiobook's chapters.
    */
   var getAudiobookChaptersSpotifyplus: (
-    params: GetAudiobookChaptersSpotifyplusProps,
+    params: GetAudiobookChaptersSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAudiobookChaptersSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAudiobookChaptersSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetAudiobookFavoritesSpotifyplusProps {
+  interface GetAudiobookFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -679,13 +670,13 @@ declare global {
    * Get a list of the audiobooks saved in the current Spotify user's 'Your Library'.
    */
   var getAudiobookFavoritesSpotifyplus: (
-    params: GetAudiobookFavoritesSpotifyplusProps,
+    params: GetAudiobookFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetAudiobookFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetAudiobookFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetBrowseCategorysListSpotifyplusProps {
+  interface GetBrowseCategorysListSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -708,14 +699,13 @@ declare global {
    * Get a sorted list of ALL categories used to tag items in Spotify.
    */
   var getBrowseCategorysListSpotifyplus: (
-    params: GetBrowseCategorysListSpotifyplusProps,
+    params: GetBrowseCategorysListSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetBrowseCategorysListSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetBrowseCategorysListSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetCategoryPlaylistsSpotifyplusProps {
+  interface GetCategoryPlaylistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -750,13 +740,13 @@ declare global {
    * Get a list of Spotify playlists tagged with a particular category.
    */
   var getCategoryPlaylistsSpotifyplus: (
-    params: GetCategoryPlaylistsSpotifyplusProps,
+    params: GetCategoryPlaylistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetCategoryPlaylistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetCategoryPlaylistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetChapterSpotifyplusProps {
+  interface GetChapterSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -775,13 +765,10 @@ declare global {
    * Get Spotify catalog information for a single chapter.
    */
   var getChapterSpotifyplus: (
-    params: GetChapterSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetChapterSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetChapterSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetChapterSpotifyplus>> | undefined, void>;
 
-  interface GetCoverImageFileSpotifyplusProps {
+  interface GetCoverImageFileSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -800,13 +787,13 @@ declare global {
    * Gets the contents of an image url and transfers the contents to the local file system.
    */
   var getCoverImageFileSpotifyplus: (
-    params: GetCoverImageFileSpotifyplusProps,
+    params: GetCoverImageFileSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetCoverImageFileSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetCoverImageFileSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetEpisodeSpotifyplusProps {
+  interface GetEpisodeSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -825,13 +812,10 @@ declare global {
    * Get Spotify catalog information for a single episode.
    */
   var getEpisodeSpotifyplus: (
-    params: GetEpisodeSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetEpisodeSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetEpisodeSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetEpisodeSpotifyplus>> | undefined, void>;
 
-  interface GetEpisodeFavoritesSpotifyplusProps {
+  interface GetEpisodeFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -858,13 +842,13 @@ declare global {
    * Get a list of the episodes saved in the current Spotify user's 'Your Library'.
    */
   var getEpisodeFavoritesSpotifyplus: (
-    params: GetEpisodeFavoritesSpotifyplusProps,
+    params: GetEpisodeFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetEpisodeFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetEpisodeFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetFeaturedPlaylistsSpotifyplusProps {
+  interface GetFeaturedPlaylistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -903,13 +887,13 @@ declare global {
    * Get a list of Spotify featured playlists.
    */
   var getFeaturedPlaylistsSpotifyplus: (
-    params: GetFeaturedPlaylistsSpotifyplusProps,
+    params: GetFeaturedPlaylistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetFeaturedPlaylistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetFeaturedPlaylistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetImageVibrantColorsSpotifyplusProps {
+  interface GetImageVibrantColorsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -932,13 +916,13 @@ declare global {
    * Get vibrant color palette values from the specified image source.
    */
   var getImageVibrantColorsSpotifyplus: (
-    params: GetImageVibrantColorsSpotifyplusProps,
+    params: GetImageVibrantColorsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetImageVibrantColorsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetImageVibrantColorsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlayerDevicesSpotifyplusProps {
+  interface GetPlayerDevicesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -957,13 +941,13 @@ declare global {
    * Get information about a user's available Spotify Connect player devices.  Some device models are not supported and will not be listed in the API response.
    */
   var getPlayerDevicesSpotifyplus: (
-    params: GetPlayerDevicesSpotifyplusProps,
+    params: GetPlayerDevicesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlayerDevicesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlayerDevicesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlayerPlaybackStateSpotifyplusProps {
+  interface GetPlayerPlaybackStateSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -982,14 +966,13 @@ declare global {
    * Get information about the user's current playback state, including track or episode, progress, and active device.
    */
   var getPlayerPlaybackStateSpotifyplus: (
-    params: GetPlayerPlaybackStateSpotifyplusProps,
+    params: GetPlayerPlaybackStateSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetPlayerPlaybackStateSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetPlayerPlaybackStateSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlayerNowPlayingSpotifyplusProps {
+  interface GetPlayerNowPlayingSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1008,13 +991,13 @@ declare global {
    * Get the object currently being played on the user's Spotify account.
    */
   var getPlayerNowPlayingSpotifyplus: (
-    params: GetPlayerNowPlayingSpotifyplusProps,
+    params: GetPlayerNowPlayingSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlayerNowPlayingSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlayerNowPlayingSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlayerQueueInfoSpotifyplusProps {
+  interface GetPlayerQueueInfoSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1025,13 +1008,13 @@ declare global {
    * Get the list of objects that make up the user's playback queue.
    */
   var getPlayerQueueInfoSpotifyplus: (
-    params: GetPlayerQueueInfoSpotifyplusProps,
+    params: GetPlayerQueueInfoSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlayerQueueInfoSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlayerQueueInfoSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlayerRecentTracksSpotifyplusProps {
+  interface GetPlayerRecentTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1058,13 +1041,13 @@ declare global {
    * Get tracks from the current user's recently played tracks; currently doesn't support podcast episodes, and only 50 items may be returned due to spotify limits.
    */
   var getPlayerRecentTracksSpotifyplus: (
-    params: GetPlayerRecentTracksSpotifyplusProps,
+    params: GetPlayerRecentTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlayerRecentTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlayerRecentTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlaylistSpotifyplusProps {
+  interface GetPlaylistSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1091,13 +1074,13 @@ declare global {
    * Get a playlist owned by a Spotify user.
    */
   var getPlaylistSpotifyplus: (
-    params: GetPlaylistSpotifyplusProps,
+    params: GetPlaylistSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlaylistSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlaylistSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlaylistCoverImageSpotifyplusProps {
+  interface GetPlaylistCoverImageSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1112,13 +1095,13 @@ declare global {
    * Get the current image associated with a specific playlist.
    */
   var getPlaylistCoverImageSpotifyplus: (
-    params: GetPlaylistCoverImageSpotifyplusProps,
+    params: GetPlaylistCoverImageSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlaylistCoverImageSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlaylistCoverImageSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlaylistFavoritesSpotifyplusProps {
+  interface GetPlaylistFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1145,13 +1128,13 @@ declare global {
    * Get a list of the playlists owned or followed by the current Spotify user.
    */
   var getPlaylistFavoritesSpotifyplus: (
-    params: GetPlaylistFavoritesSpotifyplusProps,
+    params: GetPlaylistFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlaylistFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlaylistFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlaylistItemsSpotifyplusProps {
+  interface GetPlaylistItemsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1190,13 +1173,13 @@ declare global {
    * Get full details of the items of a playlist owned by a Spotify user.
    */
   var getPlaylistItemsSpotifyplus: (
-    params: GetPlaylistItemsSpotifyplusProps,
+    params: GetPlaylistItemsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlaylistItemsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlaylistItemsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetPlaylistsForUserSpotifyplusProps {
+  interface GetPlaylistsForUserSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1227,13 +1210,13 @@ declare global {
    * Get a list of the playlists owned or followed by the current Spotify user.
    */
   var getPlaylistsForUserSpotifyplus: (
-    params: GetPlaylistsForUserSpotifyplusProps,
+    params: GetPlaylistsForUserSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetPlaylistsForUserSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetPlaylistsForUserSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetShowSpotifyplusProps {
+  interface GetShowSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1252,13 +1235,10 @@ declare global {
    * Get Spotify catalog information for a single show.
    */
   var getShowSpotifyplus: (
-    params: GetShowSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetShowSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetShowSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetShowSpotifyplus>> | undefined, void>;
 
-  interface GetShowEpisodesSpotifyplusProps {
+  interface GetShowEpisodesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1289,13 +1269,13 @@ declare global {
    * Get Spotify catalog information about a show's episodes.
    */
   var getShowEpisodesSpotifyplus: (
-    params: GetShowEpisodesSpotifyplusProps,
+    params: GetShowEpisodesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetShowEpisodesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetShowEpisodesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetShowFavoritesSpotifyplusProps {
+  interface GetShowFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1326,13 +1306,13 @@ declare global {
    * Get a list of the shows saved in the current Spotify user's 'Your Library'.
    */
   var getShowFavoritesSpotifyplus: (
-    params: GetShowFavoritesSpotifyplusProps,
+    params: GetShowFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetShowFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetShowFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetSpotifyConnectDeviceSpotifyplusProps {
+  interface GetSpotifyConnectDeviceSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1367,14 +1347,13 @@ declare global {
    * Get information about a specific Spotify Connect player device, and (optionally) activate the device if it requires it.
    */
   var getSpotifyConnectDeviceSpotifyplus: (
-    params: GetSpotifyConnectDeviceSpotifyplusProps,
+    params: GetSpotifyConnectDeviceSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetSpotifyConnectDeviceSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetSpotifyConnectDeviceSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetSpotifyConnectDevicesSpotifyplusProps {
+  interface GetSpotifyConnectDevicesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1393,14 +1372,13 @@ declare global {
    * Get information about all available Spotify Connect player (both static and dynamic) devices.
    */
   var getSpotifyConnectDevicesSpotifyplus: (
-    params: GetSpotifyConnectDevicesSpotifyplusProps,
+    params: GetSpotifyConnectDevicesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetSpotifyConnectDevicesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetSpotifyConnectDevicesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetTrackSpotifyplusProps {
+  interface GetTrackSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1415,13 +1393,10 @@ declare global {
    * Get Spotify catalog information for a single track.
    */
   var getTrackSpotifyplus: (
-    params: GetTrackSpotifyplusProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetTrackSpotifyplusProps>> | undefined,
-    void
-  >;
+    params: GetTrackSpotifyplus,
+  ) => Block<Partial<ServiceCallArgs<GetTrackSpotifyplus>> | undefined, void>;
 
-  interface GetTrackAudioFeaturesSpotifyplusProps {
+  interface GetTrackAudioFeaturesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1436,13 +1411,13 @@ declare global {
    * Get audio feature information for a single track identified by its unique Spotify ID.
    */
   var getTrackAudioFeaturesSpotifyplus: (
-    params: GetTrackAudioFeaturesSpotifyplusProps,
+    params: GetTrackAudioFeaturesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetTrackAudioFeaturesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetTrackAudioFeaturesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetTrackFavoritesSpotifyplusProps {
+  interface GetTrackFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1473,13 +1448,13 @@ declare global {
    * Get a list of the tracks saved in the current Spotify user's 'Your Library'.
    */
   var getTrackFavoritesSpotifyplus: (
-    params: GetTrackFavoritesSpotifyplusProps,
+    params: GetTrackFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetTrackFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetTrackFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetTrackRecommendationsSpotifyplusProps {
+  interface GetTrackRecommendationsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1678,14 +1653,13 @@ declare global {
    * Get track recommendations for specified criteria.
    */
   var getTrackRecommendationsSpotifyplus: (
-    params: GetTrackRecommendationsSpotifyplusProps,
+    params: GetTrackRecommendationsSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetTrackRecommendationsSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetTrackRecommendationsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetTracksAudioFeaturesSpotifyplusProps {
+  interface GetTracksAudioFeaturesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1700,14 +1674,13 @@ declare global {
    * Get audio features for multiple tracks based on their Spotify IDs.
    */
   var getTracksAudioFeaturesSpotifyplus: (
-    params: GetTracksAudioFeaturesSpotifyplusProps,
+    params: GetTracksAudioFeaturesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<GetTracksAudioFeaturesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<GetTracksAudioFeaturesSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetUsersTopArtistsSpotifyplusProps {
+  interface GetUsersTopArtistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1738,13 +1711,13 @@ declare global {
    * Get the current user's top artists based on calculated affinity.
    */
   var getUsersTopArtistsSpotifyplus: (
-    params: GetUsersTopArtistsSpotifyplusProps,
+    params: GetUsersTopArtistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetUsersTopArtistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetUsersTopArtistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface GetUsersTopTracksSpotifyplusProps {
+  interface GetUsersTopTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1775,13 +1748,13 @@ declare global {
    * Get the current user's top tracks based on calculated affinity.
    */
   var getUsersTopTracksSpotifyplus: (
-    params: GetUsersTopTracksSpotifyplusProps,
+    params: GetUsersTopTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<GetUsersTopTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<GetUsersTopTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaPauseSpotifyplusProps {
+  interface PlayerMediaPauseSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1800,13 +1773,13 @@ declare global {
    * Pause media play for the specified Spotify Connect device.
    */
   var playerMediaPauseSpotifyplus: (
-    params: PlayerMediaPauseSpotifyplusProps,
+    params: PlayerMediaPauseSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerMediaPauseSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerMediaPauseSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaPlayContextSpotifyplusProps {
+  interface PlayerMediaPlayContextSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1841,14 +1814,13 @@ declare global {
    * Start playing one or more tracks of the specified context on a Spotify Connect device.
    */
   var playerMediaPlayContextSpotifyplus: (
-    params: PlayerMediaPlayContextSpotifyplusProps,
+    params: PlayerMediaPlayContextSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<PlayerMediaPlayContextSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<PlayerMediaPlayContextSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaPlayTrackFavoritesSpotifyplusProps {
+  interface PlayerMediaPlayTrackFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1879,14 +1851,14 @@ declare global {
    * Start playing track favorites on the specified Spotify Connect device.
    */
   var playerMediaPlayTrackFavoritesSpotifyplus: (
-    params: PlayerMediaPlayTrackFavoritesSpotifyplusProps,
+    params: PlayerMediaPlayTrackFavoritesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<PlayerMediaPlayTrackFavoritesSpotifyplusProps>>
+    | Partial<ServiceCallArgs<PlayerMediaPlayTrackFavoritesSpotifyplus>>
     | undefined,
     void
   >;
 
-  interface PlayerMediaPlayTracksSpotifyplusProps {
+  interface PlayerMediaPlayTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1913,13 +1885,13 @@ declare global {
    * Start playing one or more tracks on the specified Spotify Connect device.
    */
   var playerMediaPlayTracksSpotifyplus: (
-    params: PlayerMediaPlayTracksSpotifyplusProps,
+    params: PlayerMediaPlayTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerMediaPlayTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerMediaPlayTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaResumeSpotifyplusProps {
+  interface PlayerMediaResumeSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1938,13 +1910,13 @@ declare global {
    * Resume media play for the specified Spotify Connect device.
    */
   var playerMediaResumeSpotifyplus: (
-    params: PlayerMediaResumeSpotifyplusProps,
+    params: PlayerMediaResumeSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerMediaResumeSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerMediaResumeSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaSeekSpotifyplusProps {
+  interface PlayerMediaSeekSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1971,13 +1943,13 @@ declare global {
    * Seeks to the given absolute or relative position in the user's currently playing track for the specified Spotify Connect device.
    */
   var playerMediaSeekSpotifyplus: (
-    params: PlayerMediaSeekSpotifyplusProps,
+    params: PlayerMediaSeekSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerMediaSeekSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerMediaSeekSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaSkipNextSpotifyplusProps {
+  interface PlayerMediaSkipNextSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -1996,13 +1968,13 @@ declare global {
    * Skips to next track in the user's queue for the specified Spotify Connect device.
    */
   var playerMediaSkipNextSpotifyplus: (
-    params: PlayerMediaSkipNextSpotifyplusProps,
+    params: PlayerMediaSkipNextSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerMediaSkipNextSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerMediaSkipNextSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerMediaSkipPreviousSpotifyplusProps {
+  interface PlayerMediaSkipPreviousSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2021,14 +1993,13 @@ declare global {
    * Skips to previous track in the user's queue for the specified Spotify Connect device.
    */
   var playerMediaSkipPreviousSpotifyplus: (
-    params: PlayerMediaSkipPreviousSpotifyplusProps,
+    params: PlayerMediaSkipPreviousSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<PlayerMediaSkipPreviousSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<PlayerMediaSkipPreviousSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerSetRepeatModeSpotifyplusProps {
+  interface PlayerSetRepeatModeSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2051,13 +2022,13 @@ declare global {
    * Set repeat mode for the specified Spotify Connect device.
    */
   var playerSetRepeatModeSpotifyplus: (
-    params: PlayerSetRepeatModeSpotifyplusProps,
+    params: PlayerSetRepeatModeSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerSetRepeatModeSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerSetRepeatModeSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerSetShuffleModeSpotifyplusProps {
+  interface PlayerSetShuffleModeSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2080,13 +2051,13 @@ declare global {
    * Set shuffle mode for the specified Spotify Connect device.
    */
   var playerSetShuffleModeSpotifyplus: (
-    params: PlayerSetShuffleModeSpotifyplusProps,
+    params: PlayerSetShuffleModeSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerSetShuffleModeSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerSetShuffleModeSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerSetVolumeLevelSpotifyplusProps {
+  interface PlayerSetVolumeLevelSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2109,13 +2080,13 @@ declare global {
    * Set volume level for the specified Spotify Connect device.
    */
   var playerSetVolumeLevelSpotifyplus: (
-    params: PlayerSetVolumeLevelSpotifyplusProps,
+    params: PlayerSetVolumeLevelSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlayerSetVolumeLevelSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlayerSetVolumeLevelSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlayerTransferPlaybackSpotifyplusProps {
+  interface PlayerTransferPlaybackSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2150,14 +2121,13 @@ declare global {
    * Transfer playback to a new Spotify Connect device and optionally begin playback.
    */
   var playerTransferPlaybackSpotifyplus: (
-    params: PlayerTransferPlaybackSpotifyplusProps,
+    params: PlayerTransferPlaybackSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<PlayerTransferPlaybackSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<PlayerTransferPlaybackSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistCoverImageAddSpotifyplusProps {
+  interface PlaylistCoverImageAddSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2176,13 +2146,13 @@ declare global {
    * Replace the image used to represent a specific playlist.
    */
   var playlistCoverImageAddSpotifyplus: (
-    params: PlaylistCoverImageAddSpotifyplusProps,
+    params: PlaylistCoverImageAddSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistCoverImageAddSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistCoverImageAddSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistChangeSpotifyplusProps {
+  interface PlaylistChangeSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2217,13 +2187,13 @@ declare global {
    * Change a playlist's details (name, description, and public / private state).
    */
   var playlistChangeSpotifyplus: (
-    params: PlaylistChangeSpotifyplusProps,
+    params: PlaylistChangeSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistChangeSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistChangeSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistCreateSpotifyplusProps {
+  interface PlaylistCreateSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2258,13 +2228,13 @@ declare global {
    * Create an empty playlist for a Spotify user.  The playlist will remain empty until you add tracks.
    */
   var playlistCreateSpotifyplus: (
-    params: PlaylistCreateSpotifyplusProps,
+    params: PlaylistCreateSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistCreateSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistCreateSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistItemsAddSpotifyplusProps {
+  interface PlaylistItemsAddSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2287,13 +2257,13 @@ declare global {
    * Add one or more items to a user's playlist.  Items are added in the order they are listed in the `uris` argument.
    */
   var playlistItemsAddSpotifyplus: (
-    params: PlaylistItemsAddSpotifyplusProps,
+    params: PlaylistItemsAddSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistItemsAddSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistItemsAddSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistItemsClearSpotifyplusProps {
+  interface PlaylistItemsClearSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2308,13 +2278,13 @@ declare global {
    * Removes (clears) all items from a user's playlist.
    */
   var playlistItemsClearSpotifyplus: (
-    params: PlaylistItemsClearSpotifyplusProps,
+    params: PlaylistItemsClearSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistItemsClearSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistItemsClearSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistItemsRemoveSpotifyplusProps {
+  interface PlaylistItemsRemoveSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2337,13 +2307,13 @@ declare global {
    * Remove one or more items from a user's playlist.
    */
   var playlistItemsRemoveSpotifyplus: (
-    params: PlaylistItemsRemoveSpotifyplusProps,
+    params: PlaylistItemsRemoveSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistItemsRemoveSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistItemsRemoveSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistItemsReorderSpotifyplusProps {
+  interface PlaylistItemsReorderSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2374,13 +2344,13 @@ declare global {
    * Reorder items in a user's playlist.
    */
   var playlistItemsReorderSpotifyplus: (
-    params: PlaylistItemsReorderSpotifyplusProps,
+    params: PlaylistItemsReorderSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistItemsReorderSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistItemsReorderSpotifyplus>> | undefined,
     void
   >;
 
-  interface PlaylistItemsReplaceSpotifyplusProps {
+  interface PlaylistItemsReplaceSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2399,13 +2369,13 @@ declare global {
    * Replace one or more items in a user's playlist. Replacing items in a playlist will overwrite its existing items. This service can also be used to clear a playlist.
    */
   var playlistItemsReplaceSpotifyplus: (
-    params: PlaylistItemsReplaceSpotifyplusProps,
+    params: PlaylistItemsReplaceSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<PlaylistItemsReplaceSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<PlaylistItemsReplaceSpotifyplus>> | undefined,
     void
   >;
 
-  interface RemoveAlbumFavoritesSpotifyplusProps {
+  interface RemoveAlbumFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2420,13 +2390,13 @@ declare global {
    * Remove one or more albums from the current user's 'Your Library'.
    */
   var removeAlbumFavoritesSpotifyplus: (
-    params: RemoveAlbumFavoritesSpotifyplusProps,
+    params: RemoveAlbumFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<RemoveAlbumFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<RemoveAlbumFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface RemoveAudiobookFavoritesSpotifyplusProps {
+  interface RemoveAudiobookFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2441,14 +2411,13 @@ declare global {
    * Remove one or more audiobooks from the current user's 'Your Library'.
    */
   var removeAudiobookFavoritesSpotifyplus: (
-    params: RemoveAudiobookFavoritesSpotifyplusProps,
+    params: RemoveAudiobookFavoritesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<RemoveAudiobookFavoritesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<RemoveAudiobookFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface RemoveEpisodeFavoritesSpotifyplusProps {
+  interface RemoveEpisodeFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2463,14 +2432,13 @@ declare global {
    * Remove one or more episodes from the current user's 'Your Library'.
    */
   var removeEpisodeFavoritesSpotifyplus: (
-    params: RemoveEpisodeFavoritesSpotifyplusProps,
+    params: RemoveEpisodeFavoritesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<RemoveEpisodeFavoritesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<RemoveEpisodeFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface RemoveShowFavoritesSpotifyplusProps {
+  interface RemoveShowFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2485,13 +2453,13 @@ declare global {
    * Remove one or more albums from the current user's 'Your Library'.
    */
   var removeShowFavoritesSpotifyplus: (
-    params: RemoveShowFavoritesSpotifyplusProps,
+    params: RemoveShowFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<RemoveShowFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<RemoveShowFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface RemoveTrackFavoritesSpotifyplusProps {
+  interface RemoveTrackFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2506,13 +2474,13 @@ declare global {
    * Remove one or more tracks from the current user's 'Your Library'.
    */
   var removeTrackFavoritesSpotifyplus: (
-    params: RemoveTrackFavoritesSpotifyplusProps,
+    params: RemoveTrackFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<RemoveTrackFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<RemoveTrackFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SaveAlbumFavoritesSpotifyplusProps {
+  interface SaveAlbumFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2527,13 +2495,13 @@ declare global {
    * Save one or more albums to the current user's 'Your Library'.
    */
   var saveAlbumFavoritesSpotifyplus: (
-    params: SaveAlbumFavoritesSpotifyplusProps,
+    params: SaveAlbumFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SaveAlbumFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SaveAlbumFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SaveAudiobookFavoritesSpotifyplusProps {
+  interface SaveAudiobookFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2548,14 +2516,13 @@ declare global {
    * Save one or more audiobook to the current user's 'Your Library'.
    */
   var saveAudiobookFavoritesSpotifyplus: (
-    params: SaveAudiobookFavoritesSpotifyplusProps,
+    params: SaveAudiobookFavoritesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<SaveAudiobookFavoritesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<SaveAudiobookFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SaveEpisodeFavoritesSpotifyplusProps {
+  interface SaveEpisodeFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2570,13 +2537,13 @@ declare global {
    * Save one or more episodes to the current user's 'Your Library'.
    */
   var saveEpisodeFavoritesSpotifyplus: (
-    params: SaveEpisodeFavoritesSpotifyplusProps,
+    params: SaveEpisodeFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SaveEpisodeFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SaveEpisodeFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SaveShowFavoritesSpotifyplusProps {
+  interface SaveShowFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2591,13 +2558,13 @@ declare global {
    * Save one or more shows to the current user's 'Your Library'.
    */
   var saveShowFavoritesSpotifyplus: (
-    params: SaveShowFavoritesSpotifyplusProps,
+    params: SaveShowFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SaveShowFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SaveShowFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SaveTrackFavoritesSpotifyplusProps {
+  interface SaveTrackFavoritesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2612,13 +2579,13 @@ declare global {
    * Save one or more tracks to the current user's 'Your Library'.
    */
   var saveTrackFavoritesSpotifyplus: (
-    params: SaveTrackFavoritesSpotifyplusProps,
+    params: SaveTrackFavoritesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SaveTrackFavoritesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SaveTrackFavoritesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchAlbumsSpotifyplusProps {
+  interface SearchAlbumsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2653,13 +2620,13 @@ declare global {
    * Get Spotify catalog information about Albums that match a keyword string.
    */
   var searchAlbumsSpotifyplus: (
-    params: SearchAlbumsSpotifyplusProps,
+    params: SearchAlbumsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchAlbumsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchAlbumsSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchArtistsSpotifyplusProps {
+  interface SearchArtistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2694,13 +2661,13 @@ declare global {
    * Get Spotify catalog information about Artists that match a keyword string.
    */
   var searchArtistsSpotifyplus: (
-    params: SearchArtistsSpotifyplusProps,
+    params: SearchArtistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchArtistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchArtistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchAudiobooksSpotifyplusProps {
+  interface SearchAudiobooksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2735,13 +2702,13 @@ declare global {
    * Get Spotify catalog information about Audiobooks that match a keyword string.
    */
   var searchAudiobooksSpotifyplus: (
-    params: SearchAudiobooksSpotifyplusProps,
+    params: SearchAudiobooksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchAudiobooksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchAudiobooksSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchEpisodesSpotifyplusProps {
+  interface SearchEpisodesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2776,13 +2743,13 @@ declare global {
    * Get Spotify catalog information about Episodes that match a keyword string.
    */
   var searchEpisodesSpotifyplus: (
-    params: SearchEpisodesSpotifyplusProps,
+    params: SearchEpisodesSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchEpisodesSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchEpisodesSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchPlaylistsSpotifyplusProps {
+  interface SearchPlaylistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2817,13 +2784,13 @@ declare global {
    * Get Spotify catalog information about Playlists that match a keyword string.
    */
   var searchPlaylistsSpotifyplus: (
-    params: SearchPlaylistsSpotifyplusProps,
+    params: SearchPlaylistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchPlaylistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchPlaylistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchShowsSpotifyplusProps {
+  interface SearchShowsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2858,13 +2825,13 @@ declare global {
    * Get Spotify catalog information about Shows that match a keyword string.
    */
   var searchShowsSpotifyplus: (
-    params: SearchShowsSpotifyplusProps,
+    params: SearchShowsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchShowsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchShowsSpotifyplus>> | undefined,
     void
   >;
 
-  interface SearchTracksSpotifyplusProps {
+  interface SearchTracksSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2899,13 +2866,13 @@ declare global {
    * Get Spotify catalog information about Tracks that match a keyword string.
    */
   var searchTracksSpotifyplus: (
-    params: SearchTracksSpotifyplusProps,
+    params: SearchTracksSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<SearchTracksSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<SearchTracksSpotifyplus>> | undefined,
     void
   >;
 
-  interface TriggerScanIntervalSpotifyplusProps {
+  interface TriggerScanIntervalSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2916,13 +2883,13 @@ declare global {
    * Triggers a scan interval sequence, which will update HA State values from content currently being played on the user's Spotify account.
    */
   var triggerScanIntervalSpotifyplus: (
-    params: TriggerScanIntervalSpotifyplusProps,
+    params: TriggerScanIntervalSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<TriggerScanIntervalSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<TriggerScanIntervalSpotifyplus>> | undefined,
     void
   >;
 
-  interface UnfollowArtistsSpotifyplusProps {
+  interface UnfollowArtistsSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2937,13 +2904,13 @@ declare global {
    * Remove the current user as a follower of one or more artists.
    */
   var unfollowArtistsSpotifyplus: (
-    params: UnfollowArtistsSpotifyplusProps,
+    params: UnfollowArtistsSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<UnfollowArtistsSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<UnfollowArtistsSpotifyplus>> | undefined,
     void
   >;
 
-  interface UnfollowPlaylistSpotifyplusProps {
+  interface UnfollowPlaylistSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2958,13 +2925,13 @@ declare global {
    * Remove the current user as a follower of a playlist.
    */
   var unfollowPlaylistSpotifyplus: (
-    params: UnfollowPlaylistSpotifyplusProps,
+    params: UnfollowPlaylistSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<UnfollowPlaylistSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<UnfollowPlaylistSpotifyplus>> | undefined,
     void
   >;
 
-  interface UnfollowUsersSpotifyplusProps {
+  interface UnfollowUsersSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -2979,13 +2946,13 @@ declare global {
    * Remove the current user as a follower of one or more users.
    */
   var unfollowUsersSpotifyplus: (
-    params: UnfollowUsersSpotifyplusProps,
+    params: UnfollowUsersSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<UnfollowUsersSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<UnfollowUsersSpotifyplus>> | undefined,
     void
   >;
 
-  interface ZeroconfDeviceConnectSpotifyplusProps {
+  interface ZeroconfDeviceConnectSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify ZeroConf API service.
      */
@@ -3040,13 +3007,13 @@ declare global {
    * Calls the `addUser` Spotify Zeroconf API endpoint to issue a call to SpConnectionLoginBlob.  If successful, the associated device id is added to the Spotify Connect active device list for the specified user account.  This will also issue a `resetUsers` call prior to the `addUser` call.
    */
   var zeroconfDeviceConnectSpotifyplus: (
-    params: ZeroconfDeviceConnectSpotifyplusProps,
+    params: ZeroconfDeviceConnectSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<ZeroconfDeviceConnectSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<ZeroconfDeviceConnectSpotifyplus>> | undefined,
     void
   >;
 
-  interface ZeroconfDeviceDisconnectSpotifyplusProps {
+  interface ZeroconfDeviceDisconnectSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify ZeroConf API service.
      */
@@ -3081,14 +3048,13 @@ declare global {
    * Calls the `resetUsers` Spotify Zeroconf API endpoint to issue a call to SpConnectionLogout. The currently logged in user (if any) will be logged out of Spotify Connect, and the device id removed from the active Spotify Connect device list.
    */
   var zeroconfDeviceDisconnectSpotifyplus: (
-    params: ZeroconfDeviceDisconnectSpotifyplusProps,
+    params: ZeroconfDeviceDisconnectSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<ZeroconfDeviceDisconnectSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<ZeroconfDeviceDisconnectSpotifyplus>> | undefined,
     void
   >;
 
-  interface ZeroconfDeviceGetinfoSpotifyplusProps {
+  interface ZeroconfDeviceGetinfoSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify ZeroConf API service.
      */
@@ -3119,13 +3085,13 @@ declare global {
    * Calls the `getInfo` Spotify Zeroconf API endpoint to return information about the device.
    */
   var zeroconfDeviceGetinfoSpotifyplus: (
-    params: ZeroconfDeviceGetinfoSpotifyplusProps,
+    params: ZeroconfDeviceGetinfoSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<ZeroconfDeviceGetinfoSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<ZeroconfDeviceGetinfoSpotifyplus>> | undefined,
     void
   >;
 
-  interface ZeroconfDiscoverDevicesSpotifyplusProps {
+  interface ZeroconfDiscoverDevicesSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the ZeroConf service.
      */
@@ -3140,14 +3106,13 @@ declare global {
    * Discover Spotify Connect devices on the local network via the ZeroConf (aka MDNS) service, and return details about each device.
    */
   var zeroconfDiscoverDevicesSpotifyplus: (
-    params: ZeroconfDiscoverDevicesSpotifyplusProps,
+    params: ZeroconfDiscoverDevicesSpotifyplus,
   ) => Block<
-    | Partial<ServiceCallArgs<ZeroconfDiscoverDevicesSpotifyplusProps>>
-    | undefined,
+    Partial<ServiceCallArgs<ZeroconfDiscoverDevicesSpotifyplus>> | undefined,
     void
   >;
 
-  interface TestTokenExpireSpotifyplusProps {
+  interface TestTokenExpireSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -3158,13 +3123,13 @@ declare global {
    * Forces Spotify Authorization token to expire within 10 seconds; used to test token refresh processing.
    */
   var testTokenExpireSpotifyplus: (
-    params: TestTokenExpireSpotifyplusProps,
+    params: TestTokenExpireSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<TestTokenExpireSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<TestTokenExpireSpotifyplus>> | undefined,
     void
   >;
 
-  interface VolumeSetStepSpotifyplusProps {
+  interface VolumeSetStepSpotifyplus {
     /**
      * Entity ID of the SpotifyPlus device that will make the request to the Spotify Web API.
      */
@@ -3179,9 +3144,9 @@ declare global {
    * Set level used for volume step services.
    */
   var volumeSetStepSpotifyplus: (
-    params: VolumeSetStepSpotifyplusProps,
+    params: VolumeSetStepSpotifyplus,
   ) => Block<
-    Partial<ServiceCallArgs<VolumeSetStepSpotifyplusProps>> | undefined,
+    Partial<ServiceCallArgs<VolumeSetStepSpotifyplus>> | undefined,
     void
   >;
 }

@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ButtonWebostvProps {
+  interface ButtonWebostv {
     /**
      * Name(s) of the webostv entities where to run the API method.
      */
@@ -20,10 +20,10 @@ declare global {
    * Sends a button press command.
    */
   var buttonWebostv: (
-    params: ButtonWebostvProps,
-  ) => Block<Partial<ServiceCallArgs<ButtonWebostvProps>> | undefined, void>;
+    params: ButtonWebostv,
+  ) => Block<Partial<ServiceCallArgs<ButtonWebostv>> | undefined, void>;
 
-  interface CommandWebostvProps {
+  interface CommandWebostv {
     /**
      * Name(s) of the webostv entities where to run the API method.
      */
@@ -42,10 +42,10 @@ declare global {
    * Sends a command.
    */
   var commandWebostv: (
-    params: CommandWebostvProps,
-  ) => Block<Partial<ServiceCallArgs<CommandWebostvProps>> | undefined, void>;
+    params: CommandWebostv,
+  ) => Block<Partial<ServiceCallArgs<CommandWebostv>> | undefined, void>;
 
-  interface SelectSoundOutputWebostvProps {
+  interface SelectSoundOutputWebostv {
     /**
      * Name(s) of the webostv entities to change sound output on.
      */
@@ -60,9 +60,9 @@ declare global {
    * Sends the TV the command to change sound output.
    */
   var selectSoundOutputWebostv: (
-    params: SelectSoundOutputWebostvProps,
+    params: SelectSoundOutputWebostv,
   ) => Block<
-    Partial<ServiceCallArgs<SelectSoundOutputWebostvProps>> | undefined,
+    Partial<ServiceCallArgs<SelectSoundOutputWebostv>> | undefined,
     void
   >;
 }

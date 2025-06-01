@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface TurnOnSceneProps {
+  interface TurnOnScene {
     /**
      * Time it takes the devices to transition into the states defined in the scene.
      */
@@ -19,8 +19,8 @@ declare global {
    */
   var turnOnScene: (
     target: IEntity<`scene.${string}`> | IArea,
-    params?: TurnOnSceneProps,
-  ) => Block<Partial<ServiceCallArgs<TurnOnSceneProps>> | undefined, void>;
+    params?: TurnOnScene,
+  ) => Block<Partial<ServiceCallArgs<TurnOnScene>> | undefined, void>;
 
   /**
    * Reloads the scenes from the YAML-configuration.
@@ -30,7 +30,7 @@ declare global {
     void
   >;
 
-  interface ApplySceneProps {
+  interface ApplyScene {
     /**
      * List of entities and their target state.
      */
@@ -45,10 +45,10 @@ declare global {
    * Activates a scene with configuration.
    */
   var applyScene: (
-    params: ApplySceneProps,
-  ) => Block<Partial<ServiceCallArgs<ApplySceneProps>> | undefined, void>;
+    params: ApplyScene,
+  ) => Block<Partial<ServiceCallArgs<ApplyScene>> | undefined, void>;
 
-  interface CreateSceneProps {
+  interface CreateScene {
     /**
      * The entity ID of the new scene.
      */
@@ -67,8 +67,8 @@ declare global {
    * Creates a new scene.
    */
   var createScene: (
-    params: CreateSceneProps,
-  ) => Block<Partial<ServiceCallArgs<CreateSceneProps>> | undefined, void>;
+    params: CreateScene,
+  ) => Block<Partial<ServiceCallArgs<CreateScene>> | undefined, void>;
 
   /**
    * Deletes a dynamically created scene.

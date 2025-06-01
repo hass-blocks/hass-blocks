@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ActionIcloud3Props {
+  interface ActionIcloud3 {
     /**
      * (Required) The operational command to send to iCloud3
      */
@@ -20,8 +20,8 @@ declare global {
    * This service will send operational commands to iCloud3
    */
   var actionIcloud3: (
-    params: ActionIcloud3Props,
-  ) => Block<Partial<ServiceCallArgs<ActionIcloud3Props>> | undefined, void>;
+    params: ActionIcloud3,
+  ) => Block<Partial<ServiceCallArgs<ActionIcloud3>> | undefined, void>;
 
   /**
    * The Update service has been replaced by the Action service
@@ -39,7 +39,7 @@ declare global {
     void
   >;
 
-  interface FindIphoneAlertIcloud3Props {
+  interface FindIphoneAlertIcloud3 {
     /**
      * Device the Find iPhone Alert and Message should be sent to
      */
@@ -50,13 +50,13 @@ declare global {
    * This service will send an alert tone to the device that you want to find
    */
   var findIphoneAlertIcloud3: (
-    params: FindIphoneAlertIcloud3Props,
+    params: FindIphoneAlertIcloud3,
   ) => Block<
-    Partial<ServiceCallArgs<FindIphoneAlertIcloud3Props>> | undefined,
+    Partial<ServiceCallArgs<FindIphoneAlertIcloud3>> | undefined,
     void
   >;
 
-  interface LostDeviceAlertIcloud3Props {
+  interface LostDeviceAlertIcloud3 {
     /**
      * Device the Find iPhone Alert and Message should be sent to
      */
@@ -75,13 +75,13 @@ declare global {
    * This service will send a Message and Phone number to the lost iPhone
    */
   var lostDeviceAlertIcloud3: (
-    params: LostDeviceAlertIcloud3Props,
+    params: LostDeviceAlertIcloud3,
   ) => Block<
-    Partial<ServiceCallArgs<LostDeviceAlertIcloud3Props>> | undefined,
+    Partial<ServiceCallArgs<LostDeviceAlertIcloud3>> | undefined,
     void
   >;
 
-  interface DisplayMessageAlertIcloud3Props {
+  interface DisplayMessageAlertIcloud3 {
     /**
      * Device the message should be displayed on
      */
@@ -100,9 +100,9 @@ declare global {
    * This service will display a message on the device and can also play an alert tone
    */
   var displayMessageAlertIcloud3: (
-    params: DisplayMessageAlertIcloud3Props,
+    params: DisplayMessageAlertIcloud3,
   ) => Block<
-    Partial<ServiceCallArgs<DisplayMessageAlertIcloud3Props>> | undefined,
+    Partial<ServiceCallArgs<DisplayMessageAlertIcloud3>> | undefined,
     void
   >;
 }

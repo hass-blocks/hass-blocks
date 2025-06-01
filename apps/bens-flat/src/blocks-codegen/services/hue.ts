@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface ActivateSceneHueProps {
+  interface ActivateSceneHue {
     /**
      * Transition duration it takes to bring devices to the state defined in the scene.
      */
@@ -31,10 +31,10 @@ declare global {
    */
   var activateSceneHue: (
     target: IEntity<`scene.${string}`> | IArea,
-    params?: ActivateSceneHueProps,
-  ) => Block<Partial<ServiceCallArgs<ActivateSceneHueProps>> | undefined, void>;
+    params?: ActivateSceneHue,
+  ) => Block<Partial<ServiceCallArgs<ActivateSceneHue>> | undefined, void>;
 
-  interface HueActivateSceneHueProps {
+  interface HueActivateScene {
     /**
      * Name of Hue group/room from the Hue app.
      */
@@ -52,12 +52,9 @@ declare global {
   /**
    * Activates a Hue scene stored in the Hue hub.
    */
-  var hueActivateSceneHue: (
-    params?: HueActivateSceneHueProps,
-  ) => Block<
-    Partial<ServiceCallArgs<HueActivateSceneHueProps>> | undefined,
-    void
-  >;
+  var hueActivateScene: (
+    params?: HueActivateScene,
+  ) => Block<Partial<ServiceCallArgs<HueActivateScene>> | undefined, void>;
 }
 
 globalThis.activateSceneHue = (target, params) =>
@@ -71,7 +68,7 @@ globalThis.activateSceneHue = (target, params) =>
     target,
   });
 
-globalThis.hueActivateSceneHue = (params) =>
+globalThis.hueActivateScene = (params) =>
   serviceCall({
     name: `Call hue.hue_activate_scene`,
     params: {

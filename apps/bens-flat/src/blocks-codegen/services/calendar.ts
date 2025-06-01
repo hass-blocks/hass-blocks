@@ -7,7 +7,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface CreateEventCalendarProps {
+  interface CreateEventCalendar {
     /**
      * Defines the short summary or subject for the event.
      */
@@ -47,13 +47,10 @@ declare global {
    */
   var createEventCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params: CreateEventCalendarProps,
-  ) => Block<
-    Partial<ServiceCallArgs<CreateEventCalendarProps>> | undefined,
-    void
-  >;
+    params: CreateEventCalendar,
+  ) => Block<Partial<ServiceCallArgs<CreateEventCalendar>> | undefined, void>;
 
-  interface GetEventsCalendarProps {
+  interface GetEventsCalendar {
     /**
      * Returns active events after this time (exclusive). When not set, defaults to now.
      */
@@ -73,11 +70,8 @@ declare global {
    */
   var getEventsCalendar: (
     target: IEntity<`calendar.${string}`> | IArea,
-    params?: GetEventsCalendarProps,
-  ) => Block<
-    Partial<ServiceCallArgs<GetEventsCalendarProps>> | undefined,
-    void
-  >;
+    params?: GetEventsCalendar,
+  ) => Block<Partial<ServiceCallArgs<GetEventsCalendar>> | undefined, void>;
 }
 
 globalThis.createEventCalendar = (target, params) =>

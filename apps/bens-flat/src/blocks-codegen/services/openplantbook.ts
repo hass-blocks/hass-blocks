@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface SearchOpenplantbookProps {
+  interface SearchOpenplantbook {
     /**
      * The string to search for
      */
@@ -16,13 +16,10 @@ declare global {
    * Searches Openplantbook for a plant
    */
   var searchOpenplantbook: (
-    params: SearchOpenplantbookProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SearchOpenplantbookProps>> | undefined,
-    void
-  >;
+    params: SearchOpenplantbook,
+  ) => Block<Partial<ServiceCallArgs<SearchOpenplantbook>> | undefined, void>;
 
-  interface GetOpenplantbookProps {
+  interface GetOpenplantbook {
     /**
      * The name of the species exactly as written in "pid" or "scientific species" in Openplantbook
      */
@@ -33,10 +30,10 @@ declare global {
    * Fetches data for a single species
    */
   var getOpenplantbook: (
-    params: GetOpenplantbookProps,
-  ) => Block<Partial<ServiceCallArgs<GetOpenplantbookProps>> | undefined, void>;
+    params: GetOpenplantbook,
+  ) => Block<Partial<ServiceCallArgs<GetOpenplantbook>> | undefined, void>;
 
-  interface CleanCacheOpenplantbookProps {
+  interface CleanCacheOpenplantbook {
     /**
      * Minimum age of entries to clean from the cache. Default to 24 hours if not set
      */
@@ -47,9 +44,9 @@ declare global {
    * Clean up the cached entries from Openplantbook
    */
   var cleanCacheOpenplantbook: (
-    params?: CleanCacheOpenplantbookProps,
+    params?: CleanCacheOpenplantbook,
   ) => Block<
-    Partial<ServiceCallArgs<CleanCacheOpenplantbookProps>> | undefined,
+    Partial<ServiceCallArgs<CleanCacheOpenplantbook>> | undefined,
     void
   >;
 

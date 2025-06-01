@@ -14,7 +14,7 @@ declare global {
     target: IEntity<`remote.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface TurnOnRemoteProps {
+  interface TurnOnRemote {
     /**
      * Activity ID or activity name to be started.
      */
@@ -26,8 +26,8 @@ declare global {
    */
   var turnOnRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: TurnOnRemoteProps,
-  ) => Block<Partial<ServiceCallArgs<TurnOnRemoteProps>> | undefined, void>;
+    params?: TurnOnRemote,
+  ) => Block<Partial<ServiceCallArgs<TurnOnRemote>> | undefined, void>;
 
   /**
    * Sends the toggle command.
@@ -36,7 +36,7 @@ declare global {
     target: IEntity<`remote.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SendCommandRemoteProps {
+  interface SendCommandRemote {
     /**
      * Device ID to send command to.
      */
@@ -64,13 +64,10 @@ declare global {
    */
   var sendCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: SendCommandRemoteProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SendCommandRemoteProps>> | undefined,
-    void
-  >;
+    params: SendCommandRemote,
+  ) => Block<Partial<ServiceCallArgs<SendCommandRemote>> | undefined, void>;
 
-  interface LearnCommandRemoteProps {
+  interface LearnCommandRemote {
     /**
      * Device ID to learn command from.
      */
@@ -98,13 +95,10 @@ declare global {
    */
   var learnCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params?: LearnCommandRemoteProps,
-  ) => Block<
-    Partial<ServiceCallArgs<LearnCommandRemoteProps>> | undefined,
-    void
-  >;
+    params?: LearnCommandRemote,
+  ) => Block<Partial<ServiceCallArgs<LearnCommandRemote>> | undefined, void>;
 
-  interface DeleteCommandRemoteProps {
+  interface DeleteCommandRemote {
     /**
      * Device from which commands will be deleted.
      */
@@ -120,11 +114,8 @@ declare global {
    */
   var deleteCommandRemote: (
     target: IEntity<`remote.${string}`> | IArea,
-    params: DeleteCommandRemoteProps,
-  ) => Block<
-    Partial<ServiceCallArgs<DeleteCommandRemoteProps>> | undefined,
-    void
-  >;
+    params: DeleteCommandRemote,
+  ) => Block<Partial<ServiceCallArgs<DeleteCommandRemote>> | undefined, void>;
 }
 
 globalThis.turnOffRemote = (target) =>

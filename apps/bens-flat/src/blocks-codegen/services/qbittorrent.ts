@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface GetTorrentsQbittorrentProps {
+  interface GetTorrentsQbittorrent {
     /**
      * Which service to grab the list from
      */
@@ -20,13 +20,13 @@ declare global {
    * Gets a list of current torrents
    */
   var getTorrentsQbittorrent: (
-    params: GetTorrentsQbittorrentProps,
+    params: GetTorrentsQbittorrent,
   ) => Block<
-    Partial<ServiceCallArgs<GetTorrentsQbittorrentProps>> | undefined,
+    Partial<ServiceCallArgs<GetTorrentsQbittorrent>> | undefined,
     void
   >;
 
-  interface GetAllTorrentsQbittorrentProps {
+  interface GetAllTorrentsQbittorrent {
     /**
      * What kind of torrents you want to return, such as All or Active.
      */
@@ -37,9 +37,9 @@ declare global {
    * Gets a list of current torrents from all instances of qBittorrent
    */
   var getAllTorrentsQbittorrent: (
-    params: GetAllTorrentsQbittorrentProps,
+    params: GetAllTorrentsQbittorrent,
   ) => Block<
-    Partial<ServiceCallArgs<GetAllTorrentsQbittorrentProps>> | undefined,
+    Partial<ServiceCallArgs<GetAllTorrentsQbittorrent>> | undefined,
     void
   >;
 }

@@ -49,7 +49,7 @@ declare global {
     target: IEntity<`vacuum.${string}`> | IArea,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
-  interface SetFanSpeedVacuumProps {
+  interface SetFanSpeedVacuum {
     /**
      * Fan speed. The value depends on the integration. Some integrations have speed steps, like 'medium'. Some use a percentage, between 0 and 100.
      */
@@ -61,13 +61,10 @@ declare global {
    */
   var setFanSpeedVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
-    params: SetFanSpeedVacuumProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SetFanSpeedVacuumProps>> | undefined,
-    void
-  >;
+    params: SetFanSpeedVacuum,
+  ) => Block<Partial<ServiceCallArgs<SetFanSpeedVacuum>> | undefined, void>;
 
-  interface SendCommandVacuumProps {
+  interface SendCommandVacuum {
     /**
      * Command to execute. The commands are integration-specific.
      */
@@ -83,11 +80,8 @@ declare global {
    */
   var sendCommandVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea,
-    params: SendCommandVacuumProps,
-  ) => Block<
-    Partial<ServiceCallArgs<SendCommandVacuumProps>> | undefined,
-    void
-  >;
+    params: SendCommandVacuum,
+  ) => Block<Partial<ServiceCallArgs<SendCommandVacuum>> | undefined, void>;
 }
 
 globalThis.startVacuum = (target) =>

@@ -5,7 +5,7 @@ import {
 } from '@hass-blocks/core';
 
 declare global {
-  interface PurgeRecorderProps {
+  interface PurgeRecorder {
     /**
      * Number of days to keep the data in the database. Starting today, counting backward. A value of `7` means that everything older than a week will be purged.
      */
@@ -24,10 +24,10 @@ declare global {
    * Starts purge task - to clean up old data from your database.
    */
   var purgeRecorder: (
-    params?: PurgeRecorderProps,
-  ) => Block<Partial<ServiceCallArgs<PurgeRecorderProps>> | undefined, void>;
+    params?: PurgeRecorder,
+  ) => Block<Partial<ServiceCallArgs<PurgeRecorder>> | undefined, void>;
 
-  interface PurgeEntitiesRecorderProps {
+  interface PurgeEntitiesRecorder {
     /**
      * List of entities for which the data is to be removed from the Recorder database.
      */
@@ -50,11 +50,8 @@ declare global {
    * Starts a purge task to remove the data related to specific entities from your database.
    */
   var purgeEntitiesRecorder: (
-    params?: PurgeEntitiesRecorderProps,
-  ) => Block<
-    Partial<ServiceCallArgs<PurgeEntitiesRecorderProps>> | undefined,
-    void
-  >;
+    params?: PurgeEntitiesRecorder,
+  ) => Block<Partial<ServiceCallArgs<PurgeEntitiesRecorder>> | undefined, void>;
 
   /**
    * Starts the recording of events and state changes.

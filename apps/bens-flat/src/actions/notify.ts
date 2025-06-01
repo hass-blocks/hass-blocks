@@ -36,7 +36,7 @@ export const notifyAllMyDevices = ({
       message,
       title,
     }),
-    when(stateIs(wearingClapper2Ps5ConsoleMediaPlayer, 'on'), {
+    when(stateIs(wearingClapper2Ps5Console, 'on'), {
       then: playstationNetworkNotify({ message, title }),
       else: lgWebosTvOled55c8plaNotify({ message, title }),
     }),

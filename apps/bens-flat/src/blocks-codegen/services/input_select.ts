@@ -19,14 +19,14 @@ declare global {
    * Selects the first option.
    */
   var selectFirstInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Selects the last option.
    */
   var selectLastInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectNextInputSelect {
@@ -40,7 +40,7 @@ declare global {
    * Selects the next option.
    */
   var selectNextInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
     params?: SelectNextInputSelect,
   ) => Block<Partial<ServiceCallArgs<SelectNextInputSelect>> | undefined, void>;
 
@@ -55,7 +55,7 @@ declare global {
    * Selects an option.
    */
   var selectOptionInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
     params: SelectOptionInputSelect,
   ) => Block<
     Partial<ServiceCallArgs<SelectOptionInputSelect>> | undefined,
@@ -73,7 +73,7 @@ declare global {
    * Selects the previous option.
    */
   var selectPreviousInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
     params?: SelectPreviousInputSelect,
   ) => Block<
     Partial<ServiceCallArgs<SelectPreviousInputSelect>> | undefined,
@@ -91,7 +91,7 @@ declare global {
    * Sets the options.
    */
   var setOptionsInputSelect: (
-    target: IEntity<`input_select.${string}`> | IArea,
+    target: IEntity<`input_select.${string}`> | IArea<string>,
     params: SetOptionsInputSelect,
   ) => Block<Partial<ServiceCallArgs<SetOptionsInputSelect>> | undefined, void>;
 }

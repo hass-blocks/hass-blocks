@@ -22,7 +22,7 @@ declare global {
    * Turns fan on.
    */
   var turnOnFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params?: TurnOnFan,
   ) => Block<Partial<ServiceCallArgs<TurnOnFan>> | undefined, void>;
 
@@ -30,14 +30,14 @@ declare global {
    * Turns fan off.
    */
   var turnOffFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a fan on/off.
    */
   var toggleFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface IncreaseSpeedFan {
@@ -51,7 +51,7 @@ declare global {
    * Increases the speed of a fan.
    */
   var increaseSpeedFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params?: IncreaseSpeedFan,
   ) => Block<Partial<ServiceCallArgs<IncreaseSpeedFan>> | undefined, void>;
 
@@ -66,7 +66,7 @@ declare global {
    * Decreases the speed of a fan.
    */
   var decreaseSpeedFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params?: DecreaseSpeedFan,
   ) => Block<Partial<ServiceCallArgs<DecreaseSpeedFan>> | undefined, void>;
 
@@ -81,7 +81,7 @@ declare global {
    * Controls the oscillation of a fan.
    */
   var oscillateFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params: OscillateFan,
   ) => Block<Partial<ServiceCallArgs<OscillateFan>> | undefined, void>;
 
@@ -96,7 +96,7 @@ declare global {
    * Sets a fan's rotation direction.
    */
   var setDirectionFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetDirectionFan,
   ) => Block<Partial<ServiceCallArgs<SetDirectionFan>> | undefined, void>;
 
@@ -111,7 +111,7 @@ declare global {
    * Sets the speed of a fan.
    */
   var setPercentageFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetPercentageFan,
   ) => Block<Partial<ServiceCallArgs<SetPercentageFan>> | undefined, void>;
 
@@ -126,7 +126,7 @@ declare global {
    * Sets preset fan mode.
    */
   var setPresetModeFan: (
-    target: IEntity<`fan.${string}`> | IArea,
+    target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetPresetModeFan,
   ) => Block<Partial<ServiceCallArgs<SetPresetModeFan>> | undefined, void>;
 }

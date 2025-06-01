@@ -18,7 +18,7 @@ declare global {
    * Sets the time.
    */
   var setValueTime: (
-    target: IEntity<`time.${string}`> | IArea,
+    target: IEntity<`time.${string}`> | IArea<string>,
     params: SetValueTime,
   ) => Block<Partial<ServiceCallArgs<SetValueTime>> | undefined, void>;
 }

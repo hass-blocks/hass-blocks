@@ -1,8 +1,6 @@
 import { automation } from '@hass-blocks/core';
 import { stateIs, waitMinutes } from '@hass-blocks/blocks';
 
-import { bathroom, bedroom, hallway, livingRoom } from '../areas.ts';
-
 import '@blocks-codegen';
 import {
   bathroomMotionLights,
@@ -52,8 +50,8 @@ export const bathroomLights = automation({
   when: stateTurnsOn(hallwayMotionSensorOccupancyBinarySensor),
   then: [
     stateIs(bathroomMotionLights, 'on'),
-    turnOnLight(bathroom),
+    turnOnLight(mainBathroom),
     waitMinutes(10),
-    turnOffLight(bathroom),
+    turnOffLight(mainBathroom),
   ],
 });

@@ -30,7 +30,7 @@ declare global {
    * Lets a satellite announce a message.
    */
   var announceAssistSatellite: (
-    target: IEntity<`assist_satellite.${string}`> | IArea,
+    target: IEntity<`assist_satellite.${string}`> | IArea<string>,
     params?: AnnounceAssistSatellite,
   ) => Block<
     Partial<ServiceCallArgs<AnnounceAssistSatellite>> | undefined,
@@ -64,7 +64,7 @@ declare global {
    * Starts a conversation from a satellite.
    */
   var startConversationAssistSatellite: (
-    target: IEntity<`assist_satellite.${string}`> | IArea,
+    target: IEntity<`assist_satellite.${string}`> | IArea<string>,
     params?: StartConversationAssistSatellite,
   ) => Block<
     Partial<ServiceCallArgs<StartConversationAssistSatellite>> | undefined,

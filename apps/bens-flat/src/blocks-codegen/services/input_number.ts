@@ -26,7 +26,7 @@ declare global {
    * Sets the value.
    */
   var setValueInputNumber: (
-    target: IEntity<`input_number.${string}`> | IArea,
+    target: IEntity<`input_number.${string}`> | IArea<string>,
     params: SetValueInputNumber,
   ) => Block<Partial<ServiceCallArgs<SetValueInputNumber>> | undefined, void>;
 
@@ -34,14 +34,14 @@ declare global {
    * Increments the current value by 1 step.
    */
   var incrementInputNumber: (
-    target: IEntity<`input_number.${string}`> | IArea,
+    target: IEntity<`input_number.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Decrements the current value by 1 step.
    */
   var decrementInputNumber: (
-    target: IEntity<`input_number.${string}`> | IArea,
+    target: IEntity<`input_number.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

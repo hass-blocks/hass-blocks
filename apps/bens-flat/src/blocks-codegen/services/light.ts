@@ -39,7 +39,7 @@ declare global {
    * Turns on one or more lights and adjusts their properties, even when they are turned on already.
    */
   var turnOnLight: (
-    target: IEntity<`light.${string}`> | IArea,
+    target: IEntity<`light.${string}`> | IArea<string>,
     params?: TurnOnLight,
   ) => Block<Partial<ServiceCallArgs<TurnOnLight>> | undefined, void>;
 
@@ -55,7 +55,7 @@ declare global {
    * Turns off one or more lights.
    */
   var turnOffLight: (
-    target: IEntity<`light.${string}`> | IArea,
+    target: IEntity<`light.${string}`> | IArea<string>,
     params?: TurnOffLight,
   ) => Block<Partial<ServiceCallArgs<TurnOffLight>> | undefined, void>;
 
@@ -87,7 +87,7 @@ declare global {
    * Toggles one or more lights, from on to off, or off to on, based on their current state.
    */
   var toggleLight: (
-    target: IEntity<`light.${string}`> | IArea,
+    target: IEntity<`light.${string}`> | IArea<string>,
     params?: ToggleLight,
   ) => Block<Partial<ServiceCallArgs<ToggleLight>> | undefined, void>;
 }

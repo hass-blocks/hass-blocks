@@ -11,21 +11,21 @@ declare global {
    * Increments a counter by its step size.
    */
   var incrementCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
+    target: IEntity<`counter.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Decrements a counter by its step size.
    */
   var decrementCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
+    target: IEntity<`counter.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Resets a counter to its initial value.
    */
   var resetCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
+    target: IEntity<`counter.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetValueCounter {
@@ -39,7 +39,7 @@ declare global {
    * Sets the counter to a specific value.
    */
   var setValueCounter: (
-    target: IEntity<`counter.${string}`> | IArea,
+    target: IEntity<`counter.${string}`> | IArea<string>,
     params: SetValueCounter,
   ) => Block<Partial<ServiceCallArgs<SetValueCounter>> | undefined, void>;
 }

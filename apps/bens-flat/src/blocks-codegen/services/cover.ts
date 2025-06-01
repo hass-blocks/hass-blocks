@@ -11,14 +11,14 @@ declare global {
    * Opens a cover.
    */
   var openCover: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Closes a cover.
    */
   var closeCover: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetCoverPosition {
@@ -32,7 +32,7 @@ declare global {
    * Moves a cover to a specific position.
    */
   var setCoverPosition: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
     params: SetCoverPosition,
   ) => Block<Partial<ServiceCallArgs<SetCoverPosition>> | undefined, void>;
 
@@ -40,35 +40,35 @@ declare global {
    * Stops the cover movement.
    */
   var stopCover: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a cover open/closed.
    */
   var toggleCover: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tilts a cover open.
    */
   var openCoverTilt: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tilts a cover to close.
    */
   var closeCoverTilt: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops a tilting cover movement.
    */
   var stopCoverTilt: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetCoverTiltPosition {
@@ -82,7 +82,7 @@ declare global {
    * Moves a cover tilt to a specific position.
    */
   var setCoverTiltPosition: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
     params: SetCoverTiltPosition,
   ) => Block<Partial<ServiceCallArgs<SetCoverTiltPosition>> | undefined, void>;
 
@@ -90,7 +90,7 @@ declare global {
    * Toggles a cover tilt open/closed.
    */
   var toggleCoverTilt: (
-    target: IEntity<`cover.${string}`> | IArea,
+    target: IEntity<`cover.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

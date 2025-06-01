@@ -46,7 +46,7 @@ declare global {
    * Adds a new calendar event.
    */
   var createEventCalendar: (
-    target: IEntity<`calendar.${string}`> | IArea,
+    target: IEntity<`calendar.${string}`> | IArea<string>,
     params: CreateEventCalendar,
   ) => Block<Partial<ServiceCallArgs<CreateEventCalendar>> | undefined, void>;
 
@@ -69,7 +69,7 @@ declare global {
    * Retrieves events on a calendar within a time range.
    */
   var getEventsCalendar: (
-    target: IEntity<`calendar.${string}`> | IArea,
+    target: IEntity<`calendar.${string}`> | IArea<string>,
     params?: GetEventsCalendar,
   ) => Block<Partial<ServiceCallArgs<GetEventsCalendar>> | undefined, void>;
 }

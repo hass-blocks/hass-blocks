@@ -26,7 +26,7 @@ declare global {
    * Joins a given Octoplus saving session event.
    */
   var joinOctoplusSavingSessionEventOctopusEnergy: (
-    target: IEntity<`event.${string}`> | IArea,
+    target: IEntity<`event.${string}`> | IArea<string>,
     params?: JoinOctoplusSavingSessionEventOctopusEnergy,
   ) => Block<
     | Partial<ServiceCallArgs<JoinOctoplusSavingSessionEventOctopusEnergy>>
@@ -45,7 +45,7 @@ declare global {
    * Refreshes the previous consumption data for a given entity from a given date.
    */
   var refreshPreviousConsumptionDataOctopusEnergy: (
-    target: IEntity<`sensor.${string}`> | IArea,
+    target: IEntity<`sensor.${string}`> | IArea<string>,
     params: RefreshPreviousConsumptionDataOctopusEnergy,
   ) => Block<
     | Partial<ServiceCallArgs<RefreshPreviousConsumptionDataOctopusEnergy>>
@@ -57,7 +57,7 @@ declare global {
    * Spins the wheel of fortune for a given energy type
    */
   var spinWheelOfFortuneOctopusEnergy: (
-    target: IEntity<`sensor.${string}`> | IArea,
+    target: IEntity<`sensor.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface RegisterRateWeightingsOctopusEnergy {
@@ -71,7 +71,7 @@ declare global {
    * Registers external weightings against rates, for use with target rate sensors when calculating target periods.
    */
   var registerRateWeightingsOctopusEnergy: (
-    target: IEntity<`sensor.${string}`> | IArea,
+    target: IEntity<`sensor.${string}`> | IArea<string>,
     params?: RegisterRateWeightingsOctopusEnergy,
   ) => Block<
     Partial<ServiceCallArgs<RegisterRateWeightingsOctopusEnergy>> | undefined,

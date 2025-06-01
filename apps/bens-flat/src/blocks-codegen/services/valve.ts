@@ -11,14 +11,14 @@ declare global {
    * Opens a valve.
    */
   var openValve: (
-    target: IEntity<`valve.${string}`> | IArea,
+    target: IEntity<`valve.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Closes a valve.
    */
   var closeValve: (
-    target: IEntity<`valve.${string}`> | IArea,
+    target: IEntity<`valve.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetValvePosition {
@@ -32,7 +32,7 @@ declare global {
    * Moves a valve to a specific position.
    */
   var setValvePosition: (
-    target: IEntity<`valve.${string}`> | IArea,
+    target: IEntity<`valve.${string}`> | IArea<string>,
     params: SetValvePosition,
   ) => Block<Partial<ServiceCallArgs<SetValvePosition>> | undefined, void>;
 
@@ -40,14 +40,14 @@ declare global {
    * Stops the valve movement.
    */
   var stopValve: (
-    target: IEntity<`valve.${string}`> | IArea,
+    target: IEntity<`valve.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles a valve open/closed.
    */
   var toggleValve: (
-    target: IEntity<`valve.${string}`> | IArea,
+    target: IEntity<`valve.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

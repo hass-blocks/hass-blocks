@@ -322,7 +322,7 @@ declare global {
    * Sets a user code on a lock.
    */
   var setLockUsercodeZwaveJs: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params: SetLockUsercodeZwaveJs,
   ) => Block<
     Partial<ServiceCallArgs<SetLockUsercodeZwaveJs>> | undefined,
@@ -340,7 +340,7 @@ declare global {
    * Clears a user code from a lock.
    */
   var clearLockUsercodeZwaveJs: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params: ClearLockUsercodeZwaveJs,
   ) => Block<
     Partial<ServiceCallArgs<ClearLockUsercodeZwaveJs>> | undefined,
@@ -378,7 +378,7 @@ declare global {
    * Sets the configuration for a lock.
    */
   var setLockConfigurationZwaveJs: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params: SetLockConfigurationZwaveJs,
   ) => Block<
     Partial<ServiceCallArgs<SetLockConfigurationZwaveJs>> | undefined,

@@ -18,7 +18,7 @@ declare global {
    * Disarms the alarm.
    */
   var alarmDisarmAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmDisarmAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmDisarmAlarmControlPanel>> | undefined,
@@ -36,7 +36,7 @@ declare global {
    * Arms the alarm in the home mode.
    */
   var alarmArmHomeAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmHomeAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmArmHomeAlarmControlPanel>> | undefined,
@@ -54,7 +54,7 @@ declare global {
    * Arms the alarm in the away mode.
    */
   var alarmArmAwayAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmAwayAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmArmAwayAlarmControlPanel>> | undefined,
@@ -72,7 +72,7 @@ declare global {
    * Arms the alarm in the night mode.
    */
   var alarmArmNightAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmNightAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmArmNightAlarmControlPanel>> | undefined,
@@ -90,7 +90,7 @@ declare global {
    * Arms the alarm in the vacation mode.
    */
   var alarmArmVacationAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmVacationAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmArmVacationAlarmControlPanel>> | undefined,
@@ -108,7 +108,7 @@ declare global {
    * Arms the alarm while allowing to bypass a custom area.
    */
   var alarmArmCustomBypassAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmCustomBypassAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmArmCustomBypassAlarmControlPanel>> | undefined,
@@ -126,7 +126,7 @@ declare global {
    * Triggers the alarm manually.
    */
   var alarmTriggerAlarmControlPanel: (
-    target: IEntity<`alarm_control_panel.${string}`> | IArea,
+    target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmTriggerAlarmControlPanel,
   ) => Block<
     Partial<ServiceCallArgs<AlarmTriggerAlarmControlPanel>> | undefined,

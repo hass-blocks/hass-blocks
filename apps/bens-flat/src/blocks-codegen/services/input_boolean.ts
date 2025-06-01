@@ -19,21 +19,21 @@ declare global {
    * Turns on the helper.
    */
   var turnOnInputBoolean: (
-    target: IEntity<`input_boolean.${string}`> | IArea,
+    target: IEntity<`input_boolean.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns off the helper.
    */
   var turnOffInputBoolean: (
-    target: IEntity<`input_boolean.${string}`> | IArea,
+    target: IEntity<`input_boolean.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles the helper on/off.
    */
   var toggleInputBoolean: (
-    target: IEntity<`input_boolean.${string}`> | IArea,
+    target: IEntity<`input_boolean.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

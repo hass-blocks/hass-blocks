@@ -19,7 +19,7 @@ declare global {
    * Mimics the physical button press on the device.
    */
   var pressInputButton: (
-    target: IEntity<`input_button.${string}`> | IArea,
+    target: IEntity<`input_button.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

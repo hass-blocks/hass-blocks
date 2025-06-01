@@ -11,7 +11,7 @@ declare global {
    * Sends the turn off command.
    */
   var turnOffRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TurnOnRemote {
@@ -25,7 +25,7 @@ declare global {
    * Sends the turn on command.
    */
   var turnOnRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
     params?: TurnOnRemote,
   ) => Block<Partial<ServiceCallArgs<TurnOnRemote>> | undefined, void>;
 
@@ -33,7 +33,7 @@ declare global {
    * Sends the toggle command.
    */
   var toggleRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SendCommandRemote {
@@ -63,7 +63,7 @@ declare global {
    * Sends a command or a list of commands to a device.
    */
   var sendCommandRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
     params: SendCommandRemote,
   ) => Block<Partial<ServiceCallArgs<SendCommandRemote>> | undefined, void>;
 
@@ -94,7 +94,7 @@ declare global {
    * Learns a command or a list of commands from a device.
    */
   var learnCommandRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
     params?: LearnCommandRemote,
   ) => Block<Partial<ServiceCallArgs<LearnCommandRemote>> | undefined, void>;
 
@@ -113,7 +113,7 @@ declare global {
    * Deletes a command or a list of commands from the database.
    */
   var deleteCommandRemote: (
-    target: IEntity<`remote.${string}`> | IArea,
+    target: IEntity<`remote.${string}`> | IArea<string>,
     params: DeleteCommandRemote,
   ) => Block<Partial<ServiceCallArgs<DeleteCommandRemote>> | undefined, void>;
 }

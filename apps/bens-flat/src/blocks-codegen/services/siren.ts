@@ -26,7 +26,7 @@ declare global {
    * Turns the siren on.
    */
   var turnOnSiren: (
-    target: IEntity<`siren.${string}`> | IArea,
+    target: IEntity<`siren.${string}`> | IArea<string>,
     params?: TurnOnSiren,
   ) => Block<Partial<ServiceCallArgs<TurnOnSiren>> | undefined, void>;
 
@@ -34,14 +34,14 @@ declare global {
    * Turns the siren off.
    */
   var turnOffSiren: (
-    target: IEntity<`siren.${string}`> | IArea,
+    target: IEntity<`siren.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Toggles the siren on/off.
    */
   var toggleSiren: (
-    target: IEntity<`siren.${string}`> | IArea,
+    target: IEntity<`siren.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

@@ -125,7 +125,7 @@ declare global {
    * Plays media on a Music Assistant player with more fine-grained control options.
    */
   var playMediaMusicAssistant: (
-    target: IEntity<`media_player.${string}`> | IArea,
+    target: IEntity<`media_player.${string}`> | IArea<string>,
     params: PlayMediaMusicAssistant,
   ) => Block<
     Partial<ServiceCallArgs<PlayMediaMusicAssistant>> | undefined,
@@ -151,7 +151,7 @@ declare global {
    * Plays an announcement on a Music Assistant player with more fine-grained control options.
    */
   var playAnnouncementMusicAssistant: (
-    target: IEntity<`media_player.${string}`> | IArea,
+    target: IEntity<`media_player.${string}`> | IArea<string>,
     params: PlayAnnouncementMusicAssistant,
   ) => Block<
     Partial<ServiceCallArgs<PlayAnnouncementMusicAssistant>> | undefined,
@@ -173,7 +173,7 @@ declare global {
    * Transfers a player's queue to another player.
    */
   var transferQueueMusicAssistant: (
-    target: IEntity<`media_player.${string}`> | IArea,
+    target: IEntity<`media_player.${string}`> | IArea<string>,
     params?: TransferQueueMusicAssistant,
   ) => Block<
     Partial<ServiceCallArgs<TransferQueueMusicAssistant>> | undefined,
@@ -184,7 +184,7 @@ declare global {
    * Retrieves the details of the currently active queue of a Music Assistant player.
    */
   var getQueueMusicAssistant: (
-    target: IEntity<`media_player.${string}`> | IArea,
+    target: IEntity<`media_player.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

@@ -11,14 +11,14 @@ declare global {
    * Selects the first option.
    */
   var selectFirst: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Selects the last option.
    */
   var selectLast: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SelectNext {
@@ -32,7 +32,7 @@ declare global {
    * Selects the next option.
    */
   var selectNext: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
     params?: SelectNext,
   ) => Block<Partial<ServiceCallArgs<SelectNext>> | undefined, void>;
 
@@ -47,7 +47,7 @@ declare global {
    * Selects an option.
    */
   var selectOption: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
     params: SelectOption,
   ) => Block<Partial<ServiceCallArgs<SelectOption>> | undefined, void>;
 
@@ -62,7 +62,7 @@ declare global {
    * Selects the previous option.
    */
   var selectPrevious: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
     params?: SelectPrevious,
   ) => Block<Partial<ServiceCallArgs<SelectPrevious>> | undefined, void>;
 }

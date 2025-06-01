@@ -44,16 +44,13 @@ export const tvModeOff = automation({
 
 // TODO handle youtube and spotify. Also add XBOX back
 const tvModeShouldBeOff = sequence(
-  stateIsNot(wearingClapper2Ps5ConsoleMediaPlayer, 'playing'),
-  stateIsNot(bensAppleTvMediaPlayer, 'playing'),
+  stateIsNot(wearingClapper2Ps5Console, 'playing'),
+  stateIsNot(bensAppleTv, 'playing'),
 );
 
 export const turnTvModeOnFromPs5 = automation({
   name: 'Turn TV Mode On From PS5',
-  when: [
-    stateChanges(wearingClapper2Ps5ConsoleMediaPlayer),
-    stateChanges(bensAppleTvMediaPlayer),
-  ],
+  when: [stateChanges(wearingClapper2Ps5Console), stateChanges(bensAppleTv)],
   then: when(tvModeShouldBeOff, {
     then: turnOffSwitch(tvMode),
     else: turnOnSwitch(tvMode),

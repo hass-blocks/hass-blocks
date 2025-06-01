@@ -18,7 +18,7 @@ declare global {
    * Triggers the actions of an automation.
    */
   var triggerAutomation: (
-    target: IEntity<`automation.${string}`> | IArea,
+    target: IEntity<`automation.${string}`> | IArea<string>,
     params?: TriggerAutomation,
   ) => Block<Partial<ServiceCallArgs<TriggerAutomation>> | undefined, void>;
 
@@ -26,14 +26,14 @@ declare global {
    * Toggles (enable / disable) an automation.
    */
   var toggleAutomation: (
-    target: IEntity<`automation.${string}`> | IArea,
+    target: IEntity<`automation.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Enables an automation.
    */
   var turnOnAutomation: (
-    target: IEntity<`automation.${string}`> | IArea,
+    target: IEntity<`automation.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface TurnOffAutomation {
@@ -47,7 +47,7 @@ declare global {
    * Disables an automation.
    */
   var turnOffAutomation: (
-    target: IEntity<`automation.${string}`> | IArea,
+    target: IEntity<`automation.${string}`> | IArea<string>,
     params?: TurnOffAutomation,
   ) => Block<Partial<ServiceCallArgs<TurnOffAutomation>> | undefined, void>;
 

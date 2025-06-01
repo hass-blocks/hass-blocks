@@ -19,7 +19,7 @@ declare global {
    * Retrieves the configured time ranges of one or multiple schedules.
    */
   var getSchedule: (
-    target: IEntity<`schedule.${string}`> | IArea,
+    target: IEntity<`schedule.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

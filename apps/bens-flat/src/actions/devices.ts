@@ -1,7 +1,7 @@
 import { waitUntilStateIsNot } from '@hass-blocks/blocks';
 
 export const waitUntilAppleTvFinishesTurningOn = waitUntilStateIsNot(
-  bensAppleTvMediaPlayer,
+  bensAppleTv,
   'standby',
   3,
 );

@@ -22,7 +22,7 @@ declare global {
    * Installs an update for a device or service.
    */
   var installUpdate: (
-    target: IEntity<`update.${string}`> | IArea,
+    target: IEntity<`update.${string}`> | IArea<string>,
     params?: InstallUpdate,
   ) => Block<Partial<ServiceCallArgs<InstallUpdate>> | undefined, void>;
 
@@ -30,14 +30,14 @@ declare global {
    * Marks currently available update as skipped.
    */
   var skipUpdate: (
-    target: IEntity<`update.${string}`> | IArea,
+    target: IEntity<`update.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Removes the skipped version marker from an update.
    */
   var clearSkippedUpdate: (
-    target: IEntity<`update.${string}`> | IArea,
+    target: IEntity<`update.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

@@ -53,10 +53,7 @@ export const allAdaptiveLightingSleepModeSwitches = combine(
   adaptiveLightingSleepModeLivingRoom,
 );
 
-export const allSpeakers = combine(
-  sonosArcUltraMediaPlayer,
-  bedroomSpeakerMediaPlayer,
-);
+export const allSpeakers = combine(sonosArcUltra, bedroomSpeaker);
 
 export const allHeatingAndBoilerSwitches = combine(
   boiler,

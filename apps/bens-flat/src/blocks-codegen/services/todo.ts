@@ -30,7 +30,7 @@ declare global {
    * Adds a new to-do list item.
    */
   var addItemTodo: (
-    target: IEntity<`todo.${string}`> | IArea,
+    target: IEntity<`todo.${string}`> | IArea<string>,
     params: AddItemTodo,
   ) => Block<Partial<ServiceCallArgs<AddItemTodo>> | undefined, void>;
 
@@ -65,7 +65,7 @@ declare global {
    * Updates an existing to-do list item based on its name or UID.
    */
   var updateItemTodo: (
-    target: IEntity<`todo.${string}`> | IArea,
+    target: IEntity<`todo.${string}`> | IArea<string>,
     params: UpdateItemTodo,
   ) => Block<Partial<ServiceCallArgs<UpdateItemTodo>> | undefined, void>;
 
@@ -80,7 +80,7 @@ declare global {
    * Removes an existing to-do list item by its name or UID.
    */
   var removeItemTodo: (
-    target: IEntity<`todo.${string}`> | IArea,
+    target: IEntity<`todo.${string}`> | IArea<string>,
     params: RemoveItemTodo,
   ) => Block<Partial<ServiceCallArgs<RemoveItemTodo>> | undefined, void>;
 
@@ -95,7 +95,7 @@ declare global {
    * Gets items on a to-do list.
    */
   var getItemsTodo: (
-    target: IEntity<`todo.${string}`> | IArea,
+    target: IEntity<`todo.${string}`> | IArea<string>,
     params?: GetItemsTodo,
   ) => Block<Partial<ServiceCallArgs<GetItemsTodo>> | undefined, void>;
 
@@ -103,7 +103,7 @@ declare global {
    * Removes all to-do list items that have been completed.
    */
   var removeCompletedItemsTodo: (
-    target: IEntity<`todo.${string}`> | IArea,
+    target: IEntity<`todo.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

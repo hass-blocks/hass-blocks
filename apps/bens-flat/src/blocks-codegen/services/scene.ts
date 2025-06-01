@@ -18,7 +18,7 @@ declare global {
    * Activates a scene.
    */
   var turnOnScene: (
-    target: IEntity<`scene.${string}`> | IArea,
+    target: IEntity<`scene.${string}`> | IArea<string>,
     params?: TurnOnScene,
   ) => Block<Partial<ServiceCallArgs<TurnOnScene>> | undefined, void>;
 
@@ -74,7 +74,7 @@ declare global {
    * Deletes a dynamically created scene.
    */
   var deleteScene: (
-    target: IEntity<`scene.${string}`> | IArea,
+    target: IEntity<`scene.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

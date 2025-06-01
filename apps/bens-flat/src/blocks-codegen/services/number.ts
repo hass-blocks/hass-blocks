@@ -18,7 +18,7 @@ declare global {
    * Sets the value of a number.
    */
   var setValueNumber: (
-    target: IEntity<`number.${string}`> | IArea,
+    target: IEntity<`number.${string}`> | IArea<string>,
     params: SetValueNumber,
   ) => Block<Partial<ServiceCallArgs<SetValueNumber>> | undefined, void>;
 }

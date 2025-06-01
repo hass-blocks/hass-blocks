@@ -11,42 +11,42 @@ declare global {
    * Starts or resumes the cleaning task.
    */
   var startVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Pauses the cleaning task.
    */
   var pauseVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tells the vacuum cleaner to return to its dock.
    */
   var returnToBaseVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Tells the vacuum cleaner to do a spot clean-up.
    */
   var cleanSpotVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Locates the vacuum cleaner robot.
    */
   var locateVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Stops the current cleaning task.
    */
   var stopVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetFanSpeedVacuum {
@@ -60,7 +60,7 @@ declare global {
    * Sets the fan speed of the vacuum cleaner.
    */
   var setFanSpeedVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
     params: SetFanSpeedVacuum,
   ) => Block<Partial<ServiceCallArgs<SetFanSpeedVacuum>> | undefined, void>;
 
@@ -79,7 +79,7 @@ declare global {
    * Sends a command to the vacuum cleaner.
    */
   var sendCommandVacuum: (
-    target: IEntity<`vacuum.${string}`> | IArea,
+    target: IEntity<`vacuum.${string}`> | IArea<string>,
     params: SendCommandVacuum,
   ) => Block<Partial<ServiceCallArgs<SendCommandVacuum>> | undefined, void>;
 }

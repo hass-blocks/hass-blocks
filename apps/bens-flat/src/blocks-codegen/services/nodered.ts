@@ -22,7 +22,7 @@ declare global {
    * Send a message to a Node-RED flow that has been exposed to Home Assistant.
    */
   var triggerNodered: (
-    target: IEntity<`switch.${string}`> | IArea,
+    target: IEntity<`switch.${string}`> | IArea<string>,
     params?: TriggerNodered,
   ) => Block<Partial<ServiceCallArgs<TriggerNodered>> | undefined, void>;
 }

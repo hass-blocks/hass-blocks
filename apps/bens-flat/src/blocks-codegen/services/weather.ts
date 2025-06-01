@@ -18,7 +18,7 @@ declare global {
    * Retrieves the forecast from selected weather services.
    */
   var getForecastsWeather: (
-    target: IEntity<`weather.${string}`> | IArea,
+    target: IEntity<`weather.${string}`> | IArea<string>,
     params: GetForecastsWeather,
   ) => Block<Partial<ServiceCallArgs<GetForecastsWeather>> | undefined, void>;
 }

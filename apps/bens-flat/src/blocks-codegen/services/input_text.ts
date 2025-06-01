@@ -26,7 +26,7 @@ declare global {
    * Sets the value.
    */
   var setValueInputText: (
-    target: IEntity<`input_text.${string}`> | IArea,
+    target: IEntity<`input_text.${string}`> | IArea<string>,
     params: SetValueInputText,
   ) => Block<Partial<ServiceCallArgs<SetValueInputText>> | undefined, void>;
 }

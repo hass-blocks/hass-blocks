@@ -18,7 +18,7 @@ declare global {
    * Takes a snapshot from an image.
    */
   var snapshotImage: (
-    target: IEntity<`image.${string}`> | IArea,
+    target: IEntity<`image.${string}`> | IArea<string>,
     params: SnapshotImage,
   ) => Block<Partial<ServiceCallArgs<SnapshotImage>> | undefined, void>;
 }

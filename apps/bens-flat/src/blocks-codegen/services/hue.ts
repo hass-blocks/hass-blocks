@@ -30,7 +30,7 @@ declare global {
    * Activates a Hue scene with more control over the options.
    */
   var activateSceneHue: (
-    target: IEntity<`scene.${string}`> | IArea,
+    target: IEntity<`scene.${string}`> | IArea<string>,
     params?: ActivateSceneHue,
   ) => Block<Partial<ServiceCallArgs<ActivateSceneHue>> | undefined, void>;
 

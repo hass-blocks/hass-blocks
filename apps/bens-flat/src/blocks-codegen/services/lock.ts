@@ -18,7 +18,7 @@ declare global {
    * Unlocks a lock.
    */
   var unlock: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params?: Unlock,
   ) => Block<Partial<ServiceCallArgs<Unlock>> | undefined, void>;
 
@@ -33,7 +33,7 @@ declare global {
    * Locks a lock.
    */
   var lock: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params?: Lock,
   ) => Block<Partial<ServiceCallArgs<Lock>> | undefined, void>;
 
@@ -48,7 +48,7 @@ declare global {
    * Opens a lock.
    */
   var openLock: (
-    target: IEntity<`lock.${string}`> | IArea,
+    target: IEntity<`lock.${string}`> | IArea<string>,
     params?: OpenLock,
   ) => Block<Partial<ServiceCallArgs<OpenLock>> | undefined, void>;
 }

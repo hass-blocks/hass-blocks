@@ -11,7 +11,7 @@ declare global {
    * Press the button entity.
    */
   var pressButton: (
-    target: IEntity<`button.${string}`> | IArea,
+    target: IEntity<`button.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

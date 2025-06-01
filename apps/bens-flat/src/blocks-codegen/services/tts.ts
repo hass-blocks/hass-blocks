@@ -34,7 +34,7 @@ declare global {
    * Speaks something using text-to-speech on a media player.
    */
   var speakTts: (
-    target: IEntity<`tts.${string}`> | IArea,
+    target: IEntity<`tts.${string}`> | IArea<string>,
     params: SpeakTts,
   ) => Block<Partial<ServiceCallArgs<SpeakTts>> | undefined, void>;
 

@@ -11,7 +11,7 @@ declare global {
    * Resets all counters of a utility meter.
    */
   var resetUtilityMeter: (
-    target: IEntity<`select.${string}`> | IArea,
+    target: IEntity<`select.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface CalibrateUtilityMeter {
@@ -25,7 +25,7 @@ declare global {
    * Calibrates a utility meter sensor.
    */
   var calibrateUtilityMeter: (
-    target: IEntity<`sensor.${string}`> | IArea,
+    target: IEntity<`sensor.${string}`> | IArea<string>,
     params: CalibrateUtilityMeter,
   ) => Block<Partial<ServiceCallArgs<CalibrateUtilityMeter>> | undefined, void>;
 }

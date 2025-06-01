@@ -11,14 +11,14 @@ declare global {
    * Turns water heater on.
    */
   var turnOnWaterHeater: (
-    target: IEntity<`water_heater.${string}`> | IArea,
+    target: IEntity<`water_heater.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns water heater off.
    */
   var turnOffWaterHeater: (
-    target: IEntity<`water_heater.${string}`> | IArea,
+    target: IEntity<`water_heater.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SetAwayModeWaterHeater {
@@ -32,7 +32,7 @@ declare global {
    * Turns away mode on/off.
    */
   var setAwayModeWaterHeater: (
-    target: IEntity<`water_heater.${string}`> | IArea,
+    target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetAwayModeWaterHeater,
   ) => Block<
     Partial<ServiceCallArgs<SetAwayModeWaterHeater>> | undefined,
@@ -54,7 +54,7 @@ declare global {
    * Sets the target temperature.
    */
   var setTemperatureWaterHeater: (
-    target: IEntity<`water_heater.${string}`> | IArea,
+    target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetTemperatureWaterHeater,
   ) => Block<
     Partial<ServiceCallArgs<SetTemperatureWaterHeater>> | undefined,
@@ -72,7 +72,7 @@ declare global {
    * Sets the operation mode.
    */
   var setOperationModeWaterHeater: (
-    target: IEntity<`water_heater.${string}`> | IArea,
+    target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetOperationModeWaterHeater,
   ) => Block<
     Partial<ServiceCallArgs<SetOperationModeWaterHeater>> | undefined,

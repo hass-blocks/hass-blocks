@@ -19,21 +19,21 @@ declare global {
    * Generic action to turn devices off under any domain.
    */
   var turnOffHomeassistant: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Generic action to turn devices on under any domain.
    */
   var turnOnHomeassistant: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Generic action to toggle devices on/off under any domain.
    */
   var toggleHomeassistant: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
@@ -129,7 +129,7 @@ declare global {
    * Reloads the specified config entry.
    */
   var reloadConfigEntryHomeassistant: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
     params?: ReloadConfigEntryHomeassistant,
   ) => Block<
     Partial<ServiceCallArgs<ReloadConfigEntryHomeassistant>> | undefined,

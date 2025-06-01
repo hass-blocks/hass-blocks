@@ -11,28 +11,28 @@ declare global {
    * Enables the motion detection.
    */
   var enableMotionDetectionCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Disables the motion detection.
    */
   var disableMotionDetectionCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns off the camera.
    */
   var turnOffCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Turns on the camera.
    */
   var turnOnCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface SnapshotCamera {
@@ -46,7 +46,7 @@ declare global {
    * Takes a snapshot from a camera.
    */
   var snapshotCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
     params: SnapshotCamera,
   ) => Block<Partial<ServiceCallArgs<SnapshotCamera>> | undefined, void>;
 
@@ -65,7 +65,7 @@ declare global {
    * Plays the camera stream on a supported media player.
    */
   var playStreamCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
     params: PlayStreamCamera,
   ) => Block<Partial<ServiceCallArgs<PlayStreamCamera>> | undefined, void>;
 
@@ -88,7 +88,7 @@ declare global {
    * Creates a recording of a live camera feed.
    */
   var recordCamera: (
-    target: IEntity<`camera.${string}`> | IArea,
+    target: IEntity<`camera.${string}`> | IArea<string>,
     params: RecordCamera,
   ) => Block<Partial<ServiceCallArgs<RecordCamera>> | undefined, void>;
 }

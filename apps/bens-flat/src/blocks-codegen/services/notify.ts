@@ -22,7 +22,7 @@ declare global {
    * Sends a notification message.
    */
   var sendMessageNotify: (
-    target: IEntity<`notify.${string}`> | IArea,
+    target: IEntity<`notify.${string}`> | IArea<string>,
     params: SendMessageNotify,
   ) => Block<Partial<ServiceCallArgs<SendMessageNotify>> | undefined, void>;
 

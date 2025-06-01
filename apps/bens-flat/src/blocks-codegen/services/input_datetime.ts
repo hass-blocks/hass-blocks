@@ -38,7 +38,7 @@ declare global {
    * Sets the date and/or time.
    */
   var setDatetimeInputDatetime: (
-    target: IEntity<`input_datetime.${string}`> | IArea,
+    target: IEntity<`input_datetime.${string}`> | IArea<string>,
     params?: SetDatetimeInputDatetime,
   ) => Block<
     Partial<ServiceCallArgs<SetDatetimeInputDatetime>> | undefined,

@@ -26,7 +26,7 @@ declare global {
    * Starts a timer or restarts it with a provided duration.
    */
   var startTimer: (
-    target: IEntity<`timer.${string}`> | IArea,
+    target: IEntity<`timer.${string}`> | IArea<string>,
     params?: StartTimer,
   ) => Block<Partial<ServiceCallArgs<StartTimer>> | undefined, void>;
 
@@ -34,21 +34,21 @@ declare global {
    * Pauses a running timer, retaining the remaining duration for later continuation.
    */
   var pauseTimer: (
-    target: IEntity<`timer.${string}`> | IArea,
+    target: IEntity<`timer.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Resets a timer's duration to the last known initial value without firing the timer finished event.
    */
   var cancelTimer: (
-    target: IEntity<`timer.${string}`> | IArea,
+    target: IEntity<`timer.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   /**
    * Finishes a running timer earlier than scheduled.
    */
   var finishTimer: (
-    target: IEntity<`timer.${string}`> | IArea,
+    target: IEntity<`timer.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface ChangeTimer {
@@ -62,7 +62,7 @@ declare global {
    * Changes a timer by adding or subtracting a given duration.
    */
   var changeTimer: (
-    target: IEntity<`timer.${string}`> | IArea,
+    target: IEntity<`timer.${string}`> | IArea<string>,
     params: ChangeTimer,
   ) => Block<Partial<ServiceCallArgs<ChangeTimer>> | undefined, void>;
 }

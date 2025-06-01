@@ -54,7 +54,7 @@ declare global {
    * Sets a Sonos timer.
    */
   var setSleepTimerSonos: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
     params?: SetSleepTimerSonos,
   ) => Block<Partial<ServiceCallArgs<SetSleepTimerSonos>> | undefined, void>;
 
@@ -62,7 +62,7 @@ declare global {
    * Clears a Sonos timer.
    */
   var clearSleepTimerSonos: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
   interface UpdateAlarmSonos {
@@ -92,7 +92,7 @@ declare global {
    * Updates an alarm with new time and volume settings.
    */
   var updateAlarmSonos: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
     params: UpdateAlarmSonos,
   ) => Block<Partial<ServiceCallArgs<UpdateAlarmSonos>> | undefined, void>;
 
@@ -107,7 +107,7 @@ declare global {
    * Starts playing the queue from the first item.
    */
   var playQueueSonos: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
     params?: PlayQueueSonos,
   ) => Block<Partial<ServiceCallArgs<PlayQueueSonos>> | undefined, void>;
 
@@ -122,7 +122,7 @@ declare global {
    * Removes an item from the queue.
    */
   var removeFromQueueSonos: (
-    target: IEntity | IArea,
+    target: IEntity | IArea<string>,
     params?: RemoveFromQueueSonos,
   ) => Block<Partial<ServiceCallArgs<RemoveFromQueueSonos>> | undefined, void>;
 
@@ -130,7 +130,7 @@ declare global {
    * Returns the contents of the queue.
    */
   var getQueueSonos: (
-    target: IEntity<`media_player.${string}`> | IArea,
+    target: IEntity<`media_player.${string}`> | IArea<string>,
   ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 }
 

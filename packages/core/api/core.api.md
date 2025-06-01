@@ -101,7 +101,7 @@ export interface BlockStarted extends LifeCycleEvent<'block-started'> {
 
 // @public
 export type BlockTypeIsCompatibleWithSequence<TFirstBlock, TSequenceInput> = [
-TFirstBlock
+Exclude<TFirstBlock, undefined>
 ] extends [
 TSequenceInput extends void ? MustIncludeUndefined<TFirstBlock> : Partial<TSequenceInput>
 ] ? true : false;
@@ -116,7 +116,7 @@ export type CheckScenarios<TInput, TOutput, TSequence extends readonly Block<unk
 export const combine: <T extends ReadonlyArray<IArea> | ReadonlyArray<IEntity> | ReadonlyArray<IDevice>>(...items: T) => T[number];
 
 // @public
-export const concurrently: <TCollectionOfBlocks extends readonly Block<unknown, unknown>[]>(...actions: TCollectionOfBlocks) => Block<InputType<TCollectionOfBlocks[number]>, OutputType<TCollectionOfBlocks[number]>[]>;
+export const concurrently: <TCollectionOfBlocks extends readonly Block<unknown, unknown>[]>(...actions: TCollectionOfBlocks) => Block<GetSequenceInput<TCollectionOfBlocks>, GetSequenceOutput<TCollectionOfBlocks>[]>;
 
 // @public
 export interface ConditionResult<O> {
@@ -407,6 +407,7 @@ export interface IRunContext<I> {
     events?: IEventBus;
     hass: IHass;
     input: I;
+    runner: <TInput, TOutput>(block: Block<TInput, TOutput>) => (input: TInput) => Promise<BlockOutput<TOutput>>;
     triggerId?: string;
 }
 
@@ -544,8 +545,8 @@ export type SequenceCompatibilityError<TInput, TOutput, TSequence extends readon
         output: TOutput;
     };
     context: {
-        head: TSequence;
-        tail: TBefore;
+        head: TBefore;
+        tail: TSequence;
     };
     __error: true;
 };

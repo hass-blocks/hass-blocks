@@ -2,12 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 import { v4 } from 'uuid';
 
-import {
-  IBlockRunner,
-  type BlockOutput,
-  type IHass,
-  type IRunContext,
-} from '@types';
+import { type BlockOutput, type IHass, type IRunContext } from '@types';
 import { EventBus, Block } from '@core';
 
 import { BlockExecutionMode, Executor } from './executor.ts';
@@ -316,7 +311,6 @@ describe('executor', () => {
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
-    const runner = mock<IBlockRunner>();
 
     when(actionOne.run)
       .calledWith({ hass, input, events, triggerId, runner: expect.anything() })

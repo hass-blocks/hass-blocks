@@ -12,6 +12,7 @@
     "@hass-blocks/core": "3.14.0",
     "@hass-blocks/terminal-ui-plugin": "0.3.2",
     "@hass-blocks/triggers": "workspace:^",
+    "@swc/helpers": "~0.5.17",
     "zod": "3.25.28"
   }
 }

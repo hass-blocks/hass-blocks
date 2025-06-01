@@ -21,7 +21,7 @@ export interface Context {
 export const eventIsFired: (event: {
     type: string[];
     data?: Record<string, unknown>;
-    context: Context;
+    context?: Context;
     name?: string;
 }) => ITrigger;
 

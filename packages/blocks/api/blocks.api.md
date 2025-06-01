@@ -5,10 +5,30 @@
 ```ts
 
 import { Block } from '@hass-blocks/core';
+import { IEntity } from '@hass-blocks/core';
 import { ITarget } from '@hass-blocks/core';
+import { Pass } from '@hass-blocks/core';
+import { ServiceCallArgs } from '@hass-blocks/core';
+import z from 'zod/v4';
 
 // @public
-export const closeCover: (target: ITarget) => Block<void, void>;
+export const apiRequest: <TProps extends Partial<ApiRequestProps>, TInputProps extends Partial<ApiRequestProps>>(props: TProps) => Block<TInputProps, z.core.output<Exclude<TProps["responseSchema"], undefined>>>;
+
+// @public
+export interface ApiRequestProps {
+    baseUrl: string;
+    body?: Record<string, unknown>;
+    headers: Record<string, unknown>;
+    method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+    path: string;
+    responseSchema?: z.core.$ZodType;
+}
+
+// @public
+export const closeCover: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+
+// @public
+export const entityExists: (entity: IEntity) => Block<void, void>;
 
 // @public
 export const gate: (name: string) => {
@@ -19,22 +39,36 @@ export const gate: (name: string) => {
 };
 
 // @public
-export const openCover: (target: ITarget) => Block<void, void>;
+export const openCover: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const playMedia: (target: ITarget, mediaContentId: string, mediaContentType: string) => Block<void, void>;
+export const playMedia: (target: ITarget, mediaContentId: string, mediaContentType: string) => Block<Partial<ServiceCallArgs<    {
+announce: boolean;
+media_contend_id: string;
+media_content_type: string;
+}>> | undefined, void>;
 
 // @public
-export const publishMessageToMqtt: (topic: string, payload: string) => Block<void, void>;
+export const publishMessageToMqtt: (topic: string, payload: string) => Block<Partial<ServiceCallArgs<    {
+topic: string;
+payload: string;
+}>> | undefined, void>;
 
 // @public
-export const selectMediaPlayerSource: (target: ITarget, source: string) => Block<void, void>;
+export const selectMediaPlayerSource: (target: ITarget, source: string) => Block<Partial<ServiceCallArgs<    {
+source: string;
+}>> | undefined, void>;
 
 // @public
-export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<void, void>;
+export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<Partial<ServiceCallArgs<    {
+command: string[];
+delay_secs: number;
+}>> | undefined, void>;
 
 // @public
-export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<void, void>;
+export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<Partial<ServiceCallArgs<    {
+volume_level: number;
+}>> | undefined, void>;
 
 // @public
 export const stateIs: (target: ITarget, state: string) => Block<void, void>;
@@ -43,37 +77,37 @@ export const stateIs: (target: ITarget, state: string) => Block<void, void>;
 export const stateIsNot: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
-export const stopMediaPlayer: (target: ITarget) => Block<void, void>;
+export const stopMediaPlayer: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const switchClimate: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
+export const switchClimate: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const switchLight: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
+export const switchLight: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const turnMediaPlayer: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
+export const turnMediaPlayer: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const turnOffAllSchedulers: Block<void, void>;
+export const turnOffAllSchedulers: Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const turnOnAllSchedulers: Block<void, void>;
+export const turnOnAllSchedulers: Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const turnSwitch: (target: ITarget, onOrOff: "on" | "off") => Block<void, void>;
+export const turnSwitch: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
-export const waitMinutes: (minutes: number) => Block<void, Promise<void>>;
+export const waitMinutes: (minutes: number) => Block<Pass, Pass>;
 
 // @public
-export const waitSeconds: (seconds: number) => Block<void, Promise<void>>;
+export const waitSeconds: (seconds: number) => Block<Pass, Pass>;
 
 // @public
-export const waitUntilState: (target: ITarget, state: string, timeout?: number) => Block<void, Promise<void>>;
+export const waitUntilState: (target: ITarget, state: string, timeout?: number) => Block<Pass, Pass>;
 
 // @public
-export const waitUntilStateIsNot: (target: ITarget, state: string, timeout?: number) => Block<void, Promise<void>>;
+export const waitUntilStateIsNot: (target: ITarget, state: string, timeout?: number) => Block<Pass, Pass>;
 
 // (No @packageDocumentation comment for this package)
 

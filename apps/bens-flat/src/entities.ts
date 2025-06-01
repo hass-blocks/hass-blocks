@@ -2,6 +2,12 @@ import '@blocks-codegen';
 
 import { combine, toggle } from '@hass-blocks/core';
 
+export const goodMorningPlayed = toggle({
+  create: true,
+  id: 'switch.good_morning_played',
+  friendlyName: 'Good morning played',
+});
+
 export const toggleSleepMode = toggle({
   create: true,
   id: 'switch.toggle_sleep_mode',

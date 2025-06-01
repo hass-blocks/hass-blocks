@@ -11,3 +11,5 @@ export { recordStateOfLivingRoom, restoreAfterTvMode } from './scene.ts';
 export { notifyAllMyDevices } from './notify.ts';
 
 export { getNameOfLastUnlockerFromLock } from './nuki.ts';
+
+export { ttsSay } from './ttss-say.ts';

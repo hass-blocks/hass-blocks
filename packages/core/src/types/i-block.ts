@@ -1,7 +1,6 @@
 import type { BlockOutput } from './block-output.ts';
 import type { IBlocksNode } from './i-blocks-node.ts';
-import type { IEventBus } from './i-event-bus.ts';
-import type { IHass } from './i-hass.ts';
+import type { IRunContext } from './i-run-context.ts';
 import type { ITrigger } from './i-trigger.ts';
 import type { SerialisedBlock } from './serialised-block.ts';
 
@@ -44,10 +43,5 @@ export interface IBlock<I = void, O = void> extends IBlocksNode {
    * @param events - An initialised event bus
    * @param triggerId - a uuid trigger id, unique to this particular trigger sequence
    */
-  run(
-    hass: IHass,
-    input: I,
-    events?: IEventBus,
-    triggerId?: string,
-  ): Promise<BlockOutput<O>> | BlockOutput<O>;
+  run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
 }

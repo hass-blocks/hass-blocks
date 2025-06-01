@@ -1,24 +1,24 @@
 import { mock } from 'vitest-mock-extended';
 
-import type { IHass } from '@types';
+import type { IHass, IRunContext } from '@types';
 
 import { Action } from './action.ts';
 
 describe('the action block', () => {
   it('calls the callback when executed and passes the result out as output', async () => {
-    const client = mock<IHass>();
+    const hass = mock<IHass>();
     const input = 'input';
     const output = 'output';
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const callback = (_client: IHass, _input: string | undefined) => 'output';
+    const callback = (_context: IRunContext<string | undefined>) => 'output';
 
     const action = new Action<string, string>({
       name: 'This is my name',
       callback,
     });
 
-    const result = await action.run(client, input);
+    const result = await action.run({ hass, input });
 
     expect(result).toEqual({
       output,
@@ -28,14 +28,11 @@ describe('the action block', () => {
   });
 
   it('awaits promises when callback is async', async () => {
-    const callback = async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      _client: IHass,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      _input: string | undefined,
-    ) => 'output';
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const callback = async (_context: IRunContext<string | undefined>) =>
+      'output';
 
-    const client = mock<IHass>();
+    const hass = mock<IHass>();
     const input = 'input';
     const output = 'output';
 
@@ -44,7 +41,7 @@ describe('the action block', () => {
       callback,
     });
 
-    const result = await action.run(client, input);
+    const result = await action.run({ hass, input });
 
     expect(result).toEqual({
       output,

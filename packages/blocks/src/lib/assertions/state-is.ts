@@ -12,11 +12,11 @@ export const stateIs = (target: ITarget, state: string) => {
   return assertion({
     name: `If ${target} is ${state}`,
     targets: [target],
-    predicate: (client) => {
+    predicate: ({ hass }) => {
       const { entity_id } = target.targetIds;
       return Boolean(
         entity_id?.every((id) => {
-          const switchState = client.getState(id);
+          const switchState = hass.getState(id);
           return state === switchState;
         }),
       );

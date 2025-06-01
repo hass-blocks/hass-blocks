@@ -3,11 +3,10 @@ import { ExecutionAbortedError } from '@errors';
 import { md5 } from '@utils';
 
 import {
-  type IEventBus,
   type BlockOutput,
-  type IHass,
   type ITrigger,
   type IBaseBlockConfig,
+  type IRunContext,
   ExecutionMode,
 } from '@types';
 
@@ -24,14 +23,18 @@ import type {
  * Configuration object for automation blocks
  */
 export interface IAutomationConfig<
-  A extends readonly Block<unknown, unknown>[],
-  I = GetSequenceInput<A>,
-  O = GetSequenceOutput<A>,
+  TSequence extends readonly Block<unknown, unknown>[],
+  TInput = GetSequenceInput<TSequence>,
+  TOutput = GetSequenceOutput<TSequence>,
 > extends IBaseBlockConfig {
   /**
    * Sequence of blocks to execute when the trigger is fired
    */
-  then: (BlockRetainType<A> & A & ValidateSequence<I, O, A>) | Block<I, O>;
+  then:
+    | (BlockRetainType<TSequence> &
+        TSequence &
+        ValidateSequence<TInput, TOutput, TSequence>)
+    | Block<TInput, TOutput>;
 
   /**
    * Trigger will result in this block being executed
@@ -45,15 +48,17 @@ export interface IAutomationConfig<
 }
 
 export class Automation<
-  const A extends readonly Block<unknown, unknown>[],
-  I = GetSequenceInput<A>,
-  O = GetSequenceOutput<A>,
-> extends Block<I, O> {
+  const TSequence extends readonly Block<unknown, unknown>[],
+  TInput = GetSequenceInput<TSequence>,
+  TOutput = GetSequenceOutput<TSequence>,
+> extends Block<TInput, TOutput> {
   public readonly name: string;
 
   private runQueue = new RunQueue();
 
-  public constructor(public config: IAutomationConfig<A, I, O>) {
+  public constructor(
+    public config: IAutomationConfig<TSequence, TInput, TOutput>,
+  ) {
     super(config.id ?? md5(config.name), config.targets, [
       ...(Array.isArray(config.then) ? config.then : [config.then]),
       ...(config.when
@@ -70,12 +75,12 @@ export class Automation<
 
   public override typeString = 'automation';
 
-  public override async run(
-    client: IHass,
-    input: I,
-    events?: IEventBus,
-    triggerId?: string,
-  ): Promise<BlockOutput<O>> {
+  public override async run({
+    hass,
+    input,
+    events,
+    triggerId,
+  }: IRunContext<TInput>): Promise<BlockOutput<TOutput>> {
     if (!events) {
       throw new Error('You must supply an event bus');
     }
@@ -85,13 +90,13 @@ export class Automation<
     }
 
     try {
-      const executor = new Executor<I, O>(
+      const executor = new Executor<TInput, TOutput>(
         [
           ...(Array.isArray(this.config.then)
             ? this.config.then
             : [this.config.then]),
         ],
-        client,
+        hass,
         events,
         triggerId,
         input,
@@ -139,11 +144,11 @@ export class Automation<
  * or in parallel. When passed into
  */
 export const automation = <
-  const A extends readonly Block<unknown, unknown>[],
-  I = GetSequenceInput<A>,
-  O = GetSequenceOutput<A>,
+  const TSequence extends readonly Block<unknown, unknown>[],
+  TInput = GetSequenceInput<TSequence>,
+  TOutput = GetSequenceOutput<TSequence>,
 >(
-  config: IAutomationConfig<A, I, O>,
-): Block<I, O> => {
-  return new Automation<A, I, O>(config);
+  config: IAutomationConfig<TSequence, TInput, TOutput>,
+): Block<TInput, TOutput> => {
+  return new Automation<TSequence, TInput, TOutput>(config);
 };

@@ -1,7 +1,7 @@
 import { mock } from 'vitest-mock-extended';
 
 import type { Block } from '@core';
-import type { ITrigger } from '@types';
+import type { IRunContext, ITrigger } from '@types';
 
 import { Action } from './action.ts';
 import { automation } from './automation.ts';
@@ -11,7 +11,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         const foo = 3;
         return foo;
       },
@@ -45,7 +45,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
       },
     });
@@ -102,7 +102,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
       },
     });
@@ -150,7 +150,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         return {
           two: 'foo',
         };
@@ -176,7 +176,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
       },
     });
@@ -201,7 +201,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
       },
     });
@@ -240,7 +240,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 'string';
       },
@@ -249,7 +249,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 2;
       },
@@ -258,7 +258,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: number) => {
+      callback: (_context: IRunContext<number>) => {
         console.log('something');
       },
     });
@@ -283,7 +283,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 'string';
       },
@@ -292,7 +292,7 @@ describe('the automation class', () => {
     const twoAction = new Action<string, number>({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: async (_client, _input: string) => {
+      callback: async (_context: IRunContext<string>) => {
         console.log('something');
         return 2;
       },
@@ -301,7 +301,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: number) => {
+      callback: (_context: IRunContext<number>) => {
         console.log('something');
       },
     });
@@ -326,7 +326,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: number) => {
+      callback: (_context: IRunContext<number>) => {
         console.log('something');
         return 'string';
       },
@@ -335,7 +335,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 2;
       },
@@ -344,7 +344,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: number) => {
+      callback: (_context: IRunContext<number>) => {
         console.log('something');
       },
     });
@@ -364,7 +364,7 @@ describe('the automation class', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 'string';
       },
@@ -373,7 +373,7 @@ describe('the automation class', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
         return 2;
       },
@@ -382,7 +382,7 @@ describe('the automation class', () => {
     const threeAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         console.log('something');
       },
     });

@@ -31,13 +31,13 @@ describe('executor', () => {
       toJson: () => ({ type: 'action', id: 'baz', name: 'baz' }),
     });
 
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
     when(actionOne.run)
-      .calledWith(mockClient, input, events, triggerId)
+      .calledWith({ hass, input, events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -45,7 +45,7 @@ describe('executor', () => {
       });
 
     when(actionTwo.run)
-      .calledWith(mockClient, 'bar', events, triggerId)
+      .calledWith({ hass, input: 'bar', events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -53,7 +53,7 @@ describe('executor', () => {
       });
 
     when(actionThree.run)
-      .calledWith(mockClient, 'baz', events, triggerId)
+      .calledWith({ hass, input: 'baz', events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -77,7 +77,7 @@ describe('executor', () => {
 
     const executor = new Executor(
       [...actions],
-      mockClient,
+      hass,
       events,
       triggerId,
       input,
@@ -234,13 +234,13 @@ describe('executor', () => {
     const actionTwo = mock<Block<string, string>>();
     const actionThree = mock<Block<string, string>>();
 
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
     when(actionOne.run)
-      .calledWith(mockClient, input, events, triggerId)
+      .calledWith({ hass, input, events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -248,7 +248,7 @@ describe('executor', () => {
       });
 
     when(actionTwo.run)
-      .calledWith(mockClient, 'bar', events, triggerId)
+      .calledWith({ hass, input: 'bar', events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -256,7 +256,7 @@ describe('executor', () => {
       });
 
     when(actionThree.run)
-      .calledWith(mockClient, 'baz', events, triggerId)
+      .calledWith({ hass, input: 'baz', events, triggerId })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -267,7 +267,7 @@ describe('executor', () => {
 
     const executor = new Executor(
       [...actions],
-      mockClient,
+      hass,
       events,
       triggerId,
       input,

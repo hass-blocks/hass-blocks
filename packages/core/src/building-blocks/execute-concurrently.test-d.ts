@@ -1,13 +1,14 @@
 import type { Block } from '@core';
 import { Action } from './action.ts';
 import { concurrently } from './execute-concurrently.ts';
+import type { IRunContext } from '@types';
 
 describe('concurrently', () => {
   it('should correctly type the block when there is only one item and that item has inputs and outputs', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         const foo = 3;
         return foo;
       },
@@ -22,7 +23,7 @@ describe('concurrently', () => {
     const oneAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         const foo = 3;
         return foo;
       },
@@ -31,7 +32,7 @@ describe('concurrently', () => {
     const twoAction = new Action({
       name: 'This thing',
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      callback: (_client, _input: string) => {
+      callback: (_context: IRunContext<string>) => {
         const foo = 'foo';
         return foo;
       },

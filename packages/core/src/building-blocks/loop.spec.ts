@@ -46,11 +46,11 @@ describe('loop.run', () => {
       outputType: 'block',
     });
 
-    const mockClient = mock<IFullBlocksClient>();
-    const bus = mock<EventBus>();
+    const hass = mock<IFullBlocksClient>();
+    const events = mock<EventBus>();
     const triggerId = 'foo-trigger';
 
-    await theLoop.run(mockClient, 2, bus, triggerId);
+    await theLoop.run({ hass, input: 2, events, triggerId });
 
     expect(actionBlock.run).toHaveBeenCalledTimes(3);
   });
@@ -97,11 +97,11 @@ describe('loop.run', () => {
       outputType: 'block',
     });
 
-    const mockClient = mock<IFullBlocksClient>();
-    const bus = mock<EventBus>();
+    const hass = mock<IFullBlocksClient>();
+    const events = mock<EventBus>();
     const triggerId = 'foo-trigger';
 
-    await theLoop.run(mockClient, 2, bus, triggerId);
+    await theLoop.run({ hass, input: 2, events, triggerId });
 
     expect(actionBlock.run).toHaveBeenCalledTimes(4);
   });

@@ -1,10 +1,8 @@
 import type {
   BlockOutput,
-  IEventBus,
   IBlock,
   IFullBlocksClient,
   ITarget,
-  IHass,
   ITrigger,
   IBlocksNode,
 } from '@types';
@@ -12,6 +10,7 @@ import type {
 import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IRunContext } from '@types';
 
 /**
  * @public
@@ -99,9 +98,6 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
    * @param triggerId - a uuid trigger id, unique to this particular trigger sequence
    */
   public abstract run(
-    client: IHass,
-    input: I,
-    events?: IEventBus,
-    triggerId?: string,
+    context: IRunContext<I>,
   ): Promise<BlockOutput<O>> | BlockOutput<O>;
 }

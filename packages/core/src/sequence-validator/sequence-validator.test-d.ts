@@ -1,7 +1,4 @@
-import type { CallServiceCommand } from '@hass-blocks/hass-ts';
-
 import { Block } from '@core';
-import type { ITarget } from '@types';
 import type { ServiceCallArgs } from '@building-blocks';
 
 import type { ValidateSequence } from './validate-sequence.ts';
@@ -53,16 +50,10 @@ describe('sequence validator', () => {
   });
 
   it('correctly handles servicecalls', () => {
-    type ServiceCallArgs<P> = {
-      target?: ITarget;
-      params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
-    };
-
     type Sequence = [
       Block<void, void>,
       Block<
-        | Partial<ServiceCallArgs<{ command: string[]; delay_secs: number }>>
-        | undefined,
+        Partial<{ command: string[]; delay_secs: number }> | undefined,
         void
       >,
     ];
@@ -73,8 +64,7 @@ describe('sequence validator', () => {
       readonly [
         Block<void, void | Pass>,
         Block<
-          | Partial<ServiceCallArgs<{ command: string[]; delay_secs: number }>>
-          | undefined,
+          Partial<{ command: string[]; delay_secs: number }> | undefined,
           void
         >,
       ]

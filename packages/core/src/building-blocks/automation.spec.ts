@@ -25,7 +25,7 @@ describe('automation.initialise', () => {
   it('calls all of the initialise methods on its children, passing the client through completing silently if none of them reject', async () => {
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
-    const mockClient = mock<IFullBlocksClient>();
+    const hass = mock<IFullBlocksClient>();
     const mqtt = mock<IMQTTConnection>();
 
     mockActionOne.initialise.mockResolvedValue();
@@ -40,11 +40,9 @@ describe('automation.initialise', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(
-      automation.initialise(mockClient, mqtt),
-    ).resolves.not.toThrow();
-    expect(mockActionOne.initialise).toHaveBeenCalledWith(mockClient, mqtt);
-    expect(mockActionTwo.initialise).toHaveBeenCalledWith(mockClient, mqtt);
+    await expect(automation.initialise(hass, mqtt)).resolves.not.toThrow();
+    expect(mockActionOne.initialise).toHaveBeenCalledWith(hass, mqtt);
+    expect(mockActionTwo.initialise).toHaveBeenCalledWith(hass, mqtt);
   });
 
   it('Rethrows any errors thrown by any of its children', async () => {
@@ -76,7 +74,7 @@ describe('automation.initialise', () => {
 
 describe('automation.run', () => {
   it('throws an error if there is no event bus', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
@@ -86,13 +84,11 @@ describe('automation.run', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(
-      automation.run(mockClient, input, undefined, triggerId),
-    ).rejects.toThrow();
+    await expect(automation.run({ hass, input, triggerId })).rejects.toThrow();
   });
 
   it('throws an error if there is no trigger id', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const input = 'foo';
 
@@ -101,11 +97,11 @@ describe('automation.run', () => {
       then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
     });
 
-    await expect(automation.run(mockClient, input, events)).rejects.toThrow();
+    await expect(automation.run({ hass, input, events })).rejects.toThrow();
   });
 
   it('If result is undefined, throw an error', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -127,7 +123,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -141,7 +137,7 @@ describe('automation.run', () => {
     });
 
     await expect(
-      automation.run(mockClient, input, events, triggerId),
+      automation.run({ hass, input, events, triggerId }),
     ).rejects.toThrow();
   });
 
@@ -150,7 +146,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -169,7 +165,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -184,7 +180,7 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run(mockClient, input, events, triggerId);
+    const result = await automation.run({ hass, input, events, triggerId });
 
     if (result.continue) {
       expect(mockRunQueue.enqueue).toHaveBeenCalled();
@@ -201,7 +197,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -220,7 +216,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -232,7 +228,7 @@ describe('automation.run', () => {
     mockExecutor.finished.mockRejectedValue(new Error('Whoops'));
 
     await expect(
-      automation.run(mockClient, input, events, triggerId),
+      automation.run({ hass, input, events, triggerId }),
     ).rejects.toThrow();
   });
 
@@ -241,7 +237,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -260,7 +256,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -273,7 +269,7 @@ describe('automation.run', () => {
       new ExecutionAbortedError('Execution was aborted'),
     );
 
-    const result = await automation.run(mockClient, input, events, triggerId);
+    const result = await automation.run({ hass, input, events, triggerId });
 
     expect(result.continue).toBeFalsy();
   });
@@ -283,7 +279,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -302,7 +298,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -317,7 +313,7 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run(mockClient, input, events, triggerId);
+    const result = await automation.run({ hass, input, events, triggerId });
 
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
@@ -335,7 +331,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -353,7 +349,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -368,7 +364,7 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run(mockClient, input, events, triggerId);
+    const result = await automation.run({ hass, input, events, triggerId });
 
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
@@ -386,7 +382,7 @@ describe('automation.run', () => {
       mock<Action<string, string>>(),
       mock<Action<string, string>>(),
     ] as const;
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
@@ -405,7 +401,7 @@ describe('automation.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...then],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -420,7 +416,12 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run(mockClient, input, events, triggerId);
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+    });
 
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();

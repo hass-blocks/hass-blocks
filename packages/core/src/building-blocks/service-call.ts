@@ -17,10 +17,7 @@ export type ServiceCallArgs<P> = {
   params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
 };
 
-class ServiceCall<P> extends Action<
-  Partial<ServiceCallArgs<P>> | undefined,
-  void
-> {
+class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
   public override typeString = 'service-call';
 
   public constructor(
@@ -31,18 +28,19 @@ class ServiceCall<P> extends Action<
     super({
       ...(serviceConfig.target ? { targets: [serviceConfig.target] } : {}),
       name: serviceConfig.name,
-      callback: async (client, input) => {
+      callback: async ({ hass, input }) => {
         const { target } = this.serviceConfig;
-        const { target: passedTarget, ...passedParams } = input ?? {};
 
-        const params: Omit<CallServiceCommand<P>, 'id' | 'type'> = {
+        const params = {
           ...serviceConfig.params,
-          ...passedParams,
           ...(target ? { target: target.targetIds } : {}),
-          ...(passedTarget ? { target: passedTarget.targetIds } : {}),
+          service_data: {
+            ...serviceConfig.params.service_data,
+            ...input,
+          },
         };
 
-        return await client.callService(params);
+        return await hass.callService(params);
       },
     });
   }
@@ -84,6 +82,6 @@ export const serviceCall = <P>(serviceConfig: {
   name: string;
   target?: ITarget;
   params: Omit<CallServiceCommand<P>, 'id' | 'type'>;
-}): Block<Partial<ServiceCallArgs<P>> | undefined, void> => {
+}): Block<Partial<P> | undefined, void> => {
   return new ServiceCall<P>(serviceConfig);
 };

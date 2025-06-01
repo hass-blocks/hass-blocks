@@ -2,9 +2,8 @@ import { Block, BlockExecutionMode, Executor } from '@core';
 import type {
   ContinueOutput,
   IBaseBlockConfig,
-  IEventBus,
-  IHass,
   StopOutput,
+  IRunContext,
 } from '@types';
 import { md5 } from '@utils';
 
@@ -67,12 +66,12 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
     this.name = this.config.name;
   }
 
-  public override async run(
-    client: IHass,
-    input?: TInput,
-    events?: IEventBus,
-    triggerId?: string,
-  ) {
+  public override async run({
+    hass,
+    input,
+    events,
+    triggerId,
+  }: IRunContext<TInput>) {
     if (!events) {
       throw new Error('You must supply an event bus');
     }
@@ -83,7 +82,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
 
     let assertionExecutor = new Executor<TInput | TActionOutput, TOutput>(
       [this.config.while],
-      client,
+      hass,
       events,
       triggerId,
       input,
@@ -113,7 +112,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
         TActionOutput
       >(
         ['then' in this.config ? this.config.then : this.config.do],
-        client,
+        hass,
         events,
         triggerId,
         nextActionInput || input,
@@ -129,7 +128,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
 
       assertionExecutor = new Executor<TInput | TActionOutput, TOutput>(
         [this.config.while],
-        client,
+        hass,
         events,
         triggerId,
         lastActionOutput,

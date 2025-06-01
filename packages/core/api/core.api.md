@@ -14,16 +14,16 @@ import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
 
 // @public
-export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<I, O>;
+export const action: <TInput = void, TOutput = void>(config: IActionConfig<TInput, TOutput>) => Block<TInput, TOutput>;
 
 // @public
 export const area: <I extends string>(id: I, name?: string) => IArea<I>;
 
 // @public
-export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
+export const assertion: <TInput = void, TOutput = void>(config: IAssertionConfig<TInput, TOutput>) => Block<TInput, TOutput>;
 
 // @public
-export const automation: <const A extends readonly Block<unknown, unknown>[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
+export const automation: <const TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>>(config: IAutomationConfig<TSequence, TInput, TOutput>) => Block<TInput, TOutput>;
 
 // @public
 export interface AutomationRegistered extends BaseHassBlocksEvent<'automation-registered'> {
@@ -47,7 +47,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     readonly id: string;
     initialise(client: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
     abstract readonly name: string;
-    abstract run(client: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
+    abstract run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): {
         type: string;
         id: string;
@@ -116,7 +116,7 @@ export type CheckScenarios<TInput, TOutput, TSequence extends readonly Block<unk
 export const combine: <T extends ReadonlyArray<IArea> | ReadonlyArray<IEntity> | ReadonlyArray<IDevice>>(...items: T) => T[number];
 
 // @public
-export const concurrently: <A extends readonly Block<unknown, unknown>[]>(...actions: A) => Block<InputType<A[number]>, OutputType<A[number]>[]>;
+export const concurrently: <TCollectionOfBlocks extends readonly Block<unknown, unknown>[]>(...actions: TCollectionOfBlocks) => Block<InputType<TCollectionOfBlocks[number]>, OutputType<TCollectionOfBlocks[number]>[]>;
 
 // @public
 export interface ConditionResult<O> {
@@ -232,8 +232,8 @@ export type HassEventBase = {
 };
 
 // @public
-export interface IActionConfig<I = void, O = void> extends IBaseBlockConfig {
-    callback: ((client: IHass, input: I) => O) | ((client: IHass, input: I) => Promise<O>);
+export interface IActionConfig<TInput = void, TOutput = void> extends IBaseBlockConfig {
+    callback: ((context: IRunContext<TInput>) => TOutput) | ((context: IRunContext<TInput>) => Promise<TOutput>);
 }
 
 // @public
@@ -244,20 +244,20 @@ export interface IArea<I extends string = string> extends ITarget {
 }
 
 // @public
-export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
-    readonly predicate: (client: IHass, input?: I) => Promise<boolean> | boolean | {
+export interface IAssertionConfig<TInput, TOutput> extends IBaseBlockConfig {
+    readonly predicate: (context: IRunContext<TInput>) => Promise<boolean> | boolean | {
         result: boolean;
-        output: O;
+        output: TOutput;
     } | Promise<{
         result: boolean;
-        output: O;
+        output: TOutput;
     }>;
 }
 
 // @public
-export interface IAutomationConfig<A extends readonly Block<unknown, unknown>[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>> extends IBaseBlockConfig {
+export interface IAutomationConfig<TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>> extends IBaseBlockConfig {
     mode?: ExecutionMode;
-    then: (BlockRetainType<A> & A & ValidateSequence<I, O, A>) | Block<I, O>;
+    then: (BlockRetainType<TSequence> & TSequence & ValidateSequence<TInput, TOutput, TSequence>) | Block<TInput, TOutput>;
     when?: ITrigger | ITrigger[];
 }
 
@@ -272,7 +272,7 @@ export interface IBaseBlockConfig {
 export interface IBlock<I = void, O = void> extends IBlocksNode {
     id: string;
     name: string;
-    run(hass: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
+    run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): SerialisedBlock;
     trigger: ITrigger | ITrigger[];
     typeString: string;
@@ -393,13 +393,21 @@ export interface ILoopConfig<TInput = void, TOutput = void, TBlockOutput = void>
 export const initialiseBlocks: (args?: IBlocksConfig) => Promise<IBlocksConnection>;
 
 // @public
-export type InputType<T extends Block<unknown, unknown>> = void extends RawInputType<T> ? undefined extends RawInputType<T> ? Exclude<RawInputType<T>, undefined> : RawInputType<T> : RawInputType<T>;
+export type InputType<T extends Block<unknown, unknown>> = void extends RawInputType<T> ? RemoveVoidIfNotOnlyVoid<undefined extends RawInputType<T> ? Exclude<RawInputType<T>, undefined> : RawInputType<T>> : RawInputType<T>;
 
 // @public
 export interface IPluginArgs {
     client: IFullBlocksClient;
     config: HassConfig;
     events: IEventBus;
+}
+
+// @public
+export interface IRunContext<I> {
+    events?: IEventBus;
+    hass: IHass;
+    input: I;
+    triggerId?: string;
 }
 
 // @public
@@ -502,7 +510,7 @@ export type Prettify<T> = {
 } & {};
 
 // @public
-export type RawInputType<T extends Block<unknown, unknown>> = Parameters<T['run']>[1];
+export type RawInputType<T extends Block<unknown, unknown>> = Parameters<T['run']>[0]['input'];
 
 // @public
 export type RecurseSequence<TCheckOutput extends CheckOutput> = TCheckOutput extends infer Error extends {
@@ -514,6 +522,9 @@ export type RecurseSequence<TCheckOutput extends CheckOutput> = TCheckOutput ext
     before: readonly Block<unknown, unknown>[];
     sequence: readonly Block<unknown, unknown>[];
 } ? SequenceValidatorRecursive<Recurse['in'], Recurse['out'], Recurse['sequence'], Recurse['before']> : TCheckOutput;
+
+// @public
+export type RemoveVoidIfNotOnlyVoid<T> = Exclude<T, void> extends never ? void : Exclude<T, void>;
 
 // @public
 export const sequence: <const TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>>(...actions: BlockRetainType<TSequence> & TSequence & ValidateSequence<TInput, TOutput, TSequence>) => Block<TInput, TOutput>;
@@ -555,7 +566,7 @@ export const serviceCall: <P>(serviceConfig: {
     name: string;
     target?: ITarget;
     params: Omit<CallServiceCommand<P>, "id" | "type">;
-}) => Block<Partial<ServiceCallArgs<P>> | undefined, void>;
+}) => Block<Partial<P> | undefined, void>;
 
 // @public
 export type ServiceCallArgs<P> = {

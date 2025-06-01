@@ -57,10 +57,9 @@ export const apiRequest = <
     z.output<Exclude<TProps['responseSchema'], undefined>>
   >({
     name: 'API Request',
-    callback: async (
-      _client,
+    callback: async ({
       input,
-    ): Promise<z.output<Exclude<TProps['responseSchema'], undefined>>> => {
+    }): Promise<z.output<Exclude<TProps['responseSchema'], undefined>>> => {
       const basePath = input.baseUrl ?? props.baseUrl;
       const thePath = input.path ?? props.path;
       const finalUrl = `${basePath?.endsWith('/') ? basePath.slice(0, -1) : basePath}${thePath?.startsWith('/') ? thePath : `/${thePath}`}`;

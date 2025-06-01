@@ -19,6 +19,7 @@ export type { IBlocksRegistry } from './i-blocks-registry.ts';
 export type { ILogger } from './i-logger.ts';
 export type { IBlocksPlugin, IPluginArgs } from './i-blocks-plugin.ts';
 export type { SerialisedBlock } from './serialised-block.ts';
+export type { IRunContext } from './i-run-context.ts';
 
 export type {
   LifeCycleEvent,

@@ -1,6 +1,6 @@
-import { type EventBus, Block } from '@core';
+import { Block } from '@core';
 import { AssertionError } from '@errors';
-import type { BlockOutput, IBaseBlockConfig, IHass } from '@types';
+import type { BlockOutput, IBaseBlockConfig, IRunContext } from '@types';
 import { md5 } from '@utils';
 
 /**
@@ -67,13 +67,26 @@ export class IfThenElseCondition<
     this.name = this.config.name;
   }
 
-  public override async run(
-    client: IHass,
-    input: TInput,
-    events?: EventBus,
-    triggerId?: string,
-  ): Promise<BlockOutput<TThenOutput | TElseOutput>> {
-    const assertionResult = await this.config.assertion.run(client, input);
+  public override async run({
+    input,
+    events,
+    triggerId,
+    hass,
+  }: IRunContext<TInput>): Promise<BlockOutput<TThenOutput | TElseOutput>> {
+    if (!events) {
+      throw new Error('Event bus must be initialised!');
+    }
+
+    if (!triggerId) {
+      throw new Error('Trigger id');
+    }
+
+    const assertionResult = await this.config.assertion.run({
+      hass,
+      input,
+      events,
+      triggerId,
+    });
 
     if (!assertionResult.continue) {
       return { continue: false };
@@ -86,18 +99,18 @@ export class IfThenElseCondition<
     }
 
     const branchExecutedResult = assertionResult.conditionResult
-      ? await this.config.then.run(
-          client,
-          assertionResult.output,
+      ? await this.config.then.run({
+          hass,
+          input: assertionResult.output,
           events,
           triggerId,
-        )
-      : await this.config.else.run(
-          client,
-          assertionResult.output,
+        })
+      : await this.config.else.run({
+          hass,
+          input: assertionResult.output,
           events,
           triggerId,
-        );
+        });
 
     return branchExecutedResult;
   }

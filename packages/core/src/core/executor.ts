@@ -119,7 +119,12 @@ export class Executor<I, O> implements Runnable {
 
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
-          await block.run(this.client, input, this.events, this.triggerId),
+          await block.run({
+            hass: this.client,
+            input,
+            events: this.events,
+            triggerId: this.triggerId,
+          }),
       );
 
       this.emit('block-finished', {

@@ -1,5 +1,5 @@
 import { Block } from '@core';
-import type { IHass, BlockOutput, IBaseBlockConfig } from '@types';
+import type { BlockOutput, IBaseBlockConfig, IRunContext } from '@types';
 import { md5 } from '@utils';
 
 /**
@@ -7,7 +7,7 @@ import { md5 } from '@utils';
  *
  * Configuration object for an assertion block
  */
-export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
+export interface IAssertionConfig<TInput, TOutput> extends IBaseBlockConfig {
   /**
    * When this block is executed by an automation it should return a boolean
    * either as the direct return value, or as the 'result' property on an object.
@@ -16,17 +16,19 @@ export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
    * should finish
    */
   readonly predicate: (
-    client: IHass,
-    input?: I,
+    context: IRunContext<TInput>,
   ) =>
     | Promise<boolean>
     | boolean
-    | { result: boolean; output: O }
-    | Promise<{ result: boolean; output: O }>;
+    | { result: boolean; output: TOutput }
+    | Promise<{ result: boolean; output: TOutput }>;
 }
 
-export class Assertion<I = void, O = void> extends Block<I, O> {
-  public constructor(public config: IAssertionConfig<I, O>) {
+export class Assertion<TInput = void, TOutput = void> extends Block<
+  TInput,
+  TOutput
+> {
+  public constructor(public config: IAssertionConfig<TInput, TOutput>) {
     super(config.id ?? md5(config.name), config.targets);
     this.name = this.config.name;
   }
@@ -34,8 +36,10 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
 
   public override typeString = 'assertion';
 
-  public override async run(client: IHass, input: I): Promise<BlockOutput<O>> {
-    const callbackResult = this.config.predicate(client, input);
+  public override async run(
+    context: IRunContext<TInput>,
+  ): Promise<BlockOutput<TOutput>> {
+    const callbackResult = this.config.predicate(context);
 
     const result =
       callbackResult instanceof Promise ? await callbackResult : callbackResult;
@@ -51,7 +55,7 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
           outputType: 'conditional',
           continue: true,
           conditionResult: result,
-          output: undefined as O,
+          output: undefined as TOutput,
         };
   }
 }
@@ -62,8 +66,8 @@ export class Assertion<I = void, O = void> extends Block<I, O> {
  * An assertion is a block which can decide whether or not
  * an automation should continue based on the result of a predicate
  */
-export const assertion = <I = void, O = void>(
-  config: IAssertionConfig<I, O>,
-): Block<I, O> => {
+export const assertion = <TInput = void, TOutput = void>(
+  config: IAssertionConfig<TInput, TOutput>,
+): Block<TInput, TOutput> => {
   return new Assertion(config);
 };

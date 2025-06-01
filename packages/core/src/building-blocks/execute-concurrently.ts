@@ -1,13 +1,16 @@
-import { type EventBus, BlockExecutionMode, Executor, Block } from '@core';
-import type { BlockOutput, IHass, IFullBlocksClient } from '@types';
+import { BlockExecutionMode, Executor, Block } from '@core';
+import type { BlockOutput, IFullBlocksClient, IRunContext } from '@types';
 import type { InputType, OutputType } from '@sequence-validator';
 import { mapAsync, md5 } from '@utils';
 
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 class ExecuteConcurrently<
-  A extends readonly Block<unknown, unknown>[],
-> extends Block<InputType<A[number]>, OutputType<A[number]>[]> {
+  TCollectionOfBlocks extends readonly Block<unknown, unknown>[],
+> extends Block<
+  InputType<TCollectionOfBlocks[number]>,
+  OutputType<TCollectionOfBlocks[number]>[]
+> {
   public override name: string;
 
   public override readonly typeString = 'execute-concurrently';
@@ -16,7 +19,7 @@ class ExecuteConcurrently<
     public config: {
       name: string;
       id?: string;
-      actions: A;
+      actions: TCollectionOfBlocks;
     },
   ) {
     super(config.id ?? md5(config.name), undefined, [...config.actions]);
@@ -32,12 +35,14 @@ class ExecuteConcurrently<
     });
   }
 
-  public override async run(
-    client: IHass,
-    input: InputType<A[number]>,
-    events?: EventBus,
-    triggerId?: string,
-  ): Promise<BlockOutput<OutputType<A[number]>[]>> {
+  public override async run({
+    input,
+    hass,
+    events,
+    triggerId,
+  }: IRunContext<InputType<TCollectionOfBlocks[number]>>): Promise<
+    BlockOutput<OutputType<TCollectionOfBlocks[number]>[]>
+  > {
     if (!events) {
       throw new Error('Must configure an event bus');
     }
@@ -46,9 +51,12 @@ class ExecuteConcurrently<
       throw new Error('Must pass a triggerId');
     }
 
-    const executor = new Executor<InputType<A[number]>, OutputType<A[number]>>(
+    const executor = new Executor<
+      InputType<TCollectionOfBlocks[number]>,
+      OutputType<TCollectionOfBlocks[number]>
+    >(
       [...this.config.actions],
-      client,
+      hass,
       events,
       triggerId,
       input,
@@ -82,10 +90,15 @@ class ExecuteConcurrently<
  * When executed, this block will execute all the blocks passed in as the first argument concurrently. Once complete
  * the outputs from all the blocks will be returned as an array
  */
-export const concurrently = <A extends readonly Block<unknown, unknown>[]>(
-  ...actions: A
-): Block<InputType<A[number]>, OutputType<A[number]>[]> => {
-  return new ExecuteConcurrently<A>({
+export const concurrently = <
+  TCollectionOfBlocks extends readonly Block<unknown, unknown>[],
+>(
+  ...actions: TCollectionOfBlocks
+): Block<
+  InputType<TCollectionOfBlocks[number]>,
+  OutputType<TCollectionOfBlocks[number]>[]
+> => {
+  return new ExecuteConcurrently<TCollectionOfBlocks>({
     name: 'Execute Concurrently',
     actions,
   });

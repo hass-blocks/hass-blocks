@@ -11,9 +11,9 @@ import { EntityDoesNotExistError } from 'node_modules/@hass-blocks/core/src/erro
 export const entityExists = (entity: IEntity) => {
   return assertion({
     name: 'If entity Exists',
-    predicate: (client) => {
+    predicate: ({ hass }) => {
       try {
-        client.getState(entity.targetIds.entity_id?.[0] ?? '');
+        hass.getState(entity.targetIds.entity_id?.[0] ?? '');
         return true;
       } catch (error) {
         if (error instanceof EntityDoesNotExistError) {

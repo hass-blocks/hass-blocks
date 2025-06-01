@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
 import { md5 } from '@utils';
-import type { IHass } from '@types';
+import type { IHass, IRunContext } from '@types';
 
 import { Assertion } from './assertion.ts';
 
@@ -14,20 +14,20 @@ beforeEach(() => {
 
 describe('assertion.run', () => {
   it('calls the predicate and extracts the condition result from the object if it returns an object', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const predicate = vi.fn();
     const input = 'foo';
     when(predicate)
-      .calledWith(mockClient, input)
+      .calledWith(hass, input)
       .thenReturn({ result: true, output: 'foo' });
 
-    const assertion = new Assertion({
+    const assertion = new Assertion<string, void>({
       name: 'foo',
       id: 'foo-id',
       predicate,
     });
 
-    const result = await assertion.run(mockClient, input);
+    const result = await assertion.run({ hass, input });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,
@@ -37,15 +37,11 @@ describe('assertion.run', () => {
   });
 
   it('awaits promises when async functions are supplied as predicates', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const input = 'foo';
 
-    const predicate = async (
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      _client: IHass,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      _input: string | undefined,
-    ) => true;
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const predicate = async (_context: IRunContext<string | undefined>) => true;
 
     const assertion = new Assertion({
       name: 'foo',
@@ -53,7 +49,7 @@ describe('assertion.run', () => {
       predicate,
     });
 
-    const result = await assertion.run(mockClient, input);
+    const result = await assertion.run({ hass, input });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,
@@ -84,18 +80,18 @@ describe('assertion.run', () => {
   });
 
   it('calls the predicate and returns the result as the condition result if it returns a boolean', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const predicate = vi.fn();
     const input = 'foo';
-    when(predicate).calledWith(mockClient, input).thenReturn(false);
+    when(predicate).calledWith(hass, input).thenReturn(false);
 
-    const assertion = new Assertion({
+    const assertion = new Assertion<string, void>({
       name: 'foo',
       id: 'foo-id',
       predicate,
     });
 
-    const result = await assertion.run(mockClient, input);
+    const result = await assertion.run({ hass, input });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,

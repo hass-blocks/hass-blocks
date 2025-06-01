@@ -1,5 +1,6 @@
 export type { ValidateSequence } from './validate-sequence.ts';
 export type { SequenceValidatorRecursive } from './sequence-validator-recursive.ts';
+export type { RemoveVoidIfNotOnlyVoid } from './remove-void-if-not-void.ts';
 export type { RecurseSequence } from './recurse-sequence.ts';
 export type { BlockTypeIsCompatibleWithSequence } from './block-type-is-compatible-with-sequence.ts';
 export type { SequenceCompatibilityError } from './sequence-compatibility-error.ts';

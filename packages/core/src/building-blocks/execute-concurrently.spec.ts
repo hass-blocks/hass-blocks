@@ -1,7 +1,7 @@
 import { mock } from 'vitest-mock-extended';
-import type { Action } from './action.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { IFullBlocksClient, IHass } from '@types';
+import type { Action } from './action.ts';
 import { concurrently } from './execute-concurrently.ts';
 import { BlockExecutionMode, Executor, type EventBus } from '@core';
 import { when } from 'vitest-when';
@@ -19,7 +19,7 @@ afterEach(() => {
 
 describe('concurrently.run', () => {
   it('throws an error if there is no event bus', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const triggerId = 'trigger-id';
     const input = 'foo';
 
@@ -28,13 +28,11 @@ describe('concurrently.run', () => {
       mock<Action<string, string>>(),
     );
 
-    await expect(
-      theBlock.run(mockClient, input, undefined, triggerId),
-    ).rejects.toThrow();
+    await expect(theBlock.run({ hass, input, triggerId })).rejects.toThrow();
   });
 
   it('throws an error if there is no trigger id', async () => {
-    const mockClient = mock<IHass>();
+    const hass = mock<IHass>();
     const input = 'foo';
 
     const theBlock = concurrently(
@@ -43,9 +41,7 @@ describe('concurrently.run', () => {
     );
     const events = mock<EventBus>();
 
-    await expect(
-      theBlock.run(mockClient, input, events, undefined),
-    ).rejects.toThrow();
+    await expect(theBlock.run({ hass, input, events })).rejects.toThrow();
   });
 
   it('rethrows an error thrown by its children', async () => {
@@ -85,7 +81,7 @@ describe('concurrently.run', () => {
   });
 
   it('marks continue as false if any one of the actions mark continue as false', async () => {
-    const mockClient = mock<IFullBlocksClient>();
+    const hass = mock<IFullBlocksClient>();
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
 
@@ -102,7 +98,7 @@ describe('concurrently.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...actions],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -118,14 +114,14 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run(mockClient, input, events, triggerId);
+    const result = await theBlock.run({ hass, input, events, triggerId });
 
     expect(result.continue).toBeDefined();
     expect(result.continue).toBeFalsy();
   });
 
   it('outputs always has the same number of items even if some actions dont return anything', async () => {
-    const mockClient = mock<IFullBlocksClient>();
+    const hass = mock<IFullBlocksClient>();
 
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
@@ -143,7 +139,7 @@ describe('concurrently.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...actions],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -159,7 +155,7 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run(mockClient, input, events, triggerId);
+    const result = await theBlock.run({ hass, input, events, triggerId });
 
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();
@@ -172,7 +168,7 @@ describe('concurrently.run', () => {
   });
 
   it('executes the supplied actions via the executor and returns an array of their return values', async () => {
-    const mockClient = mock<IFullBlocksClient>();
+    const hass = mock<IFullBlocksClient>();
 
     const mockActionOne = mock<Action<string, string>>();
     const mockActionTwo = mock<Action<string, string>>();
@@ -190,7 +186,7 @@ describe('concurrently.run', () => {
     when(vi.mocked(Executor))
       .calledWith(
         [...actions],
-        mockClient,
+        hass,
         events,
         triggerId,
         input,
@@ -206,7 +202,7 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run(mockClient, input, events, triggerId);
+    const result = await theBlock.run({ hass, input, events, triggerId });
 
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();

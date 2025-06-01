@@ -7,4 +7,4 @@ import type { Block } from '@core';
  */
 export type RawInputType<T extends Block<unknown, unknown>> = Parameters<
   T['run']
->[1];
+>[0]['input'];

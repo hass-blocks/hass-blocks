@@ -151,8 +151,8 @@ test('assertions that return true does not block the rest of the sequence', asyn
 
   const livingRoomMotionSensorIsOn = assertion({
     name: 'Living room motion sensor is off',
-    predicate: (client) => {
-      const state = client.getState('switch.living_room');
+    predicate: ({ hass }) => {
+      const state = hass.getState('switch.living_room');
       return state === 'on';
     },
   });
@@ -220,8 +220,8 @@ test('assertions that return false does block the rest of the sequence', async (
 
   const livingRoomMotionSensorIsOn = assertion({
     name: 'Living room motion sensor is off',
-    predicate: (client) => {
-      const state = client.getState('switch.living_room');
+    predicate: ({ hass }) => {
+      const state = hass.getState('switch.living_room');
       return state === 'on';
     },
   });
@@ -288,15 +288,15 @@ test('state change part way through sequence is registered by assertions', async
 
   const livingRoomMotionSensorIsOn = assertion({
     name: 'Living room motion sensor is off',
-    predicate: (client) => {
-      const state = client.getState('switch.living_room');
+    predicate: ({ hass }) => {
+      const state = hass.getState('switch.living_room');
       return state === 'on';
     },
   });
 
   const waitForTenMinutes = action<Pass, Pass>({
     name: 'Wait for 10 minutes',
-    callback: async (_client, input) => {
+    callback: async ({ input }) => {
       await new Promise((accept) => setInterval(accept, 1_000 * 60 * 10));
       return input;
     },

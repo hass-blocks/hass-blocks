@@ -16,7 +16,7 @@ export interface SunriseProps {
  *
  * Fires when the sun rises
  */
-export const sunrise = () =>
+export const sunRises = () =>
   trigger({
     name: 'When the sun rises',
     trigger: {

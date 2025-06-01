@@ -16,7 +16,7 @@ export interface SunSetProps {
  *
  * Fires when the sun sets
  */
-export const sunset = () =>
+export const sunSets = () =>
   trigger({
     name: 'When the sun sets',
     trigger: {

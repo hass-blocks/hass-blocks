@@ -23,6 +23,6 @@ export { stateTurnsOn } from './state-turns-on.ts';
 
 export { stateTurnsOff } from './state-turns-off.ts';
 
-export { sunset } from './sunset.ts';
+export { sunSets } from './sunset.ts';
 
-export { sunrise } from './sunrise.ts';
+export { sunRises } from './sunrise.ts';

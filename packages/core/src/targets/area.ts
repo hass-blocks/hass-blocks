@@ -1,13 +1,20 @@
 import type { IHass, IArea } from '@types';
 import { HassBlocksError } from '@errors';
 
-export class Area implements IArea {
-  public constructor(private theId: string) {}
+export class Area<I extends string> implements IArea<I> {
+  public constructor(
+    private theId: I,
+    private name?: string,
+  ) {}
 
   get targetIds() {
     return {
       area_id: [this.theId],
     };
+  }
+
+  public toString() {
+    return `Area(${this.name})`;
   }
 
   public async initialise(hass: IHass): Promise<void> {
@@ -28,6 +35,6 @@ export class Area implements IArea {
  * An area target
  * @param id - One or more area ids
  */
-export const area = (id: string): IArea => {
-  return new Area(id);
+export const area = <I extends string>(id: I, name?: string): IArea<I> => {
+  return new Area(id, name);
 };

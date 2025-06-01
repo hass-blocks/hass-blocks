@@ -5,11 +5,11 @@ import type { ITarget } from './i-target.ts';
  *
  * Any Home Assistant area
  */
-export interface IArea extends ITarget {
+export interface IArea<I extends string = string> extends ITarget {
   /**
    * The ids that will actually be supplied to the service call
    */
   targetIds: {
-    area_id: string[];
+    area_id: I[];
   };
 }

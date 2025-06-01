@@ -17,7 +17,7 @@ import type { State } from '@hass-blocks/hass-ts';
 export const action: <I = void, O = void>(config: IActionConfig<I, O>) => Block<I, O>;
 
 // @public
-export const area: (id: string) => IArea;
+export const area: <I extends string>(id: I, name?: string) => IArea<I>;
 
 // @public
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
@@ -237,9 +237,9 @@ export interface IActionConfig<I = void, O = void> extends IBaseBlockConfig {
 }
 
 // @public
-export interface IArea extends ITarget {
+export interface IArea<I extends string = string> extends ITarget {
     targetIds: {
-        area_id: string[];
+        area_id: I[];
     };
 }
 

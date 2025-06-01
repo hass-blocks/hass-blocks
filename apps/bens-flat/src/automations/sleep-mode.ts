@@ -7,7 +7,6 @@ import {
   allSpeakers,
   toggleSleepMode,
 } from '@entities';
-import { closeCover, stopMediaPlayer } from '@hass-blocks/blocks';
 import { automation, concurrently, sequence } from '@hass-blocks/core';
 import {
   eventIsFired,
@@ -36,7 +35,7 @@ export const sleepModeTurnedOn = automation({
       ),
       closeCover(livingRoomBlindsCover),
       turnOffMyMac,
-      stopMediaPlayer(allSpeakers),
+      mediaStopMediaPlayer(allSpeakers),
     ),
   ],
 });

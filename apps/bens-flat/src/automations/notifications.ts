@@ -25,7 +25,7 @@ export const frontDoorLocked = automation({
 
 const injectToNotify = action({
   name: 'Inject args to service',
-  callback: (_hasss, input: string) => {
+  callback: ({ input }: { input: string }) => {
     return {
       message: `The front door was unlocked by ${input}`,
       title: `Front door`,

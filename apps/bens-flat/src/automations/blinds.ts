@@ -1,4 +1,4 @@
-import { stateIs, turnSwitch } from '@hass-blocks/blocks';
+import { stateIs } from '@hass-blocks/blocks';
 import { stateChanges } from '@hass-blocks/triggers';
 import { automation, sequence, when } from '@hass-blocks/core';
 
@@ -66,6 +66,6 @@ export const closeBlindsAtSunset = automation({
   when: stateChanges(sunSun),
   then: [
     stateIs(sunSun, 'below_horizon'),
-    turnSwitch(livingRoomBlindsDefaultToOpen, 'off'),
+    turnOffSwitch(livingRoomBlindsDefaultToOpen),
   ],
 });

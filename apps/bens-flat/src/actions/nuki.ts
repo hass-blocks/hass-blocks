@@ -1,12 +1,6 @@
 import { apiRequest, waitSeconds } from '@hass-blocks/blocks';
 import z from 'zod/v4';
-import {
-  action,
-  assertion,
-  loop,
-  sequence,
-  type IHass,
-} from '@hass-blocks/core';
+import { action, assertion, loop, sequence } from '@hass-blocks/core';
 
 interface SmartLock {
   smartlockId: number;
@@ -38,7 +32,7 @@ export const getSmartlocksFromNuki = apiRequest({
 
 export const setRequestParams = action({
   name: 'Set request params',
-  callback: (_client, input: SmartLock[]) => {
+  callback: ({ input }: { input: SmartLock[] }) => {
     return {
       path: `smartlock/${input[0]?.smartlockId}/log`,
     };
@@ -126,7 +120,11 @@ const source = {
 
 export const hydrateStatuses = action({
   name: 'Hydrate statuses',
-  callback: (_client, statuses: z.infer<typeof lockLogsResponse>) => {
+  callback: ({
+    input: { statuses },
+  }: {
+    input: { statuses: z.infer<typeof lockLogsResponse> };
+  }) => {
     // See https://developer.nuki.io/page/nuki-web-api-1-5/10/#heading--get-activity-logs
 
     const lastLog = statuses[0];
@@ -148,14 +146,15 @@ export const hydrateStatuses = action({
 
 const notUnlock = assertion({
   name: 'If the last action was an unlock',
-  predicate: (
-    _client: IHass,
-    config?: {
+  predicate: ({
+    input: { name, action },
+  }: {
+    input: {
       name: string;
       action: (typeof nukiAction)[keyof typeof nukiAction];
-    },
-  ) => {
-    return { result: config?.action !== 'unlock', output: config?.name ?? '' };
+    };
+  }) => {
+    return { result: action !== 'unlock', output: name ?? '' };
   },
 });
 

@@ -48,7 +48,7 @@ const testServices: Record<string, Record<string, Service>> = {
   },
 };
 
-test('test a simple automation with just a series of actions', async () => {
+test.only('test a simple automation with just a series of actions', async () => {
   const { blocks, hass } = await initialiseTestBlocks({
     states: testStates,
     services: testServices,

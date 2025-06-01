@@ -31,13 +31,20 @@ class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
       callback: async ({ hass, input }) => {
         const { target } = this.serviceConfig;
 
+        const serviceData = {
+          ...serviceConfig.params.service_data,
+          ...input,
+        };
+
+        const addServiceData =
+          Object.keys(serviceData).length > 0
+            ? { service_data: serviceData }
+            : {};
+
         const params = {
           ...serviceConfig.params,
           ...(target ? { target: target.targetIds } : {}),
-          service_data: {
-            ...serviceConfig.params.service_data,
-            ...input,
-          },
+          ...addServiceData,
         };
 
         return await hass.callService(params);

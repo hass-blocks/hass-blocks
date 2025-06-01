@@ -18,7 +18,7 @@ describe('assertion.run', () => {
     const predicate = vi.fn();
     const input = 'foo';
     when(predicate)
-      .calledWith(hass, input)
+      .calledWith({ hass, input })
       .thenReturn({ result: true, output: 'foo' });
 
     const assertion = new Assertion<string, void>({
@@ -83,7 +83,7 @@ describe('assertion.run', () => {
     const hass = mock<IHass>();
     const predicate = vi.fn();
     const input = 'foo';
-    when(predicate).calledWith(hass, input).thenReturn(false);
+    when(predicate).calledWith({ hass, input }).thenReturn(false);
 
     const assertion = new Assertion<string, void>({
       name: 'foo',

@@ -70,7 +70,12 @@ describe('ifThenElseCondition.run', () => {
     };
 
     testWhen(mockThenBlock.run)
-      .calledWith({ hass, input: mockAssertionOutput, mockEvents, triggerId })
+      .calledWith({
+        hass,
+        input: mockAssertionOutput,
+        events: mockEvents,
+        triggerId,
+      })
       .thenReturn(blockOutput);
 
     const condition = when(mockAssertion, {
@@ -139,12 +144,12 @@ describe('ifThenElseCondition.run', () => {
       triggerId,
     });
 
-    expect(mockElseBlock.run).toHaveBeenCalledWith(
+    expect(mockElseBlock.run).toHaveBeenCalledWith({
       hass,
-      mockAssertionOutput,
-      mockEvents,
+      input: mockAssertionOutput,
+      events: mockEvents,
       triggerId,
-    );
+    });
     expect(mockThenBlock.run).not.toHaveBeenCalled();
     expect(result.continue).toEqual(true);
   });

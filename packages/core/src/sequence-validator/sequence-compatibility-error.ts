@@ -18,8 +18,8 @@ export type SequenceCompatibilityError<
     output: TOutput;
   };
   context: {
-    head: TSequence;
-    tail: TBefore;
+    head: TBefore;
+    tail: TSequence;
   };
   __error: true;
 };

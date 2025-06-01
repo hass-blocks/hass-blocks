@@ -1,6 +1,6 @@
 import { BlockExecutionMode, Executor, Block } from '@core';
 import type { BlockOutput, IFullBlocksClient, IRunContext } from '@types';
-import type { InputType, OutputType } from '@sequence-validator';
+import type { GetSequenceInput, GetSequenceOutput } from '@sequence-validator';
 import { mapAsync, md5 } from '@utils';
 
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
@@ -8,8 +8,8 @@ import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 class ExecuteConcurrently<
   TCollectionOfBlocks extends readonly Block<unknown, unknown>[],
 > extends Block<
-  InputType<TCollectionOfBlocks[number]>,
-  OutputType<TCollectionOfBlocks[number]>[]
+  GetSequenceInput<TCollectionOfBlocks>,
+  GetSequenceOutput<TCollectionOfBlocks>[]
 > {
   public override name: string;
 
@@ -40,8 +40,8 @@ class ExecuteConcurrently<
     hass,
     events,
     triggerId,
-  }: IRunContext<InputType<TCollectionOfBlocks[number]>>): Promise<
-    BlockOutput<OutputType<TCollectionOfBlocks[number]>[]>
+  }: IRunContext<GetSequenceInput<TCollectionOfBlocks>>): Promise<
+    BlockOutput<GetSequenceOutput<TCollectionOfBlocks>[]>
   > {
     if (!events) {
       throw new Error('Must configure an event bus');
@@ -52,8 +52,8 @@ class ExecuteConcurrently<
     }
 
     const executor = new Executor<
-      InputType<TCollectionOfBlocks[number]>,
-      OutputType<TCollectionOfBlocks[number]>
+      GetSequenceInput<TCollectionOfBlocks>,
+      GetSequenceOutput<TCollectionOfBlocks>
     >(
       [...this.config.actions],
       hass,
@@ -95,8 +95,8 @@ export const concurrently = <
 >(
   ...actions: TCollectionOfBlocks
 ): Block<
-  InputType<TCollectionOfBlocks[number]>,
-  OutputType<TCollectionOfBlocks[number]>[]
+  GetSequenceInput<TCollectionOfBlocks>,
+  GetSequenceOutput<TCollectionOfBlocks>[]
 > => {
   return new ExecuteConcurrently<TCollectionOfBlocks>({
     name: 'Execute Concurrently',

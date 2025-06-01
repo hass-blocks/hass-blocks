@@ -7,7 +7,7 @@ import type { MustIncludeUndefined } from '@utils';
  * are compatible
  */
 export type BlockTypeIsCompatibleWithSequence<TFirstBlock, TSequenceInput> = [
-  TFirstBlock,
+  Exclude<TFirstBlock, undefined>,
 ] extends [
   TSequenceInput extends void
     ? MustIncludeUndefined<TFirstBlock>

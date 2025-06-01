@@ -1,10 +1,83 @@
 import { Block } from '@core';
-import type { ServiceCallArgs } from '@building-blocks';
 
+import type { ServiceCallArgs } from '@building-blocks';
 import type { ValidateSequence } from './validate-sequence.ts';
 import type { Pass } from './pass.ts';
+import type { InputType } from './input-type.ts';
+import type { OutputType } from './output-type.ts';
+import type { BlockTypeIsCompatibleWithSequence } from './block-type-is-compatible-with-sequence.ts';
 
 describe('sequence validator', () => {
+  it('case', () => {
+    type Sequence = [
+      Block<Partial<{ method: 'GET' }>, string>,
+      Block<
+        string,
+        {
+          message: string;
+          title: string;
+        }
+      >,
+      Block<Partial<{ title: string; message: string }> | undefined, void[]>,
+    ];
+
+    type InOne = InputType<Sequence[0]>;
+
+    type StepOneCompatible = BlockTypeIsCompatibleWithSequence<
+      InOne,
+      { method: 'GET' }
+    >;
+    expectTypeOf<StepOneCompatible>().toExtend<true>();
+
+    type OutOne = OutputType<Sequence[0]>;
+    type InTwo = InputType<Sequence[1]>;
+    type StepTwoCompatible = BlockTypeIsCompatibleWithSequence<InTwo, OutOne>;
+
+    expectTypeOf<StepTwoCompatible>().toExtend<true>();
+
+    type OutTwo = OutputType<Sequence[1]>;
+    type InThree = InputType<Sequence[2]>;
+
+    type StepThreeCompatible = BlockTypeIsCompatibleWithSequence<
+      InThree,
+      OutTwo
+    >;
+
+    expectTypeOf<StepThreeCompatible>().toExtend<true>();
+
+    type Actual = ValidateSequence<
+      Partial<{ method: 'GET' }>,
+      void[],
+      Sequence
+    >;
+
+    expectTypeOf<Actual>().toExtend<
+      readonly [
+        Block<
+          Partial<{
+            method: 'GET';
+          }>,
+          string
+        >,
+        Block<
+          string,
+          {
+            message: string;
+            title: string;
+          }
+        >,
+        Block<
+          | Partial<{
+              title: string;
+              message: string;
+            }>
+          | undefined,
+          void[]
+        >,
+      ]
+    >();
+  });
+
   it('handles multiple pass blocks in a row', () => {
     type Sequence = [
       Block<void, void>,

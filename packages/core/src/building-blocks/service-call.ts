@@ -7,6 +7,11 @@ import type { Block } from '@core';
 import { Action } from './action.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
+/**
+ * @public
+ *
+ * Arguments for a service call action
+ */
 export type ServiceCallArgs<P> = {
   target?: ITarget;
   params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;

@@ -23,7 +23,7 @@ export const area: (id: string) => IArea;
 export const assertion: <I = void, O = void>(config: IAssertionConfig<I, O>) => Block<I, O>;
 
 // @public
-export const automation: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
+export const automation: <const A extends readonly Block<unknown, unknown>[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(config: IAutomationConfig<A, I, O>) => Block<I, O>;
 
 // @public
 export interface AutomationRegistered extends BaseHassBlocksEvent<'automation-registered'> {
@@ -46,9 +46,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     readonly children?: IBlocksNode[] | undefined;
     readonly id: string;
     initialise(client: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
-    inputType: I | undefined;
     abstract readonly name: string;
-    outputType: O | undefined;
     abstract run(client: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): {
         type: string;
@@ -102,10 +100,23 @@ export interface BlockStarted extends LifeCycleEvent<'block-started'> {
 }
 
 // @public
+export type BlockTypeIsCompatibleWithSequence<TFirstBlock, TSequenceInput> = [
+TFirstBlock
+] extends [
+TSequenceInput extends void ? MustIncludeUndefined<TFirstBlock> : Partial<TSequenceInput>
+] ? true : false;
+
+// @public
+export type CheckOutput = readonly Block<unknown, unknown>[] | DoRecurse<unknown, unknown, readonly Block<unknown, unknown>[], readonly Block<unknown, unknown>[]> | SequenceCompatibilityError<unknown, unknown, readonly Block<unknown, unknown>[], readonly Block<unknown, unknown>[], string>;
+
+// @public
+export type CheckScenarios<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[]> = SinglePassBlock<TSequence, TBefore> extends never ? SingleGeneralBlock<TSequence, TBefore, TInput, TOutput> extends never ? TwoPassBlocks<TSequence, TBefore> extends never ? MultiPassSequence<TSequence, TBefore, TInput, TOutput> extends never ? NonPassSequence<TSequence, TBefore, TInput, TOutput> extends never ? SequenceCompatibilityError<TInput, TOutput, TSequence, TBefore, 'No compatible sequences found'> : NonPassSequence<TSequence, TBefore, TInput, TOutput> : MultiPassSequence<TSequence, TBefore, TInput, TOutput> : TwoPassBlocks<TSequence, TBefore> : SingleGeneralBlock<TSequence, TBefore, TInput, TOutput> : SinglePassBlock<TSequence, TBefore>;
+
+// @public
 export const combine: <T extends ReadonlyArray<IArea> | ReadonlyArray<IEntity> | ReadonlyArray<IDevice>>(...items: T) => T[number];
 
 // @public
-export const concurrently: <A extends readonly Block<unknown, unknown>[], I = void, O = void>(...actions: A) => Block<I, O>;
+export const concurrently: <A extends readonly Block<unknown, unknown>[]>(...actions: A) => Block<InputType<A[number]>, OutputType<A[number]>[]>;
 
 // @public
 export interface ConditionResult<O> {
@@ -123,7 +134,16 @@ export interface ContinueOutput<O> {
 }
 
 // @public
-export const entity: <I extends `${string}.${string}`>(id: I) => IEntity<I>;
+export type DoRecurse<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[]> = {
+    __recurse: true;
+    in: TInput;
+    out: TOutput;
+    sequence: TSequence;
+    before: TBefore;
+};
+
+// @public
+export const entity: <I extends `${string}.${string}`>(id: I, friendlyName?: string) => IEntity<I>;
 
 // @public
 export class ExecutionAbortedError extends HassBlocksError {
@@ -138,16 +158,25 @@ export enum ExecutionMode {
 }
 
 // @public
+export type ExtractOutput<TAny> = TAny extends Promise<infer TPromiseType> ? ExtractOutput<TPromiseType> : TAny extends Exclude<BlockOutput<infer TBlockType>, StopOutput> ? TBlockType : never;
+
+// @public
 export interface GeneralFailure extends BaseHassBlocksEvent<'generalFailure'> {
     error: Error;
     message: string;
 }
 
 // @public
-export type GetSequenceInput<T extends ReadonlyArray<unknown>> = T extends readonly [infer First, ...unknown[]] ? First extends Block<unknown, unknown> ? InputType<First> : never : never;
+export type GetOutputs<T extends readonly Block<unknown, unknown>[]> = T extends readonly [
+infer First extends Block<unknown, unknown>,
+...infer Rest extends Block<unknown, unknown>[]
+] ? readonly [OutputType<First>, ...GetOutputs<Rest>] : readonly [];
 
 // @public
-export type GetSequenceOutput<T extends ReadonlyArray<unknown>> = T extends readonly [...unknown[], infer Last] ? Last extends Block<unknown, unknown> ? OutputType<Last> : never : never;
+export type GetSequenceInput<T extends ReadonlyArray<unknown>> = T extends readonly [Block<Pass, Pass>] ? Pass : T extends readonly [infer Only extends Block<unknown, unknown>] ? InputType<Only> : T extends readonly [infer First, ...infer Rest] ? First extends Block<Pass, Pass> ? GetSequenceInput<Rest> : First extends Block<unknown, unknown> ? InputType<First> : ['Item wasnt a block'] : ['No valid array remaining'];
+
+// @public
+export type GetSequenceOutput<T extends ReadonlyArray<unknown>> = T extends readonly [Block<Pass, Pass>] ? Pass : T extends readonly [infer Only extends Block<unknown, unknown>] ? OutputType<Only> : T extends readonly [...infer Rest, infer Last] ? Last extends Block<Pass, Pass> ? GetSequenceOutput<Rest> : Last extends Block<unknown, unknown> ? OutputType<Last> : ['Item wasnt a block'] : ['No valid arrray remaining'];
 
 // @public
 export class HassBlocksError extends Error {
@@ -226,9 +255,9 @@ export interface IAssertionConfig<I, O> extends IBaseBlockConfig {
 }
 
 // @public
-export interface IAutomationConfig<A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>> extends IBaseBlockConfig {
+export interface IAutomationConfig<A extends readonly Block<unknown, unknown>[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>> extends IBaseBlockConfig {
     mode?: ExecutionMode;
-    then: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>;
+    then: (BlockRetainType<A> & A & ValidateSequence<I, O, A>) | Block<I, O>;
     when?: ITrigger | ITrigger[];
 }
 
@@ -242,9 +271,7 @@ export interface IBaseBlockConfig {
 // @public
 export interface IBlock<I = void, O = void> extends IBlocksNode {
     id: string;
-    inputType: I | undefined;
     name: string;
-    outputType: O | undefined;
     run(hass: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): SerialisedBlock;
     trigger: ITrigger | ITrigger[];
@@ -302,6 +329,12 @@ export interface IDevice extends ITarget {
 }
 
 // @public
+export interface IDoWhileConfig<TInput = void, TOutput = void, TBlockOutput = void> extends IBaseBlockConfig {
+    do: Block<TInput | TOutput, TBlockOutput>;
+    while: Block<TBlockOutput, TOutput>;
+}
+
+// @public
 export interface IEntity<I extends `${string}.${string}` = `${string}.${string}`> extends ITarget {
     targetIds: {
         entity_id: I[];
@@ -317,10 +350,10 @@ export interface IEventBus {
 }
 
 // @public
-export interface IfThenElseConditionConfig<TO = void, EO = void, PO = void, I = void> extends IBaseBlockConfig {
-    readonly assertion: Block<I, PO>;
-    readonly else: Block<PO, EO>;
-    readonly then: Block<PO, TO>;
+export interface IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThenOutput, TElseOutput> extends IBaseBlockConfig {
+    readonly assertion: Block<TInput, TThenInput & TElseInput> | Block<TInput, void>;
+    readonly else: Block<TElseInput | void, TElseOutput>;
+    readonly then: Block<TThenInput | void, TThenOutput>;
 }
 
 // @public
@@ -351,10 +384,16 @@ export interface ILogger {
 }
 
 // @public
+export interface ILoopConfig<TInput = void, TOutput = void, TBlockOutput = void> extends IBaseBlockConfig {
+    then: Block<TOutput, TBlockOutput>;
+    while: Block<TInput | TBlockOutput, TOutput>;
+}
+
+// @public
 export const initialiseBlocks: (args?: IBlocksConfig) => Promise<IBlocksConnection>;
 
 // @public
-export type InputType<T extends Block<unknown, unknown>> = Exclude<T['inputType'], undefined>;
+export type InputType<T extends Block<unknown, unknown>> = void extends RawInputType<T> ? undefined extends RawInputType<T> ? Exclude<RawInputType<T>, undefined> : RawInputType<T> : RawInputType<T>;
 
 // @public
 export interface IPluginArgs {
@@ -425,13 +464,59 @@ export interface LogEvent extends BaseHassBlocksEvent<'log-event'> {
 }
 
 // @public
-export type OutputType<T extends Block<unknown, unknown>> = Exclude<T['outputType'], undefined> extends Promise<infer T> ? T : Exclude<T['outputType'], undefined>;
+export function loop<TInput = void, TOutput = void, TBlockOutput = void>(config: ILoopConfig<TInput, TOutput, TBlockOutput>): Block<TInput, TOutput>;
 
 // @public
-export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = Exclude<T['outputType'], undefined>;
+export function loop<TInput = void, TOutput = void, TBlockOutput = void>(config: IDoWhileConfig<TInput, TOutput, TBlockOutput>): Block<TInput, TOutput>;
 
 // @public
-export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>, O = GetSequenceOutput<A>>(...actions: BlockRetainType<A> & A & ValidInputOutputSequence<I, O, A>) => Block<I, O>;
+export type MultiPassSequence<TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[], TInput, TOutput> = TSequence extends readonly [
+infer First extends Block<Pass, Pass>,
+infer Next extends Block<unknown, unknown>,
+...infer Rest extends readonly Block<unknown, unknown>[]
+] ? BlockTypeIsCompatibleWithSequence<InputType<Next>, TInput> extends true ? DoRecurse<OutputType<Next>, TOutput, Rest, [...TBefore, First, Next]> : Next extends Block<Pass, Pass> ? DoRecurse<TInput, TOutput, Rest, [...TBefore, First, Next]> : SequenceCompatibilityError<TInput, TOutput, TSequence, TBefore, 'Multi pass sequence not compatible'> : never;
+
+// @public
+export type MustIncludeUndefined<T> = undefined extends T ? T : never;
+
+// @public
+export type NonPassSequence<TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[], TInput, TOutput> = TSequence extends readonly [
+infer First extends Block<unknown, unknown>,
+...infer Rest extends readonly Block<unknown, unknown>[]
+] ? BlockTypeIsCompatibleWithSequence<InputType<First>, TInput> extends true ? DoRecurse<OutputType<First>, TOutput, Rest, [...TBefore, First]> : SequenceCompatibilityError<TInput, TOutput, TSequence, TBefore, 'General two block sequence - blocks not compatible'> : never;
+
+// @public
+export type OutputType<T extends Block<unknown, unknown>> = ExtractOutput<ReturnType<T['run']>>;
+
+// @public
+export type OutputTypeKeepPromise<T extends Block<unknown, unknown>> = ExtractOutput<ReturnType<T['run']>>;
+
+// @public
+export interface Pass {
+    __pass: 'pass';
+}
+
+// @public
+export type Prettify<T> = {
+    [K in keyof T]: T[K];
+} & {};
+
+// @public
+export type RawInputType<T extends Block<unknown, unknown>> = Parameters<T['run']>[1];
+
+// @public
+export type RecurseSequence<TCheckOutput extends CheckOutput> = TCheckOutput extends infer Error extends {
+    __error: true;
+} ? Omit<Error, '__error'> : TCheckOutput extends infer Recurse extends {
+    __recurse: true;
+    in: unknown;
+    out: unknown;
+    before: readonly Block<unknown, unknown>[];
+    sequence: readonly Block<unknown, unknown>[];
+} ? SequenceValidatorRecursive<Recurse['in'], Recurse['out'], Recurse['sequence'], Recurse['before']> : TCheckOutput;
+
+// @public
+export const sequence: <const TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>>(...actions: BlockRetainType<TSequence> & TSequence & ValidateSequence<TInput, TOutput, TSequence>) => Block<TInput, TOutput>;
 
 // @public
 export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {
@@ -439,6 +524,23 @@ export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {
     name: string;
     type: string;
 }
+
+// @public
+export type SequenceCompatibilityError<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[], TMessage extends string> = {
+    message: TMessage;
+    sequence: {
+        input: TInput;
+        output: TOutput;
+    };
+    context: {
+        head: TSequence;
+        tail: TBefore;
+    };
+    __error: true;
+};
+
+// @public
+export type SequenceValidatorRecursive<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[] = []> = TSequence extends [] ? TBefore : RecurseSequence<CheckScenarios<TInput, TOutput, TSequence, TBefore>>;
 
 // @public
 export interface SerialisedBlock {
@@ -453,7 +555,19 @@ export const serviceCall: <P>(serviceConfig: {
     name: string;
     target?: ITarget;
     params: Omit<CallServiceCommand<P>, "id" | "type">;
-}) => Block;
+}) => Block<Partial<ServiceCallArgs<P>> | undefined, void>;
+
+// @public
+export type ServiceCallArgs<P> = {
+    target?: ITarget;
+    params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
+};
+
+// @public
+export type SingleGeneralBlock<TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[], TInput, TOutput> = TSequence extends readonly [infer Only extends Block<unknown, unknown>] ? BlockTypeIsCompatibleWithSequence<InputType<Only>, TInput> extends true ? BlockTypeIsCompatibleWithSequence<OutputType<Only>, TOutput> extends true ? readonly [...TBefore, Only] : SequenceCompatibilityError<TInput, TOutput, TSequence, TBefore, 'Single block sequence - block output not compatible with sequence output'> : SequenceCompatibilityError<TInput, TOutput, TSequence, TBefore, 'Single block sequence - block input not compatible with sequence input'> : never;
+
+// @public
+export type SinglePassBlock<TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[]> = TSequence extends readonly [infer Only extends Block<Pass, Pass>] ? readonly [...TBefore, Only] : never;
 
 // @public
 export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> {
@@ -489,15 +603,15 @@ export function toggle<TId extends `switch.${string}`>(id: TId): IEntity<TId>;
 export const trigger: (config: ITriggerConfig) => ITrigger;
 
 // @public
-export type ValidInputOutputSequence<I, O, A extends readonly Block<unknown, unknown>[]> = A extends readonly [infer Only extends Block<unknown, unknown>] ? InputType<Only> extends I ? OutputType<Only> extends O ? readonly [Only] : never : never : A extends readonly [
-infer First extends Block<unknown, unknown>,
-...infer Rest extends readonly Block<unknown, unknown>[]
-] ? InputType<First> extends I ? readonly [
-First,
-...ValidInputOutputSequence<OutputType<First>, O, Rest>
-] : never : never;
+export type TwoPassBlocks<TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[]> = TSequence extends readonly [
+infer First extends Block<Pass, Pass>,
+infer Next extends Block<unknown, unknown>
+] ? readonly [...TBefore, First, Next] : never;
 
 // @public
-export const when: <TO = void, EO = void, PO = void, I = void>(assertion: Block<I, PO>, config: Omit<IfThenElseConditionConfig<TO, EO, PO, I>, "assertion" | "name">) => Block<I, TO | EO>;
+export type ValidateSequence<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends Block<unknown, unknown>[] = []> = Prettify<SequenceValidatorRecursive<TInput, TOutput, TSequence, TBefore>>;
+
+// @public
+export const when: <TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>(assertion: IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>["assertion"], config: Omit<IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>, "assertion" | "name">) => Block<TInput, TThenOutput | TElseOutput>;
 
 ```

@@ -2,6 +2,11 @@ import type { Block } from '@core';
 import type { RecurseSequence } from './recurse-sequence.ts';
 import type { CheckScenarios } from './check-scenarios.ts';
 
+/**
+ * Validates a sequence of blocks recursively
+ *
+ * @public
+ */
 export type SequenceValidatorRecursive<
   TInput,
   TOutput,

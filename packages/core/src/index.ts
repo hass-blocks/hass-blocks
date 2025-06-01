@@ -81,7 +81,31 @@ export {
   automation,
 } from '@building-blocks';
 
-export type { Pass } from '@sequence-validator';
+export type {
+  Pass,
+  BlockRetainType,
+  ValidateSequence,
+  GetSequenceInput,
+  GetSequenceOutput,
+  InputType,
+  OutputType,
+  OutputTypeKeepPromise,
+  RawInputType,
+  GetOutputs,
+  ExtractOutput,
+  SequenceValidatorRecursive,
+  MultiPassSequence,
+  DoRecurse,
+  SinglePassBlock,
+  BlockTypeIsCompatibleWithSequence,
+  SingleGeneralBlock,
+  SequenceCompatibilityError,
+  RecurseSequence,
+  CheckScenarios,
+  TwoPassBlocks,
+  CheckOutput,
+  NonPassSequence,
+} from '@sequence-validator';
 
 export type {
   ServiceCallArgs,
@@ -92,3 +116,5 @@ export type {
   IAssertionConfig,
   IfThenElseConditionConfig,
 } from '@building-blocks';
+
+export type { Prettify, MustIncludeUndefined } from '@utils';

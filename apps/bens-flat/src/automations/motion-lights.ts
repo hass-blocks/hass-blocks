@@ -16,8 +16,8 @@ export const livingRoomLightsAutomation = automation({
   then: [
     stateIs(livingRoomMotionLights, 'on'),
     stateIs(tvMode, 'off'),
-    waitMinutes(30),
     turnOnLight(livingRoom),
+    waitMinutes(30),
     turnOffLight(livingRoom),
   ],
 });

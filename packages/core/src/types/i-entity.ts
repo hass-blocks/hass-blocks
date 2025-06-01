@@ -1,3 +1,4 @@
+import type { HassEntity } from './hass-events.ts';
 import type { ITarget } from './i-target.ts';
 
 /**
@@ -14,4 +15,6 @@ export interface IEntity<
   targetIds: {
     entity_id: I[];
   };
+
+  currentState: HassEntity;
 }

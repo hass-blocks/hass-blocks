@@ -1,5 +1,6 @@
 import type { IBlock } from './i-block.ts';
 import type { IHass } from './i-hass.ts';
+import type { Event } from '@hass-blocks/hass-ts';
 
 /**
  * @public
@@ -32,4 +33,11 @@ export interface IFullBlocksClient extends IHass {
    * Register an automation
    */
   registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
+
+  /**
+   *
+   * @param id - The id to listen for
+   * @param callback - Callback that will fire when the state changess
+   */
+  onStateChanged(id: string, callback: (event: Event) => void): Promise<void>;
 }

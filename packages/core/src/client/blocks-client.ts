@@ -6,7 +6,13 @@ import type {
   HassArea,
 } from '@hass-blocks/hass-ts';
 
-import type { HassEntity, IEventBus, ICallServiceParams, IBlock } from '@types';
+import type {
+  HassEntity,
+  IEventBus,
+  ICallServiceParams,
+  IBlock,
+  IEntity,
+} from '@types';
 import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
 import type { IFullBlocksClient } from '@types';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
@@ -37,15 +43,26 @@ export class BlocksClient implements IFullBlocksClient {
    * call this if you need to remove non existant entities from cache
    */
   public async loadStates() {
-    const states = (await this.client.getStates()) as HassEntity[];
+    const states = await this.client.getStates();
     const statesMap = new Map<string, HassEntity>();
     states.forEach((state) => statesMap.set(state.entity_id, state));
     this.states = statesMap;
     await this.attachStateChangeListenerIfNotAttached();
   }
 
-  public getState(id: string) {
-    return this.getEntity(id).state;
+  public getStates(): Map<string, HassEntity> {
+    if (!this.states) {
+      throw new Error(
+        'States have not been loaded yet - is blocks initialised?',
+      );
+    }
+    return this.states;
+  }
+
+  public getState(id: string): string;
+  public getState(entity: IEntity<`${string}.${string}`>): string;
+  public getState(idOrEntity: string | IEntity<`${string}.${string}`>): string {
+    return this.getEntityInternal(idOrEntity).state;
   }
 
   public async getServices() {
@@ -58,7 +75,14 @@ export class BlocksClient implements IFullBlocksClient {
     return this.services;
   }
 
-  public getEntity(id: string) {
+  private getEntityInternal(
+    idOrEntity: string | IEntity<`${string}.${string}`>,
+  ) {
+    const id =
+      typeof idOrEntity === 'string'
+        ? idOrEntity
+        : (idOrEntity.targetIds.entity_id[0] ?? '');
+
     if (!this.states) {
       throw new InitialStatesNotLoadedError();
     }
@@ -67,6 +91,14 @@ export class BlocksClient implements IFullBlocksClient {
       throw new EntityDoesNotExistError(id);
     }
     return state;
+  }
+
+  public getEntity(id: string): HassEntity;
+  public getEntity(entity: IEntity<`${string}.${string}`>): HassEntity;
+  public getEntity(
+    idOrEntity: string | IEntity<`${string}.${string}`>,
+  ): HassEntity {
+    return this.getEntityInternal(idOrEntity);
   }
 
   public async getAreas() {

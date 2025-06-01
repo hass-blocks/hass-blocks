@@ -2,7 +2,7 @@
   "jsc": {
     "baseUrl": "./",
     "paths": {
-        "@lib": ["./src/lib/index.ts"]
+      "@lib": ["./src/lib/index.ts"]
     },
     "target": "es2017",
     "parser": {

@@ -12,6 +12,7 @@ import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 import { readFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 
 interface GenerateTypesArgs {
   workspaceRoot: string;
@@ -63,6 +64,13 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     ...tsConfig,
     compilerOptions: { ...tsConfig.compilerOptions, customConditions: [] },
   };
+
+  const entryPointFile = join(projectRoot, `dist`, `index.d.ts`);
+
+  if (!existsSync(entryPointFile)) {
+    logger.warn(`${entryPointFile} not found - skipping API rollup`);
+    return;
+  }
 
   logger.info('Replacing paths');
   if (options.replacePaths) {

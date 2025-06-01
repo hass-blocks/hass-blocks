@@ -4,7 +4,7 @@ export const addDocCommentToNode = (node: Node, text?: string) => {
   if (!text) {
     return;
   }
-  const formattedParts = text
+  const formattedParts = (text.endsWith('.') ? text.slice(0, -1) : text)
     .split('\n')
     .map((part) => `* ${part}`)
     .join('\n');

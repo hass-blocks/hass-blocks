@@ -4,7 +4,7 @@ import { splitId } from '../generate-entities/split-id.ts';
 import { GlobalName } from './global-name.ts';
 import type { GlobalNames } from './global-names.ts';
 
-const hideDomainInNameIfInList = ['switch', 'media_player'];
+const hideDomainInNameIfInList = ['switch', 'media_player', 'person', 'zone'];
 
 export class EntityName extends GlobalName implements IGlobalName {
   public constructor(

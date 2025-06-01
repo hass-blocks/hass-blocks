@@ -13,7 +13,6 @@ export const buildServiceType = (
   targetIdentifier: Identifier,
   blockIdentifier: ImportedIdentifier,
   iAreaIdentifer: ImportedIdentifier,
-  serviceCallArgs: ImportedIdentifier,
   props: PropsInterface,
 ) => {
   const varStatement = factory.createVariableStatement(
@@ -39,16 +38,11 @@ export const buildServiceType = (
                   factory.createTypeReferenceNode(
                     factory.createIdentifier('Partial'),
                     [
-                      factory.createTypeReferenceNode(
-                        serviceCallArgs.getIdentifier(),
-                        [
-                          props.hasProps()
-                            ? factory.createTypeReferenceNode(props.identifier)
-                            : factory.createKeywordTypeNode(
-                                SyntaxKind.UnknownKeyword,
-                              ),
-                        ],
-                      ),
+                      props.hasProps()
+                        ? factory.createTypeReferenceNode(props.identifier)
+                        : factory.createKeywordTypeNode(
+                            SyntaxKind.UnknownKeyword,
+                          ),
                     ],
                   ),
                   factory.createKeywordTypeNode(SyntaxKind.UndefinedKeyword),

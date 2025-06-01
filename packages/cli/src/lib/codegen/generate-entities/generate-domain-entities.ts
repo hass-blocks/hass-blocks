@@ -1,9 +1,10 @@
-import ts, { factory } from 'typescript';
+import ts, { factory, type StringLiteral } from 'typescript';
 import type { State } from '@hass-blocks/hass-ts';
 import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
 
 import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
 import type { GlobalNames } from '../utils/global-names.ts';
+import { addDocCommentToNode } from '../utils/add-doc-comment-to-node.ts';
 
 export const generateDomainEntities = (
   folder: string,
@@ -30,7 +31,7 @@ export const generateDomainEntities = (
         if (!name) {
           throw new Error('name not found!');
         }
-        return factory.createVariableStatement(
+        const varStatement = factory.createVariableStatement(
           undefined,
           factory.createVariableDeclarationList(
             [
@@ -54,6 +55,11 @@ export const generateDomainEntities = (
             ts.NodeFlags.ContextFlags,
           ),
         );
+
+        if (typeof state.attributes['friendly_name'] === 'string') {
+          addDocCommentToNode(varStatement, state.attributes['friendly_name']);
+        }
+        return varStatement;
       }),
     );
 
@@ -63,6 +69,11 @@ export const generateDomainEntities = (
       if (!name) {
         throw new Error('name not found!');
       }
+      const friendlyName: StringLiteral[] =
+        typeof state.attributes['friendly_name'] === 'string'
+          ? [ts.factory.createStringLiteral(state.attributes['friendly_name'])]
+          : [];
+
       return ts.factory.createExpressionStatement(
         ts.factory.createBinaryExpression(
           ts.factory.createPropertyAccessExpression(
@@ -73,7 +84,7 @@ export const generateDomainEntities = (
           ts.factory.createCallExpression(
             entityIdentifier.getIdentifier(),
             undefined,
-            [ts.factory.createStringLiteral(state.entity_id)],
+            [ts.factory.createStringLiteral(state.entity_id), ...friendlyName],
           ),
         ),
       );

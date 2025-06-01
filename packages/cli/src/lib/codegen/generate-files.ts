@@ -16,6 +16,7 @@ export const generateFiles = async (
 ) => {
   const names = new GlobalNames();
 
+  console.log(states);
   const serviceCallGenerators = Object.entries(services).map(
     ([domain, services]) =>
       generateDomainServiceCalls(folder, domain, services, names),

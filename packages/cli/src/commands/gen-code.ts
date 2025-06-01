@@ -12,7 +12,8 @@ export default class GenCodeCommand extends Command {
     try {
       const states = await client.getStates();
       const services = await client.getServices();
-      await generateFiles(this.folder, services, states);
+      const areas = await client.getAreas();
+      await generateFiles(this.folder, services, states, areas);
       await generateOutputBarrel(this.folder);
     } finally {
       await client.close();

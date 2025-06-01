@@ -34,7 +34,7 @@ export const buildServiceFunctionParams = (
                   ),
                   factory.createTypeReferenceNode(
                     iAreaIdentifier.getIdentifier(),
-                    undefined,
+                    [factory.createToken(SyntaxKind.StringKeyword)],
                   ),
                 ])
               : undefined,

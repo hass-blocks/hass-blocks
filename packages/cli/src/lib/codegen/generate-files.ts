@@ -3,20 +3,28 @@ import { buildServiceCallFile } from './generate-service-calls/build-service-cal
 import { generateDomainServiceCalls } from './generate-service-calls/generate-domain-service-calls.ts';
 import { generateBucketFile } from './utils/generate-barrel-file.ts';
 import { GlobalNames } from './utils/global-names.ts';
-import type { Service, State } from '@hass-blocks/hass-ts';
+import type { HassArea, Service, State } from '@hass-blocks/hass-ts';
 import { generateDomainEntities } from './generate-entities/generate-domain-entities.ts';
 import { splitId } from './generate-entities/split-id.ts';
 import { buildEntityFile } from './generate-entities/build-entity-file.ts';
 import { generateOutputBarrel } from './utils/generate-output-barrel.ts';
+import { generateAreaFile } from './generate-areas/generate-area-file.ts';
+import { buildAreasFile } from './generate-areas/build-areas-file.ts';
 
 export const generateFiles = async (
   folder: string,
   services: Record<string, Record<string, Service>>,
   states: State[],
+  areas: HassArea[],
 ) => {
   const names = new GlobalNames();
 
-  console.log(states);
+  const {
+    generateDeclareGlobalBlock: generateAreasDeclareGlobalBlock,
+    generateAreas,
+    coreImport: generateAreasCoreImport,
+  } = generateAreaFile(areas, names);
+
   const serviceCallGenerators = Object.entries(services).map(
     ([domain, services]) =>
       generateDomainServiceCalls(folder, domain, services, names),
@@ -33,6 +41,13 @@ export const generateFiles = async (
 
   const entityGenerators = Object.entries(domainEntities).map(
     ([domain, states]) => generateDomainEntities(folder, domain, states, names),
+  );
+
+  const areasFilePromise = buildAreasFile(
+    folder,
+    generateAreasDeclareGlobalBlock,
+    generateAreasCoreImport,
+    generateAreas,
   );
 
   const serviceCallsPromise = Promise.all(
@@ -74,6 +89,7 @@ export const generateFiles = async (
   const outputBarrelPromise = generateOutputBarrel(folder);
 
   await Promise.all([
+    areasFilePromise,
     serviceCallsPromise,
     entitiesPromise,
     serviceBucketPromise,

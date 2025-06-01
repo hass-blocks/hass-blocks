@@ -1,3 +1,4 @@
+import { AreaName } from './area-name.ts';
 import { EntityName } from './entity.ts';
 import { IGlobalName } from './i-global-name.ts';
 import { ServiceName } from './service.ts';
@@ -13,6 +14,12 @@ export class GlobalNames {
 
   public addService(domain: string, thing: string) {
     const theName = new ServiceName(domain, thing, this);
+    this.names.set(theName.name, theName);
+    return theName;
+  }
+
+  public addArea(id: string) {
+    const theName = new AreaName(id, this);
     this.names.set(theName.name, theName);
     return theName;
   }

@@ -1,8 +1,10 @@
+import { factory, type Identifier } from 'typescript';
 import type { GlobalNames } from './global-names.ts';
 import type { IGlobalName } from './i-global-name.ts';
 
 export abstract class GlobalName {
   private actualName: string | undefined;
+  private _identifier: Identifier | undefined;
 
   public constructor(private allNames: GlobalNames) {}
 
@@ -27,5 +29,12 @@ export abstract class GlobalName {
       this.actualName = this.findActualName();
     }
     return this.actualName;
+  }
+
+  public get identifier(): Identifier {
+    if (!this._identifier) {
+      this._identifier = factory.createIdentifier(this.name);
+    }
+    return this._identifier;
   }
 }

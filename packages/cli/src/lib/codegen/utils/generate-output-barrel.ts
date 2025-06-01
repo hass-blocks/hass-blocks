@@ -15,6 +15,12 @@ export const generateOutputBarrel = async (folder: string) => {
       factory.createStringLiteral(`./services/index.ts`),
       undefined,
     ),
+    factory.createImportDeclaration(
+      undefined,
+      undefined,
+      factory.createStringLiteral(`./areas.ts`),
+      undefined,
+    ),
   ]);
 
   await generateTsFile(folder, `index.ts`, factory.createNodeArray(nodes));

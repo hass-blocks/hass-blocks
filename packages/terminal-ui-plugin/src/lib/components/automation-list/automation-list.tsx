@@ -1,7 +1,7 @@
 import type { IBlock, IEventBus, IFullBlocksClient } from '@hass-blocks/core';
 import { useEffect, useState } from 'react';
 import { Automation } from '../automation/automation.tsx';
-import type { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '@types';
 import { Box } from 'ink';
 
 interface AutomationListProps {

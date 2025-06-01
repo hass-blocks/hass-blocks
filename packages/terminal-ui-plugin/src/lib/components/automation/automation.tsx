@@ -1,6 +1,6 @@
 import type { IBlock } from '@hass-blocks/core';
 import { Box, Text } from 'ink';
-import type { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '@types';
 import { ExecutionLine } from '../execution-line/index.ts';
 
 interface AutomationProps {

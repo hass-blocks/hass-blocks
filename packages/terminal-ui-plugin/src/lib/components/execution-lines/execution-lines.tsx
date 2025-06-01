@@ -1,5 +1,5 @@
 import type { IEventBus } from '@hass-blocks/core';
-import type { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '@types';
 import { useEffect, useState } from 'react';
 import { ExecutionList } from '../execution-list/execution-list.tsx';
 

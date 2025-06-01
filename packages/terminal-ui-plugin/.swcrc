@@ -7,6 +7,11 @@
       "decorators": true,
       "dynamicImport": true
     },
+    "baseUrl": "./",
+    "paths": {
+      "@components": ["src/lib/components/index.ts"],
+      "@types": ["src/lib/types/index.ts"]
+    },
     "transform": {
       "decoratorMetadata": true,
       "legacyDecorator": true,

@@ -1,4 +1,4 @@
-import type { LifeCycleEvent } from '../../types/index.ts';
+import type { LifeCycleEvent } from '@types';
 import { ExecutionLine } from '../execution-line/index.tsx';
 
 export interface ExecutionListProps {

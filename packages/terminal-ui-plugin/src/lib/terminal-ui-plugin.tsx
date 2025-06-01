@@ -1,6 +1,6 @@
 import type { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
 import { render } from 'ink';
-import { AutomationList } from './components/automation-list/automation-list.tsx';
+import { AutomationList } from '@components';
 
 class TerminalUiPlugin implements IBlocksPlugin {
   name = 'simple-terminal-view-plugin';

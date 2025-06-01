@@ -1,5 +1,5 @@
 import { waitSeconds } from '@hass-blocks/blocks';
-import { action, type IEntity, type ITarget } from '@hass-blocks/core';
+import { action, type IEntity } from '@hass-blocks/core';
 
 export const ttsSay = (
   target: IEntity<`media_player.${string}`>,

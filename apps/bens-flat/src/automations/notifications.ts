@@ -4,14 +4,8 @@ import {
   ttsSay,
 } from '@actions';
 import { allSpeakers } from '@entities';
-import { stateIsNot, type ApiRequestProps } from '@hass-blocks/blocks';
-import {
-  action,
-  automation,
-  concurrently,
-  sequence,
-  type ValidateSequence,
-} from '@hass-blocks/core';
+import { stateIsNot } from '@hass-blocks/blocks';
+import { action, automation, concurrently, sequence } from '@hass-blocks/core';
 import { eventIsFired, stateChanges } from '@hass-blocks/triggers';
 import { playDing } from 'src/actions/media.ts';
 
@@ -56,19 +50,6 @@ const injectToNotify = action({
     };
   },
 });
-
-type Foo = ApiRequestProps;
-
-const seq = [
-  getNameOfLastUnlockerFromLock,
-  injectToNotify,
-  notifyAllMyDevices({
-    message: 'The front door was locked',
-    title: 'Front Door',
-  }),
-] as const;
-
-type test = ValidateSequence<Partial<ApiRequestProps>, void[], typeof seq>;
 
 export const frontDoorIsUnlocked = automation({
   name: 'Tell me when the front door is unlocked',

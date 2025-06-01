@@ -49,6 +49,9 @@ export interface Config {
      */
     wind_speed: string;
   };
+  /**
+   * Name of the location assigned to your Home Assistant instance
+   */
   location_name?: string;
   /**
    * Pick your time zone from the column TZ of {@link https://en.wikipedia.org/wiki/List_of_tz_database_time_zoneshttps://en.wikipedia.org/wiki/List_of_tz_database_time_zones | Wikipedia’s list of tz database time zones}

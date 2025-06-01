@@ -8,7 +8,6 @@ import { Block } from '@hass-blocks/core';
 import { IEntity } from '@hass-blocks/core';
 import { ITarget } from '@hass-blocks/core';
 import { Pass } from '@hass-blocks/core';
-import { ServiceCallArgs } from '@hass-blocks/core';
 import z from 'zod/v4';
 
 // @public
@@ -25,9 +24,6 @@ export interface ApiRequestProps {
 }
 
 // @public
-export const closeCover: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
 export const entityExists: (entity: IEntity) => Block<void, void>;
 
 // @public
@@ -39,63 +35,10 @@ export const gate: (name: string) => {
 };
 
 // @public
-export const openCover: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const playMedia: (target: ITarget, mediaContentId: string, mediaContentType: string) => Block<Partial<ServiceCallArgs<    {
-announce: boolean;
-media_contend_id: string;
-media_content_type: string;
-}>> | undefined, void>;
-
-// @public
-export const publishMessageToMqtt: (topic: string, payload: string) => Block<Partial<ServiceCallArgs<    {
-topic: string;
-payload: string;
-}>> | undefined, void>;
-
-// @public
-export const selectMediaPlayerSource: (target: ITarget, source: string) => Block<Partial<ServiceCallArgs<    {
-source: string;
-}>> | undefined, void>;
-
-// @public
-export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<Partial<ServiceCallArgs<    {
-command: string[];
-delay_secs: number;
-}>> | undefined, void>;
-
-// @public
-export const setMediaPlayerVolume: (target: ITarget, volume: number) => Block<Partial<ServiceCallArgs<    {
-volume_level: number;
-}>> | undefined, void>;
-
-// @public
 export const stateIs: (target: ITarget, state: string) => Block<void, void>;
 
 // @public
 export const stateIsNot: (target: ITarget, state: string) => Block<void, void>;
-
-// @public
-export const stopMediaPlayer: (target: ITarget) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const switchClimate: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const switchLight: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const turnMediaPlayer: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const turnOffAllSchedulers: Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const turnOnAllSchedulers: Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
-
-// @public
-export const turnSwitch: (target: ITarget, onOrOff: "on" | "off") => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
 
 // @public
 export const waitMinutes: (minutes: number) => Block<Pass, Pass>;

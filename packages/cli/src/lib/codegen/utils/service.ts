@@ -16,7 +16,11 @@ export class ServiceName extends GlobalName implements IGlobalName {
   }
 
   public override generateName() {
-    return toCamel(`${this.thing}_${this.domain}`);
+    const domainInId = this.thing.includes(this.domain);
+    const domainString = domainInId ? `` : `_${this.domain}`;
+    const snakeCaseId = `${this.thing}${domainString}`;
+
+    return toCamel(snakeCaseId);
   }
 
   public get identifier(): Identifier {

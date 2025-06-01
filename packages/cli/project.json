@@ -15,6 +15,18 @@
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
+    },
+
+    "generate-and-compile-bens-flat": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "packages/cli",
+        "commands": [
+          "vite-node src/run.ts gen-code ../../apps/bens-flat/src/blocks-codegen",
+          "tsc --build ../../apps/bens-flat/tsconfig.lib.json"
+        ],
+        "parallel": false
+      }
     }
   }
 }

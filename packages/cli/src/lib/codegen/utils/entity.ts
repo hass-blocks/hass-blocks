@@ -5,6 +5,8 @@ import { splitId } from '../generate-entities/split-id.ts';
 import { GlobalName } from './global-name.ts';
 import type { GlobalNames } from './global-names.ts';
 
+const hideDomainInNameIfInList = ['switch'];
+
 export class EntityName extends GlobalName implements IGlobalName {
   private _identifier: Identifier | undefined;
 
@@ -17,7 +19,8 @@ export class EntityName extends GlobalName implements IGlobalName {
 
   public override generateName() {
     const { domain, id } = splitId(this.entityId);
-    const domainString = domain ? `_${domain}` : ``;
+    const domainString =
+      domain && !hideDomainInNameIfInList.includes(domain) ? `_${domain}` : ``;
     return toCamel(`${id}${domainString}`);
   }
 

@@ -7,7 +7,8 @@ import ts from 'typescript';
 
 const exists = async (dir: string) => {
   try {
-    await open(dir);
+    const opened = await open(dir);
+    await opened.close();
   } catch (error) {
     if (error instanceof Error) {
       if (error.message.includes('ENOENT')) {

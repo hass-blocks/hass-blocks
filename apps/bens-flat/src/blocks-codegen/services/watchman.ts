@@ -1,13 +1,9 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ReportWatchman {
     /**
-     * Parse configuration files before generating the report. Usually, this is done automatically by Watchman, so this flag is typically not required.
+     * Parse configuration files before generating the report. Usually, this is done automatically by Watchman, so this flag is typically not required
      */
     parse_config?: boolean;
     advanced_options?: never;
@@ -18,7 +14,7 @@ declare global {
    */
   var reportWatchman: (
     params?: ReportWatchman,
-  ) => Block<Partial<ServiceCallArgs<ReportWatchman>> | undefined, void>;
+  ) => Block<Partial<ReportWatchman> | undefined, void>;
 }
 
 globalThis.reportWatchman = (params) =>

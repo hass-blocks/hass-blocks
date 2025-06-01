@@ -1,3 +1,3 @@
 import { stateIsNot } from '@hass-blocks/blocks';
 
-export const ifIamOut = stateIsNot(benWainwrightPerson, 'home');
+export const ifIamOut = stateIsNot(benWainwright, 'home');

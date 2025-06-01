@@ -8,4 +8,6 @@ export { turnOffMyMac, turnOffMacScreen } from './mqtt.ts';
 
 export { recordStateOfLivingRoom, restoreAfterTvMode } from './scene.ts';
 
-export { notifyMyPhone, notifyAllMyDevices } from './notify.ts';
+export { notifyAllMyDevices } from './notify.ts';
+
+export { getNameOfLastUnlockerFromLock } from './nuki.ts';

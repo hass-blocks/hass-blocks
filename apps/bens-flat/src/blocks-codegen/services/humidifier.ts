@@ -3,60 +3,59 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Turns the humidifier on.
+   * Turns the humidifier on
    */
   var turnOnHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns the humidifier off.
+   * Turns the humidifier off
    */
   var turnOffHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles the humidifier on/off.
+   * Toggles the humidifier on/off
    */
   var toggleHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetModeHumidifier {
     /**
-     * Operation mode. For example, "normal", "eco", or "away". For a list of possible values, refer to the integration documentation.
+     * Operation mode. For example, "normal", "eco", or "away". For a list of possible values, refer to the integration documentation
      */
     mode: string;
   }
 
   /**
-   * Sets the humidifier operation mode.
+   * Sets the humidifier operation mode
    */
   var setModeHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea<string>,
     params: SetModeHumidifier,
-  ) => Block<Partial<ServiceCallArgs<SetModeHumidifier>> | undefined, void>;
+  ) => Block<Partial<SetModeHumidifier> | undefined, void>;
 
   interface SetHumidityHumidifier {
     /**
-     * Target humidity.
+     * Target humidity
      */
     humidity: number;
   }
 
   /**
-   * Sets the target humidity.
+   * Sets the target humidity
    */
   var setHumidityHumidifier: (
     target: IEntity<`humidifier.${string}`> | IArea<string>,
     params: SetHumidityHumidifier,
-  ) => Block<Partial<ServiceCallArgs<SetHumidityHumidifier>> | undefined, void>;
+  ) => Block<Partial<SetHumidityHumidifier> | undefined, void>;
 }
 
 globalThis.turnOnHumidifier = (target) =>

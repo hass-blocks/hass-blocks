@@ -1,8 +1,4 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ActionIcloud3 {
@@ -21,23 +17,17 @@ declare global {
    */
   var actionIcloud3: (
     params: ActionIcloud3,
-  ) => Block<Partial<ServiceCallArgs<ActionIcloud3>> | undefined, void>;
+  ) => Block<Partial<ActionIcloud3> | undefined, void>;
 
   /**
    * The Update service has been replaced by the Action service
    */
-  var updateIcloud3: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var updateIcloud3: () => Block<Partial<unknown> | undefined, void>;
 
   /**
    * This service will restart iCloud3
    */
-  var restartIcloud3: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var restartIcloud3: () => Block<Partial<unknown> | undefined, void>;
 
   interface FindIphoneAlertIcloud3 {
     /**
@@ -51,10 +41,7 @@ declare global {
    */
   var findIphoneAlertIcloud3: (
     params: FindIphoneAlertIcloud3,
-  ) => Block<
-    Partial<ServiceCallArgs<FindIphoneAlertIcloud3>> | undefined,
-    void
-  >;
+  ) => Block<Partial<FindIphoneAlertIcloud3> | undefined, void>;
 
   interface LostDeviceAlertIcloud3 {
     /**
@@ -76,10 +63,7 @@ declare global {
    */
   var lostDeviceAlertIcloud3: (
     params: LostDeviceAlertIcloud3,
-  ) => Block<
-    Partial<ServiceCallArgs<LostDeviceAlertIcloud3>> | undefined,
-    void
-  >;
+  ) => Block<Partial<LostDeviceAlertIcloud3> | undefined, void>;
 
   interface DisplayMessageAlertIcloud3 {
     /**
@@ -101,10 +85,7 @@ declare global {
    */
   var displayMessageAlertIcloud3: (
     params: DisplayMessageAlertIcloud3,
-  ) => Block<
-    Partial<ServiceCallArgs<DisplayMessageAlertIcloud3>> | undefined,
-    void
-  >;
+  ) => Block<Partial<DisplayMessageAlertIcloud3> | undefined, void>;
 }
 
 globalThis.actionIcloud3 = (params) =>

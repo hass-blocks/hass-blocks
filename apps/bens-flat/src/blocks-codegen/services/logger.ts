@@ -1,31 +1,24 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface SetDefaultLevelLogger {
     /**
-     * Default severity level for all integrations.
+     * Default severity level for all integrations
      */
     level?: never;
   }
 
   /**
-   * Sets the default log level for integrations.
+   * Sets the default log level for integrations
    */
   var setDefaultLevelLogger: (
     params?: SetDefaultLevelLogger,
-  ) => Block<Partial<ServiceCallArgs<SetDefaultLevelLogger>> | undefined, void>;
+  ) => Block<Partial<SetDefaultLevelLogger> | undefined, void>;
 
   /**
-   * Sets the log level for one or more integrations.
+   * Sets the log level for one or more integrations
    */
-  var setLevelLogger: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var setLevelLogger: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.setDefaultLevelLogger = (params) =>

@@ -1,15 +1,11 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
    * https://github.com/dmamelin/pyscript_autocomplete
    */
   var autocompleteGeneratorPyscript: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
+    Partial<unknown> | undefined,
     void
   >;
 
@@ -25,11 +21,11 @@ declare global {
   }
 
   /**
-   * hello_world example using pyscript.
+   * hello_world example using pyscript
    */
   var helloWorldPyscript: (
     params?: HelloWorldPyscript,
-  ) => Block<Partial<ServiceCallArgs<HelloWorldPyscript>> | undefined, void>;
+  ) => Block<Partial<HelloWorldPyscript> | undefined, void>;
 
   interface ReloadPyscript {
     /**
@@ -43,7 +39,7 @@ declare global {
    */
   var reloadPyscript: (
     params?: ReloadPyscript,
-  ) => Block<Partial<ServiceCallArgs<ReloadPyscript>> | undefined, void>;
+  ) => Block<Partial<ReloadPyscript> | undefined, void>;
 
   interface JupyterKernelStartPyscript {
     /**
@@ -93,10 +89,7 @@ declare global {
    */
   var jupyterKernelStartPyscript: (
     params: JupyterKernelStartPyscript,
-  ) => Block<
-    Partial<ServiceCallArgs<JupyterKernelStartPyscript>> | undefined,
-    void
-  >;
+  ) => Block<Partial<JupyterKernelStartPyscript> | undefined, void>;
 }
 
 globalThis.autocompleteGeneratorPyscript = () =>

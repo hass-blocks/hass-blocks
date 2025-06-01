@@ -3,81 +3,71 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Turns water heater on.
+   * Turns water heater on
    */
   var turnOnWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns water heater off.
+   * Turns water heater off
    */
   var turnOffWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetAwayModeWaterHeater {
     /**
-     * New value of away mode.
+     * New value of away mode
      */
     away_mode: boolean;
   }
 
   /**
-   * Turns away mode on/off.
+   * Turns away mode on/off
    */
   var setAwayModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetAwayModeWaterHeater,
-  ) => Block<
-    Partial<ServiceCallArgs<SetAwayModeWaterHeater>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetAwayModeWaterHeater> | undefined, void>;
 
   interface SetTemperatureWaterHeater {
     /**
-     * New target temperature for the water heater.
+     * New target temperature for the water heater
      */
     temperature: number;
     /**
-     * New value of the operation mode. For a list of possible modes, refer to the integration documentation.
+     * New value of the operation mode. For a list of possible modes, refer to the integration documentation
      */
     operation_mode?: string;
   }
 
   /**
-   * Sets the target temperature.
+   * Sets the target temperature
    */
   var setTemperatureWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetTemperatureWaterHeater,
-  ) => Block<
-    Partial<ServiceCallArgs<SetTemperatureWaterHeater>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetTemperatureWaterHeater> | undefined, void>;
 
   interface SetOperationModeWaterHeater {
     /**
-     * New value of the operation mode. For a list of possible modes, refer to the integration documentation.
+     * New value of the operation mode. For a list of possible modes, refer to the integration documentation
      */
     operation_mode: string;
   }
 
   /**
-   * Sets the operation mode.
+   * Sets the operation mode
    */
   var setOperationModeWaterHeater: (
     target: IEntity<`water_heater.${string}`> | IArea<string>,
     params: SetOperationModeWaterHeater,
-  ) => Block<
-    Partial<ServiceCallArgs<SetOperationModeWaterHeater>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetOperationModeWaterHeater> | undefined, void>;
 }
 
 globalThis.turnOnWaterHeater = (target) =>

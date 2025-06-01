@@ -1,8 +1,4 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface SequenceBrowserMod {
@@ -19,7 +15,7 @@ declare global {
    */
   var sequenceBrowserMod: (
     params?: SequenceBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<SequenceBrowserMod>> | undefined, void>;
+  ) => Block<Partial<SequenceBrowserMod> | undefined, void>;
 
   interface DelayBrowserMod {
     browser_id?: never;
@@ -35,7 +31,7 @@ declare global {
    */
   var delayBrowserMod: (
     params?: DelayBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<DelayBrowserMod>> | undefined, void>;
+  ) => Block<Partial<DelayBrowserMod> | undefined, void>;
 
   interface PopupBrowserMod {
     browser_id?: never;
@@ -104,7 +100,7 @@ declare global {
    */
   var popupBrowserMod: (
     params: PopupBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<PopupBrowserMod>> | undefined, void>;
+  ) => Block<Partial<PopupBrowserMod> | undefined, void>;
 
   interface MoreInfoBrowserMod {
     browser_id?: never;
@@ -119,7 +115,7 @@ declare global {
    */
   var moreInfoBrowserMod: (
     params: MoreInfoBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<MoreInfoBrowserMod>> | undefined, void>;
+  ) => Block<Partial<MoreInfoBrowserMod> | undefined, void>;
 
   interface ClosePopupBrowserMod {
     browser_id?: never;
@@ -131,7 +127,7 @@ declare global {
    */
   var closePopupBrowserMod: (
     params?: ClosePopupBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<ClosePopupBrowserMod>> | undefined, void>;
+  ) => Block<Partial<ClosePopupBrowserMod> | undefined, void>;
 
   interface NotificationBrowserMod {
     browser_id?: never;
@@ -159,10 +155,7 @@ declare global {
    */
   var notificationBrowserMod: (
     params: NotificationBrowserMod,
-  ) => Block<
-    Partial<ServiceCallArgs<NotificationBrowserMod>> | undefined,
-    void
-  >;
+  ) => Block<Partial<NotificationBrowserMod> | undefined, void>;
 
   interface NavigateBrowserMod {
     browser_id?: never;
@@ -178,7 +171,7 @@ declare global {
    */
   var navigateBrowserMod: (
     params?: NavigateBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<NavigateBrowserMod>> | undefined, void>;
+  ) => Block<Partial<NavigateBrowserMod> | undefined, void>;
 
   interface RefreshBrowserMod {
     browser_id?: never;
@@ -190,7 +183,7 @@ declare global {
    */
   var refreshBrowserMod: (
     params?: RefreshBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<RefreshBrowserMod>> | undefined, void>;
+  ) => Block<Partial<RefreshBrowserMod> | undefined, void>;
 
   interface SetThemeBrowserMod {
     browser_id?: never;
@@ -218,7 +211,7 @@ declare global {
    */
   var setThemeBrowserMod: (
     params?: SetThemeBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<SetThemeBrowserMod>> | undefined, void>;
+  ) => Block<Partial<SetThemeBrowserMod> | undefined, void>;
 
   interface ConsoleBrowserMod {
     browser_id?: never;
@@ -234,7 +227,7 @@ declare global {
    */
   var consoleBrowserMod: (
     params?: ConsoleBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<ConsoleBrowserMod>> | undefined, void>;
+  ) => Block<Partial<ConsoleBrowserMod> | undefined, void>;
 
   interface JavascriptBrowserMod {
     browser_id?: never;
@@ -250,7 +243,7 @@ declare global {
    */
   var javascriptBrowserMod: (
     params?: JavascriptBrowserMod,
-  ) => Block<Partial<ServiceCallArgs<JavascriptBrowserMod>> | undefined, void>;
+  ) => Block<Partial<JavascriptBrowserMod> | undefined, void>;
 
   interface DeregisterBrowserBrowserMod {
     browser_id?: never;
@@ -265,14 +258,11 @@ declare global {
   }
 
   /**
-   * Deregister a browser. Include at leaset one paremeter. Calling wiith either exclude parameter will deregister all browsers except those excluded.
+   * Deregister a browser. Include at leaset one paremeter. Calling wiith either exclude parameter will deregister all browsers except those excluded
    */
   var deregisterBrowserBrowserMod: (
     params?: DeregisterBrowserBrowserMod,
-  ) => Block<
-    Partial<ServiceCallArgs<DeregisterBrowserBrowserMod>> | undefined,
-    void
-  >;
+  ) => Block<Partial<DeregisterBrowserBrowserMod> | undefined, void>;
 }
 
 globalThis.sequenceBrowserMod = (params) =>

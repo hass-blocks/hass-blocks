@@ -1,13 +1,9 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface RunActionScheduler {
     /**
-     * Identifier of the scheduler entity.
+     * Identifier of the scheduler entity
      */
     entity_id: string;
     /**
@@ -21,11 +17,11 @@ declare global {
   }
 
   /**
-   * Execute the action of a schedule, optionally at a given time.
+   * Execute the action of a schedule, optionally at a given time
    */
   var runActionScheduler: (
     params: RunActionScheduler,
-  ) => Block<Partial<ServiceCallArgs<RunActionScheduler>> | undefined, void>;
+  ) => Block<Partial<RunActionScheduler> | undefined, void>;
 
   interface AddScheduler {
     /**
@@ -59,11 +55,11 @@ declare global {
    */
   var addScheduler: (
     params: AddScheduler,
-  ) => Block<Partial<ServiceCallArgs<AddScheduler>> | undefined, void>;
+  ) => Block<Partial<AddScheduler> | undefined, void>;
 
   interface EditScheduler {
     /**
-     * Identifier of the scheduler entity.
+     * Identifier of the scheduler entity
      */
     entity_id: string;
     /**
@@ -97,11 +93,11 @@ declare global {
    */
   var editScheduler: (
     params: EditScheduler,
-  ) => Block<Partial<ServiceCallArgs<EditScheduler>> | undefined, void>;
+  ) => Block<Partial<EditScheduler> | undefined, void>;
 
   interface RemoveScheduler {
     /**
-     * Identifier of the scheduler entity.
+     * Identifier of the scheduler entity
      */
     entity_id: string;
   }
@@ -111,11 +107,11 @@ declare global {
    */
   var removeScheduler: (
     params: RemoveScheduler,
-  ) => Block<Partial<ServiceCallArgs<RemoveScheduler>> | undefined, void>;
+  ) => Block<Partial<RemoveScheduler> | undefined, void>;
 
   interface CopyScheduler {
     /**
-     * Identifier of the scheduler entity.
+     * Identifier of the scheduler entity
      */
     entity_id: string;
     /**
@@ -129,23 +125,17 @@ declare global {
    */
   var copyScheduler: (
     params: CopyScheduler,
-  ) => Block<Partial<ServiceCallArgs<CopyScheduler>> | undefined, void>;
+  ) => Block<Partial<CopyScheduler> | undefined, void>;
 
   /**
    * Disables all schedules
    */
-  var disableAllScheduler: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var disableAllScheduler: () => Block<Partial<unknown> | undefined, void>;
 
   /**
    * Enables all schedules
    */
-  var enableAllScheduler: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var enableAllScheduler: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.runActionScheduler = (params) =>

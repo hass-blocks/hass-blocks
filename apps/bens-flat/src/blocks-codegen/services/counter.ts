@@ -3,45 +3,44 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Increments a counter by its step size.
+   * Increments a counter by its step size
    */
   var incrementCounter: (
     target: IEntity<`counter.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Decrements a counter by its step size.
+   * Decrements a counter by its step size
    */
   var decrementCounter: (
     target: IEntity<`counter.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Resets a counter to its initial value.
+   * Resets a counter to its initial value
    */
   var resetCounter: (
     target: IEntity<`counter.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetValueCounter {
     /**
-     * The new counter value the entity should be set to.
+     * The new counter value the entity should be set to
      */
     value: number;
   }
 
   /**
-   * Sets the counter to a specific value.
+   * Sets the counter to a specific value
    */
   var setValueCounter: (
     target: IEntity<`counter.${string}`> | IArea<string>,
     params: SetValueCounter,
-  ) => Block<Partial<ServiceCallArgs<SetValueCounter>> | undefined, void>;
+  ) => Block<Partial<SetValueCounter> | undefined, void>;
 }
 
 globalThis.incrementCounter = (target) =>

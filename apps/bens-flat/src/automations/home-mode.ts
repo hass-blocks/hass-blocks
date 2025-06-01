@@ -7,7 +7,6 @@ import {
   ExecutionMode,
   sequence,
 } from '@hass-blocks/core';
-import { notifyMyPhone } from '../actions/index.ts';
 import { ifIamOut, ifHomeIsNotEmpty } from '../assertions/index.ts';
 import { homeBecomesEmpty } from '../triggers/index.ts';
 import {
@@ -18,6 +17,7 @@ import { startSlideshowOnAppleTv } from '../compositions/start-slideshow-on-appl
 import { allLights, allSpeakers } from '../entities.ts';
 
 import '@blocks-codegen';
+import { notifyAllMyDevices } from '@actions';
 
 const {
   open: allowZoneExitChecks,
@@ -64,7 +64,7 @@ export const whenIGoOut = automation({
     mediaStopMediaPlayer(allSpeakers),
     turnOffSwitch(imacProOn),
     closeCover(livingRoomBlindsCover),
-    notifyMyPhone({
+    notifyAllMyDevices({
       title: 'Leaving flat',
       message: 'Home empty detected - turning everything off',
     }),

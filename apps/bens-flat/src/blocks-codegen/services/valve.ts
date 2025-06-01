@@ -3,52 +3,51 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Opens a valve.
+   * Opens a valve
    */
   var openValve: (
     target: IEntity<`valve.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Closes a valve.
+   * Closes a valve
    */
   var closeValve: (
     target: IEntity<`valve.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetValvePosition {
     /**
-     * Target position.
+     * Target position
      */
     position: number;
   }
 
   /**
-   * Moves a valve to a specific position.
+   * Moves a valve to a specific position
    */
   var setValvePosition: (
     target: IEntity<`valve.${string}`> | IArea<string>,
     params: SetValvePosition,
-  ) => Block<Partial<ServiceCallArgs<SetValvePosition>> | undefined, void>;
+  ) => Block<Partial<SetValvePosition> | undefined, void>;
 
   /**
-   * Stops the valve movement.
+   * Stops the valve movement
    */
   var stopValve: (
     target: IEntity<`valve.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles a valve open/closed.
+   * Toggles a valve open/closed
    */
   var toggleValve: (
     target: IEntity<`valve.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.openValve = (target) =>

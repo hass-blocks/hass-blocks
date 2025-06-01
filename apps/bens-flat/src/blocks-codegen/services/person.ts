@@ -1,17 +1,10 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads persons from the YAML-configuration.
+   * Reloads persons from the YAML-configuration
    */
-  var reloadPerson: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadPerson: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.reloadPerson = () =>

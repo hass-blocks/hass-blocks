@@ -2,7 +2,7 @@ import { automation, concurrently } from '@hass-blocks/core';
 
 import { imLessThen20kmAway, imMoreThan20KmAway } from '../triggers/zone.ts';
 import { allRooms } from '../areas.ts';
-import { notifyMyPhone } from '../actions/notify.ts';
+import { notifyAllMyDevices } from '../actions/notify.ts';
 import { allHeatingAndBoilerSwitches } from '../entities.ts';
 
 import '@blocks-codegen';
@@ -24,7 +24,7 @@ export const holidayModeTurnsOn = automation({
   name: 'Holiday Mode Turns on',
   when: stateTurnsOn(homeMode),
   then: concurrently(
-    notifyMyPhone({
+    notifyAllMyDevices({
       message: 'Holiday mode turned on. Enjoy your time away!',
       title: 'Holiday mode',
     }),
@@ -39,7 +39,7 @@ export const holidayModeTurnsOff = automation({
   when: stateTurnsOff(homeMode),
   then: [
     concurrently(
-      notifyMyPhone({
+      notifyAllMyDevices({
         message: 'Holiday mode turned off… welcome home!',
         title: 'Holiday mode',
       }),

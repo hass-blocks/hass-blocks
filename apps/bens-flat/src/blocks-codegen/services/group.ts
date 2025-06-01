@@ -1,69 +1,62 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads group configuration, entities, and notify services from YAML-configuration.
+   * Reloads group configuration, entities, and notify services from YAML-configuration
    */
-  var reloadGroup: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadGroup: () => Block<Partial<unknown> | undefined, void>;
 
   interface SetGroup {
     /**
-     * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id].
+     * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id]
      */
     object_id: string;
     /**
-     * Name of the group.
+     * Name of the group
      */
     name?: string;
     /**
-     * Name of the icon for the group.
+     * Name of the icon for the group
      */
     icon?: never;
     /**
-     * List of all members in the group. Cannot be used in combination with `Add entities` or `Remove entities`.
+     * List of all members in the group. Cannot be used in combination with `Add entities` or `Remove entities`
      */
     entities?: string[];
     /**
-     * List of members to be added to the group. Cannot be used in combination with `Entities` or `Remove entities`.
+     * List of members to be added to the group. Cannot be used in combination with `Entities` or `Remove entities`
      */
     add_entities?: string[];
     /**
-     * List of members to be removed from a group. Cannot be used in combination with `Entities` or `Add entities`.
+     * List of members to be removed from a group. Cannot be used in combination with `Entities` or `Add entities`
      */
     remove_entities?: string[];
     /**
-     * Enable this option if the group should only be used when all entities are in state `on`.
+     * Enable this option if the group should only be used when all entities are in state `on`
      */
     all?: boolean;
   }
 
   /**
-   * Creates/Updates a group.
+   * Creates/Updates a group
    */
   var setGroup: (
     params: SetGroup,
-  ) => Block<Partial<ServiceCallArgs<SetGroup>> | undefined, void>;
+  ) => Block<Partial<SetGroup> | undefined, void>;
 
   interface RemoveGroup {
     /**
-     * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id].
+     * Object ID of this group. This object ID is used as part of the entity ID. Entity ID format: [domain].[object_id]
      */
     object_id: Record<string, unknown>;
   }
 
   /**
-   * Removes a group.
+   * Removes a group
    */
   var removeGroup: (
     params: RemoveGroup,
-  ) => Block<Partial<ServiceCallArgs<RemoveGroup>> | undefined, void>;
+  ) => Block<Partial<RemoveGroup> | undefined, void>;
 }
 
 globalThis.reloadGroup = () =>

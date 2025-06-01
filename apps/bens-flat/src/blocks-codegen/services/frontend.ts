@@ -1,35 +1,28 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface SetThemeFrontend {
     /**
-     * Name of a theme.
+     * Name of a theme
      */
     name: never;
     /**
-     * Theme mode.
+     * Theme mode
      */
     mode?: never;
   }
 
   /**
-   * Sets the default theme Home Assistant uses. Can be overridden by a user.
+   * Sets the default theme Home Assistant uses. Can be overridden by a user
    */
   var setThemeFrontend: (
     params: SetThemeFrontend,
-  ) => Block<Partial<ServiceCallArgs<SetThemeFrontend>> | undefined, void>;
+  ) => Block<Partial<SetThemeFrontend> | undefined, void>;
 
   /**
-   * Reloads themes from the YAML-configuration.
+   * Reloads themes from the YAML-configuration
    */
-  var reloadThemesFrontend: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadThemesFrontend: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.setThemeFrontend = (params) =>

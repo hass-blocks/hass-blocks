@@ -3,24 +3,23 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface SetValueTime {
     /**
-     * The time to set.
+     * The time to set
      */
     time: string;
   }
 
   /**
-   * Sets the time.
+   * Sets the time
    */
   var setValueTime: (
     target: IEntity<`time.${string}`> | IArea<string>,
     params: SetValueTime,
-  ) => Block<Partial<ServiceCallArgs<SetValueTime>> | undefined, void>;
+  ) => Block<Partial<SetValueTime> | undefined, void>;
 }
 
 globalThis.setValueTime = (target, params) =>

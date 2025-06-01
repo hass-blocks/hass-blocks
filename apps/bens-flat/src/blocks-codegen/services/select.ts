@@ -3,68 +3,67 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Selects the first option.
+   * Selects the first option
    */
   var selectFirst: (
     target: IEntity<`select.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Selects the last option.
+   * Selects the last option
    */
   var selectLast: (
     target: IEntity<`select.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SelectNext {
     /**
-     * If the option should cycle from the last to the first.
+     * If the option should cycle from the last to the first
      */
     cycle?: boolean;
   }
 
   /**
-   * Selects the next option.
+   * Selects the next option
    */
   var selectNext: (
     target: IEntity<`select.${string}`> | IArea<string>,
     params?: SelectNext,
-  ) => Block<Partial<ServiceCallArgs<SelectNext>> | undefined, void>;
+  ) => Block<Partial<SelectNext> | undefined, void>;
 
   interface SelectOption {
     /**
-     * Option to be selected.
+     * Option to be selected
      */
     option: string;
   }
 
   /**
-   * Selects an option.
+   * Selects an option
    */
   var selectOption: (
     target: IEntity<`select.${string}`> | IArea<string>,
     params: SelectOption,
-  ) => Block<Partial<ServiceCallArgs<SelectOption>> | undefined, void>;
+  ) => Block<Partial<SelectOption> | undefined, void>;
 
   interface SelectPrevious {
     /**
-     * If the option should cycle from the first to the last.
+     * If the option should cycle from the first to the last
      */
     cycle?: boolean;
   }
 
   /**
-   * Selects the previous option.
+   * Selects the previous option
    */
   var selectPrevious: (
     target: IEntity<`select.${string}`> | IArea<string>,
     params?: SelectPrevious,
-  ) => Block<Partial<ServiceCallArgs<SelectPrevious>> | undefined, void>;
+  ) => Block<Partial<SelectPrevious> | undefined, void>;
 }
 
 globalThis.selectFirst = (target) =>

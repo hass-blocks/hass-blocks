@@ -1,5 +1,5 @@
-import { notifyAllMyDevices } from '@actions';
-import { automation } from '@hass-blocks/core';
+import { getNameOfLastUnlockerFromLock, notifyAllMyDevices } from '@actions';
+import { action, automation } from '@hass-blocks/core';
 import { eventIsFired, stateChanges } from '@hass-blocks/triggers';
 import { playDing } from 'src/actions/media.ts';
 
@@ -21,4 +21,30 @@ export const frontDoorLocked = automation({
     message: 'The front door was locked',
     title: 'Front Door',
   }),
+});
+
+const injectToNotify = action({
+  name: 'Inject args to service',
+  callback: (_hasss, input: string) => {
+    return {
+      message: `The front door was unlocked by ${input}`,
+      title: `Front door`,
+    };
+  },
+});
+
+export const frontDoorIsUnlocked = automation({
+  name: 'Tell me when the front door is unlocked',
+  when: stateChanges({
+    entity: frontDoorLock,
+    to: 'unlocked',
+  }),
+  then: [
+    getNameOfLastUnlockerFromLock,
+    injectToNotify,
+    notifyAllMyDevices({
+      message: 'The front door was locked',
+      title: 'Front Door',
+    }),
+  ],
 });

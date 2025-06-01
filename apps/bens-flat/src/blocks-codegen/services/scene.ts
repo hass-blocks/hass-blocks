@@ -3,79 +3,75 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface TurnOnScene {
     /**
-     * Time it takes the devices to transition into the states defined in the scene.
+     * Time it takes the devices to transition into the states defined in the scene
      */
     transition?: number;
   }
 
   /**
-   * Activates a scene.
+   * Activates a scene
    */
   var turnOnScene: (
     target: IEntity<`scene.${string}`> | IArea<string>,
     params?: TurnOnScene,
-  ) => Block<Partial<ServiceCallArgs<TurnOnScene>> | undefined, void>;
+  ) => Block<Partial<TurnOnScene> | undefined, void>;
 
   /**
-   * Reloads the scenes from the YAML-configuration.
+   * Reloads the scenes from the YAML-configuration
    */
-  var reloadScene: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadScene: () => Block<Partial<unknown> | undefined, void>;
 
   interface ApplyScene {
     /**
-     * List of entities and their target state.
+     * List of entities and their target state
      */
     entities: Record<string, unknown>;
     /**
-     * Time it takes the devices to transition into the states defined in the scene.
+     * Time it takes the devices to transition into the states defined in the scene
      */
     transition?: number;
   }
 
   /**
-   * Activates a scene with configuration.
+   * Activates a scene with configuration
    */
   var applyScene: (
     params: ApplyScene,
-  ) => Block<Partial<ServiceCallArgs<ApplyScene>> | undefined, void>;
+  ) => Block<Partial<ApplyScene> | undefined, void>;
 
   interface CreateScene {
     /**
-     * The entity ID of the new scene.
+     * The entity ID of the new scene
      */
     scene_id: string;
     /**
-     * List of entities and their target state. If your entities are already in the target state right now, use 'Entities snapshot' instead.
+     * List of entities and their target state. If your entities are already in the target state right now, use 'Entities snapshot' instead
      */
     entities?: Record<string, unknown>;
     /**
-     * List of entities to be included in the snapshot. By taking a snapshot, you record the current state of those entities. If you do not want to use the current state of all your entities for this scene, you can combine 'Entities snapshot' with 'Entity states'.
+     * List of entities to be included in the snapshot. By taking a snapshot, you record the current state of those entities. If you do not want to use the current state of all your entities for this scene, you can combine 'Entities snapshot' with 'Entity states'
      */
     snapshot_entities?: string[];
   }
 
   /**
-   * Creates a new scene.
+   * Creates a new scene
    */
   var createScene: (
     params: CreateScene,
-  ) => Block<Partial<ServiceCallArgs<CreateScene>> | undefined, void>;
+  ) => Block<Partial<CreateScene> | undefined, void>;
 
   /**
-   * Deletes a dynamically created scene.
+   * Deletes a dynamically created scene
    */
   var deleteScene: (
     target: IEntity<`scene.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.turnOnScene = (target, params) =>

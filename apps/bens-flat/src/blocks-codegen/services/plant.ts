@@ -1,27 +1,23 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ReplaceSensorPlant {
     /**
-     * The meter entity to replace the sensor for.
+     * The meter entity to replace the sensor for
      */
     meter_entity: string;
     /**
-     * Entity id of the new sensor. Leave blank to remove sensor.
+     * Entity id of the new sensor. Leave blank to remove sensor
      */
     new_sensor?: string;
   }
 
   /**
-   * Replaces the source for a plant sensor.
+   * Replaces the source for a plant sensor
    */
   var replaceSensorPlant: (
     params: ReplaceSensorPlant,
-  ) => Block<Partial<ServiceCallArgs<ReplaceSensorPlant>> | undefined, void>;
+  ) => Block<Partial<ReplaceSensorPlant> | undefined, void>;
 }
 
 globalThis.replaceSensorPlant = (params) =>

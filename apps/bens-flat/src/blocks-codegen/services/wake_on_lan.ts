@@ -1,34 +1,27 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface SendMagicPacketWakeOnLan {
     /**
-     * MAC address of the device to wake up.
+     * MAC address of the device to wake up
      */
     mac: string;
     /**
-     * The IP address of the host to send the magic packet to. Defaults to `255.255.255.255` and is normally not changed.
+     * The IP address of the host to send the magic packet to. Defaults to `255.255.255.255` and is normally not changed
      */
     broadcast_address?: string;
     /**
-     * The port to send the magic packet to. Defaults to `9` and is normally not changed.
+     * The port to send the magic packet to. Defaults to `9` and is normally not changed
      */
     broadcast_port?: number;
   }
 
   /**
-   * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities.
+   * Sends a 'magic packet' to wake up a device with 'Wake-On-LAN' capabilities
    */
   var sendMagicPacketWakeOnLan: (
     params: SendMagicPacketWakeOnLan,
-  ) => Block<
-    Partial<ServiceCallArgs<SendMagicPacketWakeOnLan>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SendMagicPacketWakeOnLan> | undefined, void>;
 }
 
 globalThis.sendMagicPacketWakeOnLan = (params) =>

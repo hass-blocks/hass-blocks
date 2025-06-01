@@ -3,24 +3,23 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface SetValueNumber {
     /**
-     * The target value to set.
+     * The target value to set
      */
     value: string;
   }
 
   /**
-   * Sets the value of a number.
+   * Sets the value of a number
    */
   var setValueNumber: (
     target: IEntity<`number.${string}`> | IArea<string>,
     params: SetValueNumber,
-  ) => Block<Partial<ServiceCallArgs<SetValueNumber>> | undefined, void>;
+  ) => Block<Partial<SetValueNumber> | undefined, void>;
 }
 
 globalThis.setValueNumber = (target, params) =>

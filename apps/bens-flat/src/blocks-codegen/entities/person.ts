@@ -4,22 +4,22 @@ declare global {
   /**
    * Me
    */
-  var benWainwrightPerson: IEntity<`person.ben_wainwright`>;
+  var benWainwright: IEntity<`person.ben_wainwright`>;
   /**
    * Mum
    */
-  var mumPerson: IEntity<`person.mum`>;
+  var mum: IEntity<`person.mum`>;
   /**
    * Dad
    */
-  var dadPerson: IEntity<`person.dad`>;
+  var dad: IEntity<`person.dad`>;
   /**
    * Tom
    */
-  var tomPerson: IEntity<`person.tom`>;
+  var tom: IEntity<`person.tom`>;
 }
 
-globalThis.benWainwrightPerson = entity('person.ben_wainwright', 'Me');
-globalThis.mumPerson = entity('person.mum', 'Mum');
-globalThis.dadPerson = entity('person.dad', 'Dad');
-globalThis.tomPerson = entity('person.tom', 'Tom');
+globalThis.benWainwright = entity('person.ben_wainwright', 'Me');
+globalThis.mum = entity('person.mum', 'Mum');
+globalThis.dad = entity('person.dad', 'Dad');
+globalThis.tom = entity('person.tom', 'Tom');

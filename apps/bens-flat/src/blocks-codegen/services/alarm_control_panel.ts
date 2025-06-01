@@ -3,135 +3,113 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface AlarmDisarmAlarmControlPanel {
     /**
-     * Code to disarm the alarm.
+     * Code to disarm the alarm
      */
     code?: string;
   }
 
   /**
-   * Disarms the alarm.
+   * Disarms the alarm
    */
   var alarmDisarmAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmDisarmAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmDisarmAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmDisarmAlarmControlPanel> | undefined, void>;
 
   interface AlarmArmHomeAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Arms the alarm in the home mode.
+   * Arms the alarm in the home mode
    */
   var alarmArmHomeAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmHomeAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmArmHomeAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmArmHomeAlarmControlPanel> | undefined, void>;
 
   interface AlarmArmAwayAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Arms the alarm in the away mode.
+   * Arms the alarm in the away mode
    */
   var alarmArmAwayAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmAwayAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmArmAwayAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmArmAwayAlarmControlPanel> | undefined, void>;
 
   interface AlarmArmNightAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Arms the alarm in the night mode.
+   * Arms the alarm in the night mode
    */
   var alarmArmNightAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmNightAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmArmNightAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmArmNightAlarmControlPanel> | undefined, void>;
 
   interface AlarmArmVacationAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Arms the alarm in the vacation mode.
+   * Arms the alarm in the vacation mode
    */
   var alarmArmVacationAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmVacationAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmArmVacationAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmArmVacationAlarmControlPanel> | undefined, void>;
 
   interface AlarmArmCustomBypassAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Arms the alarm while allowing to bypass a custom area.
+   * Arms the alarm while allowing to bypass a custom area
    */
   var alarmArmCustomBypassAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmArmCustomBypassAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmArmCustomBypassAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmArmCustomBypassAlarmControlPanel> | undefined, void>;
 
   interface AlarmTriggerAlarmControlPanel {
     /**
-     * Code to arm the alarm.
+     * Code to arm the alarm
      */
     code?: string;
   }
 
   /**
-   * Triggers the alarm manually.
+   * Triggers the alarm manually
    */
   var alarmTriggerAlarmControlPanel: (
     target: IEntity<`alarm_control_panel.${string}`> | IArea<string>,
     params?: AlarmTriggerAlarmControlPanel,
-  ) => Block<
-    Partial<ServiceCallArgs<AlarmTriggerAlarmControlPanel>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlarmTriggerAlarmControlPanel> | undefined, void>;
 }
 
 globalThis.alarmDisarmAlarmControlPanel = (target, params) =>

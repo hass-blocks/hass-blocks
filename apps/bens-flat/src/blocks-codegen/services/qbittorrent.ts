@@ -1,8 +1,4 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface GetTorrentsQbittorrent {
@@ -11,7 +7,7 @@ declare global {
      */
     device_id: never;
     /**
-     * What kind of torrents you want to return, such as All or Active.
+     * What kind of torrents you want to return, such as All or Active
      */
     torrent_filter: never;
   }
@@ -21,14 +17,11 @@ declare global {
    */
   var getTorrentsQbittorrent: (
     params: GetTorrentsQbittorrent,
-  ) => Block<
-    Partial<ServiceCallArgs<GetTorrentsQbittorrent>> | undefined,
-    void
-  >;
+  ) => Block<Partial<GetTorrentsQbittorrent> | undefined, void>;
 
   interface GetAllTorrentsQbittorrent {
     /**
-     * What kind of torrents you want to return, such as All or Active.
+     * What kind of torrents you want to return, such as All or Active
      */
     torrent_filter: never;
   }
@@ -38,10 +31,7 @@ declare global {
    */
   var getAllTorrentsQbittorrent: (
     params: GetAllTorrentsQbittorrent,
-  ) => Block<
-    Partial<ServiceCallArgs<GetAllTorrentsQbittorrent>> | undefined,
-    void
-  >;
+  ) => Block<Partial<GetAllTorrentsQbittorrent> | undefined, void>;
 }
 
 globalThis.getTorrentsQbittorrent = (params) =>

@@ -1,83 +1,79 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface AddUrlAdguard {
     /**
-     * The name of the filter subscription.
+     * The name of the filter subscription
      */
     name: string;
     /**
-     * The filter URL to subscribe to, containing the filter rules.
+     * The filter URL to subscribe to, containing the filter rules
      */
     url: string;
   }
 
   /**
-   * Adds a new filter subscription to AdGuard Home.
+   * Adds a new filter subscription to AdGuard Home
    */
   var addUrlAdguard: (
     params: AddUrlAdguard,
-  ) => Block<Partial<ServiceCallArgs<AddUrlAdguard>> | undefined, void>;
+  ) => Block<Partial<AddUrlAdguard> | undefined, void>;
 
   interface RemoveUrlAdguard {
     /**
-     * The filter subscription URL to remove.
+     * The filter subscription URL to remove
      */
     url: string;
   }
 
   /**
-   * Removes a filter subscription from AdGuard Home.
+   * Removes a filter subscription from AdGuard Home
    */
   var removeUrlAdguard: (
     params: RemoveUrlAdguard,
-  ) => Block<Partial<ServiceCallArgs<RemoveUrlAdguard>> | undefined, void>;
+  ) => Block<Partial<RemoveUrlAdguard> | undefined, void>;
 
   interface EnableUrlAdguard {
     /**
-     * The filter subscription URL to enable.
+     * The filter subscription URL to enable
      */
     url: string;
   }
 
   /**
-   * Enables a filter subscription in AdGuard Home.
+   * Enables a filter subscription in AdGuard Home
    */
   var enableUrlAdguard: (
     params: EnableUrlAdguard,
-  ) => Block<Partial<ServiceCallArgs<EnableUrlAdguard>> | undefined, void>;
+  ) => Block<Partial<EnableUrlAdguard> | undefined, void>;
 
   interface DisableUrlAdguard {
     /**
-     * The filter subscription URL to disable.
+     * The filter subscription URL to disable
      */
     url: string;
   }
 
   /**
-   * Disables a filter subscription in AdGuard Home.
+   * Disables a filter subscription in AdGuard Home
    */
   var disableUrlAdguard: (
     params: DisableUrlAdguard,
-  ) => Block<Partial<ServiceCallArgs<DisableUrlAdguard>> | undefined, void>;
+  ) => Block<Partial<DisableUrlAdguard> | undefined, void>;
 
   interface RefreshAdguard {
     /**
-     * Force update (bypasses AdGuard Home throttling), omit for a regular refresh.
+     * Force update (bypasses AdGuard Home throttling), omit for a regular refresh
      */
     force?: boolean;
   }
 
   /**
-   * Refreshes all filter subscriptions in AdGuard Home.
+   * Refreshes all filter subscriptions in AdGuard Home
    */
   var refreshAdguard: (
     params?: RefreshAdguard,
-  ) => Block<Partial<ServiceCallArgs<RefreshAdguard>> | undefined, void>;
+  ) => Block<Partial<RefreshAdguard> | undefined, void>;
 }
 
 globalThis.addUrlAdguard = (params) =>

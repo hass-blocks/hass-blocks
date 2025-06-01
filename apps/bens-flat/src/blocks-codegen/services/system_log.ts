@@ -1,39 +1,32 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Deletes all log entries.
+   * Deletes all log entries
    */
-  var clearSystemLog: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var clearSystemLog: () => Block<Partial<unknown> | undefined, void>;
 
   interface WriteSystemLog {
     /**
-     * Message to log.
+     * Message to log
      */
     message: string;
     /**
-     * Log level.
+     * Log level
      */
     level?: never;
     /**
-     * Logger name under which to log the message. Defaults to `system_log.external`.
+     * Logger name under which to log the message. Defaults to `system_log.external`
      */
     logger?: string;
   }
 
   /**
-   * Write log entry.
+   * Write log entry
    */
   var writeSystemLog: (
     params: WriteSystemLog,
-  ) => Block<Partial<ServiceCallArgs<WriteSystemLog>> | undefined, void>;
+  ) => Block<Partial<WriteSystemLog> | undefined, void>;
 }
 
 globalThis.clearSystemLog = () =>

@@ -1,22 +1,12 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
-  var shutdownImacRestCommand: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var shutdownImacRestCommand: () => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Reloads RESTful commands from the YAML-configuration.
+   * Reloads RESTful commands from the YAML-configuration
    */
-  var reloadRestCommand: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadRestCommand: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.shutdownImacRestCommand = () =>

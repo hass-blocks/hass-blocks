@@ -1,8 +1,4 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ApplyAdaptiveLighting {
@@ -37,11 +33,11 @@ declare global {
   }
 
   /**
-   * Applies the current Adaptive Lighting settings to lights.
+   * Applies the current Adaptive Lighting settings to lights
    */
   var applyAdaptiveLighting: (
     params?: ApplyAdaptiveLighting,
-  ) => Block<Partial<ServiceCallArgs<ApplyAdaptiveLighting>> | undefined, void>;
+  ) => Block<Partial<ApplyAdaptiveLighting> | undefined, void>;
 
   interface SetManualControlAdaptiveLighting {
     /**
@@ -59,14 +55,11 @@ declare global {
   }
 
   /**
-   * Mark whether a light is 'manually controlled'.
+   * Mark whether a light is 'manually controlled'
    */
   var setManualControlAdaptiveLighting: (
     params?: SetManualControlAdaptiveLighting,
-  ) => Block<
-    Partial<ServiceCallArgs<SetManualControlAdaptiveLighting>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetManualControlAdaptiveLighting> | undefined, void>;
 
   interface ChangeSwitchSettingsAdaptiveLighting {
     /**
@@ -170,7 +163,7 @@ declare global {
      */
     take_over_control?: boolean;
     /**
-     * Detects and halts adaptations for non-`light.turn_on` state changes. Needs `take_over_control` enabled. 🕵️ Caution: ⚠️ Some lights might falsely indicate an 'on' state, which could result in lights turning on unexpectedly. Disable this feature if you encounter such issues.
+     * Detects and halts adaptations for non-`light.turn_on` state changes. Needs `take_over_control` enabled. 🕵️ Caution: ⚠️ Some lights might falsely indicate an 'on' state, which could result in lights turning on unexpectedly. Disable this feature if you encounter such issues
      */
     detect_non_ha_changes?: boolean;
     /**
@@ -188,14 +181,11 @@ declare global {
   }
 
   /**
-   * Change any settings you'd like in the switch. All options here are the same as in the config flow.
+   * Change any settings you'd like in the switch. All options here are the same as in the config flow
    */
   var changeSwitchSettingsAdaptiveLighting: (
     params: ChangeSwitchSettingsAdaptiveLighting,
-  ) => Block<
-    Partial<ServiceCallArgs<ChangeSwitchSettingsAdaptiveLighting>> | undefined,
-    void
-  >;
+  ) => Block<Partial<ChangeSwitchSettingsAdaptiveLighting> | undefined, void>;
 }
 
 globalThis.applyAdaptiveLighting = (params) =>

@@ -3,48 +3,44 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface SpeakTts {
     /**
-     * Media players to play the message.
+     * Media players to play the message
      */
     media_player_entity_id: string;
     /**
-     * The text you want to convert into speech so that you can listen to it on your device.
+     * The text you want to convert into speech so that you can listen to it on your device
      */
     message: string;
     /**
-     * Stores this message locally so that when the text is requested again, the output can be produced more quickly.
+     * Stores this message locally so that when the text is requested again, the output can be produced more quickly
      */
     cache?: boolean;
     /**
-     * Language to use for speech generation.
+     * Language to use for speech generation
      */
     language?: string;
     /**
-     * A dictionary containing integration-specific options.
+     * A dictionary containing integration-specific options
      */
     options?: Record<string, unknown>;
   }
 
   /**
-   * Speaks something using text-to-speech on a media player.
+   * Speaks something using text-to-speech on a media player
    */
   var speakTts: (
     target: IEntity<`tts.${string}`> | IArea<string>,
     params: SpeakTts,
-  ) => Block<Partial<ServiceCallArgs<SpeakTts>> | undefined, void>;
+  ) => Block<Partial<SpeakTts> | undefined, void>;
 
   /**
-   * Removes all cached text-to-speech files and purges the memory.
+   * Removes all cached text-to-speech files and purges the memory
    */
-  var clearCacheTts: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var clearCacheTts: () => Block<Partial<unknown> | undefined, void>;
 
   interface GoogleTranslateSayTts {
     entity_id: string;
@@ -55,11 +51,11 @@ declare global {
   }
 
   /**
-   * Say something using text-to-speech on a media player with google_translate.
+   * Say something using text-to-speech on a media player with google_translate
    */
   var googleTranslateSayTts: (
     params: GoogleTranslateSayTts,
-  ) => Block<Partial<ServiceCallArgs<GoogleTranslateSayTts>> | undefined, void>;
+  ) => Block<Partial<GoogleTranslateSayTts> | undefined, void>;
 
   interface CloudSayTts {
     entity_id: string;
@@ -70,11 +66,11 @@ declare global {
   }
 
   /**
-   * Say something using text-to-speech on a media player with cloud.
+   * Say something using text-to-speech on a media player with cloud
    */
   var cloudSayTts: (
     params: CloudSayTts,
-  ) => Block<Partial<ServiceCallArgs<CloudSayTts>> | undefined, void>;
+  ) => Block<Partial<CloudSayTts> | undefined, void>;
 }
 
 globalThis.speakTts = (target, params) =>

@@ -3,61 +3,57 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface TriggerAutomation {
     /**
-     * Defines whether or not the conditions will be skipped.
+     * Defines whether or not the conditions will be skipped
      */
     skip_condition?: boolean;
   }
 
   /**
-   * Triggers the actions of an automation.
+   * Triggers the actions of an automation
    */
   var triggerAutomation: (
     target: IEntity<`automation.${string}`> | IArea<string>,
     params?: TriggerAutomation,
-  ) => Block<Partial<ServiceCallArgs<TriggerAutomation>> | undefined, void>;
+  ) => Block<Partial<TriggerAutomation> | undefined, void>;
 
   /**
-   * Toggles (enable / disable) an automation.
+   * Toggles (enable / disable) an automation
    */
   var toggleAutomation: (
     target: IEntity<`automation.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Enables an automation.
+   * Enables an automation
    */
   var turnOnAutomation: (
     target: IEntity<`automation.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface TurnOffAutomation {
     /**
-     * Stops currently running actions.
+     * Stops currently running actions
      */
     stop_actions?: boolean;
   }
 
   /**
-   * Disables an automation.
+   * Disables an automation
    */
   var turnOffAutomation: (
     target: IEntity<`automation.${string}`> | IArea<string>,
     params?: TurnOffAutomation,
-  ) => Block<Partial<ServiceCallArgs<TurnOffAutomation>> | undefined, void>;
+  ) => Block<Partial<TurnOffAutomation> | undefined, void>;
 
   /**
-   * Reloads the automation configuration.
+   * Reloads the automation configuration
    */
-  var reloadAutomation: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadAutomation: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.triggerAutomation = (target, params) =>

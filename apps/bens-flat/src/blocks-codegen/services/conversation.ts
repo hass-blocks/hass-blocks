@@ -1,21 +1,17 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ProcessConversation {
     /**
-     * Transcribed text input.
+     * Transcribed text input
      */
     text: string;
     /**
-     * Language of text. Defaults to server language.
+     * Language of text. Defaults to server language
      */
     language?: string;
     /**
-     * Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands.
+     * Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands
      */
     agent_id?: never;
     /**
@@ -25,29 +21,29 @@ declare global {
   }
 
   /**
-   * Launches a conversation from a transcribed text.
+   * Launches a conversation from a transcribed text
    */
   var processConversation: (
     params: ProcessConversation,
-  ) => Block<Partial<ServiceCallArgs<ProcessConversation>> | undefined, void>;
+  ) => Block<Partial<ProcessConversation> | undefined, void>;
 
   interface ReloadConversation {
     /**
-     * Language to clear cached intents for. Defaults to server language.
+     * Language to clear cached intents for. Defaults to server language
      */
     language?: string;
     /**
-     * Conversation agent to reload.
+     * Conversation agent to reload
      */
     agent_id?: never;
   }
 
   /**
-   * Reloads the intent configuration.
+   * Reloads the intent configuration
    */
   var reloadConversation: (
     params?: ReloadConversation,
-  ) => Block<Partial<ServiceCallArgs<ReloadConversation>> | undefined, void>;
+  ) => Block<Partial<ReloadConversation> | undefined, void>;
 }
 
 globalThis.processConversation = (params) =>

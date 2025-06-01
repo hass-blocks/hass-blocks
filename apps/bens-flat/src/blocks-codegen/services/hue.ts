@@ -3,58 +3,57 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface ActivateSceneHue {
     /**
-     * Transition duration it takes to bring devices to the state defined in the scene.
+     * Transition duration it takes to bring devices to the state defined in the scene
      */
     transition?: number;
     /**
-     * Enable dynamic mode of the scene.
+     * Enable dynamic mode of the scene
      */
     dynamic?: boolean;
     /**
-     * Speed of dynamic palette for this scene.
+     * Speed of dynamic palette for this scene
      */
     speed?: number;
     /**
-     * Set brightness for the scene.
+     * Set brightness for the scene
      */
     brightness?: number;
   }
 
   /**
-   * Activates a Hue scene with more control over the options.
+   * Activates a Hue scene with more control over the options
    */
   var activateSceneHue: (
     target: IEntity<`scene.${string}`> | IArea<string>,
     params?: ActivateSceneHue,
-  ) => Block<Partial<ServiceCallArgs<ActivateSceneHue>> | undefined, void>;
+  ) => Block<Partial<ActivateSceneHue> | undefined, void>;
 
   interface HueActivateScene {
     /**
-     * Name of Hue group/room from the Hue app.
+     * Name of Hue group/room from the Hue app
      */
     group_name?: string;
     /**
-     * Name of Hue scene from the Hue app.
+     * Name of Hue scene from the Hue app
      */
     scene_name?: string;
     /**
-     * Enable dynamic mode of the scene (V2 bridges and supported scenes only).
+     * Enable dynamic mode of the scene (V2 bridges and supported scenes only)
      */
     dynamic?: boolean;
   }
 
   /**
-   * Activates a Hue scene stored in the Hue hub.
+   * Activates a Hue scene stored in the Hue hub
    */
   var hueActivateScene: (
     params?: HueActivateScene,
-  ) => Block<Partial<ServiceCallArgs<HueActivateScene>> | undefined, void>;
+  ) => Block<Partial<HueActivateScene> | undefined, void>;
 }
 
 globalThis.activateSceneHue = (target, params) =>

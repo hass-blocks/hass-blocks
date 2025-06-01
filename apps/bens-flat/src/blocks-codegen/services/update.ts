@@ -3,42 +3,41 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface InstallUpdate {
     /**
-     * The version to install. If omitted, the latest version will be installed.
+     * The version to install. If omitted, the latest version will be installed
      */
     version?: string;
     /**
-     * If supported by the integration, this creates a backup before starting the update.
+     * If supported by the integration, this creates a backup before starting the update
      */
     backup?: boolean;
   }
 
   /**
-   * Installs an update for a device or service.
+   * Installs an update for a device or service
    */
   var installUpdate: (
     target: IEntity<`update.${string}`> | IArea<string>,
     params?: InstallUpdate,
-  ) => Block<Partial<ServiceCallArgs<InstallUpdate>> | undefined, void>;
+  ) => Block<Partial<InstallUpdate> | undefined, void>;
 
   /**
-   * Marks currently available update as skipped.
+   * Marks currently available update as skipped
    */
   var skipUpdate: (
     target: IEntity<`update.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Removes the skipped version marker from an update.
+   * Removes the skipped version marker from an update
    */
   var clearSkippedUpdate: (
     target: IEntity<`update.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.installUpdate = (target, params) =>

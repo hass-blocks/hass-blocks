@@ -3,85 +3,84 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Starts or resumes the cleaning task.
+   * Starts or resumes the cleaning task
    */
   var startVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Pauses the cleaning task.
+   * Pauses the cleaning task
    */
   var pauseVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Tells the vacuum cleaner to return to its dock.
+   * Tells the vacuum cleaner to return to its dock
    */
   var returnToBaseVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Tells the vacuum cleaner to do a spot clean-up.
+   * Tells the vacuum cleaner to do a spot clean-up
    */
   var cleanSpotVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Locates the vacuum cleaner robot.
+   * Locates the vacuum cleaner robot
    */
   var locateVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Stops the current cleaning task.
+   * Stops the current cleaning task
    */
   var stopVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetFanSpeedVacuum {
     /**
-     * Fan speed. The value depends on the integration. Some integrations have speed steps, like 'medium'. Some use a percentage, between 0 and 100.
+     * Fan speed. The value depends on the integration. Some integrations have speed steps, like 'medium'. Some use a percentage, between 0 and 100
      */
     fan_speed: string;
   }
 
   /**
-   * Sets the fan speed of the vacuum cleaner.
+   * Sets the fan speed of the vacuum cleaner
    */
   var setFanSpeedVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
     params: SetFanSpeedVacuum,
-  ) => Block<Partial<ServiceCallArgs<SetFanSpeedVacuum>> | undefined, void>;
+  ) => Block<Partial<SetFanSpeedVacuum> | undefined, void>;
 
   interface SendCommandVacuum {
     /**
-     * Command to execute. The commands are integration-specific.
+     * Command to execute. The commands are integration-specific
      */
     command: string;
     /**
-     * Parameters for the command. The parameters are integration-specific.
+     * Parameters for the command. The parameters are integration-specific
      */
     params?: Record<string, unknown>;
   }
 
   /**
-   * Sends a command to the vacuum cleaner.
+   * Sends a command to the vacuum cleaner
    */
   var sendCommandVacuum: (
     target: IEntity<`vacuum.${string}`> | IArea<string>,
     params: SendCommandVacuum,
-  ) => Block<Partial<ServiceCallArgs<SendCommandVacuum>> | undefined, void>;
+  ) => Block<Partial<SendCommandVacuum> | undefined, void>;
 }
 
 globalThis.startVacuum = (target) =>

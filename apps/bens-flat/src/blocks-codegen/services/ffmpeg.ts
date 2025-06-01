@@ -1,51 +1,47 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface StartFfmpeg {
     /**
-     * Name of entity that will start. Platform dependent.
+     * Name of entity that will start. Platform dependent
      */
     entity_id?: string;
   }
 
   /**
-   * Sends a start command to an FFmpeg-based sensor.
+   * Sends a start command to an FFmpeg-based sensor
    */
   var startFfmpeg: (
     params?: StartFfmpeg,
-  ) => Block<Partial<ServiceCallArgs<StartFfmpeg>> | undefined, void>;
+  ) => Block<Partial<StartFfmpeg> | undefined, void>;
 
   interface StopFfmpeg {
     /**
-     * Name of entity that will stop. Platform dependent.
+     * Name of entity that will stop. Platform dependent
      */
     entity_id?: string;
   }
 
   /**
-   * Sends a stop command to an FFmpeg-based sensor.
+   * Sends a stop command to an FFmpeg-based sensor
    */
   var stopFfmpeg: (
     params?: StopFfmpeg,
-  ) => Block<Partial<ServiceCallArgs<StopFfmpeg>> | undefined, void>;
+  ) => Block<Partial<StopFfmpeg> | undefined, void>;
 
   interface RestartFfmpeg {
     /**
-     * Name of entity that will restart. Platform dependent.
+     * Name of entity that will restart. Platform dependent
      */
     entity_id?: string;
   }
 
   /**
-   * Sends a restart command to an FFmpeg-based sensor.
+   * Sends a restart command to an FFmpeg-based sensor
    */
   var restartFfmpeg: (
     params?: RestartFfmpeg,
-  ) => Block<Partial<ServiceCallArgs<RestartFfmpeg>> | undefined, void>;
+  ) => Block<Partial<RestartFfmpeg> | undefined, void>;
 }
 
 globalThis.startFfmpeg = (params) =>

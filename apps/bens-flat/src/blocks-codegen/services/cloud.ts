@@ -1,25 +1,15 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Makes the instance UI accessible from outside of the local network by enabling your Home Assistant Cloud connection.
+   * Makes the instance UI accessible from outside of the local network by enabling your Home Assistant Cloud connection
    */
-  var remoteConnectCloud: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var remoteConnectCloud: () => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Disconnects the instance UI from Home Assistant Cloud. This disables access to it from outside your local network.
+   * Disconnects the instance UI from Home Assistant Cloud. This disables access to it from outside your local network
    */
-  var remoteDisconnectCloud: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var remoteDisconnectCloud: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.remoteConnectCloud = () =>

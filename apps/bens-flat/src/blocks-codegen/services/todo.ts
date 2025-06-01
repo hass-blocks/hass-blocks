@@ -3,40 +3,39 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface AddItemTodo {
     /**
-     * The name that represents the to-do item.
+     * The name that represents the to-do item
      */
     item: string;
     /**
-     * The date the to-do item is expected to be completed.
+     * The date the to-do item is expected to be completed
      */
     due_date?: never;
     /**
-     * The date and time the to-do item is expected to be completed.
+     * The date and time the to-do item is expected to be completed
      */
     due_datetime?: never;
     /**
-     * A more complete description of the to-do item than provided by the item name.
+     * A more complete description of the to-do item than provided by the item name
      */
     description?: string;
   }
 
   /**
-   * Adds a new to-do list item.
+   * Adds a new to-do list item
    */
   var addItemTodo: (
     target: IEntity<`todo.${string}`> | IArea<string>,
     params: AddItemTodo,
-  ) => Block<Partial<ServiceCallArgs<AddItemTodo>> | undefined, void>;
+  ) => Block<Partial<AddItemTodo> | undefined, void>;
 
   interface UpdateItemTodo {
     /**
-     * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead.
+     * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead
      */
     item: string;
     /**
@@ -44,67 +43,67 @@ declare global {
      */
     rename?: string;
     /**
-     * A status or confirmation of the to-do item.
+     * A status or confirmation of the to-do item
      */
     status?: never;
     /**
-     * The date the to-do item is expected to be completed.
+     * The date the to-do item is expected to be completed
      */
     due_date?: never;
     /**
-     * The date and time the to-do item is expected to be completed.
+     * The date and time the to-do item is expected to be completed
      */
     due_datetime?: never;
     /**
-     * A more complete description of the to-do item than provided by the item name.
+     * A more complete description of the to-do item than provided by the item name
      */
     description?: string;
   }
 
   /**
-   * Updates an existing to-do list item based on its name or UID.
+   * Updates an existing to-do list item based on its name or UID
    */
   var updateItemTodo: (
     target: IEntity<`todo.${string}`> | IArea<string>,
     params: UpdateItemTodo,
-  ) => Block<Partial<ServiceCallArgs<UpdateItemTodo>> | undefined, void>;
+  ) => Block<Partial<UpdateItemTodo> | undefined, void>;
 
   interface RemoveItemTodo {
     /**
-     * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead.
+     * The name/summary of the to-do item. If you have items with duplicate names, you can reference specific ones using their UID instead
      */
     item: string;
   }
 
   /**
-   * Removes an existing to-do list item by its name or UID.
+   * Removes an existing to-do list item by its name or UID
    */
   var removeItemTodo: (
     target: IEntity<`todo.${string}`> | IArea<string>,
     params: RemoveItemTodo,
-  ) => Block<Partial<ServiceCallArgs<RemoveItemTodo>> | undefined, void>;
+  ) => Block<Partial<RemoveItemTodo> | undefined, void>;
 
   interface GetItemsTodo {
     /**
-     * Only return to-do items with the specified statuses. Returns not completed actions by default.
+     * Only return to-do items with the specified statuses. Returns not completed actions by default
      */
     status?: never;
   }
 
   /**
-   * Gets items on a to-do list.
+   * Gets items on a to-do list
    */
   var getItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea<string>,
     params?: GetItemsTodo,
-  ) => Block<Partial<ServiceCallArgs<GetItemsTodo>> | undefined, void>;
+  ) => Block<Partial<GetItemsTodo> | undefined, void>;
 
   /**
-   * Removes all to-do list items that have been completed.
+   * Removes all to-do list items that have been completed
    */
   var removeCompletedItemsTodo: (
     target: IEntity<`todo.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.addItemTodo = (target, params) =>

@@ -3,46 +3,45 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface TurnOnSiren {
     /**
-     * The tone to emit. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration.
+     * The tone to emit. When `available_tones` property is a map, either the key or the value can be used. Must be supported by the integration
      */
     tone?: string;
     /**
-     * The volume. 0 is inaudible, 1 is the maximum volume. Must be supported by the integration.
+     * The volume. 0 is inaudible, 1 is the maximum volume. Must be supported by the integration
      */
     volume_level?: number;
     /**
-     * Number of seconds the sound is played. Must be supported by the integration.
+     * Number of seconds the sound is played. Must be supported by the integration
      */
     duration?: string;
   }
 
   /**
-   * Turns the siren on.
+   * Turns the siren on
    */
   var turnOnSiren: (
     target: IEntity<`siren.${string}`> | IArea<string>,
     params?: TurnOnSiren,
-  ) => Block<Partial<ServiceCallArgs<TurnOnSiren>> | undefined, void>;
+  ) => Block<Partial<TurnOnSiren> | undefined, void>;
 
   /**
-   * Turns the siren off.
+   * Turns the siren off
    */
   var turnOffSiren: (
     target: IEntity<`siren.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles the siren on/off.
+   * Toggles the siren on/off
    */
   var toggleSiren: (
     target: IEntity<`siren.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.turnOnSiren = (target, params) =>

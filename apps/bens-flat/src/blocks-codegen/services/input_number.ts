@@ -3,46 +3,42 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads helpers from the YAML-configuration.
+   * Reloads helpers from the YAML-configuration
    */
-  var reloadInputNumber: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadInputNumber: () => Block<Partial<unknown> | undefined, void>;
 
   interface SetValueInputNumber {
     /**
-     * The target value.
+     * The target value
      */
     value: number;
   }
 
   /**
-   * Sets the value.
+   * Sets the value
    */
   var setValueInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea<string>,
     params: SetValueInputNumber,
-  ) => Block<Partial<ServiceCallArgs<SetValueInputNumber>> | undefined, void>;
+  ) => Block<Partial<SetValueInputNumber> | undefined, void>;
 
   /**
-   * Increments the current value by 1 step.
+   * Increments the current value by 1 step
    */
   var incrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Decrements the current value by 1 step.
+   * Decrements the current value by 1 step
    */
   var decrementInputNumber: (
     target: IEntity<`input_number.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.reloadInputNumber = () =>

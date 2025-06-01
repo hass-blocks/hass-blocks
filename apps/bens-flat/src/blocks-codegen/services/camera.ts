@@ -3,94 +3,93 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Enables the motion detection.
+   * Enables the motion detection
    */
   var enableMotionDetectionCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Disables the motion detection.
+   * Disables the motion detection
    */
   var disableMotionDetectionCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns off the camera.
+   * Turns off the camera
    */
   var turnOffCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns on the camera.
+   * Turns on the camera
    */
   var turnOnCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SnapshotCamera {
     /**
-     * Full path to filename.
+     * Full path to filename
      */
     filename: string;
   }
 
   /**
-   * Takes a snapshot from a camera.
+   * Takes a snapshot from a camera
    */
   var snapshotCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
     params: SnapshotCamera,
-  ) => Block<Partial<ServiceCallArgs<SnapshotCamera>> | undefined, void>;
+  ) => Block<Partial<SnapshotCamera> | undefined, void>;
 
   interface PlayStreamCamera {
     /**
-     * Media players to stream to.
+     * Media players to stream to
      */
     media_player: string;
     /**
-     * Stream format supported by the media player.
+     * Stream format supported by the media player
      */
     format?: never;
   }
 
   /**
-   * Plays the camera stream on a supported media player.
+   * Plays the camera stream on a supported media player
    */
   var playStreamCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
     params: PlayStreamCamera,
-  ) => Block<Partial<ServiceCallArgs<PlayStreamCamera>> | undefined, void>;
+  ) => Block<Partial<PlayStreamCamera> | undefined, void>;
 
   interface RecordCamera {
     /**
-     * Full path to filename. Must be mp4.
+     * Full path to filename. Must be mp4
      */
     filename: string;
     /**
-     * Planned duration of the recording. The actual duration may vary.
+     * Planned duration of the recording. The actual duration may vary
      */
     duration?: number;
     /**
-     * Planned lookback period to include in the recording (in addition to the duration). Only available if there is currently an active HLS stream. The actual length of the lookback period may vary.
+     * Planned lookback period to include in the recording (in addition to the duration). Only available if there is currently an active HLS stream. The actual length of the lookback period may vary
      */
     lookback?: number;
   }
 
   /**
-   * Creates a recording of a live camera feed.
+   * Creates a recording of a live camera feed
    */
   var recordCamera: (
     target: IEntity<`camera.${string}`> | IArea<string>,
     params: RecordCamera,
-  ) => Block<Partial<ServiceCallArgs<RecordCamera>> | undefined, void>;
+  ) => Block<Partial<RecordCamera> | undefined, void>;
 }
 
 globalThis.enableMotionDetectionCamera = (target) =>

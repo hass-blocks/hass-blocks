@@ -1,8 +1,4 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface SearchOpenplantbook {
@@ -17,7 +13,7 @@ declare global {
    */
   var searchOpenplantbook: (
     params: SearchOpenplantbook,
-  ) => Block<Partial<ServiceCallArgs<SearchOpenplantbook>> | undefined, void>;
+  ) => Block<Partial<SearchOpenplantbook> | undefined, void>;
 
   interface GetOpenplantbook {
     /**
@@ -31,7 +27,7 @@ declare global {
    */
   var getOpenplantbook: (
     params: GetOpenplantbook,
-  ) => Block<Partial<ServiceCallArgs<GetOpenplantbook>> | undefined, void>;
+  ) => Block<Partial<GetOpenplantbook> | undefined, void>;
 
   interface CleanCacheOpenplantbook {
     /**
@@ -45,18 +41,12 @@ declare global {
    */
   var cleanCacheOpenplantbook: (
     params?: CleanCacheOpenplantbook,
-  ) => Block<
-    Partial<ServiceCallArgs<CleanCacheOpenplantbook>> | undefined,
-    void
-  >;
+  ) => Block<Partial<CleanCacheOpenplantbook> | undefined, void>;
 
   /**
    * Upload sensors data of all plant instances
    */
-  var uploadOpenplantbook: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var uploadOpenplantbook: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.searchOpenplantbook = (params) =>

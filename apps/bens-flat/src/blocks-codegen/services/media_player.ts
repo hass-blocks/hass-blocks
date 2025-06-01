@@ -3,305 +3,292 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Turns on the power of the media player.
+   * Turns on the power of the media player
    */
   var turnOnMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns off the power of the media player.
+   * Turns off the power of the media player
    */
   var turnOffMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles a media player on/off.
+   * Toggles a media player on/off
    */
   var toggleMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns up the volume.
+   * Turns up the volume
    */
   var volumeUpMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns down the volume.
+   * Turns down the volume
    */
   var volumeDownMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles play/pause.
+   * Toggles play/pause
    */
   var mediaPlayPauseMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Starts playing.
+   * Starts playing
    */
   var mediaPlayMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Pauses.
+   * Pauses
    */
   var mediaPauseMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Stops playing.
+   * Stops playing
    */
   var mediaStopMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Selects the next track.
+   * Selects the next track
    */
   var mediaNextTrackMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Selects the previous track.
+   * Selects the previous track
    */
   var mediaPreviousTrackMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Removes all items from the playlist.
+   * Removes all items from the playlist
    */
   var clearPlaylistMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface VolumeSetMediaPlayer {
     /**
-     * The volume. 0 is inaudible, 1 is the maximum volume.
+     * The volume. 0 is inaudible, 1 is the maximum volume
      */
     volume_level: number;
   }
 
   /**
-   * Sets the volume level.
+   * Sets the volume level
    */
   var volumeSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: VolumeSetMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<VolumeSetMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<VolumeSetMediaPlayer> | undefined, void>;
 
   interface VolumeMuteMediaPlayer {
     /**
-     * Defines whether or not it is muted.
+     * Defines whether or not it is muted
      */
     is_volume_muted: boolean;
   }
 
   /**
-   * Mutes or unmutes the media player.
+   * Mutes or unmutes the media player
    */
   var volumeMuteMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: VolumeMuteMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<VolumeMuteMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<VolumeMuteMediaPlayer> | undefined, void>;
 
   interface MediaSeekMediaPlayer {
     /**
-     * Target position in the currently playing media. The format is platform dependent.
+     * Target position in the currently playing media. The format is platform dependent
      */
     seek_position: number;
   }
 
   /**
-   * Allows you to go to a different part of the media that is currently playing.
+   * Allows you to go to a different part of the media that is currently playing
    */
   var mediaSeekMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: MediaSeekMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<MediaSeekMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<MediaSeekMediaPlayer> | undefined, void>;
 
   interface JoinMediaPlayer {
     /**
-     * The players which will be synced with the playback specified in 'Targets'.
+     * The players which will be synced with the playback specified in 'Targets'
      */
     group_members: string[];
   }
 
   /**
-   * Groups media players together for synchronous playback. Only works on supported multiroom audio systems.
+   * Groups media players together for synchronous playback. Only works on supported multiroom audio systems
    */
   var joinMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: JoinMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<JoinMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<JoinMediaPlayer> | undefined, void>;
 
   interface SelectSourceMediaPlayer {
     /**
-     * Name of the source to switch to. Platform dependent.
+     * Name of the source to switch to. Platform dependent
      */
     source: string;
   }
 
   /**
-   * Sends the media player the command to change input source.
+   * Sends the media player the command to change input source
    */
   var selectSourceMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: SelectSourceMediaPlayer,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectSourceMediaPlayer>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SelectSourceMediaPlayer> | undefined, void>;
 
   interface SelectSoundModeMediaPlayer {
     /**
-     * Name of the sound mode to switch to.
+     * Name of the sound mode to switch to
      */
     sound_mode?: string;
   }
 
   /**
-   * Selects a specific sound mode.
+   * Selects a specific sound mode
    */
   var selectSoundModeMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params?: SelectSoundModeMediaPlayer,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectSoundModeMediaPlayer>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SelectSoundModeMediaPlayer> | undefined, void>;
 
   interface PlayMediaMediaPlayer {
     /**
-     * The ID of the content to play. Platform dependent.
+     * The ID of the content to play. Platform dependent
      */
     media_content_id: string;
     /**
-     * The type of the content to play, such as image, music, tv show, video, episode, channel, or playlist.
+     * The type of the content to play, such as image, music, tv show, video, episode, channel, or playlist
      */
     media_content_type: string;
     /**
-     * If the content should be played now or be added to the queue.
+     * If the content should be played now or be added to the queue
      */
     enqueue?: never;
     /**
-     * If the media should be played as an announcement.
+     * If the media should be played as an announcement
      */
     announce?: boolean;
   }
 
   /**
-   * Starts playing specified media.
+   * Starts playing specified media
    */
   var playMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: PlayMediaMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<PlayMediaMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<PlayMediaMediaPlayer> | undefined, void>;
 
   interface BrowseMediaMediaPlayer {
     /**
-     * The type of the content to browse, such as image, music, tv show, video, episode, channel, or playlist.
+     * The type of the content to browse, such as image, music, tv show, video, episode, channel, or playlist
      */
     media_content_type?: string;
     /**
-     * The ID of the content to browse. Integration dependent.
+     * The ID of the content to browse. Integration dependent
      */
     media_content_id?: string;
   }
 
   /**
-   * Browses the available media.
+   * Browses the available media
    */
   var browseMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params?: BrowseMediaMediaPlayer,
-  ) => Block<
-    Partial<ServiceCallArgs<BrowseMediaMediaPlayer>> | undefined,
-    void
-  >;
+  ) => Block<Partial<BrowseMediaMediaPlayer> | undefined, void>;
 
   interface SearchMediaMediaPlayer {
     /**
-     * The term to search for.
+     * The term to search for
      */
     search_query: string;
     /**
-     * The type of the content to browse, such as image, music, tv show, video, episode, channel, or playlist.
+     * The type of the content to browse, such as image, music, tv show, video, episode, channel, or playlist
      */
     media_content_type?: string;
     /**
-     * The ID of the content to browse. Integration dependent.
+     * The ID of the content to browse. Integration dependent
      */
     media_content_id?: string;
     /**
-     * List of media classes to filter the search results by.
+     * List of media classes to filter the search results by
      */
     media_filter_classes?: string;
   }
 
   /**
-   * Searches the available media.
+   * Searches the available media
    */
   var searchMediaMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: SearchMediaMediaPlayer,
-  ) => Block<
-    Partial<ServiceCallArgs<SearchMediaMediaPlayer>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SearchMediaMediaPlayer> | undefined, void>;
 
   interface ShuffleSetMediaPlayer {
     /**
-     * Whether the media should be played in randomized order or not.
+     * Whether the media should be played in randomized order or not
      */
     shuffle: boolean;
   }
 
   /**
-   * Enables or disables the shuffle mode.
+   * Enables or disables the shuffle mode
    */
   var shuffleSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: ShuffleSetMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<ShuffleSetMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<ShuffleSetMediaPlayer> | undefined, void>;
 
   /**
-   * Removes the player from a group. Only works on platforms which support player groups.
+   * Removes the player from a group. Only works on platforms which support player groups
    */
   var unjoinMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface RepeatSetMediaPlayer {
     /**
-     * Whether the media (one or all) should be played in a loop or not.
+     * Whether the media (one or all) should be played in a loop or not
      */
     repeat: never;
   }
 
   /**
-   * Sets the repeat mode.
+   * Sets the repeat mode
    */
   var repeatSetMediaPlayer: (
     target: IEntity<`media_player.${string}`> | IArea<string>,
     params: RepeatSetMediaPlayer,
-  ) => Block<Partial<ServiceCallArgs<RepeatSetMediaPlayer>> | undefined, void>;
+  ) => Block<Partial<RepeatSetMediaPlayer> | undefined, void>;
 }
 
 globalThis.turnOnMediaPlayer = (target) =>

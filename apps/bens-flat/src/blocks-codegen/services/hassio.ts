@@ -1,201 +1,191 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface AddonStartHassio {
     /**
-     * The add-on to start.
+     * The add-on to start
      */
     addon: never;
   }
 
   /**
-   * Starts an add-on.
+   * Starts an add-on
    */
   var addonStartHassio: (
     params: AddonStartHassio,
-  ) => Block<Partial<ServiceCallArgs<AddonStartHassio>> | undefined, void>;
+  ) => Block<Partial<AddonStartHassio> | undefined, void>;
 
   interface AddonStopHassio {
     /**
-     * The add-on to stop.
+     * The add-on to stop
      */
     addon: never;
   }
 
   /**
-   * Stops an add-on.
+   * Stops an add-on
    */
   var addonStopHassio: (
     params: AddonStopHassio,
-  ) => Block<Partial<ServiceCallArgs<AddonStopHassio>> | undefined, void>;
+  ) => Block<Partial<AddonStopHassio> | undefined, void>;
 
   interface AddonRestartHassio {
     /**
-     * The add-on to restart.
+     * The add-on to restart
      */
     addon: never;
   }
 
   /**
-   * Restarts an add-on.
+   * Restarts an add-on
    */
   var addonRestartHassio: (
     params: AddonRestartHassio,
-  ) => Block<Partial<ServiceCallArgs<AddonRestartHassio>> | undefined, void>;
+  ) => Block<Partial<AddonRestartHassio> | undefined, void>;
 
   interface AddonStdinHassio {
     /**
-     * The add-on to write to.
+     * The add-on to write to
      */
     addon: never;
   }
 
   /**
-   * Writes data to the add-on's standard input.
+   * Writes data to the add-on's standard input
    */
   var addonStdinHassio: (
     params: AddonStdinHassio,
-  ) => Block<Partial<ServiceCallArgs<AddonStdinHassio>> | undefined, void>;
+  ) => Block<Partial<AddonStdinHassio> | undefined, void>;
 
   /**
-   * Powers off the host system.
+   * Powers off the host system
    */
-  var hostShutdownHassio: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var hostShutdownHassio: () => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Reboots the host system.
+   * Reboots the host system
    */
-  var hostRebootHassio: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var hostRebootHassio: () => Block<Partial<unknown> | undefined, void>;
 
   interface BackupFullHassio {
     /**
-     * Optional (default = current date and time).
+     * Optional (default = current date and time)
      */
     name?: string;
     /**
-     * Password to protect the backup with.
+     * Password to protect the backup with
      */
     password?: string;
     /**
-     * Compresses the backup files.
+     * Compresses the backup files
      */
     compressed?: boolean;
     /**
-     * Name of a backup network storage to host backups.
+     * Name of a backup network storage to host backups
      */
     location?: never;
     /**
-     * Exclude the Home Assistant database file from the backup.
+     * Exclude the Home Assistant database file from the backup
      */
     homeassistant_exclude_database?: boolean;
   }
 
   /**
-   * Creates a full backup.
+   * Creates a full backup
    */
   var backupFullHassio: (
     params?: BackupFullHassio,
-  ) => Block<Partial<ServiceCallArgs<BackupFullHassio>> | undefined, void>;
+  ) => Block<Partial<BackupFullHassio> | undefined, void>;
 
   interface BackupPartialHassio {
     /**
-     * Includes Home Assistant settings in the backup.
+     * Includes Home Assistant settings in the backup
      */
     homeassistant?: boolean;
     /**
-     * Exclude the Home Assistant database file from the backup.
+     * Exclude the Home Assistant database file from the backup
      */
     homeassistant_exclude_database?: boolean;
     /**
-     * List of add-ons to include in the backup. Use the name slug of each add-on.
+     * List of add-ons to include in the backup. Use the name slug of each add-on
      */
     addons?: Record<string, unknown>;
     /**
-     * List of directories to include in the backup.
+     * List of directories to include in the backup
      */
     folders?: Record<string, unknown>;
     /**
-     * Optional (default = current date and time).
+     * Optional (default = current date and time)
      */
     name?: string;
     /**
-     * Password to protect the backup with.
+     * Password to protect the backup with
      */
     password?: string;
     /**
-     * Compresses the backup files.
+     * Compresses the backup files
      */
     compressed?: boolean;
     /**
-     * Name of a backup network storage to host backups.
+     * Name of a backup network storage to host backups
      */
     location?: never;
   }
 
   /**
-   * Creates a partial backup.
+   * Creates a partial backup
    */
   var backupPartialHassio: (
     params?: BackupPartialHassio,
-  ) => Block<Partial<ServiceCallArgs<BackupPartialHassio>> | undefined, void>;
+  ) => Block<Partial<BackupPartialHassio> | undefined, void>;
 
   interface RestoreFullHassio {
     /**
-     * Slug of backup to restore from.
+     * Slug of backup to restore from
      */
     slug: string;
     /**
-     * Optional password.
+     * Optional password
      */
     password?: string;
   }
 
   /**
-   * Restores from full backup.
+   * Restores from full backup
    */
   var restoreFullHassio: (
     params: RestoreFullHassio,
-  ) => Block<Partial<ServiceCallArgs<RestoreFullHassio>> | undefined, void>;
+  ) => Block<Partial<RestoreFullHassio> | undefined, void>;
 
   interface RestorePartialHassio {
     /**
-     * Slug of backup to restore from.
+     * Slug of backup to restore from
      */
     slug: string;
     /**
-     * Restores Home Assistant.
+     * Restores Home Assistant
      */
     homeassistant?: boolean;
     /**
-     * List of directories to restore from the backup.
+     * List of directories to restore from the backup
      */
     folders?: Record<string, unknown>;
     /**
-     * List of add-ons to restore from the backup. Use the name slug of each add-on.
+     * List of add-ons to restore from the backup. Use the name slug of each add-on
      */
     addons?: Record<string, unknown>;
     /**
-     * Optional password.
+     * Optional password
      */
     password?: string;
   }
 
   /**
-   * Restores from a partial backup.
+   * Restores from a partial backup
    */
   var restorePartialHassio: (
     params: RestorePartialHassio,
-  ) => Block<Partial<ServiceCallArgs<RestorePartialHassio>> | undefined, void>;
+  ) => Block<Partial<RestorePartialHassio> | undefined, void>;
 }
 
 globalThis.addonStartHassio = (params) =>

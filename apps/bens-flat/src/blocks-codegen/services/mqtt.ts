@@ -1,65 +1,58 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface PublishMqtt {
     /**
-     * Topic to publish to.
+     * Topic to publish to
      */
     topic: string;
     /**
-     * The payload to publish. Publishes an empty message if not provided.
+     * The payload to publish. Publishes an empty message if not provided
      */
     payload?: Record<string, unknown>;
     /**
-     * If 'Payload' is a Python bytes literal, evaluate the bytes literal and publish the raw data.
+     * If 'Payload' is a Python bytes literal, evaluate the bytes literal and publish the raw data
      */
     evaluate_payload?: boolean;
     /**
-     * Quality of Service to use. 0: At most once. 1: At least once. 2: Exactly once.
+     * Quality of Service to use. 0: At most once. 1: At least once. 2: Exactly once
      */
     qos?: never;
     /**
-     * If the message should have the retain flag set. If set, the broker stores the most recent message on a topic.
+     * If the message should have the retain flag set. If set, the broker stores the most recent message on a topic
      */
     retain?: boolean;
   }
 
   /**
-   * Publishes a message to an MQTT topic.
+   * Publishes a message to an MQTT topic
    */
   var publishMqtt: (
     params: PublishMqtt,
-  ) => Block<Partial<ServiceCallArgs<PublishMqtt>> | undefined, void>;
+  ) => Block<Partial<PublishMqtt> | undefined, void>;
 
   interface DumpMqtt {
     /**
-     * Topic to listen to.
+     * Topic to listen to
      */
     topic?: string;
     /**
-     * How long we should listen for messages in seconds.
+     * How long we should listen for messages in seconds
      */
     duration?: number;
   }
 
   /**
-   * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder.
+   * Writes all messages on a specific topic into the `mqtt_dump.txt` file in your configuration folder
    */
   var dumpMqtt: (
     params?: DumpMqtt,
-  ) => Block<Partial<ServiceCallArgs<DumpMqtt>> | undefined, void>;
+  ) => Block<Partial<DumpMqtt> | undefined, void>;
 
   /**
-   * Reloads MQTT entities from the YAML-configuration.
+   * Reloads MQTT entities from the YAML-configuration
    */
-  var reloadMqtt: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadMqtt: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.publishMqtt = (params) =>

@@ -1,17 +1,10 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Creates a new backup with automatic backup settings.
+   * Creates a new backup with automatic backup settings
    */
-  var createAutomaticBackup: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var createAutomaticBackup: () => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.createAutomaticBackup = () =>

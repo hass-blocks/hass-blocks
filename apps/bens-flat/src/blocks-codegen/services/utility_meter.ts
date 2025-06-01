@@ -3,31 +3,30 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Resets all counters of a utility meter.
+   * Resets all counters of a utility meter
    */
   var resetUtilityMeter: (
     target: IEntity<`select.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface CalibrateUtilityMeter {
     /**
-     * Value to which set the meter.
+     * Value to which set the meter
      */
     value: string;
   }
 
   /**
-   * Calibrates a utility meter sensor.
+   * Calibrates a utility meter sensor
    */
   var calibrateUtilityMeter: (
     target: IEntity<`sensor.${string}`> | IArea<string>,
     params: CalibrateUtilityMeter,
-  ) => Block<Partial<ServiceCallArgs<CalibrateUtilityMeter>> | undefined, void>;
+  ) => Block<Partial<CalibrateUtilityMeter> | undefined, void>;
 }
 
 globalThis.resetUtilityMeter = (target) =>

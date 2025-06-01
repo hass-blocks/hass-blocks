@@ -3,7 +3,6 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
@@ -11,45 +10,43 @@ declare global {
    * Removes external statistics for all meters that don't have an active tariff
    */
   var purgeInvalidExternalStatisticIdsOctopusEnergy: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
+    Partial<unknown> | undefined,
     void
   >;
 
   interface JoinOctoplusSavingSessionEventOctopusEnergy {
     /**
-     * The code of the event that is to be joined.
+     * The code of the event that is to be joined
      */
     event_code?: string;
   }
 
   /**
-   * Joins a given Octoplus saving session event.
+   * Joins a given Octoplus saving session event
    */
   var joinOctoplusSavingSessionEventOctopusEnergy: (
     target: IEntity<`event.${string}`> | IArea<string>,
     params?: JoinOctoplusSavingSessionEventOctopusEnergy,
   ) => Block<
-    | Partial<ServiceCallArgs<JoinOctoplusSavingSessionEventOctopusEnergy>>
-    | undefined,
+    Partial<JoinOctoplusSavingSessionEventOctopusEnergy> | undefined,
     void
   >;
 
   interface RefreshPreviousConsumptionDataOctopusEnergy {
     /**
-     * The date the data should be loaded from.
+     * The date the data should be loaded from
      */
     start_date: never;
   }
 
   /**
-   * Refreshes the previous consumption data for a given entity from a given date.
+   * Refreshes the previous consumption data for a given entity from a given date
    */
   var refreshPreviousConsumptionDataOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea<string>,
     params: RefreshPreviousConsumptionDataOctopusEnergy,
   ) => Block<
-    | Partial<ServiceCallArgs<RefreshPreviousConsumptionDataOctopusEnergy>>
-    | undefined,
+    Partial<RefreshPreviousConsumptionDataOctopusEnergy> | undefined,
     void
   >;
 
@@ -58,25 +55,22 @@ declare global {
    */
   var spinWheelOfFortuneOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface RegisterRateWeightingsOctopusEnergy {
     /**
-     * The collection of time periods and associated weightings to apply.
+     * The collection of time periods and associated weightings to apply
      */
     weightings?: Record<string, unknown>;
   }
 
   /**
-   * Registers external weightings against rates, for use with target rate sensors when calculating target periods.
+   * Registers external weightings against rates, for use with target rate sensors when calculating target periods
    */
   var registerRateWeightingsOctopusEnergy: (
     target: IEntity<`sensor.${string}`> | IArea<string>,
     params?: RegisterRateWeightingsOctopusEnergy,
-  ) => Block<
-    Partial<ServiceCallArgs<RegisterRateWeightingsOctopusEnergy>> | undefined,
-    void
-  >;
+  ) => Block<Partial<RegisterRateWeightingsOctopusEnergy> | undefined, void>;
 }
 
 globalThis.purgeInvalidExternalStatisticIdsOctopusEnergy = () =>

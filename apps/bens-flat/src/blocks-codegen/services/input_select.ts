@@ -3,97 +3,87 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads helpers from the YAML-configuration.
+   * Reloads helpers from the YAML-configuration
    */
-  var reloadInputSelect: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadInputSelect: () => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Selects the first option.
+   * Selects the first option
    */
   var selectFirstInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Selects the last option.
+   * Selects the last option
    */
   var selectLastInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SelectNextInputSelect {
     /**
-     * If the option should cycle from the last to the first option on the list.
+     * If the option should cycle from the last to the first option on the list
      */
     cycle?: boolean;
   }
 
   /**
-   * Selects the next option.
+   * Selects the next option
    */
   var selectNextInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
     params?: SelectNextInputSelect,
-  ) => Block<Partial<ServiceCallArgs<SelectNextInputSelect>> | undefined, void>;
+  ) => Block<Partial<SelectNextInputSelect> | undefined, void>;
 
   interface SelectOptionInputSelect {
     /**
-     * Option to be selected.
+     * Option to be selected
      */
     option: string;
   }
 
   /**
-   * Selects an option.
+   * Selects an option
    */
   var selectOptionInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
     params: SelectOptionInputSelect,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectOptionInputSelect>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SelectOptionInputSelect> | undefined, void>;
 
   interface SelectPreviousInputSelect {
     /**
-     * If the option should cycle from the first to the last option on the list.
+     * If the option should cycle from the first to the last option on the list
      */
     cycle?: boolean;
   }
 
   /**
-   * Selects the previous option.
+   * Selects the previous option
    */
   var selectPreviousInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
     params?: SelectPreviousInputSelect,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectPreviousInputSelect>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SelectPreviousInputSelect> | undefined, void>;
 
   interface SetOptionsInputSelect {
     /**
-     * List of options.
+     * List of options
      */
     options: string;
   }
 
   /**
-   * Sets the options.
+   * Sets the options
    */
   var setOptionsInputSelect: (
     target: IEntity<`input_select.${string}`> | IArea<string>,
     params: SetOptionsInputSelect,
-  ) => Block<Partial<ServiceCallArgs<SetOptionsInputSelect>> | undefined, void>;
+  ) => Block<Partial<SetOptionsInputSelect> | undefined, void>;
 }
 
 globalThis.reloadInputSelect = () =>

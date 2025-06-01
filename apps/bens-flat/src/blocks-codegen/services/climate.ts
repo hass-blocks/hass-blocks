@@ -3,165 +3,161 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Turns climate device on.
+   * Turns climate device on
    */
   var turnOnClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Turns climate device off.
+   * Turns climate device off
    */
   var turnOffClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles climate device, from on to off, or off to on.
+   * Toggles climate device, from on to off, or off to on
    */
   var toggleClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface SetHvacModeClimate {
     /**
-     * HVAC operation mode.
+     * HVAC operation mode
      */
     hvac_mode?: never;
   }
 
   /**
-   * Sets HVAC operation mode.
+   * Sets HVAC operation mode
    */
   var setHvacModeClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params?: SetHvacModeClimate,
-  ) => Block<Partial<ServiceCallArgs<SetHvacModeClimate>> | undefined, void>;
+  ) => Block<Partial<SetHvacModeClimate> | undefined, void>;
 
   interface SetPresetModeClimate {
     /**
-     * Preset mode.
+     * Preset mode
      */
     preset_mode: string;
   }
 
   /**
-   * Sets preset mode.
+   * Sets preset mode
    */
   var setPresetModeClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetPresetModeClimate,
-  ) => Block<Partial<ServiceCallArgs<SetPresetModeClimate>> | undefined, void>;
+  ) => Block<Partial<SetPresetModeClimate> | undefined, void>;
 
   interface SetAuxHeatClimate {
     /**
-     * New value of auxiliary heater.
+     * New value of auxiliary heater
      */
     aux_heat: boolean;
   }
 
   /**
-   * Turns auxiliary heater on/off.
+   * Turns auxiliary heater on/off
    */
   var setAuxHeatClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetAuxHeatClimate,
-  ) => Block<Partial<ServiceCallArgs<SetAuxHeatClimate>> | undefined, void>;
+  ) => Block<Partial<SetAuxHeatClimate> | undefined, void>;
 
   interface SetTemperatureClimate {
     /**
-     * The temperature setpoint.
+     * The temperature setpoint
      */
     temperature?: number;
     /**
-     * The max temperature setpoint.
+     * The max temperature setpoint
      */
     target_temp_high?: number;
     /**
-     * The min temperature setpoint.
+     * The min temperature setpoint
      */
     target_temp_low?: number;
     /**
-     * HVAC operation mode.
+     * HVAC operation mode
      */
     hvac_mode?: never;
   }
 
   /**
-   * Sets the temperature setpoint.
+   * Sets the temperature setpoint
    */
   var setTemperatureClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params?: SetTemperatureClimate,
-  ) => Block<Partial<ServiceCallArgs<SetTemperatureClimate>> | undefined, void>;
+  ) => Block<Partial<SetTemperatureClimate> | undefined, void>;
 
   interface SetHumidityClimate {
     /**
-     * Target humidity.
+     * Target humidity
      */
     humidity: number;
   }
 
   /**
-   * Sets target humidity.
+   * Sets target humidity
    */
   var setHumidityClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetHumidityClimate,
-  ) => Block<Partial<ServiceCallArgs<SetHumidityClimate>> | undefined, void>;
+  ) => Block<Partial<SetHumidityClimate> | undefined, void>;
 
   interface SetFanModeClimate {
     /**
-     * Fan operation mode.
+     * Fan operation mode
      */
     fan_mode: string;
   }
 
   /**
-   * Sets fan operation mode.
+   * Sets fan operation mode
    */
   var setFanModeClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetFanModeClimate,
-  ) => Block<Partial<ServiceCallArgs<SetFanModeClimate>> | undefined, void>;
+  ) => Block<Partial<SetFanModeClimate> | undefined, void>;
 
   interface SetSwingModeClimate {
     /**
-     * Swing operation mode.
+     * Swing operation mode
      */
     swing_mode: string;
   }
 
   /**
-   * Sets swing operation mode.
+   * Sets swing operation mode
    */
   var setSwingModeClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetSwingModeClimate,
-  ) => Block<Partial<ServiceCallArgs<SetSwingModeClimate>> | undefined, void>;
+  ) => Block<Partial<SetSwingModeClimate> | undefined, void>;
 
   interface SetSwingHorizontalModeClimate {
     /**
-     * Horizontal swing operation mode.
+     * Horizontal swing operation mode
      */
     swing_horizontal_mode: string;
   }
 
   /**
-   * Sets horizontal swing operation mode.
+   * Sets horizontal swing operation mode
    */
   var setSwingHorizontalModeClimate: (
     target: IEntity<`climate.${string}`> | IArea<string>,
     params: SetSwingHorizontalModeClimate,
-  ) => Block<
-    Partial<ServiceCallArgs<SetSwingHorizontalModeClimate>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetSwingHorizontalModeClimate> | undefined, void>;
 }
 
 globalThis.turnOnClimate = (target) =>

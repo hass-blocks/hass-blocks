@@ -3,53 +3,49 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface SendMessageNotify {
     /**
-     * Your notification message.
+     * Your notification message
      */
     message: string;
     /**
-     * Title for your notification message.
+     * Title for your notification message
      */
     title?: string;
   }
 
   /**
-   * Sends a notification message.
+   * Sends a notification message
    */
   var sendMessageNotify: (
     target: IEntity<`notify.${string}`> | IArea<string>,
     params: SendMessageNotify,
-  ) => Block<Partial<ServiceCallArgs<SendMessageNotify>> | undefined, void>;
+  ) => Block<Partial<SendMessageNotify> | undefined, void>;
 
   interface PersistentNotificationNotify {
     /**
-     * Message body of the notification.
+     * Message body of the notification
      */
     message: string;
     /**
-     * Title of the notification.
+     * Title of the notification
      */
     title?: string;
     /**
-     * Some integrations provide extended functionality via this field. For more information, refer to the integration documentation.
+     * Some integrations provide extended functionality via this field. For more information, refer to the integration documentation
      */
     data?: Record<string, unknown>;
   }
 
   /**
-   * Sends a notification that is visible in the notifications panel.
+   * Sends a notification that is visible in the notifications panel
    */
   var persistentNotificationNotify: (
     params: PersistentNotificationNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<PersistentNotificationNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<PersistentNotificationNotify> | undefined, void>;
 
   interface EmailNotify {
     message: string;
@@ -59,11 +55,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the email service.
+   * Sends a notification message using the email service
    */
   var emailNotify: (
     params: EmailNotify,
-  ) => Block<Partial<ServiceCallArgs<EmailNotify>> | undefined, void>;
+  ) => Block<Partial<EmailNotify> | undefined, void>;
 
   interface MobileAppMumsPhoneNotify {
     message: string;
@@ -73,14 +69,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_mums_phone integration.
+   * Sends a notification message using the mobile_app_mums_phone integration
    */
   var mobileAppMumsPhoneNotify: (
     params: MobileAppMumsPhoneNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppMumsPhoneNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppMumsPhoneNotify> | undefined, void>;
 
   interface MobileAppBensImacProNotify {
     message: string;
@@ -90,14 +83,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_bens_imac_pro integration.
+   * Sends a notification message using the mobile_app_bens_imac_pro integration
    */
   var mobileAppBensImacProNotify: (
     params: MobileAppBensImacProNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensImacProNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppBensImacProNotify> | undefined, void>;
 
   interface MobileAppBensIphoneNotify {
     message: string;
@@ -107,14 +97,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_bens_iphone integration.
+   * Sends a notification message using the mobile_app_bens_iphone integration
    */
   var mobileAppBensIphoneNotify: (
     params: MobileAppBensIphoneNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensIphoneNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppBensIphoneNotify> | undefined, void>;
 
   interface MobileAppBensImacNotify {
     message: string;
@@ -124,14 +111,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_bens_imac integration.
+   * Sends a notification message using the mobile_app_bens_imac integration
    */
   var mobileAppBensImacNotify: (
     params: MobileAppBensImacNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppBensImacNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppBensImacNotify> | undefined, void>;
 
   interface MobileAppRyansIphoneNotify {
     message: string;
@@ -141,14 +125,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_ryans_iphone integration.
+   * Sends a notification message using the mobile_app_ryans_iphone integration
    */
   var mobileAppRyansIphoneNotify: (
     params: MobileAppRyansIphoneNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppRyansIphoneNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppRyansIphoneNotify> | undefined, void>;
 
   interface MobileAppPixel_6ProNotify {
     message: string;
@@ -158,14 +139,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_pixel_6_pro integration.
+   * Sends a notification message using the mobile_app_pixel_6_pro integration
    */
   var mobileAppPixel_6ProNotify: (
     params: MobileAppPixel_6ProNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppPixel_6ProNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppPixel_6ProNotify> | undefined, void>;
 
   interface MobileAppTomSPixel_7Notify {
     message: string;
@@ -175,14 +153,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the mobile_app_tom_s_pixel_7 integration.
+   * Sends a notification message using the mobile_app_tom_s_pixel_7 integration
    */
   var mobileAppTomSPixel_7Notify: (
     params: MobileAppTomSPixel_7Notify,
-  ) => Block<
-    Partial<ServiceCallArgs<MobileAppTomSPixel_7Notify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<MobileAppTomSPixel_7Notify> | undefined, void>;
 
   interface Notify {
     message: string;
@@ -192,11 +167,9 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the notify service.
+   * Sends a notification message using the notify service
    */
-  var notify: (
-    params: Notify,
-  ) => Block<Partial<ServiceCallArgs<Notify>> | undefined, void>;
+  var notify: (params: Notify) => Block<Partial<Notify> | undefined, void>;
 
   interface LgWebosTvOled55c8plaNotify {
     message: string;
@@ -206,14 +179,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the lg_webos_tv_oled55c8pla service.
+   * Sends a notification message using the lg_webos_tv_oled55c8pla service
    */
   var lgWebosTvOled55c8plaNotify: (
     params: LgWebosTvOled55c8plaNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<LgWebosTvOled55c8plaNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<LgWebosTvOled55c8plaNotify> | undefined, void>;
 
   interface PlaystationNetworkNotify {
     message: string;
@@ -223,14 +193,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the playstation_network service.
+   * Sends a notification message using the playstation_network service
    */
   var playstationNetworkNotify: (
     params: PlaystationNetworkNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<PlaystationNetworkNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<PlaystationNetworkNotify> | undefined, void>;
 
   interface AlexaMediaBedroomSonosOneNotify {
     message: string;
@@ -240,14 +207,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_bedroom_sonos_one integration.
+   * Sends a notification message using the alexa_media_bedroom_sonos_one integration
    */
   var alexaMediaBedroomSonosOneNotify: (
     params: AlexaMediaBedroomSonosOneNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaBedroomSonosOneNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaBedroomSonosOneNotify> | undefined, void>;
 
   interface AlexaMediaBedroomSpeaker_2Notify {
     message: string;
@@ -257,14 +221,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_bedroom_speaker_2 integration.
+   * Sends a notification message using the alexa_media_bedroom_speaker_2 integration
    */
   var alexaMediaBedroomSpeaker_2Notify: (
     params: AlexaMediaBedroomSpeaker_2Notify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaBedroomSpeaker_2Notify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaBedroomSpeaker_2Notify> | undefined, void>;
 
   interface AlexaMediaOffice_2Notify {
     message: string;
@@ -274,14 +235,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_office_2 integration.
+   * Sends a notification message using the alexa_media_office_2 integration
    */
   var alexaMediaOffice_2Notify: (
     params: AlexaMediaOffice_2Notify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaOffice_2Notify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaOffice_2Notify> | undefined, void>;
 
   interface AlexaMediaBenS_2ndSonosOneSecondEditionNotify {
     message: string;
@@ -291,13 +249,12 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_ben_s_2nd_sonos_one_second_edition integration.
+   * Sends a notification message using the alexa_media_ben_s_2nd_sonos_one_second_edition integration
    */
   var alexaMediaBenS_2ndSonosOneSecondEditionNotify: (
     params: AlexaMediaBenS_2ndSonosOneSecondEditionNotify,
   ) => Block<
-    | Partial<ServiceCallArgs<AlexaMediaBenS_2ndSonosOneSecondEditionNotify>>
-    | undefined,
+    Partial<AlexaMediaBenS_2ndSonosOneSecondEditionNotify> | undefined,
     void
   >;
 
@@ -309,14 +266,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_living_room_sonos_one integration.
+   * Sends a notification message using the alexa_media_living_room_sonos_one integration
    */
   var alexaMediaLivingRoomSonosOneNotify: (
     params: AlexaMediaLivingRoomSonosOneNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosOneNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaLivingRoomSonosOneNotify> | undefined, void>;
 
   interface AlexaMediaLivingRoomNotify {
     message: string;
@@ -326,14 +280,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_living_room integration.
+   * Sends a notification message using the alexa_media_living_room integration
    */
   var alexaMediaLivingRoomNotify: (
     params: AlexaMediaLivingRoomNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLivingRoomNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaLivingRoomNotify> | undefined, void>;
 
   interface AlexaMediaSonosArcUltra_2Notify {
     message: string;
@@ -343,14 +294,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_sonos_arc_ultra_2 integration.
+   * Sends a notification message using the alexa_media_sonos_arc_ultra_2 integration
    */
   var alexaMediaSonosArcUltra_2Notify: (
     params: AlexaMediaSonosArcUltra_2Notify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaSonosArcUltra_2Notify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaSonosArcUltra_2Notify> | undefined, void>;
 
   interface AlexaMediaLivingRoomSonosNotify {
     message: string;
@@ -360,14 +308,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_living_room_sonos integration.
+   * Sends a notification message using the alexa_media_living_room_sonos integration
    */
   var alexaMediaLivingRoomSonosNotify: (
     params: AlexaMediaLivingRoomSonosNotify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaLivingRoomSonosNotify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaLivingRoomSonosNotify> | undefined, void>;
 
   interface AlexaMediaThisDevice_2Notify {
     message: string;
@@ -377,14 +322,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_this_device_2 integration.
+   * Sends a notification message using the alexa_media_this_device_2 integration
    */
   var alexaMediaThisDevice_2Notify: (
     params: AlexaMediaThisDevice_2Notify,
-  ) => Block<
-    Partial<ServiceCallArgs<AlexaMediaThisDevice_2Notify>> | undefined,
-    void
-  >;
+  ) => Block<Partial<AlexaMediaThisDevice_2Notify> | undefined, void>;
 
   interface AlexaMediaNotify {
     message: string;
@@ -394,13 +336,13 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media service.
+   * Sends a notification message using the alexa_media service
    */
   var alexaMediaNotify: (
     params: AlexaMediaNotify,
-  ) => Block<Partial<ServiceCallArgs<AlexaMediaNotify>> | undefined, void>;
+  ) => Block<Partial<AlexaMediaNotify> | undefined, void>;
 
-  interface AlexaMediaLastCalledBwainwright28GmailComNotify {
+  interface AlexaMediaLastCalledNotify {
     message: string;
     title?: string;
     target?: Record<string, unknown>;
@@ -408,15 +350,11 @@ declare global {
   }
 
   /**
-   * Sends a notification message using the alexa_media_last_called_bwainwright28_gmail_com integration.
+   * Sends a notification message using the alexa_media_last_called integration
    */
-  var alexaMediaLastCalledBwainwright28GmailComNotify: (
-    params: AlexaMediaLastCalledBwainwright28GmailComNotify,
-  ) => Block<
-    | Partial<ServiceCallArgs<AlexaMediaLastCalledBwainwright28GmailComNotify>>
-    | undefined,
-    void
-  >;
+  var alexaMediaLastCalledNotify: (
+    params: AlexaMediaLastCalledNotify,
+  ) => Block<Partial<AlexaMediaLastCalledNotify> | undefined, void>;
 }
 
 globalThis.sendMessageNotify = (target, params) =>
@@ -650,12 +588,12 @@ globalThis.alexaMediaNotify = (params) =>
     },
   });
 
-globalThis.alexaMediaLastCalledBwainwright28GmailComNotify = (params) =>
+globalThis.alexaMediaLastCalledNotify = (params) =>
   serviceCall({
-    name: `Call notify.alexa_media_last_called_bwainwright28_gmail_com`,
+    name: `Call notify.alexa_media_last_called`,
     params: {
       domain: 'notify',
-      service: 'alexa_media_last_called_bwainwright28_gmail_com',
+      service: 'alexa_media_last_called',
       service_data: params,
     },
   });

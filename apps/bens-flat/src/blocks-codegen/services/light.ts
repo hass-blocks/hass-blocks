@@ -3,93 +3,92 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface TurnOnLight {
     /**
-     * Duration it takes to get to next state.
+     * Duration it takes to get to next state
      */
     transition?: number;
     /**
-     * The color in RGB format. A list of three integers between 0 and 255 representing the values of red, green, and blue.
+     * The color in RGB format. A list of three integers between 0 and 255 representing the values of red, green, and blue
      */
     rgb_color?: never;
     /**
-     * Color temperature in Kelvin.
+     * Color temperature in Kelvin
      */
     color_temp_kelvin?: never;
     /**
-     * Number indicating the percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness, and 100 is the maximum brightness.
+     * Number indicating the percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness, and 100 is the maximum brightness
      */
     brightness_pct?: number;
     /**
-     * Change brightness by a percentage.
+     * Change brightness by a percentage
      */
     brightness_step_pct?: number;
     /**
-     * Light effect.
+     * Light effect
      */
     effect?: string;
     advanced_fields?: never;
   }
 
   /**
-   * Turns on one or more lights and adjusts their properties, even when they are turned on already.
+   * Turns on one or more lights and adjusts their properties, even when they are turned on already
    */
   var turnOnLight: (
     target: IEntity<`light.${string}`> | IArea<string>,
     params?: TurnOnLight,
-  ) => Block<Partial<ServiceCallArgs<TurnOnLight>> | undefined, void>;
+  ) => Block<Partial<TurnOnLight> | undefined, void>;
 
   interface TurnOffLight {
     /**
-     * Duration it takes to get to next state.
+     * Duration it takes to get to next state
      */
     transition?: number;
     advanced_fields?: never;
   }
 
   /**
-   * Turns off one or more lights.
+   * Turns off one or more lights
    */
   var turnOffLight: (
     target: IEntity<`light.${string}`> | IArea<string>,
     params?: TurnOffLight,
-  ) => Block<Partial<ServiceCallArgs<TurnOffLight>> | undefined, void>;
+  ) => Block<Partial<TurnOffLight> | undefined, void>;
 
   interface ToggleLight {
     /**
-     * Duration it takes to get to next state.
+     * Duration it takes to get to next state
      */
     transition?: number;
     /**
-     * The color in RGB format. A list of three integers between 0 and 255 representing the values of red, green, and blue.
+     * The color in RGB format. A list of three integers between 0 and 255 representing the values of red, green, and blue
      */
     rgb_color?: never;
     /**
-     * Color temperature in Kelvin.
+     * Color temperature in Kelvin
      */
     color_temp_kelvin?: never;
     /**
-     * Number indicating the percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness, and 100 is the maximum brightness.
+     * Number indicating the percentage of full brightness, where 0 turns the light off, 1 is the minimum brightness, and 100 is the maximum brightness
      */
     brightness_pct?: number;
     /**
-     * Light effect.
+     * Light effect
      */
     effect?: string;
     advanced_fields?: never;
   }
 
   /**
-   * Toggles one or more lights, from on to off, or off to on, based on their current state.
+   * Toggles one or more lights, from on to off, or off to on, based on their current state
    */
   var toggleLight: (
     target: IEntity<`light.${string}`> | IArea<string>,
     params?: ToggleLight,
-  ) => Block<Partial<ServiceCallArgs<ToggleLight>> | undefined, void>;
+  ) => Block<Partial<ToggleLight> | undefined, void>;
 }
 
 globalThis.turnOnLight = (target, params) =>

@@ -3,132 +3,131 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   interface TurnOnFan {
     /**
-     * Speed of the fan.
+     * Speed of the fan
      */
     percentage?: number;
     /**
-     * Preset fan mode.
+     * Preset fan mode
      */
     preset_mode?: string;
   }
 
   /**
-   * Turns fan on.
+   * Turns fan on
    */
   var turnOnFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params?: TurnOnFan,
-  ) => Block<Partial<ServiceCallArgs<TurnOnFan>> | undefined, void>;
+  ) => Block<Partial<TurnOnFan> | undefined, void>;
 
   /**
-   * Turns fan off.
+   * Turns fan off
    */
   var turnOffFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Toggles a fan on/off.
+   * Toggles a fan on/off
    */
   var toggleFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 
   interface IncreaseSpeedFan {
     /**
-     * Percentage step by which the speed should be increased.
+     * Percentage step by which the speed should be increased
      */
     percentage_step?: number;
   }
 
   /**
-   * Increases the speed of a fan.
+   * Increases the speed of a fan
    */
   var increaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params?: IncreaseSpeedFan,
-  ) => Block<Partial<ServiceCallArgs<IncreaseSpeedFan>> | undefined, void>;
+  ) => Block<Partial<IncreaseSpeedFan> | undefined, void>;
 
   interface DecreaseSpeedFan {
     /**
-     * Percentage step by which the speed should be decreased.
+     * Percentage step by which the speed should be decreased
      */
     percentage_step?: number;
   }
 
   /**
-   * Decreases the speed of a fan.
+   * Decreases the speed of a fan
    */
   var decreaseSpeedFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params?: DecreaseSpeedFan,
-  ) => Block<Partial<ServiceCallArgs<DecreaseSpeedFan>> | undefined, void>;
+  ) => Block<Partial<DecreaseSpeedFan> | undefined, void>;
 
   interface OscillateFan {
     /**
-     * Turns oscillation on/off.
+     * Turns oscillation on/off
      */
     oscillating: boolean;
   }
 
   /**
-   * Controls the oscillation of a fan.
+   * Controls the oscillation of a fan
    */
   var oscillateFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params: OscillateFan,
-  ) => Block<Partial<ServiceCallArgs<OscillateFan>> | undefined, void>;
+  ) => Block<Partial<OscillateFan> | undefined, void>;
 
   interface SetDirectionFan {
     /**
-     * Direction of the fan rotation.
+     * Direction of the fan rotation
      */
     direction: never;
   }
 
   /**
-   * Sets a fan's rotation direction.
+   * Sets a fan's rotation direction
    */
   var setDirectionFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetDirectionFan,
-  ) => Block<Partial<ServiceCallArgs<SetDirectionFan>> | undefined, void>;
+  ) => Block<Partial<SetDirectionFan> | undefined, void>;
 
   interface SetPercentageFan {
     /**
-     * Speed of the fan.
+     * Speed of the fan
      */
     percentage: number;
   }
 
   /**
-   * Sets the speed of a fan.
+   * Sets the speed of a fan
    */
   var setPercentageFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetPercentageFan,
-  ) => Block<Partial<ServiceCallArgs<SetPercentageFan>> | undefined, void>;
+  ) => Block<Partial<SetPercentageFan> | undefined, void>;
 
   interface SetPresetModeFan {
     /**
-     * Preset fan mode.
+     * Preset fan mode
      */
     preset_mode: string;
   }
 
   /**
-   * Sets preset fan mode.
+   * Sets preset fan mode
    */
   var setPresetModeFan: (
     target: IEntity<`fan.${string}`> | IArea<string>,
     params: SetPresetModeFan,
-  ) => Block<Partial<ServiceCallArgs<SetPresetModeFan>> | undefined, void>;
+  ) => Block<Partial<SetPresetModeFan> | undefined, void>;
 }
 
 globalThis.turnOnFan = (target, params) =>

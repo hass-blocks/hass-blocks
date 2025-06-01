@@ -1,70 +1,63 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ButtonWebostv {
     /**
-     * Name(s) of the webostv entities where to run the API method.
+     * Name(s) of the webostv entities where to run the API method
      */
     entity_id: string;
     /**
-     * Name of the button to press.  Known possible values are LEFT, RIGHT, DOWN, UP, HOME, MENU, BACK, ENTER, DASH, INFO, ASTERISK, CC, EXIT, MUTE, RED, GREEN, BLUE, YELLOW, VOLUMEUP, VOLUMEDOWN, CHANNELUP, CHANNELDOWN, PLAY, PAUSE, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9.
+     * Name of the button to press.  Known possible values are LEFT, RIGHT, DOWN, UP, HOME, MENU, BACK, ENTER, DASH, INFO, ASTERISK, CC, EXIT, MUTE, RED, GREEN, BLUE, YELLOW, VOLUMEUP, VOLUMEDOWN, CHANNELUP, CHANNELDOWN, PLAY, PAUSE, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9
      */
     button: string;
   }
 
   /**
-   * Sends a button press command.
+   * Sends a button press command
    */
   var buttonWebostv: (
     params: ButtonWebostv,
-  ) => Block<Partial<ServiceCallArgs<ButtonWebostv>> | undefined, void>;
+  ) => Block<Partial<ButtonWebostv> | undefined, void>;
 
   interface CommandWebostv {
     /**
-     * Name(s) of the webostv entities where to run the API method.
+     * Name(s) of the webostv entities where to run the API method
      */
     entity_id: string;
     /**
-     * Endpoint of the command.
+     * Endpoint of the command
      */
     command: string;
     /**
-     * An optional payload to provide to the endpoint in the format of key value pair(s).
+     * An optional payload to provide to the endpoint in the format of key value pair(s)
      */
     payload?: Record<string, unknown>;
   }
 
   /**
-   * Sends a command.
+   * Sends a command
    */
   var commandWebostv: (
     params: CommandWebostv,
-  ) => Block<Partial<ServiceCallArgs<CommandWebostv>> | undefined, void>;
+  ) => Block<Partial<CommandWebostv> | undefined, void>;
 
   interface SelectSoundOutputWebostv {
     /**
-     * Name(s) of the webostv entities to change sound output on.
+     * Name(s) of the webostv entities to change sound output on
      */
     entity_id: string;
     /**
-     * Name of the sound output to switch to.
+     * Name of the sound output to switch to
      */
     sound_output: string;
   }
 
   /**
-   * Sends the TV the command to change sound output.
+   * Sends the TV the command to change sound output
    */
   var selectSoundOutputWebostv: (
     params: SelectSoundOutputWebostv,
-  ) => Block<
-    Partial<ServiceCallArgs<SelectSoundOutputWebostv>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SelectSoundOutputWebostv> | undefined, void>;
 }
 
 globalThis.buttonWebostv = (params) =>

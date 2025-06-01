@@ -3,47 +3,40 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads helpers from the YAML-configuration.
+   * Reloads helpers from the YAML-configuration
    */
-  var reloadInputDatetime: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadInputDatetime: () => Block<Partial<unknown> | undefined, void>;
 
   interface SetDatetimeInputDatetime {
     /**
-     * The target date.
+     * The target date
      */
     date?: string;
     /**
-     * The target time.
+     * The target time
      */
     time?: string;
     /**
-     * The target date & time.
+     * The target date & time
      */
     datetime?: string;
     /**
-     * The target date & time, expressed by a UNIX timestamp.
+     * The target date & time, expressed by a UNIX timestamp
      */
     timestamp?: number;
   }
 
   /**
-   * Sets the date and/or time.
+   * Sets the date and/or time
    */
   var setDatetimeInputDatetime: (
     target: IEntity<`input_datetime.${string}`> | IArea<string>,
     params?: SetDatetimeInputDatetime,
-  ) => Block<
-    Partial<ServiceCallArgs<SetDatetimeInputDatetime>> | undefined,
-    void
-  >;
+  ) => Block<Partial<SetDatetimeInputDatetime> | undefined, void>;
 }
 
 globalThis.reloadInputDatetime = () =>

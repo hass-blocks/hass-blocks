@@ -1,40 +1,33 @@
-import {
-  serviceCall,
-  type Block,
-  type ServiceCallArgs,
-} from '@hass-blocks/core';
+import { serviceCall, type Block } from '@hass-blocks/core';
 
 declare global {
   interface ForceLogoutAlexaMedia {
     /**
-     * Accounts to clear. Empty will clear all.
+     * Accounts to clear. Empty will clear all
      */
     email?: never;
   }
 
   /**
-   * Force account to logout. Used mainly for debugging.
+   * Force account to logout. Used mainly for debugging
    */
   var forceLogoutAlexaMedia: (
     params?: ForceLogoutAlexaMedia,
-  ) => Block<Partial<ServiceCallArgs<ForceLogoutAlexaMedia>> | undefined, void>;
+  ) => Block<Partial<ForceLogoutAlexaMedia> | undefined, void>;
 
   interface UpdateLastCalledAlexaMedia {
     /**
-     * List of Alexa accounts to update. If empty, will update all known accounts.
+     * List of Alexa accounts to update. If empty, will update all known accounts
      */
     email?: never;
   }
 
   /**
-   * Forces update of last_called echo device for each Alexa account.
+   * Forces update of last_called echo device for each Alexa account
    */
   var updateLastCalledAlexaMedia: (
     params?: UpdateLastCalledAlexaMedia,
-  ) => Block<
-    Partial<ServiceCallArgs<UpdateLastCalledAlexaMedia>> | undefined,
-    void
-  >;
+  ) => Block<Partial<UpdateLastCalledAlexaMedia> | undefined, void>;
 
   interface RestoreVolumeAlexaMedia {
     /**
@@ -48,10 +41,7 @@ declare global {
    */
   var restoreVolumeAlexaMedia: (
     params: RestoreVolumeAlexaMedia,
-  ) => Block<
-    Partial<ServiceCallArgs<RestoreVolumeAlexaMedia>> | undefined,
-    void
-  >;
+  ) => Block<Partial<RestoreVolumeAlexaMedia> | undefined, void>;
 
   interface GetHistoryRecordsAlexaMedia {
     /**
@@ -69,10 +59,7 @@ declare global {
    */
   var getHistoryRecordsAlexaMedia: (
     params: GetHistoryRecordsAlexaMedia,
-  ) => Block<
-    Partial<ServiceCallArgs<GetHistoryRecordsAlexaMedia>> | undefined,
-    void
-  >;
+  ) => Block<Partial<GetHistoryRecordsAlexaMedia> | undefined, void>;
 }
 
 globalThis.forceLogoutAlexaMedia = (params) =>

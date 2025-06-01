@@ -3,24 +3,20 @@ import {
   type Block,
   type IEntity,
   type IArea,
-  type ServiceCallArgs,
 } from '@hass-blocks/core';
 
 declare global {
   /**
-   * Reloads schedules from the YAML-configuration.
+   * Reloads schedules from the YAML-configuration
    */
-  var reloadSchedule: () => Block<
-    Partial<ServiceCallArgs<unknown>> | undefined,
-    void
-  >;
+  var reloadSchedule: () => Block<Partial<unknown> | undefined, void>;
 
   /**
-   * Retrieves the configured time ranges of one or multiple schedules.
+   * Retrieves the configured time ranges of one or multiple schedules
    */
   var getSchedule: (
     target: IEntity<`schedule.${string}`> | IArea<string>,
-  ) => Block<Partial<ServiceCallArgs<unknown>> | undefined, void>;
+  ) => Block<Partial<unknown> | undefined, void>;
 }
 
 globalThis.reloadSchedule = () =>

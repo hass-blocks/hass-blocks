@@ -19,9 +19,9 @@ const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
   });
 
   if (
-    result.succeeded &&
-    result.warningCount === 0 &&
-    result.errorCount === 0
+    result?.succeeded &&
+    result?.warningCount === 0 &&
+    result?.errorCount === 0
   ) {
     logger.info(`API Extractor completed successfully`);
     return {
@@ -30,8 +30,8 @@ const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
   }
   logger.error(
     `API extractor completed with ${String(
-      result.errorCount,
-    )} errors and ${String(result.warningCount)} warnings`,
+      result?.errorCount,
+    )} errors and ${String(result?.warningCount)} warnings`,
   );
   return {
     success: false,

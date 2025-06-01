@@ -22,3 +22,7 @@ export { stateChanges, type StateChangesProps } from './state-changes.ts';
 export { stateTurnsOn } from './state-turns-on.ts';
 
 export { stateTurnsOff } from './state-turns-off.ts';
+
+export { sunset } from './sunset.ts';
+
+export { sunrise } from './sunrise.ts';

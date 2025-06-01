@@ -81,6 +81,8 @@ export {
   automation,
 } from '@building-blocks';
 
+export type { Pass } from '@sequence-validator';
+
 export type {
   ServiceCallArgs,
   IActionConfig,

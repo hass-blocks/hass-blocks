@@ -2,6 +2,6 @@ import { getConfig, initialiseHass } from '@initialise';
 
 const client = await initialiseHass(getConfig());
 
-const devices = await client.getAreas();
+const config = await client.getConfig();
 
-console.log(JSON.stringify(devices, null, 2));
+console.log(JSON.stringify(config, null, 2));

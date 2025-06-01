@@ -4,7 +4,7 @@
 
 ```ts
 
-// @public (undocumented)
+// @public
 export interface BooleanSelector {
     // (undocumented)
     boolean: null;
@@ -39,43 +39,25 @@ export interface CallServiceResponse {
 
 // @public (undocumented)
 export interface Config {
-    // (undocumented)
-    allowlist_external_dirs: string[];
-    // (undocumented)
-    allowlist_external_urls: string[];
-    // (undocumented)
+    allowlist_external_dirs?: string[];
+    allowlist_external_urls?: string[];
     components: string[];
-    // (undocumented)
     config_dir: string;
-    // (undocumented)
     config_source: string;
-    // (undocumented)
     country: string;
-    // (undocumented)
-    currency: string;
-    // (undocumented)
-    elevation: number;
-    // (undocumented)
-    external_url: string;
-    // (undocumented)
+    currency?: string;
+    elevation?: number;
+    external_url?: string;
     internal_url: string;
-    // (undocumented)
     language: string;
+    latitude?: number;
     // (undocumented)
-    latitude: number;
-    // (undocumented)
-    location_name: string;
-    // (undocumented)
-    longitude: number;
-    // (undocumented)
+    location_name?: string;
+    longitude?: number;
     recovery_mode: boolean;
-    // (undocumented)
     safe_mode: boolean;
-    // (undocumented)
     state: string;
-    // (undocumented)
-    time_zone: string;
-    // (undocumented)
+    time_zone?: string;
     unit_system: {
         length: string;
         accumulated_precipitation: string;
@@ -85,10 +67,8 @@ export interface Config {
         volume: string;
         wind_speed: string;
     };
-    // (undocumented)
     version: string;
-    // (undocumented)
-    whitelist_external_dirs: string[];
+    whitelist_external_dirs?: string[];
 }
 
 // @public
@@ -98,15 +78,14 @@ export interface Context {
     user_id: string;
 }
 
-// @public (undocumented)
+// @public
 export interface DeviceSelector {
     // (undocumented)
     device: DeviceTarget;
 }
 
-// @public (undocumented)
+// @public
 export interface EntitySelector {
-    // (undocumented)
     entity: EntityTarget;
 }
 
@@ -181,90 +160,52 @@ export interface HassConfig {
 
 // @public
 export interface HassDevice {
-    // (undocumented)
     area_id: string | null;
-    // (undocumented)
     config_entries: string[];
-    // (undocumented)
     configuration_url: string | null;
-    // (undocumented)
-    connections: string[][];
-    // (undocumented)
+    connections: [connectionType: string, connectionIdentifier: string][];
     created_at: number;
-    // (undocumented)
     disabled_by: string | null;
-    // (undocumented)
-    entry_type: string | null;
-    // (undocumented)
+    entry_type: 'service' | null;
     hw_version: string | null;
-    // (undocumented)
     id: string;
-    // (undocumented)
-    identifiers: string[][];
-    // (undocumented)
+    identifiers: [domain: string, identifer: string][];
     labels: string[];
-    // (undocumented)
     manufacturer: string | null;
-    // (undocumented)
     model: string | null;
-    // (undocumented)
     model_id: string | null;
-    // (undocumented)
     modified_at: number;
-    // (undocumented)
     name: string;
-    // (undocumented)
     name_by_user: null | string;
-    // (undocumented)
     primary_config_entry: string | null;
-    serial_number: unknown;
-    // (undocumented)
+    serial_number: string | null;
     sw_version: string | null;
-    // (undocumented)
     via_device_id: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface HassEntity {
-    // (undocumented)
     area_id: string | null;
-    // (undocumented)
     categories: Record<string, unknown>;
     // (undocumented)
     config_entry_id: string | null;
-    // (undocumented)
     created_at: number;
-    // (undocumented)
     device_id: string | null;
-    // (undocumented)
     disabled_by: string | null;
-    // (undocumented)
-    entity_category: string | null;
-    // (undocumented)
+    entity_category: 'config' | 'diagnostic' | null;
     entity_id: string;
-    // (undocumented)
     has_entity_name: boolean;
-    // (undocumented)
     hidden_by: string | null;
-    // (undocumented)
     icon: string | null;
-    // (undocumented)
     id: string;
-    // (undocumented)
     labels: string[];
-    // (undocumented)
     modified_at: number;
-    // (undocumented)
     name: string | null;
-    // (undocumented)
     options: Record<string, Record<string, unknown>>;
-    // (undocumented)
     original_name: string | null;
     // (undocumented)
     platform: string;
-    // (undocumented)
     translation_key: string | null;
-    // (undocumented)
     unique_id: string;
 }
 
@@ -313,9 +254,8 @@ export interface Logger {
     warn: (message: string) => void;
 }
 
-// @public (undocumented)
+// @public
 export interface NumberSelector {
-    // (undocumented)
     number: {
         mode?: string;
         min: number;
@@ -325,7 +265,7 @@ export interface NumberSelector {
     };
 }
 
-// @public (undocumented)
+// @public
 export interface ObjectSelector {
     // (undocumented)
     object: null;
@@ -351,7 +291,7 @@ export interface Panel {
     url_path: string;
 }
 
-// @public (undocumented)
+// @public
 export interface SelectSelector {
     // (undocumented)
     options: string[];
@@ -359,17 +299,14 @@ export interface SelectSelector {
     translation_key?: string;
 }
 
-// @public (undocumented)
+// @public
 export interface Service {
-    // (undocumented)
     description: string;
-    // (undocumented)
     fields: ServiceFields;
-    // (undocumented)
     name: string;
-    // (undocumented)
-    response: unknown;
-    // (undocumented)
+    response?: {
+        optional: boolean;
+    };
     target?: {
         entity?: EntityTarget[];
         device?: DeviceTarget[];
@@ -384,19 +321,13 @@ export interface ServiceDomainDetails {
     services: Record<string, Service>;
 }
 
-// @public (undocumented)
+// @public
 export interface ServiceField {
-    // (undocumented)
     advanced?: boolean;
-    // (undocumented)
     default?: string | boolean;
-    // (undocumented)
     description?: string;
-    // (undocumented)
     name: string;
-    // (undocumented)
     required?: boolean;
-    // (undocumented)
     selector?: NumberSelector | SelectSelector | TextSelector | BooleanSelector | DeviceSelector | TemplateSelector | ObjectSelector | TimeSelector | EntitySelector;
 }
 
@@ -414,19 +345,19 @@ export interface State {
     state: string;
 }
 
-// @public (undocumented)
+// @public
 export interface TemplateSelector {
     // (undocumented)
     template: null;
 }
 
-// @public (undocumented)
+// @public
 export interface TextSelector {
     // (undocumented)
     text: null;
 }
 
-// @public (undocumented)
+// @public
 export interface TimeSelector {
     // (undocumented)
     time: null;

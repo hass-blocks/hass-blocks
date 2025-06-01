@@ -28,7 +28,8 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
   const apiFolder = join(projectRoot, 'api');
   process.chdir(projectRoot);
   const packageJsonFullPath = join(projectRoot, `package.json`);
-  const tsconfigFilePath = join(projectRoot, `tsconfig.lib.json`);
+  const libTsconfigPath = join(projectRoot, `tsconfig.lib.json`);
+  const specTsconfigPath = join(projectRoot, `tsconfig.spec.json`);
   const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
@@ -48,9 +49,9 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
       }
     : {};
 
-  logger.info('Starting Typescript Compile');
+  logger.info('Compiling libraries');
   tsc.build({
-    configFilePath: tsconfigFilePath,
+    configFilePath: libTsconfigPath,
     basePath: projectRoot,
     compilerOptions: {
       // @ts-expect-error - types from package are out of date
@@ -58,7 +59,17 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     },
   });
 
-  const tsConfig = JSON.parse(await readFile(tsconfigFilePath, 'utf8'));
+  logger.info('Compiling tests');
+  tsc.build({
+    configFilePath: specTsconfigPath,
+    basePath: projectRoot,
+    compilerOptions: {
+      // @ts-expect-error - types from package are out of date
+      customConditions: [],
+    },
+  });
+
+  const tsConfig = JSON.parse(await readFile(libTsconfigPath, 'utf8'));
 
   const modifiedTsConfig = {
     ...tsConfig,
@@ -75,7 +86,7 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
   logger.info('Replacing paths');
   if (options.replacePaths) {
     tsconfigReplacePaths({
-      project: tsconfigFilePath,
+      project: libTsconfigPath,
       src: srcDir,
       out: distDir,
     });

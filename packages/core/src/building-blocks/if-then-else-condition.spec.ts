@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when as testWhen } from 'vitest-when';
 
 import { type Block, EventBus } from '@core';
-import type { ContinueOutput, IHass } from '@types';
+import type { ContinueOutput, IBlockRunner, IHass } from '@types';
 
 import { when } from './if-then-else-condition.ts';
 import type { Assertion } from './assertion.ts';
@@ -34,7 +34,9 @@ describe('ifThenElseCondition.run', () => {
     });
 
     const hass = mock<IHass>();
+    const runner = mock<IBlockRunner>();
     const result = await condition.run({
+      runner,
       hass,
       input: 'foo',
       events,
@@ -69,8 +71,10 @@ describe('ifThenElseCondition.run', () => {
       output: true,
     };
 
+    const runner = mock<IBlockRunner>();
     testWhen(mockThenBlock.run)
       .calledWith({
+        runner: expect.anything(),
         hass,
         input: mockAssertionOutput,
         events: mockEvents,
@@ -84,6 +88,7 @@ describe('ifThenElseCondition.run', () => {
     });
 
     const result = await condition.run({
+      runner,
       hass,
       input: 'foo',
       events: mockEvents,
@@ -91,6 +96,7 @@ describe('ifThenElseCondition.run', () => {
     });
 
     expect(mockThenBlock.run).toHaveBeenCalledWith({
+      runner: expect.anything(),
       hass,
       input: mockAssertionOutput,
       events: mockEvents,
@@ -125,6 +131,7 @@ describe('ifThenElseCondition.run', () => {
 
     testWhen(mockElseBlock.run)
       .calledWith({
+        runner: expect.anything(),
         hass,
         input: mockAssertionOutput,
         events: mockEvents,
@@ -137,7 +144,10 @@ describe('ifThenElseCondition.run', () => {
       else: mockElseBlock,
     });
 
+    const runner = mock<IBlockRunner>();
+
     const result = await condition.run({
+      runner,
       hass,
       input: 'foo',
       events: mockEvents,
@@ -145,6 +155,7 @@ describe('ifThenElseCondition.run', () => {
     });
 
     expect(mockElseBlock.run).toHaveBeenCalledWith({
+      runner: expect.anything(),
       hass,
       input: mockAssertionOutput,
       events: mockEvents,

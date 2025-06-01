@@ -2,7 +2,7 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
 import { md5 } from '@utils';
-import type { IHass, IRunContext } from '@types';
+import type { IBlockRunner, IHass, IRunContext } from '@types';
 
 import { Assertion } from './assertion.ts';
 
@@ -18,8 +18,9 @@ describe('assertion.run', () => {
     const predicate = vi.fn();
     const input = 'foo';
     when(predicate)
-      .calledWith({ hass, input })
+      .calledWith({ hass, input, runner: expect.anything() })
       .thenReturn({ result: true, output: 'foo' });
+    const runner = mock<IBlockRunner>();
 
     const assertion = new Assertion<string, void>({
       name: 'foo',
@@ -27,7 +28,7 @@ describe('assertion.run', () => {
       predicate,
     });
 
-    const result = await assertion.run({ hass, input });
+    const result = await assertion.run({ hass, input, runner });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,
@@ -48,8 +49,9 @@ describe('assertion.run', () => {
       id: 'foo-id',
       predicate,
     });
+    const runner = mock<IBlockRunner>();
 
-    const result = await assertion.run({ hass, input });
+    const result = await assertion.run({ hass, input, runner });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,
@@ -83,7 +85,9 @@ describe('assertion.run', () => {
     const hass = mock<IHass>();
     const predicate = vi.fn();
     const input = 'foo';
-    when(predicate).calledWith({ hass, input }).thenReturn(false);
+    when(predicate)
+      .calledWith({ hass, input, runner: expect.anything() })
+      .thenReturn(false);
 
     const assertion = new Assertion<string, void>({
       name: 'foo',
@@ -91,7 +95,9 @@ describe('assertion.run', () => {
       predicate,
     });
 
-    const result = await assertion.run({ hass, input });
+    const runner = mock<IBlockRunner>();
+
+    const result = await assertion.run({ hass, input, runner });
     expect(result).toEqual({
       outputType: 'conditional',
       continue: true,

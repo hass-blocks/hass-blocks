@@ -1,6 +1,6 @@
 import { mock } from 'vitest-mock-extended';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
-import type { IFullBlocksClient, IHass } from '@types';
+import type { IBlockRunner, IFullBlocksClient, IHass } from '@types';
 import type { Action } from './action.ts';
 import { concurrently } from './execute-concurrently.ts';
 import { BlockExecutionMode, Executor, type EventBus } from '@core';
@@ -28,7 +28,10 @@ describe('concurrently.run', () => {
       mock<Action<string, string>>(),
     );
 
-    await expect(theBlock.run({ hass, input, triggerId })).rejects.toThrow();
+    const runner = mock<IBlockRunner>();
+    await expect(
+      theBlock.run({ hass, input, triggerId, runner }),
+    ).rejects.toThrow();
   });
 
   it('throws an error if there is no trigger id', async () => {
@@ -41,7 +44,10 @@ describe('concurrently.run', () => {
     );
     const events = mock<EventBus>();
 
-    await expect(theBlock.run({ hass, input, events })).rejects.toThrow();
+    const runner = mock<IBlockRunner>();
+    await expect(
+      theBlock.run({ hass, input, events, runner }),
+    ).rejects.toThrow();
   });
 
   it('rethrows an error thrown by its children', async () => {
@@ -114,7 +120,14 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+    const result = await theBlock.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     expect(result.continue).toBeDefined();
     expect(result.continue).toBeFalsy();
@@ -155,7 +168,14 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+    const result = await theBlock.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();
@@ -202,7 +222,14 @@ describe('concurrently.run', () => {
       ];
     });
 
-    const result = await theBlock.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+    const result = await theBlock.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     if (result.continue) {
       expect(mockExecutor.run).toHaveBeenCalled();

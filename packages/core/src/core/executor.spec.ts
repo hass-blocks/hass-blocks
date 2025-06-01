@@ -2,8 +2,13 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 import { v4 } from 'uuid';
 
-import type { IHass } from '@types';
-import type { EventBus, Block } from '@core';
+import {
+  IBlockRunner,
+  type BlockOutput,
+  type IHass,
+  type IRunContext,
+} from '@types';
+import { EventBus, Block } from '@core';
 
 import { BlockExecutionMode, Executor } from './executor.ts';
 
@@ -14,6 +19,67 @@ afterEach(() => {
 });
 
 describe('executor', () => {
+  it('provides a mechanism for blocks to execute other blocks', async () => {
+    const mockFn = vi.fn();
+    class MyTestBlock extends Block<string, number> {
+      name = 'test';
+
+      typeString = 'test-block';
+
+      public override run(
+        context: IRunContext<string>,
+      ): BlockOutput<number> | Promise<BlockOutput<number>> {
+        mockFn(context);
+
+        return { continue: true, output: 12, outputType: 'block' };
+      }
+    }
+
+    const actionOne = mock<Block<string, string>>({
+      name: 'foo',
+      typeString: 'action',
+      toJson: () => ({ type: 'action', id: 'foo', name: 'foo' }),
+      run: async ({ runner }) => {
+        const testBlockRunner = runner(new MyTestBlock('test-block-id', []));
+
+        const run = await testBlockRunner('the-string');
+
+        if (!run.continue) {
+          throw new Error('Run failed');
+        }
+
+        return {
+          continue: run.continue,
+          output: String(run.output),
+          outputType: 'block',
+        };
+      },
+    });
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+
+    const executor = new Executor<string, string>(
+      [actionOne],
+      hass,
+      events,
+      triggerId,
+      'foo',
+      BlockExecutionMode.Sequence,
+    );
+
+    void executor.run();
+
+    const [result] = await executor.finished();
+
+    if (result && result.continue) {
+      expect(result.output).toEqual('12');
+      expect(mockFn).toHaveBeenCalled();
+    }
+    expect.assertions(2);
+  });
+
   it('emits all the correct messages when blocks are executed', async () => {
     const actionOne = mock<Block<string, string>>({
       name: 'foo',
@@ -37,7 +103,7 @@ describe('executor', () => {
     const input = 'foo';
 
     when(actionOne.run)
-      .calledWith({ hass, input, events, triggerId })
+      .calledWith({ hass, input, events, triggerId, runner: expect.anything() })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -45,7 +111,13 @@ describe('executor', () => {
       });
 
     when(actionTwo.run)
-      .calledWith({ hass, input: 'bar', events, triggerId })
+      .calledWith({
+        hass,
+        input: 'bar',
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -53,7 +125,13 @@ describe('executor', () => {
       });
 
     when(actionThree.run)
-      .calledWith({ hass, input: 'baz', events, triggerId })
+      .calledWith({
+        hass,
+        input: 'baz',
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -238,9 +316,10 @@ describe('executor', () => {
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'foo';
+    const runner = mock<IBlockRunner>();
 
     when(actionOne.run)
-      .calledWith({ hass, input, events, triggerId })
+      .calledWith({ hass, input, events, triggerId, runner: expect.anything() })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -248,7 +327,13 @@ describe('executor', () => {
       });
 
     when(actionTwo.run)
-      .calledWith({ hass, input: 'bar', events, triggerId })
+      .calledWith({
+        hass,
+        input: 'bar',
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
       .thenResolve({
         continue: true,
         outputType: 'block',
@@ -256,7 +341,13 @@ describe('executor', () => {
       });
 
     when(actionThree.run)
-      .calledWith({ hass, input: 'baz', events, triggerId })
+      .calledWith({
+        hass,
+        input: 'baz',
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
       .thenResolve({
         continue: true,
         outputType: 'block',

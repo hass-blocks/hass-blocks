@@ -1,6 +1,6 @@
 import { mock } from 'vitest-mock-extended';
 
-import type { IHass, IRunContext } from '@types';
+import { IBlockRunner, type IHass, type IRunContext } from '@types';
 
 import { Action } from './action.ts';
 
@@ -18,7 +18,9 @@ describe('the action block', () => {
       callback,
     });
 
-    const result = await action.run({ hass, input });
+    const runner = mock<IBlockRunner>();
+
+    const result = await action.run({ hass, input, runner });
 
     expect(result).toEqual({
       output,
@@ -35,13 +37,14 @@ describe('the action block', () => {
     const hass = mock<IHass>();
     const input = 'input';
     const output = 'output';
+    const runner = mock<IBlockRunner>();
 
     const action = new Action<string, string>({
       name: 'This is my name',
       callback,
     });
 
-    const result = await action.run({ hass, input });
+    const result = await action.run({ hass, input, runner });
 
     expect(result).toEqual({
       output,

@@ -104,10 +104,10 @@ export class Executor<I, O> implements Runnable {
     });
   }
 
-  private async executeBlock<Out>(
+  private async executeBlock<Input = unknown, Out = unknown>(
     executeId: string,
-    block: Block<unknown, Out>,
-    input: unknown,
+    block: Block<Input, Out>,
+    input: Input,
   ): Promise<BlockOutput<Out> & { success: boolean }> {
     const eventArgs = this.getEventArgs(executeId, block);
     try {
@@ -117,6 +117,11 @@ export class Executor<I, O> implements Runnable {
 
       this.emit('block-started', eventArgs);
 
+      const runner =
+        <Input, Output>(block: Block<Input, Output>) =>
+        async (input: Input) =>
+          await this.executeBlock<Input, Output>(executeId, block, input);
+
       const result = await this.runPromiseOrRejectWhenAborted(
         async () =>
           await block.run({
@@ -124,6 +129,7 @@ export class Executor<I, O> implements Runnable {
             input,
             events: this.events,
             triggerId: this.triggerId,
+            runner,
           }),
       );
 

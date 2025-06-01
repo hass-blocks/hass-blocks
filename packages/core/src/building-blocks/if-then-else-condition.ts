@@ -1,4 +1,4 @@
-import { Block } from '@core';
+import { Block, BlockExecutionMode, Executor } from '@core';
 import { AssertionError } from '@errors';
 import type { BlockOutput, IBaseBlockConfig, IRunContext } from '@types';
 import { md5 } from '@utils';
@@ -81,14 +81,22 @@ export class IfThenElseCondition<
       throw new Error('Trigger id');
     }
 
-    const assertionResult = await this.config.assertion.run({
+    const assertionExecutor = new Executor<
+      TInput,
+      (TThenInput & TElseInput) | void
+    >(
+      [this.config.assertion],
       hass,
-      input,
       events,
       triggerId,
-    });
+      input,
+      BlockExecutionMode.Sequence,
+    );
 
-    if (!assertionResult.continue) {
+    await assertionExecutor.run();
+    const [assertionResult] = await assertionExecutor.finished();
+
+    if (!assertionResult?.continue) {
       return { continue: false };
     }
 
@@ -98,19 +106,24 @@ export class IfThenElseCondition<
       );
     }
 
-    const branchExecutedResult = assertionResult.conditionResult
-      ? await this.config.then.run({
-          hass,
-          input: assertionResult.output,
-          events,
-          triggerId,
-        })
-      : await this.config.else.run({
-          hass,
-          input: assertionResult.output,
-          events,
-          triggerId,
-        });
+    const branchExecutor = new Executor<
+      TThenInput | TElseInput | void,
+      TThenOutput | TElseOutput
+    >(
+      [assertionResult.conditionResult ? this.config.then : this.config.else],
+      hass,
+      events,
+      triggerId,
+      assertionResult.output,
+      BlockExecutionMode.Sequence,
+    );
+
+    await branchExecutor.run();
+    const [branchExecutedResult] = await branchExecutor.finished();
+
+    if (!branchExecutedResult) {
+      throw new Error("Branch didn't return a valid response!");
+    }
 
     return branchExecutedResult;
   }

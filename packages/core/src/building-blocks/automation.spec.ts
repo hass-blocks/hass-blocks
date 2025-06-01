@@ -2,7 +2,12 @@ import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
 import { RunQueue, BlockExecutionMode, type EventBus, Executor } from '@core';
-import { type IHass, ExecutionMode, type IFullBlocksClient } from '@types';
+import {
+  type IHass,
+  ExecutionMode,
+  type IFullBlocksClient,
+  type IBlockRunner,
+} from '@types';
 import { ExecutionAbortedError } from '@errors';
 
 import type { Action } from './action.ts';
@@ -84,7 +89,11 @@ describe('automation.run', () => {
       mode: ExecutionMode.Queue,
     });
 
-    await expect(automation.run({ hass, input, triggerId })).rejects.toThrow();
+    const runner = mock<IBlockRunner>();
+
+    await expect(
+      automation.run({ hass, input, triggerId, runner }),
+    ).rejects.toThrow();
   });
 
   it('throws an error if there is no trigger id', async () => {
@@ -96,8 +105,11 @@ describe('automation.run', () => {
       name: 'Test action',
       then: [mock<Action<string, string>>(), mock<Action<string, string>>()],
     });
+    const runner = mock<IBlockRunner>();
 
-    await expect(automation.run({ hass, input, events })).rejects.toThrow();
+    await expect(
+      automation.run({ hass, input, events, runner }),
+    ).rejects.toThrow();
   });
 
   it('If result is undefined, throw an error', async () => {
@@ -136,8 +148,10 @@ describe('automation.run', () => {
       return [];
     });
 
+    const runner = mock<IBlockRunner>();
+
     await expect(
-      automation.run({ hass, input, events, triggerId }),
+      automation.run({ hass, input, events, triggerId, runner }),
     ).rejects.toThrow();
   });
 
@@ -180,7 +194,15 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     if (result.continue) {
       expect(mockRunQueue.enqueue).toHaveBeenCalled();
@@ -227,8 +249,10 @@ describe('automation.run', () => {
 
     mockExecutor.finished.mockRejectedValue(new Error('Whoops'));
 
+    const runner = mock<IBlockRunner>();
+
     await expect(
-      automation.run({ hass, input, events, triggerId }),
+      automation.run({ hass, input, events, triggerId, runner }),
     ).rejects.toThrow();
   });
 
@@ -269,7 +293,15 @@ describe('automation.run', () => {
       new ExecutionAbortedError('Execution was aborted'),
     );
 
-    const result = await automation.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     expect(result.continue).toBeFalsy();
   });
@@ -313,7 +345,15 @@ describe('automation.run', () => {
       ];
     });
 
-    const result = await automation.run({ hass, input, events, triggerId });
+    const runner = mock<IBlockRunner>();
+
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
@@ -358,13 +398,21 @@ describe('automation.run', () => {
       )
       .thenReturn(mockExecutor);
 
+    const runner = mock<IBlockRunner>();
+
     mockExecutor.finished.mockImplementation(async () => {
       return [
         { continue: true, outputType: 'block', output: 'foo', success: true },
       ];
     });
 
-    const result = await automation.run({ hass, input, events, triggerId });
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
 
     if (result.continue) {
       expect(mockRunQueue.abortAll).toHaveBeenCalled();
@@ -416,7 +464,10 @@ describe('automation.run', () => {
       ];
     });
 
+    const runner = mock<IBlockRunner>();
+
     const result = await automation.run({
+      runner,
       hass,
       input,
       events,

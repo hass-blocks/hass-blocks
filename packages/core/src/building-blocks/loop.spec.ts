@@ -1,7 +1,7 @@
 import { EventBus, type Block } from '@core';
 import { loop } from './loop.ts';
 import { mock } from 'vitest-mock-extended';
-import type { IFullBlocksClient } from '@types';
+import type { IBlockRunner, IFullBlocksClient } from '@types';
 
 describe('loop.run', () => {
   it("runs the 'then' block continuously until the assertion fails", async () => {
@@ -50,7 +50,8 @@ describe('loop.run', () => {
     const events = mock<EventBus>();
     const triggerId = 'foo-trigger';
 
-    await theLoop.run({ hass, input: 2, events, triggerId });
+    const runner = mock<IBlockRunner>();
+    await theLoop.run({ hass, input: 2, events, triggerId, runner });
 
     expect(actionBlock.run).toHaveBeenCalledTimes(3);
   });
@@ -101,7 +102,8 @@ describe('loop.run', () => {
     const events = mock<EventBus>();
     const triggerId = 'foo-trigger';
 
-    await theLoop.run({ hass, input: 2, events, triggerId });
+    const runner = mock<IBlockRunner>();
+    await theLoop.run({ hass, input: 2, events, triggerId, runner });
 
     expect(actionBlock.run).toHaveBeenCalledTimes(4);
   });

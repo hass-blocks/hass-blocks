@@ -59,7 +59,7 @@
       "!packages/triggers"
     ],
     "version": {
-      "preVersionCommand": "npx nx run-many --targets rollup-api",
+      "preVersionCommand": "npx nx run-many --targets generate-types",
       "generatorOptions": {
         "fallbackCurrentVersionResolver": "disk"
       },

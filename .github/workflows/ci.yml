@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        check: [lint, build, typecheck, api, check-style]
+        check: [lint, build, generate-types, check-style]
     steps:
       - uses: actions/checkout@v4
         with:

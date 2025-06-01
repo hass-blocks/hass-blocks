@@ -10,7 +10,13 @@ import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
  */
 
 export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
-  public constructor(private theId: I) {}
+  public readonly name;
+  public constructor(
+    private theId: I,
+    friendlyName?: string,
+  ) {
+    this.name = friendlyName ?? theId;
+  }
 
   get targetIds() {
     return {
@@ -38,6 +44,9 @@ export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
  *
  * @param targets - One or more entity or other targets
  */
-export const entity = <I extends `${string}.${string}`>(id: I): IEntity<I> => {
-  return new Entity(id);
+export const entity = <I extends `${string}.${string}`>(
+  id: I,
+  friendlyName?: string,
+): IEntity<I> => {
+  return new Entity(id, friendlyName);
 };

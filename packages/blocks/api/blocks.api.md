@@ -35,6 +35,12 @@ export const gate: (name: string) => {
 };
 
 // @public
+export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block<Partial<{
+command: string[];
+delay_secs: number;
+}> | undefined, void>;
+
+// @public
 export const stateIs: (target: ITarget, state: string) => Block<void, void>;
 
 // @public

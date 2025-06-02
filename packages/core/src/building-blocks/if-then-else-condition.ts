@@ -48,7 +48,7 @@ export class IfThenElseCondition<
 > extends Block<TInput, TThenOutput | TElseOutput> {
   public override name: string;
 
-  public override typeString = 'if-then-else';
+  public override type = 'if-then-else';
 
   public constructor(
     public readonly config: IIfThenElseConditionConfig<

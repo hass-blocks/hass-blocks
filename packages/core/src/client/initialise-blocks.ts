@@ -92,6 +92,7 @@ export const initialiseBlocks = async (
       events: bus,
       client: blocks,
       config,
+      logger: theLogger,
     });
   }
 

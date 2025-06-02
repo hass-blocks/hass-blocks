@@ -21,7 +21,6 @@ export {
 } from '@targets';
 
 export type {
-  IBlocksNode,
   IDevice,
   IBlocksConnection,
   ILogger,
@@ -66,7 +65,7 @@ export type {
   IFullBlocksClient,
   HassEntity,
   HassEntityAttributeBase,
-  SerialisedBlock,
+  IBlocksNode,
 } from '@types';
 
 export { ExecutionMode } from '@types';

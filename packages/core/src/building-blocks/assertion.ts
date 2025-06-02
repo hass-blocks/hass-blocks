@@ -34,7 +34,7 @@ export class Assertion<TInput = void, TOutput = void> extends Block<
   }
   public readonly name: string;
 
-  public override typeString = 'assertion';
+  public override type = 'assertion';
 
   public override async run(
     context: IRunContext<TInput>,

@@ -27,7 +27,7 @@ export class Action<TInput = void, TOutput = void>
     this.name = this.config.name;
   }
 
-  public override readonly typeString: string = 'action';
+  public override readonly type: string = 'action';
 
   public override async run(
     context: IRunContext<TInput>,

@@ -13,7 +13,7 @@ class ExecuteConcurrently<
 > {
   public override name: string;
 
-  public override readonly typeString = 'execute-concurrently';
+  public override readonly type = 'execute-concurrently';
 
   public constructor(
     public config: {

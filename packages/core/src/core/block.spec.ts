@@ -11,7 +11,7 @@ describe('block.toJson', () => {
     class Foo extends Block {
       public override name = 'test-block';
 
-      public override typeString = 'foo-type';
+      public override type = 'foo-type';
 
       public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
         throw new Error();
@@ -35,7 +35,7 @@ describe('block.validate', () => {
     class Foo extends Block {
       public override name = 'test-block';
 
-      public override typeString = 'foo-type';
+      public override type = 'foo-type';
 
       public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
         throw new Error();

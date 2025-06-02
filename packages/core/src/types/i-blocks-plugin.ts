@@ -1,6 +1,7 @@
 import type { HassConfig } from '@hass-blocks/hass-ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
 import type { IEventBus } from './i-event-bus.ts';
+import type { ILogger } from './i-logger.ts';
 
 /**
  * @public
@@ -25,6 +26,11 @@ export interface IPluginArgs {
    * The configuration that was used to connect to Home assistant
    */
   config: HassConfig;
+
+  /**
+   * A logger
+   */
+  logger: ILogger;
 }
 
 /**

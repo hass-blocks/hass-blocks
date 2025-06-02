@@ -1,20 +1,28 @@
 import { Server } from 'socket.io';
 import { createServer } from 'node:http';
-import type { IBlock, IEventBus } from '@hass-blocks/core';
+import type { IEventBus, ILogger } from '@hass-blocks/core';
 import type { CorsOptions } from './cors-options.ts';
-import { SOCKET_EVENT_NAME } from './constants.ts';
+import type { IFullBlocksClient } from '@hass-blocks/core';
+import { commands, events } from './configure-connections.ts';
 
 interface ServerProps {
   cors: CorsOptions;
-  client: { getAutomations(): IBlock<unknown, unknown>[] };
+  client: IFullBlocksClient;
   bus: IEventBus;
+  logger: ILogger;
 }
 
 /**
  * Generate a Socket.io connection that forwards events published
  * on the provided event bus to the socket
  */
-export const getWebsocketServer = ({ cors, client, bus }: ServerProps) => {
+export const getWebsocketServer = ({
+  cors,
+  client,
+  bus,
+  logger,
+}: ServerProps) => {
+  logger.info(`Creating websocket server`);
   const server = createServer((_request, response) => {
     response.writeHead(200, { 'content-type': 'text/plain' });
     response.end('Websocket server is running!');
@@ -27,33 +35,11 @@ export const getWebsocketServer = ({ cors, client, bus }: ServerProps) => {
     },
   });
 
-  const stringifyCircularJSON = (obj: unknown) => {
-    const seen = new WeakSet();
-    return JSON.stringify(obj, (_key, value) => {
-      if (value !== null && typeof value === 'object') {
-        if (seen.has(value)) return;
+  Object.values(commands).forEach((command) =>
+    command.backend(io, client, logger),
+  );
 
-        seen.add(value);
-      }
-
-      return value;
-    });
-  };
-
-  io.on('connection', (socket) => {
-    socket.on('request-automations', () => {
-      const automations = client.getAutomations();
-
-      const serialisedAutomations = automations.map((automation) =>
-        automation.toJson(),
-      );
-      socket.emit('automations', serialisedAutomations);
-    });
-
-    bus.subscribe((event) => {
-      socket.emit(SOCKET_EVENT_NAME, JSON.parse(stringifyCircularJSON(event)));
-    });
-  });
+  Object.values(events).forEach((event) => event.backend(io, bus));
 
   return server;
 };

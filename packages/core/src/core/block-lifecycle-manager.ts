@@ -29,7 +29,7 @@ export class BlockLifecyleManager<TInput = unknown, TOutput = unknown> {
     return {
       executeId: this.executionId,
       triggerId: this.triggerId,
-      type: this.block.typeString,
+      type: this.block.type,
       name: this.block.name,
       block: this.block.toJson(),
       ...(this.parent ? { parent: this.parent.toJson() } : {}),

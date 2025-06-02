@@ -31,20 +31,17 @@ class WebsocketServerPlugin implements IBlocksPlugin {
 
   public readonly name = 'websocket';
 
-  public async load({ client, events }: IPluginArgs) {
+  public async load({ client, events, logger }: IPluginArgs) {
     const server = getWebsocketServer({
       client,
       bus: events,
       cors: this.config.cors,
+      logger,
     });
 
     await new Promise<void>((accept) => {
       server.listen(this.config.port, this.config.host, () => {
-        events.emit('log-event', {
-          message: `Websocket server started on port ${this.config.port}`,
-          level: `info`,
-          module: this.name,
-        });
+        logger.info(`Websocket server started on port ${this.config.port}`);
         accept();
       });
     });

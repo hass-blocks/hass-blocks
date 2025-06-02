@@ -12,6 +12,7 @@ import type {
   ICallServiceParams,
   IBlock,
   IEntity,
+  IInitialisable,
 } from '@types';
 import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
 import type { IFullBlocksClient } from '@types';
@@ -29,7 +30,7 @@ export class BlocksClient implements IFullBlocksClient {
   private areas: HassArea[] | undefined;
   private states: Map<string, HassEntity> | undefined;
   private services: Record<string, Record<string, Service>> | undefined;
-  private _automations: IBlock<unknown, unknown>[] = [];
+  private _automations: (IBlock<unknown, unknown> & IInitialisable)[] = [];
   private stateChangedCallback: StateChangedCallback | undefined;
 
   public constructor(
@@ -131,7 +132,9 @@ export class BlocksClient implements IFullBlocksClient {
     return await this.client.callService(params);
   }
 
-  public async registerAutomation(...automation: IBlock<unknown, unknown>[]) {
+  public async registerAutomation(
+    ...automation: (IBlock<unknown, unknown> & IInitialisable)[]
+  ) {
     if (!this.states) {
       await this.loadStates();
     }

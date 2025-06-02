@@ -1,7 +1,7 @@
 import type { ITrigger } from './i-trigger.ts';
 import type { Event } from '@hass-blocks/hass-ts';
 import type { BlockOutput } from './block-output.ts';
-import type { SerialisedBlock } from './serialised-block.ts';
+import type { IBlocksNode } from './i-blocks-node.ts';
 
 /**
  * @public
@@ -160,7 +160,7 @@ export interface LifeCycleEvent<T extends string>
   /**
    * A serialised version of the block being executed
    */
-  block: SerialisedBlock;
+  block: IBlocksNode;
 }
 
 /**
@@ -178,7 +178,7 @@ export interface AutomationRegistered
   /**
    * A serialised version of the block that was registered
    */
-  block: SerialisedBlock;
+  block: IBlocksNode;
 }
 
 /**
@@ -212,7 +212,7 @@ export interface BlockStarted extends LifeCycleEvent<'block-started'> {
   /**
    * The parent block (often this will be the automation that triggered the block execution)
    */
-  parent?: SerialisedBlock;
+  parent?: IBlocksNode;
 
   /**
    * The trigger object that started this execution sequence
@@ -240,7 +240,7 @@ export interface BlockFinished<O = unknown>
   /**
    * The parent block (often this will be the automation that triggered the block execution)
    */
-  parent?: SerialisedBlock;
+  parent?: IBlocksNode;
 }
 
 /**
@@ -267,7 +267,7 @@ export interface BlockFailed extends LifeCycleEvent<'block-failed'> {
   /**
    * The parent block (often this will be the automation that triggered the block execution)
    */
-  parent?: SerialisedBlock;
+  parent?: IBlocksNode;
 }
 
 /**
@@ -284,7 +284,7 @@ export interface BlockPending extends LifeCycleEvent<'block-pending'> {
   /**
    * The parent block (often this will be the automation that triggered the block execution)
    */
-  parent?: SerialisedBlock;
+  parent?: IBlocksNode;
 
   /**
    * The trigger object that started this execution sequence
@@ -306,7 +306,7 @@ export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {
   /**
    * A serialised version of the block that caused the sequence to be aborted
    */
-  block: SerialisedBlock;
+  block: IBlocksNode;
 
   /**
    * The name of the block that caused the sequence to be aborted

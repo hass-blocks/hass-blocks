@@ -18,7 +18,6 @@ export type { IFullBlocksClient } from './i-full-blocks-client.ts';
 export type { IBlocksRegistry } from './i-blocks-registry.ts';
 export type { ILogger } from './i-logger.ts';
 export type { IBlocksPlugin, IPluginArgs } from './i-blocks-plugin.ts';
-export type { SerialisedBlock } from './serialised-block.ts';
 export type { IRunContext } from './i-run-context.ts';
 export type { IBlockRunner } from './i-block-runner.ts';
 
@@ -66,3 +65,4 @@ export type { IBlock } from './i-block.ts';
 export type { ICallServiceParams } from './i-call-service-params.ts';
 export type { ITrigger } from './i-trigger.ts';
 export type { IBaseBlockConfig } from './i-base-block-config.ts';
+export type { IInitialisable } from './i-initialisable.ts';

@@ -1,6 +1,6 @@
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 
-import type { ITarget, IFullBlocksClient } from '@types';
+import type { ITarget, IFullBlocksClient, IBlocksNode } from '@types';
 import { BlockValidationError } from '@errors';
 import type { Block } from '@core';
 
@@ -18,7 +18,7 @@ export type ServiceCallArgs<P> = {
 };
 
 class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
-  public override typeString = 'service-call';
+  public override type = 'service-call';
 
   public constructor(
     private readonly serviceConfig: {
@@ -69,11 +69,9 @@ class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
     await super.initialise(client, mqtt);
   }
 
-  public override toJson() {
+  public override toJson(): IBlocksNode {
     return {
-      type: this.typeString,
-      id: this.id,
-      name: this.name,
+      ...super.toJson(),
       params: this.serviceConfig.params,
     };
   }

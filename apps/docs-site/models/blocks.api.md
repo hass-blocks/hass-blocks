@@ -20,7 +20,7 @@ export const automation: <const A extends readonly any[], I = GetSequenceInput<A
 
 // @public
 export interface AutomationRegistered {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     name: string;
     status: 'registered';
     type: 'automation';
@@ -28,7 +28,7 @@ export interface AutomationRegistered {
 
 // @public
 export interface BaseHassEvent {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     executeId: string;
     name: string;
     triggerId: string;
@@ -58,7 +58,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
 export interface BlockFailed extends BaseHassEvent {
     error: Error;
     message: string;
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     status: 'failed';
     type: string;
 }
@@ -66,7 +66,7 @@ export interface BlockFailed extends BaseHassEvent {
 // @public
 export interface BlockFinished<O = unknown> extends BaseHassEvent {
     output: BlockOutput<O>;
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     status: 'finished';
     type: string;
 }
@@ -76,7 +76,7 @@ export type BlockOutput<O> = ContinueOutput<O> | StopOutput | ConditionResult<O>
 
 // @public
 export interface BlockPending extends BaseHassEvent {
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     status: 'pending';
     triggeredBy?: ITrigger;
     type: string;
@@ -93,7 +93,7 @@ Block<InputType<First>, OutputTypeKeepPromise<First>>,
 
 // @public
 export interface BlockStarted extends BaseHassEvent {
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     status: 'started';
     triggeredBy?: ITrigger;
     type: string;
@@ -215,7 +215,7 @@ export interface IBlock<I = void, O = void> {
     name: string;
     outputType: O | undefined;
     run(hass: IHass, input: I, events?: IEventBus, triggerId?: string): Promise<BlockOutput<O>> | BlockOutput<O>;
-    toJson(): SerialisedBlock;
+    toJson(): IBlocksNode;
     trigger: ITrigger | ITrigger[];
     typeString: string;
     validate(client: IHass): Promise<void>;
@@ -354,14 +354,14 @@ export const sequence: <const A extends readonly any[], I = GetSequenceInput<A>,
 
 // @public
 export interface SequenceAborted extends BaseHassEvent {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     name: string;
     status: 'aborted';
     type: string;
 }
 
 // @public
-export interface SerialisedBlock {
+export interface IBlocksNode {
     id: string;
     name: string;
     params?: Record<string, unknown>;

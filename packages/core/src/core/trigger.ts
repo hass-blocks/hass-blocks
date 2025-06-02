@@ -39,6 +39,7 @@ export class Trigger implements ITrigger {
   public readonly name: string;
   public readonly id: string;
   public readonly trigger: Record<string, unknown>;
+  public readonly type = 'trigger';
 
   public constructor(public config: ITriggerConfig) {
     this.name = config.name;

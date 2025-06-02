@@ -1,1 +1,1 @@
-export const SOCKET_EVENT_NAME = 'hass-blocks-message';
+export const SOCKET_CONNECTION_STRING = 'connection';

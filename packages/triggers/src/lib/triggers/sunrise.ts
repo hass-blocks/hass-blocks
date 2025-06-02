@@ -1,5 +1,5 @@
 import { trigger } from '@hass-blocks/core';
-import type { TimeHHMMSS } from '@utils';
+import { removeUndefined, type TimeHHMMSS } from '@utils';
 
 /**
  * @public
@@ -22,8 +22,9 @@ export interface SunriseProps {
 export const sunRises = (props?: SunriseProps) =>
   trigger({
     name: 'When the sun rises',
-    trigger: {
+    trigger: removeUndefined({
       platform: 'sun',
       event: 'sunrise',
-    },
+      ...props,
+    }),
   });

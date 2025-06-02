@@ -73,7 +73,7 @@ export class Automation<
     }
   }
 
-  public override typeString = 'automation';
+  public override type = 'automation';
 
   public override async run({
     hass,

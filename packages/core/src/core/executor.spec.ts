@@ -19,7 +19,7 @@ describe('executor', () => {
     class MyTestBlock extends Block<string, number> {
       name = 'test';
 
-      typeString = 'test-block';
+      type = 'test-block';
 
       public override run(
         context: IRunContext<string>,
@@ -32,7 +32,7 @@ describe('executor', () => {
 
     const actionOne = mock<Block<string, string>>({
       name: 'foo',
-      typeString: 'action',
+      type: 'action',
       toJson: () => ({ type: 'action', id: 'foo', name: 'foo' }),
       run: async ({ runner }) => {
         const testBlockRunner = runner(new MyTestBlock('test-block-id', []));
@@ -78,17 +78,17 @@ describe('executor', () => {
   it('emits all the correct messages when blocks are executed', async () => {
     const actionOne = mock<Block<string, string>>({
       name: 'foo',
-      typeString: 'action',
+      type: 'action',
       toJson: () => ({ type: 'action', id: 'foo', name: 'foo' }),
     });
     const actionTwo = mock<Block<string, string>>({
       name: 'bar',
-      typeString: 'action',
+      type: 'action',
       toJson: () => ({ type: 'action', id: 'bar', name: 'bar' }),
     });
     const actionThree = mock<Block<string, string>>({
       name: 'baz',
-      typeString: 'action',
+      type: 'action',
       toJson: () => ({ type: 'action', id: 'baz', name: 'baz' }),
     });
 

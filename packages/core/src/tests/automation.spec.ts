@@ -36,13 +36,13 @@ const testServices: Record<string, Record<string, Service>> = {
     turn_on: {
       name: 'Turn On',
       description: 'turn light on',
-      response: {},
+      response: { optional: true },
       fields: {},
     },
     turn_off: {
       name: 'Turn On',
       description: 'turn light on',
-      response: {},
+      response: { optional: true },
       fields: {},
     },
   },

@@ -27,7 +27,7 @@ export const automation: <const TSequence extends readonly Block<unknown, unknow
 
 // @public
 export interface AutomationRegistered extends BaseHassBlocksEvent<'automation-registered'> {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     name: string;
 }
 
@@ -62,14 +62,14 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
 export interface BlockFailed extends LifeCycleEvent<'block-failed'> {
     error: Error;
     message: string;
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     type: string;
 }
 
 // @public
 export interface BlockFinished<O = unknown> extends LifeCycleEvent<'block-finished'> {
     output: BlockOutput<O>;
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     type: string;
 }
 
@@ -78,7 +78,7 @@ export type BlockOutput<O> = ContinueOutput<O> | StopOutput | ConditionResult<O>
 
 // @public
 export interface BlockPending extends LifeCycleEvent<'block-pending'> {
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     triggeredBy?: ITrigger;
     type: string;
 }
@@ -94,7 +94,7 @@ Block<InputType<First>, OutputTypeKeepPromise<First>>,
 
 // @public
 export interface BlockStarted extends LifeCycleEvent<'block-started'> {
-    parent?: SerialisedBlock;
+    parent?: IBlocksNode;
     triggeredBy?: ITrigger;
     type: string;
 }
@@ -273,7 +273,7 @@ export interface IBlock<I = void, O = void> extends IBlocksNode {
     id: string;
     name: string;
     run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
-    toJson(): SerialisedBlock;
+    toJson(): IBlocksNode;
     trigger: ITrigger | ITrigger[];
     typeString: string;
 }
@@ -439,7 +439,7 @@ export interface ITriggerConfig {
 
 // @public
 interface LifeCycleEvent<T extends string> extends BaseHassBlocksEvent<T> {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     executeId: string;
     name: string;
     triggerId: string;
@@ -532,7 +532,7 @@ export const sequence: <const TSequence extends readonly Block<unknown, unknown>
 
 // @public
 export interface SequenceAborted extends LifeCycleEvent<'sequence-aborted'> {
-    block: SerialisedBlock;
+    block: IBlocksNode;
     name: string;
     type: string;
 }
@@ -555,7 +555,7 @@ export type SequenceCompatibilityError<TInput, TOutput, TSequence extends readon
 export type SequenceValidatorRecursive<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[] = []> = TSequence extends [] ? TBefore : RecurseSequence<CheckScenarios<TInput, TOutput, TSequence, TBefore>>;
 
 // @public
-export interface SerialisedBlock {
+export interface IBlocksNode {
     id: string;
     name: string;
     params?: Record<string, unknown>;

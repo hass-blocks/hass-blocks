@@ -3,7 +3,7 @@
  *
  * A serialised version of a block - used for transmission purposes
  */
-export interface SerialisedBlock {
+export interface IBlocksNode {
   /**
    * The type of block
    */

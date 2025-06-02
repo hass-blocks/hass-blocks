@@ -11,6 +11,7 @@ import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { IRunContext } from '@types';
+import type { IInitialisable } from 'src/types/i-initialisable.ts';
 
 /**
  * @public
@@ -18,7 +19,9 @@ import type { IRunContext } from '@types';
  * The core Hass Blocks abstraction! - all Blocks must extend from this class for
  * the framework to be able to execute them
  */
-export abstract class Block<I = void, O = void> implements IBlock<I, O> {
+export abstract class Block<I = void, O = void>
+  implements IBlock<I, O>, IInitialisable
+{
   public constructor(
     /**
      * String to identify this particular instance of a block. Must be unique
@@ -28,16 +31,19 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
     /**
      * All child nodes of this block
      */
-    public readonly children?: IBlocksNode[],
+    public readonly children: Block<unknown, unknown>[] = [],
     private _trigger?: ITrigger | ITrigger[],
-  ) {}
+  ) {
+    this.children = children ?? [];
+  }
 
   /**
    * A JSON representation of the block. Used for websocket and rest serialisation
    */
-  public toJson() {
+  public toJson(): IBlocksNode {
     return {
-      type: this.typeString,
+      children: this.children.map((child) => child.toJson()),
+      type: this.type,
       id: this.id,
       name: this.name,
     };
@@ -87,7 +93,7 @@ export abstract class Block<I = void, O = void> implements IBlock<I, O> {
   /**
    * String that identifies the kind of block
    */
-  public abstract readonly typeString: string;
+  public abstract readonly type: string;
 
   /**
    * Called by the framework when the block is executed

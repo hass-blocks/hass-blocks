@@ -11,7 +11,7 @@ import { stateTurnsOff, stateTurnsOn } from '@hass-blocks/triggers';
 export const holidayModeOn = automation({
   name: 'Holiday Mode On',
   when: imMoreThan20KmAway,
-  then: [turnOnSwitch(homeMode)],
+  then: turnOnSwitch(homeMode),
 });
 
 export const holidayModeOff = automation({

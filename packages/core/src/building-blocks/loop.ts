@@ -52,7 +52,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
 > {
   public override name: string;
 
-  public override typeString = 'loop';
+  public override type = 'loop';
 
   public constructor(
     public readonly config:

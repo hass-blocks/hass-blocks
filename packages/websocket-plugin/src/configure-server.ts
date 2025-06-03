@@ -1,7 +1,7 @@
 import type { IEventBus } from '@hass-blocks/core';
 import type { ICallServiceParams, IFullBlocksClient } from '@hass-blocks/core';
 import type { HassBlocksEvent } from '@hass-blocks/core';
-import { makeWebsocketServer } from './server-generator/get-websocket-server.ts';
+import { makeWebsocketServer } from '../../typed-socket-client/src/lib/build-server.ts';
 
 export const { makeCommand, buildServer, forwardEvent } = makeWebsocketServer();
 

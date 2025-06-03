@@ -1,0 +1,37 @@
+{
+  "name": "@hass-blocks/typed-socket-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/typed-socket-client/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/typed-socket-client/dist",
+        "main": "packages/typed-socket-client/src/index.ts",
+        "tsConfig": "packages/typed-socket-client/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "generate-types": {
+      "executor": "@hass-blocks/publisher:generate-types",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectFolder": "packages/typed-socket-client"
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/typed-socket-client/dist/index.d.ts",
+        "projectFolder": "packages/typed-socket-client",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

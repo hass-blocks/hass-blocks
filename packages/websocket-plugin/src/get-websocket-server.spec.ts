@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import type { createServer } from 'node:http';
 import { io as Client } from 'socket.io-client';
-import { makeWebsocketServer } from './server-generator/get-websocket-server.ts';
+import { makeWebsocketServer } from '../../typed-socket-client/src/lib/build-server.ts';
 import { mock } from 'vitest-mock-extended';
 
 import type {
@@ -11,7 +11,7 @@ import type {
   HassBlocksEvent,
   LifeCycleEvent,
 } from '@hass-blocks/core';
-import { SOCKET_EVENT_NAME } from './server-generator/constants.ts';
+import { SOCKET_EVENT_NAME } from '../../typed-socket-client/src/lib/constants.ts';
 
 // A helper function to start a server on an ephemeral port.
 const listenServer = (
@@ -41,10 +41,11 @@ const closeServer = (server: ReturnType<typeof createServer>): Promise<void> =>
   });
 
 // A helper to create a Socket.IO client for tests.
-const createTestClient = (port: number) =>
+const createTestClient = (port: number) => {
   Client(`http://localhost:${String(port)}`, {
     transports: ['websocket'],
   });
+};
 
 describe('getWebsocketServer', () => {
   it(

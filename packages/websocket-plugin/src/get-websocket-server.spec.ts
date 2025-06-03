@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import type { createServer } from 'node:http';
 import { io as Client } from 'socket.io-client';
-import { getWebsocketServer } from './get-websocket-server.ts';
+import { makeWebsocketServer } from './server-generator/get-websocket-server.ts';
 import { mock } from 'vitest-mock-extended';
 
 import type {
@@ -11,7 +11,7 @@ import type {
   HassBlocksEvent,
   LifeCycleEvent,
 } from '@hass-blocks/core';
-import { SOCKET_EVENT_NAME } from './constants.ts';
+import { SOCKET_EVENT_NAME } from './server-generator/constants.ts';
 
 // A helper function to start a server on an ephemeral port.
 const listenServer = (
@@ -62,7 +62,7 @@ describe('getWebsocketServer', () => {
       client.getAutomations.mockReturnValue([fakeBlock]);
 
       // Create a server with a dummy bus.
-      const server = getWebsocketServer({
+      const server = makeWebsocketServer({
         cors: { origin: 'http://localhost', methods: ['GET', 'POST'] },
         client,
         bus: mock(),
@@ -92,7 +92,7 @@ describe('getWebsocketServer', () => {
 
     client.getAutomations.mockReturnValue([fakeBlock]);
 
-    const server = getWebsocketServer({
+    const server = makeWebsocketServer({
       cors: { origin: 'http://localhost', methods: ['GET', 'POST'] },
       client,
       bus: mock(),
@@ -159,7 +159,7 @@ describe('getWebsocketServer', () => {
 
     const client = mock<IFullBlocksClient>();
 
-    const server = getWebsocketServer({
+    const server = makeWebsocketServer({
       cors: { origin: 'http://localhost', methods: ['GET', 'POST'] },
       client,
       bus,

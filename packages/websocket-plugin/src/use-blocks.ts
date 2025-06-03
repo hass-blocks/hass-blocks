@@ -1,4 +1,4 @@
-import { commands, events } from './configure-connections.ts';
+import { commands, events } from './configure-server.ts';
 import { useSocket } from './use-socket.ts';
 
 /**

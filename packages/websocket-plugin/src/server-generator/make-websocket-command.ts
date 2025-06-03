@@ -7,6 +7,14 @@ import type { ILogger } from '@hass-blocks/core';
 
 const BASE_BLOCKS_COMMAND_STRING = 'hass-blocks-command';
 
+type CommandCallback<TServerData> = <
+  TArguments extends unknown[],
+  TTransmittedData,
+>(
+  source: TServerData,
+  ...args: TArguments
+) => TTransmittedData | Promise<TTransmittedData>;
+
 export const initialiseWebsocketCommandBuilder = () => {
   let count = 0;
   return <TServerData, TTransmittedData, TArguments extends unknown[]>(

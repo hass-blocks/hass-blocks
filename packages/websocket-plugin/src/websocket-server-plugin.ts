@@ -1,5 +1,5 @@
 import type { IBlocksPlugin, IPluginArgs } from '@hass-blocks/core';
-import { getWebsocketServer } from './get-websocket-server.ts';
+import { buildServer, commands, events } from './configure-server.ts';
 
 /**
  * @public
@@ -31,12 +31,17 @@ class WebsocketServerPlugin implements IBlocksPlugin {
 
   public readonly name = 'websocket';
 
-  public async load({ client, events, logger }: IPluginArgs) {
-    const server = getWebsocketServer({
+  public async load({ client, events: eventBus, logger }: IPluginArgs) {
+    const server = buildServer({
       client,
-      bus: events,
+      emitter: eventBus,
+      data: client,
       cors: this.config.cors,
       logger,
+      commands: Object.values(commands).map((command) => command.backend),
+      eventForwarders: Object.values(events).map(
+        (eventForwarder) => eventForwarder.backend,
+      ),
     });
 
     await new Promise<void>((accept) => {

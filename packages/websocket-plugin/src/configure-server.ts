@@ -1,33 +1,31 @@
 import type { IEventBus } from '@hass-blocks/core';
 import type { ICallServiceParams, IFullBlocksClient } from '@hass-blocks/core';
 import type { HassBlocksEvent } from '@hass-blocks/core';
-import { makeWebsocketServer } from '../../typed-socket-client/src/lib/build-server.ts';
+import { getTypedGenerator } from '@hass-blocks/typed-socket-client';
 
-export const { makeCommand, buildServer, forwardEvent } = makeWebsocketServer();
+const generator = getTypedGenerator<IFullBlocksClient, IEventBus>();
 
-export const commands = {
-  getAutomations: makeCommand((client: IFullBlocksClient) => {
-    const automations = client.getAutomations();
-    return automations.map((automation) => automation.toJson());
-  }),
-  getStates: makeCommand((client: IFullBlocksClient) => client.getStates()),
-  getState: makeCommand((client: IFullBlocksClient, id: string) =>
-    client.getState(id),
-  ),
-  getServices: makeCommand((client: IFullBlocksClient) => client.getServices()),
-  getAreas: makeCommand((client: IFullBlocksClient) => client.getAreas()),
-  callService: makeCommand(
-    async (
+export const { buildServer, buildClient } = generator({
+  commands: {
+    getAutomations: (client: IFullBlocksClient) => {
+      const automations = client.getAutomations();
+      return automations.map((automation) => automation.toJson());
+    },
+    getStates: (client: IFullBlocksClient) => client.getStates(),
+    getState: (client: IFullBlocksClient, id: string) => client.getState(id),
+    getServices: (client: IFullBlocksClient) => client.getServices(),
+    getAreas: (client: IFullBlocksClient) => client.getAreas(),
+    callService: async (
       client: IFullBlocksClient,
       params: Omit<ICallServiceParams, 'id' | 'type'>,
     ) => await client.callService(params),
-  ),
-};
-
-export const events = {
-  hassBlocksEvent: forwardEvent(
-    (eventBus: IEventBus, emit: (data: HassBlocksEvent) => void) => {
+  },
+  eventForwarders: {
+    hassBlocksEvent: (
+      eventBus: IEventBus,
+      emit: (data: HassBlocksEvent) => void,
+    ) => {
       eventBus.subscribe((event) => emit(event));
     },
-  ),
-};
+  },
+});

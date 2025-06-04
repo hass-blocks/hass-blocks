@@ -1,4 +1,4 @@
-import { commands, events } from './configure-server.ts';
+import { buildClient } from './configure-server.ts';
 import { useSocket } from './use-socket.ts';
 
 /**
@@ -10,23 +10,11 @@ import { useSocket } from './use-socket.ts';
 export const useBlocks = (url: string) => {
   const { connectionStatus, errors, socket } = useSocket(url);
 
-  const getAutomations = commands.getAutomations.client(socket);
-  const getStates = commands.getStates.client(socket);
-  const getState = commands.getState.client(socket);
-  const getServices = commands.getServices.client(socket);
-  const getAreas = commands.getServices.client(socket);
-  const callService = commands.callService.client(socket);
-  const onHassBlocksEvent = events.hassBlocksEvent.onEventEmit(socket);
+  const client = buildClient(socket);
 
   return {
     connectionStatus,
     errors,
-    getAutomations,
-    getState,
-    getStates,
-    getAreas,
-    callService,
-    getServices,
-    onHassBlocksEvent,
+    client,
   };
 };

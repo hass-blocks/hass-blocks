@@ -522,6 +522,9 @@ importers:
       '@hass-blocks/core':
         specifier: 3.14.0
         version: link:../core
+      '@hass-blocks/typed-socket-client':
+        specifier: workspace:*
+        version: link:../typed-socket-client
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17

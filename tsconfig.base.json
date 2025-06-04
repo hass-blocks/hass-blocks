@@ -28,7 +28,6 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "paths": {}
+    "allowUnusedLabels": false
   }
 }

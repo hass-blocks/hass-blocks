@@ -6,6 +6,7 @@ import type { Block } from './block.ts';
 import type { IEventBus, IFullBlocksClient, ITrigger, ITarget } from '@types';
 import { mapAsync, md5 } from '@utils';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
+import type { IBlocksNode } from 'src/types/serialised-block.ts';
 
 /**
  * @public
@@ -51,6 +52,14 @@ export class Trigger implements ITrigger {
     await mapAsync(this.config.targets, (target) =>
       target.initialise(hass, mqtt),
     );
+  }
+
+  public toJson(): IBlocksNode {
+    return {
+      id: this.id,
+      type: this.type,
+      name: this.name,
+    };
   }
 
   public async attachToClient(

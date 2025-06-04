@@ -68,6 +68,7 @@ export class Automation<
         : []),
     ]);
     this.name = this.config.name;
+
     if (config.when) {
       this.trigger = config.when;
     }

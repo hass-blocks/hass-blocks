@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib": ["src/lib/index.ts"]
+      "@lib": ["src/lib/index.ts"],
+      "@types": ["src/types/index.ts"]
     },
     "outDir": "./out-tsc/vitest",
     "types": [

@@ -1,5 +1,5 @@
-import { buildServer } from './build-server.ts';
-import type { ILogger } from './i-logger.ts';
+import { getTypedGenerator } from './build-server.ts';
+import type { ILogger } from '@types';
 import { io as Client, type Socket } from 'socket.io-client';
 import type { Server } from 'http';
 import { mock } from 'vitest-mock-extended';
@@ -53,24 +53,27 @@ describe('socket client generator', () => {
       }),
     };
 
-    const logger = mock<ILogger>();
+    const generator = getTypedGenerator<BackendObject, unknown>();
 
-    const { server, clientBuilder } = buildServer({
-      data,
-      logger,
-      cors: {
-        origin: '*',
-        methods: ['GET'],
-      },
+    const { buildServer, buildClient } = generator({
       commands: {
         callMe: (data: BackendObject) => data.callMe(),
       },
-      emitter: {},
+      eventForwarders: {},
+    });
+
+    const server = buildServer({
+      data,
+      cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
+      },
+      logger: mock(),
     });
 
     const port = await listenServer(server);
     const clientSocket = await createTestWebsocketClient(port);
-    const client = clientBuilder(clientSocket);
+    const client = buildClient(clientSocket);
     const result = await client.callMe();
 
     expect(result).toEqual({
@@ -98,16 +101,9 @@ describe('socket client generator', () => {
       }),
     };
 
-    const logger = mock<ILogger>();
+    const generator = getTypedGenerator<BackendObject, unknown>();
 
-    const { server, clientBuilder } = buildServer({
-      data,
-      logger,
-      cors: {
-        origin: '*',
-        methods: ['GET'],
-      },
-      emitter: {},
+    const { buildClient, buildServer } = generator({
       commands: {
         callMe: (data: BackendObject) => data.callMe(),
         functionWithArguments: (
@@ -116,11 +112,21 @@ describe('socket client generator', () => {
           aNumber: number,
         ) => data.functionWithArguments(argOne, aNumber),
       },
+      eventForwarders: {},
+    });
+
+    const server = buildServer({
+      data,
+      cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
+      },
+      logger: mock(),
     });
 
     const port = await listenServer(server);
     const clientSocket = await createTestWebsocketClient(port);
-    const client = clientBuilder(clientSocket);
+    const client = buildClient(clientSocket);
     const result = await client.functionWithArguments('bif', 10);
     expect(result).toEqual({ baz: 'bif', bop: 10 });
     await closeServer(server, clientSocket);
@@ -131,13 +137,10 @@ describe('socket client generator', () => {
 
     const logger = mock<ILogger>();
 
-    const { server, clientBuilder } = buildServer({
-      logger,
-      cors: {
-        origin: '*',
-        methods: ['GET'],
-      },
-      emitter,
+    const generator = getTypedGenerator<unknown, EventEmitter>();
+
+    const { buildClient, buildServer } = generator({
+      commands: {},
       eventForwarders: {
         onEvent: (emitter: EventEmitter, emit: (data: string) => void) =>
           emitter.on('foo', (data: string) => {
@@ -146,9 +149,18 @@ describe('socket client generator', () => {
       },
     });
 
+    const server = buildServer({
+      logger,
+      cors: {
+        origin: '*',
+        methods: ['GET'],
+      },
+      emitter,
+    });
+
     const port = await listenServer(server);
     const clientSocket = await createTestWebsocketClient(port);
-    const client = clientBuilder(clientSocket);
+    const client = buildClient(clientSocket);
 
     const eventPromise = new Promise<string>((accept) => {
       client.onEvent((foo) => {

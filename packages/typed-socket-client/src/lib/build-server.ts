@@ -27,84 +27,101 @@ import type {
  *
  * @public
  */
-export const buildServer = <
-  TData,
-  TEmitter,
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  TCommandMap extends Record<string, (...args: any[]) => any>,
-  TEventForwarderMap extends Record<
-    string,
+
+export const getTypedGenerator =
+  <TData, TEmitter>() =>
+  <
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (emitter: any, emit: (arg: any) => void) => any
-  >,
->({
-  commands,
-  cors,
-  eventForwarders,
-  logger,
-  data,
-  emitter,
-}: ServerProps<TData, TEmitter, TCommandMap, TEventForwarderMap>): {
-  server: NodeServer;
-  clientBuilder: (
-    socket: Socket,
-  ) => CommandClientHandlers<TCommandMap> &
-    EventForwarderClientHandlers<TEventForwarderMap>;
-} => {
-  logger.info(`Creating websocket server`);
-  const server = createServer((_request, response) => {
-    response.writeHead(200, { 'content-type': 'text/plain' });
-    response.end('Websocket server is running!');
-  });
-
-  const commandHandlers = commands ? makeCommandHandlers(commands) : undefined;
-  const eventForwarderHandlers = eventForwarders
-    ? makeEventForwarders(eventForwarders)
-    : undefined;
-
-  const io = new Server(server, {
-    cors: {
-      origin: cors.origin,
-      methods: cors.methods,
-    },
-  });
-
-  if (commandHandlers) {
-    Object.values(commandHandlers).forEach((value) =>
-      value.backend(io, data, logger),
-    );
-  }
-
-  if (eventForwarderHandlers) {
-    Object.values(eventForwarderHandlers).forEach((value) =>
-      value.backend(io, emitter),
-    );
-  }
-
-  const clientBuilder = (socket: Socket) => {
-    const commandClient = commandHandlers
-      ? Object.fromEntries(
-          Object.entries(commandHandlers).map(([key, value]) => [
-            key,
-            value.client(socket),
-          ]),
-        )
-      : {};
-    const eventForwarderClient = eventForwarderHandlers
-      ? Object.fromEntries(
-          Object.entries(eventForwarderHandlers).map(([key, value]) => [
-            key,
-            value.client(socket),
-          ]),
-        )
-      : {};
-
-    return {
-      ...commandClient,
-      ...eventForwarderClient,
-    } as CommandClientHandlers<TCommandMap> &
+    TCommandMap extends Record<string, (...args: any[]) => any>,
+    TEventForwarderMap extends Record<
+      string,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (emitter: any, emit: (arg: any) => void) => any
+    >,
+  >({
+    eventForwarders,
+    commands,
+  }: {
+    commands: TCommandMap;
+    eventForwarders: TEventForwarderMap;
+  }): {
+    buildServer: (
+      props: ServerProps<TData, TEmitter, TCommandMap, TEventForwarderMap>,
+    ) => NodeServer;
+    buildClient: (
+      socket?: Socket,
+    ) => CommandClientHandlers<TCommandMap> &
       EventForwarderClientHandlers<TEventForwarderMap>;
-  };
+  } => {
+    const commandHandlers = commands
+      ? makeCommandHandlers(commands)
+      : undefined;
+    const eventForwarderHandlers = eventForwarders
+      ? makeEventForwarders(eventForwarders)
+      : undefined;
 
-  return { server, clientBuilder };
-};
+    const buildServer = ({
+      cors,
+      logger,
+      data,
+      emitter,
+    }: ServerProps<
+      TData,
+      TEmitter,
+      TCommandMap,
+      TEventForwarderMap
+    >): NodeServer => {
+      logger.info(`Creating websocket server`);
+      const server = createServer((_request, response) => {
+        response.writeHead(200, { 'content-type': 'text/plain' });
+        response.end('Websocket server is running!');
+      });
+
+      const io = new Server(server, {
+        cors: {
+          origin: cors.origin,
+          methods: cors.methods,
+        },
+      });
+
+      if (commandHandlers) {
+        Object.values(commandHandlers).forEach((value) =>
+          value.backend(io, data, logger),
+        );
+      }
+
+      if (eventForwarderHandlers) {
+        Object.values(eventForwarderHandlers).forEach((value) =>
+          value.backend(io, emitter),
+        );
+      }
+      return server;
+    };
+
+    const buildClient = (socket?: Socket) => {
+      const commandClient = commandHandlers
+        ? Object.fromEntries(
+            Object.entries(commandHandlers).map(([key, value]) => [
+              key,
+              value.client(socket),
+            ]),
+          )
+        : {};
+      const eventForwarderClient = eventForwarderHandlers
+        ? Object.fromEntries(
+            Object.entries(eventForwarderHandlers).map(([key, value]) => [
+              key,
+              value.client(socket),
+            ]),
+          )
+        : {};
+
+      return {
+        ...commandClient,
+        ...eventForwarderClient,
+      } as CommandClientHandlers<TCommandMap> &
+        EventForwarderClientHandlers<TEventForwarderMap>;
+    };
+
+    return { buildServer, buildClient };
+  };

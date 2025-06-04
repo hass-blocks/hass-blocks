@@ -1,1 +1,1 @@
-export { buildServer } from './build-server.ts';
+export { getTypedGenerator } from './build-server.ts';

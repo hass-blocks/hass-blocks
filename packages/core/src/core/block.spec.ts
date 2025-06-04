@@ -23,8 +23,11 @@ describe('block.toJson', () => {
 
     const foo = new Foo();
 
+    console.log(foo);
+
     expect(foo.toJson()).toEqual({
       type: 'foo-type',
+      children: [],
       id: 'foo-id',
       name: 'test-block',
     });

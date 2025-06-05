@@ -1,6 +1,7 @@
 import { IBlocksNode } from '@hass-blocks/core';
 import { BlocksContext } from 'app/providers/blocks.tsx';
 import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const Automations = () => {
   const client = useContext(BlocksContext);
@@ -18,7 +19,9 @@ const Automations = () => {
       <h1>Automations</h1>
       <ul>
         {automations.map((automation) => (
-          <li key={automation.id}>{automation.name}</li>
+          <li key={automation.id}>
+            <Link to={{ pathname: automation.id }}>{automation.name}</Link>
+          </li>
         ))}
       </ul>
     </>

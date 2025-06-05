@@ -5,27 +5,6 @@ import commonjs from 'vite-plugin-commonjs';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
-import { nodePolyfills } from 'vite-plugin-node-polyfills';
-
-function remixBrowserPolyfill(alias: Record<string, string>) {
-  return {
-    name: 'remix-browser-polyfill',
-    enforce: 'pre',
-    async resolveId(source, importer, options) {
-      if (options.ssr || importer?.endsWith('index.html')) return null;
-      if (source in alias) {
-        const resolution = await this.resolve(alias[source]!, importer, {
-          skipSelf: true,
-        });
-        if (!resolution) {
-          throw new Error(`Could not resolve ${alias[source]} module`);
-        }
-        return resolution.id;
-      }
-      return null;
-    },
-  } satisfies Plugin;
-}
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -43,12 +22,7 @@ export default defineConfig(() => ({
     nxViteTsPaths(),
     tsconfigPaths(),
     nxCopyAssetsPlugin(['*.md']),
-    remixBrowserPolyfill({
-      path: 'http-browserify',
-    }),
-    remixBrowserPolyfill({
-      path: 'buffer-browserify',
-    }),
+    commonjs(),
   ],
   // Uncomment this if you are using workers.
   // worker: {

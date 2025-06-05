@@ -7,12 +7,19 @@ import {
   type MetaFunction,
   type LinksFunction,
 } from 'react-router-dom';
+import { Provider } from '@components';
 
 import './global.css';
 
 import { Buffer } from 'buffer';
 import { AppNav } from '@components';
 import { BlocksProvider } from './providers/blocks.tsx';
+import { Theme } from '@chakra-ui/react';
+
+if (typeof globalThis.self === 'undefined') {
+  // define it so the UMD wrapper sees it
+  globalThis.self = globalThis;
+}
 
 globalThis.Buffer = Buffer;
 
@@ -45,12 +52,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <BlocksProvider>
-          <AppNav />
-          {children}
-        </BlocksProvider>
-        <ScrollRestoration />
-        <Scripts />
+        <Provider>
+          <Theme appearance="light">
+            <BlocksProvider>
+              <AppNav />
+              {children}
+            </BlocksProvider>
+            <ScrollRestoration />
+            <Scripts />
+          </Theme>
+        </Provider>
       </body>
     </html>
   );

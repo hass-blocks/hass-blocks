@@ -8,10 +8,12 @@
     "baseUrl": ".",
     "types": ["vite/client", "vitest", "@react-router/node"],
     "paths": {
+      "@lib": ["./app/lib/index.ts"],
       "@components": ["./app/components/index.ts"],
       "@providers": ["./app/providers/index.ts"]
     },
-    "moduleResolution": "nodenext"
+    "module": "ESNext",
+    "moduleResolution": "Bundler"
   },
   "files": [],
   "include": [],

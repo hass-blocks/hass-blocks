@@ -26,6 +26,9 @@
     },
     {
       "path": "../../packages/blocks"
+    },
+    {
+      "path": "../../packages/websocket-plugin"
     }
   ],
   "exclude": [

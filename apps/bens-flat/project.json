@@ -12,6 +12,13 @@
         "projectFolder": "packages/core"
       }
     },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "apps/bens-flat",
+        "commands": ["vite-node src/run.ts"]
+      }
+    },
     "build": {
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],

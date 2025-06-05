@@ -1,5 +1,5 @@
 import { handlers } from './handlers.ts';
-import { useSocket } from './use-socket.ts';
+import { ConnectionStatus, useSocket } from './use-socket.ts';
 import { getClientBuilder } from '@hass-blocks/typed-socket-client/client';
 
 /**
@@ -13,6 +13,11 @@ export const useBlocks = (url: string, port = 80) => {
   const buildClient = getClientBuilder(handlers);
 
   const client = buildClient(socket);
+
+  if (connectionStatus === ConnectionStatus.NotConnected) {
+    return { errors, connectionStatus };
+  }
+  console.log({ client, connectionStatus });
 
   return {
     connectionStatus,

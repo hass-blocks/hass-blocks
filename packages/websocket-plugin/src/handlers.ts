@@ -7,6 +7,11 @@ const initialiseHandlers = initialiseTypes<IFullBlocksClient, IEventBus>();
 
 export const handlers = initialiseHandlers({
   commands: {
+    getAutomationById: (client: IFullBlocksClient, id: string) => {
+      const automations = client.getAutomations();
+      const automation = automations.find((item) => item.id === id);
+      return automation?.toJson();
+    },
     getAutomations: (client: IFullBlocksClient) => {
       const automations = client.getAutomations();
       return automations.map((automation) => automation.toJson());

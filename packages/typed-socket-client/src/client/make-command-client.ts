@@ -6,9 +6,16 @@ export const makeCommandClient =
   <TTransmittedData, TArguments extends unknown[]>(eventString: string) =>
   (socket?: Socket) =>
   async (...args: TArguments) => {
-    if (!socket || !socket.connected) {
-      throw new BlocksWebsocketError('Socket is not connected');
+    if (!socket) {
+      throw new BlocksWebsocketError('A valid socket wasnt provided');
     }
+
+    if (socket && !socket.connected) {
+      await new Promise<void>((accept) =>
+        socket.once('connect', () => accept()),
+      );
+    }
+
     const responsePromise = new Promise<TTransmittedData>((accept) => {
       socket.once(`${eventString}-response`, (event: TTransmittedData) => {
         accept(event);

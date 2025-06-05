@@ -26,6 +26,12 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./client": {
+      "development": "./src/client.ts",
+      "import": "./dist/client.js",
+      "types": "./dist/public.d.ts",
+      "default": "./dist/client.jss"
     }
   },
   "bugs": {

@@ -8,6 +8,7 @@ export enum ConnectionStatus {
 
 export const useSocket = (
   url: string,
+  port = 80,
 ): {
   connectionStatus: ConnectionStatus;
   errors: Error[];
@@ -22,7 +23,7 @@ export const useSocket = (
 
   useEffect(() => {
     if (!socket) {
-      setSocket(io(`ws://${url}`));
+      setSocket(io(`ws://${url}:${port}`));
       return;
     }
 

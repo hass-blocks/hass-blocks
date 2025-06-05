@@ -1,11 +1,11 @@
 import type { IEventBus } from '@hass-blocks/core';
 import type { ICallServiceParams, IFullBlocksClient } from '@hass-blocks/core';
 import type { HassBlocksEvent } from '@hass-blocks/core';
-import { getTypedGenerator } from '@hass-blocks/typed-socket-client';
+import { initialiseTypes } from '@hass-blocks/typed-socket-client';
 
-const generator = getTypedGenerator<IFullBlocksClient, IEventBus>();
+const initialiseHandlers = initialiseTypes<IFullBlocksClient, IEventBus>();
 
-export const { buildServer, buildClient } = generator({
+export const handlers = initialiseHandlers({
   commands: {
     getAutomations: (client: IFullBlocksClient) => {
       const automations = client.getAutomations();

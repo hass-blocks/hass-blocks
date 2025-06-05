@@ -36,6 +36,10 @@ export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
     };
   }
 
+  public toString() {
+    return this.name;
+  }
+
   public async initialise(
     hass: IFullBlocksClient,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

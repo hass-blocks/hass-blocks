@@ -1,19 +1,20 @@
 import { NavLink } from 'react-router-dom';
-import styles from './app-nav.module.css';
-import { Box, Flex } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 
 export function AppNav() {
   return (
-    <Box>
-      <Flex minH="60px">
-        <nav className={styles['nav']}>
+    <Box px={4}>
+      <Flex minH="60px" h={16} as="nav" alignItems={'center'} gap="3rem">
+        <Text textStyle={'2xl'}>
           <NavLink to="/" end>
             Home
           </NavLink>
+        </Text>
+        <Text textStyle={'2xl'}>
           <NavLink to="/automations" end>
             Automations
           </NavLink>
-        </nav>
+        </Text>
       </Flex>
     </Box>
   );

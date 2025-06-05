@@ -9,19 +9,9 @@ import {
 } from 'react-router-dom';
 import { Provider } from '@components';
 
-import './global.css';
-
-import { Buffer } from 'buffer';
-import { AppNav } from '@components';
+import { AppLayout } from '@components';
 import { BlocksProvider } from './providers/blocks.tsx';
 import { Theme } from '@chakra-ui/react';
-
-if (typeof globalThis.self === 'undefined') {
-  // define it so the UMD wrapper sees it
-  globalThis.self = globalThis;
-}
-
-globalThis.Buffer = Buffer;
 
 export const meta: MetaFunction = () => [
   {
@@ -54,10 +44,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Provider>
           <Theme appearance="light">
-            <BlocksProvider>
-              <AppNav />
-              {children}
-            </BlocksProvider>
+            <AppLayout>
+              <BlocksProvider>{children}</BlocksProvider>
+            </AppLayout>
             <ScrollRestoration />
             <Scripts />
           </Theme>

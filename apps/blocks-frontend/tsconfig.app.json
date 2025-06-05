@@ -35,6 +35,9 @@
   "references": [
     {
       "path": "../../packages/websocket-plugin"
+    },
+    {
+      "path": "../../packages/core"
     }
   ],
   "compilerOptions": {

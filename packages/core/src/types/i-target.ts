@@ -20,4 +20,9 @@ export interface ITarget {
    * @param mqtt - an initialised connection to the Home Assistant MQTT broker
    */
   initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
+
+  /**
+   * Render a string version of this target
+   */
+  toString(): string;
 }

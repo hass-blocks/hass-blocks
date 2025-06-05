@@ -140,22 +140,39 @@ export class BlocksClient implements IFullBlocksClient {
     }
 
     await mapAsync(automation, async (automation) => {
-      this._automations.push(automation);
-      const { trigger } = automation;
+      try {
+        this._automations.push(automation);
+        const { trigger } = automation;
 
-      await automation.initialise(this, this.mqtt);
+        await automation.initialise(this, this.mqtt);
 
-      const triggers = Array.isArray(trigger) ? trigger : [trigger];
+        const triggers = Array.isArray(trigger) ? trigger : [trigger];
 
-      await mapAsync(
-        triggers,
-        async (item) => await item?.attachToClient(this, automation, this.bus),
-      );
+        await mapAsync(
+          triggers,
+          async (item) =>
+            await item?.attachToClient(this, automation, this.bus),
+        );
 
-      this.bus.emit('automation-registered', {
-        name: automation.name,
-        block: automation.toJson(),
-      });
+        this.bus.emit('automation-registered', {
+          name: automation.name,
+          block: automation.toJson(),
+        });
+        this.bus.emit('log-event', {
+          message: `Successfully registered automation: ${automation.name}`,
+          module: 'core',
+          level: 'info',
+        });
+      } catch (e) {
+        if (!(e instanceof Error)) {
+          throw e;
+        }
+        this.bus.emit('log-event', {
+          message: `Failed to register automation ${automation.name}: ${e}`,
+          module: 'core',
+          level: 'error',
+        });
+      }
     });
   }
 

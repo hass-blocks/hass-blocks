@@ -1,0 +1,9 @@
+{
+  "name": "blocks-frontend",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/blocks-frontend/src",
+  "projectType": "application",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project blocks-frontend --web",
+  "targets": {}
+}

@@ -1,5 +1,5 @@
 import type { Socket } from 'socket.io-client';
-import { BlocksWebsocketError } from './blocks-websocket-error.ts';
+import { BlocksWebsocketError } from '@errors';
 
 export const makeEventForwarderClient =
   <TTransmittedData>(eventString: string) =>

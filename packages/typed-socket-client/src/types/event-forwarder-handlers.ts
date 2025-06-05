@@ -3,10 +3,11 @@ import type { ForwarderHandler } from './forwarder-handler.ts';
 import type { GetEmitData } from './get-emit-data.ts';
 
 export type EventForwarderHandlers<
+  TEmitter,
   TMap extends Record<
     string,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (emitter: unknown, emit: (arg: any) => void) => any
+    (emitter: TEmitter, emit: (arg: any) => void) => any
   >,
 > = {
   [K in keyof TMap]: {

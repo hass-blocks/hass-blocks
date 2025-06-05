@@ -3,9 +3,13 @@ import type { GetRest } from './get-rest.ts';
 
 export type CommandClientHandlers<
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  TMap extends Record<string, (...argss: any[]) => any>,
+  TData,
+  TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>,
 > = {
-  [K in keyof TMap]: ReturnType<
-    CommandClientHandler<ReturnType<TMap[K]>, GetRest<Parameters<TMap[K]>>>
+  [K in keyof TCommandMap]: ReturnType<
+    CommandClientHandler<
+      ReturnType<TCommandMap[K]>,
+      GetRest<Parameters<TCommandMap[K]>>
+    >
   >;
 };

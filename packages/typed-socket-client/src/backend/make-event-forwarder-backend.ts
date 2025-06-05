@@ -1,6 +1,5 @@
 import type { Server } from 'socket.io';
-import { SOCKET_CONNECTION_STRING } from './constants.ts';
-import { stringifyCircularJSON } from './stringify-circular-json.ts';
+import { SOCKET_CONNECTION_STRING, stringifyCircularJSON } from '@core';
 
 export const makeEventForwarderBackend =
   <TEmitter, TTransmittedData>(

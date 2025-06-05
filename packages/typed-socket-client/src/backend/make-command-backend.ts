@@ -1,7 +1,6 @@
 import type { Server } from 'socket.io';
 import type { ILogger } from '@types';
-import { SOCKET_CONNECTION_STRING } from './constants.ts';
-import { stringifyCircularJSON } from './stringify-circular-json.ts';
+import { SOCKET_CONNECTION_STRING, stringifyCircularJSON } from '@core';
 
 export const makeCommandBackend =
   <TArguments extends unknown[], TServerData, TTransmittedData>(

@@ -1,6 +1,5 @@
-export { initialiseTypes } from '@core';
+export { getClientBuilder } from '@client';
 export {
-  type ServerProps,
   type CommandClientHandlers,
   type EventForwarderClientHandlers,
 } from '@types';

@@ -2,7 +2,11 @@
   "jsc": {
     "baseUrl": "./",
     "paths": {
-      "@lib": ["./src/lib/index.ts"]
+      "@backend": ["./src/backend/index.ts"],
+      "@client": ["./src/client/index.ts"],
+      "@errors": ["./src/errors/index.ts"],
+      "@core": ["./src/core/index.ts"],
+      "@types": ["./src/types/index.ts"]
     },
     "target": "es2017",
     "parser": {

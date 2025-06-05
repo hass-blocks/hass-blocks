@@ -19,6 +19,8 @@ export default [
       '**/vite.config.*.timestamp*',
       '**/vitest.config.*.timestamp*',
       '**/.astro/**/*',
+      '**/build',
+      '**/.react-router',
     ],
   },
   {

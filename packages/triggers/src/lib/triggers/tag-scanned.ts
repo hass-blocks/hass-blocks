@@ -7,7 +7,14 @@ import { removeUndefined } from '@utils';
  * @public
  */
 export interface TagScannedProps {
+  /**
+   * Will fire when a tag of this id fires
+   */
   tag_id: string[];
+
+  /**
+   * Only fire if the card is scanned by a specific device
+   */
   device_id?: string[];
 }
 

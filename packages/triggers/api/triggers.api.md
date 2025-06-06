@@ -11,6 +11,9 @@ import { ITrigger } from '@hass-blocks/core';
 export type AboveBelowOptions = NumericStateAbove | NumericStateBelow | (NumericStateAbove & NumericStateBelow);
 
 // @public
+export const atTime: (props: TimeTriggerProps | TimeTriggerProps[]) => void;
+
+// @public
 export interface Context {
     id?: string | string[];
     parent_id?: string | string[];
@@ -97,6 +100,54 @@ export const stateTurnsOff: (entity: IEntity) => ITrigger;
 
 // @public
 export const stateTurnsOn: (entity: IEntity) => ITrigger;
+
+// @public
+export interface SunriseProps {
+    offset: TimeHHMMSS | number;
+}
+
+// @public
+export const sunRises: (props?: SunriseProps) => ITrigger;
+
+// @public
+export interface SunsetProps {
+    offset: TimeHHMMSS | number;
+}
+
+// @public
+export const sunSets: (props?: SunsetProps) => ITrigger;
+
+// @public
+export const tagScanned: (props: TagScannedProps) => ITrigger;
+
+// @public
+export interface TagScannedProps {
+    device_id?: string[];
+    tag_id: string[];
+}
+
+// @public
+export type TimeHHMMSS = `-${TimeHHMMSSWithoutMinus}` | TimeHHMMSSWithoutMinus;
+
+// @public
+export type TimeHHMMSSWithoutMinus = `${TimeHHMMWithoutMinus}:${string}`;
+
+// @public
+export type TimeHHMMWithoutMinus = `${string}:${string}`;
+
+// @public
+export type TimeTriggerProps = TimeTriggerPropsWithString | TimeTriggerPropsWithDateTime;
+
+// @public
+export interface TimeTriggerPropsWithDateTime {
+    at: IEntity<`sensor.${string}`>;
+    offset?: TimeHHMMSS;
+}
+
+// @public
+export interface TimeTriggerPropsWithString {
+    at: TimeHHMMWithoutMinus | TimeHHMMWithoutMinus;
+}
 
 // (No @packageDocumentation comment for this package)
 

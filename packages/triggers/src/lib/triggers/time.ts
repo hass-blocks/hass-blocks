@@ -44,7 +44,6 @@ export type TimeTriggerProps =
   | TimeTriggerPropsWithDateTime;
 
 /**
- * @returns -
  * Fires at the same time every day. See {@link https://www.home-assistant.io/docs/automation/trigger/#time-trigger}
  *
  * @param props - configuration for the time trigger

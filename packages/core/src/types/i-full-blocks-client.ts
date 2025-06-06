@@ -39,6 +39,7 @@ export interface IFullBlocksClient extends IHass {
   ): Promise<void>;
 
   /**
+   * Register a callback that fires when a particular entity changes state
    *
    * @param id - The id to listen for
    * @param callback - Callback that will fire when the state changess

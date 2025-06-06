@@ -21,6 +21,7 @@ export {
 } from '@targets';
 
 export type {
+  ITriggerable,
   IDevice,
   IBlocksConnection,
   ILogger,
@@ -60,6 +61,10 @@ export type {
   LoadPluginsFinished,
   LoadPluginsStart,
   StateChanged,
+  ISerialisable,
+  IMutableNode,
+  IInitialisable,
+  IAddable,
   HassContext,
   BlockFailed,
   IFullBlocksClient,

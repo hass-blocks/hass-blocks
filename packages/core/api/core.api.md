@@ -39,23 +39,23 @@ export interface BaseHassBlocksEvent<T extends string> {
 }
 
 // @public
-export abstract class Block<I = void, O = void> implements IBlock<I, O> {
+export abstract class Block<I = void, O = void> implements IBlock<I, O>, IMutableNode {
     constructor(
     id: string, targets: ITarget[] | undefined,
-    children?: IBlocksNode[] | undefined, _trigger?: (ITrigger | ITrigger[]) | undefined);
-    readonly children?: IBlocksNode[] | undefined;
+    _trigger?: (ITrigger | ITrigger[]) | undefined);
+    addChild(...node: IMutableNode[]): void;
+    addNext(node?: IMutableNode): void;
+    readonly children: IMutableNode[];
+    protected hasTrigger(): boolean;
     readonly id: string;
     initialise(client: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
+    linkNodes(...nodes: IMutableNode[]): void;
     abstract readonly name: string;
     abstract run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
-    toJson(): {
-        type: string;
-        id: string;
-        name: string;
-    };
+    toJson(): IBlocksNode;
     get trigger(): ITrigger | ITrigger[];
     set trigger(trigger: ITrigger | ITrigger[]);
-    abstract readonly typeString: string;
+    abstract readonly type: string;
 }
 
 // @public
@@ -237,6 +237,12 @@ export interface IActionConfig<TInput = void, TOutput = void> extends IBaseBlock
 }
 
 // @public
+export interface IAddable {
+    addChild(...node: IMutableNode[]): void;
+    addNext(...node: IMutableNode[]): void;
+}
+
+// @public
 export interface IArea<I extends string = string> extends ITarget {
     targetIds: {
         area_id: I[];
@@ -270,12 +276,9 @@ export interface IBaseBlockConfig {
 
 // @public
 export interface IBlock<I = void, O = void> extends IBlocksNode {
-    id: string;
-    name: string;
     run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
-    toJson(): IBlocksNode;
     trigger: ITrigger | ITrigger[];
-    typeString: string;
+    type: string;
 }
 
 // @public
@@ -292,10 +295,11 @@ export interface IBlocksConnection {
 
 // @public
 export interface IBlocksNode {
-    children?: IBlocksNode[] | undefined;
+    children: IBlocksNode[];
     id: string;
-    initialise(client: IHass, mqtt: IMQTTConnection): Promise<void>;
     name: string;
+    params?: Record<string, unknown>;
+    type: string;
 }
 
 // @public
@@ -306,7 +310,7 @@ export interface IBlocksPlugin {
 
 // @public
 export interface IBlocksRegistry {
-    registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
+    registerAutomation(...automation: (IMutableNode & ITriggerable)[]): Promise<void>;
 }
 
 // @public
@@ -336,6 +340,7 @@ export interface IDoWhileConfig<TInput = void, TOutput = void, TBlockOutput = vo
 
 // @public
 export interface IEntity<I extends `${string}.${string}` = `${string}.${string}`> extends ITarget {
+    currentState: HassEntity;
     targetIds: {
         entity_id: I[];
     };
@@ -358,9 +363,10 @@ export interface IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThen
 
 // @public
 export interface IFullBlocksClient extends IHass {
-    getAutomations(): IBlock<unknown, unknown>[];
+    getAutomations(): IBlocksNode[];
     loadStates(): Promise<void>;
-    registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
+    onStateChanged(id: string, callback: (event: Event_2) => void): Promise<void>;
+    registerAutomation(...automation: (IMutableNode & ITriggerable)[]): Promise<void>;
     registerTrigger(trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 
@@ -369,8 +375,16 @@ export interface IHass {
     callService(params: Omit<ICallServiceParams, 'id' | 'type'>): Promise<State[]>;
     getAreas(): Promise<HassArea[]>;
     getEntity(id: string): HassEntity;
+    getEntity(entity: IEntity<`${string}.${string}`>): HassEntity;
     getServices(): Promise<Record<string, Record<string, Service>>>;
     getState(id: string): string;
+    getState(entity: IEntity<`${string}.${string}>`>): string;
+    getStates(): Map<string, HassEntity>;
+}
+
+// @public
+export interface IInitialisable {
+    initialise(client: IHass, mqtt: IMQTTConnection): Promise<void>;
 }
 
 // @public
@@ -390,6 +404,9 @@ export interface ILoopConfig<TInput = void, TOutput = void, TBlockOutput = void>
 }
 
 // @public
+export type IMutableNode = IBlocksNode & ISerialisable & IInitialisable & IAddable;
+
+// @public
 export const initialiseBlocks: (args?: IBlocksConfig) => Promise<IBlocksConnection>;
 
 // @public
@@ -400,6 +417,7 @@ export interface IPluginArgs {
     client: IFullBlocksClient;
     config: HassConfig;
     events: IEventBus;
+    logger: ILogger;
 }
 
 // @public
@@ -412,9 +430,15 @@ export interface IRunContext<I> {
 }
 
 // @public
+export interface ISerialisable {
+    toJson(): IBlocksNode;
+}
+
+// @public
 export interface ITarget {
     initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
     targetIds: ITargetIds;
+    toString(): string;
 }
 
 // @public
@@ -425,8 +449,13 @@ export interface ITargetIds {
 }
 
 // @public
-export interface ITrigger extends IBlocksNode {
-    attachToClient(client: IFullBlocksClient, block: IBlock<unknown, unknown>, events: IEventBus): Promise<void>;
+export interface ITrigger extends IMutableNode {
+    attachToClient(client: IFullBlocksClient, block: IMutableNode & ITriggerable, events: IEventBus): Promise<void>;
+}
+
+// @public
+export interface ITriggerable {
+    trigger: ITrigger | ITrigger[];
 }
 
 // @public
@@ -553,14 +582,6 @@ export type SequenceCompatibilityError<TInput, TOutput, TSequence extends readon
 
 // @public
 export type SequenceValidatorRecursive<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends readonly Block<unknown, unknown>[] = []> = TSequence extends [] ? TBefore : RecurseSequence<CheckScenarios<TInput, TOutput, TSequence, TBefore>>;
-
-// @public
-export interface IBlocksNode {
-    id: string;
-    name: string;
-    params?: Record<string, unknown>;
-    type: string;
-}
 
 // @public
 export const serviceCall: <P>(serviceConfig: {

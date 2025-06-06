@@ -33,7 +33,7 @@ describe('executor', () => {
     const actionOne = mock<Block<string, string>>({
       name: 'foo',
       type: 'action',
-      toJson: () => ({ type: 'action', id: 'foo', name: 'foo' }),
+      toJson: () => ({ children: [], type: 'action', id: 'foo', name: 'foo' }),
       run: async ({ runner }) => {
         const testBlockRunner = runner(new MyTestBlock('test-block-id', []));
 
@@ -79,17 +79,17 @@ describe('executor', () => {
     const actionOne = mock<Block<string, string>>({
       name: 'foo',
       type: 'action',
-      toJson: () => ({ type: 'action', id: 'foo', name: 'foo' }),
+      toJson: () => ({ children: [], type: 'action', id: 'foo', name: 'foo' }),
     });
     const actionTwo = mock<Block<string, string>>({
       name: 'bar',
       type: 'action',
-      toJson: () => ({ type: 'action', id: 'bar', name: 'bar' }),
+      toJson: () => ({ children: [], type: 'action', id: 'bar', name: 'bar' }),
     });
     const actionThree = mock<Block<string, string>>({
       name: 'baz',
       type: 'action',
-      toJson: () => ({ type: 'action', id: 'baz', name: 'baz' }),
+      toJson: () => ({ children: [], type: 'action', id: 'baz', name: 'baz' }),
     });
 
     const hass = mock<IHass>();

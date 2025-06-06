@@ -16,5 +16,9 @@ export interface IEntity<
     entity_id: I[];
   };
 
+  /**
+   * If this entity has been initialised with a registered automation, this will return the current state
+   * of the entity within Home Assistant
+   */
   currentState: HassEntity;
 }

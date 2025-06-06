@@ -22,7 +22,11 @@ import type { IRunContext } from '@types';
 export abstract class Block<I = void, O = void>
   implements IBlock<I, O>, IMutableNode
 {
+  /**
+   * Child nodes
+   */
   public readonly children: IMutableNode[] = [];
+
   public constructor(
     /**
      * String to identify this particular instance of a block. Must be unique
@@ -35,10 +39,18 @@ export abstract class Block<I = void, O = void>
     private _trigger?: ITrigger | ITrigger[],
   ) {}
 
+  /**
+   * Add a child node
+   *
+   * @param node - node to be added
+   */
   public addChild(...node: IMutableNode[]) {
     this.children.push(...node);
   }
 
+  /**
+   * Returns true if this node has a trigger attached
+   */
   protected hasTrigger(): boolean {
     return Array.isArray(this._trigger)
       ? this._trigger.length > 0
@@ -57,6 +69,14 @@ export abstract class Block<I = void, O = void>
     };
   }
 
+  /**
+   * Adds the next sequence node. The default implementation
+   * simply adds the node as a child of this node, however
+   * subclasses can override this to ensure that any children they need
+   * to connect up in between are connected
+   *
+   * @param node - node to be added
+   */
   public addNext(node?: IMutableNode): void {
     if (node) {
       this.addChild(node);
@@ -104,6 +124,11 @@ export abstract class Block<I = void, O = void>
     }
   }
 
+  /**
+   * Iterate through a sequence of nodes and connect them together
+   *
+   * @param nodes - the nodes to link
+   */
   public linkNodes(...nodes: IMutableNode[]) {
     nodes.forEach((item, index, array) => {
       const lastItem = array[index + 1];

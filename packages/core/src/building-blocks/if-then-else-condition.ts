@@ -1,6 +1,11 @@
 import { Block, BlockExecutionMode, Executor } from '@core';
 import { AssertionError } from '@errors';
-import type { BlockOutput, IBaseBlockConfig, IRunContext } from '@types';
+import type {
+  BlockOutput,
+  IBaseBlockConfig,
+  IMutableNode,
+  IRunContext,
+} from '@types';
 import { md5 } from '@utils';
 
 /**
@@ -59,12 +64,16 @@ export class IfThenElseCondition<
       TElseOutput
     >,
   ) {
-    super(config.id ?? md5(config.name), config.targets, [
-      config.assertion,
-      config.then,
-      config.else,
-    ]);
+    super(config.id ?? md5(config.name), config.targets);
     this.name = this.config.name;
+  }
+
+  public override addNext(node?: IMutableNode): void {
+    this.addChild(this.config.assertion);
+    this.config.assertion.addNext(this.config.then);
+    this.config.assertion.addNext(this.config.else);
+    this.config.then.addNext(node);
+    this.config.else.addNext(node);
   }
 
   public override async run({

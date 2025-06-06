@@ -8,7 +8,9 @@ export type {
   HassEntityBase,
 } from './hass-events.ts';
 
+export type { IMutableNode } from './i-mutable-node.ts';
 export type { ITargetIds } from './i-target-ids.ts';
+export type { ITriggerable } from './i-triggerable.ts';
 export type { ITarget } from './i-target.ts';
 export type { IBlocksNode } from './i-blocks-node.ts';
 export type { IEntity } from './i-entity.ts';
@@ -18,8 +20,10 @@ export type { IFullBlocksClient } from './i-full-blocks-client.ts';
 export type { IBlocksRegistry } from './i-blocks-registry.ts';
 export type { ILogger } from './i-logger.ts';
 export type { IBlocksPlugin, IPluginArgs } from './i-blocks-plugin.ts';
+export type { ISerialisable } from './i-serialiseble.ts';
 export type { IRunContext } from './i-run-context.ts';
 export type { IBlockRunner } from './i-block-runner.ts';
+export type { IAddable } from './i-addable.ts';
 
 export type {
   LifeCycleEvent,

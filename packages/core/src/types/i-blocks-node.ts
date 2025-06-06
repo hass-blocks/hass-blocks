@@ -17,7 +17,7 @@ export interface IBlocksNode {
   /**
    * Nodes that descend from this one on the tree
    */
-  children?: IBlocksNode[] | undefined;
+  children: IBlocksNode[];
 
   /**
    * String that identifies the kind of block

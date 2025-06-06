@@ -1,4 +1,5 @@
-import type { IBlock } from './i-block.ts';
+import type { IMutableNode } from './i-mutable-node.ts';
+import type { ITriggerable } from './i-triggerable.ts';
 
 /**
  * @public
@@ -11,5 +12,7 @@ export interface IBlocksRegistry {
    *
    * @param automation - The automation to be registered
    */
-  registerAutomation(...automation: IBlock<unknown, unknown>[]): Promise<void>;
+  registerAutomation(
+    ...automation: (IMutableNode & ITriggerable)[]
+  ): Promise<void>;
 }

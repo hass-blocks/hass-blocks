@@ -3,10 +3,16 @@ import { v4 } from 'uuid';
 import { Executor } from './executor.ts';
 import type { Block } from './block.ts';
 
-import type { IEventBus, IFullBlocksClient, ITrigger, ITarget } from '@types';
+import type {
+  IFullBlocksClient,
+  ITrigger,
+  ITarget,
+  IMutableNode,
+  IBlocksNode,
+  IEventBus,
+} from '@types';
 import { mapAsync, md5 } from '@utils';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
-import type { IBlocksNode } from 'src/types/serialised-block.ts';
 
 /**
  * @public
@@ -36,16 +42,25 @@ export interface ITriggerConfig {
   targets?: ITarget[];
 }
 
-export class Trigger implements ITrigger {
+export class Trigger implements IMutableNode {
   public readonly name: string;
   public readonly id: string;
   public readonly trigger: Record<string, unknown>;
   public readonly type = 'trigger';
+  private _children: IBlocksNode[] = [];
+
+  public addChild(...node: IMutableNode[]): void {
+    this._children.push(...node);
+  }
 
   public constructor(public config: ITriggerConfig) {
     this.name = config.name;
     this.id = config.id ?? md5(this.name);
     this.trigger = config.trigger;
+  }
+
+  public addNext(node: IMutableNode): void {
+    this.addChild(node);
   }
 
   public async initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection) {
@@ -54,8 +69,13 @@ export class Trigger implements ITrigger {
     );
   }
 
+  public get children(): IBlocksNode[] {
+    return this._children;
+  }
+
   public toJson(): IBlocksNode {
     return {
+      children: this.children,
       id: this.id,
       type: this.type,
       name: this.name,

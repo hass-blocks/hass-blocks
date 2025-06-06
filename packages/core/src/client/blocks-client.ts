@@ -10,9 +10,10 @@ import type {
   HassEntity,
   IEventBus,
   ICallServiceParams,
-  IBlock,
   IEntity,
-  IInitialisable,
+  IMutableNode,
+  ITriggerable,
+  IBlocksNode,
 } from '@types';
 import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
 import type { IFullBlocksClient } from '@types';
@@ -30,7 +31,7 @@ export class BlocksClient implements IFullBlocksClient {
   private areas: HassArea[] | undefined;
   private states: Map<string, HassEntity> | undefined;
   private services: Record<string, Record<string, Service>> | undefined;
-  private _automations: (IBlock<unknown, unknown> & IInitialisable)[] = [];
+  private _automations: IMutableNode[] = [];
   private stateChangedCallback: StateChangedCallback | undefined;
 
   public constructor(
@@ -111,7 +112,7 @@ export class BlocksClient implements IFullBlocksClient {
     return this.areas;
   }
 
-  public getAutomations(): IBlock<unknown, unknown>[] {
+  public getAutomations(): IBlocksNode[] {
     return this._automations;
   }
 
@@ -133,7 +134,7 @@ export class BlocksClient implements IFullBlocksClient {
   }
 
   public async registerAutomation(
-    ...automation: (IBlock<unknown, unknown> & IInitialisable)[]
+    ...automation: (IMutableNode & ITriggerable)[]
   ) {
     if (!this.states) {
       await this.loadStates();
@@ -144,9 +145,9 @@ export class BlocksClient implements IFullBlocksClient {
         this._automations.push(automation);
         const { trigger } = automation;
 
-        await automation.initialise(this, this.mqtt);
-
         const triggers = Array.isArray(trigger) ? trigger : [trigger];
+
+        await automation.initialise(this, this.mqtt);
 
         await mapAsync(
           triggers,

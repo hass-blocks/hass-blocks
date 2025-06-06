@@ -5,13 +5,13 @@ import type {
   ITarget,
   ITrigger,
   IBlocksNode,
+  IMutableNode,
 } from '@types';
 
 import { EntityDoesNotExistError, HassBlocksError } from '@errors';
 import { mapAsync } from '@utils';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { IRunContext } from '@types';
-import type { IInitialisable } from 'src/types/i-initialisable.ts';
 
 /**
  * @public
@@ -20,8 +20,9 @@ import type { IInitialisable } from 'src/types/i-initialisable.ts';
  * the framework to be able to execute them
  */
 export abstract class Block<I = void, O = void>
-  implements IBlock<I, O>, IInitialisable
+  implements IBlock<I, O>, IMutableNode
 {
+  public readonly children: IMutableNode[] = [];
   public constructor(
     /**
      * String to identify this particular instance of a block. Must be unique
@@ -31,10 +32,17 @@ export abstract class Block<I = void, O = void>
     /**
      * All child nodes of this block
      */
-    public readonly children: Block<unknown, unknown>[] = [],
     private _trigger?: ITrigger | ITrigger[],
-  ) {
-    this.children = children ?? [];
+  ) {}
+
+  public addChild(...node: IMutableNode[]) {
+    this.children.push(...node);
+  }
+
+  protected hasTrigger(): boolean {
+    return Array.isArray(this._trigger)
+      ? this._trigger.length > 0
+      : Boolean(this._trigger);
   }
 
   /**
@@ -47,6 +55,12 @@ export abstract class Block<I = void, O = void>
       id: this.id,
       name: this.name,
     };
+  }
+
+  public addNext(node?: IMutableNode): void {
+    if (node) {
+      this.addChild(node);
+    }
   }
 
   /**
@@ -88,6 +102,17 @@ export abstract class Block<I = void, O = void>
     } catch (error) {
       EntityDoesNotExistError.RethrowWithNewPath(error, this.name);
     }
+  }
+
+  public linkNodes(...nodes: IMutableNode[]) {
+    nodes.forEach((item, index, array) => {
+      const lastItem = array[index + 1];
+      if (lastItem) {
+        item.addNext(lastItem);
+      } else {
+        item.addNext();
+      }
+    });
   }
 
   /**

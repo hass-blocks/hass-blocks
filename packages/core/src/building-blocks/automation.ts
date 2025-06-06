@@ -8,6 +8,8 @@ import {
   type IBaseBlockConfig,
   type IRunContext,
   ExecutionMode,
+  type IFullBlocksClient,
+  type IMutableNode,
 } from '@types';
 
 import type {
@@ -16,6 +18,7 @@ import type {
   ValidateSequence,
   BlockRetainType,
 } from '@sequence-validator';
+import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -59,22 +62,46 @@ export class Automation<
   public constructor(
     public config: IAutomationConfig<TSequence, TInput, TOutput>,
   ) {
-    super(config.id ?? md5(config.name), config.targets, [
-      ...(Array.isArray(config.then) ? config.then : [config.then]),
-      ...(config.when
-        ? Array.isArray(config.when)
-          ? config.when
-          : [config.when]
-        : []),
-    ]);
+    super(config.id ?? md5(config.name), config.targets, config.when);
     this.name = this.config.name;
-
-    if (config.when) {
-      this.trigger = config.when;
-    }
   }
 
   public override type = 'automation';
+
+  public override addNext(node?: IMutableNode): void {
+    this.linkContainedNodes(node);
+  }
+
+  private linkContainedNodes(nextNode?: IMutableNode) {
+    const trigger = this.hasTrigger()
+      ? Array.isArray(this.trigger)
+        ? this.trigger
+        : [this.trigger]
+      : [];
+    const toLink: IMutableNode[] = [
+      ...trigger,
+      ...(Array.isArray(this.config.then)
+        ? this.config.then
+        : [this.config.then]),
+      ...(nextNode ? [nextNode] : []),
+    ];
+
+    const [first] = toLink;
+
+    if (first) {
+      this.addChild(first);
+    }
+
+    this.linkNodes(...toLink);
+  }
+
+  public override async initialise(
+    client: IFullBlocksClient,
+    mqtt: IMQTTConnection,
+  ): Promise<void> {
+    this.linkContainedNodes();
+    await super.initialise(client, mqtt);
+  }
 
   public override async run({
     hass,

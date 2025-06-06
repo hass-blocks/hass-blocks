@@ -1,14 +1,14 @@
-import type { IBlock } from './i-block.ts';
-import type { IBlocksNode } from './i-blocks-node.ts';
 import type { IEventBus } from './i-event-bus.ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
+import type { IMutableNode } from './i-mutable-node.ts';
+import type { ITriggerable } from './i-triggerable.ts';
 
 /**
  * @public
  *
  * An object representing a Home Assistant trigger
  */
-export interface ITrigger extends IBlocksNode {
+export interface ITrigger extends IMutableNode {
   /**
    * Register the trigger with a Home Assistant client so that it actually fires when
    * the conditions are met
@@ -19,7 +19,7 @@ export interface ITrigger extends IBlocksNode {
    */
   attachToClient(
     client: IFullBlocksClient,
-    block: IBlock<unknown, unknown>,
+    block: IMutableNode & ITriggerable,
     events: IEventBus,
   ): Promise<void>;
 }

@@ -10,11 +10,6 @@ import type { ITrigger } from './i-trigger.ts';
  */
 export interface IBlock<I = void, O = void> extends IBlocksNode {
   /**
-   * A JSON representation of the block. Used for websocket and rest serialisation
-   */
-  toJson(): IBlocksNode;
-
-  /**
    * Triggers that are currently registered with this block
    */
   trigger: ITrigger | ITrigger[];

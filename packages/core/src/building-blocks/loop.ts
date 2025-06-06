@@ -59,10 +59,7 @@ class Loop<TInput = void, TOutput = void, TActionOutput = void> extends Block<
       | ILoopConfig<TInput, TOutput, TActionOutput>
       | IDoWhileConfig<TInput, TOutput, TActionOutput>,
   ) {
-    super(config.id ?? md5(config.name), config.targets, [
-      'then' in config ? config.then : config.do,
-      config.while,
-    ]);
+    super(config.id ?? md5(config.name), config.targets);
     this.name = this.config.name;
   }
 

@@ -1,5 +1,10 @@
 import { BlockExecutionMode, Executor, Block } from '@core';
-import type { BlockOutput, IFullBlocksClient, IRunContext } from '@types';
+import type {
+  BlockOutput,
+  IFullBlocksClient,
+  IMutableNode,
+  IRunContext,
+} from '@types';
 import type { GetSequenceInput, GetSequenceOutput } from '@sequence-validator';
 import { mapAsync, md5 } from '@utils';
 
@@ -22,7 +27,7 @@ class ExecuteConcurrently<
       actions: TCollectionOfBlocks;
     },
   ) {
-    super(config.id ?? md5(config.name), undefined, [...config.actions]);
+    super(config.id ?? md5(config.name), undefined);
     this.name = this.config.name;
   }
 
@@ -32,6 +37,13 @@ class ExecuteConcurrently<
   ) {
     await mapAsync(this.config.actions, async (action) => {
       await action.initialise(client, mqtt);
+    });
+  }
+
+  public override addNext(node?: IMutableNode): void {
+    this.config.actions.forEach((item) => {
+      this.addChild(item);
+      item.addNext(node);
     });
   }
 

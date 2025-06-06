@@ -69,12 +69,7 @@
       "automaticFromRef": true
     },
     "projectsRelationship": "independent",
-    "projects": [
-      "packages/*",
-      "!packages/blocks",
-      "!packages/cli",
-      "!packages/triggers"
-    ],
+    "projects": ["packages/*"],
     "version": {
       "preVersionCommand": "npx nx run-many --targets generate-types",
       "generatorOptions": {

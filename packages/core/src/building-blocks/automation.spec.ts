@@ -10,7 +10,7 @@ import {
 } from '@types';
 import { ExecutionAbortedError } from '@errors';
 
-import type { Action } from './action.ts';
+import { action, type Action } from './action.ts';
 import { Automation } from './automation.ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
@@ -28,26 +28,39 @@ afterEach(() => {
 
 describe('automation.initialise', () => {
   it('calls all of the initialise methods on its children, passing the client through completing silently if none of them reject', async () => {
-    const mockActionOne = mock<Action<string, string>>();
-    const mockActionTwo = mock<Action<string, string>>();
     const hass = mock<IFullBlocksClient>();
     const mqtt = mock<IMQTTConnection>();
 
-    mockActionOne.initialise.mockResolvedValue();
-    mockActionTwo.initialise.mockResolvedValue();
+    const actionOne = action<string, string>({
+      name: 'Action one',
+      callback: ({ input }) => {
+        return input;
+      },
+    });
+
+    const actionOneInitSpy = vi.spyOn(actionOne, 'initialise');
+
+    const actionTwo = action<string, string>({
+      name: 'Action one',
+      callback: ({ input }) => {
+        return input;
+      },
+    });
+
+    const actionTwoInitSpy = vi.spyOn(actionTwo, 'initialise');
 
     const mockRunQueue = mock<RunQueue>();
     when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mockActionOne, mockActionTwo],
+      then: [actionOne, actionTwo],
       mode: ExecutionMode.Queue,
     });
 
     await expect(automation.initialise(hass, mqtt)).resolves.not.toThrow();
-    expect(mockActionOne.initialise).toHaveBeenCalledWith(hass, mqtt);
-    expect(mockActionTwo.initialise).toHaveBeenCalledWith(hass, mqtt);
+    expect(actionOneInitSpy).toHaveBeenCalledWith(hass, mqtt);
+    expect(actionTwoInitSpy).toHaveBeenCalledWith(hass, mqtt);
   });
 
   it('Rethrows any errors thrown by any of its children', async () => {
@@ -59,6 +72,21 @@ describe('automation.initialise', () => {
 
     const error = new Error('Whoops!');
 
+    const actionOne = action<string, string>({
+      name: 'Action one',
+      callback: ({ input }) => {
+        return input;
+      },
+    });
+
+    const actionTwo = action<string, string>({
+      name: 'Action one',
+      callback: ({ input }) => {
+        return input;
+      },
+    });
+    vi.spyOn(actionTwo, 'initialise').mockRejectedValue(new Error('Whoops!'));
+
     mockActionOne.initialise.mockResolvedValue();
     mockActionTwo.initialise.mockRejectedValue(error);
 
@@ -67,7 +95,7 @@ describe('automation.initialise', () => {
 
     const automation = new Automation({
       name: 'Test action',
-      then: [mockActionOne, mockActionTwo],
+      then: [actionOne, actionTwo],
       mode: ExecutionMode.Queue,
     });
 

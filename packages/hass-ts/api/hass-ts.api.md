@@ -37,7 +37,7 @@ export interface CallServiceResponse {
     response: null | Record<string, unknown>;
 }
 
-// @public (undocumented)
+// @public
 export interface Config {
     allowlist_external_dirs?: string[];
     allowlist_external_urls?: string[];
@@ -51,7 +51,6 @@ export interface Config {
     internal_url: string;
     language: string;
     latitude?: number;
-    // (undocumented)
     location_name?: string;
     longitude?: number;
     recovery_mode: boolean;

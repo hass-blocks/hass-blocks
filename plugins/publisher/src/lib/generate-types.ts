@@ -13,6 +13,7 @@ import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { dirname } from 'node:path/win32';
 
 interface GenerateTypesArgs {
   workspaceRoot: string;
@@ -30,7 +31,6 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
   const packageJsonFullPath = join(projectRoot, `package.json`);
   const libTsconfigPath = join(projectRoot, `tsconfig.lib.json`);
   const specTsconfigPath = join(projectRoot, `tsconfig.spec.json`);
-  const publicTrimmedFilePath = join(projectRoot, `dist`, `public.d.ts`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
 
@@ -76,12 +76,7 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     compilerOptions: { ...tsConfig.compilerOptions, customConditions: [] },
   };
 
-  const entryPointFile = join(projectRoot, `dist`, `index.d.ts`);
-
-  if (!existsSync(entryPointFile)) {
-    logger.warn(`${entryPointFile} not found - skipping API rollup`);
-    return;
-  }
+  const packageJson = JSON.parse(await readFile(packageJsonFullPath, 'utf-8'));
 
   logger.info('Replacing paths');
   if (options.replacePaths) {
@@ -92,75 +87,123 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     });
   }
 
-  const dtsRollup: IConfigFile['dtsRollup'] = {
-    enabled: true,
-    publicTrimmedFilePath,
-  };
-
-  const withDtsRollup = options.dtsRollup
-    ? {
-        dtsRollup,
+  return Object.entries(packageJson['exports'])
+    .map(([theExport, config]) => {
+      if (typeof config !== 'object') {
+        return;
       }
-    : {};
 
-  const withStrictChecks = options.strictChecks
-    ? {
-        messages: {
-          compilerMessageReporting: {
-            default: {
-              logLevel: ExtractorLogLevel.Warning,
-            },
-          },
-
-          extractorMessageReporting: {
-            default: {
-              logLevel: ExtractorLogLevel.Warning,
-            },
-            'ae-wrong-input-file-type': {
-              logLevel: ExtractorLogLevel.None,
-            },
-          },
-
-          tsdocMessageReporting: {
-            default: {
-              logLevel: ExtractorLogLevel.Warning,
-            },
-          },
-        },
+      if (!config) {
+        return;
       }
-    : {};
 
-  const prepareOptions: IExtractorConfigPrepareOptions = {
-    configObjectFullPath: '',
-    packageJsonFullPath,
-    configObject: {
-      compiler: {
-        overrideTsconfig: modifiedTsConfig,
-      },
-      mainEntryPointFilePath: `./dist/index.d.ts`,
-      projectFolder: projectRoot,
+      if (
+        !config ||
+        !('development' in config) ||
+        !('types' in config) ||
+        typeof config['development'] !== 'string' ||
+        typeof config['types'] !== 'string'
+      ) {
+        return;
+      }
 
-      apiReport: {
+      const entryPoint = config['development'];
+      const bundleOutput = config['types'];
+
+      const getDeclarationName = join(
+        'dist',
+        `${basename(entryPoint).split('.')[0]}.d.ts`,
+      );
+
+      const entryPointFile = join(projectRoot, getDeclarationName);
+
+      if (!existsSync(entryPointFile)) {
+        logger.warn(
+          `${entryPointFile} not found - skipping API rollup for ${theExport} export`,
+        );
+        return;
+      }
+
+      logger.info(`Performing API rollup for ${theExport} export`);
+
+      const dtsRollup: IConfigFile['dtsRollup'] = {
         enabled: true,
-        reportFolder: `./api`,
-        reportTempFolder: join(
-          projectRoot,
-          `.api-extractor`,
-          `temp`,
-          options.projectFolder,
-        ),
-      },
-      ...withStrictChecks,
-      ...withDtsRollup,
-      ...withDocModel,
-    },
-  };
+        publicTrimmedFilePath: bundleOutput,
+      };
 
-  const config = ExtractorConfig.prepare(prepareOptions);
+      const withDtsRollup = options.dtsRollup
+        ? {
+            dtsRollup,
+          }
+        : {};
 
-  logger.info('Generating DTS Rollup');
-  return Extractor.invoke(config, {
-    localBuild: true,
-    showVerboseMessages: true,
-  });
+      const withStrictChecks = options.strictChecks
+        ? {
+            messages: {
+              compilerMessageReporting: {
+                default: {
+                  logLevel: ExtractorLogLevel.Warning,
+                },
+              },
+
+              extractorMessageReporting: {
+                default: {
+                  logLevel: ExtractorLogLevel.Warning,
+                },
+                'ae-wrong-input-file-type': {
+                  logLevel: ExtractorLogLevel.None,
+                },
+              },
+
+              tsdocMessageReporting: {
+                default: {
+                  logLevel: ExtractorLogLevel.Warning,
+                },
+              },
+            },
+          }
+        : {};
+
+      const reportSuffix =
+        theExport.slice(2).length > 0 ? `-${theExport.slice(2)}` : '';
+
+      const prepareOptions: IExtractorConfigPrepareOptions = {
+        configObjectFullPath: '',
+        packageJsonFullPath,
+        configObject: {
+          compiler: {
+            overrideTsconfig: modifiedTsConfig,
+          },
+          mainEntryPointFilePath: entryPointFile,
+          projectFolder: projectRoot,
+
+          apiReport: {
+            enabled: true,
+            reportFileName: `${packageName}${reportSuffix}`,
+            reportFolder: `./api`,
+            reportTempFolder: join(
+              projectRoot,
+              `.api-extractor`,
+              `temp`,
+              options.projectFolder,
+            ),
+          },
+          ...withStrictChecks,
+          ...withDtsRollup,
+          ...withDocModel,
+        },
+      };
+
+      const extractorConfig = ExtractorConfig.prepare(prepareOptions);
+
+      logger.info('Generating DTS Rollup');
+      return {
+        result: Extractor.invoke(extractorConfig, {
+          localBuild: true,
+          showVerboseMessages: true,
+        }),
+        exportName: theExport,
+      };
+    })
+    .flatMap((item) => (item ? [item] : []));
 };

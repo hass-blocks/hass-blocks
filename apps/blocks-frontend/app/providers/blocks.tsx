@@ -1,16 +1,46 @@
-import { createContext, useEffect, type ReactNode } from 'react';
+import {
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+  type ReactNode,
+} from 'react';
 import { useBlocks } from '@hass-blocks/websocket-plugin/client';
+import { ConnectionStatus } from 'node_modules/@hass-blocks/websocket-plugin/src/use-socket';
+import type { HassBlocksEvent } from '@hass-blocks/core';
 
 type Client = ReturnType<typeof useBlocks>['client'];
 
-export const BlocksContext = createContext<Client | undefined>(undefined);
+interface BlocksContextProps {
+  client: Client | undefined;
+  connectionStatus: ConnectionStatus;
+  onEvent: (callback: (event: HassBlocksEvent) => void) => void;
+}
+
+export const BlocksContext = createContext<BlocksContextProps>({
+  client: undefined,
+  connectionStatus: ConnectionStatus.NotConnected,
+  onEvent: () => {
+    // NOOP
+  },
+});
 
 interface BlocksProviderProps {
   children: ReactNode;
 }
 
 export const BlocksProvider = ({ children }: BlocksProviderProps) => {
-  const { client } = useBlocks('localhost', 8080);
+  const { client, connectionStatus } = useBlocks('localhost', 8080);
+
+  const [callbacks, setCallbacks] = useState<
+    ((event: HassBlocksEvent) => void)[]
+  >([]);
+
+  useEffect(() => {
+    client?.hassBlocksEvent((event) => {
+      callbacks.forEach((callback) => callback(event));
+    });
+  }, [client, callbacks]);
 
   useEffect(() => {
     client?.hassBlocksEvent((event) => {
@@ -27,5 +57,22 @@ export const BlocksProvider = ({ children }: BlocksProviderProps) => {
     });
   }, [client]);
 
-  return <BlocksContext value={client}>{children}</BlocksContext>;
+  const onEventCallback = useCallback(
+    (callback: (event: HassBlocksEvent) => void) => {
+      setCallbacks((callbacks) => [...callbacks, callback]);
+    },
+    [setCallbacks],
+  );
+
+  return (
+    <BlocksContext
+      value={{
+        client,
+        connectionStatus,
+        onEvent: onEventCallback,
+      }}
+    >
+      {children}
+    </BlocksContext>
+  );
 };

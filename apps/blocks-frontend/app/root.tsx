@@ -44,9 +44,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <body>
         <Provider>
           <Theme appearance="light">
-            <AppLayout>
-              <BlocksProvider>{children}</BlocksProvider>
-            </AppLayout>
+            <BlocksProvider>
+              <AppLayout>{children}</AppLayout>
+            </BlocksProvider>
             <ScrollRestoration />
             <Scripts />
           </Theme>

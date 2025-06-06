@@ -6,6 +6,7 @@ export const updateNodeByActivityStatus = (
   event: HassBlocksEvent,
   graph: Graph,
 ): Graph => {
+  console.log('Update');
   if (!('block' in event)) {
     return graph;
   }
@@ -20,20 +21,24 @@ export const updateNodeByActivityStatus = (
 
   const foundBlock: Node = Object.assign({}, graph.nodes[index]);
 
-  const statusMap: Record<(typeof event)['eventType'], string> = {
-    'automation-registered': 'white',
-    'block-pending': '#ebe534',
-    'block-started': '#3462eb',
-    'block-finished': '##3462eb',
-    'block-failed': '#eb4c34',
-    'sequence-aborted': '##615e5d',
+  const statusMap: Record<
+    (typeof event)['eventType'],
+    { backgroundColor: string; color: string }
+  > = {
+    'automation-registered': { backgroundColor: 'white', color: 'black' },
+    'block-pending': { backgroundColor: '#ebe534', color: 'black' },
+    'block-started': { backgroundColor: '#3462eb', color: 'white' },
+    'block-finished': { backgroundColor: '#3462eb', color: 'white' },
+    'block-failed': { backgroundColor: '#eb4c34', color: 'white' },
+    'sequence-aborted': { backgroundColor: '#615e5d', color: 'white' },
   };
 
   if (!foundBlock.style) {
     foundBlock.style = {};
   }
 
-  foundBlock.style.backgroundColor = statusMap[event.eventType];
+  foundBlock.style.backgroundColor = statusMap[event.eventType].backgroundColor;
+  foundBlock.style.color = statusMap[event.eventType].color;
 
   const start = graph.nodes.slice(0, index);
   const end = graph.nodes.slice(index + 1);

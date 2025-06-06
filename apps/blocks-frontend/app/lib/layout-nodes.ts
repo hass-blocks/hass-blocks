@@ -3,7 +3,7 @@ import type { Graph } from './graph';
 
 export const layoutNodes = ({ nodes, edges }: Graph): Graph => {
   const g = new Dagre.graphlib.Graph().setDefaultEdgeLabel(() => ({}));
-  g.setGraph({ rankdir: 'LB', nodesep: 200, ranksep: 200 });
+  g.setGraph({ rankdir: 'RB', nodesep: 250, ranksep: 200 });
 
   edges.forEach((edge) => g.setEdge(edge.source, edge.target));
   nodes.forEach((node) =>

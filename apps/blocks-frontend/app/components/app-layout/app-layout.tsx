@@ -1,5 +1,6 @@
 import { Box } from '@chakra-ui/react/box';
-import { AppNav } from '@components';
+import { Flex } from '@chakra-ui/react/flex';
+import { AppNav, AutomationList } from '@components';
 import type { ReactNode } from 'react';
 
 interface LayoutProps {
@@ -8,11 +9,16 @@ interface LayoutProps {
 
 export const AppLayout = ({ children }: LayoutProps) => {
   return (
-    <Box minH="100vh" maxW="40rem">
+    <Box>
       <AppNav />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
+      <Flex>
+        <Box borderRightWidth={'thin'} width="20rem">
+          <AutomationList />
+        </Box>
+        <Box width="calc(100vw - 20rem)" padding="1rem">
+          <Box>{children}</Box>
+        </Box>
+      </Flex>
     </Box>
   );
 };

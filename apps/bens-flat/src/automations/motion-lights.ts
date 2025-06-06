@@ -1,5 +1,6 @@
-import { automation } from '@hass-blocks/core';
 import { stateIs, waitMinutes } from '@hass-blocks/blocks';
+import { automation } from '@hass-blocks/core';
+import { stateTurnsOn } from '@hass-blocks/triggers';
 
 import '@blocks-codegen';
 import {
@@ -9,7 +10,6 @@ import {
   livingRoomMotionLights,
   toggleSleepMode,
 } from '../entities.ts';
-import { stateTurnsOn } from '@hass-blocks/triggers';
 
 export const livingRoomLightsAutomation = automation({
   name: 'Living room Lights',

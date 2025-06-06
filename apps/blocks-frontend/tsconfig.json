@@ -10,7 +10,8 @@
     "paths": {
       "@lib": ["./app/lib/index.ts"],
       "@components": ["./app/components/index.ts"],
-      "@providers": ["./app/providers/index.ts"]
+      "@providers": ["./app/providers/index.ts"],
+      "@hooks": ["./app/hooks/index.ts"]
     },
     "module": "ESNext",
     "moduleResolution": "Bundler"

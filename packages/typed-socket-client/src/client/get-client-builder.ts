@@ -6,6 +6,14 @@ import type {
   EventForwarderClientHandlers,
 } from '@types';
 
+/**
+ * Will generate a series of functions that, when provided with a connected socket
+ * will allow you to call commands on the backend
+ *
+ * @param config - configuration from initialiseTypes
+ *
+ * @public
+ */
 export const getClientBuilder = <
   TData,
   TEmitter,

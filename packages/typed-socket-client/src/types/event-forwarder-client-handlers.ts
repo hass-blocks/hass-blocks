@@ -1,6 +1,10 @@
 import type { EventForwarderClientHandler } from './event-forwarder-client-handler.ts';
 import type { GetEmitData } from './get-emit-data.ts';
-
+/**
+ * A map of event forwarder client handlers
+ *
+ * @public
+ */
 export type EventForwarderClientHandlers<
   TEmitter,
   TMap extends Record<

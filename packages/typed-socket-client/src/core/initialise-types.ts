@@ -1,5 +1,13 @@
 import type { ConfiguredTypes } from '@types';
 
+/**
+ * This function configures the handlers for the server and client. Call first
+ * with type parameters represnting the server side data object event emitter,
+ * then pass in your command handlers and event forwarders to the returned function, which will
+ * then return a config object you can pass into both the server and client
+ *
+ * @public
+ */
 export const initialiseTypes =
   <TData, TEmitter>() =>
   <

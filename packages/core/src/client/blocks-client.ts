@@ -14,6 +14,7 @@ import type {
   IMutableNode,
   ITriggerable,
   IBlocksNode,
+  ISerialisable,
 } from '@types';
 import { EntityDoesNotExistError, InitialStatesNotLoadedError } from '@errors';
 import type { IFullBlocksClient } from '@types';
@@ -112,7 +113,7 @@ export class BlocksClient implements IFullBlocksClient {
     return this.areas;
   }
 
-  public getAutomations(): IBlocksNode[] {
+  public getAutomations(): (IBlocksNode & ISerialisable)[] {
     return this._automations;
   }
 

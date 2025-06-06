@@ -3,6 +3,7 @@ import type { Event } from '@hass-blocks/hass-ts';
 import type { IMutableNode } from './i-mutable-node.ts';
 import type { ITriggerable } from './i-triggerable.ts';
 import type { IBlocksNode } from './i-blocks-node.ts';
+import type { ISerialisable } from './i-serialiseble.ts';
 
 /**
  * @public
@@ -29,7 +30,7 @@ export interface IFullBlocksClient extends IHass {
   /**
    * Get a list of automations currently registered
    */
-  getAutomations(): IBlocksNode[];
+  getAutomations(): (IBlocksNode & ISerialisable)[];
 
   /**
    * Register an automation

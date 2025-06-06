@@ -363,7 +363,7 @@ export interface IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThen
 
 // @public
 export interface IFullBlocksClient extends IHass {
-    getAutomations(): IBlocksNode[];
+    getAutomations(): (IBlocksNode & ISerialisable)[];
     loadStates(): Promise<void>;
     onStateChanged(id: string, callback: (event: Event_2) => void): Promise<void>;
     registerAutomation(...automation: (IMutableNode & ITriggerable)[]): Promise<void>;

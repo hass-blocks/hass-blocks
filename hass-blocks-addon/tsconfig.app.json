@@ -1,0 +1,47 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "blocks/run-blocks.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "app/**/*.js",
+    "app/**/*.jsx",
+    ".server/**/*.ts",
+    ".server/**/*.tsx",
+    ".client/**/*.ts",
+    ".client/**/*.tsx"
+  ],
+  "exclude": [
+    "tests/**/*.spec.ts",
+    "tests/**/*.test.ts",
+    "tests/**/*.spec.tsx",
+    "tests/**/*.test.tsx",
+    "tests/**/*.spec.js",
+    "tests/**/*.test.js",
+    "tests/**/*.spec.jsx",
+    "tests/**/*.test.jsx",
+    "vite.config.ts",
+    "vite.config.mts",
+    "vitest.config.ts",
+    "vitest.config.mts",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "**/*.test.tsx",
+    "**/*.spec.tsx",
+    "**/*.test.js",
+    "**/*.spec.js",
+    "**/*.test.jsx",
+    "**/*.spec.jsx"
+  ],
+  "references": [
+    {
+      "path": "../packages/websocket-plugin"
+    },
+    {
+      "path": "../packages/core"
+    }
+  ],
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  }
+}

@@ -27,12 +27,12 @@ export const useSocket = (
       return;
     }
 
-    socket.on('connect', () => {
-      setConnectionStatus(ConnectionStatus.Connected);
-    });
-
-    socket.on('disconnect', () => {
-      setConnectionStatus(ConnectionStatus.NotConnected);
+    socket.onAny(() => {
+      if (socket.connected) {
+        setConnectionStatus(ConnectionStatus.Connected);
+      } else {
+        setConnectionStatus(ConnectionStatus.NotConnected);
+      }
     });
 
     socket.on('error', (error: Error) =>

@@ -17,7 +17,6 @@ export const useBlocks = (url: string, port = 80) => {
   if (connectionStatus === ConnectionStatus.NotConnected) {
     return { errors, connectionStatus };
   }
-  console.log({ client, connectionStatus });
 
   return {
     connectionStatus,

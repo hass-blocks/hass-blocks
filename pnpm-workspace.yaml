@@ -2,4 +2,5 @@ packages:
   - 'packages/*'
   - 'plugins/*'
   - 'apps/*'
+  - 'hass-blocks-addon'
   - 'apps/bens-flat/packages/*'

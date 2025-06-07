@@ -1,9 +1,13 @@
 import type { HassArea } from '@hass-blocks/hass-ts';
-import type { GlobalNames } from '../utils/global-names.ts';
-import { ImportStatement } from '../utils/import-statement.ts';
-import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
+
+import {
+  type GlobalNames,
+  ImportStatement,
+  DeclareGlobalBlock,
+  addDocCommentToNode,
+} from '@lib/codegen/utils';
+
 import ts, { factory } from 'typescript';
-import { addDocCommentToNode } from '../utils/add-doc-comment-to-node.ts';
 
 export const generateAreaFile = (areas: HassArea[], names: GlobalNames) => {
   const coreImport = new ImportStatement('@hass-blocks/core');

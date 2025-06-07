@@ -2,14 +2,16 @@ import { factory } from 'typescript';
 
 import type { Service } from '@hass-blocks/hass-ts';
 
-import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
+import {
+  ImportStatement,
+  DeclareGlobalBlock,
+  GlobalNames,
+} from '@lib/codegen/utils';
 
 import { buildServiceType } from './build-service-type.ts';
 import { buildServiceCall } from './build-service-call.ts';
 import { PropsInterface } from './props-interface.ts';
 import { newLine } from './new-line.ts';
-import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
-import type { GlobalNames } from '../utils/global-names.ts';
 
 export const generateDomainServiceCalls = (
   folder: string,

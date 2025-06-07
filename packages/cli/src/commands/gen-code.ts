@@ -3,8 +3,7 @@ import {
   initialiseHass,
   type IHomeAssistant,
 } from '@hass-blocks/hass-ts';
-import { generateFiles } from '@lib/codegen/generate-files.ts';
-import { generateOutputBarrel } from '@lib/codegen/utils/generate-output-barrel.ts';
+import { generateFiles, generateOutputBarrel } from '@lib/codegen';
 
 import { Command, Option } from 'clipanion';
 
@@ -16,7 +15,7 @@ const doCodegen = async (client: IHomeAssistant, folder: string) => {
   await generateOutputBarrel(folder);
 };
 
-export default class GenCodeCommand extends Command {
+export class GenCodeCommand extends Command {
   folder = Option.String();
   watch = Option.Boolean(
     'Stay connected to Home Assistant and regenerate when services and entities change',

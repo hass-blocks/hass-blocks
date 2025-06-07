@@ -1,6 +1,12 @@
 {
   "jsc": {
     "target": "es2017",
+    "baseUrl": ".",
+    "paths": {
+      "@lib/codegen": ["src/lib/codegen/index.ts"],
+      "@lib/codegen/utils": ["src/lib/codegen/utils/index.ts"],
+      "@commands": ["src/commands/index.ts"]
+    },
     "parser": {
       "syntax": "typescript",
       "decorators": true,

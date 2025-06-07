@@ -1,7 +1,11 @@
 import { factory, type ExpressionStatement } from 'typescript';
-import type { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
-import type { ImportStatement } from '../utils/import-statement.ts';
-import { generateTsFile } from '../utils/generate-ts-file.ts';
+
+import {
+  DeclareGlobalBlock,
+  ImportStatement,
+  generateTsFile,
+} from '@lib/codegen/utils';
+
 import { join } from 'path';
 import { newLine } from '../generate-service-calls/new-line.ts';
 

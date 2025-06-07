@@ -1,5 +1,5 @@
 import type { Service } from '@hass-blocks/hass-ts';
-import { generateTypeParamsFromDomain } from '@lib/codegen/utils/generate-type-params-from-domain.ts';
+import { generateTypeParamsFromDomain } from '@lib/codegen/utils';
 
 export const buildIentityTypeParam = (service: Service) => {
   const targetDomain = service.target?.entity?.[0]?.domain;

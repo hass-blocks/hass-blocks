@@ -1,7 +1,11 @@
 import { factory, type ExpressionStatement } from 'typescript';
-import type { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
-import type { ImportStatement } from '../utils/import-statement.ts';
-import { generateTsFile } from '../utils/generate-ts-file.ts';
+
+import {
+  type ImportStatement,
+  generateTsFile,
+  DeclareGlobalBlock,
+} from '@lib/codegen/utils';
+
 import { join } from 'path';
 
 export const buildEntityFile = async (

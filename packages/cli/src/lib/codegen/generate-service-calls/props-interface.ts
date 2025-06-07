@@ -3,7 +3,7 @@ import type { INodeBuilder } from '../utils/i-node-builder.ts';
 import { type Identifier, factory } from 'typescript';
 import { buildPropsPropertyNode } from './build-props-property-node.ts';
 import { uppercaseFirstLetter } from '../utils/uppercase-first-letter.ts';
-import type { ServiceName } from '../utils/service.ts';
+import type { ServiceName } from '@lib/codegen/utils';
 
 export class PropsInterface implements INodeBuilder {
   private _identifier: Identifier | undefined;

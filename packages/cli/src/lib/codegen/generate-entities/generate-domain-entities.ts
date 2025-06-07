@@ -1,10 +1,11 @@
 import ts, { factory, type StringLiteral } from 'typescript';
 import type { State } from '@hass-blocks/hass-ts';
-import { ImportStatement } from '@lib/codegen/utils/import-statement.ts';
-
-import { DeclareGlobalBlock } from '../utils/declare-global-block.ts';
-import type { GlobalNames } from '../utils/global-names.ts';
-import { addDocCommentToNode } from '../utils/add-doc-comment-to-node.ts';
+import {
+  ImportStatement,
+  DeclareGlobalBlock,
+  GlobalNames,
+  addDocCommentToNode,
+} from '@lib/codegen/utils';
 
 export const generateDomainEntities = (
   folder: string,

@@ -1,10 +1,12 @@
 import { factory, type Identifier, NodeFlags, SyntaxKind } from 'typescript';
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import type { Service } from '@hass-blocks/hass-ts';
-import { addDocCommentToNode } from '@lib/codegen/utils/add-doc-comment-to-node.ts';
-import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
+import {
+  addDocCommentToNode,
+  ImportedIdentifier,
+  ServiceName,
+} from '@lib/codegen/utils';
 import type { PropsInterface } from './props-interface.ts';
-import type { ServiceName } from '../utils/service.ts';
 
 export const buildServiceType = (
   service: Service,

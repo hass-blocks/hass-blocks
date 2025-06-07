@@ -1,11 +1,9 @@
-import type { Service } from '@hass-blocks/hass-ts';
-
 import { factory, type Identifier, SyntaxKind } from 'typescript';
+import type { Service } from '@hass-blocks/hass-ts';
+import type { ImportedIdentifier, ServiceName } from '@lib/codegen/utils';
 
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
-import type { ImportedIdentifier } from '@lib/codegen/utils/imported-identifier.ts';
 import type { PropsInterface } from './props-interface.ts';
-import type { ServiceName } from '../utils/service.ts';
 
 export const buildServiceFunction = (
   domain: string,

@@ -376,14 +376,14 @@ importers:
   apps/bens-flat:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.16.0
-        version: 3.16.0
+        specifier: 3.16.1
+        version: link:../../packages/core
       '@hass-blocks/triggers':
-        specifier: 0.1.1
-        version: 0.1.1
+        specifier: 0.1.2
+        version: link:../../packages/triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.2
-        version: 0.6.2
+        specifier: 0.6.3
+        version: link:../../packages/websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.17
         version: 0.5.17
@@ -409,8 +409,8 @@ importers:
         specifier: 0.7.3
         version: link:../packages/cli
       '@hass-blocks/core':
-        specifier: 3.16.0
-        version: 3.16.0
+        specifier: 3.16.1
+        version: link:../packages/core
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.2
         version: 0.6.2
@@ -3041,10 +3041,6 @@ packages:
 
   '@hass-blocks/hass-ts@0.12.1':
     resolution: {integrity: sha512-EYfSoXPdFm7FbQNckXTd6yBoCIED7NavNQdpoTsYDr6ERm7Ejzr9jRmZUTPh68Hj5Db0s6u4yN3M4aWTDps9NQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/triggers@0.1.1':
-    resolution: {integrity: sha512-DBscn3G4E7sFoipTpoZlsquKQYJwPQ4uI1nWy4+6ShAxmXH9DlbkqtHEXHR1E0fSa967kJoXQU2792/ALAVAEQ==}
     engines: {node: '>=18'}
 
   '@hass-blocks/typed-socket-client@0.1.1':
@@ -16721,15 +16717,6 @@ snapshots:
       ws: 8.18.1
     transitivePeerDependencies:
       - bufferutil
-      - utf-8-validate
-
-  '@hass-blocks/triggers@0.1.1':
-    dependencies:
-      '@hass-blocks/core': 3.16.0
-      '@swc/helpers': 0.5.17
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
       - utf-8-validate
 
   '@hass-blocks/typed-socket-client@0.1.1':

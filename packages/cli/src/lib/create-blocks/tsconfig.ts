@@ -26,7 +26,7 @@ export const tsConfig = `
     "allowUnreachableCode": false,
     "allowUnusedLabels": false
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "./node_modules/.blocks/**/*"],
   "paths": {
     "@blocks-codegen": ["./node_modules/.blocks/index.ts"]
   }

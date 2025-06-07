@@ -3,11 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@backend": ["src/backend/index.ts"],
-      "@client": ["src/client/index.ts"],
-      "@errors": ["src/errors/index.ts"],
-      "@core": ["src/core/index.ts"],
-      "@types": ["src/types/index.ts"]
+      "@backend": ["./src/backend/index.ts"],
+      "@client": ["./src/client/index.ts"],
+      "@errors": ["./src/errors/index.ts"],
+      "@core": ["./src/core/index.ts"],
+      "@types": ["./src/types/index.ts"]
     },
     "outDir": "./out-tsc/vitest",
     "types": [

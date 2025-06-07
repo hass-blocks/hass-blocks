@@ -1,8 +1,6 @@
-import type { CommandHandler } from 'src/types/command-handler.ts';
 import { makeCommandBackend } from './make-command-backend.ts';
-import type { ConfiguredTypes } from '@types';
+import type { ConfiguredTypes, CommandHandler, ForwarderHandler } from '@types';
 import { makeEventForwarderBackend } from './make-event-forwarder-backend.ts';
-import type { ForwarderHandler } from 'src/types/forwarder-handler.ts';
 
 export const makeBackends = <
   TTransmittedData,

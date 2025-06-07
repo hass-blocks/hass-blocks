@@ -168,9 +168,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'foo',
-        block: { type: 'action', id: 'foo', name: 'foo' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'foo', name: 'foo', children: [] },
       },
     ]);
 
@@ -181,9 +179,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'bar',
-        block: { type: 'action', id: 'bar', name: 'bar' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'bar', name: 'bar', children: [] },
       },
     ]);
 
@@ -194,9 +190,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'baz',
-        block: { type: 'action', id: 'baz', name: 'baz' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'baz', name: 'baz', children: [] },
       },
     ]);
 
@@ -209,9 +203,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'foo',
-        block: { type: 'action', id: 'foo', name: 'foo' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'foo', name: 'foo', children: [] },
       },
     ]);
 
@@ -222,9 +214,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'foo',
-        block: { type: 'action', id: 'foo', name: 'foo' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'foo', name: 'foo', children: [] },
         continue: true,
         outputType: 'block',
         output: {
@@ -242,9 +232,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'bar',
-        block: { type: 'action', id: 'bar', name: 'bar' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'bar', name: 'bar', children: [] },
       },
     ]);
 
@@ -255,9 +243,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'bar',
-        block: { type: 'action', id: 'bar', name: 'bar' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'bar', name: 'bar', children: [] },
         continue: true,
         outputType: 'block',
         output: {
@@ -275,9 +261,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'baz',
-        block: { type: 'action', id: 'baz', name: 'baz' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'baz', name: 'baz', children: [] },
       },
     ]);
 
@@ -288,9 +272,7 @@ describe('executor', () => {
         triggerId,
         type: 'action',
         name: 'baz',
-        block: { type: 'action', id: 'baz', name: 'baz' },
-        triggeredBy: undefined,
-        parent: undefined,
+        block: { type: 'action', id: 'baz', name: 'baz', children: [] },
         continue: true,
         outputType: 'block',
         output: {

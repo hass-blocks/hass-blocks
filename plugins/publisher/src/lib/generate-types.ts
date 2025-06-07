@@ -13,7 +13,7 @@ import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { dirname } from 'node:path/win32';
+import { typescriptCompile } from './typescript-compile/typescript-compile.ts';
 
 interface GenerateTypesArgs {
   workspaceRoot: string;
@@ -50,24 +50,9 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     : {};
 
   logger.info('Compiling libraries');
-  tsc.build({
-    configFilePath: libTsconfigPath,
-    basePath: projectRoot,
-    compilerOptions: {
-      // @ts-expect-error - types from package are out of date
-      customConditions: [],
-    },
-  });
-
+  await typescriptCompile({ projectFile: libTsconfigPath, workspaceRoot });
   logger.info('Compiling tests');
-  tsc.build({
-    configFilePath: specTsconfigPath,
-    basePath: projectRoot,
-    compilerOptions: {
-      // @ts-expect-error - types from package are out of date
-      customConditions: [],
-    },
-  });
+  await typescriptCompile({ projectFile: specTsconfigPath, workspaceRoot });
 
   const tsConfig = JSON.parse(await readFile(libTsconfigPath, 'utf8'));
 

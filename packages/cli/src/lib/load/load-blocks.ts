@@ -1,7 +1,7 @@
 import { Block, initialiseBlocks } from '@hass-blocks/core';
 import { websocketServer } from '@hass-blocks/websocket-plugin';
-import { readdir } from 'fs/promises';
-import { join } from 'path';
+import { readdir, stat } from 'fs/promises';
+import path, { join } from 'path';
 
 export const loadBlocks = async (
   folder: string,
@@ -27,12 +27,20 @@ export const loadBlocks = async (
   const automations = (
     await Promise.all(
       files.map(async (file) => {
-        const loadedFile = await import(join(folder, file));
+        const filePath = join(folder, file);
+        const stats = await stat(filePath);
+
+        if (!stats.isFile() || path.extname(file) !== '.ts') {
+          return;
+        }
+
+        const loadedFile = await import(filePath);
         return Object.values(loadedFile);
       }),
     )
   )
     .flat()
+    .flatMap((item) => (item ? [item] : []))
     .filter((item) => item instanceof Block);
 
   await registry.registerAutomation(...automations);

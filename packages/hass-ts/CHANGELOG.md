@@ -1,3 +1,17 @@
+## 0.12.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **chore:** resolve fully all packages ([648df11b](https://github.com/hass-blocks/hass-blocks/commit/648df11b))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/local-hass to 0.2.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.12.0 (2025-06-07)
 
 ### 🚀 Features

@@ -1,3 +1,13 @@
+## 0.6.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **chore:** resolve fully all packages ([648df11b](https://github.com/hass-blocks/hass-blocks/commit/648df11b))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.6.0 (2025-06-07)
 
 ### 🚀 Features

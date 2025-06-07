@@ -1,3 +1,18 @@
+## 0.1.2 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** --watch mode was accidentilly switching on for everything ([04ecbd67](https://github.com/hass-blocks/hass-blocks/commit/04ecbd67))
+- **cli:** fixed broken packaging ([fe0b80ed](https://github.com/hass-blocks/hass-blocks/commit/fe0b80ed))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.12.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.1 (2025-06-07)
 
 ### 🩹 Fixes

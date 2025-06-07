@@ -1,3 +1,13 @@
+## 0.1.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **typed-socket-client:** fixed build ([41878284](https://github.com/hass-blocks/hass-blocks/commit/41878284))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.0 (2025-06-07)
 
 ### 🚀 Features

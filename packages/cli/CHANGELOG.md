@@ -1,3 +1,19 @@
+## 0.6.0 (2025-06-07)
+
+### 🚀 Features
+
+- **all:** remove blocks package and move into core ([1036bece](https://github.com/hass-blocks/hass-blocks/commit/1036bece))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.6.2
+- Updated @hass-blocks/triggers to 0.1.1
+- Updated @hass-blocks/core to 3.16.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.5.0 (2025-06-07)
 
 ### 🚀 Features

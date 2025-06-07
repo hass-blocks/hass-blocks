@@ -376,13 +376,13 @@ importers:
   apps/bens-flat:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../../packages/core
       '@hass-blocks/triggers':
-        specifier: 0.1.0
+        specifier: 0.1.1
         version: link:../../packages/triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.1
+        specifier: 0.6.2
         version: link:../../packages/websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.17
@@ -415,10 +415,10 @@ importers:
         specifier: 0.5.0
         version: link:../packages/cli
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../packages/core
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.1
+        specifier: 0.6.2
         version: link:../packages/websocket-plugin
       '@projectstorm/react-canvas-core':
         specifier: ^7.0.3
@@ -512,16 +512,16 @@ importers:
         specifier: 0.11.0
         version: 0.11.0
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../core
       '@hass-blocks/hass-ts':
         specifier: 0.12.1
         version: link:../hass-ts
       '@hass-blocks/triggers':
-        specifier: workspace:0.1.0
+        specifier: 0.1.1
         version: link:../triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.1
+        specifier: 0.6.2
         version: link:../websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.11
@@ -644,7 +644,7 @@ importers:
   packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -662,7 +662,7 @@ importers:
   packages/triggers:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -683,10 +683,10 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.1
+        specifier: 3.16.0
         version: link:../core
       '@hass-blocks/typed-socket-client':
-        specifier: 0.1.0
+        specifier: 0.1.1
         version: link:../typed-socket-client
       '@swc/helpers':
         specifier: ~0.5.11

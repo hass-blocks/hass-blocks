@@ -1,3 +1,9 @@
+## 0.3.4 (2025-06-07)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/core to 3.16.0
+
 ## 0.3.3 (2025-06-07)
 
 ### 🩹 Fixes

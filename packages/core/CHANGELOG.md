@@ -1,3 +1,20 @@
+## 3.16.0 (2025-06-07)
+
+### 🚀 Features
+
+- **all:** remove blocks package and move into core ([1036bece](https://github.com/hass-blocks/hass-blocks/commit/1036bece))
+
+### 🩹 Fixes
+
+- **all:** api reports ([0edf3af5](https://github.com/hass-blocks/hass-blocks/commit/0edf3af5))
+- **core:** fix imports ([32a36a22](https://github.com/hass-blocks/hass-blocks/commit/32a36a22))
+- **core:** fix imports ([b2efe621](https://github.com/hass-blocks/hass-blocks/commit/b2efe621))
+- **core:** corrected package paths ([6cb3af98](https://github.com/hass-blocks/hass-blocks/commit/6cb3af98))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.15.1 (2025-06-07)
 
 ### 🧱 Updated Dependencies

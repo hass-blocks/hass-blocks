@@ -65,39 +65,39 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
       - run: pnpm run ${{ matrix.check }}
 
-  # release:
-  #   runs-on: ubuntu-latest
-  #   needs: [checks, test]
-  #   steps:
-  #     - uses: actions/checkout@v4
-  #       with:
-  #         filter: tree:0
-  #         fetch-depth: 0
+  release:
+    runs-on: ubuntu-latest
+    needs: [checks, test]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: tree:0
+          fetch-depth: 0
 
-  #     - uses: pnpm/action-setup@v4
-  #       with:
-  #         version: 10
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
 
-  #     - uses: actions/setup-node@v4
-  #       with:
-  #         node-version: 22
-  #         cache: 'pnpm'
-  #         registry-url: https://registry.npmjs.org/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          registry-url: https://registry.npmjs.org/
 
-  #     - run: pnpm install --frozen-lockfile
-  #     - run: git config --global user.email "bwainwright28@gmail.com"
-  #     - run: git config --global user.name "Ben Wainwright"
+      - run: pnpm install --frozen-lockfile
+      - run: git config --global user.email "bwainwright28@gmail.com"
+      - run: git config --global user.name "Ben Wainwright"
 
-  #     - run: npx nx release --yes --verbose
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: npx nx release --yes --verbose
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-  #     - name: Push changes
-  #       uses: ad-m/github-push-action@master
-  #       with:
-  #         github_token: ${{ secrets.GITHUB_TOKEN }}
-  #         branch: main
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
 
   # deploy-docs:
   #   runs-on: ubuntu-latest

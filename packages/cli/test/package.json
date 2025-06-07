@@ -1,8 +1,0 @@
-{
-  "name": "blocks",
-  "version": "0.0.3",
-  "dependencies": {
-    "@hass-blocks/core": "3.16.0",
-    "@hass-blocks/triggers": "0.1.1"
-  }
-}

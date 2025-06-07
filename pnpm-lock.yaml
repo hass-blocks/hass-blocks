@@ -412,8 +412,8 @@ importers:
         specifier: 3.16.1
         version: link:../packages/core
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.2
-        version: 0.6.2
+        specifier: 0.6.3
+        version: link:../packages/websocket-plugin
       '@react-router/node':
         specifier: ^7.2.0
         version: 7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3)
@@ -3030,26 +3030,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/core@3.16.0':
-    resolution: {integrity: sha512-Pe8BV30MXjARomRCVActyGe+xJWpkjztSgZzxMkSztRfsK7WmBQJwUYQIONp1uskMlc8mlNbv7nDO2p5dqIWaQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    resolution: {integrity: sha512-NfPz7hgbkRIY9B1jYUKNCwt66oZ+khVdKNt0/N/uVE6trZBW6tIMBuFYr9WWLs5VWIjf1dy+GoVDvG+rwIIcvQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.12.1':
-    resolution: {integrity: sha512-EYfSoXPdFm7FbQNckXTd6yBoCIED7NavNQdpoTsYDr6ERm7Ejzr9jRmZUTPh68Hj5Db0s6u4yN3M4aWTDps9NQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/typed-socket-client@0.1.1':
-    resolution: {integrity: sha512-XofsZvjmJqiMwnMPoRNgaevCqEgvITGqKtLLEsZNGo3bFcA7f9vpb2t2CFvqVjeQTuMnTzSnFF2Q1LHUw2JMCA==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/websocket-plugin@0.6.2':
-    resolution: {integrity: sha512-yRUItQhTTa8VToRo98/4BP1h2ocsdq09rfXEoQiEW9NOPXBhFciGyk5RTMDnoO9ZgswE1V7jjLdx3aHkgkOmtA==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -16687,59 +16667,6 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
-
-  '@hass-blocks/core@3.16.0':
-    dependencies:
-      '@hass-blocks/hass-mqtt': 0.2.0
-      '@hass-blocks/hass-ts': 0.12.1
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      uuid: 11.1.0
-      zod: 3.25.28
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      mqtt: 5.13.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.12.1':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@hass-blocks/typed-socket-client@0.1.1':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      socket.io: 4.8.1
-      socket.io-client: 4.8.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/websocket-plugin@0.6.2':
-    dependencies:
-      '@hass-blocks/core': 3.16.0
-      '@hass-blocks/typed-socket-client': 0.1.1
-      '@swc/helpers': 0.5.17
-      react: 19.1.0
-      socket.io-client: 4.8.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
 
   '@highlightjs/cdn-assets@11.11.1': {}
 

@@ -71,7 +71,7 @@
     "projectsRelationship": "independent",
     "projects": ["packages/*"],
     "version": {
-      "preVersionCommand": "npx nx run-many --targets generate-types",
+      "preVersionCommand": "npx nx run-many --targets generate-types,build",
       "generatorOptions": {
         "fallbackCurrentVersionResolver": "disk"
       },

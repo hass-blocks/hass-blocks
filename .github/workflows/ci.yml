@@ -41,11 +41,40 @@ jobs:
       - uses: nrwl/nx-set-shas@v4
       - run: pnpm run ${{ matrix.target }}
 
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        check: [build, generate-types]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: tree:0
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
+      - uses: nrwl/nx-set-shas@v4
+      - run: pnpx nx run-many --targets ${{ matrix.check }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: '**/dist'
+
   checks:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        check: [lint, build, generate-types, check-style]
+        check: [lint, check-style]
     steps:
       - uses: actions/checkout@v4
         with:

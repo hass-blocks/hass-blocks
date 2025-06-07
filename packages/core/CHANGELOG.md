@@ -1,3 +1,57 @@
+## 3.15.0 (2025-06-07)
+
+### 🚀 Features
+
+- **core:** update API ([185cf0458](https://github.com/hass-blocks/hass-blocks/commit/185cf0458))
+- **core:** change graph so that it matches execution flow ([cc60ee09d](https://github.com/hass-blocks/hass-blocks/commit/cc60ee09d))
+- **blocks:** stuff ([523cc14e7](https://github.com/hass-blocks/hass-blocks/commit/523cc14e7))
+- **core:** catch errors and don't completely die ([6c6853e49](https://github.com/hass-blocks/hass-blocks/commit/6c6853e49))
+- **socket-generator:** changed api so that I can export client at root ([49fb0a58b](https://github.com/hass-blocks/hass-blocks/commit/49fb0a58b))
+- **socket-generator:** changed api so that I can export client at root ([4bddb1d1f](https://github.com/hass-blocks/hass-blocks/commit/4bddb1d1f))
+- **core:** entities now store their own state once they are initialised ([d0901c555](https://github.com/hass-blocks/hass-blocks/commit/d0901c555))
+- **core:** provide a block runner in the run context ([c9bf24420](https://github.com/hass-blocks/hass-blocks/commit/c9bf24420))
+- **core:** update api to use runcontext ([6971bf00a](https://github.com/hass-blocks/hass-blocks/commit/6971bf00a))
+- **core:** add friendly name ([04a4bf6d4](https://github.com/hass-blocks/hass-blocks/commit/04a4bf6d4))
+- **core:** optimise types ([2db69b830](https://github.com/hass-blocks/hass-blocks/commit/2db69b830))
+- **core:** export servicecallargs ([d42951377](https://github.com/hass-blocks/hass-blocks/commit/d42951377))
+- **core:** souped up typing ([8fb95fb0e](https://github.com/hass-blocks/hass-blocks/commit/8fb95fb0e))
+- **many:** change pass to a type ([4c0c6b8e5](https://github.com/hass-blocks/hass-blocks/commit/4c0c6b8e5))
+- **core:** add do-while loop ([e0d2f4fb0](https://github.com/hass-blocks/hass-blocks/commit/e0d2f4fb0))
+- **core:** allow optional properties on the input type ([ed2e4e66c](https://github.com/hass-blocks/hass-blocks/commit/ed2e4e66c))
+- **core:** add loop ([f35fc18aa](https://github.com/hass-blocks/hass-blocks/commit/f35fc18aa))
+- **core:** service calls can now take input from the previous block ([bfe8f2de6](https://github.com/hass-blocks/hass-blocks/commit/bfe8f2de6))
+- **bens-flat:** update motion lights to use self creating entities ([3489f3d7b](https://github.com/hass-blocks/hass-blocks/commit/3489f3d7b))
+- **core:** change aSwitch to toggle ([0c93bf777](https://github.com/hass-blocks/hass-blocks/commit/0c93bf777))
+- **core:** inject logger into mqtt ([5152edc58](https://github.com/hass-blocks/hass-blocks/commit/5152edc58))
+- **core:** i-switch creates its own entity in Home Assistant ([66f19d9e9](https://github.com/hass-blocks/hass-blocks/commit/66f19d9e9))
+- **core:** mqtt connection is now passed into the initialise method ([c4649598b](https://github.com/hass-blocks/hass-blocks/commit/c4649598b))
+
+### 🩹 Fixes
+
+- **core:** fixed failing tests ([c03dd4273](https://github.com/hass-blocks/hass-blocks/commit/c03dd4273))
+- **core:** remove console log ([e60601ece](https://github.com/hass-blocks/hass-blocks/commit/e60601ece))
+- **core:** fix block input/outpuy compatibility issue ([0af9006f2](https://github.com/hass-blocks/hass-blocks/commit/0af9006f2))
+- **core:** made area generic ([876076833](https://github.com/hass-blocks/hass-blocks/commit/876076833))
+- **all:** restore projects ([abd1c0c19](https://github.com/hass-blocks/hass-blocks/commit/abd1c0c19))
+- **core:** export pass ([1023ea330](https://github.com/hass-blocks/hass-blocks/commit/1023ea330))
+- **core:** fix if-then-else ([6e315b86a](https://github.com/hass-blocks/hass-blocks/commit/6e315b86a))
+- **core:** fixed broken tests ([f38a5f9e6](https://github.com/hass-blocks/hass-blocks/commit/f38a5f9e6))
+- **chore:** correct type error ([cf9e7f9ee](https://github.com/hass-blocks/hass-blocks/commit/cf9e7f9ee))
+- **core:** correct typing in concurrently ([0995970b4](https://github.com/hass-blocks/hass-blocks/commit/0995970b4))
+- **core:** map-async wasn't returning the results ([cb3d8598e](https://github.com/hass-blocks/hass-blocks/commit/cb3d8598e))
+- **core:** improve types on execute concurrently and add test coverage ([0525f0ed0](https://github.com/hass-blocks/hass-blocks/commit/0525f0ed0))
+- **core:** correct typing in concurrently ([2315d69ee](https://github.com/hass-blocks/hass-blocks/commit/2315d69ee))
+- **core:** correct test ([c16a0081e](https://github.com/hass-blocks/hass-blocks/commit/c16a0081e))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-mqtt to 0.2.0
+- Updated @hass-blocks/hass-ts to 0.12.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.14.0 (2025-05-16)
 
 ### 🚀 Features

@@ -1,3 +1,17 @@
+## 0.12.0 (2025-06-07)
+
+### 🚀 Features
+
+- **hass-ts:** support multiple entries ([e0a217884](https://github.com/hass-blocks/hass-blocks/commit/e0a217884))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/local-hass to 0.2.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.11.1 (2025-05-16)
 
 ### 🩹 Fixes

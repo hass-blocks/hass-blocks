@@ -43,7 +43,7 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/core": "3.15.0",
+    "@hass-blocks/core": "3.15.1",
     "@hass-blocks/hass-ts": "0.12.1",
     "@swc/helpers": "~0.5.11",
     "clipanion": "4.0.0-rc.4",

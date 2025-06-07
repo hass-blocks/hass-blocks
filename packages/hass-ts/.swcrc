@@ -30,6 +30,7 @@
     }
   },
   "module": {
+    "resolveFully": true,
     "type": "es6"
   },
   "sourceMaps": true,

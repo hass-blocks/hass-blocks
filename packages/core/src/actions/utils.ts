@@ -1,11 +1,7 @@
-import {
-  action,
-  HassBlocksError,
-  type ITarget,
-  type IHass,
-  type Pass,
-} from '@hass-blocks/core';
-
+import { action } from '@building-blocks';
+import { HassBlocksError } from '@errors';
+import type { Pass } from '@sequence-validator';
+import type { IHass, ITarget } from '@types';
 import { waitInSeconds, waitInMinutes } from '@utils';
 
 /**

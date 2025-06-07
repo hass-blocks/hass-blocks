@@ -88,12 +88,17 @@ jobs:
       - run: git config --global user.email "bwainwright28@gmail.com"
       - run: git config --global user.name "Ben Wainwright"
 
+      - run: npx nx release --yes --dry-run
+        if: ${{ github.event.act }}
+
       - run: npx nx release --yes --verbose
+        if: ${{ !github.event.act }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Push changes
+        if: ${{ !github.event.act }}
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

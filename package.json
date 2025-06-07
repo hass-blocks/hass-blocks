@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "pipeline": "act -e act-event.json",
     "prepare": "husky",
     "format": "prettier --write .",
     "check-style": "prettier --check .",

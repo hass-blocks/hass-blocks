@@ -8,4 +8,4 @@ $BIN_DIR/hass-blocks load \
 
 $BIN_DIR/vite-node \
     /src/node/serve-frontend.ts \
-    /addon/build/client
+    /addon/dist/client

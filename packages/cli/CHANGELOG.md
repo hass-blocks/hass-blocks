@@ -1,3 +1,13 @@
+## 0.1.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** correct entry point file to point to the right path ([8bf6a510](https://github.com/hass-blocks/hass-blocks/commit/8bf6a510))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.0 (2025-06-07)
 
 ### 🚀 Features

@@ -416,7 +416,7 @@ importers:
         version: 0.2.2(esbuild@0.25.3)
       '@hass-blocks/cli':
         specifier: ^0.3.0
-        version: 0.3.0(@types/react@19.1.2)(react@19.0.0)(typanion@3.14.0)
+        version: link:../packages/cli
       '@hass-blocks/core':
         specifier: 3.15.1
         version: link:../packages/core
@@ -524,7 +524,7 @@ importers:
   packages/cli:
     dependencies:
       '@drizzle-team/brocli':
-        specifier: ^0.11.0
+        specifier: 0.11.0
         version: 0.11.0
       '@hass-blocks/core':
         specifier: 3.15.1
@@ -533,7 +533,7 @@ importers:
         specifier: 0.12.1
         version: link:../hass-ts
       '@hass-blocks/websocket-plugin':
-        specifier: workspace:0.6.1
+        specifier: 0.6.1
         version: link:../websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.11
@@ -3089,39 +3089,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/cli@0.3.0':
-    resolution: {integrity: sha512-DRQsUirg6NV6gk3y06gb1aUOlkCMoC7X7O0EbzexZPqXu8ELZcct1g/ZizTR7+AA7G4HBYn5le0EkRH/hHdZGA==}
-    engines: {node: '>=18'}
-    hasBin: true
-
-  '@hass-blocks/core@3.15.0':
-    resolution: {integrity: sha512-0byOG5BpZ6Ol5MfLZdjPBmpYzX1DEE+O3ocE5Nr2fB98BTJX91MLPPOvFlVoY1ChQTVR30RO7Cb8dTPz+HPZlA==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/core@3.15.1':
-    resolution: {integrity: sha512-5NAdi94CodvLQZqCqWSVHhve79YZeXzzYfVgsPvBqgW+0U7Z7gU/q6/nvJRnAzZMYUQ7TKnc6mvx57RhBASssw==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    resolution: {integrity: sha512-NfPz7hgbkRIY9B1jYUKNCwt66oZ+khVdKNt0/N/uVE6trZBW6tIMBuFYr9WWLs5VWIjf1dy+GoVDvG+rwIIcvQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.12.0':
-    resolution: {integrity: sha512-M3HiGemi6WVP70WtTWPrqVIkwOQ4AtAAUzoLfsFf5Q+YtZnqV5p4FnqCzuJhn6Pu9Rr9qakES+jplP/CIaM52w==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.12.1':
-    resolution: {integrity: sha512-EYfSoXPdFm7FbQNckXTd6yBoCIED7NavNQdpoTsYDr6ERm7Ejzr9jRmZUTPh68Hj5Db0s6u4yN3M4aWTDps9NQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/typed-socket-client@0.1.0':
-    resolution: {integrity: sha512-RNrPcWfaFKHs+MMSMKzhXEL6jMwW1y8O3P50r6xXslj/Sz/ce0VQKETcQkzz8AvoUpfjMyjWJ+hRbowb54C3fQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/websocket-plugin@0.6.1':
-    resolution: {integrity: sha512-1IFioittkXFsIOfANNDt9mZSZTl4Mg1r0Ku9FAo2mpc1RwtF1yvne1vB8LXCpwWfCqNcjzgYF0megJi/FSaCQg==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -17097,99 +17064,6 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@hass-blocks/cli@0.3.0(@types/react@19.1.2)(react@19.0.0)(typanion@3.14.0)':
-    dependencies:
-      '@hass-blocks/core': 3.15.1
-      '@hass-blocks/hass-ts': 0.12.1
-      '@hass-blocks/websocket-plugin': 0.6.1
-      '@swc/helpers': 0.5.17
-      clipanion: 4.0.0-rc.4(typanion@3.14.0)
-      ink: 5.2.0(@types/react@19.1.2)(react@19.0.0)
-      prettier: 3.5.3
-      tsconfig-paths: 4.2.0
-      typescript: 5.8.3
-    transitivePeerDependencies:
-      - '@types/react'
-      - bufferutil
-      - react
-      - react-devtools-core
-      - supports-color
-      - typanion
-      - utf-8-validate
-
-  '@hass-blocks/core@3.15.0':
-    dependencies:
-      '@hass-blocks/hass-mqtt': 0.2.0
-      '@hass-blocks/hass-ts': 0.12.0
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/core@3.15.1':
-    dependencies:
-      '@hass-blocks/hass-mqtt': 0.2.0
-      '@hass-blocks/hass-ts': 0.12.1
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      mqtt: 5.13.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.12.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.12.1':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@hass-blocks/typed-socket-client@0.1.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      socket.io: 4.8.1
-      socket.io-client: 4.8.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/websocket-plugin@0.6.1':
-    dependencies:
-      '@hass-blocks/core': 3.15.0
-      '@hass-blocks/typed-socket-client': 0.1.0
-      '@swc/helpers': 0.5.17
-      react: 19.1.0
-      socket.io-client: 4.8.1
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
   '@highlightjs/cdn-assets@11.11.1': {}
 
   '@humanfs/core@0.19.1': {}
@@ -24673,39 +24547,6 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  ink@5.2.0(@types/react@19.1.2)(react@19.0.0):
-    dependencies:
-      '@alcalzone/ansi-tokenize': 0.1.3
-      ansi-escapes: 7.0.0
-      ansi-styles: 6.2.1
-      auto-bind: 5.0.1
-      chalk: 5.4.1
-      cli-boxes: 3.0.0
-      cli-cursor: 4.0.0
-      cli-truncate: 4.0.0
-      code-excerpt: 4.0.0
-      es-toolkit: 1.37.1
-      indent-string: 5.0.0
-      is-in-ci: 1.0.0
-      patch-console: 2.0.0
-      react: 19.0.0
-      react-reconciler: 0.29.2(react@19.0.0)
-      scheduler: 0.23.2
-      signal-exit: 3.0.7
-      slice-ansi: 7.1.0
-      stack-utils: 2.0.6
-      string-width: 7.2.0
-      type-fest: 4.40.0
-      widest-line: 5.0.0
-      wrap-ansi: 9.0.0
-      ws: 8.18.1
-      yoga-layout: 3.2.1
-    optionalDependencies:
-      '@types/react': 19.1.2
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
   ink@5.2.0(@types/react@19.1.2)(react@19.1.0):
     dependencies:
       '@alcalzone/ansi-tokenize': 0.1.3
@@ -28237,12 +28078,6 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
       react: 18.3.1
-      scheduler: 0.23.2
-
-  react-reconciler@0.29.2(react@19.0.0):
-    dependencies:
-      loose-envify: 1.4.0
-      react: 19.0.0
       scheduler: 0.23.2
 
   react-reconciler@0.29.2(react@19.1.0):

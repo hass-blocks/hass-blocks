@@ -1,3 +1,14 @@
+## 0.7.2 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** correct tsconfig ([51c62345](https://github.com/hass-blocks/hass-blocks/commit/51c62345))
+- **cli:** include blocks code in the tsconfig ([9a55633c](https://github.com/hass-blocks/hass-blocks/commit/9a55633c))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.7.1 (2025-06-07)
 
 ### 🩹 Fixes

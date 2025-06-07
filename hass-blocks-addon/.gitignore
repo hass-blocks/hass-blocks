@@ -3,3 +3,6 @@ build
 public/build
 .env
 .react-router
+
+.nx/cache
+.nx/workspace-data

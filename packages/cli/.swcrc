@@ -3,6 +3,7 @@
     "target": "es2017",
     "baseUrl": ".",
     "paths": {
+      "@lib/create-blocks": ["./src/lib/create-blocks/index.ts"],
       "@lib/load": ["./src/lib/load/index.ts"],
       "@lib/codegen": ["./src/lib/codegen/index.ts"],
       "@lib/codegen/utils": ["./src/lib/codegen/utils/index.ts"],
@@ -20,7 +21,9 @@
     "keepClassNames": true,
     "externalHelpers": true,
     "loose": true,
+
     "experimental": {
+      "keepImportAttributes": true,
       "plugins": [["swc-plugin-allow-importing-ts-extensions", {}]]
     }
   },

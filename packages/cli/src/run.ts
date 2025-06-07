@@ -1,4 +1,4 @@
-import { genCode, load } from '@commands';
+import { genCode, load, create } from '@commands';
 import { run } from '@drizzle-team/brocli';
 
-run([load, genCode]);
+run([load, genCode, create]);

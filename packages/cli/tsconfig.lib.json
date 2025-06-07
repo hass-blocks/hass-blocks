@@ -5,10 +5,13 @@
     "rootDir": "src",
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.lib.tsbuildinfo",
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
     "emitDeclarationOnly": true,
     "forceConsistentCasingInFileNames": true,
     "types": ["node"],
     "paths": {
+      "@lib/create-blocks": ["./src/lib/create-blocks/index.ts"],
       "@lib/load": ["./src/lib/load/index.ts"],
       "@lib/codegen": ["./src/lib/codegen/index.ts"],
       "@lib/codegen/utils": ["./src/lib/codegen/utils/index.ts"],

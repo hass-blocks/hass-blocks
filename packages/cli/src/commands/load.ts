@@ -1,27 +1,29 @@
 import { command, string } from '@drizzle-team/brocli';
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
 import { doCodegen, watchAndGenerate } from '@lib/codegen';
+import { createBlocks } from '@lib/create-blocks';
 import { loadBlocks } from '@lib/load';
+import { join } from 'path';
 
 export const load = command({
   name: 'load',
   options: {
     folder: string().required(),
     websocketPort: string(),
+    packageManager: string().default('pnpm'),
     websocketHost: string(),
-    codegenOutput: string(),
   },
   handler: async (options) => {
+    await createBlocks(options.folder, options.packageManager);
+
+    const client = await initialiseHass(getConfig());
+    await doCodegen(client, join(options.folder, 'node_modules', '.blocks'));
+    watchAndGenerate(client, join(options.folder, 'node_modules', '.blocks'));
+
     await loadBlocks(
       options.folder,
       options.websocketHost,
       options.websocketPort,
     );
-
-    if (options.codegenOutput) {
-      const client = await initialiseHass(getConfig());
-      await doCodegen(client, options.codegenOutput);
-      watchAndGenerate(client, options.codegenOutput);
-    }
   },
 });

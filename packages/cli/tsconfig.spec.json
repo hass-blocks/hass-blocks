@@ -4,6 +4,8 @@
     "baseUrl": ".",
     "outDir": "./out-tsc/vitest",
     "paths": {
+      "@lib/create-blocks": ["./src/lib/create-blocks/index.ts"],
+      "@lib/load": ["./src/lib/load/index.ts"],
       "@lib/codegen": ["./src/lib/codegen/index.ts"],
       "@lib/codegen/utils": ["./src/lib/codegen/utils/index.ts"],
       "@commands": ["./src/commands/index.ts"]

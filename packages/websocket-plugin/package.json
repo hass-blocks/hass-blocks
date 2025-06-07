@@ -60,6 +60,7 @@
     "@hass-blocks/core": "3.14.0",
     "@hass-blocks/typed-socket-client": "workspace:*",
     "@swc/helpers": "~0.5.11",
-    "react": "^19.1.0"
+    "react": "^19.1.0",
+    "socket.io-client": "4.8.1"
   }
 }

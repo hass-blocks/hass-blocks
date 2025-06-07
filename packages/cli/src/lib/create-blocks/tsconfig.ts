@@ -28,6 +28,6 @@ export const tsConfig = `
   },
   "include": ["**/*.ts"],
   "paths": {
-    "@blocks-codegen": ["./.blocks/index.ts"]
+    "@blocks-codegen": ["./node_modules/.blocks/index.ts"]
   }
 }`;

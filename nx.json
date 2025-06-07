@@ -71,10 +71,9 @@
     "projectsRelationship": "independent",
     "projects": ["packages/*"],
     "version": {
-      "generatorOptions": {
-        "fallbackCurrentVersionResolver": "disk"
-      },
-      "conventionalCommits": true
+      "conventionalCommits": true,
+      "fallbackCurrentVersionResolver": "disk",
+      "preserveLocalDependencyProtocols": false
     }
   },
   "targetDefaults": {

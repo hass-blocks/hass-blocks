@@ -1,6 +1,6 @@
-import { readFile } from 'node:fs/promises';
-import { join } from 'node:path';
 import { type IHomeAssistant, initialiseHass } from '@hass-blocks/hass-ts';
+
+import packageJson from '../../package.json' with { type: 'json' };
 
 import type { IBlocksConnection, IBlocksPlugin, ILogger } from '@types';
 import { EventBus, loadPlugins, getConfig } from '@core';
@@ -95,13 +95,6 @@ export const initialiseBlocks = async (
       logger: theLogger,
     });
   }
-
-  const packageJson = JSON.parse(
-    await readFile(
-      join(import.meta.dirname, '..', '..', '..', '..', 'package.json'),
-      'utf8',
-    ),
-  );
 
   theLogger.info(`Initialised Hass Blocks version ${packageJson.version}`);
 

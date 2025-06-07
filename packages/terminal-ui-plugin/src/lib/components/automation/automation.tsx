@@ -1,10 +1,10 @@
-import type { IBlock } from '@hass-blocks/core';
+import type { IBlocksNode, ISerialisable } from '@hass-blocks/core';
 import { Box, Text } from 'ink';
 import type { LifeCycleEvent } from '@types';
 import { ExecutionLine } from '../execution-line/index.ts';
 
 interface AutomationProps {
-  automation: IBlock<unknown, unknown>;
+  automation: IBlocksNode & ISerialisable;
   events: LifeCycleEvent[];
 }
 

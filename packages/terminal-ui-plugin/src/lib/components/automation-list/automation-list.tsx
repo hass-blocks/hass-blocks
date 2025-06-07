@@ -1,4 +1,9 @@
-import type { IBlock, IEventBus, IFullBlocksClient } from '@hass-blocks/core';
+import type {
+  IBlocksNode,
+  IEventBus,
+  IFullBlocksClient,
+  ISerialisable,
+} from '@hass-blocks/core';
 import { useEffect, useState } from 'react';
 import { Automation } from '../automation/automation.tsx';
 import type { LifeCycleEvent } from '@types';
@@ -10,9 +15,9 @@ interface AutomationListProps {
 }
 export const AutomationList = ({ hass, bus }: AutomationListProps) => {
   const [events, setEvents] = useState<LifeCycleEvent[]>([]);
-  const [automations, setAutomations] = useState<IBlock<unknown, unknown>[]>(
-    [],
-  );
+  const [automations, setAutomations] = useState<
+    (IBlocksNode & ISerialisable)[]
+  >([]);
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {

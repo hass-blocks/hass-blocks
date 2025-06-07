@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.base.json",
+  "$schema": "https://json.schemastore.org/tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "rootDir": "src",
@@ -7,24 +7,29 @@
     "paths": {
       "@lib": ["./src/app/lib/index.ts"],
       "@components": ["./src/app/components/index.ts"],
+      "@chakra": ["./src/app/chakra/index.ts"],
       "@providers": ["./src/app/providers/index.ts"],
       "@hooks": ["./src/app/hooks/index.ts"],
-      "@blocks-codegen": ["./blocks-codegen/index.ts"]
+      "@blocks-codegen": ["./src/blocks-codegen/index.ts"]
     },
-    "module": "nodenext",
-    "moduleResolution": "nodenext",
-    "types": ["node", "vite/client"]
+    "module": "preserve",
+    "moduleResolution": "bundler",
+    "types": ["node", "vite/client", "@react-router/node"]
   },
-  "include": ["./src/node/**/*.ts", "./src/node/**/*.js"],
-  "exclude": [
-    "react-router.config.ts",
+  "include": [
+    "./src/app/**/*.ts",
+    "./src/app/**/*.tsx",
+    "./src/app/**/*.js",
+    "./src/app/**/*.jsx",
     ".server/**/*.ts",
     ".server/**/*.tsx",
     ".client/**/*.ts",
-    ".client/**/*.tsx",
+    ".client/**/*.tsx"
+  ],
+  "exclude": [
+    "react-router.config.ts",
     "./src/app/components/vite.config.ts",
     "vite.config.mts",
-    "vite.config.ts",
     "vitest.config.ts",
     "vitest.config.mts",
     "**/*.test.ts",
@@ -35,13 +40,5 @@
     "**/*.spec.js",
     "**/*.test.jsx",
     "**/*.spec.jsx"
-  ],
-  "references": [
-    {
-      "path": "../packages/websocket-plugin"
-    },
-    {
-      "path": "../packages/core"
-    }
   ]
 }

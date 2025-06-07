@@ -6,7 +6,7 @@ import {
   type ReactNode,
 } from 'react';
 import { useBlocks } from '@hass-blocks/websocket-plugin/client';
-import { ConnectionStatus } from 'node_modules/@hass-blocks/websocket-plugin/src/use-socket';
+import { ConnectionStatus } from '@hass-blocks/websocket-plugin/client';
 import type { HassBlocksEvent } from '@hass-blocks/core';
 
 type Client = ReturnType<typeof useBlocks>['client'];
@@ -30,7 +30,7 @@ interface BlocksProviderProps {
 }
 
 export const BlocksProvider = ({ children }: BlocksProviderProps) => {
-  const { client, connectionStatus } = useBlocks('localhost', 8080);
+  const { client, connectionStatus } = useBlocks('localhost', 3001);
 
   const [callbacks, setCallbacks] = useState<
     ((event: HassBlocksEvent) => void)[]

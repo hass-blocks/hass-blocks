@@ -183,6 +183,9 @@ importers:
       '@types/react-dom':
         specifier: 18.3.0
         version: 18.3.0
+      '@types/serve-handler':
+        specifier: ^6.1.4
+        version: 6.1.4
       '@vitejs/plugin-react':
         specifier: ^4.2.0
         version: 4.5.1(vite@6.0.0(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))
@@ -412,10 +415,10 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.25.3)
       '@hass-blocks/core':
-        specifier: workspace:3.14.0
-        version: link:../packages/core
+        specifier: 3.14.0
+        version: 3.14.0
       '@hass-blocks/websocket-plugin':
-        specifier: workspace:*
+        specifier: 0.6.1
         version: link:../packages/websocket-plugin
       '@projectstorm/react-canvas-core':
         specifier: ^7.0.3
@@ -474,13 +477,25 @@ importers:
       react-router-dom:
         specifier: ^7.6.2
         version: 7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      serve-handler:
+        specifier: ^6.1.6
+        version: 6.1.6
+      vite:
+        specifier: 6.0.0
+        version: 6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vite-node:
+        specifier: ^3.1.1
+        version: 3.1.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
       vite-plugin-commonjs:
         specifier: ^0.10.4
         version: 0.10.4
+      vite-tsconfig-paths:
+        specifier: ^5.1.4
+        version: 5.1.4(typescript@5.8.3)(vite@6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))
     devDependencies:
       '@react-router/dev':
-        specifier: ^7.2.0
-        version: 7.6.2(@react-router/serve@7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3))(@types/node@20.17.57)(babel-plugin-macros@3.1.0)(jiti@2.4.2)(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(tsx@3.14.0)(typescript@5.8.3)(vite@6.3.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))(yaml@2.7.1)
+        specifier: ^7.6.2
+        version: 7.6.2(@react-router/serve@7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3))(@types/node@20.17.57)(babel-plugin-macros@3.1.0)(jiti@2.4.2)(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(tsx@3.14.0)(typescript@5.8.3)(vite@6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))(yaml@2.7.1)
       '@types/node':
         specifier: ^20.0.0
         version: 20.17.57
@@ -511,6 +526,9 @@ importers:
       '@hass-blocks/hass-ts':
         specifier: 0.12.1
         version: link:../hass-ts
+      '@hass-blocks/websocket-plugin':
+        specifier: workspace:0.6.1
+        version: link:../websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -3066,6 +3084,14 @@ packages:
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
 
+  '@hass-blocks/core@3.14.0':
+    resolution: {integrity: sha512-rDQRtapdIrGZqu/e5qM9xnHXNiZ9Px44wclYaY+dR3VpLYRxSHogg1sWE5D3sNPHqbiUD8W/W1vnMueB0JkQHQ==}
+    engines: {node: '>=18'}
+
+  '@hass-blocks/hass-ts@0.11.1':
+    resolution: {integrity: sha512-KftjdGjAFEogTAnN0ITuYdXhjrYwrRO1h97yX8yh2JQXUtRbqccmrKpKH9hgdvUDmI9Wesi/ue9EiH+Ltylvuw==}
+    engines: {node: '>=18'}
+
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
     engines: {node: '>=12.0.0'}
@@ -4777,6 +4803,9 @@ packages:
 
   '@types/send@0.17.4':
     resolution: {integrity: sha512-x2EM6TJOybec7c52BX0ZspPodMsQUd5L6PRwOunVyVUhXiBSKf3AezDL8Dgvgt5o0UfKNfuA0eMLr2wLT4AiBA==}
+
+  '@types/serve-handler@6.1.4':
+    resolution: {integrity: sha512-aXy58tNie0NkuSCY291xUxl0X+kGYy986l4kqW6Gi4kEXgr6Tx0fpSH7YwUSa5usPpG3s9DBeIR6hHcDtL2IvQ==}
 
   '@types/serve-index@1.9.4':
     resolution: {integrity: sha512-qLpGZ/c2fhSs5gnYsQxtDEq3Oy8SXPClIXkW5ghvAvsNuVSA8k+gCONcUCS/UjLEYvYps+e8uBtfgXgvhwfNug==}
@@ -17035,6 +17064,26 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
+  '@hass-blocks/core@3.14.0':
+    dependencies:
+      '@hass-blocks/hass-ts': 0.11.1
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      react: 18.3.1
+      uuid: 11.1.0
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
+  '@hass-blocks/hass-ts@0.11.1':
+    dependencies:
+      '@swc/helpers': 0.5.17
+      dotenv: 16.4.7
+      ws: 8.18.1
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
+
   '@highlightjs/cdn-assets@11.11.1': {}
 
   '@humanfs/core@0.19.1': {}
@@ -18507,7 +18556,7 @@ snapshots:
       - tsx
       - yaml
 
-  '@react-router/dev@7.6.2(@react-router/serve@7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3))(@types/node@20.17.57)(babel-plugin-macros@3.1.0)(jiti@2.4.2)(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(tsx@3.14.0)(typescript@5.8.3)(vite@6.3.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))(yaml@2.7.1)':
+  '@react-router/dev@7.6.2(@react-router/serve@7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3))(@types/node@20.17.57)(babel-plugin-macros@3.1.0)(jiti@2.4.2)(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(terser@5.39.0)(tsx@3.14.0)(typescript@5.8.3)(vite@6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1))(yaml@2.7.1)':
     dependencies:
       '@babel/core': 7.27.1
       '@babel/generator': 7.27.1
@@ -18536,7 +18585,7 @@ snapshots:
       semver: 7.7.2
       set-cookie-parser: 2.7.1
       valibot: 0.41.0(typescript@5.8.3)
-      vite: 6.3.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+      vite: 6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
       vite-node: 3.1.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
     optionalDependencies:
       '@react-router/serve': 7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3)
@@ -19422,6 +19471,10 @@ snapshots:
   '@types/send@0.17.4':
     dependencies:
       '@types/mime': 1.3.5
+      '@types/node': 20.17.57
+
+  '@types/serve-handler@6.1.4':
+    dependencies:
       '@types/node': 20.17.57
 
   '@types/serve-index@1.9.4':
@@ -30250,6 +30303,17 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+  vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)):
+    dependencies:
+      debug: 4.4.0
+      globrex: 0.1.2
+      tsconfck: 3.1.5(typescript@5.8.3)
+    optionalDependencies:
+      vite: 6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   vite-tsconfig-paths@5.1.4(typescript@5.8.3)(vite@6.0.0(@types/node@22.14.1)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1)):
     dependencies:
       debug: 4.4.0
@@ -30291,22 +30355,6 @@ snapshots:
       rollup: 4.40.1
     optionalDependencies:
       '@types/node': 22.14.1
-      fsevents: 2.3.3
-      jiti: 2.4.2
-      terser: 5.39.0
-      tsx: 3.14.0
-      yaml: 2.7.1
-
-  vite@6.3.4(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@3.14.0)(yaml@2.7.1):
-    dependencies:
-      esbuild: 0.25.3
-      fdir: 6.4.4(picomatch@4.0.2)
-      picomatch: 4.0.2
-      postcss: 8.5.3
-      rollup: 4.40.1
-      tinyglobby: 0.2.13
-    optionalDependencies:
-      '@types/node': 20.17.57
       fsevents: 2.3.3
       jiti: 2.4.2
       terser: 5.39.0

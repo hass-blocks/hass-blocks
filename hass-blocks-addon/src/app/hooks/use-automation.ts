@@ -1,5 +1,5 @@
 import type { IBlocksNode } from '@hass-blocks/core';
-import { BlocksContext } from 'app/providers/blocks';
+import { BlocksContext } from '@providers';
 import { useContext, useEffect, useState } from 'react';
 
 export const useAutomation = (id?: string) => {

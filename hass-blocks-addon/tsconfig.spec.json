@@ -2,20 +2,16 @@
   "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
     "baseUrl": ".",
     "paths": {
       "@lib": ["app/lib/index.ts"],
-      "@components": ["app/components/index.ts"],
+      "@components": ["app/index.ts"],
       "@providers": ["app/providers/index.ts"],
       "@hooks": ["app/hooks/index.ts"],
       "@blocks-codegen": ["blocks-codegen/index.ts"]
     },
-    "module": "nodeNext",
-    "moduleResolution": "nodeNext",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "outDir": "../dist/out-tsc",
     "types": [
       "vitest/globals",
@@ -36,7 +32,8 @@
     }
   ],
   "include": [
-    "app/vite.config.ts",
+    "react-router.config.ts",
+    "app/components/vite.config.ts",
     "vite.config.mts",
     "vite.config.ts",
     "vitest.config.ts",

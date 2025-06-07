@@ -1,9 +1,7 @@
 import { defineConfig } from 'vite';
 /// <reference types='vitest' />
 import { reactRouter } from '@react-router/dev/vite';
-import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
-import { nxCopyAssetsPlugin } from '@nx/vite/plugins/nx-copy-assets.plugin';
 
 export default defineConfig(() => ({
   root: __dirname,
@@ -16,12 +14,7 @@ export default defineConfig(() => ({
     port: 4300,
     host: 'localhost',
   },
-  plugins: [
-    !process.env['VITEST'] && reactRouter(),
-    nxViteTsPaths(),
-    tsconfigPaths(),
-    nxCopyAssetsPlugin(['*.md']),
-  ],
+  plugins: [!process.env['VITEST'] && reactRouter(), tsconfigPaths()],
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [ nxViteTsPaths() ],

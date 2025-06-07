@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react/box';
 import { Flex } from '@chakra-ui/react/flex';
-import { AppNav, AutomationList } from '@components';
+import { AppNav, AutomationList } from '..';
 import type { ReactNode } from 'react';
 
 interface LayoutProps {

@@ -1,0 +1,15 @@
+services:
+  hass-blocks:
+    container_name: hass-blocks
+    build:
+      context: .
+      args:
+        BUILD_FROM: ghcr.io/home-assistant/amd64-base:latest
+        BUILD_TYPE: local
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - '3001:3001'
+      - '8080:3000'
+    restart: unless-stopped
+    privileged: true

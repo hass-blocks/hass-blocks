@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { ConnectionStatus } from '@components';
+import { ConnectionStatus } from '..';
 
 export function AppNav() {
   return (

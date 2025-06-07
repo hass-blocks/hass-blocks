@@ -1,6 +1,6 @@
 import { Separator, Stack, Text } from '@chakra-ui/react';
 import type { IBlocksNode } from '@hass-blocks/core';
-import { BlocksContext } from 'app/providers/blocks';
+import { BlocksContext } from '@providers';
 import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router';

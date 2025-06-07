@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { BlocksContext } from 'app/providers/blocks';
+import { BlocksContext } from '@providers';
 import { ConnectionStatus as ConnectionStatusEnum } from '@hass-blocks/websocket-plugin/client';
 import { Flex, Icon } from '@chakra-ui/react';
 import { PiLightningSlash } from 'react-icons/pi';
@@ -14,7 +14,7 @@ export const ConnectionStatus = () => {
           <PiLightning />
         </Icon>
       ) : (
-        <Icon color="red" size="lg">
+        <Icon color="" size="lg">
           <PiLightningSlash />
         </Icon>
       )}

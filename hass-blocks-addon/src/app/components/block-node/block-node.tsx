@@ -7,7 +7,7 @@ import type {
 } from '@hass-blocks/core';
 import { Handle, Node, Position, type NodeProps } from '@xyflow/react';
 import { BlockStatus } from '@components';
-import { BlocksContext } from 'app/providers/blocks';
+import { BlocksContext } from '@providers';
 import { useContext, useEffect, useState } from 'react';
 
 type BlockNodeType = Node<{ block: IBlocksNode }, 'block'>;

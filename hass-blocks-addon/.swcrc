@@ -1,0 +1,42 @@
+{
+  "jsc": {
+    "baseUrl": "./",
+    "paths": {
+      "@lib": ["./src/app/lib/index.ts"],
+      "@components": ["./src/app/components/index.ts"],
+      "@providers": ["./src/app/providers/index.ts"],
+      "@hooks": ["./src/app/hooks/index.ts"],
+      "@blocks-codegen": ["./blocks-codegen/index.ts"]
+    },
+    "target": "es2017",
+    "parser": {
+      "syntax": "typescript",
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "decoratorMetadata": true,
+      "legacyDecorator": true
+    },
+    "keepClassNames": true,
+    "externalHelpers": true,
+    "loose": true,
+    "experimental": {
+      "plugins": [["swc-plugin-allow-importing-ts-extensions", {}]]
+    }
+  },
+  "module": {
+    "type": "es6",
+    "resolveFully": true,
+    "outFileExtension": "js"
+  },
+  "sourceMaps": true,
+  "exclude": [
+    "jest.config.ts",
+    ".*\\.spec.tsx?$",
+    ".*\\.test.tsx?$",
+    "./src/jest-setup.ts$",
+    "./**/jest-setup.ts$",
+    ".*.js$"
+  ]
+}

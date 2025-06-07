@@ -7,9 +7,10 @@ import {
   type MetaFunction,
   type LinksFunction,
 } from 'react-router-dom';
-import { Provider } from '@components';
 
-import { AppLayout } from '@components';
+import { Provider } from '@chakra';
+
+import { AppLayout } from './components/index.js';
 import { BlocksProvider } from './providers/blocks.js';
 import { Theme } from '@chakra-ui/react';
 

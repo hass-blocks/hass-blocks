@@ -1,9 +1,21 @@
 {
   "name": "hass-blocks-addon",
   "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "hass-blocks-addon",
+  "sourceRoot": "hass-blocks-addon/src",
   "projectType": "application",
   "tags": [],
   "// targets": "to see all targets run: nx show project blocks-frontend --web",
-  "targets": {}
+  "targets": {
+    "build-static-server": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "hass-blocks-addon/dist",
+        "main": "hass-blocks-addon/src/node/serve-frontend.js",
+        "tsConfig": "hass-blocks-addon/tsconfig.node.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    }
+  }
 }

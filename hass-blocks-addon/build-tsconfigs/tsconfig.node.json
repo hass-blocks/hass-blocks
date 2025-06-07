@@ -1,5 +1,4 @@
 {
-  "extends": "../tsconfig.base.json",
   "compilerOptions": {
     "jsx": "react-jsx",
     "rootDir": "src",
@@ -35,13 +34,5 @@
     "**/*.spec.js",
     "**/*.test.jsx",
     "**/*.spec.jsx"
-  ],
-  "references": [
-    {
-      "path": "../packages/websocket-plugin"
-    },
-    {
-      "path": "../packages/core"
-    }
   ]
 }

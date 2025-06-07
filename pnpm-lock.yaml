@@ -376,8 +376,8 @@ importers:
         specifier: 3.14.0
         version: link:../../packages/blocks
       '@hass-blocks/core':
-        specifier: 3.15.0
-        version: 3.15.0
+        specifier: 3.15.1
+        version: link:../../packages/core
       '@hass-blocks/triggers':
         specifier: 0.1.0
         version: link:../../packages/triggers
@@ -494,8 +494,8 @@ importers:
   packages/blocks:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.0
-        version: 3.15.0
+        specifier: 3.15.1
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -626,8 +626,8 @@ importers:
   packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.0
-        version: 3.15.0
+        specifier: 3.15.1
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -644,8 +644,8 @@ importers:
   packages/triggers:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.0
-        version: 3.15.0
+        specifier: 3.15.1
+        version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
         version: 0.5.17
@@ -665,8 +665,8 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.15.0
-        version: 3.15.0
+        specifier: 3.15.1
+        version: link:../core
       '@hass-blocks/typed-socket-client':
         specifier: 0.1.0
         version: link:../typed-socket-client
@@ -3062,18 +3062,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/core@3.15.0':
-    resolution: {integrity: sha512-0byOG5BpZ6Ol5MfLZdjPBmpYzX1DEE+O3ocE5Nr2fB98BTJX91MLPPOvFlVoY1ChQTVR30RO7Cb8dTPz+HPZlA==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    resolution: {integrity: sha512-NfPz7hgbkRIY9B1jYUKNCwt66oZ+khVdKNt0/N/uVE6trZBW6tIMBuFYr9WWLs5VWIjf1dy+GoVDvG+rwIIcvQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.12.0':
-    resolution: {integrity: sha512-M3HiGemi6WVP70WtTWPrqVIkwOQ4AtAAUzoLfsFf5Q+YtZnqV5p4FnqCzuJhn6Pu9Rr9qakES+jplP/CIaM52w==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -17043,36 +17031,6 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
-
-  '@hass-blocks/core@3.15.0':
-    dependencies:
-      '@hass-blocks/hass-mqtt': 0.2.0
-      '@hass-blocks/hass-ts': 0.12.0
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-mqtt@0.2.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      mqtt: 5.13.0
-    transitivePeerDependencies:
-      - bufferutil
-      - supports-color
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.12.0':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
 
   '@highlightjs/cdn-assets@11.11.1': {}
 

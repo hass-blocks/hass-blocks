@@ -1,3 +1,8 @@
+/**
+ * A strongly typed client for Home Assistant that uses both the HTTP and Websocket APIs
+ *
+ * @packageDocumentation
+ */
 export { initialiseHass, getConfig } from '@initialise';
 
 export type {

@@ -19,7 +19,7 @@
   },
   "module": {
     "type": "es6",
-    "resolveFully": true,
+    "resolveFully": true
   },
   "sourceMaps": true,
   "exclude": [

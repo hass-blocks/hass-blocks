@@ -1,3 +1,13 @@
+## 0.1.3 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** update to latest version of core ([95ebb8bd](https://github.com/hass-blocks/hass-blocks/commit/95ebb8bd))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.2 (2025-06-07)
 
 ### 🩹 Fixes

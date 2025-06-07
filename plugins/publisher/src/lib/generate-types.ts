@@ -6,7 +6,6 @@ import {
   type IConfigFile,
   type IExtractorConfigPrepareOptions,
 } from '@microsoft/api-extractor';
-import * as tsc from 'tsc-prog';
 import { workspaceRoot } from '@nx/devkit';
 import { basename, join } from 'node:path';
 import { createDirIfNotExists } from './create-dir-if-not-exists.ts';

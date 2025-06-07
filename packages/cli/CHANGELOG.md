@@ -1,3 +1,18 @@
+## 0.3.0 (2025-06-07)
+
+### 🚀 Features
+
+- **cli:** support tsconfig paths ([284de2e1](https://github.com/hass-blocks/hass-blocks/commit/284de2e1))
+
+### 🩹 Fixes
+
+- **cli:** add websocket listening to load ([da9c81c5](https://github.com/hass-blocks/hass-blocks/commit/da9c81c5))
+- **cli:** ignore tsconfig-paths from deps checks ([01bae09d](https://github.com/hass-blocks/hass-blocks/commit/01bae09d))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.2.0 (2025-06-07)
 
 ### 🚀 Features

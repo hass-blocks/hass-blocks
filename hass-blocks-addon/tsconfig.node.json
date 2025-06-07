@@ -7,8 +7,6 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "baseUrl": ".",
-    "rootDir": "app",
-    "outDir": "dist",
     "paths": {
       "@lib": ["app/lib/index.ts"],
       "@components": ["app/components/index.ts"],
@@ -16,21 +14,16 @@
       "@hooks": ["app/hooks/index.ts"],
       "@blocks-codegen": ["blocks-codegen/index.ts"]
     },
-    "module": "preserve",
-    "moduleResolution": "bundler",
-    "types": ["node", "vite/client", "@react-router/node"]
+    "module": "nodeNext",
+    "moduleResolution": "nodeNext",
+    "types": ["node", "vite/client"]
   },
-  "include": [
-    "app/**/*.ts",
-    "app/**/*.tsx",
-    "app/**/*.js",
-    "app/**/*.jsx",
+  "include": ["node/**/*.ts", "node/**/*.js"],
+  "exclude": [
     ".server/**/*.ts",
     ".server/**/*.tsx",
     ".client/**/*.ts",
-    ".client/**/*.tsx"
-  ],
-  "exclude": [
+    ".client/**/*.tsx",
     "tests/**/*.spec.ts",
     "tests/**/*.test.ts",
     "tests/**/*.spec.tsx",
@@ -41,6 +34,7 @@
     "tests/**/*.test.jsx",
     "app/vite.config.ts",
     "vite.config.mts",
+    "vite.config.ts",
     "vitest.config.ts",
     "vitest.config.mts",
     "**/*.test.ts",

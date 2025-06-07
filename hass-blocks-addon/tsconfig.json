@@ -1,25 +1,11 @@
 {
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "allowJs": false,
-    "esModuleInterop": false,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "baseUrl": ".",
-    "types": ["vite/client", "vitest", "@react-router/node"],
-    "paths": {
-      "@lib": ["app/lib/index.ts"],
-      "@components": ["app/components/index.ts"],
-      "@providers": ["app/providers/index.ts"],
-      "@hooks": ["app/hooks/index.ts"],
-      "@blocks-codegen": ["blocks-codegen/index.ts"]
-    },
-    "module": "ESNext",
-    "moduleResolution": "Bundler"
-  },
+  "compilerOptions": {},
   "files": [],
   "include": [],
   "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
     {
       "path": "./tsconfig.app.json"
     },

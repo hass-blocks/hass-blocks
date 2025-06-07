@@ -1,6 +1,21 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
+    "allowJs": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lib": ["app/lib/index.ts"],
+      "@components": ["app/components/index.ts"],
+      "@providers": ["app/providers/index.ts"],
+      "@hooks": ["app/hooks/index.ts"],
+      "@blocks-codegen": ["blocks-codegen/index.ts"]
+    },
+    "module": "nodeNext",
+    "moduleResolution": "nodeNext",
     "outDir": "../dist/out-tsc",
     "types": [
       "vitest/globals",
@@ -12,9 +27,18 @@
       "@nx/react/typings/image.d.ts"
     ]
   },
+  "references": [
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
   "include": [
     "app/vite.config.ts",
     "vite.config.mts",
+    "vite.config.ts",
     "vitest.config.ts",
     "vitest.config.mts",
     "**/*.test.ts",

@@ -18,7 +18,6 @@ COPY ./package.json /package.json
 RUN npm ci --production
 COPY ./app /app
 COPY ./blocks /blocks
-COPY ./
 COPY ./config.yaml /config.yaml
 COPY ./tsconfig.json /tsconfig.json
 COPY ./tsconfig.lib.json /tsconfig.lib.json

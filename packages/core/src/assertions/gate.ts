@@ -1,4 +1,4 @@
-import { action, assertion } from '@hass-blocks/core';
+import { action, assertion } from '@building-blocks';
 
 /**
  * @public

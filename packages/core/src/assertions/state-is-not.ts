@@ -1,4 +1,5 @@
-import { assertion, type ITarget } from '@hass-blocks/core';
+import { assertion } from '@building-blocks';
+import type { ITarget } from '@types';
 
 /**
  * @public

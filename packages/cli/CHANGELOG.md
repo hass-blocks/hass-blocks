@@ -1,3 +1,13 @@
+## 0.7.5 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** dont try to load directories ([aa0e11e9d](https://github.com/hass-blocks/hass-blocks/commit/aa0e11e9d))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.7.4 (2025-06-07)
 
 ### 🧱 Updated Dependencies

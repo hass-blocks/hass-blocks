@@ -1,3 +1,13 @@
+## 3.16.2 (2025-06-07)
+
+### 🩹 Fixes
+
+- **core:** add import attrribute ([6eff21cfc](https://github.com/hass-blocks/hass-blocks/commit/6eff21cfc))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.16.1 (2025-06-07)
 
 ### 🩹 Fixes

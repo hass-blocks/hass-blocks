@@ -9,7 +9,7 @@
   "private": true,
   "dependencies": {
     "@hass-blocks/blocks": "3.14.0",
-    "@hass-blocks/core": "3.15.0",
+    "@hass-blocks/core": "3.15.1",
     "@hass-blocks/triggers": "0.1.0",
     "@hass-blocks/websocket-plugin": "0.6.1",
     "@swc/helpers": "~0.5.17",

@@ -1,3 +1,13 @@
+## 0.4.0 (2025-06-07)
+
+### 🚀 Features
+
+- **cli:** generate install package ([6c3c1cf9](https://github.com/hass-blocks/hass-blocks/commit/6c3c1cf9))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.1 (2025-06-07)
 
 ### 🩹 Fixes

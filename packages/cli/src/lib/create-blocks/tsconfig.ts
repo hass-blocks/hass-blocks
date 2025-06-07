@@ -4,6 +4,9 @@ export const tsConfig = `
   "compilerOptions": {
     "resolveJsonModule": true,
     "noErrorTruncation": true,
+    "moduleResolution": "nodenext",
+    "module": "nodenext",
+    "declaration": true,
     "emitDeclarationOnly": true,
     "importHelpers": true,
     "isolatedModules": true,
@@ -23,7 +26,7 @@ export const tsConfig = `
     "allowUnreachableCode": false,
     "allowUnusedLabels": false
   },
-  "include": ["src/**/*.ts"],
+  "include": ["**/*.ts"],
   "paths": {
     "@blocks-codegen": ["./.blocks/index.ts"]
   }

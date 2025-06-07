@@ -1,6 +1,7 @@
-import { action, HassBlocksError } from '@hass-blocks/core';
+import { action } from '@building-blocks';
 import z from 'zod/v4';
 import { removeUndefined } from '@utils';
+import { HassBlocksError } from '@errors';
 
 /**
  * @public

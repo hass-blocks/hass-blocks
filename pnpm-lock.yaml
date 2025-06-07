@@ -375,9 +375,6 @@ importers:
 
   apps/bens-flat:
     dependencies:
-      '@hass-blocks/blocks':
-        specifier: 3.14.0
-        version: link:../../packages/blocks
       '@hass-blocks/core':
         specifier: 3.15.1
         version: link:../../packages/core
@@ -509,26 +506,11 @@ importers:
         specifier: 19.1.2
         version: 19.1.2(@types/react@19.1.2)
 
-  packages/blocks:
-    dependencies:
-      '@hass-blocks/core':
-        specifier: 3.15.1
-        version: link:../core
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
-      zod:
-        specifier: 3.25.28
-        version: 3.25.28
-
   packages/cli:
     dependencies:
       '@drizzle-team/brocli':
         specifier: 0.11.0
         version: 0.11.0
-      '@hass-blocks/blocks':
-        specifier: workspace:3.14.0
-        version: link:../blocks
       '@hass-blocks/core':
         specifier: 3.15.1
         version: link:../core
@@ -577,6 +559,9 @@ importers:
       uuid:
         specifier: 11.1.0
         version: 11.1.0
+      zod:
+        specifier: 3.25.28
+        version: 3.25.28
     devDependencies:
       '@microsoft/api-extractor':
         specifier: 7.52.3

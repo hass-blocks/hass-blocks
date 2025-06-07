@@ -1,4 +1,5 @@
-import { type ITarget, serviceCall } from '@hass-blocks/core';
+import { serviceCall } from '@building-blocks';
+import type { ITarget } from '@types';
 
 /**
  * @public

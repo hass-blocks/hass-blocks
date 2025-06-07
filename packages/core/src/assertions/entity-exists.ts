@@ -1,5 +1,6 @@
-import { assertion, type IEntity } from '@hass-blocks/core';
-import { EntityDoesNotExistError } from 'node_modules/@hass-blocks/core/src/errors/entity-does-not-exist-error.ts';
+import { assertion } from '@building-blocks';
+import { EntityDoesNotExistError } from '@errors';
+import type { IEntity } from '@types';
 
 /**
  * @public

@@ -1,3 +1,17 @@
+## 0.2.0 (2025-06-07)
+
+### 🚀 Features
+
+- **cli:** add the watch behaviour to the load command ([5c689a74](https://github.com/hass-blocks/hass-blocks/commit/5c689a74))
+
+### 🩹 Fixes
+
+- **cli:** fix broken imports ([8ce87b44](https://github.com/hass-blocks/hass-blocks/commit/8ce87b44))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.3 (2025-06-07)
 
 ### 🩹 Fixes

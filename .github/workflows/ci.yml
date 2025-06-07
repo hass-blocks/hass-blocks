@@ -119,6 +119,11 @@ jobs:
       - run: git config --global user.email "bwainwright28@gmail.com"
       - run: git config --global user.name "Ben Wainwright"
 
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: artifact-*
+          merge-multiple: true
+
       - run: npx nx release --yes --dry-run
         if: ${{ github.event.act }}
 

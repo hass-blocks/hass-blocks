@@ -4,6 +4,7 @@
 
 ```ts
 
+import { Block as Block_2 } from '../index.ts';
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
 import type { Event as Event_2 } from '@hass-blocks/hass-ts';
 import type { HassArea } from '@hass-blocks/hass-ts';
@@ -12,9 +13,23 @@ import { IHomeAssistant } from '@hass-blocks/hass-ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
+import z from 'zod/v4';
 
 // @public
 export const action: <TInput = void, TOutput = void>(config: IActionConfig<TInput, TOutput>) => Block<TInput, TOutput>;
+
+// @public
+export const apiRequest: <TProps extends Partial<ApiRequestProps>, TInputProps extends Partial<ApiRequestProps>>(props: TProps) => Block_2<TInputProps, z.core.output<Exclude<TProps["responseSchema"], undefined>>>;
+
+// @public
+export interface ApiRequestProps {
+    baseUrl: string;
+    body?: Record<string, unknown>;
+    headers: Record<string, unknown>;
+    method: 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
+    path: string;
+    responseSchema?: z.core.$ZodType;
+}
 
 // @public
 export const area: <I extends string>(id: I, name?: string) => IArea<I>;
@@ -146,6 +161,9 @@ export type DoRecurse<TInput, TOutput, TSequence extends readonly Block<unknown,
 export const entity: <I extends `${string}.${string}`>(id: I, friendlyName?: string) => IEntity<I>;
 
 // @public
+export const entityExists: (entity: IEntity) => Block_2<void, void>;
+
+// @public
 export class ExecutionAbortedError extends HassBlocksError {
     constructor(name: string);
 }
@@ -159,6 +177,14 @@ export enum ExecutionMode {
 
 // @public
 export type ExtractOutput<TAny> = TAny extends Promise<infer TPromiseType> ? ExtractOutput<TPromiseType> : TAny extends Exclude<BlockOutput<infer TBlockType>, StopOutput> ? TBlockType : never;
+
+// @public
+export const gate: (name: string) => {
+    ifGateIsOpen: Block_2<void, void>;
+    ifGateIsClosed: Block_2<void, void>;
+    open: Block_2<void, void>;
+    close: Block_2<void, void>;
+};
 
 // @public
 export interface GeneralFailure extends BaseHassBlocksEvent<'generalFailure'> {
@@ -557,6 +583,12 @@ export type RecurseSequence<TCheckOutput extends CheckOutput> = TCheckOutput ext
 export type RemoveVoidIfNotOnlyVoid<T> = Exclude<T, void> extends never ? void : Exclude<T, void>;
 
 // @public
+export const sendRemoteCommands: (target: ITarget, commands: string[]) => Block_2<Partial<{
+command: string[];
+delay_secs: number;
+}> | undefined, void>;
+
+// @public
 export const sequence: <const TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>>(...actions: BlockRetainType<TSequence> & TSequence & ValidateSequence<TInput, TOutput, TSequence>) => Block<TInput, TOutput>;
 
 // @public
@@ -609,6 +641,12 @@ export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> 
 }
 
 // @public
+export const stateIs: (target: ITarget, state: string) => Block_2<void, void>;
+
+// @public
+export const stateIsNot: (target: ITarget, state: string) => Block_2<void, void>;
+
+// @public
 export interface StopOutput {
     continue: false;
 }
@@ -643,6 +681,18 @@ infer Next extends Block<unknown, unknown>
 
 // @public
 export type ValidateSequence<TInput, TOutput, TSequence extends readonly Block<unknown, unknown>[], TBefore extends Block<unknown, unknown>[] = []> = Prettify<SequenceValidatorRecursive<TInput, TOutput, TSequence, TBefore>>;
+
+// @public
+export const waitMinutes: (minutes: number) => Block_2<Pass, Pass>;
+
+// @public
+export const waitSeconds: (seconds: number) => Block_2<Pass, Pass>;
+
+// @public
+export const waitUntilState: (target: ITarget, state: string, timeout?: number) => Block_2<Pass, Pass>;
+
+// @public
+export const waitUntilStateIsNot: (target: ITarget, state: string, timeout?: number) => Block_2<Pass, Pass>;
 
 // @public
 export const when: <TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>(assertion: IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>["assertion"], config: Omit<IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThenOutput, TElseOutput>, "assertion" | "name">) => Block<TInput, TThenOutput | TElseOutput>;

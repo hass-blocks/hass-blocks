@@ -9,7 +9,8 @@
       "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "projectFolder": "packages/core"
+        "projectFolder": "plugins/publisher",
+        "strictChecks": false
       }
     },
     "build": {

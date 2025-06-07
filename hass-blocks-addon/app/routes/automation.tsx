@@ -1,6 +1,5 @@
 import { generateNodeGraph, layoutNodes } from '@lib';
-import { BlocksContext } from 'app/providers/blocks.tsx';
-import { useCallback, useContext, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 import {
   addEdge,
   ReactFlow,
@@ -13,7 +12,6 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import { useParams } from 'react-router';
-import { updateNodeByActivityStatus } from 'app/lib/update-active-nodes';
 import { Heading } from '@chakra-ui/react/typography';
 import { useAutomation } from '@hooks';
 import { BlockNode } from '@components';

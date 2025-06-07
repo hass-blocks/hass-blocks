@@ -8,7 +8,7 @@ import { join } from 'path';
 export const load = command({
   name: 'load',
   options: {
-    folder: string().required(),
+    folder: string().required().desc('The folder to load automations from'),
     websocketPort: string(),
     packageManager: string().default('pnpm'),
     websocketHost: string(),

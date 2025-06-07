@@ -1,28 +1,26 @@
-import { readdir } from 'node:fs/promises';
-
-import { Block, initialiseBlocks } from '@hass-blocks/core';
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+import { doCodegen } from '@lib/codegen';
+import { loadBlocks } from '@lib/load';
 import { Command, Option } from 'clipanion';
-import { join } from 'node:path';
+import { watchAndGenerate } from 'src/lib/codegen/watch-and-generate.ts';
 
 export class LoadBlocks extends Command {
-  folder = Option.String();
+  folder = Option.String('Folder to load automations from ', {
+    required: true,
+  });
+
+  codegenOutput = Option.String(
+    'If supplied, will watch home assistant and automatically generate entities, services and areas for use in your automation',
+  );
 
   override async execute(): Promise<void> {
-    const { registry } = await initialiseBlocks();
-    const files = await readdir(this.folder);
+    await loadBlocks(this.folder);
 
-    const automations = (
-      await Promise.all(
-        files.map(async (file) => {
-          const loadedFile = await import(join(this.folder, file));
-          return Object.values(loadedFile);
-        }),
-      )
-    )
-      .flat()
-      .filter((item) => item instanceof Block);
-
-    await registry.registerAutomation(...automations);
+    if (this.codegenOutput) {
+      const client = await initialiseHass(getConfig());
+      await doCodegen(client, this.codegenOutput);
+      watchAndGenerate(client, this.codegenOutput);
+    }
   }
   static override paths = [[`load`]];
 }

@@ -377,13 +377,13 @@ importers:
     dependencies:
       '@hass-blocks/core':
         specifier: 3.16.0
-        version: link:../../packages/core
+        version: 3.16.0
       '@hass-blocks/triggers':
         specifier: 0.1.1
-        version: link:../../packages/triggers
+        version: 0.1.1
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.2
-        version: link:../../packages/websocket-plugin
+        version: 0.6.2
       '@swc/helpers':
         specifier: ~0.5.17
         version: 0.5.17
@@ -410,10 +410,10 @@ importers:
         version: 0.7.1(@types/react@19.1.2)(react@19.0.0)
       '@hass-blocks/core':
         specifier: 3.16.0
-        version: link:../packages/core
+        version: 3.16.0
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.2
-        version: link:../packages/websocket-plugin
+        version: 0.6.2
       '@react-router/node':
         specifier: ^7.2.0
         version: 7.6.2(react-router@7.6.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(typescript@5.8.3)
@@ -479,16 +479,16 @@ importers:
         specifier: 0.11.0
         version: 0.11.0
       '@hass-blocks/core':
-        specifier: 3.16.0
+        specifier: 3.16.1
         version: link:../core
       '@hass-blocks/hass-ts':
         specifier: 0.12.1
         version: link:../hass-ts
       '@hass-blocks/triggers':
-        specifier: 0.1.1
+        specifier: 0.1.2
         version: link:../triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.6.2
+        specifier: 0.6.3
         version: link:../websocket-plugin
       '@swc/helpers':
         specifier: ~0.5.11
@@ -611,7 +611,7 @@ importers:
   packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.16.0
+        specifier: 3.16.1
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -629,7 +629,7 @@ importers:
   packages/triggers:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.16.0
+        specifier: 3.16.1
         version: link:../core
       '@swc/helpers':
         specifier: ~0.5.11
@@ -650,7 +650,7 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.16.0
+        specifier: 3.16.1
         version: link:../core
       '@hass-blocks/typed-socket-client':
         specifier: 0.1.1

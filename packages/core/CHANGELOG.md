@@ -1,3 +1,13 @@
+## 3.16.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **core:** import packagejson version ([b8f8634f](https://github.com/hass-blocks/hass-blocks/commit/b8f8634f))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.16.0 (2025-06-07)
 
 ### 🚀 Features

@@ -24,10 +24,10 @@ export const tsConfig = `
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false
+    "allowUnusedLabels": false,
+    "paths": {
+      "@blocks-codegen": ["./node_modules/.blocks/index.ts"]
+    }
   },
-  "include": ["**/*.ts", "./node_modules/.blocks/**/*"],
-  "paths": {
-    "@blocks-codegen": ["./node_modules/.blocks/index.ts"]
-  }
+  "include": ["**/*.ts"],
 }`;

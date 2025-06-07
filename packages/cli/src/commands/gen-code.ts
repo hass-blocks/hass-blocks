@@ -1,26 +1,23 @@
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+import { boolean, command, string } from '@drizzle-team/brocli';
 import { doCodegen, watchAndGenerate } from '@lib/codegen';
 
-import { Command, Option } from 'clipanion';
-
-export class GenCodeCommand extends Command {
-  folder = Option.String();
-  watch = Option.Boolean(
-    'Stay connected to Home Assistant and regenerate when services and entities change',
-  );
-
-  override async execute(): Promise<void> {
+export const genCode = command({
+  name: 'genCode',
+  options: {
+    folder: string().required(),
+    watch: boolean(),
+  },
+  handler: async (options) => {
     const client = await initialiseHass(getConfig());
     try {
-      await doCodegen(client, this.folder);
+      await doCodegen(client, options.folder);
 
-      if (this.watch) {
-        watchAndGenerate(client, this.folder);
+      if (options.watch) {
+        watchAndGenerate(client, options.folder);
       }
     } finally {
       await client.close();
     }
-  }
-
-  static override paths = [[`gen-code`]];
-}
+  },
+});

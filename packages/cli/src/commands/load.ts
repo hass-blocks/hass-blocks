@@ -1,28 +1,27 @@
+import { command, string } from '@drizzle-team/brocli';
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
 import { doCodegen, watchAndGenerate } from '@lib/codegen';
 import { loadBlocks } from '@lib/load';
-import { Command, Option } from 'clipanion';
 
-export class LoadBlocks extends Command {
-  folder = Option.String('Folder to load automations from ', {
-    required: true,
-  });
+export const load = command({
+  name: 'load',
+  options: {
+    folder: string().required(),
+    websocketPort: string(),
+    websocketHost: string(),
+    codegenOutput: string(),
+  },
+  handler: async (options) => {
+    await loadBlocks(
+      options.folder,
+      options.websocketHost,
+      options.websocketPort,
+    );
 
-  websocketPort = Option.String('Port to serve websocket client on');
-  websocketHost = Option.String('Host to serve websocket client on');
-
-  codegenOutput = Option.String(
-    'If supplied, will watch home assistant and automatically generate entities, services and areas for use in your automation',
-  );
-
-  override async execute(): Promise<void> {
-    await loadBlocks(this.folder, this.websocketHost, this.websocketPort);
-
-    if (this.codegenOutput) {
+    if (options.codegenOutput) {
       const client = await initialiseHass(getConfig());
-      await doCodegen(client, this.codegenOutput);
-      watchAndGenerate(client, this.codegenOutput);
+      await doCodegen(client, options.codegenOutput);
+      watchAndGenerate(client, options.codegenOutput);
     }
-  }
-  static override paths = [[`load`]];
-}
+  },
+});

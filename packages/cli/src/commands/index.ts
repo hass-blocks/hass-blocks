@@ -1,2 +1,2 @@
-export { GenCodeCommand } from './gen-code.ts';
-export { LoadBlocks } from './load.ts';
+export { genCode } from './gen-code.ts';
+export { load } from './load.ts';

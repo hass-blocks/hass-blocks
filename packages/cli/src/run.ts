@@ -1,5 +1,4 @@
-import { GenCodeCommand, LoadBlocks } from '@commands';
+import { genCode, load } from '@commands';
+import { run } from '@drizzle-team/brocli';
 
-import { runExit } from 'clipanion';
-
-runExit([GenCodeCommand, LoadBlocks]);
+run([load, genCode]);

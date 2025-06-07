@@ -1,3 +1,14 @@
+## 0.7.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** correct include path ([4702563a](https://github.com/hass-blocks/hass-blocks/commit/4702563a))
+- **cli:** correct include path ([85a9a418](https://github.com/hass-blocks/hass-blocks/commit/85a9a418))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.7.0 (2025-06-07)
 
 ### 🚀 Features

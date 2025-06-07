@@ -7,6 +7,9 @@
   "engines": {
     "node": ">=18"
   },
+  "bin": {
+    "hass-blocks": "./bin/run.js"
+  },
   "types": "./dist/public.d.ts",
   "bugs": {
     "url": "https://github.com/benwainwright/hass-blocks/issues",

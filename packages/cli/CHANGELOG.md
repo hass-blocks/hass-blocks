@@ -1,3 +1,13 @@
+## 0.5.0 (2025-06-07)
+
+### 🚀 Features
+
+- **cli:** add description ([d6a612c1](https://github.com/hass-blocks/hass-blocks/commit/d6a612c1))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.0 (2025-06-07)
 
 ### 🚀 Features

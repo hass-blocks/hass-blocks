@@ -415,7 +415,7 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.25.3)
       '@hass-blocks/cli':
-        specifier: 0.4.0
+        specifier: 0.5.0
         version: link:../packages/cli
       '@hass-blocks/core':
         specifier: 3.15.1

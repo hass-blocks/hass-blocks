@@ -5,6 +5,12 @@ export default [
   ...baseConfig,
   ...nx.configs['flat/react'],
   {
+    files: ['**/blocks-codegen/**'],
+    rules: {
+      'no-var': 'off',
+    },
+  },
+  {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     // Override or add rules here
     rules: {},

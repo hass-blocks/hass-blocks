@@ -31,7 +31,7 @@ export const BlockNode = ({ data }: NodeProps<BlockNodeType>) => {
         setStatus(event.eventType);
       }
     });
-  }, [onEvent]);
+  }, [onEvent, data.block.id]);
 
   console.log('render');
 

@@ -8,12 +8,15 @@ export class LoadBlocks extends Command {
     required: true,
   });
 
+  websocketPort = Option.String('Port to serve websocket client on');
+  websocketHost = Option.String('Host to serve websocket client on');
+
   codegenOutput = Option.String(
     'If supplied, will watch home assistant and automatically generate entities, services and areas for use in your automation',
   );
 
   override async execute(): Promise<void> {
-    await loadBlocks(this.folder);
+    await loadBlocks(this.folder, this.websocketHost, this.websocketPort);
 
     if (this.codegenOutput) {
       const client = await initialiseHass(getConfig());

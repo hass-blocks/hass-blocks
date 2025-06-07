@@ -1,9 +1,27 @@
 import { Block, initialiseBlocks } from '@hass-blocks/core';
+import { websocketServer } from '@hass-blocks/websocket-plugin';
 import { readdir } from 'fs/promises';
 import { join } from 'path';
 
-export const loadBlocks = async (folder: string) => {
-  const { registry } = await initialiseBlocks();
+export const loadBlocks = async (
+  folder: string,
+  websocketHost?: string,
+  websocketPort?: string,
+) => {
+  const plugins =
+    websocketPort && websocketHost
+      ? [
+          websocketServer({
+            host: websocketHost,
+            port: Number(websocketPort),
+            cors: {
+              origin: '*',
+              methods: ['GET', 'POST'],
+            },
+          }),
+        ]
+      : [];
+  const { registry } = await initialiseBlocks({ plugins });
   const files = await readdir(folder);
 
   const automations = (

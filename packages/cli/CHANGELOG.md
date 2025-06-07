@@ -1,3 +1,14 @@
+## 0.3.1 (2025-06-07)
+
+### 🩹 Fixes
+
+- **cli:** correct package.json ([716bd333](https://github.com/hass-blocks/hass-blocks/commit/716bd333))
+- **cli:** changed to different cli framework ([9a2c11f0](https://github.com/hass-blocks/hass-blocks/commit/9a2c11f0))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.0 (2025-06-07)
 
 ### 🚀 Features

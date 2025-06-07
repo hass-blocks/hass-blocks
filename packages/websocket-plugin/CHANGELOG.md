@@ -1,3 +1,26 @@
+## 0.6.0 (2025-06-07)
+
+### 🚀 Features
+
+- **blocks:** make it work ([96e30c881](https://github.com/hass-blocks/hass-blocks/commit/96e30c881))
+- **socket-generator:** changed api so that I can export client at root ([4bddb1d1f](https://github.com/hass-blocks/hass-blocks/commit/4bddb1d1f))
+- **websocket-plugin:** refactor plugin ([43f62070c](https://github.com/hass-blocks/hass-blocks/commit/43f62070c))
+
+### 🩹 Fixes
+
+- **websocket-plugin:** update docs ([16d7cdffd](https://github.com/hass-blocks/hass-blocks/commit/16d7cdffd))
+- **websocket-plugin:** update ([4a9f1f91a](https://github.com/hass-blocks/hass-blocks/commit/4a9f1f91a))
+- **websocket-plugin:** updated to use the new typed socket plugin ([c7398898b](https://github.com/hass-blocks/hass-blocks/commit/c7398898b))
+- **all:** stuff ([a27dcffe0](https://github.com/hass-blocks/hass-blocks/commit/a27dcffe0))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/typed-socket-client to 0.1.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.5.1 (2025-05-16)
 
 ### 🧱 Updated Dependencies

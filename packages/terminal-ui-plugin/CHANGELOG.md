@@ -1,3 +1,14 @@
+## 0.3.3 (2025-06-07)
+
+### 🩹 Fixes
+
+- **terminal-ui-plugin:** correct types ([dfd1a7abc](https://github.com/hass-blocks/hass-blocks/commit/dfd1a7abc))
+- **terminal-ui-plugin:** update report ([2b40f3b46](https://github.com/hass-blocks/hass-blocks/commit/2b40f3b46))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.2 (2025-05-16)
 
 ### 🩹 Fixes

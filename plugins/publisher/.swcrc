@@ -14,6 +14,7 @@
     "externalHelpers": true,
     "loose": true,
     "experimental": {
+      "keepImportAttributes": true,
       "plugins": [["swc-plugin-allow-importing-ts-extensions", {}]]
     }
   },

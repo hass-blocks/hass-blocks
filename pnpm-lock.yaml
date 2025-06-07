@@ -415,8 +415,8 @@ importers:
         specifier: ^0.2.2
         version: 0.2.2(esbuild@0.25.3)
       '@hass-blocks/core':
-        specifier: 3.14.0
-        version: 3.14.0
+        specifier: 3.15.1
+        version: link:../packages/core
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.1
         version: link:../packages/websocket-plugin
@@ -3083,14 +3083,6 @@ packages:
 
   '@hapi/topo@5.1.0':
     resolution: {integrity: sha512-foQZKJig7Ob0BMAYBfcJk8d77QtOe7Wo4ox7ff1lQYoNNAb6jwcY1ncdoy2e9wQZzvNy7ODZCYJkK8kzmcAnAg==}
-
-  '@hass-blocks/core@3.14.0':
-    resolution: {integrity: sha512-rDQRtapdIrGZqu/e5qM9xnHXNiZ9Px44wclYaY+dR3VpLYRxSHogg1sWE5D3sNPHqbiUD8W/W1vnMueB0JkQHQ==}
-    engines: {node: '>=18'}
-
-  '@hass-blocks/hass-ts@0.11.1':
-    resolution: {integrity: sha512-KftjdGjAFEogTAnN0ITuYdXhjrYwrRO1h97yX8yh2JQXUtRbqccmrKpKH9hgdvUDmI9Wesi/ue9EiH+Ltylvuw==}
-    engines: {node: '>=18'}
 
   '@highlightjs/cdn-assets@11.11.1':
     resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
@@ -17063,26 +17055,6 @@ snapshots:
   '@hapi/topo@5.1.0':
     dependencies:
       '@hapi/hoek': 9.3.0
-
-  '@hass-blocks/core@3.14.0':
-    dependencies:
-      '@hass-blocks/hass-ts': 0.11.1
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      react: 18.3.1
-      uuid: 11.1.0
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
-
-  '@hass-blocks/hass-ts@0.11.1':
-    dependencies:
-      '@swc/helpers': 0.5.17
-      dotenv: 16.4.7
-      ws: 8.18.1
-    transitivePeerDependencies:
-      - bufferutil
-      - utf-8-validate
 
   '@highlightjs/cdn-assets@11.11.1': {}
 

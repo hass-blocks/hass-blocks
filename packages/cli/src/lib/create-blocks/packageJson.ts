@@ -3,7 +3,7 @@ import triggers from '@hass-blocks/triggers/package.json' with { type: 'json' };
 
 export const packageJson = `{
   "dependencies": {
-    "@hass-blocks/core": "${core.version}"
+    "@hass-blocks/core": "${core.version}",
     "@hass-blocks/triggers": "${triggers.version}"
   }
 }`;

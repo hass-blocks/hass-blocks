@@ -1,8 +1,7 @@
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
-import { doCodegen } from '@lib/codegen';
+import { doCodegen, watchAndGenerate } from '@lib/codegen';
 import { loadBlocks } from '@lib/load';
 import { Command, Option } from 'clipanion';
-import { watchAndGenerate } from 'src/lib/codegen/watch-and-generate.ts';
 
 export class LoadBlocks extends Command {
   folder = Option.String('Folder to load automations from ', {

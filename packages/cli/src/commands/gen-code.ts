@@ -1,8 +1,7 @@
 import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
-import { doCodegen } from '@lib/codegen';
+import { doCodegen, watchAndGenerate } from '@lib/codegen';
 
 import { Command, Option } from 'clipanion';
-import { watchAndGenerate } from 'src/lib/codegen/watch-and-generate.ts';
 
 export class GenCodeCommand extends Command {
   folder = Option.String();

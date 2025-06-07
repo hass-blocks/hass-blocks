@@ -1,8 +1,19 @@
 import { useEffect, useState } from 'react';
 import { io, type Socket } from 'socket.io-client';
 
+/**
+ * Whether the socket is connected or not
+ *
+ * @public
+ */
 export enum ConnectionStatus {
+  /**
+   * Socket is connected
+   */
   Connected = 'Connected',
+  /**
+   * Socket is not connected
+   */
   NotConnected = 'NotConnected',
 }
 

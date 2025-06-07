@@ -1,3 +1,13 @@
+## 0.7.0 (2025-06-07)
+
+### 🚀 Features
+
+- **cli:** fix broken packageJsonFile ([eb252cd4](https://github.com/hass-blocks/hass-blocks/commit/eb252cd4))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.6.0 (2025-06-07)
 
 ### 🚀 Features

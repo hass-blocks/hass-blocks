@@ -18,6 +18,10 @@ const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
     replacePaths: options.replacePaths ?? true,
   });
 
+  if (typeof results === 'undefined') {
+    return { success: true };
+  }
+
   const outcome = results.map(({ result, exportName }) => {
     if (
       result?.succeeded &&

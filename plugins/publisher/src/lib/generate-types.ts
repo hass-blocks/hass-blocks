@@ -28,8 +28,8 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
   const apiFolder = join(projectRoot, 'api');
   process.chdir(projectRoot);
   const packageJsonFullPath = join(projectRoot, `package.json`);
+  const tsconfigPath = join(projectRoot, `tsconfig.json`);
   const libTsconfigPath = join(projectRoot, `tsconfig.lib.json`);
-  const specTsconfigPath = join(projectRoot, `tsconfig.spec.json`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
 
@@ -48,10 +48,17 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
       }
     : {};
 
-  logger.info('Compiling libraries');
-  await typescriptCompile({ projectFile: libTsconfigPath, workspaceRoot });
-  logger.info('Compiling tests');
-  await typescriptCompile({ projectFile: specTsconfigPath, workspaceRoot });
+  logger.info('Compiling Typescript');
+  await typescriptCompile({ projectFile: tsconfigPath, workspaceRoot });
+
+  const packageJson = JSON.parse(await readFile(packageJsonFullPath, 'utf-8'));
+
+  const exports = packageJson['exports'];
+
+  if (!exports) {
+    logger.info('No exports field found - skipping API check/bundle');
+    return;
+  }
 
   const tsConfig = JSON.parse(await readFile(libTsconfigPath, 'utf8'));
 
@@ -59,8 +66,6 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     ...tsConfig,
     compilerOptions: { ...tsConfig.compilerOptions, customConditions: [] },
   };
-
-  const packageJson = JSON.parse(await readFile(packageJsonFullPath, 'utf-8'));
 
   logger.info('Replacing paths');
   if (options.replacePaths) {
@@ -71,7 +76,7 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     });
   }
 
-  return Object.entries(packageJson['exports'])
+  return Object.entries(exports)
     .map(([theExport, config]) => {
       if (typeof config !== 'object') {
         return;

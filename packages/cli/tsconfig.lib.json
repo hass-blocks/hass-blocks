@@ -21,10 +21,16 @@
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "references": [
     {
-      "path": "../../packages/core"
+      "path": "../core"
     },
     {
-      "path": "../../packages/hass-ts"
+      "path": "../hass-ts"
+    },
+    {
+      "path": "../triggers"
+    },
+    {
+      "path": "../websocket-plugin"
     }
   ],
   "exclude": [

@@ -1,1 +1,1 @@
-npx nx affected --targets=lint,generate-types,test --base=remotes/origin/main
+npx nx affected --targets=lint,generate-types,test,build --base=remotes/origin/main

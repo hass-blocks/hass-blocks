@@ -1,1 +1,1 @@
-npx vitest
+npx nx affected --targets=lint,generate-types,test --base=remotes/origin/main

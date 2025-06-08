@@ -1,13 +1,18 @@
 {
   "executors": {
     "generate-types": {
-      "implementation": "./dist/executors/generate-types/executor",
-      "schema": "./dist/executors/generate-types/schema.json",
+      "implementation": "./src/executors/generate-types/executor",
+      "schema": "./src/executors/generate-types/schema.json",
       "description": "Generate types executor"
     },
     "doc-model": {
-      "implementation": "./dist/executors/doc-model/executor",
-      "schema": "./dist/executors/doc-model/schema.json",
+      "implementation": "./src/executors/doc-model/executor",
+      "schema": "./src/executors/doc-model/schema.json",
+      "description": "doc-model executor"
+    },
+    "release": {
+      "implementation": "./src/executors/doc-model/executor",
+      "schema": "./src/executors/doc-model/schema.json",
       "description": "doc-model executor"
     }
   }

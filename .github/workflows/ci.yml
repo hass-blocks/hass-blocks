@@ -158,7 +158,7 @@ jobs:
       - run: npx nx release --yes --dry-run
         if: ${{ github.event.act }}
 
-      - run: npx nx release --yes --verbose
+      - run: pnpm run release
         if: ${{ !github.event.act }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
+    "release": "vite-node scripts/release.ts",
     "pipeline": "act -e act-event.json",
     "prepare": "husky",
     "format": "prettier --write .",
@@ -11,8 +12,7 @@
     "lint": "pnpx nx affected -t lint",
     "build": "pnpm exec nx affected -t build",
     "e2e-test": "pnpm exec nx affected -t e2e-test",
-    "generate-types": "pnpm exec nx affected -t generate-types",
-    "release": "pnpx vite-node tools/release.ts"
+    "generate-types": "pnpm exec nx affected -t generate-types"
   },
   "private": true,
   "devDependencies": {

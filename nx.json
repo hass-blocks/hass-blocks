@@ -78,13 +78,13 @@
   },
   "targetDefaults": {
     "generate-types": {
-      "cache": true,
+      "cache": true
     },
     "test": {
-      "cache": true,
+      "cache": true
     },
     "e2e-test": {
-      "cache": true,
+      "cache": true
     },
     "@nx/js:swc": {
       "cache": true,

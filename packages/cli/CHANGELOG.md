@@ -1,3 +1,19 @@
+## 0.8.0 (2025-06-09)
+
+### 🚀 Features
+
+- **hass-blocks-addon,cli:** add typecheck to cli ([26e3fe4c4](https://github.com/hass-blocks/hass-blocks/commit/26e3fe4c4))
+- **cli:** use tsx to load files ([3bd676a2d](https://github.com/hass-blocks/hass-blocks/commit/3bd676a2d))
+
+### 🩹 Fixes
+
+- **cli:** correct project references ([a8214e4dc](https://github.com/hass-blocks/hass-blocks/commit/a8214e4dc))
+- **cli:** update variable name ([ec08df473](https://github.com/hass-blocks/hass-blocks/commit/ec08df473))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.7.5 (2025-06-07)
 
 ### 🩹 Fixes

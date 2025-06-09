@@ -2,7 +2,7 @@
   "name": "hass-blocks-addon",
   "private": true,
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "scripts": {
     "build:frontend": "react-router build",
     "build:static-server": "tsc --build tsconfig.node.json",
@@ -16,7 +16,7 @@
     "@chakra-ui/react": "^3.19.2",
     "@dagrejs/dagre": "^1.1.4",
     "@emotion/react": "^11.14.0",
-    "@hass-blocks/cli": "0.7.4",
+    "@hass-blocks/cli": "0.8.0",
     "@hass-blocks/core": "3.16.2",
     "@hass-blocks/websocket-plugin": "0.6.4",
     "@react-router/node": "^7.2.0",

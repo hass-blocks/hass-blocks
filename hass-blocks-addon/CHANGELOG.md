@@ -1,3 +1,21 @@
+## 0.2.0 (2025-06-09)
+
+### 🚀 Features
+
+- **hass-blocks-addon,cli:** add typecheck to cli ([26e3fe4c4](https://github.com/hass-blocks/hass-blocks/commit/26e3fe4c4))
+
+### 🩹 Fixes
+
+- **hass-blocks-addon:** correct project references ([c4d924a98](https://github.com/hass-blocks/hass-blocks/commit/c4d924a98))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/cli to 0.8.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.1.0 (2025-06-08)
 
 ### 🚀 Features

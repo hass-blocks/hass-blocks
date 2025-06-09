@@ -7,36 +7,15 @@
 import type { Socket } from 'socket.io-client';
 
 // @public
-export type CommandClientHandler<TData, TArguments extends unknown[]> = (
-socket?: Socket,
-) => (...args: TArguments) => Promise<TData>;
+export type CommandClientHandler<TData, TArguments extends unknown[]> = (socket?: Socket) => (...args: TArguments) => Promise<TData>;
 
 // @public
-export type CommandClientHandlers<
-TData,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>,
-> = {
-    [K in keyof TCommandMap]: ReturnType<
-    CommandClientHandler<
-    ReturnType<TCommandMap[K]>,
-    GetRest<Parameters<TCommandMap[K]>>
-    >
-    >;
+export type CommandClientHandlers<TData, TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>> = {
+    [K in keyof TCommandMap]: ReturnType<CommandClientHandler<ReturnType<TCommandMap[K]>, GetRest<Parameters<TCommandMap[K]>>>>;
 };
 
 // @public
-export interface ConfiguredTypes<
-TData,
-TEmitter,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>,
-TEventForwarderMap extends Record<
-string,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(emitter: TEmitter, emit: (arg: any) => void) => any
->,
-> {
+export interface ConfiguredTypes<TData, TEmitter, TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>, TEventForwarderMap extends Record<string, (emitter: TEmitter, emit: (arg: any) => void) => any>> {
     __data_do_not_use_fake_property: TData;
     __emitter_do_not_use_fake_property: TEmitter;
     commands: TCommandMap;
@@ -44,78 +23,21 @@ string,
 }
 
 // @public
-export type EventForwarderClientHandler<TTransmittedData> = (
-socket?: Socket,
-) => (callback: (data: TTransmittedData) => void) => void;
+export type EventForwarderClientHandler<TTransmittedData> = (socket?: Socket) => (callback: (data: TTransmittedData) => void) => void;
 
 // @public
-export type EventForwarderClientHandlers<
-TEmitter,
-TMap extends Record<
-string,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(emitter: TEmitter, emit: (arg: any) => void) => any
->,
-> = {
-    [K in keyof TMap]: ReturnType<
-    EventForwarderClientHandler<GetEmitData<TMap[K]>>
-    >;
+export type EventForwarderClientHandlers<TEmitter, TMap extends Record<string, (emitter: TEmitter, emit: (arg: any) => void) => any>> = {
+    [K in keyof TMap]: ReturnType<EventForwarderClientHandler<GetEmitData<TMap[K]>>>;
 };
 
 // @public
-export const getClientBuilder = <
-TData,
-TEmitter,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>,
-TEventForwarderMap extends Record<
-string,
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-(emitter: TEmitter, emit: (arg: any) => void) => any
->,
->(
-config: ConfiguredTypes<TData, TEmitter, TCommandMap, TEventForwarderMap>,
-) => {
-    const // (undocumented)
-    commandClients = makeClients<
-    TData,
-    TEmitter,
-    TCommandMap,
-    TEventForwarderMap
-    >(config);
-
-    return (
-    socket?: Socket,
-    ): CommandClientHandlers<TData, TCommandMap> &
-    EventForwarderClientHandlers<TEmitter, TEventForwarderMap> => {
-        const // (undocumented)
-        clients = commandClients
-        ? Object.fromEntries(
-        Object.entries(commandClients).map(([key, value]) => [
-        key,
-        value(socket),
-        ]),
-        )
-        : {};
-
-        return clients as CommandClientHandlers<TData, TCommandMap> &
-        EventForwarderClientHandlers<TEmitter, TEventForwarderMap>;
-    };
-};
+export const getClientBuilder: <TData, TEmitter, TCommandMap extends Record<string, (data: TData, ...args: any[]) => any>, TEventForwarderMap extends Record<string, (emitter: TEmitter, emit: (arg: any) => void) => any>>(config: ConfiguredTypes<TData, TEmitter, TCommandMap, TEventForwarderMap>) => (socket?: Socket) => CommandClientHandlers<TData, TCommandMap> & EventForwarderClientHandlers<TEmitter, TEventForwarderMap>;
 
 // @public
-export type GetEmitData<T> = T extends (
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-data: any,
-emit: (data: infer TEmitData) => void,
-) => unknown
-? TEmitData
-: never;
+export type GetEmitData<T> = T extends (data: any, emit: (data: infer TEmitData) => void) => unknown ? TEmitData : never;
 
 // @public
-export type GetRest<T extends any[]> = T extends [unknown, ...infer Rest]
-? Rest
-: never;
+export type GetRest<T extends any[]> = T extends [unknown, ...infer Rest] ? Rest : never;
 
 // (No @packageDocumentation comment for this package)
 

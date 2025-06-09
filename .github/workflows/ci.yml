@@ -167,6 +167,8 @@ jobs:
       - name: Push changes
         if: ${{ !github.event.act }}
         uses: ad-m/github-push-action@master
+        env:
+          HUSKY: 0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main

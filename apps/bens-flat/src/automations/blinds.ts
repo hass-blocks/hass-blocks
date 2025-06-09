@@ -1,6 +1,7 @@
-import { stateIs } from '@hass-blocks/blocks';
 import { stateChanges, sunSets } from '@hass-blocks/triggers';
-import { automation, sequence, when } from '@hass-blocks/core';
+import { automation, sequence, when, stateIs } from '@hass-blocks/core';
+
+console.log('foo');
 
 import '@blocks-codegen';
 

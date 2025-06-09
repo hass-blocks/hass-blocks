@@ -1,5 +1,4 @@
-import { stateIs, waitMinutes } from '@hass-blocks/blocks';
-import { automation } from '@hass-blocks/core';
+import { stateIs, waitMinutes, automation } from '@hass-blocks/core';
 import { stateTurnsOn } from '@hass-blocks/triggers';
 
 import '@blocks-codegen';

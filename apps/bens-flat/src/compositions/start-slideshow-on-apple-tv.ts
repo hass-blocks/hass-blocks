@@ -1,5 +1,4 @@
-import { sequence, when } from '@hass-blocks/core';
-import { stateIsNot, waitSeconds } from '@hass-blocks/blocks';
+import { stateIsNot, sequence, when, waitSeconds } from '@hass-blocks/core';
 import { waitUntilAppleTvFinishesTurningOn } from '../actions/devices.ts';
 import { switchTvToAppleTv } from '../actions/media.ts';
 

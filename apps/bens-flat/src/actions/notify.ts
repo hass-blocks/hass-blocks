@@ -1,5 +1,4 @@
-import { stateIs } from '@hass-blocks/blocks';
-import { concurrently, when } from '@hass-blocks/core';
+import { stateIs, concurrently, when } from '@hass-blocks/core';
 
 export const notifyAllMyDevices = ({
   message,

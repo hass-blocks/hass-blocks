@@ -1,4 +1,4 @@
-import { waitMinutes, gate, stateIs } from '@hass-blocks/blocks';
+import { waitMinutes, gate, stateIs } from '@hass-blocks/core';
 import { stateTurnsOff, stateTurnsOn } from '@hass-blocks/triggers';
 
 import {

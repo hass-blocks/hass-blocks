@@ -1,10 +1,13 @@
 import {
+  automation,
+  concurrently,
+  sequence,
+  when,
   entityExists,
   stateIs,
   stateIsNot,
   waitMinutes,
-} from '@hass-blocks/blocks';
-import { automation, concurrently, sequence, when } from '@hass-blocks/core';
+} from '@hass-blocks/core';
 import {
   stateChanges,
   stateTurnsOff,

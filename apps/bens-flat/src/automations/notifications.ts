@@ -4,8 +4,13 @@ import {
   ttsSay,
 } from '@actions';
 import { allSpeakers } from '@entities';
-import { stateIsNot } from '@hass-blocks/blocks';
-import { action, automation, concurrently, sequence } from '@hass-blocks/core';
+import {
+  stateIsNot,
+  action,
+  automation,
+  concurrently,
+  sequence,
+} from '@hass-blocks/core';
 import { eventIsFired, stateChanges } from '@hass-blocks/triggers';
 import { playDing } from 'src/actions/media.ts';
 

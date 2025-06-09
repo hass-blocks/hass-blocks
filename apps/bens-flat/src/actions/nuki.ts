@@ -1,6 +1,12 @@
-import { apiRequest, waitSeconds } from '@hass-blocks/blocks';
 import z from 'zod/v4';
-import { action, assertion, loop, sequence } from '@hass-blocks/core';
+import {
+  apiRequest,
+  waitSeconds,
+  action,
+  assertion,
+  loop,
+  sequence,
+} from '@hass-blocks/core';
 
 interface SmartLock {
   smartlockId: number;

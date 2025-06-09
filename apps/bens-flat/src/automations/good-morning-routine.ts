@@ -6,7 +6,7 @@ import {
   ttsSay,
 } from '@actions';
 import { allSpeakers, goodMorningPlayed } from '@entities';
-import { stateIsNot } from '@hass-blocks/blocks';
+import { stateIsNot } from '@hass-blocks/core';
 import { automation, concurrently, sequence } from '@hass-blocks/core';
 import { stateTurnsOn } from '@hass-blocks/triggers';
 import { startSlideshowOnAppleTv } from 'src/compositions/start-slideshow-on-apple-tv.ts';

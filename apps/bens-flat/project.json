@@ -9,7 +9,7 @@
       "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "projectFolder": "packages/core"
+        "projectFolder": "packages/bens-flat"
       }
     },
     "start": {
@@ -23,19 +23,19 @@
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "plugins/publisher/dist",
-        "main": "plugins/publisher/src/index.ts",
-        "tsConfig": "plugins/publisher/tsconfig.lib.json",
+        "outputPath": "apps/bens-flat/dist",
+        "main": "apps/bens-flat/src/run.ts",
+        "tsConfig": "apps/bens-flat/tsconfig.lib.json",
         "skipTypeCheck": true,
         "stripLeadingPaths": true,
         "assets": [
           {
-            "input": "./plugins/publisher/src",
+            "input": "./apps/bens-flat/src",
             "glob": "**/!(*.ts)",
             "output": "."
           },
           {
-            "input": "./plugins/publisher/src",
+            "input": "./apps/bens-flat/src",
             "glob": "**/*.d.ts",
             "output": "."
           }

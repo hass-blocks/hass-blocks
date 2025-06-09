@@ -1,4 +1,4 @@
-import { waitUntilStateIsNot } from '@hass-blocks/blocks';
+import { waitUntilStateIsNot } from '@hass-blocks/core';
 
 export const waitUntilAppleTvFinishesTurningOn = waitUntilStateIsNot(
   bensAppleTv,

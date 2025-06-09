@@ -412,7 +412,7 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.2)(react@19.0.0)
       '@hass-blocks/cli':
-        specifier: 0.8.0
+        specifier: 0.8.1
         version: link:../packages/cli
       '@hass-blocks/core':
         specifier: 3.16.2

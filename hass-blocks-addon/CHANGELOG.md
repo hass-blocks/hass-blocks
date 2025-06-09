@@ -1,3 +1,9 @@
+## 0.2.1 (2025-06-09)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/cli to 0.8.1
+
 ## 0.2.0 (2025-06-09)
 
 ### 🚀 Features

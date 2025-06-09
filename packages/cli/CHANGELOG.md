@@ -1,3 +1,13 @@
+## 0.8.1 (2025-06-09)
+
+### 🩹 Fixes
+
+- **bens-flat:** fixed config issues ([f5fad0119](https://github.com/hass-blocks/hass-blocks/commit/f5fad0119))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.8.0 (2025-06-09)
 
 ### 🚀 Features

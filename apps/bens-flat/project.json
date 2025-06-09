@@ -9,7 +9,7 @@
       "executor": "@hass-blocks/publisher:generate-types",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "projectFolder": "packages/bens-flat"
+        "projectFolder": "apps/bens-flat"
       }
     },
     "start": {

@@ -16,13 +16,6 @@
         "stripLeadingPaths": true
       }
     },
-    "generate-types": {
-      "executor": "@hass-blocks/publisher:generate-types",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "projectFolder": "packages/typed-socket-client"
-      }
-    },
     "doc-model": {
       "dependsOn": ["typecheck"],
       "executor": "@hass-blocks/publisher:doc-model",

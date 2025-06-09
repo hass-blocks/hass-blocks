@@ -16,13 +16,6 @@
         "stripLeadingPaths": true
       }
     },
-    "generate-types": {
-      "executor": "@hass-blocks/publisher:generate-types",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "projectFolder": "packages/terminal-ui-plugin"
-      }
-    },
     "doc-model": {
       "executor": "@hass-blocks/publisher:doc-model",
       "outputs": ["{options.outputPath}"],

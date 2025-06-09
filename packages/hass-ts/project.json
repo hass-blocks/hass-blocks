@@ -17,11 +17,8 @@
       }
     },
     "generate-types": {
-      "executor": "@hass-blocks/publisher:generate-types",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "strictChecks": false,
-        "projectFolder": "packages/hass-ts"
+        "strictChecks": false
       }
     },
     "doc-model": {

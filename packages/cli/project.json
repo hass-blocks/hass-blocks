@@ -18,13 +18,6 @@
       }
     },
 
-    "generate-types": {
-      "executor": "@hass-blocks/publisher:generate-types",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "projectFolder": "packages/cli"
-      }
-    },
     "generate-and-compile-bens-flat": {
       "executor": "nx:run-commands",
       "options": {

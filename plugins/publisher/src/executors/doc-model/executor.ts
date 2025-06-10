@@ -1,11 +1,13 @@
 import { type PromiseExecutor, logger } from '@nx/devkit';
 import { generateTypes } from '../../lib/generate-types.ts';
-import type { DocModelExecutorSchema } from './schema.js';
 
-const runExecutor: PromiseExecutor<DocModelExecutorSchema> = async (
-  options,
-  context,
-) => {
+export interface DocModelExecutorSchema {
+  projectFolder: string;
+}
+
+const generateDocModelExecutor: PromiseExecutor<
+  DocModelExecutorSchema
+> = async (options, context) => {
   const { root } = context;
 
   logger.info(`Starting API extractor...`);
@@ -21,4 +23,4 @@ const runExecutor: PromiseExecutor<DocModelExecutorSchema> = async (
   };
 };
 
-export default runExecutor;
+export default generateDocModelExecutor;

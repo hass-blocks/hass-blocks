@@ -1,13 +1,26 @@
-import { execa } from 'execa';
 import { joinPathFragments } from '@nx/devkit';
+import { runCommandWithArgs } from './run-command-with-args';
+
+interface BuildModeArgs {
+  build: string;
+}
+
+interface ProjectModeArgs {
+  project: string;
+}
+
+type Args = {
+  noEmit?: boolean;
+} & (BuildModeArgs | ProjectModeArgs);
 
 interface TypeScriptCompileProps {
-  projectFile: string;
+  args: Args;
   workspaceRoot: string;
 }
+
 export const typescriptCompile = async ({
-  projectFile,
   workspaceRoot,
+  args,
 }: TypeScriptCompileProps) => {
   const tscPath = joinPathFragments(
     workspaceRoot,
@@ -17,7 +30,5 @@ export const typescriptCompile = async ({
     'tsc',
   );
 
-  await execa({
-    stdout: ['pipe', 'inherit'],
-  })`${tscPath} --build ${projectFile}`;
+  await runCommandWithArgs(tscPath, args);
 };

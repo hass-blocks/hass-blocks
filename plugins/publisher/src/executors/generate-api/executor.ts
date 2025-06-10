@@ -1,8 +1,13 @@
 import { type PromiseExecutor, logger } from '@nx/devkit';
-import type { GenerateTypesExecutorSchema } from './schema.ts';
 import { generateTypes } from '../../lib/generate-types.ts';
 
-const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
+export interface GenerateApiExecutorSchema {
+  replacePaths: boolean;
+  projectFolder: string;
+  strictChecks: boolean;
+}
+
+const generateApiExecutor: PromiseExecutor<GenerateApiExecutorSchema> = async (
   options,
   context,
 ) => {
@@ -48,4 +53,4 @@ const runExecutor: PromiseExecutor<GenerateTypesExecutorSchema> = async (
   };
 };
 
-export default runExecutor;
+export default generateApiExecutor;

@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "title": "ApiExtractor executor",
-  "description": "",
+  "title": "Generate API",
+  "description": "Check the API surface with API extractor and generate a bundled type file",
   "type": "object",
   "properties": {
     "replacePaths": {

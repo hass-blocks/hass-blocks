@@ -4,14 +4,5 @@
   "sourceRoot": "plugins/publisher/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "generate-types": {
-      "executor": "@hass-blocks/publisher:generate-types",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "projectFolder": "plugins/publisher",
-        "strictChecks": false
-      }
-    }
-  }
+  "targets": {}
 }

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Check types",
+  "description": "Run tsc and check all types match",
+  "type": "object",
+  "properties": {
+    "tsconfigFile": {
+      "type": "string",
+      "description": "The Typescript project file"
+    },
+    "buildMode": {
+      "type": "boolean",
+      "description": "Set to true to use Typescript's incremental build feature",
+      "default": true
+    }
+  },
+  "required": ["tsconfigFile"]
+}

@@ -10,6 +10,11 @@
         "strictChecks": false
       }
     },
+    "doc-model": {
+      "options": {
+        "strictChecks": false
+      }
+    },
     "build": {
       "executor": "@nx/js:swc",
       "outputs": ["{options.outputPath}"],

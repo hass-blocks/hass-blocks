@@ -15,15 +15,6 @@
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
-    },
-    "doc-model": {
-      "executor": "@hass-blocks/publisher:doc-model",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "mainEntrypointFile": "packages/websocket-plugin/dist/index.d.ts",
-        "projectFolder": "packages/websocket-plugin",
-        "docModelFolder": "apps/docs-site/models"
-      }
     }
   }
 }

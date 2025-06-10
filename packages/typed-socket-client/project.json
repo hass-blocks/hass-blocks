@@ -15,16 +15,6 @@
         "skipTypeCheck": true,
         "stripLeadingPaths": true
       }
-    },
-    "doc-model": {
-      "dependsOn": ["typecheck"],
-      "executor": "@hass-blocks/publisher:doc-model",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "mainEntrypointFile": "packages/typed-socket-client/dist/index.d.ts",
-        "projectFolder": "packages/typed-socket-client",
-        "docModelFolder": "apps/docs-site/models"
-      }
     }
   }
 }

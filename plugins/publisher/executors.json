@@ -1,16 +1,16 @@
 {
   "executors": {
-    "generate-types": {
-      "implementation": "./src/executors/generate-types/executor",
-      "schema": "./src/executors/generate-types/schema.json",
+    "check-types": {
+      "implementation": "./src/executors/check-types/executor",
+      "schema": "./src/executors/check-types/schema.json",
+      "description": "Check the types for a specific project"
+    },
+    "generate-api": {
+      "implementation": "./src/executors/generate-api/executor",
+      "schema": "./src/executors/generate-api/schema.json",
       "description": "Generate types executor"
     },
     "doc-model": {
-      "implementation": "./src/executors/doc-model/executor",
-      "schema": "./src/executors/doc-model/schema.json",
-      "description": "doc-model executor"
-    },
-    "release": {
       "implementation": "./src/executors/doc-model/executor",
       "schema": "./src/executors/doc-model/schema.json",
       "description": "doc-model executor"

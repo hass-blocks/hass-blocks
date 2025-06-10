@@ -12,7 +12,6 @@ import { createDirIfNotExists } from './create-dir-if-not-exists.ts';
 import { tsconfigReplacePaths } from './tsconfig-replace-paths/tsconfig-replace-paths.ts';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { typescriptCompile } from './typescript-compile/typescript-compile.ts';
 
 interface GenerateTypesArgs {
   workspaceRoot: string;
@@ -28,7 +27,6 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
   const apiFolder = join(projectRoot, 'api');
   process.chdir(projectRoot);
   const packageJsonFullPath = join(projectRoot, `package.json`);
-  const tsconfigPath = join(projectRoot, `tsconfig.json`);
   const libTsconfigPath = join(projectRoot, `tsconfig.lib.json`);
   const srcDir = join(projectRoot, `src`);
   const distDir = join(projectRoot, `dist`);
@@ -47,9 +45,6 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
         docModel,
       }
     : {};
-
-  logger.info('Compiling Typescript');
-  await typescriptCompile({ projectFile: tsconfigPath, workspaceRoot });
 
   const packageJson = JSON.parse(await readFile(packageJsonFullPath, 'utf-8'));
 

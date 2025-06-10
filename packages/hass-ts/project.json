@@ -22,12 +22,8 @@
       }
     },
     "doc-model": {
-      "executor": "@hass-blocks/publisher:doc-model",
-      "outputs": ["{options.outputPath}"],
       "options": {
-        "mainEntrypointFile": "packages/hass-ts/dist/index.d.ts",
-        "projectFolder": "packages/hass-ts",
-        "docModelFolder": "apps/docs-site/models"
+        "strictChecks": false
       }
     },
     "e2e-test": {

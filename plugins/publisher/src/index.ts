@@ -1,1 +1,1 @@
-export { createNodesV2 } from './executors/generate-types/infer-config.ts';
+export { createNodesV2 } from './infer-config.ts';

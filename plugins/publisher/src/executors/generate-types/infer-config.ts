@@ -24,9 +24,9 @@ export const createNodesV2: CreateNodesV2<GenerateTypes> = [
 async function createNodesInternal(
   configFilePath: string,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  options: GenerateTypes | undefined,
+  _options: GenerateTypes | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context: CreateNodesContextV2,
+  _context: CreateNodesContextV2,
 ) {
   const projectRoot = dirname(configFilePath);
 

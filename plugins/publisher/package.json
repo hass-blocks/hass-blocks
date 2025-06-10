@@ -2,19 +2,8 @@
   "name": "@hass-blocks/publisher",
   "version": "0.0.1",
   "private": true,
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./src/index.ts",
   "generators": "./generators.json",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts",
-      "development": "./src/index.ts",
-      "default": "./dist/index.js"
-    }
-  },
   "dependencies": {
     "@nx/devkit": "20.8.0",
     "@swc/helpers": "~0.5.11"

@@ -23,8 +23,8 @@ export const createNodesV2: CreateNodesV2<GenerateTypes> = [
 
 async function createNodesInternal(
   configFilePath: string,
-  _options: GenerateTypes | undefined,
-  _context: CreateNodesContextV2,
+  options: GenerateTypes | undefined,
+  context: CreateNodesContextV2,
 ) {
   const projectRoot = dirname(configFilePath);
 

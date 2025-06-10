@@ -6,6 +6,7 @@ type ExecutorConfig<TExecutor extends PromiseExecutor<unknown>> =
 export type ExecutorTargets = Record<
   string,
   {
+    cache: boolean;
     executor: string;
     outputs: string[];
     options: unknown;
@@ -24,6 +25,7 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
   dependsOn?: ExecutorTargets;
 }): ExecutorTargets => ({
   [name]: {
+    cache: true,
     executor: `@hass-blocks/publisher:${name}`,
     outputs: ['{options.outputPath}'],
     options,

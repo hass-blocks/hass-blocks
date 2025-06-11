@@ -16,7 +16,7 @@
         "stripLeadingPaths": true
       }
     },
-    "generate-types": {
+    "generate-api": {
       "options": {
         "strictChecks": false
       }

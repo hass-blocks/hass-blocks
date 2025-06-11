@@ -1,5 +1,6 @@
 import {
   createNodesFromFiles,
+  workspaceRoot,
   type CreateNodesContextV2,
   type CreateNodesV2,
 } from '@nx/devkit';
@@ -33,15 +34,17 @@ async function createNodesInternal(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _options: GenerateTypes | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _context: CreateNodesContextV2,
+  context: CreateNodesContextV2,
 ) {
   const projectRoot = dirname(configFilePath);
+
+  const isRootProject = join(workspaceRoot, projectRoot) === workspaceRoot;
 
   const isProject =
     existsSync(join(projectRoot, 'project.json')) ||
     existsSync(join(projectRoot, 'package.json'));
 
-  if (!isProject) {
+  if (!isProject || isRootProject) {
     return {};
   }
 

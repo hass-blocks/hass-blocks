@@ -12,7 +12,6 @@
     ],
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
-  "neverConnectToCloud": true,
   "plugins": [
     "@hass-blocks/publisher",
     {
@@ -117,5 +116,9 @@
         "linter": "eslint"
       }
     }
+  },
+  "s3": {
+    "region": "eu-west-2",
+    "bucket": "hass-blocks-remote-cache-bucket"
   }
 }

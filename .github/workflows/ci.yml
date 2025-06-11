@@ -44,7 +44,7 @@ jobs:
         env:
           NX_KEY: ${{ secrets.NX_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CACHE_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ CACHE_AWS_SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CACHE_AWS_SECRET_ACCESS_KEY }}
 
   generate-types:
     runs-on: ubuntu-latest
@@ -70,7 +70,7 @@ jobs:
         env:
           NX_KEY: ${{ secrets.NX_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CACHE_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ CACHE_AWS_SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CACHE_AWS_SECRET_ACCESS_KEY }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -103,7 +103,7 @@ jobs:
         env:
           NX_KEY: ${{ secrets.NX_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CACHE_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ CACHE_AWS_SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CACHE_AWS_SECRET_ACCESS_KEY }}
 
       - uses: actions/upload-artifact@v4
         with:
@@ -139,7 +139,7 @@ jobs:
         env:
           NX_KEY: ${{ secrets.NX_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CACHE_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ CACHE_AWS_SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CACHE_AWS_SECRET_ACCESS_KEY }}
 
   release:
     runs-on: ubuntu-latest
@@ -178,7 +178,7 @@ jobs:
         env:
           NX_KEY: ${{ secrets.NX_KEY }}
           AWS_ACCESS_KEY_ID: ${{ secrets.CACHE_AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ CACHE_AWS_SECRET_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.CACHE_AWS_SECRET_ACCESS_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           HUSKY: 0

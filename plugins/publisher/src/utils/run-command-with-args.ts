@@ -1,15 +1,32 @@
 import { execa } from 'execa-cjs';
 import { logger } from '@nx/devkit';
 
-export const runCommandWithArgs = async <T extends object>(
-  command: string,
+const convertObjectToFlags = <
+  T extends Record<string, boolean | string | string[]>,
+>(
   args: T,
 ) => {
-  const argPairs = Object.entries(args)
-    .map(([key, value]) => [`--${key}`, value])
+  return Object.entries(args)
+    .map(([key, value]) => [`--${key}`, value] as const)
     .flatMap(([key, value]) =>
-      typeof value === 'string' ? [key, value] : [key],
+      (typeof value === 'string'
+        ? Array.isArray(value)
+          ? value.map((item) => [key, item])
+          : [key, value]
+        : [key]
+      ).flat(),
     );
+};
+
+export const runCommandWithArgs = async <
+  T extends Record<string, boolean | string | string[]>,
+>(
+  command: string,
+  ...args: (string | T)[]
+) => {
+  const argPairs = args.flatMap((arg) =>
+    typeof arg === 'string' ? [arg] : convertObjectToFlags(arg),
+  );
 
   const finalCommandToExecute = `${command} ${argPairs.join(' ')}`;
 

@@ -11,29 +11,6 @@
         "cwd": "apps/bens-flat",
         "commands": ["vite-node src/run.ts"]
       }
-    },
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "apps/bens-flat/dist",
-        "main": "apps/bens-flat/src/run.ts",
-        "tsConfig": "apps/bens-flat/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true,
-        "assets": [
-          {
-            "input": "./apps/bens-flat/src",
-            "glob": "**/!(*.ts)",
-            "output": "."
-          },
-          {
-            "input": "./apps/bens-flat/src",
-            "glob": "**/*.d.ts",
-            "output": "."
-          }
-        ]
-      }
     }
   }
 }

@@ -4,17 +4,5 @@
   "sourceRoot": "packages/hass-mqtt/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/hass-mqtt/dist",
-        "main": "packages/hass-mqtt/src/index.ts",
-        "tsConfig": "packages/hass-mqtt/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    }
-  }
+  "targets": {}
 }

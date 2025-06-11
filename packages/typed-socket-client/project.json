@@ -4,17 +4,5 @@
   "sourceRoot": "packages/typed-socket-client/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/typed-socket-client/dist",
-        "main": "packages/typed-socket-client/src/index.ts",
-        "tsConfig": "packages/typed-socket-client/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    }
-  }
+  "targets": {}
 }

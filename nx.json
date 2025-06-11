@@ -13,7 +13,6 @@
     "sharedGlobals": ["{workspaceRoot}/.github/workflows/ci.yml"]
   },
   "plugins": [
-    "@hass-blocks/publisher",
     {
       "plugin": "@nx/js/typescript",
       "options": {
@@ -61,7 +60,8 @@
       "options": {
         "targetName": "e2e"
       }
-    }
+    },
+    "@hass-blocks/publisher"
   ],
   "release": {
     "changelog": {

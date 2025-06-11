@@ -14,17 +14,6 @@
       "options": {
         "strictChecks": false
       }
-    },
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/local-hass/dist",
-        "main": "packages/local-hass/src/index.ts",
-        "tsConfig": "packages/local-hass/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
     }
   }
 }

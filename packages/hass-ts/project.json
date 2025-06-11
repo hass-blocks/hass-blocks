@@ -5,17 +5,6 @@
   "projectType": "library",
   "tags": [],
   "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/hass-ts/dist",
-        "main": "packages/hass-ts/src/index.ts",
-        "tsConfig": "packages/hass-ts/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    },
     "generate-api": {
       "options": {
         "strictChecks": false

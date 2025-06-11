@@ -4,17 +4,5 @@
   "sourceRoot": "packages/websocket-plugin/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/websocket-plugin/dist",
-        "main": "packages/websocket-plugin/src/index.ts",
-        "tsConfig": "packages/websocket-plugin/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    }
-  }
+  "targets": {}
 }

@@ -3,6 +3,7 @@ import {
   workspaceRoot,
   type CreateNodesContextV2,
   type CreateNodesV2,
+  readJsonFile,
 } from '@nx/devkit';
 
 import { existsSync } from 'fs';
@@ -11,8 +12,10 @@ import {
   checkTypesExecutor,
   generateApiExecutor,
   generateDocModelExecutor,
+  buildExecutor,
 } from './executors';
 import { executorTarget, generateProjectsWithTargets } from './utils';
+import type { PackageJson } from 'nx/src/utils/package-json';
 
 type GenerateTypes = object;
 
@@ -34,15 +37,16 @@ async function createNodesInternal(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _options: GenerateTypes | undefined,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context: CreateNodesContextV2,
+  _context: CreateNodesContextV2,
 ) {
   const projectRoot = dirname(configFilePath);
 
   const isRootProject = join(workspaceRoot, projectRoot) === workspaceRoot;
 
-  const isProject =
-    existsSync(join(projectRoot, 'project.json')) ||
-    existsSync(join(projectRoot, 'package.json'));
+  const projectJsonPath = join(projectRoot, 'project.json');
+  const packageJsonPath = join(projectRoot, 'package.json');
+
+  const isProject = existsSync(projectJsonPath) || existsSync(packageJsonPath);
 
   if (!isProject || isRootProject) {
     return {};
@@ -57,29 +61,52 @@ async function createNodesInternal(
     },
   });
 
-  const generateApiTarget = executorTarget({
-    name: 'generate-api',
-    executor: generateApiExecutor,
+  const packageJsonContents: PackageJson = readJsonFile(packageJsonPath);
+
+  const { exports } = packageJsonContents;
+
+  const isPackageWithExports =
+    exports &&
+    typeof exports !== 'string' &&
+    Object.keys(exports).includes('.');
+
+  const buildTarget = executorTarget({
+    name: 'build',
+    executor: buildExecutor,
     options: {
+      tsconfigFile: join(projectRoot, `tsconfig.lib.json`),
       projectFolder: projectRoot,
-      replacePaths: true,
-      strictChecks: true,
     },
-    dependsOn: checkTypesTarget,
   });
 
-  const docModelTarget = executorTarget({
-    name: 'doc-model',
-    executor: generateDocModelExecutor,
-    options: {
-      projectFolder: projectRoot,
-    },
-    dependsOn: checkTypesTarget,
-  });
+  const generateApiTarget = isPackageWithExports
+    ? executorTarget({
+        name: 'generate-api',
+        executor: generateApiExecutor,
+        options: {
+          projectFolder: projectRoot,
+          replacePaths: true,
+          strictChecks: true,
+        },
+        dependsOn: checkTypesTarget,
+      })
+    : {};
+
+  const docModelTarget = isPackageWithExports
+    ? executorTarget({
+        name: 'doc-model',
+        executor: generateDocModelExecutor,
+        options: {
+          projectFolder: projectRoot,
+        },
+        dependsOn: checkTypesTarget,
+      })
+    : {};
 
   return generateProjectsWithTargets(projectRoot, {
     ...checkTypesTarget,
     ...generateApiTarget,
     ...docModelTarget,
+    ...buildTarget,
   });
 }

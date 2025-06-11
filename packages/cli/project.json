@@ -6,18 +6,6 @@
   "tags": [],
 
   "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/cli/dist",
-        "main": "packages/cli/src/index.ts",
-        "tsConfig": "packages/cli/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    },
-
     "generate-and-compile-bens-flat": {
       "executor": "nx:run-commands",
       "options": {

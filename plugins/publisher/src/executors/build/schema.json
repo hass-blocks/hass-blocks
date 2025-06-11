@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Build code",
+  "description": "Build typescript into executable JavaScript",
+  "type": "object",
+  "properties": {
+    "projectFolder": {
+      "type": "string",
+      "description": "The project folder containing the code"
+    },
+    "tsconfigFile": {
+      "type": "string",
+      "description": "The Typescript configuration file containing path mappings"
+    }
+  },
+  "required": ["projectFolder", "tsconfigFile"]
+}

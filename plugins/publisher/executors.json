@@ -10,6 +10,11 @@
       "schema": "./src/executors/generate-api/schema.json",
       "description": "Generate types executor"
     },
+    "build": {
+      "implementation": "./src/executors/build/executor",
+      "schema": "./src/executors/build/schema.json",
+      "description": "Build code executor"
+    },
     "doc-model": {
       "implementation": "./src/executors/doc-model/executor",
       "schema": "./src/executors/doc-model/schema.json",

@@ -4,17 +4,5 @@
   "sourceRoot": "packages/terminal-ui-plugin/src",
   "projectType": "library",
   "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@nx/js:swc",
-      "outputs": ["{options.outputPath}"],
-      "options": {
-        "outputPath": "packages/terminal-ui-plugin/dist",
-        "main": "packages/terminal-ui-plugin/src/index.ts",
-        "tsConfig": "packages/terminal-ui-plugin/tsconfig.lib.json",
-        "skipTypeCheck": true,
-        "stripLeadingPaths": true
-      }
-    }
-  }
+  "targets": {}
 }

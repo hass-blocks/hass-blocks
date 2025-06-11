@@ -1,17 +1,17 @@
 import { joinPathFragments } from '@nx/devkit';
 import { runCommandWithArgs } from './run-command-with-args';
 
-interface BuildModeArgs {
-  build: string;
-}
-
-interface ProjectModeArgs {
-  project: string;
-}
-
-type Args = {
+type BaseArgs = {
   noEmit?: boolean;
-} & (BuildModeArgs | ProjectModeArgs);
+};
+
+type Args =
+  | ({
+      build: string;
+    } & BaseArgs)
+  | ({
+      project: string;
+    } & BaseArgs);
 
 interface TypeScriptCompileProps {
   args: Args;

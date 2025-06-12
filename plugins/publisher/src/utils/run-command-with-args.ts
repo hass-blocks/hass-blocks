@@ -12,7 +12,7 @@ const convertObjectToFlags = <
       (typeof value === 'string'
         ? Array.isArray(value)
           ? value.map((item) => [key, item])
-          : [key, `--${value}`]
+          : [key, value]
         : [key]
       ).flat(),
     );

@@ -470,6 +470,4 @@ export type UserRemovedEvent = BaseEvent<'user_removed', {
     user_id: string;
 }>;
 
-// (No @packageDocumentation comment for this package)
-
 ```

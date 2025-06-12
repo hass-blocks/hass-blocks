@@ -72,7 +72,14 @@ export interface NumberSelector {
  * Field that represents selection from a discrete set of values
  */
 export interface SelectSelector {
+  /**
+   * Options associated with this selector
+   */
   options: string[];
+
+  /**
+   * Key used to select the translations for the select labels
+   */
   translation_key?: string;
 }
 
@@ -82,6 +89,9 @@ export interface SelectSelector {
  * Field that represents free text entry
  */
 export interface TextSelector {
+  /**
+   * The presence of this property indicates that it is a text field
+   */
   text: null;
 }
 
@@ -91,6 +101,9 @@ export interface TextSelector {
  * Field that represents a boolean value
  */
 export interface BooleanSelector {
+  /**
+   * The presence of this property indicates that it is a text field
+   */
   boolean: null;
 }
 
@@ -114,6 +127,9 @@ export interface DeviceTarget {
  * A field that represents a specific device
  */
 export interface DeviceSelector {
+  /**
+   * The presence of this propertyy indicates that the selector is a device
+   */
   device: DeviceTarget;
 }
 
@@ -161,6 +177,9 @@ export interface EntitySelector {
  * A field that represents a template that will be rendered by home assistant
  */
 export interface TemplateSelector {
+  /**
+   * The presence of this property indicates that the field is a template field
+   */
   template: null;
 }
 
@@ -170,6 +189,9 @@ export interface TemplateSelector {
  * A field containing an object with an arbitrary shape
  */
 export interface ObjectSelector {
+  /**
+   * The presence of this property indicates that the field is an object field
+   */
   object: null;
 }
 
@@ -179,6 +201,9 @@ export interface ObjectSelector {
  * A field containing a time value
  */
 export interface TimeSelector {
+  /**
+   * The presence of this property indicates that the field is a time field
+   */
   time: null;
 }
 
@@ -228,4 +253,9 @@ export interface ServiceField {
     | EntitySelector;
 }
 
+/**
+ * A map of Service fields
+ *
+ * @public
+ */
 export type ServiceFields = Record<string, ServiceField>;

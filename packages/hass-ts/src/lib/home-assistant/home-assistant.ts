@@ -21,7 +21,7 @@ import type {
   CalendarDetails,
   Config,
   EventDetails,
-  Event,
+  HomeAssistantEvent,
   LogBookEntry,
   Panel,
   ServiceDomainDetails,
@@ -211,18 +211,22 @@ export class HomeAssistant implements IHomeAssistant {
   }
 
   public async subscribeToEvents(
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     type: string,
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     typeOrCallback:
       | string
-      | ((message: Event | TriggerEventMessage['event']) => void),
+      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
     callbackIfTypeIsSupplied?: (
-      message: Event | TriggerEventMessage['event'],
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
     ) => void,
   ): Promise<void> {
     const { type, callback } = this.getTypeAndCallback(
@@ -253,9 +257,9 @@ export class HomeAssistant implements IHomeAssistant {
   private getTypeAndCallback(
     typeOrCallback:
       | string
-      | ((message: Event | TriggerEventMessage['event']) => void),
+      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
     callbackIfTypeIsSupplied?: (
-      message: Event | TriggerEventMessage['event'],
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
     ) => void,
   ) {
     /* istanbul ignore else -- @preserve */

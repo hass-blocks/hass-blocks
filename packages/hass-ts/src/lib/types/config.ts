@@ -102,13 +102,13 @@ export interface Config {
    * The URL that Home Assistant is available on from the internet.
    * For example: https://example.duckdns.org:8123. Note that this setting may only contain a protocol,
    * hostname and port; using a path is not supported.
-   * This can also be configured by navigating to Settings > System > Network.
+   * This can also be configured by navigating to Settings \> System \> Network.
    */
   external_url?: string;
   /**
    * The URL that Home Assistant is available on from your local network. For example: http://192.168.0.10:8123.
    * Note that this setting may only contain a protocol, hostname and port; using a path is not supported.
-   * This can also be configured by navigating to Settings > System > Network.
+   * This can also be configured by navigating to Settings \> System \> Network.
    */
   internal_url: string;
   /**

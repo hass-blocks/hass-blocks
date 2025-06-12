@@ -1,6 +1,8 @@
 import type { Context } from './context.ts';
 
 /**
+ * The reported state of an entity
+ *
  * @public
  */
 export interface State {

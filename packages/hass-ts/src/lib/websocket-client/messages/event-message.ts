@@ -1,7 +1,7 @@
-import type { Event } from '@types';
+import type { HomeAssistantEvent } from '@types';
 
 export interface EventMessage {
   id: number;
   type: 'event';
-  event: Event;
+  event: HomeAssistantEvent;
 }

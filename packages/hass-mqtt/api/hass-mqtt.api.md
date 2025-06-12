@@ -5,67 +5,150 @@
 ```ts
 
 import { IClientOptions } from 'mqtt';
+import { MqttClient } from 'mqtt';
 
 // @public
 export interface ILogger {
     debug(message: string): void;
+
     error(message: string): void;
+
     fatal: (message: string) => void;
+
     info(message: string): void;
+
     trace(message: string): void;
+
     warn(message: string): void;
 }
 
 // @public
 export interface IMQTTConnection {
     publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
+
     subscribe(topic: string, handler: (message: string) => void): Promise<void>;
 }
 
 // @public
 export class MqttConnection {
-    connect(): Promise<void>;
-    static create(options: IClientOptions, logger: ILogger): Promise<MqttConnection>;
-    publish(topic: string, data: Record<string, unknown> | string): Promise<void>;
-    subscribe(topic: string, handler: (message: string) => void): Promise<void>;
+    public async connect(): Promise<void> {
+        await this.initialise();
+    }
+
+    public static async create(options: IClientOptions, logger: ILogger) {
+        const // (undocumented)
+        connection = new MqttConnection(options, logger);
+        await connection.connect();
+        return connection;
+    }
+
+    public async publish(topic: string, data: Record<string, unknown> | string) {
+        const // (undocumented)
+        dataString =
+        typeof data !== 'string' ? JSON.stringify(data, null, 2) : data;
+        this.logger.trace(`${topic} -> ${dataString}`);
+        this.client.publish(topic, dataString);
+    }
+
+    public async subscribe(topic: string, handler: (message: string) => void) {
+        this.client.subscribe(topic, () => {
+            this.logger.info(`Successfully subscribed to ${topic}`);
+            this.client.on('message', async (messageTopic, message) => {
+                if (messageTopic === topic) {
+                    handler(message.toString());
+                }
+            });
+        });
+    }
 }
 
 // @public
 export abstract class MqttDevice {
     constructor(
-    client: IMQTTConnection, config: MqttDeviceConfig);
-    protected client: IMQTTConnection;
-    delete(): void;
+    protected client: IMQTTConnection,
+    config: MqttDeviceConfig,
+    ) {
+        this.genericConfig = config;
+        this._stateTopic = `${this.genericConfig.context}/${this.genericConfig.uniqueId}/${this.genericConfig.type}/state`;
+    }
+
+    public delete() {
+        this.client.publish(this.discoveryTopic, '');
+    }
+
     protected abstract getDeviceSpecificConfig(): Record<string, unknown>;
-    initialise(): void;
-    get state(): string;
-    protected set state(state: string);
-    protected get stateTopic(): string;
-    get uniqueId(): string;
+
+    public initialise() {
+        const // (undocumented)
+        homeassistantstatustopic = 'homeassistant/status';
+        this.triggerDiscovery();
+        this.client.subscribe(homeassistantstatustopic, this.onWakeup.bind(this));
+    }
+
+    public get state(): string {
+        return this._state ?? '';
+    }
+
+    protected set state(state: string) {
+        if (state !== this._state) {
+            this._state = state;
+            this.client.publish(this.stateTopic, state);
+        }
+    }
+
+    protected get stateTopic() {
+        return this._stateTopic;
+    }
+
+    public get uniqueId() {
+        return this.genericConfig.uniqueId;
+    }
 }
 
 // @public
 export interface MqttDeviceConfig {
     context: string;
+
     deviceClass: string;
+
     discoveryPrefix: string;
+
     friendlyName: string;
+
     type: string;
+
     uniqueId: string;
 }
 
 // @public
 export class MqttSwitch extends MqttDevice {
-    constructor(client: IMQTTConnection, config: SpecificMqttDeviceConfig);
-    protected getDeviceSpecificConfig(): {
-        command_topic: string;
-    };
-    turnOff(): void;
-    turnOn(): void;
+    public constructor(
+    client: IMQTTConnection,
+    config: SpecificMqttDeviceConfig,
+    ) {
+        super(client, { ...config, type: 'switch' });
+        this.client.subscribe(this.commandTopic, this.onStateChange.bind(this));
+    }
+
+    protected override getDeviceSpecificConfig() {
+        return {
+            command_topic: this.commandTopic,
+        };
+    }
+
+    public turnOff() {
+        this.state = 'OFF';
+    }
+
+    public turnOn() {
+        this.state = 'ON';
+    }
 }
 
 // @public
-export type SpecificMqttDeviceConfig<T extends Record<string, unknown> = Record<string, unknown>> = Omit<MqttDeviceConfig, 'type'> & T;
+export type SpecificMqttDeviceConfig<
+T extends Record<string, unknown> = Record<string, unknown>,
+> = Omit<MqttDeviceConfig, 'type'> & T;
 
 // (No @packageDocumentation comment for this package)
 

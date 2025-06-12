@@ -1,6 +1,8 @@
 import type { Logger } from './logger.ts';
 
 /**
+ * Connection configuration for the Home Assistant client
+ *
  * @public
  */
 export interface HassConfig {

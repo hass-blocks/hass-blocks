@@ -1,6 +1,6 @@
 import type { Config } from './config.ts';
-import type { Event } from './event.ts';
 import type { Panel } from './panel.ts';
+import type { HomeAssistantEvent } from './home-assistant-event/index.ts';
 import type { State } from './state.ts';
 import type { CalendarDetails } from './calendar-details.ts';
 import type { ServiceDomainDetails } from './service-domain-details.ts';
@@ -125,7 +125,9 @@ export interface IHomeAssistant {
    * @param callback - Fire this callback when any Home Assistant events are triggered
    */
   subscribeToEvents(
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
 
   /**
@@ -136,7 +138,9 @@ export interface IHomeAssistant {
    */
   subscribeToEvents(
     type: string,
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
 
   /**

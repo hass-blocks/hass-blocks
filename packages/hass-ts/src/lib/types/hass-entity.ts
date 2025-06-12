@@ -14,6 +14,10 @@ export interface HassEntity {
    */
   categories: Record<string, unknown>;
 
+  /**
+   * The ID of the Config Entry (integration instance) that created this entity.
+   * Entities created via Integrations always carry a reference to their parent config entry.
+   */
   config_entry_id: string | null;
   /**
    * A unix timstamp recording when the entry was first created in Home Assistant
@@ -83,7 +87,7 @@ export interface HassEntity {
    */
   original_name: string | null;
 
-  /*
+  /**
    * The integration (domain) that created this entity, e.g. "hue", "mqtt", "zwave_js".
    * This is how HA knows which code path "owns" the entity.
    */

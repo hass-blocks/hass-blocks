@@ -47,4 +47,4 @@ export const mockEventData = {
     parent_id: null,
     user_id: '31ddb597e03147118cf8d2f8fbea5553',
   },
-};
+} as const;

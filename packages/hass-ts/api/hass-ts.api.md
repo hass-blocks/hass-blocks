@@ -5,13 +5,33 @@
 ```ts
 
 // @public
+export type AutomationReloadedEvent = BaseEvent<'automation_reloaded'>;
+
+// @public
+export type AutomationTriggeredEvent = BaseEvent<'automation_triggered', {
+    name: string;
+    entity_id: string;
+}>;
+
+// @public
+export interface BaseEvent<TType extends string, TData = never> {
+    context: Context;
+    data: TData;
+    event_type: TType;
+    origin: 'REMOTE' | 'LOCAL';
+    time_fired: string;
+}
+
+// @public
 export interface BooleanSelector {
-    // (undocumented)
     boolean: null;
 }
 
-// @public (undocumented)
-export type CalendarDetails = {};
+// @public
+export type CalendarDetails = {
+    name: string;
+    entity_id: string;
+};
 
 // @public
 export interface CallServiceCommand<T = unknown> extends Command {
@@ -28,6 +48,14 @@ export interface CallServiceCommand<T = unknown> extends Command {
 }
 
 // @public
+export type CallServiceEvent = BaseEvent<'call_service', {
+    domain: string;
+    service: string;
+    service_data: Record<string, unknown>;
+    service_call_id: string;
+}>;
+
+// @public
 export interface CallServiceResponse {
     context: {
         id: string;
@@ -36,6 +64,16 @@ export interface CallServiceResponse {
     };
     response: null | Record<string, unknown>;
 }
+
+// @public
+export interface Command {
+    id: number;
+}
+
+// @public
+export type ComponentLoadedEvent = BaseEvent<'component_loaded', {
+    component: string;
+}>;
 
 // @public
 export interface Config {
@@ -78,9 +116,24 @@ export interface Context {
 }
 
 // @public
+export type CoreConfigUpdatedEvent = BaseEvent<'core_config_updated'>;
+
+// @public
+export type DataFlowProgressedEvent = BaseEvent<'data_flow_progressed', {
+    handler: string;
+    flow_id: string;
+}>;
+
+// @public
 export interface DeviceSelector {
-    // (undocumented)
     device: DeviceTarget;
+}
+
+// @public
+export interface DeviceTarget {
+    filter: {
+        integration: string;
+    };
 }
 
 // @public
@@ -88,30 +141,17 @@ export interface EntitySelector {
     entity: EntityTarget;
 }
 
-// @public (undocumented)
-interface Event_2 {
-    // (undocumented)
-    context: Context;
-    // (undocumented)
-    data: {
-        entity_id: string;
-        new_state: State;
-        old_state: State;
-    };
-    // (undocumented)
-    event_type: string;
-    // (undocumented)
-    origin: string;
-    // (undocumented)
-    time_fired: string;
+// @public
+export interface EntityTarget {
+    domain: string | string[];
+    integration: string;
+    multiple: boolean;
+    supported_feature: string[];
 }
-export { Event_2 as Event }
 
-// @public (undocumented)
+// @public
 export interface EventDetails {
-    // (undocumented)
     event: string;
-    // (undocumented)
     listener_count: number;
 }
 
@@ -147,7 +187,7 @@ export interface HassArea {
     picture: string | null;
 }
 
-// @public (undocumented)
+// @public
 export interface HassConfig {
     host: string;
     httpPath: string;
@@ -186,7 +226,6 @@ export interface HassDevice {
 export interface HassEntity {
     area_id: string | null;
     categories: Record<string, unknown>;
-    // (undocumented)
     config_entry_id: string | null;
     created_at: number;
     device_id: string | null;
@@ -202,11 +241,28 @@ export interface HassEntity {
     name: string | null;
     options: Record<string, Record<string, unknown>>;
     original_name: string | null;
-    // (undocumented)
     platform: string;
     translation_key: string | null;
     unique_id: string;
 }
+
+// @public
+export type HomeAssistantCloseEvent = BaseEvent<'homeassistant_close'>;
+
+// @public
+export type HomeAssistantEvent = CallServiceEvent | StateChangedEvent | ComponentLoadedEvent | CoreConfigUpdatedEvent | DataFlowProgressedEvent | HomeAssistantStartEvent | HomeAssistantStartedEvent | HomeAssistantStopEvent | HomeAssistantFinalWriteEvent | HomeAssistantCloseEvent | ServiceRemovedEvent | ServiceRegisteredEvent | LogbookEntryEvent | ThemesUpdatedEvent | UserAddedEvent | UserRemovedEvent | AutomationReloadedEvent | AutomationTriggeredEvent | SceneReloadedEvent | ScriptStartedEvent;
+
+// @public
+export type HomeAssistantFinalWriteEvent = BaseEvent<'homeassistant_final_write'>;
+
+// @public
+export type HomeAssistantStartedEvent = BaseEvent<'homeassistant_started'>;
+
+// @public
+export type HomeAssistantStartEvent = BaseEvent<'homeassistant_start'>;
+
+// @public
+export type HomeAssistantStopEvent = BaseEvent<'homeassistant_stop'>;
 
 // @public
 export interface IHomeAssistant {
@@ -227,29 +283,38 @@ export interface IHomeAssistant {
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
-    subscribeToEvents(callback: (message: Event_2 | TriggerEventMessage['event']) => void): Promise<void>;
-    subscribeToEvents(type: string, callback: (message: Event_2 | TriggerEventMessage['event']) => void): Promise<void>;
+    subscribeToEvents(callback: (message: HomeAssistantEvent | TriggerEventMessage['event']) => void): Promise<void>;
+    subscribeToEvents(type: string, callback: (message: HomeAssistantEvent | TriggerEventMessage['event']) => void): Promise<void>;
 }
 
 // @public
 export const initialiseHass: ({ host, port, httpPath, websocketPath, token, logger, }: HassConfig) => Promise<IHomeAssistant>;
 
 // @public
-export type LogBookEntry = LogbookStatechangeEntry | LogbookStatechangeEntry2 | LogbookTriggerEntry;
+export interface LogBookEntry {
+    context_user_id: string | null;
+    domain: string;
+    entity_id: string;
+    message: string;
+    name: string;
+    when: string;
+}
 
-// @public (undocumented)
+// @public
+export type LogbookEntryEvent = BaseEvent<'logbook_entry', {
+    name: string;
+    message: string;
+    domain?: string;
+    entity_id?: string;
+}>;
+
+// @public
 export interface Logger {
-    // (undocumented)
     debug: (message: string) => void;
-    // (undocumented)
     error: (message: string) => void;
-    // (undocumented)
     fatal: (message: string) => void;
-    // (undocumented)
     info: (message: string) => void;
-    // (undocumented)
     trace: (message: string) => void;
-    // (undocumented)
     warn: (message: string) => void;
 }
 
@@ -266,35 +331,34 @@ export interface NumberSelector {
 
 // @public
 export interface ObjectSelector {
-    // (undocumented)
     object: null;
 }
 
-// @public (undocumented)
+// @public
 export interface Panel {
-    // (undocumented)
     component_name: string;
-    // (undocumented)
     config: {
         mode: string;
     } | null;
-    // (undocumented)
-    config_panel_domain: null;
-    // (undocumented)
+    config_panel_domain: string | null;
     icon: null | string;
-    // (undocumented)
     require_admin: boolean;
-    // (undocumented)
     title: null | string;
-    // (undocumented)
     url_path: string;
 }
 
 // @public
+export type SceneReloadedEvent = BaseEvent<'scene_reloaded'>;
+
+// @public
+export type ScriptStartedEvent = BaseEvent<'sript_started', {
+    name: string;
+    entity_id: string;
+}>;
+
+// @public
 export interface SelectSelector {
-    // (undocumented)
     options: string[];
-    // (undocumented)
     translation_key?: string;
 }
 
@@ -312,11 +376,9 @@ export interface Service {
     };
 }
 
-// @public (undocumented)
+// @public
 export interface ServiceDomainDetails {
-    // (undocumented)
     domain: string;
-    // (undocumented)
     services: Record<string, Service>;
 }
 
@@ -330,10 +392,22 @@ export interface ServiceField {
     selector?: NumberSelector | SelectSelector | TextSelector | BooleanSelector | DeviceSelector | TemplateSelector | ObjectSelector | TimeSelector | EntitySelector;
 }
 
-// @public (undocumented)
+// @public
 export type ServiceFields = Record<string, ServiceField>;
 
-// @public (undocumented)
+// @public
+export type ServiceRegisteredEvent = BaseEvent<'service_registered', {
+    domain: string;
+    service: string;
+}>;
+
+// @public
+export type ServiceRemovedEvent = BaseEvent<'service_removed', {
+    domain: string;
+    service: string;
+}>;
+
+// @public
 export interface State {
     attributes: Record<string, unknown>;
     context: Context;
@@ -345,36 +419,56 @@ export interface State {
 }
 
 // @public
+export type StateChangedEvent = BaseEvent<'state_changed', {
+    entity_id: string;
+    new_state: State;
+    old_state: State;
+}>;
+
+// @public
+export interface SubscribeToTriggerMessage extends Command {
+    trigger: Record<string, unknown>;
+    type: 'subscribe_trigger';
+}
+
+// @public
 export interface TemplateSelector {
-    // (undocumented)
     template: null;
 }
 
 // @public
 export interface TextSelector {
-    // (undocumented)
     text: null;
 }
 
 // @public
+export type ThemesUpdatedEvent = BaseEvent<'themes_updated'>;
+
+// @public
 export interface TimeSelector {
-    // (undocumented)
     time: null;
 }
 
 // @public
 export interface TriggerEventMessage<T = unknown> {
-    // (undocumented)
     event: {
         variables: {
             trigger: T;
         };
     };
-    // (undocumented)
     id: number;
-    // (undocumented)
     type: 'event';
 }
+
+// @public
+export type UserAddedEvent = BaseEvent<'user_added', {
+    user_id: string;
+}>;
+
+// @public
+export type UserRemovedEvent = BaseEvent<'user_removed', {
+    user_id: string;
+}>;
 
 // (No @packageDocumentation comment for this package)
 

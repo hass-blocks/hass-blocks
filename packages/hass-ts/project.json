@@ -7,7 +7,7 @@
   "targets": {
     "generate-api": {
       "options": {
-        "strictChecks": false
+        "strictChecks": true
       }
     },
     "doc-model": {

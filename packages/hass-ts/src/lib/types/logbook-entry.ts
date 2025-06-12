@@ -3,45 +3,30 @@
  *
  * An entry in the Home Assistant logbook
  */
-export type LogBookEntry =
-  | LogbookStatechangeEntry
-  | LogbookStatechangeEntry2
-  | LogbookTriggerEntry;
-
-/**
- * @public
- */
-export interface LogbookTriggerEntry {
-  state: string;
+export interface LogBookEntry {
+  /**
+   * The user (if any) responsible for this change.
+   */
+  context_user_id: string | null;
+  /**
+   * The integration or domain that generated the entry (e.g. light); corresponds to your type’s context_domain.
+   */
+  domain: string;
+  /**
+   *The entity this entry refers to (e.g. light.kitchen).
+   */
   entity_id: string;
+  /**
+   * A human-readable description of what happened (“turned on”, etc.); corresponds to your type’s state.
+   */
+  message: string;
+  /**
+   *  Friendly name of the entity.
+   */
   name: string;
-  icon: string;
-  when: string;
-}
 
-/**
- * @public
- */
-export interface LogbookStatechangeEntry {
-  state: string;
-  entity_id: string;
-  name: string;
+  /**
+   * ISO-8601 timestamp of when the event occurred.
+   */
   when: string;
-  context_user_id: string;
-  context_domain: string;
-  context_service: string;
-  context_event_type: string;
-}
-
-/**
- * @public
- */
-export interface LogbookStatechangeEntry2 {
-  state: string;
-  entity_id: string;
-  name: string;
-  when: string;
-  context_state: string;
-  context_entity_id: string;
-  context_entity_id_name: string;
 }

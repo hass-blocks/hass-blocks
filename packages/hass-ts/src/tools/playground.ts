@@ -2,6 +2,6 @@ import { getConfig, initialiseHass } from '@initialise';
 
 const client = await initialiseHass(getConfig());
 
-const config = await client.getConfig();
+const calendar = await client.getCalendars();
 
-console.log(JSON.stringify(config, null, 2));
+console.log(JSON.stringify(calendar, null, 2));

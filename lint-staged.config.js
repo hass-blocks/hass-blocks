@@ -11,7 +11,7 @@ const config = {
     'prettier --write',
     (files) => {
       const theFiles = files.map((file) => relative(__dirname, file));
-      return `nx affected --verbose --target lint --files ${theFiles.join(',')}`;
+      return `nx affected --target lint --files ${theFiles.join(',')}`;
     },
   ],
 };

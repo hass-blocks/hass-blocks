@@ -32,7 +32,7 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
     executor: `@hass-blocks/publisher:${name}`,
     outputs: ['{options.outputPath}'],
     options,
-    inputs: production ? ['production'] : ['defaults'],
+    inputs: production ? ['production'] : ['default'],
     dependsOn: dependsOn ? Object.keys(dependsOn) : [],
   },
 });

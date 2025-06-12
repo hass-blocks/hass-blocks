@@ -15,7 +15,6 @@ import type { GetLogbookParams } from './get-logbook-params.ts';
 
 import type {
   CallServiceCommand,
-  TriggerEventMessage,
   SubscribeToTriggerMessage,
 } from '../websocket-client/index.ts';
 
@@ -125,9 +124,7 @@ export interface IHomeAssistant {
    * @param callback - Fire this callback when any Home Assistant events are triggered
    */
   subscribeToEvents(
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
 
   /**
@@ -138,9 +135,7 @@ export interface IHomeAssistant {
    */
   subscribeToEvents(
     type: string,
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
 
   /**

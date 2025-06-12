@@ -211,23 +211,15 @@ export class HomeAssistant implements IHomeAssistant {
   }
 
   public async subscribeToEvents(
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     type: string,
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
   public async subscribeToEvents(
-    typeOrCallback:
-      | string
-      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
-    callbackIfTypeIsSupplied?: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    typeOrCallback: string | ((message: HomeAssistantEvent) => void),
+    callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
   ): Promise<void> {
     const { type, callback } = this.getTypeAndCallback(
       typeOrCallback,
@@ -244,7 +236,11 @@ export class HomeAssistant implements IHomeAssistant {
     });
 
     this.websocketClient.addMessageListener((message) => {
-      if (message.type === 'event' && message.id === id) {
+      if (
+        message.type === 'event' &&
+        message.id === id &&
+        'event_type' in message.event
+      ) {
         callback(message.event);
       }
     });
@@ -255,12 +251,8 @@ export class HomeAssistant implements IHomeAssistant {
   }
 
   private getTypeAndCallback(
-    typeOrCallback:
-      | string
-      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
-    callbackIfTypeIsSupplied?: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    typeOrCallback: string | ((message: HomeAssistantEvent) => void),
+    callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
   ) {
     /* istanbul ignore else -- @preserve */
     if (

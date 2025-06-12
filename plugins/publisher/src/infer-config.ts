@@ -14,7 +14,11 @@ import {
   generateDocModelExecutor,
   buildExecutor,
 } from './executors';
-import { executorTarget, generateProjectsWithTargets } from './utils';
+import {
+  executorTarget,
+  generateProjectsWithTargets,
+  getTsconfigWithPaths,
+} from './utils';
 import type { PackageJson } from 'nx/src/utils/package-json';
 
 type GenerateTypes = object;
@@ -70,14 +74,22 @@ async function createNodesInternal(
     typeof exports !== 'string' &&
     Object.keys(exports).includes('.');
 
-  const buildTarget = executorTarget({
-    name: 'build',
-    executor: buildExecutor,
-    options: {
-      tsconfigFile: join(projectRoot, `tsconfig.lib.json`),
-      projectFolder: projectRoot,
-    },
-  });
+  const tsconfigFile = getTsconfigWithPaths(projectRoot, [
+    'tsconfig.json',
+    'tsconfig.lib.json',
+    'tsconfig.app.json',
+  ]);
+
+  const buildTarget = tsconfigFile
+    ? executorTarget({
+        name: 'build',
+        executor: buildExecutor,
+        options: {
+          tsconfigFile,
+          projectFolder: projectRoot,
+        },
+      })
+    : {};
 
   const generateApiTarget = isPackageWithExports
     ? executorTarget({

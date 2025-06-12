@@ -14,17 +14,6 @@
   },
   "plugins": [
     {
-      "plugin": "@nx/js/typescript",
-      "options": {
-        "build": {
-          "targetName": "build",
-          "configName": "tsconfig.lib.json",
-          "buildDepsName": "build-deps",
-          "watchDepsName": "watch-deps"
-        }
-      }
-    },
-    {
       "plugin": "@nx/vite/plugin",
       "options": {
         "buildTargetName": "build",

@@ -6,9 +6,9 @@
   "generators": "./generators.json",
   "dependencies": {
     "@nx/devkit": "20.8.0",
+    "@swc/cli": "~0.6.0",
     "@swc/helpers": "~0.5.11",
     "@types/webpack-node-externals": "^3.0.4",
-    "@swc/cli": "~0.6.0",
     "webpack-node-externals": "^3.0.0"
   },
   "executors": "./executors.json",

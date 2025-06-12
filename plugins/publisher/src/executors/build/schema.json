@@ -14,5 +14,5 @@
       "description": "The Typescript configuration file containing path mappings"
     }
   },
-  "required": ["projectFolder", "tsconfigFile"]
+  "required": ["projectFolder"]
 }

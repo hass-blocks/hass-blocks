@@ -1,5 +1,4 @@
 const { relative } = require('node:path');
-const { __disposeResources } = require('tslib');
 
 /**
  * @filename: lint-staged.config.js

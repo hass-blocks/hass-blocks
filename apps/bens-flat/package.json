@@ -1,6 +1,6 @@
 {
   "name": "bens-flat",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "module",
   "engines": {
     "node": ">=18"
@@ -8,9 +8,9 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "@hass-blocks/core": "3.17.2",
-    "@hass-blocks/triggers": "0.2.2",
-    "@hass-blocks/websocket-plugin": "0.7.2",
+    "@hass-blocks/core": "3.17.3",
+    "@hass-blocks/triggers": "0.2.3",
+    "@hass-blocks/websocket-plugin": "0.7.3",
     "luxon": "^3.6.1",
     "zod": "3.25.28"
   },

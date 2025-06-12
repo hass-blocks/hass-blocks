@@ -1,3 +1,17 @@
+## 3.17.3 (2025-06-12)
+
+### 🩹 Fixes
+
+- **hass-ts:** fixed test hass ([a5d844463](https://github.com/hass-blocks/hass-blocks/commit/a5d844463))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.14.2
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.2 (2025-06-12)
 
 ### 🩹 Fixes

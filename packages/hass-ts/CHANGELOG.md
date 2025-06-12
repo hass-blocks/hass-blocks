@@ -1,3 +1,13 @@
+## 0.14.2 (2025-06-12)
+
+### 🩹 Fixes
+
+- **hass-ts:** remove state changed event from the onEvent handler ([49d2f7a18](https://github.com/hass-blocks/hass-blocks/commit/49d2f7a18))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.14.1 (2025-06-12)
 
 ### 🩹 Fixes

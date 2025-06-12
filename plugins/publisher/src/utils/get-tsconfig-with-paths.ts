@@ -12,13 +12,11 @@ export const getTsconfigWithPaths = (
         join(projectRoot, option),
       );
 
-      console.log(tsconfigContents);
-
       return Boolean(tsconfigContents.compilerOptions?.paths);
     } catch {
       return false;
     }
   });
 
-  return options[index];
+  return options[index] ? join(projectRoot, options[index]) : undefined;
 };

@@ -1,5 +1,5 @@
 import type { ITrigger } from './i-trigger.ts';
-import type { Event } from '@hass-blocks/hass-ts';
+import type { StateChangedEvent } from '@hass-blocks/hass-ts';
 import type { BlockOutput } from './block-output.ts';
 import type { IBlocksNode } from './i-blocks-node.ts';
 
@@ -107,7 +107,7 @@ export interface StateChanged
   /**
    * The raw event data from Home Assistant
    */
-  hassEvent: Event;
+  hassEvent: StateChangedEvent;
 }
 
 /**

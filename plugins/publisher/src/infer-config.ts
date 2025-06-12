@@ -60,6 +60,7 @@ async function createNodesInternal(
     name: 'check-types',
     executor: checkTypesExecutor,
     productionInputsOnly: false,
+    includeDependenciesInInputs: true,
     options: {
       buildMode: true,
       tsconfigFile: configFilePath,

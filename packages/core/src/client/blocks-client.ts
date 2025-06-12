@@ -1,9 +1,10 @@
 import type {
   IHomeAssistant,
-  Event,
+  HomeAssistantEvent,
   TriggerEventMessage,
   Service,
   HassArea,
+  StateChangedEvent,
 } from '@hass-blocks/hass-ts';
 
 import type {
@@ -22,7 +23,7 @@ import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import { mapAsync } from '@utils';
 
 type StateChangedCallback = (
-  event: Event | TriggerEventMessage['event'],
+  event: HomeAssistantEvent | TriggerEventMessage['event'],
 ) => void;
 
 /**
@@ -181,9 +182,13 @@ export class BlocksClient implements IFullBlocksClient {
   private async attachStateChangeListenerIfNotAttached() {
     if (!this.stateChangedCallback) {
       this.stateChangedCallback = (
-        event: Event | TriggerEventMessage['event'],
+        event: HomeAssistantEvent | TriggerEventMessage['event'],
       ) => {
-        if (this.states && 'data' in event) {
+        if (
+          this.states &&
+          'event_type' in event &&
+          event.event_type === 'state_changed'
+        ) {
           this.states.set(event.data.entity_id, event.data.new_state);
         }
       };
@@ -191,7 +196,10 @@ export class BlocksClient implements IFullBlocksClient {
     await this.client.subscribeToEvents(this.stateChangedCallback);
   }
 
-  public async onStateChanged(id: string, callback: (event: Event) => void) {
+  public async onStateChanged(
+    id: string,
+    callback: (event: StateChangedEvent) => void,
+  ) {
     try {
       if (!this.states) {
         await this.loadStates();
@@ -204,8 +212,12 @@ export class BlocksClient implements IFullBlocksClient {
       }
 
       await this.client.subscribeToEvents(
-        (event: Event | TriggerEventMessage['event']) => {
-          if ('data' in event && event.data.entity_id === id) {
+        (event: HomeAssistantEvent | TriggerEventMessage['event']) => {
+          if (
+            'event_type' in event &&
+            event.event_type === 'state_changed' &&
+            event.data.entity_id === id
+          ) {
             callback(event);
           }
         },

@@ -20,19 +20,26 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
   options,
   dependsOn,
   productionInputsOnly: production,
+  includeDependenciesInInputs,
 }: {
   name: string;
   executor: TExecutor;
   options: ExecutorConfig<TExecutor>;
   productionInputsOnly: boolean;
   dependsOn?: ExecutorTargets;
-}): ExecutorTargets => ({
-  [name]: {
-    cache: true,
-    executor: `@hass-blocks/publisher:${name}`,
-    outputs: ['{options.outputPath}'],
-    options,
-    inputs: production ? ['production'] : ['default'],
-    dependsOn: dependsOn ? Object.keys(dependsOn) : [],
-  },
-});
+  includeDependenciesInInputs?: boolean;
+}): ExecutorTargets => {
+  const inputs = (input: string) =>
+    includeDependenciesInInputs ? [`^${input}`, input] : [input];
+
+  return {
+    [name]: {
+      cache: true,
+      executor: `@hass-blocks/publisher:${name}`,
+      outputs: ['{options.outputPath}'],
+      options,
+      inputs: production ? inputs('production') : inputs('default'),
+      dependsOn: dependsOn ? Object.keys(dependsOn) : [],
+    },
+  };
+};

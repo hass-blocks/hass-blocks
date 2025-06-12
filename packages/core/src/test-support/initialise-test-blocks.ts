@@ -1,7 +1,7 @@
 import type {
   CalendarDetails,
   CallServiceCommand,
-  Event,
+  HomeAssistantEvent,
   Config,
   EventDetails,
   GetHistoryParams,
@@ -29,11 +29,11 @@ export class TestHassClient implements IHomeAssistant {
   private triggers: Record<string, TriggerCallback> = {};
   private eventCallbacksWithType: Record<
     string,
-    ((event: TriggerEventMessage['event'] | Event) => void)[]
+    ((event: TriggerEventMessage['event'] | HomeAssistantEvent) => void)[]
   > = {};
 
   private eventCallbacks: ((
-    event: TriggerEventMessage['event'] | Event,
+    event: TriggerEventMessage['event'] | HomeAssistantEvent,
   ) => void)[] = [];
 
   constructor(
@@ -56,23 +56,27 @@ export class TestHassClient implements IHomeAssistant {
     this.triggers[JSON.stringify(trigger)]?.({});
   }
 
-  async fireEvent(message: Event | TriggerEventMessage['event']) {
+  async fireEvent(message: HomeAssistantEvent | TriggerEventMessage['event']) {
     await Promise.all(this.eventCallbacks.map((callback) => callback(message)));
   }
 
   public async subscribeToEvents(
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     type: string,
-    callback: (message: Event | TriggerEventMessage['event']) => void,
+    callback: (
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
+    ) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     typeOrCallback:
       | string
-      | ((message: Event | TriggerEventMessage['event']) => void),
+      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
     callbackIfTypeIsSupplied?: (
-      message: Event | TriggerEventMessage['event'],
+      message: HomeAssistantEvent | TriggerEventMessage['event'],
     ) => void,
   ): Promise<void> {
     if (

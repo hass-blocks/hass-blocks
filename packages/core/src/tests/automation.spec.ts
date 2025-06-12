@@ -354,9 +354,9 @@ test('state change part way through sequence is registered by assertions', async
         },
       },
     },
-    event_type: 'event',
+    event_type: 'state_changed',
     time_fired: 'foo',
-    origin: 'foo',
+    origin: 'LOCAL',
     context: {
       id: 'foo',
       parent_id: null,

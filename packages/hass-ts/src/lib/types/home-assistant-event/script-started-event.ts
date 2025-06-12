@@ -7,7 +7,7 @@ import type { BaseEvent } from './base-event.ts';
  * @public
  */
 export type ScriptStartedEvent = BaseEvent<
-  'sript_started',
+  'script_started',
   {
     /**
      * Name of the script that was run.

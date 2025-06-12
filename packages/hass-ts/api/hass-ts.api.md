@@ -351,7 +351,7 @@ export interface Panel {
 export type SceneReloadedEvent = BaseEvent<'scene_reloaded'>;
 
 // @public
-export type ScriptStartedEvent = BaseEvent<'sript_started', {
+export type ScriptStartedEvent = BaseEvent<'script_started', {
     name: string;
     entity_id: string;
 }>;

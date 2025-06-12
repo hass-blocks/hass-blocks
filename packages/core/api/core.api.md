@@ -6,13 +6,13 @@
 
 import { Block as Block_2 } from '../index.ts';
 import type { CallServiceCommand } from '@hass-blocks/hass-ts';
-import type { Event as Event_2 } from '@hass-blocks/hass-ts';
 import type { HassArea } from '@hass-blocks/hass-ts';
 import type { HassConfig } from '@hass-blocks/hass-ts';
 import { IHomeAssistant } from '@hass-blocks/hass-ts';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import type { Service } from '@hass-blocks/hass-ts';
 import type { State } from '@hass-blocks/hass-ts';
+import type { StateChangedEvent } from '@hass-blocks/hass-ts';
 import z from 'zod/v4';
 
 // @public
@@ -391,7 +391,7 @@ export interface IfThenElseConditionConfig<TInput, TThenInput, TElseInput, TThen
 export interface IFullBlocksClient extends IHass {
     getAutomations(): (IBlocksNode & ISerialisable)[];
     loadStates(): Promise<void>;
-    onStateChanged(id: string, callback: (event: Event_2) => void): Promise<void>;
+    onStateChanged(id: string, callback: (event: StateChangedEvent) => void): Promise<void>;
     registerAutomation(...automation: (IMutableNode & ITriggerable)[]): Promise<void>;
     registerTrigger(trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
@@ -637,7 +637,7 @@ export type SinglePassBlock<TSequence extends readonly Block<unknown, unknown>[]
 // @public
 export interface StateChanged extends BaseHassBlocksEvent<'hass-state-changed'> {
     entity: string;
-    hassEvent: Event_2;
+    hassEvent: StateChangedEvent;
 }
 
 // @public

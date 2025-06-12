@@ -1,5 +1,5 @@
 import type { IHass } from './i-hass.ts';
-import type { Event } from '@hass-blocks/hass-ts';
+import type { StateChangedEvent } from '@hass-blocks/hass-ts';
 import type { IMutableNode } from './i-mutable-node.ts';
 import type { ITriggerable } from './i-triggerable.ts';
 import type { IBlocksNode } from './i-blocks-node.ts';
@@ -45,5 +45,8 @@ export interface IFullBlocksClient extends IHass {
    * @param id - The id to listen for
    * @param callback - Callback that will fire when the state changess
    */
-  onStateChanged(id: string, callback: (event: Event) => void): Promise<void>;
+  onStateChanged(
+    id: string,
+    callback: (event: StateChangedEvent) => void,
+  ): Promise<void>;
 }

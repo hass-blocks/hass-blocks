@@ -84,6 +84,7 @@ async function createNodesInternal(
     ? executorTarget({
         name: 'build',
         executor: buildExecutor,
+        production: true,
         options: {
           tsconfigFile,
           projectFolder: projectRoot,
@@ -95,6 +96,7 @@ async function createNodesInternal(
     ? executorTarget({
         name: 'generate-api',
         executor: generateApiExecutor,
+        production: true,
         options: {
           projectFolder: projectRoot,
           replacePaths: true,
@@ -107,6 +109,7 @@ async function createNodesInternal(
   const docModelTarget = isPackageWithExports
     ? executorTarget({
         name: 'doc-model',
+        production: true,
         executor: generateDocModelExecutor,
         options: {
           projectFolder: projectRoot,

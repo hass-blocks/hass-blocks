@@ -11,6 +11,7 @@ export type ExecutorTargets = Record<
     outputs: string[];
     options: unknown;
     dependsOn: string[];
+    inputs: string[];
   }
 >;
 
@@ -18,10 +19,12 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
   name,
   options,
   dependsOn,
+  production,
 }: {
   name: string;
   executor: TExecutor;
   options: ExecutorConfig<TExecutor>;
+  production: boolean;
   dependsOn?: ExecutorTargets;
 }): ExecutorTargets => ({
   [name]: {
@@ -29,6 +32,7 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
     executor: `@hass-blocks/publisher:${name}`,
     outputs: ['{options.outputPath}'],
     options,
+    inputs: production ? ['production'] : ['defaults'],
     dependsOn: dependsOn ? Object.keys(dependsOn) : [],
   },
 });

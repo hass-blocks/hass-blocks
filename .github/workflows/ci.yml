@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [18, 20, 22, 23]
+        node_version: [18, 20, 22, 23, 24]
         target: [test, e2e-test]
 
     steps:

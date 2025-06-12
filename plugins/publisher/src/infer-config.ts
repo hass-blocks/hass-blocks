@@ -59,6 +59,7 @@ async function createNodesInternal(
   const checkTypesTarget = executorTarget({
     name: 'check-types',
     executor: checkTypesExecutor,
+    productionInputsOnly: false,
     options: {
       buildMode: true,
       tsconfigFile: configFilePath,
@@ -84,7 +85,7 @@ async function createNodesInternal(
     ? executorTarget({
         name: 'build',
         executor: buildExecutor,
-        production: true,
+        productionInputsOnly: true,
         options: {
           tsconfigFile,
           projectFolder: projectRoot,
@@ -96,7 +97,7 @@ async function createNodesInternal(
     ? executorTarget({
         name: 'generate-api',
         executor: generateApiExecutor,
-        production: true,
+        productionInputsOnly: true,
         options: {
           projectFolder: projectRoot,
           replacePaths: true,
@@ -109,7 +110,7 @@ async function createNodesInternal(
   const docModelTarget = isPackageWithExports
     ? executorTarget({
         name: 'doc-model',
-        production: true,
+        productionInputsOnly: true,
         executor: generateDocModelExecutor,
         options: {
           projectFolder: projectRoot,

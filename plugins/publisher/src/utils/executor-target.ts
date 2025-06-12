@@ -19,12 +19,12 @@ export const executorTarget = <TExecutor extends PromiseExecutor>({
   name,
   options,
   dependsOn,
-  production,
+  productionInputsOnly: production,
 }: {
   name: string;
   executor: TExecutor;
   options: ExecutorConfig<TExecutor>;
-  production: boolean;
+  productionInputsOnly: boolean;
   dependsOn?: ExecutorTargets;
 }): ExecutorTargets => ({
   [name]: {

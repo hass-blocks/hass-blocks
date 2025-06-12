@@ -5,7 +5,7 @@ import {
   type PromiseExecutor,
 } from '@nx/devkit';
 
-import { swc } from '../../utils/swc';
+import { getPaths, swc } from '../../utils';
 
 import { join } from 'node:path';
 import type { IRawTSConfig } from '../../lib/tsconfig-replace-paths/utils';
@@ -46,8 +46,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
 
   const config: Config = {
     jsc: {
-      baseUrl: tsconfigData.compilerOptions?.baseUrl ?? '',
-      paths: tsconfigData.compilerOptions?.paths ?? {},
+      ...getPaths(tsconfigData),
       target: 'es2017',
       parser: {
         syntax: 'typescript',

@@ -1,4 +1,4 @@
-import { joinPathFragments, writeJsonFile } from '@nx/devkit';
+import { writeJsonFile } from '@nx/devkit';
 import { v4 } from 'uuid';
 import { Config } from '@swc/core';
 import * as fs from 'fs/promises';

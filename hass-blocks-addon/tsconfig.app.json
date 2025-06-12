@@ -5,6 +5,7 @@
     "jsx": "react-jsx",
     "rootDir": "src",
     "outDir": "dist",
+    "baseUrl": ".",
     "paths": {
       "@lib": ["./src/app/lib/index.ts"],
       "@components": ["./src/app/components/index.ts"],

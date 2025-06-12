@@ -72,13 +72,6 @@ describe('The Hass SDK', () => {
     it('returns a list of the available services', async () => {
       const client = await getTestClient();
       const services = await client.getServices();
-      console.log(
-        JSON.stringify(
-          Object.entries(services).filter(([key]) => key === 'scene'),
-          null,
-          2,
-        ),
-      );
 
       expect(services).toEqual(
         expect.objectContaining({

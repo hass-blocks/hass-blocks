@@ -6,6 +6,7 @@ import * as os from 'os';
 
 import { existsSync, mkdirSync } from 'node:fs';
 import { runCommandWithArgs } from './run-command-with-args';
+import { nodeModulesBinPath } from './node-modules-bin-path';
 
 export const createDirIfNotExists = (dir: string) =>
   !existsSync(dir) ? mkdirSync(dir) : undefined;
@@ -21,12 +22,7 @@ export const swc = async ({
   inDir: string;
   outDir: string;
 }) => {
-  const swcPath = joinPathFragments(
-    workspaceRoot,
-    'node_modules',
-    '.bin',
-    'swc',
-  );
+  const swcPath = nodeModulesBinPath(workspaceRoot, 'swc');
 
   const tempFolder = os.tmpdir();
   const tempPath = `${tempFolder}/${v4()}.json`;

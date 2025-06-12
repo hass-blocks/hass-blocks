@@ -44,7 +44,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
   const distDir = join(workspaceRoot, options.projectFolder, `dist`);
   const sourceRootPath = join(workspaceRoot, sourceRoot);
 
-  const config = {
+  const config: Config = {
     jsc: {
       baseUrl: tsconfigData.compilerOptions?.baseUrl ?? '',
       paths: tsconfigData.compilerOptions?.paths ?? {},
@@ -78,7 +78,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
       './**/jest-setup.ts$',
       '.*.js$',
     ],
-  } satisfies Config;
+  };
 
   try {
     process.chdir(options.projectFolder);

@@ -1,3 +1,13 @@
+## 0.14.0 (2025-06-12)
+
+### 🚀 Features
+
+- **hass-ts:** complete documentation and add granular event types ([45baeb839](https://github.com/hass-blocks/hass-blocks/commit/45baeb839))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.13.0 (2025-06-12)
 
 ### 🚀 Features

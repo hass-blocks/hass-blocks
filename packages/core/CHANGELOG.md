@@ -1,3 +1,10 @@
+## 3.17.1 (2025-06-12)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-mqtt to 0.4.0
+- Updated @hass-blocks/hass-ts to 0.14.0
+
 ## 3.17.0 (2025-06-12)
 
 ### 🚀 Features

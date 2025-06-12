@@ -1,3 +1,21 @@
+## 0.9.0 (2025-06-12)
+
+### 🚀 Features
+
+- **root:** add custom build target ([0afaf7d01](https://github.com/hass-blocks/hass-blocks/commit/0afaf7d01))
+- **publisher:** infer config ([4047700e1](https://github.com/hass-blocks/hass-blocks/commit/4047700e1))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.0
+- Updated @hass-blocks/triggers to 0.2.0
+- Updated @hass-blocks/hass-ts to 0.13.0
+- Updated @hass-blocks/core to 3.17.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.8.1 (2025-06-09)
 
 ### 🩹 Fixes

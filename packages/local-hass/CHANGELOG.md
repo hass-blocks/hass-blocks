@@ -1,3 +1,19 @@
+## 0.3.0 (2025-06-12)
+
+### 🚀 Features
+
+- **root:** add custom build target ([0afaf7d01](https://github.com/hass-blocks/hass-blocks/commit/0afaf7d01))
+- **publisher:** switch to inferred targets ([c4bfe0dea](https://github.com/hass-blocks/hass-blocks/commit/c4bfe0dea))
+- **publisher:** infer config ([4047700e1](https://github.com/hass-blocks/hass-blocks/commit/4047700e1))
+
+### 🩹 Fixes
+
+- **ci:** changed name of target ([cf0f18567](https://github.com/hass-blocks/hass-blocks/commit/cf0f18567))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.2.1 (2025-06-07)
 
 ### 🩹 Fixes

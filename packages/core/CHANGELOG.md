@@ -1,3 +1,20 @@
+## 3.17.0 (2025-06-12)
+
+### 🚀 Features
+
+- **root:** add custom build target ([0afaf7d01](https://github.com/hass-blocks/hass-blocks/commit/0afaf7d01))
+- **publisher:** switch to inferred targets ([c4bfe0dea](https://github.com/hass-blocks/hass-blocks/commit/c4bfe0dea))
+- **publisher:** infer config ([4047700e1](https://github.com/hass-blocks/hass-blocks/commit/4047700e1))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-mqtt to 0.3.0
+- Updated @hass-blocks/hass-ts to 0.13.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.16.2 (2025-06-07)
 
 ### 🩹 Fixes

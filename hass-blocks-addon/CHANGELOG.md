@@ -1,3 +1,23 @@
+## 0.3.0 (2025-06-12)
+
+### 🚀 Features
+
+- **publisher:** infer config ([4047700e1](https://github.com/hass-blocks/hass-blocks/commit/4047700e1))
+
+### 🩹 Fixes
+
+- **publisher:** correctly set inputs on targets ([15c24922b](https://github.com/hass-blocks/hass-blocks/commit/15c24922b))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.0
+- Updated @hass-blocks/core to 3.17.0
+- Updated @hass-blocks/cli to 0.9.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.2.1 (2025-06-09)
 
 ### 🧱 Updated Dependencies

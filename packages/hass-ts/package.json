@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/hass-ts",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -55,7 +55,7 @@
     "ws": "8.18.1"
   },
   "devDependencies": {
-    "@hass-blocks/local-hass": "0.2.1",
+    "@hass-blocks/local-hass": "0.3.0",
     "type-fest": "4.40.0",
     "execa": "^9.5.2",
     "@types/ws": "8.18.1",

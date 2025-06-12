@@ -405,9 +405,6 @@ importers:
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.4
         version: link:../../packages/websocket-plugin
-      '@swc/helpers':
-        specifier: ~0.5.17
-        version: 0.5.17
       luxon:
         specifier: ^3.6.1
         version: 3.6.1
@@ -517,9 +514,6 @@ importers:
       '@hass-blocks/websocket-plugin':
         specifier: 0.6.4
         version: link:../websocket-plugin
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       execa:
         specifier: ^9.5.2
         version: 9.5.2
@@ -547,9 +541,6 @@ importers:
       '@hass-blocks/hass-ts':
         specifier: 0.12.1
         version: link:../hass-ts
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
@@ -572,18 +563,12 @@ importers:
 
   packages/hass-mqtt:
     dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       mqtt:
         specifier: ^5.13.0
         version: 5.13.0
 
   packages/hass-ts:
     dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       dotenv:
         specifier: 16.4.7
         version: 16.4.7
@@ -621,9 +606,6 @@ importers:
 
   packages/local-hass:
     dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       docker-compose:
         specifier: 0.24.3
         version: 0.24.3
@@ -643,9 +625,6 @@ importers:
       '@hass-blocks/core':
         specifier: 3.16.2
         version: link:../core
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       ink:
         specifier: 5.2.0
         version: 5.2.0(@types/react@19.1.2)(react@18.3.1)
@@ -661,15 +640,9 @@ importers:
       '@hass-blocks/core':
         specifier: 3.16.2
         version: link:../core
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
 
   packages/typed-socket-client:
     dependencies:
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       socket.io:
         specifier: ^4.8.1
         version: 4.8.1
@@ -685,9 +658,6 @@ importers:
       '@hass-blocks/typed-socket-client':
         specifier: 0.1.1
         version: link:../typed-socket-client
-      '@swc/helpers':
-        specifier: ~0.5.11
-        version: 0.5.17
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -22769,7 +22739,7 @@ snapshots:
 
   axios@1.9.0:
     dependencies:
-      follow-redirects: 1.15.9
+      follow-redirects: 1.15.9(debug@4.4.1)
       form-data: 4.0.2
       proxy-from-env: 1.1.0
     transitivePeerDependencies:
@@ -25265,8 +25235,6 @@ snapshots:
   focus-trap@7.6.4:
     dependencies:
       tabbable: 6.2.0
-
-  follow-redirects@1.15.9: {}
 
   follow-redirects@1.15.9(debug@4.4.1):
     optionalDependencies:

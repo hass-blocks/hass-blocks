@@ -56,7 +56,6 @@
   "dependencies": {
     "@hass-blocks/hass-mqtt": "0.2.0",
     "@hass-blocks/hass-ts": "0.12.1",
-    "@swc/helpers": "~0.5.11",
     "dotenv": "16.4.7",
     "uuid": "11.1.0",
     "zod": "3.25.28"

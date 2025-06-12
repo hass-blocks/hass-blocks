@@ -40,7 +40,6 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
     "mqtt": "^5.13.0"
   }
 }

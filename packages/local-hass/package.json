@@ -16,7 +16,6 @@
     }
   },
   "dependencies": {
-    "@swc/helpers": "~0.5.11",
     "docker-compose": "0.24.3",
     "get-port": "^7.1.0",
     "wait-on": "^8.0.3"

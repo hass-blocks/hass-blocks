@@ -41,7 +41,6 @@
   ],
   "dependencies": {
     "@hass-blocks/core": "3.16.2",
-    "@swc/helpers": "~0.5.11",
     "ink": "5.2.0",
     "ink-spinner": "5.0.0",
     "react": "18"

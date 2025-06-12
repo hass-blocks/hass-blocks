@@ -15,7 +15,6 @@ import type {
   Service,
   ServiceDomainDetails,
   State,
-  TriggerEventMessage,
 } from '@hass-blocks/hass-ts';
 import { initialiseBlocks } from '@client';
 
@@ -29,12 +28,10 @@ export class TestHassClient implements IHomeAssistant {
   private triggers: Record<string, TriggerCallback> = {};
   private eventCallbacksWithType: Record<
     string,
-    ((event: TriggerEventMessage['event'] | HomeAssistantEvent) => void)[]
+    ((event: HomeAssistantEvent) => void)[]
   > = {};
 
-  private eventCallbacks: ((
-    event: TriggerEventMessage['event'] | HomeAssistantEvent,
-  ) => void)[] = [];
+  private eventCallbacks: ((event: HomeAssistantEvent) => void)[] = [];
 
   constructor(
     private states: State[],
@@ -56,28 +53,20 @@ export class TestHassClient implements IHomeAssistant {
     this.triggers[JSON.stringify(trigger)]?.({});
   }
 
-  async fireEvent(message: HomeAssistantEvent | TriggerEventMessage['event']) {
+  async fireEvent(message: HomeAssistantEvent) {
     await Promise.all(this.eventCallbacks.map((callback) => callback(message)));
   }
 
   public async subscribeToEvents(
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
   public async subscribeToEvents(
     type: string,
-    callback: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
   public async subscribeToEvents(
-    typeOrCallback:
-      | string
-      | ((message: HomeAssistantEvent | TriggerEventMessage['event']) => void),
-    callbackIfTypeIsSupplied?: (
-      message: HomeAssistantEvent | TriggerEventMessage['event'],
-    ) => void,
+    typeOrCallback: string | ((message: HomeAssistantEvent) => void),
+    callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
   ): Promise<void> {
     if (
       typeof typeOrCallback === 'string' &&

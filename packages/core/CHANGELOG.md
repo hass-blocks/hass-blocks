@@ -1,3 +1,17 @@
+## 3.17.2 (2025-06-12)
+
+### 🩹 Fixes
+
+- **hass-ts:** update consumers to match type changes ([3ae904588](https://github.com/hass-blocks/hass-blocks/commit/3ae904588))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.14.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.1 (2025-06-12)
 
 ### 🧱 Updated Dependencies

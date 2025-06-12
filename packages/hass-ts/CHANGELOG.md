@@ -1,3 +1,13 @@
+## 0.14.1 (2025-06-12)
+
+### 🩹 Fixes
+
+- **hass-ts:** update consumers to match type changes ([3ae904588](https://github.com/hass-blocks/hass-blocks/commit/3ae904588))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.14.0 (2025-06-12)
 
 ### 🚀 Features

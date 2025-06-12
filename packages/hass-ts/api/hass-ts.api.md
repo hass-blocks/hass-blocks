@@ -283,8 +283,8 @@ export interface IHomeAssistant {
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
-    subscribeToEvents(callback: (message: HomeAssistantEvent | TriggerEventMessage['event']) => void): Promise<void>;
-    subscribeToEvents(type: string, callback: (message: HomeAssistantEvent | TriggerEventMessage['event']) => void): Promise<void>;
+    subscribeToEvents(callback: (message: HomeAssistantEvent) => void): Promise<void>;
+    subscribeToEvents(type: string, callback: (message: HomeAssistantEvent) => void): Promise<void>;
 }
 
 // @public

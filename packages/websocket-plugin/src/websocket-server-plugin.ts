@@ -47,7 +47,9 @@ class WebsocketServerPlugin implements IBlocksPlugin {
       });
 
       server.listen(this.config.port, this.config.host, () => {
-        logger.info(`Websocket server started on port ${this.config.port}`);
+        logger.info(
+          `Websocket server started on ${this.config.host}:${this.config.port}`,
+        );
         accept();
       });
     });

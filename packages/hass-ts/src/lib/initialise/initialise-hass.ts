@@ -37,7 +37,7 @@ export const initialiseHass = async ({
 
   await websocketClient.init();
   const restClient = new RestClient(host, port, httpPath, token, finalLogger);
-  const client = new HomeAssistant(websocketClient, restClient);
+  const client = new HomeAssistant(websocketClient, restClient, finalLogger);
 
   return client;
 };

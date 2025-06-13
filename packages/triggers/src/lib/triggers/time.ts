@@ -18,7 +18,7 @@ export interface TimeTriggerPropsWithString {
 }
 
 /**
- * Time trigger configuration where time is supplied as an entity
+ * Time trigger configuration where the time is supplied as an entity
  *
  * @public
  */

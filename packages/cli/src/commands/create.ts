@@ -9,6 +9,7 @@ export const create = command({
     packageManger: string().default('pnpm'),
   },
   handler: async (options) => {
+    console.log('Creating new blocks package');
     await createBlocks(options.folder, options.packageManger, options.force);
   },
 });

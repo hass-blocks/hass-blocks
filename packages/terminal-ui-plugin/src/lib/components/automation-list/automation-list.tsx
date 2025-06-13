@@ -19,7 +19,6 @@ export const AutomationList = ({ hass, bus }: AutomationListProps) => {
     (IBlocksNode & ISerialisable)[]
   >([]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     bus.subscribe((event) => {
       if (

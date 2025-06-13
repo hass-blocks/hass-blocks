@@ -35,6 +35,7 @@ import type {
   IHomeAssistant,
   GetHistoryParams,
   GetLogbookParams,
+  Logger,
 } from '@types';
 
 export class HomeAssistant implements IHomeAssistant {
@@ -42,6 +43,7 @@ export class HomeAssistant implements IHomeAssistant {
   constructor(
     private websocketClient: WebsocketClient,
     private httpClient: RestClient,
+    private logger: Logger,
   ) {}
 
   public async getAreas() {
@@ -80,6 +82,8 @@ export class HomeAssistant implements IHomeAssistant {
     const { domain, service, target, service_data } = params;
 
     const args = { ...target, ...(service_data ?? {}) };
+
+    this.logger.trace(`Call service: ${params}`);
 
     return await this.httpClient.post<typeof args, State[]>(
       `/services/${domain}/${service}`,

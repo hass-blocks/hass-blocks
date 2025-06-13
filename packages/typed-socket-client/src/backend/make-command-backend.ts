@@ -12,8 +12,11 @@ export const makeCommandBackend =
   ) =>
   (io: Server, source: TServerData, logger: ILogger) => {
     io.on(SOCKET_CONNECTION_STRING, (socket) => {
+      logger.debug(`${eventString} connected to socket`);
       socket.on(`${eventString}-command`, async (args: TArguments) => {
-        logger.debug(`Received ${eventString} command`);
+        logger.trace(
+          `Received ${eventString}-command with args ${JSON.stringify(args, null, 2)}`,
+        );
         const result = await callback(source, ...args);
         const resultToEmit =
           typeof result === 'object'

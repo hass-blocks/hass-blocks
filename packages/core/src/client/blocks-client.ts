@@ -218,6 +218,11 @@ export class BlocksClient implements IFullBlocksClient {
             event.event_type === 'state_changed' &&
             event.data.entity_id === id
           ) {
+            this.bus.emit('log-event', {
+              message: `Recieved ${event.event_type} - ${event}`,
+              level: 'trace',
+              module: 'core',
+            });
             callback(event);
           }
         },

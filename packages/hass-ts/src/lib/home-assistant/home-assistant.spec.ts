@@ -7,6 +7,7 @@ import type {
   Config,
   EventDetails,
   LogBookEntry,
+  Logger,
   Panel,
   Service,
   ServiceDomainDetails,
@@ -36,8 +37,9 @@ describe('The client', () => {
   describe('constructor', () => {
     it('executes without error', () => {
       const mockWebsocketClient = mock<WebsocketClient>();
+      const logger = mock<Logger>();
       expect(
-        () => new HomeAssistant(mockWebsocketClient, mock()),
+        () => new HomeAssistant(mockWebsocketClient, mock(), logger),
       ).not.toThrow();
     });
   });
@@ -54,7 +56,8 @@ describe('The client', () => {
         .calledWith(`/states/${entity}`)
         .thenResolve(state);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mock(), mockRestClient, logger);
 
       const result = await client.getState(entity);
       expect(result).toEqual(state);
@@ -69,7 +72,8 @@ describe('The client', () => {
 
       when(mockRestClient.get).calledWith('/calendars').thenResolve(details);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mock(), mockRestClient, logger);
 
       const result = await client.getCalendars();
       expect(result).toEqual(details);
@@ -84,7 +88,8 @@ describe('The client', () => {
 
       when(mockRestClient.get).calledWith('/error_log').thenResolve(log);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mock(), mockRestClient, logger);
 
       const result = await client.getErrorLog();
       expect(result).toEqual(log);
@@ -100,7 +105,7 @@ describe('The client', () => {
 
       when(mockRestClient.get).calledWith(path).thenResolve(entries);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getLogbook();
 
@@ -118,7 +123,7 @@ describe('The client', () => {
         .calledWith(`/logbook/2023-01-01T00:00:00.000Z`)
         .thenResolve(entries);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getLogbook({ timestamp });
 
@@ -141,7 +146,7 @@ describe('The client', () => {
         )
         .thenResolve(entries);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getLogbook({
         entity,
@@ -166,7 +171,7 @@ describe('The client', () => {
 
       when(mockRestClient.get).calledWith(path).thenResolve(states);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getHistory({ filterEntityId });
 
@@ -189,7 +194,7 @@ describe('The client', () => {
         )
         .thenResolve(states);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getHistory({ filterEntityId, timestamp });
 
@@ -212,7 +217,7 @@ describe('The client', () => {
         )
         .thenResolve(states);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getHistory({
         filterEntityId,
@@ -228,7 +233,7 @@ describe('The client', () => {
   describe('close', () => {
     it('calls the close method on the websocket client', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
       await client.close();
       expect(mockWebsocketClient.close).toHaveBeenCalled();
     });
@@ -247,7 +252,7 @@ describe('The client', () => {
         .calledWith('/services')
         .thenResolve(serviceDomains);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getServiceDomains();
       expect(result).toEqual(serviceDomains);
@@ -262,7 +267,7 @@ describe('The client', () => {
 
       when(mockRestClient.get).calledWith('/events').thenResolve(events);
 
-      const client = new HomeAssistant(mock(), mockRestClient);
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
 
       const result = await client.getEvents();
       expect(result).toEqual(events);
@@ -286,7 +291,7 @@ describe('The client', () => {
           result: states,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getStates();
       expect(result).toEqual(states);
@@ -305,7 +310,7 @@ describe('The client', () => {
         .calledWith(`/services/light/turn_on`, { entity_id: 'foo' })
         .thenResolve(commandResult);
 
-      const client = new HomeAssistant(mock(), mockHttpClient);
+      const client = new HomeAssistant(mock(), mockHttpClient, mock());
 
       const result = await client.callService({
         domain: 'light',
@@ -336,7 +341,7 @@ describe('The client', () => {
           result: config,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getConfig();
       expect(result).toEqual(config);
@@ -454,7 +459,7 @@ describe('The client', () => {
           result: entities,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getEntities();
       expect(result).toEqual(entities);
@@ -552,7 +557,7 @@ describe('The client', () => {
           result: devices,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getDevices();
       expect(result).toEqual(devices);
@@ -632,7 +637,7 @@ describe('The client', () => {
           result: areas,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getAreas();
       expect(result).toEqual(areas);
@@ -656,7 +661,7 @@ describe('The client', () => {
           result: services,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getServices();
       expect(result).toEqual(services);
@@ -683,7 +688,7 @@ describe('The client', () => {
           result: panels,
         });
 
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const client = new HomeAssistant(mockWebsocketClient, mock(), mock());
 
       const result = await client.getPanels();
       expect(result).toEqual(panels);
@@ -711,7 +716,9 @@ describe('The client', () => {
           });
         },
       });
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       const testTriggerParams = {
@@ -756,7 +763,8 @@ describe('The client', () => {
           });
         },
       });
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       const testTriggerParams = {
@@ -787,7 +795,8 @@ describe('The client', () => {
   describe('subscribeToEvents with no type argument', () => {
     it('sends a subscribe to events command to the websocket client', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       when(mockWebsocketClient.sendCommand)
@@ -810,7 +819,8 @@ describe('The client', () => {
 
     it('registers a callback that returns the corresponding event', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       const EVENT_DELAY = 200;
@@ -847,7 +857,8 @@ describe('The client', () => {
 
     it('only sends events corresponding with the original request', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       const EVENT_DELAY = 200;
@@ -885,7 +896,8 @@ describe('The client', () => {
   describe('off', () => {
     it('removes the message listener from the websocket client', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
 
       when(mockWebsocketClient.sendCommand)
         .calledWith({
@@ -914,7 +926,8 @@ describe('The client', () => {
   describe('subscribeToEvents with a type argument', () => {
     it('sends a subscribe to events command to the websocket client', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       when(mockWebsocketClient.sendCommand)
@@ -939,7 +952,8 @@ describe('The client', () => {
 
     it('registers a callback that returns the corresponding event', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
-      const client = new HomeAssistant(mockWebsocketClient, mock());
+      const logger = mock<Logger>();
+      const client = new HomeAssistant(mockWebsocketClient, mock(), logger);
       const callback = vi.fn();
 
       const EVENT_DELAY = 200;

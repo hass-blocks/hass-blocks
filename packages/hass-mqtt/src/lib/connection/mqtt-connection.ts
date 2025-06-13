@@ -66,6 +66,7 @@ export class MqttConnection {
     this.client.subscribe(topic, () => {
       this.logger.info(`Successfully subscribed to ${topic}`);
       this.client.on('message', async (messageTopic, message) => {
+        this.logger.trace(`received on ${messageTopic}: ${message}`);
         if (messageTopic === topic) {
           handler(message.toString());
         }

@@ -41,7 +41,7 @@ describe('initialiseClient', () => {
     const mockClient = mock<HomeAssistant>();
 
     when(vi.mocked(HomeAssistant))
-      .calledWith(mockWebsocketClient, mockRestClient)
+      .calledWith(mockWebsocketClient, mockRestClient, logger)
       .thenReturn(mockClient);
 
     const client = await initialiseHass({

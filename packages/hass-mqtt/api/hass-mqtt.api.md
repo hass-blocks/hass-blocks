@@ -67,6 +67,4 @@ export class MqttSwitch extends MqttDevice {
 // @public
 export type SpecificMqttDeviceConfig<T extends Record<string, unknown> = Record<string, unknown>> = Omit<MqttDeviceConfig, 'type'> & T;
 
-// (No @packageDocumentation comment for this package)
-
 ```

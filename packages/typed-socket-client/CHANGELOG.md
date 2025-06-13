@@ -1,3 +1,13 @@
+## 0.2.2 (2025-06-13)
+
+### 🩹 Fixes
+
+- **all:** add logging ([3b17c7cf0](https://github.com/hass-blocks/hass-blocks/commit/3b17c7cf0))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.2.1 (2025-06-13)
 
 ### 🩹 Fixes

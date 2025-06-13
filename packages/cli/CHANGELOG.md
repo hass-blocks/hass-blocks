@@ -1,3 +1,20 @@
+## 0.10.1 (2025-06-13)
+
+### 🩹 Fixes
+
+- **all:** add logging ([3b17c7cf0](https://github.com/hass-blocks/hass-blocks/commit/3b17c7cf0))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.7
+- Updated @hass-blocks/triggers to 0.2.7
+- Updated @hass-blocks/hass-ts to 0.15.1
+- Updated @hass-blocks/core to 3.17.7
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.0 (2025-06-13)
 
 ### 🚀 Features

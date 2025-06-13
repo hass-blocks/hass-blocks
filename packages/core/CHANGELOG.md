@@ -1,3 +1,18 @@
+## 3.17.7 (2025-06-13)
+
+### 🩹 Fixes
+
+- **all:** add logging ([3b17c7cf0](https://github.com/hass-blocks/hass-blocks/commit/3b17c7cf0))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-mqtt to 0.4.1
+- Updated @hass-blocks/hass-ts to 0.15.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.6 (2025-06-13)
 
 ### 🩹 Fixes

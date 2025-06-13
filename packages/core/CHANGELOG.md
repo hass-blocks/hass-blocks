@@ -1,3 +1,17 @@
+## 3.17.6 (2025-06-13)
+
+### 🩹 Fixes
+
+- **core:** correct test blocks ([20f7870b9](https://github.com/hass-blocks/hass-blocks/commit/20f7870b9))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/hass-ts to 0.15.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.5 (2025-06-13)
 
 ### 🩹 Fixes

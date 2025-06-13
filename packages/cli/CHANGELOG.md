@@ -1,3 +1,24 @@
+## 0.10.0 (2025-06-13)
+
+### 🚀 Features
+
+- **cli:** now aware of its version ([325f35711](https://github.com/hass-blocks/hass-blocks/commit/325f35711))
+
+### 🩹 Fixes
+
+- **cli:** no longer need to guard for event_type ([f1cbf58bf](https://github.com/hass-blocks/hass-blocks/commit/f1cbf58bf))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.6
+- Updated @hass-blocks/triggers to 0.2.6
+- Updated @hass-blocks/hass-ts to 0.15.0
+- Updated @hass-blocks/core to 3.17.6
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.9.5 (2025-06-13)
 
 ### 🩹 Fixes

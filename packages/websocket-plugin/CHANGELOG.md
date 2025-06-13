@@ -1,3 +1,10 @@
+## 0.7.6 (2025-06-13)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/typed-socket-client to 0.2.1
+- Updated @hass-blocks/core to 3.17.6
+
 ## 0.7.5 (2025-06-13)
 
 ### 🧱 Updated Dependencies

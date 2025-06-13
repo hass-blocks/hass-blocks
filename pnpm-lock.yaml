@@ -397,13 +397,13 @@ importers:
   apps/bens-flat:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../../packages/core
       '@hass-blocks/triggers':
-        specifier: 0.2.5
+        specifier: 0.2.6
         version: link:../../packages/triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.7.5
+        specifier: 0.7.6
         version: link:../../packages/websocket-plugin
       luxon:
         specifier: ^3.6.1
@@ -430,13 +430,13 @@ importers:
         specifier: ^11.14.0
         version: 11.14.0(@types/react@19.1.2)(react@19.0.0)
       '@hass-blocks/cli':
-        specifier: 0.9.5
+        specifier: 0.10.0
         version: link:../packages/cli
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../packages/core
       '@hass-blocks/websocket-plugin':
-        specifier: 0.7.5
+        specifier: 0.7.6
         version: link:../packages/websocket-plugin
       '@react-router/node':
         specifier: ^7.2.0
@@ -503,16 +503,16 @@ importers:
         specifier: 0.11.0
         version: 0.11.0
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../core
       '@hass-blocks/hass-ts':
-        specifier: 0.14.4
+        specifier: 0.15.0
         version: link:../hass-ts
       '@hass-blocks/triggers':
-        specifier: 0.2.5
+        specifier: 0.2.6
         version: link:../triggers
       '@hass-blocks/websocket-plugin':
-        specifier: 0.7.5
+        specifier: 0.7.6
         version: link:../websocket-plugin
       execa:
         specifier: ^9.5.2
@@ -539,7 +539,7 @@ importers:
         specifier: 0.4.0
         version: link:../hass-mqtt
       '@hass-blocks/hass-ts':
-        specifier: 0.14.4
+        specifier: 0.15.0
         version: link:../hass-ts
       dotenv:
         specifier: 16.4.7
@@ -626,7 +626,7 @@ importers:
   packages/terminal-ui-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../core
       ink:
         specifier: 5.2.0
@@ -641,7 +641,7 @@ importers:
   packages/triggers:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../core
 
   packages/typed-socket-client:
@@ -656,10 +656,10 @@ importers:
   packages/websocket-plugin:
     dependencies:
       '@hass-blocks/core':
-        specifier: 3.17.5
+        specifier: 3.17.6
         version: link:../core
       '@hass-blocks/typed-socket-client':
-        specifier: 0.2.0
+        specifier: 0.2.1
         version: link:../typed-socket-client
       react:
         specifier: ^19.1.0

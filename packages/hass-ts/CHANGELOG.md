@@ -1,3 +1,14 @@
+## 0.15.0 (2025-06-13)
+
+### 🚀 Features
+
+- **hass-ts:** add the ability to remove listeners to the websocket ([506a771cd](https://github.com/hass-blocks/hass-blocks/commit/506a771cd))
+- **hass-ts:** made the on block generic ([f8c19e8db](https://github.com/hass-blocks/hass-blocks/commit/f8c19e8db))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.14.4 (2025-06-13)
 
 ### 🩹 Fixes

@@ -49,6 +49,7 @@ async function createNodesInternal(
 
   const projectJsonPath = join(projectRoot, 'project.json');
   const packageJsonPath = join(projectRoot, 'package.json');
+  const distFolder = join(projectRoot, `dist`);
 
   const isProject = existsSync(projectJsonPath) || existsSync(packageJsonPath);
 
@@ -61,6 +62,7 @@ async function createNodesInternal(
     executor: checkTypesExecutor,
     productionInputsOnly: false,
     includeDependenciesInInputs: true,
+    outputs: [distFolder],
     options: {
       buildMode: true,
       tsconfigFile: configFilePath,
@@ -87,6 +89,7 @@ async function createNodesInternal(
         name: 'build',
         executor: buildExecutor,
         productionInputsOnly: true,
+        outputs: [distFolder],
         options: {
           tsconfigFile,
           projectFolder: projectRoot,
@@ -99,6 +102,7 @@ async function createNodesInternal(
         name: 'generate-api',
         executor: generateApiExecutor,
         productionInputsOnly: true,
+        outputs: [distFolder],
         options: {
           projectFolder: projectRoot,
           replacePaths: true,
@@ -113,6 +117,7 @@ async function createNodesInternal(
         name: 'doc-model',
         productionInputsOnly: true,
         executor: generateDocModelExecutor,
+        outputs: [distFolder],
         options: {
           projectFolder: projectRoot,
         },

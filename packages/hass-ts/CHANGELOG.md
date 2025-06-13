@@ -1,3 +1,13 @@
+## 0.14.4 (2025-06-13)
+
+### 🩹 Fixes
+
+- **hass-ts:** change the subscribe method to be more ideomatically js ([ee7098971](https://github.com/hass-blocks/hass-blocks/commit/ee7098971))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.14.3 (2025-06-13)
 
 ### 🩹 Fixes

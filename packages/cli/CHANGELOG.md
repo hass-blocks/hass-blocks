@@ -1,3 +1,20 @@
+## 0.9.5 (2025-06-13)
+
+### 🩹 Fixes
+
+- **cli:** update the cli ([926025b37](https://github.com/hass-blocks/hass-blocks/commit/926025b37))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.5
+- Updated @hass-blocks/triggers to 0.2.5
+- Updated @hass-blocks/hass-ts to 0.14.4
+- Updated @hass-blocks/core to 3.17.5
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.9.4 (2025-06-13)
 
 ### 🧱 Updated Dependencies

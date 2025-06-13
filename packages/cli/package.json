@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/cli",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -41,10 +41,10 @@
   ],
   "dependencies": {
     "@drizzle-team/brocli": "0.11.0",
-    "@hass-blocks/core": "3.17.4",
-    "@hass-blocks/hass-ts": "0.14.3",
-    "@hass-blocks/triggers": "0.2.4",
-    "@hass-blocks/websocket-plugin": "0.7.4",
+    "@hass-blocks/core": "3.17.5",
+    "@hass-blocks/hass-ts": "0.14.4",
+    "@hass-blocks/triggers": "0.2.5",
+    "@hass-blocks/websocket-plugin": "0.7.5",
     "execa": "^9.5.2",
     "ink": "5.2.0",
     "prettier": "3.5.3",

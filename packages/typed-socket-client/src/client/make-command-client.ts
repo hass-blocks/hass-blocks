@@ -7,7 +7,7 @@ export const makeCommandClient =
   (socket?: Socket) =>
   async (...args: TArguments) => {
     if (!socket) {
-      throw new BlocksWebsocketError('A valid socket wasnt provided');
+      throw new BlocksWebsocketError("A valid socket wasn't provided");
     }
 
     if (socket && !socket.connected) {

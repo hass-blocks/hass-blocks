@@ -213,9 +213,16 @@ export class HomeAssistant implements IHomeAssistant {
   public async on(
     callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
-  public async on(
-    type: string,
-    callback: (message: HomeAssistantEvent) => void,
+  public async on<TEventType extends HomeAssistantEvent['event_type']>(
+    type: TEventType,
+    callback: (
+      message: Exclude<
+        HomeAssistantEvent,
+        HomeAssistantEvent & {
+          event_type: Exclude<HomeAssistantEvent['event_type'], TEventType>;
+        }
+      >,
+    ) => void,
   ): Promise<void>;
   public async on(
     typeOrCallback: string | ((message: HomeAssistantEvent) => void),

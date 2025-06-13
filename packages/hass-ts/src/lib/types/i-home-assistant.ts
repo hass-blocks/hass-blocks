@@ -131,9 +131,16 @@ export interface IHomeAssistant {
    * @param type - type of the event to listen for
    * @param callback - Fire this callback when the Home Assistant events are triggered
    */
-  on(
-    type: string,
-    callback: (message: HomeAssistantEvent) => void,
+  on<TEventType extends HomeAssistantEvent['event_type']>(
+    type: TEventType,
+    callback: (
+      message: Exclude<
+        HomeAssistantEvent,
+        HomeAssistantEvent & {
+          event_type: Exclude<HomeAssistantEvent['event_type'], TEventType>;
+        }
+      >,
+    ) => void,
   ): Promise<void>;
 
   /**

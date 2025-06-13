@@ -283,7 +283,9 @@ export interface IHomeAssistant {
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
     on(callback: (message: HomeAssistantEvent) => void): Promise<void>;
-    on(type: string, callback: (message: HomeAssistantEvent) => void): Promise<void>;
+    on<TEventType extends HomeAssistantEvent['event_type']>(type: TEventType, callback: (message: Exclude<HomeAssistantEvent, HomeAssistantEvent & {
+        event_type: Exclude<HomeAssistantEvent['event_type'], TEventType>;
+    }>) => void): Promise<void>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 

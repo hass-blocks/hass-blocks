@@ -901,11 +901,11 @@ describe('The client', () => {
           result: null,
         });
 
-      await client.on('foo', callback);
+      await client.on('call_service', callback);
 
       expect(mockWebsocketClient.sendCommand).toHaveBeenCalledWith({
         type: 'subscribe_events',
-        event_type: 'foo',
+        event_type: 'call_service',
       });
     });
 

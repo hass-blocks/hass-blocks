@@ -1,3 +1,13 @@
+## 0.14.3 (2025-06-13)
+
+### 🩹 Fixes
+
+- **publisher:** correct outputs configuration ([ea5c51f35](https://github.com/hass-blocks/hass-blocks/commit/ea5c51f35))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.14.2 (2025-06-12)
 
 ### 🩹 Fixes

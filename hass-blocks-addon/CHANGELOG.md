@@ -1,3 +1,11 @@
+## 0.3.4 (2025-06-13)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.4
+- Updated @hass-blocks/core to 3.17.4
+- Updated @hass-blocks/cli to 0.9.4
+
 ## 0.3.3 (2025-06-12)
 
 ### 🧱 Updated Dependencies

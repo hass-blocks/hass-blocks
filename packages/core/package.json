@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/core",
-  "version": "3.17.3",
+  "version": "3.17.4",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -55,7 +55,7 @@
   },
   "dependencies": {
     "@hass-blocks/hass-mqtt": "0.4.0",
-    "@hass-blocks/hass-ts": "0.14.2",
+    "@hass-blocks/hass-ts": "0.14.3",
     "dotenv": "16.4.7",
     "uuid": "11.1.0",
     "zod": "3.25.28"

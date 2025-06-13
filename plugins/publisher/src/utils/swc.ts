@@ -27,13 +27,20 @@ export const swc = async ({
   const tempFolder = os.tmpdir();
   const tempPath = `${tempFolder}/${v4()}.json`;
 
-  writeJsonFile(tempPath, config);
+  const newConfig: Config = {
+    ...config,
+    jsc: {
+      ...config.jsc,
+      baseUrl: inDir,
+    },
+  };
+
+  writeJsonFile(tempPath, newConfig);
 
   await runCommandWithArgs(swcPath, inDir, {
     'config-file': tempPath,
     'out-dir': outDir,
     'strip-leading-paths': true,
+    'source-root': outDir,
   });
-
-  await fs.rm(tempPath, { recursive: true, force: true });
 };

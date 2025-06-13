@@ -67,6 +67,8 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
     module: {
       type: 'es6',
       outFileExtension: 'js',
+      // @ts-expect-error - the types are wrong here. This option definitely does exist
+      resolveFully: true,
     },
     sourceMaps: true,
     exclude: [

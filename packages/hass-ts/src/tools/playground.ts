@@ -1,6 +1,6 @@
 import { getConfig, initialiseHass } from '@initialise';
 
-const client = await initialiseHass(getConfig());
+await using client = await initialiseHass(getConfig());
 
 const calendar = await client.getCalendars();
 

@@ -882,6 +882,35 @@ describe('The client', () => {
     });
   });
 
+  describe('off', () => {
+    it('removes the message listener from the websocket client', async () => {
+      const mockWebsocketClient = mock<WebsocketClient>();
+      const client = new HomeAssistant(mockWebsocketClient, mock());
+
+      when(mockWebsocketClient.sendCommand)
+        .calledWith({
+          type: 'subscribe_events',
+          event_type: 'automation_reloaded',
+        })
+        .thenResolve({
+          id: 1,
+          type: 'result',
+          success: true,
+          result: null,
+        });
+
+      const id = await client.on('automation_reloaded', () => {
+        // NOOP
+      });
+
+      client.off(id);
+
+      expect(mockWebsocketClient.removeMessageListener).toHaveBeenCalledWith(
+        expect.any(Function),
+      );
+    });
+  });
+
   describe('subscribeToEvents with a type argument', () => {
     it('sends a subscribe to events command to the websocket client', async () => {
       const mockWebsocketClient = mock<WebsocketClient>();
@@ -891,9 +920,8 @@ describe('The client', () => {
       when(mockWebsocketClient.sendCommand)
         .calledWith({
           type: 'subscribe_events',
-          event_type: 'foo',
-          // This is horrible, but I don't quite understand why there is a type issue here
-        } as Parameters<WebsocketClient['sendCommand']>[0])
+          event_type: 'call_service',
+        })
         .thenResolve({
           id: 1,
           type: 'result',

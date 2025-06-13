@@ -1,5 +1,7 @@
 import { convertCamelCaseToUnderscoreCase } from '@utils';
 
+import { v4 } from 'uuid';
+
 import type { RestClient } from '@rest-client';
 
 import type {
@@ -36,6 +38,7 @@ import type {
 } from '@types';
 
 export class HomeAssistant implements IHomeAssistant {
+  private listenerMap = new Map<string, (message: MessageFromServer) => void>();
   constructor(
     private websocketClient: WebsocketClient,
     private httpClient: RestClient,
@@ -210,9 +213,17 @@ export class HomeAssistant implements IHomeAssistant {
     return result;
   }
 
+  public off(listenerId: string) {
+    const listener = this.listenerMap.get(listenerId);
+
+    if (listener) {
+      this.websocketClient.removeMessageListener(listener);
+    }
+  }
+
   public async on(
     callback: (message: HomeAssistantEvent) => void,
-  ): Promise<void>;
+  ): Promise<string>;
   public async on<TEventType extends HomeAssistantEvent['event_type']>(
     type: TEventType,
     callback: (
@@ -223,11 +234,11 @@ export class HomeAssistant implements IHomeAssistant {
         }
       >,
     ) => void,
-  ): Promise<void>;
+  ): Promise<string>;
   public async on(
     typeOrCallback: string | ((message: HomeAssistantEvent) => void),
     callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
-  ): Promise<void> {
+  ): Promise<string> {
     const { type, callback } = this.getTypeAndCallback(
       typeOrCallback,
       callbackIfTypeIsSupplied,
@@ -241,8 +252,9 @@ export class HomeAssistant implements IHomeAssistant {
       type: 'subscribe_events',
       ...typeObj,
     });
+    const listenerId = v4();
 
-    this.websocketClient.addMessageListener((message) => {
+    const listener = (message: MessageFromServer) => {
       if (
         message.type === 'event' &&
         message.id === id &&
@@ -250,7 +262,12 @@ export class HomeAssistant implements IHomeAssistant {
       ) {
         callback(message.event);
       }
-    });
+    };
+
+    this.websocketClient.addMessageListener(listener);
+    this.listenerMap.set(listenerId, listener);
+
+    return listenerId;
   }
 
   public async close(): Promise<void> {
@@ -276,5 +293,9 @@ export class HomeAssistant implements IHomeAssistant {
     }
     // eslint-disable-next-line @typescript-eslint/no-empty-function
     return { type: undefined, callback: () => {} };
+  }
+
+  async [Symbol.asyncDispose]() {
+    await this.close();
   }
 }

@@ -119,17 +119,26 @@ export interface IHomeAssistant {
   ): Promise<void>;
 
   /**
+   * Removes a previously registered websocket listener
+   *
+   * @param listenerId - The id of a previously registered listener
+   */
+  off(listenerId: string): void;
+
+  /**
    * Subscribe to events
    *
    * @param callback - Fire this callback when any Home Assistant events are triggered
+   * @returns an id that can be passed to `off()` to remove the listener
    */
-  on(callback: (message: HomeAssistantEvent) => void): Promise<void>;
+  on(callback: (message: HomeAssistantEvent) => void): Promise<string>;
 
   /**
    * Subscribe to events of a specific type
    *
    * @param type - type of the event to listen for
    * @param callback - Fire this callback when the Home Assistant events are triggered
+   * @returns an id that can be passed to `off()` to remove the listener
    */
   on<TEventType extends HomeAssistantEvent['event_type']>(
     type: TEventType,
@@ -141,10 +150,15 @@ export interface IHomeAssistant {
         }
       >,
     ) => void,
-  ): Promise<void>;
+  ): Promise<string>;
 
   /**
    * Close the websocket connection
    */
   close(): Promise<void>;
+
+  /**
+   * Close the websocket connection
+   */
+  [Symbol.asyncDispose]: () => Promise<void>;
 }

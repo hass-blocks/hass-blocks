@@ -266,6 +266,7 @@ export type HomeAssistantStopEvent = BaseEvent<'homeassistant_stop'>;
 
 // @public
 export interface IHomeAssistant {
+    [Symbol.asyncDispose]: () => Promise<void>;
     callService(params: Omit<CallServiceCommand, 'id' | 'type'>): Promise<State[]>;
     close(): Promise<void>;
     getAreas(): Promise<HassArea[]>;
@@ -282,10 +283,11 @@ export interface IHomeAssistant {
     getServices(): Promise<Record<string, Record<string, Service>>>;
     getState(entityId: string): Promise<State>;
     getStates(): Promise<State[]>;
-    on(callback: (message: HomeAssistantEvent) => void): Promise<void>;
+    off(listenerId: string): void;
+    on(callback: (message: HomeAssistantEvent) => void): Promise<string>;
     on<TEventType extends HomeAssistantEvent['event_type']>(type: TEventType, callback: (message: Exclude<HomeAssistantEvent, HomeAssistantEvent & {
         event_type: Exclude<HomeAssistantEvent['event_type'], TEventType>;
-    }>) => void): Promise<void>;
+    }>) => void): Promise<string>;
     registerTrigger(trigger: SubscribeToTriggerMessage['trigger'], callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 

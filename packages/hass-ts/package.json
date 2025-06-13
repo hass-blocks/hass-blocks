@@ -52,17 +52,18 @@
   ],
   "dependencies": {
     "dotenv": "16.4.7",
+    "uuid": "11.1.0",
     "ws": "8.18.1"
   },
   "devDependencies": {
     "@hass-blocks/local-hass": "0.3.0",
-    "type-fest": "4.40.0",
-    "execa": "^9.5.2",
     "@types/ws": "8.18.1",
     "docker-compose": "0.24.3",
+    "execa": "^9.5.2",
     "file-tree-walker-ts": "2.0.3",
     "msw": "2.0.1",
     "package-json-type": "^1.0.3",
+    "type-fest": "4.40.0",
     "typescript-docs-verifier": "2.5.3"
   }
 }

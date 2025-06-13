@@ -57,17 +57,28 @@ export class TestHassClient implements IHomeAssistant {
     await Promise.all(this.eventCallbacks.map((callback) => callback(message)));
   }
 
-  public async on(
-    callback: (message: HomeAssistantEvent) => void,
-  ): Promise<void>;
-  public async on(
-    type: string,
-    callback: (message: HomeAssistantEvent) => void,
-  ): Promise<void>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  public off(_id: string) {
+    // NOOP
+  }
+
+  on(callback: (message: HomeAssistantEvent) => void): Promise<string>;
+  on<TEventType extends HomeAssistantEvent['event_type']>(
+    type: TEventType,
+    callback: (
+      message: Exclude<
+        HomeAssistantEvent,
+        HomeAssistantEvent & {
+          event_type: Exclude<HomeAssistantEvent['event_type'], TEventType>;
+        }
+      >,
+    ) => void,
+  ): Promise<string>;
+
   public async on(
     typeOrCallback: string | ((message: HomeAssistantEvent) => void),
     callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
-  ): Promise<void> {
+  ): Promise<string> {
     if (
       typeof typeOrCallback === 'string' &&
       typeof callbackIfTypeIsSupplied === 'function'
@@ -81,6 +92,7 @@ export class TestHassClient implements IHomeAssistant {
     } else if (typeof typeOrCallback === 'function') {
       this.eventCallbacks.push(typeOrCallback);
     }
+    return 'foo';
   }
 
   async callService(
@@ -137,6 +149,9 @@ export class TestHassClient implements IHomeAssistant {
     throw new Error('Method not implemented.');
   }
   close(): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+  async [Symbol.asyncDispose]() {
     throw new Error('Method not implemented.');
   }
 }

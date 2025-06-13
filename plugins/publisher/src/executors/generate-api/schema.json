@@ -15,7 +15,22 @@
     "projectFolder": {
       "type": "string",
       "description": "Folder containing the package"
+    },
+    "exports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "output": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     }
   },
-  "required": []
+  "required": ["projectFolder", "exports"]
 }

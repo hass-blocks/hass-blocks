@@ -5,6 +5,7 @@ export interface GenerateApiExecutorSchema {
   replacePaths: boolean;
   projectFolder: string;
   strictChecks: boolean;
+  exports: { entry: string; output: string; name: string }[];
 }
 
 const generateApiExecutor: PromiseExecutor<GenerateApiExecutorSchema> = async (

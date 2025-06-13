@@ -3,6 +3,7 @@ import { generateTypes } from '../../lib/generate-types.ts';
 
 export interface DocModelExecutorSchema {
   projectFolder: string;
+  exports: { entry: string; output: string; name: string }[];
 }
 
 const generateDocModelExecutor: PromiseExecutor<

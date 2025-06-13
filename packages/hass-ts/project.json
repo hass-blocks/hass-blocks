@@ -5,6 +5,7 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "build": {},
     "generate-api": {
       "options": {
         "strictChecks": true

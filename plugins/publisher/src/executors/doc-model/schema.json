@@ -16,6 +16,21 @@
     "docModelFolder": {
       "type": "string",
       "description": "Folder doc model json file is generated in. Will be created if it doesn't exist"
+    },
+    "exports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "output": {
+          "type": "string"
+        },
+        "entry": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
     }
   },
   "required": []

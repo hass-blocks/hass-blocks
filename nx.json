@@ -12,7 +12,9 @@
     ],
     "sharedGlobals": [
       "{workspaceRoot}/.github/workflows/ci.yml",
-      { "runtime": "node --version" }
+      {
+        "runtime": "node --version"
+      }
     ]
   },
   "plugins": [

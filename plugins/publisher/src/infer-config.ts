@@ -16,6 +16,7 @@ import {
 } from './executors';
 import {
   executorTarget,
+  generateExports,
   generateProjectsWithTargets,
   getTsconfigWithPaths,
 } from './utils';
@@ -50,6 +51,8 @@ async function createNodesInternal(
   const projectJsonPath = join(projectRoot, 'project.json');
   const packageJsonPath = join(projectRoot, 'package.json');
   const distFolder = join(projectRoot, `dist`);
+  const jsFilesInDistFolder = `{projectRoot}/**/*.{js,js.map}`;
+  const dDotTsFilesInDistFoler = `{projectRoot}/**/*.{d.ts,d.ts.map}`;
 
   const isProject = existsSync(projectJsonPath) || existsSync(packageJsonPath);
 
@@ -62,7 +65,7 @@ async function createNodesInternal(
     executor: checkTypesExecutor,
     productionInputsOnly: false,
     includeDependenciesInInputs: true,
-    outputs: [distFolder],
+    outputs: [dDotTsFilesInDistFoler],
     options: {
       buildMode: true,
       tsconfigFile: configFilePath,
@@ -72,11 +75,6 @@ async function createNodesInternal(
   const packageJsonContents: PackageJson = readJsonFile(packageJsonPath);
 
   const { exports } = packageJsonContents;
-
-  const isPackageWithExports =
-    exports &&
-    typeof exports !== 'string' &&
-    Object.keys(exports).includes('.');
 
   const tsconfigFile = getTsconfigWithPaths(projectRoot, [
     'tsconfig.json',
@@ -89,7 +87,7 @@ async function createNodesInternal(
         name: 'build',
         executor: buildExecutor,
         productionInputsOnly: true,
-        outputs: [distFolder],
+        outputs: [jsFilesInDistFolder],
         options: {
           tsconfigFile,
           projectFolder: projectRoot,
@@ -97,22 +95,27 @@ async function createNodesInternal(
       })
     : {};
 
-  const generateApiTarget = isPackageWithExports
+  const targetExports = generateExports(exports);
+
+  const generateApiTarget = targetExports
     ? executorTarget({
         name: 'generate-api',
         executor: generateApiExecutor,
         productionInputsOnly: true,
-        outputs: [distFolder],
+        outputs: targetExports.map((item) =>
+          join(`{projectRoot}`, item.output),
+        ),
         options: {
           projectFolder: projectRoot,
           replacePaths: true,
           strictChecks: true,
+          exports: targetExports,
         },
         dependsOn: checkTypesTarget,
       })
     : {};
 
-  const docModelTarget = isPackageWithExports
+  const docModelTarget = targetExports
     ? executorTarget({
         name: 'doc-model',
         productionInputsOnly: true,
@@ -120,6 +123,7 @@ async function createNodesInternal(
         outputs: [distFolder],
         options: {
           projectFolder: projectRoot,
+          exports: targetExports,
         },
         dependsOn: checkTypesTarget,
       })

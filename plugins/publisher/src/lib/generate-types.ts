@@ -19,6 +19,7 @@ interface GenerateTypesArgs {
   docModel?: boolean;
   dtsRollup?: boolean;
   strictChecks?: boolean;
+  exports: { entry: string; output: string; name: string }[];
   replacePaths?: boolean;
 }
 
@@ -46,15 +47,6 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
       }
     : {};
 
-  const packageJson = JSON.parse(await readFile(packageJsonFullPath, 'utf-8'));
-
-  const exports = packageJson['exports'];
-
-  if (!exports) {
-    logger.info('No exports field found - skipping API check/bundle');
-    return;
-  }
-
   const tsConfig = JSON.parse(await readFile(libTsconfigPath, 'utf8'));
 
   const modifiedTsConfig = {
@@ -71,29 +63,8 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
     });
   }
 
-  return Object.entries(exports)
-    .map(([theExport, config]) => {
-      if (typeof config !== 'object') {
-        return;
-      }
-
-      if (!config) {
-        return;
-      }
-
-      if (
-        !config ||
-        !('development' in config) ||
-        !('types' in config) ||
-        typeof config['development'] !== 'string' ||
-        typeof config['types'] !== 'string'
-      ) {
-        return;
-      }
-
-      const entryPoint = config['development'];
-      const bundleOutput = config['types'];
-
+  return Object.values(options.exports)
+    .map(({ entry: entryPoint, output: bundleOutput, name }) => {
       const getDeclarationName = join(
         'dist',
         `${basename(entryPoint).split('.')[0]}.d.ts`,
@@ -103,12 +74,12 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
 
       if (!existsSync(entryPointFile)) {
         logger.warn(
-          `${entryPointFile} not found - skipping API rollup for ${theExport} export`,
+          `${entryPointFile} not found - skipping API rollup for ${name} export`,
         );
         return;
       }
 
-      logger.info(`Performing API rollup for ${theExport} export`);
+      logger.info(`Performing API rollup for ${name} export`);
 
       const dtsRollup: IConfigFile['dtsRollup'] = {
         enabled: true,
@@ -148,8 +119,7 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
           }
         : {};
 
-      const reportSuffix =
-        theExport.slice(2).length > 0 ? `-${theExport.slice(2)}` : '';
+      const reportSuffix = name.slice(2).length > 0 ? `-${name.slice(2)}` : '';
 
       const prepareOptions: IExtractorConfigPrepareOptions = {
         configObjectFullPath: '',
@@ -186,7 +156,7 @@ export const generateTypes = async (options: GenerateTypesArgs) => {
           localBuild: true,
           showVerboseMessages: true,
         }),
-        exportName: theExport,
+        exportName: name,
       };
     })
     .flatMap((item) => (item ? [item] : []));

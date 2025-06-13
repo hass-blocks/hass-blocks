@@ -15,7 +15,7 @@
     "websocket",
     "ws"
   ],
-  "description": "A websocket server for the hass-blocks framework",
+  "description": "A plugin for Hass Blocks that runs a websocket server and provides a client that can connect to it",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",

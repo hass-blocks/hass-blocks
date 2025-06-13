@@ -4,6 +4,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "description": "A simple terminal UI for Hass Blocks",
   "engines": {
     "node": ">=18"
   },

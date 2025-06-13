@@ -14,7 +14,8 @@
     "homeassistant",
     "home assistant",
     "home automation",
-    "hass"
+    "hass",
+    "Home Assistant"
   ],
   "description": "A strongly typed declarative framework for configuring Home Assistant automations",
   "bugs": {

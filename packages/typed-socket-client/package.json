@@ -4,6 +4,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "description": "A websocket client that provides a typed client that works directly with a specific handler",
   "engines": {
     "node": ">=18"
   },

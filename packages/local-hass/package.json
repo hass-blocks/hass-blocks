@@ -5,6 +5,7 @@
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
+  "description": "Tools to run Home Assistant locally as part of testing workflows",
   "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",

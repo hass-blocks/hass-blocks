@@ -8,6 +8,13 @@
     "node": ">=18"
   },
   "types": "./dist/public.d.ts",
+  "keywords": [
+    "mqtt",
+    "MQTT",
+    "Home Assistant",
+    "Hass",
+    "homeassistant"
+  ],
   "bugs": {
     "url": "https://github.com/benwainwright/hass-blocks/issues",
     "email": "bwainwright28@gmail.com"

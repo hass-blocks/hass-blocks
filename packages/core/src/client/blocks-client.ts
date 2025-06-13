@@ -193,7 +193,7 @@ export class BlocksClient implements IFullBlocksClient {
         }
       };
     }
-    await this.client.subscribeToEvents(this.stateChangedCallback);
+    await this.client.on(this.stateChangedCallback);
   }
 
   public async onStateChanged(
@@ -211,7 +211,7 @@ export class BlocksClient implements IFullBlocksClient {
         );
       }
 
-      await this.client.subscribeToEvents(
+      await this.client.on(
         (event: HomeAssistantEvent | TriggerEventMessage['event']) => {
           if (
             'event_type' in event &&

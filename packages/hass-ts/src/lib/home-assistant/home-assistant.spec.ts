@@ -801,7 +801,7 @@ describe('The client', () => {
           result: null,
         });
 
-      await client.subscribeToEvents(callback);
+      await client.on(callback);
 
       expect(mockWebsocketClient.sendCommand).toHaveBeenCalledWith({
         type: 'subscribe_events',
@@ -839,7 +839,7 @@ describe('The client', () => {
           }, EVENT_DELAY);
         },
       );
-      await client.subscribeToEvents(callback);
+      await client.on(callback);
       vi.advanceTimersByTime(400);
 
       expect(callback).toHaveBeenCalledWith(message.event);
@@ -876,7 +876,7 @@ describe('The client', () => {
           }, EVENT_DELAY);
         },
       );
-      await client.subscribeToEvents(callback);
+      await client.on(callback);
       vi.advanceTimersByTime(400);
       expect(callback).not.toHaveBeenCalled();
     });
@@ -901,7 +901,7 @@ describe('The client', () => {
           result: null,
         });
 
-      await client.subscribeToEvents('foo', callback);
+      await client.on('foo', callback);
 
       expect(mockWebsocketClient.sendCommand).toHaveBeenCalledWith({
         type: 'subscribe_events',
@@ -940,7 +940,7 @@ describe('The client', () => {
           }, EVENT_DELAY);
         },
       );
-      await client.subscribeToEvents(callback);
+      await client.on(callback);
       vi.advanceTimersByTime(400);
 
       expect(callback).toHaveBeenCalledWith(message.event);

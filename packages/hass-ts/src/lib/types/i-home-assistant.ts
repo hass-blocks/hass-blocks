@@ -123,9 +123,7 @@ export interface IHomeAssistant {
    *
    * @param callback - Fire this callback when any Home Assistant events are triggered
    */
-  subscribeToEvents(
-    callback: (message: HomeAssistantEvent) => void,
-  ): Promise<void>;
+  on(callback: (message: HomeAssistantEvent) => void): Promise<void>;
 
   /**
    * Subscribe to events of a specific type
@@ -133,7 +131,7 @@ export interface IHomeAssistant {
    * @param type - type of the event to listen for
    * @param callback - Fire this callback when the Home Assistant events are triggered
    */
-  subscribeToEvents(
+  on(
     type: string,
     callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;

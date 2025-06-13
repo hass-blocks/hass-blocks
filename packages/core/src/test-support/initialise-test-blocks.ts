@@ -57,14 +57,14 @@ export class TestHassClient implements IHomeAssistant {
     await Promise.all(this.eventCallbacks.map((callback) => callback(message)));
   }
 
-  public async subscribeToEvents(
+  public async on(
     callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
-  public async subscribeToEvents(
+  public async on(
     type: string,
     callback: (message: HomeAssistantEvent) => void,
   ): Promise<void>;
-  public async subscribeToEvents(
+  public async on(
     typeOrCallback: string | ((message: HomeAssistantEvent) => void),
     callbackIfTypeIsSupplied?: (message: HomeAssistantEvent) => void,
   ): Promise<void> {

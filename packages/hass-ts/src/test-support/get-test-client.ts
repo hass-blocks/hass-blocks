@@ -32,7 +32,7 @@ export const clientBuilder = () => {
 
     if (!started) {
       await new Promise<void>((accept) =>
-        client.subscribeToEvents((event) => {
+        client.on((event) => {
           if (
             'event_type' in event &&
             event.event_type === 'homeassistant_started'

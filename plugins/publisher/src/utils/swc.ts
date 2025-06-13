@@ -1,12 +1,11 @@
 import { writeJsonFile } from '@nx/devkit';
-import { v4 } from 'uuid';
 import { Config } from '@swc/core';
 import * as fs from 'fs/promises';
-import * as os from 'os';
 
 import { existsSync, mkdirSync } from 'node:fs';
 import { runCommandWithArgs } from './run-command-with-args';
 import { nodeModulesBinPath } from './node-modules-bin-path';
+import { join } from 'node:path';
 
 export const createDirIfNotExists = (dir: string) =>
   !existsSync(dir) ? mkdirSync(dir) : undefined;
@@ -24,23 +23,15 @@ export const swc = async ({
 }) => {
   const swcPath = nodeModulesBinPath(workspaceRoot, 'swc');
 
-  const tempFolder = os.tmpdir();
-  const tempPath = `${tempFolder}/${v4()}.json`;
+  const swcConfig = join(process.cwd(), `.swcrc`);
 
-  const newConfig: Config = {
-    ...config,
-    jsc: {
-      ...config.jsc,
-      baseUrl: inDir,
-    },
-  };
-
-  writeJsonFile(tempPath, newConfig);
+  writeJsonFile(swcConfig, config);
 
   await runCommandWithArgs(swcPath, inDir, {
-    'config-file': tempPath,
+    'config-file': swcConfig,
     'out-dir': outDir,
     'strip-leading-paths': true,
-    'source-root': outDir,
   });
+
+  await fs.rm(swcConfig);
 };

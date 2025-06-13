@@ -47,7 +47,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
   const config: Config = {
     jsc: {
       ...getPaths(tsconfigData),
-      target: 'es2017',
+      target: 'es2022',
       parser: {
         syntax: 'typescript',
         decorators: true,
@@ -58,7 +58,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
         legacyDecorator: true,
       },
       keepClassNames: true,
-      externalHelpers: true,
+      externalHelpers: false,
       loose: true,
       experimental: {
         plugins: [['swc-plugin-allow-importing-ts-extensions', {}]],

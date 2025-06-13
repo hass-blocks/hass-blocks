@@ -14,10 +14,7 @@ export const watchAndGenerate = (client: IHomeAssistant, folder: string) => {
   console.log('Watching Home Assistant for changes');
 
   client.on(async (event) => {
-    if (
-      'event_type' in event &&
-      EVENTS_TO_TRIGGER_REGENERATE.includes(event.event_type)
-    ) {
+    if (EVENTS_TO_TRIGGER_REGENERATE.includes(event.event_type)) {
       console.log(`Detected ${event} event...`);
       await doCodegen(client, folder);
     }

@@ -1,3 +1,13 @@
+## 0.10.6 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** need to recursively make dir ([f2cfdebe6](https://github.com/hass-blocks/hass-blocks/commit/f2cfdebe6))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.5 (2025-06-14)
 
 ### 🩹 Fixes

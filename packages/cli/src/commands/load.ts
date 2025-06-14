@@ -16,6 +16,7 @@ export const load = command({
   handler: async (options) => {
     await createBlocks(options.folder, options.packageManager);
 
+    console.log(`Initialising hass-blocks`);
     const client = await initialiseHass(getConfig());
     await doCodegen(client, join(options.folder, 'node_modules', '.blocks'));
     watchAndGenerate(client, join(options.folder, 'node_modules', '.blocks'));

@@ -13,13 +13,18 @@ export const createBlocks = async (
 ) => {
   const theFolder = join(cwd(), folder);
   if (!existsSync(theFolder) || force) {
+    console.log(
+      `Folder ${folder} not found or --force flag supplied. Creating...`,
+    );
     mkdirSync(folder);
     await writeFile(join(theFolder, 'package.json'), packageJson);
     await writeFile(join(theFolder, 'tsconfig.json'), tsConfig);
 
+    console.log(`Installing dependencies`);
     await execa({
       cwd: theFolder,
       stdout: ['pipe', 'inherit'],
     })`${packageManager} install`;
+    console.log(`Done!`);
   }
 };

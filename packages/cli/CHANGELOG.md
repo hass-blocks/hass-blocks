@@ -1,3 +1,13 @@
+## 0.10.5 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** correctly create folder ([950a9b1d5](https://github.com/hass-blocks/hass-blocks/commit/950a9b1d5))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.4 (2025-06-14)
 
 ### 🩹 Fixes

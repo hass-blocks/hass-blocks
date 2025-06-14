@@ -55,10 +55,12 @@ export const initialiseBlocks = async (
   const { logger, plugins, client } = theArgs;
 
   const theLogger: ILogger = logger ?? {
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    trace: () => {},
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
-    debug: () => {},
+    trace: () => {
+      // NOOP
+    },
+    debug: () => {
+      // NOOP
+    },
     info: (message) => console.log(`😀 ${message}`),
     warn: (message) => console.log(`😔 ${message}`),
     error: (message) => console.log(`😡 ${message}`),

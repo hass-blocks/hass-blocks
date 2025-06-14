@@ -61,6 +61,7 @@ export const buildExecutor: PromiseExecutor<BuildExecutor> = async (
       externalHelpers: false,
       loose: true,
       experimental: {
+        keepImportAttributes: true,
         plugins: [['swc-plugin-allow-importing-ts-extensions', {}]],
       },
     },

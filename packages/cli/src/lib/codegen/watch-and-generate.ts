@@ -11,7 +11,7 @@ const EVENTS_TO_TRIGGER_REGENERATE = [
 ];
 
 export const watchAndGenerate = (client: IHomeAssistant, folder: string) => {
-  console.log('Watching Home Assistant for changes');
+  console.log('Watching Home Assistant for changes...');
 
   client.on(async (event) => {
     if (EVENTS_TO_TRIGGER_REGENERATE.includes(event.event_type)) {

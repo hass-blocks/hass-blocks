@@ -1,3 +1,13 @@
+## 0.10.9 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** dont join load with cwd ([86f683602](https://github.com/hass-blocks/hass-blocks/commit/86f683602))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.8 (2025-06-14)
 
 ### 🩹 Fixes

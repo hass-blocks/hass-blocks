@@ -1,3 +1,13 @@
+## 0.10.7 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** add more logging ([925ca010f](https://github.com/hass-blocks/hass-blocks/commit/925ca010f))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.6 (2025-06-14)
 
 ### 🩹 Fixes

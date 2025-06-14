@@ -1,3 +1,13 @@
+## 0.10.8 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** use exact supplied path ([cc9f798b8](https://github.com/hass-blocks/hass-blocks/commit/cc9f798b8))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.7 (2025-06-14)
 
 ### 🩹 Fixes

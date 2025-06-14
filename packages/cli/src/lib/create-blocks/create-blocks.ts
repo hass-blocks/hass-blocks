@@ -17,13 +17,18 @@ export const createBlocks = async (
       `Folder ${theFolder} not found or --force flag supplied. Creating...`,
     );
     mkdirSync(theFolder, { recursive: true });
-    await writeFile(join(theFolder, 'package.json'), packageJson);
-    await writeFile(join(theFolder, 'tsconfig.json'), tsConfig);
+    const packageJsonPath = join(theFolder, `package.json`);
+    await writeFile(packageJsonPath, packageJson);
+    console.log(`Created package.json at ${packageJsonPath}`);
+
+    const tsconfigPath = join(theFolder, `tsconfig.json`);
+    await writeFile(tsconfigPath, tsConfig);
+    console.log(`Created tsconfig.json at ${tsconfigPath}`);
 
     console.log(`Installing dependencies`);
     await execa({
       cwd: theFolder,
-      stdout: ['pipe', 'inherit'],
+      stdout: [],
     })`${packageManager} install`;
     console.log(`Done!`);
   }

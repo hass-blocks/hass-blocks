@@ -1,3 +1,13 @@
+## 0.10.3 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** update to latest version of tsx ([68b68d536](https://github.com/hass-blocks/hass-blocks/commit/68b68d536))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.2 (2025-06-14)
 
 ### 🩹 Fixes

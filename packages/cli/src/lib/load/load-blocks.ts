@@ -3,7 +3,6 @@ import { websocketServer } from '@hass-blocks/websocket-plugin';
 import { tsImport } from 'tsx/esm/api';
 import { readdir, stat } from 'fs/promises';
 import path, { join } from 'path';
-import { cwd } from 'process';
 
 export const loadBlocks = async (
   folder: string,
@@ -24,14 +23,13 @@ export const loadBlocks = async (
         ]
       : [];
 
-  const theFolder = join(cwd(), folder);
   const { registry } = await initialiseBlocks({ plugins });
-  const files = await readdir(theFolder);
+  const files = await readdir(folder);
 
   const automations = (
     await Promise.all(
       files.map(async (file) => {
-        const filePath = join(theFolder, file);
+        const filePath = join(folder, file);
         const stats = await stat(filePath);
 
         if (!stats.isFile() || path.extname(file) !== '.ts') {

@@ -16,7 +16,7 @@ export const createBlocks = async (
     console.log(
       `Folder ${theFolder} not found or --force flag supplied. Creating...`,
     );
-    mkdirSync(theFolder);
+    mkdirSync(theFolder, { recursive: true });
     await writeFile(join(theFolder, 'package.json'), packageJson);
     await writeFile(join(theFolder, 'tsconfig.json'), tsConfig);
 

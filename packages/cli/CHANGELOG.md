@@ -1,3 +1,13 @@
+## 0.10.10 (2025-06-14)
+
+### 🩹 Fixes
+
+- **cli:** load file with custom tsconfig ([6d369df54](https://github.com/hass-blocks/hass-blocks/commit/6d369df54))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.9 (2025-06-14)
 
 ### 🩹 Fixes

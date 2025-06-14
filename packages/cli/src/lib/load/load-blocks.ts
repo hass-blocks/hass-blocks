@@ -36,10 +36,11 @@ export const loadBlocks = async (
           return;
         }
 
-        const loadedFile = (await tsImport(
-          filePath,
-          import.meta.url,
-        )) as Record<string, unknown>;
+        // @ts-expect-error - just following docs
+        const loadedFile = (await tsImport(filePath, {
+          parentURL: import.meta.url,
+          tsconfig: join(folder, `tsconfig.json`),
+        })) as Record<string, unknown>;
 
         return Object.values(loadedFile);
       }),

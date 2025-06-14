@@ -4,31 +4,29 @@ import { packageJson } from './packageJson.ts';
 import { tsConfig } from './tsconfig.ts';
 import { existsSync, mkdirSync } from 'node:fs';
 import { execa } from 'execa';
-import { cwd } from 'node:process';
 
 export const createBlocks = async (
   folder: string,
   packageManager: string,
   force?: boolean,
 ) => {
-  const theFolder = join(cwd(), folder);
-  if (!existsSync(theFolder) || force) {
+  if (!existsSync(folder) || force) {
     console.log(
-      `Folder ${theFolder} not found or --force flag supplied. Creating...`,
+      `Folder ${folder} not found or --force flag supplied. Creating...`,
     );
-    mkdirSync(theFolder, { recursive: true });
-    const packageJsonPath = join(theFolder, `package.json`);
+    mkdirSync(folder, { recursive: true });
+    const packageJsonPath = join(folder, `package.json`);
     await writeFile(packageJsonPath, packageJson);
     console.log(`Created package.json at ${packageJsonPath}`);
 
-    const tsconfigPath = join(theFolder, `tsconfig.json`);
+    const tsconfigPath = join(folder, `tsconfig.json`);
     await writeFile(tsconfigPath, tsConfig);
-    console.log(`Created tsconfig.json at ${tsconfigPath}`);
+    console.log(`Created tsconfig.json at ${packageJsonPath}`);
 
     console.log(`Installing dependencies`);
     await execa({
-      cwd: theFolder,
-      stdout: [],
+      cwd: folder,
+      stdout: ['pipe', 'inherit'],
     })`${packageManager} install`;
     console.log(`Done!`);
   }

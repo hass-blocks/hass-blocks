@@ -1,3 +1,19 @@
+## 0.10.2 (2025-06-14)
+
+### 🩹 Fixes
+
+- **all:** tweak ([2812ccc9e](https://github.com/hass-blocks/hass-blocks/commit/2812ccc9e))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.8
+- Updated @hass-blocks/triggers to 0.2.8
+- Updated @hass-blocks/core to 3.17.8
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.1 (2025-06-13)
 
 ### 🩹 Fixes

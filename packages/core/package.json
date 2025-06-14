@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/core",
-  "version": "3.17.7",
+  "version": "3.17.8",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

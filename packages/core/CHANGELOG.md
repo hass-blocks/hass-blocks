@@ -1,3 +1,13 @@
+## 3.17.8 (2025-06-14)
+
+### 🩹 Fixes
+
+- **all:** tweak ([2812ccc9e](https://github.com/hass-blocks/hass-blocks/commit/2812ccc9e))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.7 (2025-06-13)
 
 ### 🩹 Fixes

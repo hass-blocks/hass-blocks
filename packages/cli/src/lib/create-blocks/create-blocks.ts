@@ -10,11 +10,10 @@ export const createBlocks = async (
   packageManager: string,
   force?: boolean,
 ) => {
-  if (!existsSync(folder) || force) {
+  if (!existsSync(join(folder, `node_modules`)) || force) {
     console.log(
-      `Folder ${folder} not found or --force flag supplied. Creating...`,
+      `Folder ${folder}/node_modules not found or --force flag supplied. Creating new blocks folder`,
     );
-    mkdirSync(folder, { recursive: true });
     const packageJsonPath = join(folder, `package.json`);
     await writeFile(packageJsonPath, packageJson);
     console.log(`Created package.json at ${packageJsonPath}`);

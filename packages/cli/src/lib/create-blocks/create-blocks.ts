@@ -2,7 +2,7 @@ import { writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { packageJson } from './packageJson.ts';
 import { tsConfig } from './tsconfig.ts';
-import { existsSync, mkdirSync } from 'node:fs';
+import { existsSync } from 'node:fs';
 import { execa } from 'execa';
 
 export const createBlocks = async (

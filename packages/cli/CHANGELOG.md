@@ -1,3 +1,14 @@
+## 0.10.11 (2025-06-16)
+
+### 🩹 Fixes
+
+- **cli:** remove unused import ([d2d0ad1d7](https://github.com/hass-blocks/hass-blocks/commit/d2d0ad1d7))
+- **cli:** dont make dir ([e7fe06699](https://github.com/hass-blocks/hass-blocks/commit/e7fe06699))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.10 (2025-06-14)
 
 ### 🩹 Fixes

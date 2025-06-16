@@ -1,3 +1,9 @@
+## 0.3.17 (2025-06-16)
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/cli to 0.10.11
+
 ## 0.3.16 (2025-06-14)
 
 ### 🧱 Updated Dependencies

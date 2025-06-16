@@ -1,5 +1,7 @@
 BLOCKS_DIR=/config/hass-blocks
 BIN_DIR=/addon/node_modules/.bin
+mkdir -p $BLOCKS_DIR
+cd $BLOCKS_DIR
 
 $BIN_DIR/hass-blocks load \
     --folder $BLOCKS_DIR \

@@ -1,3 +1,21 @@
+## 0.4.0 (2025-06-23)
+
+### 🚀 Features
+
+- **cli:** automation loading now works ([ba0595327](https://github.com/hass-blocks/hass-blocks/commit/ba0595327))
+
+### 🩹 Fixes
+
+- **hass-blocks-addon:** change working directory for run.sh ([075a02418](https://github.com/hass-blocks/hass-blocks/commit/075a02418))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/cli to 0.11.0
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.3.17 (2025-06-16)
 
 ### 🧱 Updated Dependencies

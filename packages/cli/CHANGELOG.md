@@ -1,3 +1,13 @@
+## 0.11.0 (2025-06-23)
+
+### 🚀 Features
+
+- **cli:** automation loading now works ([ba0595327](https://github.com/hass-blocks/hass-blocks/commit/ba0595327))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.10.11 (2025-06-16)
 
 ### 🩹 Fixes

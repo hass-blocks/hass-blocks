@@ -26,7 +26,7 @@ export const createBlocks = async (
     await execa({
       cwd: folder,
       stdout: ['pipe', 'inherit'],
-    })`${packageManager} install`;
+    })`${packageManager} install --ignore-workspace`;
     console.log(`Done!`);
   }
 };

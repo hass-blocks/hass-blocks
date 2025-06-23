@@ -25,9 +25,6 @@ export const tsConfig = `
     "exactOptionalPropertyTypes": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
-    "paths": {
-      "@blocks-codegen": ["./node_modules/.blocks/index.ts"]
-    }
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "./.blocks/index.ts"]
 }`;

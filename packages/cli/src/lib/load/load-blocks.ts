@@ -1,8 +1,6 @@
-import { Block, initialiseBlocks } from '@hass-blocks/core';
+import { initialiseBlocks } from '@hass-blocks/core';
 import { websocketServer } from '@hass-blocks/websocket-plugin';
-import { tsImport } from 'tsx/esm/api';
-import { readdir, stat } from 'fs/promises';
-import path, { join } from 'path';
+import { loadAutomations } from './load-automations.ts';
 
 export const loadBlocks = async (
   folder: string,
@@ -24,31 +22,8 @@ export const loadBlocks = async (
       : [];
 
   const { registry } = await initialiseBlocks({ plugins });
-  const files = await readdir(folder);
 
-  const automations = (
-    await Promise.all(
-      files.map(async (file) => {
-        const filePath = join(folder, file);
-        const stats = await stat(filePath);
-
-        if (!stats.isFile() || path.extname(file) !== '.ts') {
-          return;
-        }
-
-        // @ts-expect-error - just following docs
-        const loadedFile = (await tsImport(filePath, {
-          parentURL: import.meta.url,
-          tsconfig: join(folder, `tsconfig.json`),
-        })) as Record<string, unknown>;
-
-        return Object.values(loadedFile);
-      }),
-    )
-  )
-    .flat()
-    .flatMap((item) => (item ? [item] : []))
-    .filter((item) => item instanceof Block);
+  const automations = await loadAutomations(folder);
 
   await registry.registerAutomation(...automations);
 };

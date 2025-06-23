@@ -18,8 +18,8 @@ export const load = command({
 
     console.log(`Initialising hass-blocks`);
     const client = await initialiseHass(getConfig());
-    await doCodegen(client, join(options.folder, 'node_modules', '.blocks'));
-    watchAndGenerate(client, join(options.folder, 'node_modules', '.blocks'));
+    await doCodegen(client, join(options.folder, '.blocks'));
+    watchAndGenerate(client, join(options.folder, '.blocks'));
 
     await loadBlocks(
       options.folder,

@@ -4,17 +4,28 @@ ARG BUILD_FROM
 
 FROM $BUILD_FROM as build_addon
 
+
 FROM $BUILD_FROM as build_local
+
+RUN echo hello
+ONBUILD COPY ./.env /addon/.env
+
 WORKDIR /addon
 
-ONBUILD COPY ./.env /addon/.env
+FROM node:24.2-alpine3.21 AS node
+
 
 FROM build_${BUILD_TYPE}
 
 RUN \
     apk add --no-cache \
-    nodejs \
     pnpm
+
+COPY --from=node /usr/local/share /usr/local/share
+COPY --from=node /usr/lib /usr/lib
+COPY --from=node /usr/local/lib /usr/local/lib
+COPY --from=node /usr/local/include /usr/local/include
+COPY --from=node /usr/local/bin /usr/local/bin
 
 COPY ./package.json /addon/package.json
 RUN pnpm install

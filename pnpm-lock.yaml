@@ -430,10 +430,10 @@ importers:
         specifier: 3.17.9
         version: link:../packages/core
       '@hass-blocks/hass-ts':
-        specifier: workspace:*
+        specifier: 0.15.1
         version: link:../packages/hass-ts
       '@hass-blocks/triggers':
-        specifier: workspace:*
+        specifier: 0.2.9
         version: link:../packages/triggers
       '@hass-blocks/websocket-plugin':
         specifier: 0.7.9

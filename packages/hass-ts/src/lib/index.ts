@@ -8,6 +8,8 @@ export { initialiseHass, getConfig } from '@initialise';
 export type {
   CallServiceCommand,
   CallServiceResponse,
+  FireEventCommand,
+  FireEventCommandResponse,
   TriggerEventMessage,
   SubscribeToTriggerMessage,
   Command,

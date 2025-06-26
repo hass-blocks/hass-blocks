@@ -13,6 +13,8 @@ export type { ErrorResult } from './error-result.ts';
 export type { GetPanelsCommand } from './get-panels-command.ts';
 export type { GetServicesCommand } from './get-services-command.ts';
 export type { CallServiceCommand } from './call-service-command.ts';
+export type { FireEventCommand } from './fire-event-command.ts';
+export type { FireEventCommandResponse } from './fire-event-command-response.ts';
 export type { CallServiceResponse } from './call-service-response.ts';
 export type { GetEntitiesCommand } from './get-entities-command.ts';
 export type { GetDevicesCommand } from './get-devices-command.ts';

@@ -4,19 +4,21 @@ import { v4 } from 'uuid';
 
 import type { RestClient } from '@rest-client';
 
-import type {
-  CallServiceCommand,
-  TriggerEventMessage,
-  SubscribeToTriggerMessage,
-  GetAreasCommand,
-  GetConfigCommand,
-  GetDevicesCommand,
-  GetEntitiesCommand,
-  GetPanelsCommand,
-  GetServicesCommand,
-  GetStatesCommand,
-  MessageFromServer,
-  WebsocketClient,
+import {
+  type CallServiceCommand,
+  type TriggerEventMessage,
+  type SubscribeToTriggerMessage,
+  type GetAreasCommand,
+  type GetConfigCommand,
+  type GetDevicesCommand,
+  type GetEntitiesCommand,
+  type GetPanelsCommand,
+  type GetServicesCommand,
+  type GetStatesCommand,
+  type MessageFromServer,
+  type WebsocketClient,
+  FireEventCommand,
+  FireEventCommandResponse,
 } from '@websocket-client';
 
 import type {
@@ -120,6 +122,18 @@ export class HomeAssistant implements IHomeAssistant {
         }
       },
     );
+  }
+
+  public async fireEvent(params: Omit<FireEventCommand, 'id' | 'type'>) {
+    const { result } = await this.websocketClient.sendCommand<
+      FireEventCommand,
+      FireEventCommandResponse
+    >({
+      type: 'fire_event',
+      ...params,
+    });
+
+    return result;
   }
 
   public async getLogbook(

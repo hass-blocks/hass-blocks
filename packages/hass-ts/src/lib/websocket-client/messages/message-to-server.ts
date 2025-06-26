@@ -11,6 +11,7 @@ import type { GetAreasCommand } from './get-areas-command.ts';
 import type { GetEntitiesCommand } from './get-entities-command.ts';
 import type { GetDevicesCommand } from './get-devices-command.ts';
 import type { SubscribeToTriggerMessage } from './subscribe-to-trigger.ts';
+import type { FireEventCommand } from './fire-event-command.ts';
 
 export type MessageToServer =
   | AuthRequiredMessageResponse
@@ -25,4 +26,5 @@ export type MessageToServer =
   | CallServiceCommand
   | GetEntitiesCommand
   | GetDevicesCommand
+  | FireEventCommand
   | GetServicesCommand;

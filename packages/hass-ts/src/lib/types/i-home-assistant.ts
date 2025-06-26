@@ -15,6 +15,8 @@ import type { GetLogbookParams } from './get-logbook-params.ts';
 
 import type {
   CallServiceCommand,
+  FireEventCommand,
+  FireEventCommandResponse,
   SubscribeToTriggerMessage,
 } from '../websocket-client/index.ts';
 
@@ -74,6 +76,15 @@ export interface IHomeAssistant {
   callService(
     params: Omit<CallServiceCommand, 'id' | 'type'>,
   ): Promise<State[]>;
+
+  /**
+   * Fire an event on the Home Assistant event bus
+   *
+   * @param params - parameters to send with the command
+   */
+  fireEvent(
+    params: Omit<FireEventCommand, 'id' | 'type'>,
+  ): Promise<FireEventCommandResponse>;
 
   /**
    * Get the current Home Assistant configuration

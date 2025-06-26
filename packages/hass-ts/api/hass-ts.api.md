@@ -156,6 +156,18 @@ export interface EventDetails {
 }
 
 // @public
+export interface FireEventCommand extends Command {
+    event_data?: Record<string, unknown> | undefined;
+    event_type: string;
+    type: 'fire_event';
+}
+
+// @public
+export interface FireEventCommandResponse {
+    context: Context;
+}
+
+// @public
 export const getConfig: () => HassConfig;
 
 // @public
@@ -269,6 +281,7 @@ export interface IHomeAssistant {
     [Symbol.asyncDispose]: () => Promise<void>;
     callService(params: Omit<CallServiceCommand, 'id' | 'type'>): Promise<State[]>;
     close(): Promise<void>;
+    fireEvent(params: Omit<FireEventCommand, 'id' | 'type'>): Promise<FireEventCommandResponse>;
     getAreas(): Promise<HassArea[]>;
     getCalendars(): Promise<CalendarDetails>;
     getConfig(): Promise<Config>;

@@ -18,6 +18,8 @@ export type {
   TriggerEventMessage,
   SubscribeToTriggerMessage,
   Command,
+  FireEventCommand,
+  FireEventCommandResponse,
 } from './messages/index.ts';
 
 export { WebsocketClient } from './websocket-client.ts';

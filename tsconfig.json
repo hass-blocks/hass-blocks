@@ -21,9 +21,6 @@
       "path": "./packages/terminal-ui-plugin"
     },
     {
-      "path": "./packages/cli"
-    },
-    {
       "path": "./packages/triggers"
     },
     {

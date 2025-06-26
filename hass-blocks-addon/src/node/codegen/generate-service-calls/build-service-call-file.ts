@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { generateTsFile } from '@lib/codegen/utils';
+import { generateTsFile } from '@codegen/utils';
 import {
   factory,
   type ExpressionStatement,

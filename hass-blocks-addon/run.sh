@@ -9,10 +9,9 @@ if [ -f /addon/.env ]; then
     cp /addon/.env $BLOCKS_DIR
 fi
 
-$BIN_DIR/hass-blocks load \
-    --folder $BLOCKS_DIR \
-    --websocketHost 0.0.0.0 \
-    --websocketPort 8080 & \
+node \
+    /addon/src/node/serve-backend.ts \
+    $BLOCKS_DIR &
 
 node \
     /addon/src/node/serve-frontend.ts \

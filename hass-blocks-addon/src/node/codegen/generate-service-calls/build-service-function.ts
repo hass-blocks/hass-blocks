@@ -1,6 +1,6 @@
 import { factory, type Identifier, SyntaxKind } from 'typescript';
 import type { Service } from '@hass-blocks/hass-ts';
-import type { ImportedIdentifier, ServiceName } from '@lib/codegen/utils';
+import type { ImportedIdentifier, ServiceName } from '@codegen/utils';
 
 import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import type { PropsInterface } from './props-interface.ts';

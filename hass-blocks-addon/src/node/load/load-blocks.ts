@@ -5,14 +5,14 @@ import { loadAutomations } from './load-automations.ts';
 export const loadBlocks = async (
   folder: string,
   websocketHost?: string,
-  websocketPort?: string,
+  websocketPort?: number,
 ) => {
   const plugins =
     websocketPort && websocketHost
       ? [
           websocketServer({
             host: websocketHost,
-            port: Number(websocketPort),
+            port: websocketPort,
             cors: {
               origin: '*',
               methods: ['GET', 'POST'],

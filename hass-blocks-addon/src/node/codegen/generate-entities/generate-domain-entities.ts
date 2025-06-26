@@ -1,28 +1,34 @@
-import type { HassArea } from '@hass-blocks/hass-ts';
-
+import ts, { factory, type StringLiteral } from 'typescript';
+import type { State } from '@hass-blocks/hass-ts';
 import {
-  type GlobalNames,
   ImportStatement,
   DeclareGlobalBlock,
+  GlobalNames,
   addDocCommentToNode,
-} from '@lib/codegen/utils';
+} from '@codegen/utils';
 
-import ts, { factory } from 'typescript';
-
-export const generateAreaFile = (areas: HassArea[], names: GlobalNames) => {
+export const generateDomainEntities = (
+  folder: string,
+  domain: string,
+  states: State[],
+  globalNames: GlobalNames,
+) => {
   const coreImport = new ImportStatement('@hass-blocks/core');
 
-  const entityIdentifier = coreImport.newIdentifier('area');
-  const iEntityIdentifier = coreImport.newIdentifier('IArea', true);
+  const entityIdentifier = coreImport.newIdentifier('entity');
+  const iEntityIdentifier = coreImport.newIdentifier('IEntity', true);
 
-  const areaNames = Object.fromEntries(
-    areas.map((state) => [state.area_id, names.addArea(state.area_id)]),
+  const entityNames = Object.fromEntries(
+    states.map((state) => [
+      state.entity_id,
+      globalNames.addEntity(state.entity_id),
+    ]),
   );
 
   const generateDeclareGlobalBlock = () =>
     new DeclareGlobalBlock(
-      areas.map((area) => {
-        const name = areaNames[area.area_id];
+      states.map((state) => {
+        const name = entityNames[state.entity_id];
         if (!name) {
           throw new Error('name not found!');
         }
@@ -38,8 +44,8 @@ export const generateAreaFile = (areas: HassArea[], names: GlobalNames) => {
                   [
                     factory.createLiteralTypeNode(
                       factory.createNoSubstitutionTemplateLiteral(
-                        area.area_id,
-                        area.area_id,
+                        state.entity_id,
+                        state.entity_id,
                       ),
                     ),
                   ],
@@ -50,17 +56,24 @@ export const generateAreaFile = (areas: HassArea[], names: GlobalNames) => {
             ts.NodeFlags.ContextFlags,
           ),
         );
-        addDocCommentToNode(varStatement, area.name);
+
+        if (typeof state.attributes['friendly_name'] === 'string') {
+          addDocCommentToNode(varStatement, state.attributes['friendly_name']);
+        }
         return varStatement;
       }),
     );
 
-  const generateAreas = () =>
-    areas.map((state) => {
-      const name = areaNames[state.area_id];
+  const generateEntities = () =>
+    states.map((state) => {
+      const name = entityNames[state.entity_id];
       if (!name) {
         throw new Error('name not found!');
       }
+      const friendlyName: StringLiteral[] =
+        typeof state.attributes['friendly_name'] === 'string'
+          ? [ts.factory.createStringLiteral(state.attributes['friendly_name'])]
+          : [];
 
       return ts.factory.createExpressionStatement(
         ts.factory.createBinaryExpression(
@@ -72,14 +85,17 @@ export const generateAreaFile = (areas: HassArea[], names: GlobalNames) => {
           ts.factory.createCallExpression(
             entityIdentifier.getIdentifier(),
             undefined,
-            [
-              ts.factory.createStringLiteral(state.area_id),
-              ts.factory.createStringLiteral(state.name),
-            ],
+            [ts.factory.createStringLiteral(state.entity_id), ...friendlyName],
           ),
         ),
       );
     });
 
-  return { generateAreas, generateDeclareGlobalBlock, coreImport };
+  return {
+    generateEntities,
+    generateDeclareGlobalBlock,
+    domain,
+    folder,
+    coreImport,
+  };
 };

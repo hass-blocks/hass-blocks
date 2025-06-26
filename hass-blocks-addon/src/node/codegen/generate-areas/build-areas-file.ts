@@ -4,7 +4,7 @@ import {
   DeclareGlobalBlock,
   ImportStatement,
   generateTsFile,
-} from '@lib/codegen/utils';
+} from '@codegen/utils';
 
 import { join } from 'path';
 import { newLine } from '../generate-service-calls/new-line.ts';

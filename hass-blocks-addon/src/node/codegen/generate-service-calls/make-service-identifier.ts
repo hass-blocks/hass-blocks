@@ -1,6 +1,6 @@
 import type { Service } from '@hass-blocks/hass-ts';
 
-import { uppercaseFirstLetter } from '@lib/codegen/utils';
+import { uppercaseFirstLetter } from '@codegen/utils';
 
 import { factory } from 'typescript';
 

@@ -9,7 +9,11 @@
       "@components": ["./src/app/components/index.ts"],
       "@providers": ["./src/app/providers/index.ts"],
       "@hooks": ["./src/app/hooks/index.ts"],
-      "@blocks-codegen": ["./blocks-codegen/index.ts"]
+      "@blocks-codegen": ["./blocks-codegen/index.ts"],
+      "@create-blocks": ["./src/node/create-blocks/index.ts"],
+      "@load": ["./src/node/load/index.ts"],
+      "@codegen": ["./src/node/codegen/index.ts"],
+      "@codegen/utils": ["./src/node/codegen/utils/index.ts"]
     },
     "module": "nodenext",
     "moduleResolution": "nodenext",

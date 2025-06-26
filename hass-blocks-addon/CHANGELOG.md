@@ -1,3 +1,14 @@
+## 0.4.4 (2025-06-26)
+
+### 🩹 Fixes
+
+- **addon:** make all type only imports explicit ([56a246be0](https://github.com/hass-blocks/hass-blocks/commit/56a246be0))
+- **addon:** make all code strippable and remove paths ([930ef1f29](https://github.com/hass-blocks/hass-blocks/commit/930ef1f29))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.3 (2025-06-26)
 
 ### 🩹 Fixes

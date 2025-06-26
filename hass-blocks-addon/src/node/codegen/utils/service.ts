@@ -1,4 +1,4 @@
-import { IGlobalName } from './i-global-name.ts';
+import { type IGlobalName } from './i-global-name.ts';
 import { toCamel } from './to-camel.ts';
 import { GlobalName } from './global-name.ts';
 import type { GlobalNames } from './global-names.ts';

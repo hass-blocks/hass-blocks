@@ -1,6 +1,6 @@
 import { AreaName } from './area-name.ts';
 import { EntityName } from './entity.ts';
-import { IGlobalName } from './i-global-name.ts';
+import type { IGlobalName } from './i-global-name.ts';
 import { ServiceName } from './service.ts';
 
 export class GlobalNames {

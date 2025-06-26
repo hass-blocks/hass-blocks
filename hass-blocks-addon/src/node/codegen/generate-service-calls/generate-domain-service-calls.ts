@@ -5,7 +5,7 @@ import type { Service } from '@hass-blocks/hass-ts';
 import {
   ImportStatement,
   DeclareGlobalBlock,
-  GlobalNames,
+  type GlobalNames,
 } from '../../codegen/utils/index.ts';
 
 import { buildServiceType } from './build-service-type.ts';

@@ -5,7 +5,7 @@ import type {
   IBlocksNode,
   LifeCycleEvent,
 } from '@hass-blocks/core';
-import { Handle, Node, Position, type NodeProps } from '@xyflow/react';
+import { Handle, type Node, Position, type NodeProps } from '@xyflow/react';
 import { BlockStatus } from '@components';
 import { BlocksContext } from '@providers';
 import { useContext, useEffect, useState } from 'react';

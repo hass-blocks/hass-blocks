@@ -1,8 +1,8 @@
 import { factory, type ExpressionStatement } from 'typescript';
 
 import {
-  DeclareGlobalBlock,
-  ImportStatement,
+  type DeclareGlobalBlock,
+  type ImportStatement,
   generateTsFile,
 } from '../../codegen/utils/index.ts';
 

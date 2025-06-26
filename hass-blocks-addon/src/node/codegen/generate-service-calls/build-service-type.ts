@@ -3,8 +3,8 @@ import { buildServiceFunctionParams } from './build-service-function-params.ts';
 import type { Service } from '@hass-blocks/hass-ts';
 import {
   addDocCommentToNode,
-  ImportedIdentifier,
-  ServiceName,
+  type ImportedIdentifier,
+  type ServiceName,
 } from '../../codegen/utils/index.ts';
 import type { PropsInterface } from './props-interface.ts';
 

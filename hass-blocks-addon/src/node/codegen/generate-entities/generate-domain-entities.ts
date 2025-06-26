@@ -3,7 +3,7 @@ import type { State } from '@hass-blocks/hass-ts';
 import {
   ImportStatement,
   DeclareGlobalBlock,
-  GlobalNames,
+  type GlobalNames,
   addDocCommentToNode,
 } from '../../codegen/utils/index.ts';
 

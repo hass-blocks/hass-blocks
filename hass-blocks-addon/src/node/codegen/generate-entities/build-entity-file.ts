@@ -3,7 +3,7 @@ import { factory, type ExpressionStatement } from 'typescript';
 import {
   type ImportStatement,
   generateTsFile,
-  DeclareGlobalBlock,
+  type DeclareGlobalBlock,
 } from '../../codegen/utils/index.ts';
 
 import { join } from 'path';

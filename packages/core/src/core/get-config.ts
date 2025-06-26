@@ -78,9 +78,9 @@ export const getConfig = (): HassConfig => {
     : (process.env[HASS_HTTP_PATH_ENV] ?? `/api`);
 
   const host = supervisorToken ? `supervisor` : getEnv(HASS_HOST_ENV);
-  const port = supervisorToken
-    ? undefined
-    : (process.env[HASS_PORT_ENV] ?? 8123);
+
+  const port = supervisorToken ? 80 : (process.env[HASS_PORT_ENV] ?? 8123);
+
   const token = supervisorToken ?? getEnv(HASS_TOKEN_ENV);
 
   if (!port) {

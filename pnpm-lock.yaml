@@ -447,12 +447,18 @@ importers:
       '@xyflow/react':
         specifier: ^12.6.4
         version: 12.6.4(@types/react@19.1.2)(immer@9.0.21)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      execa:
+        specifier: ^9.5.2
+        version: 9.5.2
       isbot:
         specifier: ^4.4.0
         version: 4.4.0
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      prettier:
+        specifier: 3.5.3
+        version: 3.5.3
       react:
         specifier: 19.0.0
         version: 19.0.0
@@ -471,6 +477,9 @@ importers:
       serve-handler:
         specifier: ^6.1.6
         version: 6.1.6
+      typescript:
+        specifier: ~5.8.3
+        version: 5.8.3
       vite:
         specifier: 6.0.0
         version: 6.0.0(@types/node@20.17.57)(jiti@2.4.2)(terser@5.39.0)(tsx@4.20.3)(yaml@2.7.1)

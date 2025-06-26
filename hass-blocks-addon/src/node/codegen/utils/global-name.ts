@@ -5,8 +5,11 @@ import type { IGlobalName } from './i-global-name.ts';
 export abstract class GlobalName {
   private actualName: string | undefined;
   private _identifier: Identifier | undefined;
+  private allNames: GlobalNames;
 
-  public constructor(private allNames: GlobalNames) {}
+  public constructor(allNames: GlobalNames) {
+    this.allNames = allNames;
+  }
 
   abstract generateName(): string;
 

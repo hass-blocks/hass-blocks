@@ -1,7 +1,7 @@
 import { factory, SyntaxKind } from 'typescript';
 import type { ServiceField } from '@hass-blocks/hass-ts';
 
-import { addDocCommentToNode } from '@codegen/utils';
+import { addDocCommentToNode } from '../../codegen/utils/index.ts';
 
 const getPropertyType = (selector: ServiceField['selector']) => {
   if (selector) {

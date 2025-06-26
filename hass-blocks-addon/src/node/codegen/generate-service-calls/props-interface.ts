@@ -3,15 +3,17 @@ import type { INodeBuilder } from '../utils/i-node-builder.ts';
 import { type Identifier, factory } from 'typescript';
 import { buildPropsPropertyNode } from './build-props-property-node.ts';
 import { uppercaseFirstLetter } from '../utils/uppercase-first-letter.ts';
-import type { ServiceName } from '@codegen/utils';
+import { ServiceName } from '../../codegen/utils/index.ts';
 
 export class PropsInterface implements INodeBuilder {
   private _identifier: Identifier | undefined;
+  private serviceName: ServiceName;
+  private fields: ServiceFields;
 
-  public constructor(
-    private serviceName: ServiceName,
-    private fields: ServiceFields,
-  ) {}
+  public constructor(serviceName: ServiceName, fields: ServiceFields) {
+    this.serviceName = serviceName;
+    this.fields = fields;
+  }
 
   private generateName() {
     return factory.createIdentifier(

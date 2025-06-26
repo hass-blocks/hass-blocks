@@ -5,7 +5,7 @@ import {
   type ParameterDeclaration,
   SyntaxKind,
 } from 'typescript';
-import type { ImportedIdentifier } from '@codegen/utils';
+import type { ImportedIdentifier } from '../../codegen/utils/index.ts';
 import { serviceHasTarget } from './service-has-target.ts';
 import { buildIentityTypeParam } from './build-ientity-type-param.ts';
 import type { PropsInterface } from './props-interface.ts';

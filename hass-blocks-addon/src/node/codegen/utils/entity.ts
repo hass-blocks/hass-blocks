@@ -7,11 +7,11 @@ import type { GlobalNames } from './global-names.ts';
 const hideDomainInNameIfInList = ['switch', 'media_player', 'person', 'zone'];
 
 export class EntityName extends GlobalName implements IGlobalName {
-  public constructor(
-    private entityId: string,
-    allNames: GlobalNames,
-  ) {
+  private entityId: string;
+
+  public constructor(entityId: string, allNames: GlobalNames) {
     super(allNames);
+    this.entityId = entityId;
   }
 
   public override generateName() {

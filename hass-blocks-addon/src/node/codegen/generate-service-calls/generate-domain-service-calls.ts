@@ -6,7 +6,7 @@ import {
   ImportStatement,
   DeclareGlobalBlock,
   GlobalNames,
-} from '@codegen/utils';
+} from '../../codegen/utils/index.ts';
 
 import { buildServiceType } from './build-service-type.ts';
 import { buildServiceCall } from './build-service-call.ts';

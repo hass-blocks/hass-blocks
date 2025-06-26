@@ -5,12 +5,11 @@ export class ImportedIdentifier {
   private inUseValue = false;
 
   private identifier: Identifier;
+  private type: boolean | undefined;
 
-  public constructor(
-    name: string,
-    private type?: boolean,
-  ) {
+  public constructor(name: string, type?: boolean) {
     this.identifier = factory.createIdentifier(name);
+    this.type = type;
   }
 
   public getIdentifier(typeOnly?: boolean) {

@@ -4,7 +4,7 @@ import {
   type ImportStatement,
   generateTsFile,
   DeclareGlobalBlock,
-} from '@codegen/utils';
+} from '../../codegen/utils/index.ts';
 
 import { join } from 'path';
 

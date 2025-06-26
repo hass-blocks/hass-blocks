@@ -13,7 +13,7 @@
       "@create-blocks": ["./src/node/create-blocks/index.ts"],
       "@load": ["./src/node/load/index.ts"],
       "@codegen": ["./src/node/codegen/index.ts"],
-      "@codegen/utils": ["./src/node/codegen/utils/index.ts"]
+      "../../codegen/utils/index.ts": ["./src/node/codegen/utils/index.ts"]
     },
     "module": "nodenext",
     "moduleResolution": "nodenext",

@@ -4,12 +4,13 @@ import { GlobalName } from './global-name.ts';
 import type { GlobalNames } from './global-names.ts';
 
 export class ServiceName extends GlobalName implements IGlobalName {
-  public constructor(
-    private domain: string,
-    private thing: string,
-    allNames: GlobalNames,
-  ) {
+  private domain: string;
+  private thing: string;
+
+  public constructor(domain: string, thing: string, allNames: GlobalNames) {
     super(allNames);
+    this.domain = domain;
+    this.thing = thing;
   }
 
   public override generateName() {

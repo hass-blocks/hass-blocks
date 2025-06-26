@@ -5,7 +5,7 @@ import {
   ImportStatement,
   DeclareGlobalBlock,
   addDocCommentToNode,
-} from '@codegen/utils';
+} from '../../codegen/utils/index.ts';
 
 import ts, { factory } from 'typescript';
 

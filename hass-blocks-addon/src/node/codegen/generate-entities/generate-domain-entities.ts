@@ -5,7 +5,7 @@ import {
   DeclareGlobalBlock,
   GlobalNames,
   addDocCommentToNode,
-} from '@codegen/utils';
+} from '../../codegen/utils/index.ts';
 
 export const generateDomainEntities = (
   folder: string,

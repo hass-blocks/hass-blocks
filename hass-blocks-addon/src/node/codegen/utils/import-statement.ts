@@ -4,8 +4,11 @@ import type { INodeBuilder } from './i-node-builder.ts';
 
 export class ImportStatement implements INodeBuilder {
   private identifiers: ImportedIdentifier[] = [];
+  private specifier: string;
 
-  public constructor(private specifier: string) {}
+  public constructor(specifier: string) {
+    this.specifier = specifier;
+  }
 
   public newIdentifier(name: string, isType?: boolean) {
     const newIdentifier = new ImportedIdentifier(name, isType);

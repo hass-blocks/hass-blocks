@@ -5,7 +5,7 @@ import {
   addDocCommentToNode,
   ImportedIdentifier,
   ServiceName,
-} from '@codegen/utils';
+} from '../../codegen/utils/index.ts';
 import type { PropsInterface } from './props-interface.ts';
 
 export const buildServiceType = (

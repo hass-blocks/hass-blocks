@@ -29,9 +29,6 @@
     },
     {
       "path": "./tsconfig.node.json"
-    },
-    {
-      "path": "../packages/cli"
     }
   ],
   "include": [

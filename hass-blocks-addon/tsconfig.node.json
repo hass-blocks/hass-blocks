@@ -48,7 +48,10 @@
       "path": "../packages/core"
     },
     {
-      "path": "../packages/cli"
+      "path": "../packages/triggers"
+    },
+    {
+      "path": "../packages/hass-ts"
     }
   ]
 }

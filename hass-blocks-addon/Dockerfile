@@ -10,7 +10,6 @@ FROM $BUILD_FROM as build_local
 RUN echo hello
 ONBUILD COPY ./.env /addon/.env
 
-WORKDIR /addon
 
 FROM node:24.2-alpine3.21 AS node
 
@@ -28,6 +27,7 @@ COPY --from=node /usr/local/include /usr/local/include
 COPY --from=node /usr/local/bin /usr/local/bin
 
 COPY ./package.json /addon/package.json
+WORKDIR /addon
 RUN pnpm install
 COPY ./config.yaml /addon/config.yaml
 COPY ./src/app /addon/src/app

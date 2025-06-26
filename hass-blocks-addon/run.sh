@@ -1,3 +1,5 @@
+#!/usr/bin/with-contenv bashio
+
 BLOCKS_DIR=/config/hass-blocks
 BIN_DIR=/addon/node_modules/.bin
 mkdir -p $BLOCKS_DIR

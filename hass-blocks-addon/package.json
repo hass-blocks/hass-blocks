@@ -2,7 +2,7 @@
   "name": "hass-blocks-addon",
   "private": true,
   "type": "module",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "scripts": {
     "build:frontend": "react-router build",
     "build:static-server": "tsc --build tsconfig.node.json",

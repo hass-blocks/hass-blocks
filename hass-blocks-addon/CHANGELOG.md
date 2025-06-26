@@ -1,3 +1,13 @@
+## 0.4.3 (2025-06-26)
+
+### 🩹 Fixes
+
+- **addon:** chaange deps to npm references ([671aca969](https://github.com/hass-blocks/hass-blocks/commit/671aca969))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.2 (2025-06-26)
 
 ### 🩹 Fixes

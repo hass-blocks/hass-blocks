@@ -1,3 +1,14 @@
+## 0.4.2 (2025-06-26)
+
+### 🩹 Fixes
+
+- **addon:** fix ts build ([43504f955](https://github.com/hass-blocks/hass-blocks/commit/43504f955))
+- **addon:** move cli code into addon ([e7c848c36](https://github.com/hass-blocks/hass-blocks/commit/e7c848c36))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.1 (2025-06-26)
 
 ### 🩹 Fixes

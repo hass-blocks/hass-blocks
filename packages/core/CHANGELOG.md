@@ -1,3 +1,13 @@
+## 3.17.9 (2025-06-26)
+
+### 🩹 Fixes
+
+- **core:** set the correct port if supervisor is present ([315e59827](https://github.com/hass-blocks/hass-blocks/commit/315e59827))
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 3.17.8 (2025-06-14)
 
 ### 🩹 Fixes

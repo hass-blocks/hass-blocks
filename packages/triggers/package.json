@@ -1,6 +1,6 @@
 {
   "name": "@hass-blocks/triggers",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -41,6 +41,6 @@
     "!**/*.tsbuildinfo"
   ],
   "dependencies": {
-    "@hass-blocks/core": "3.17.8"
+    "@hass-blocks/core": "3.17.9"
   }
 }

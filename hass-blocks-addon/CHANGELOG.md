@@ -1,3 +1,19 @@
+## 0.4.1 (2025-06-26)
+
+### 🩹 Fixes
+
+- **addon:** tweak container so that it runs ([4b876c057](https://github.com/hass-blocks/hass-blocks/commit/4b876c057))
+
+### 🧱 Updated Dependencies
+
+- Updated @hass-blocks/websocket-plugin to 0.7.9
+- Updated @hass-blocks/core to 3.17.9
+- Updated @hass-blocks/cli to 0.11.1
+
+### ❤️ Thank You
+
+- Ben Wainwright @benwainwright
+
 ## 0.4.0 (2025-06-23)
 
 ### 🚀 Features

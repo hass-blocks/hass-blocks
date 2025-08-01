@@ -552,4 +552,79 @@ describe('automation.addNext', () => {
     expect(automation.children).toHaveLength(1);
     expect(automation.children[0]).toBe(mockTrigger);
   });
+
+  it('should handle single trigger (not array) when linking nodes', async () => {
+    const mockRunQueue = mock<RunQueue>();
+    when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
+
+    const singleAction = mock<Action<string, string>>();
+    const mockTrigger = mock<ITrigger>();
+    const automation = new Automation({
+      name: 'Test automation',
+      then: singleAction,
+      when: mockTrigger,
+    });
+
+    const mockNextNode = mock<Action<string, string>>();
+    automation.addNext(mockNextNode);
+
+    expect(mockTrigger.addNext).toHaveBeenCalled();
+    expect(singleAction.addNext).toHaveBeenCalledWith(mockNextNode);
+  });
+
+  it('should handle single action when creating executor', async () => {
+    const then = mock<Action<string, string>>();
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'foo';
+
+    const mockRunQueue = mock<RunQueue>();
+    when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
+
+    const automation = new Automation({
+      name: 'Test action',
+      then: then,
+      mode: ExecutionMode.Queue,
+    });
+
+    const mockExecutor = mock<Executor<string, string>>();
+
+    when(vi.mocked(Executor))
+      .calledWith(
+        [then],
+        hass,
+        events,
+        triggerId,
+        input,
+        BlockExecutionMode.Sequence,
+        automation,
+      )
+      .thenReturn(mockExecutor);
+
+    mockExecutor.finished.mockImplementation(async () => {
+      return [
+        { continue: true, outputType: 'block', output: 'foo', success: true },
+      ];
+    });
+
+    const runner = mock<IBlockRunner>();
+
+    const result = await automation.run({
+      hass,
+      input,
+      events,
+      triggerId,
+      runner,
+    });
+
+    if (result.continue) {
+      expect(mockRunQueue.enqueue).toHaveBeenCalled();
+      expect(result.output).toEqual('foo');
+      expect(result.continue).toEqual(true);
+      expect(result.outputType).toEqual('block');
+    }
+
+    expect.assertions(4);
+  });
 });

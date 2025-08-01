@@ -511,4 +511,26 @@ describe('executor', () => {
       expect(result[0].output).toBe('completed');
     }
   });
+
+  it('should handle empty sequence and create result with success true', async () => {
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    void executor.run();
+    const result = await executor.finished();
+
+    expect(result).toHaveLength(1);
+    expect(result[0]?.success).toBe(true);
+  });
 });

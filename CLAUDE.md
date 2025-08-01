@@ -79,6 +79,15 @@ pnpm exec nx graph
 - Playwright for E2E testing
 - Test files: `*.spec.ts`, `*.test.ts`
 - Type-level tests: `*.test-d.ts` (using TypeScript compiler)
+- **NO BARREL FILE TESTS**: Do not write tests for barrel files (index.ts files containing only exports) as they provide no behavioral logic to test
+- **TEST HOOKS PLACEMENT**: All test hooks (beforeEach, beforeAll, afterEach, afterAll) must be placed at the TOP level of the test file, never inside describe blocks
+- **NO GLOBAL TEST STATE**: Never put mutable state in the global scope of test files unless it is absolutely essential. Create mocks and variables inside individual tests or test hooks to maintain test isolation
+- **MINIMAL HOOK USAGE**: Use test hooks (beforeEach/afterEach) sparingly and only for test hygiene - clearing mock states, cleaning up resources (servers, timers, etc.). Everything else needed for a test should be created within the test itself for clarity and isolation
+- **CONDITIONAL ASSERTIONS**: When placing assertions inside 'if' blocks, always use `expect.assertions(<number>)` to prevent false positives from skipped assertions
+- **VI.MOCK HYGIENE**: When using `vi.mock()` at the top level of a test file, always add `vi.resetAllMocks()` in an `afterEach` hook to prevent test pollution
+- **VI.MOCK SIMPLICITY**: Use `vi.mock('package')` without factory functions - Vitest automatically mocks all exports. Only use factory functions when you need specific mock implementations. Then use `vi.mocked()` directly on imported functions to configure behavior
+- **CONDITIONAL MOCKING**: Instead of using `mockReturnValue()` for functions called inside implementations, use the `vitest-when` package to provide return values only when a function is called with specific arguments. This makes tests more precise and prevents unintended mock behaviors. Example: `when(mockHass.getState).calledWith('light.living_room').thenReturn('on')`
+- **ONE TEST AT A TIME**: Write tests incrementally, one at a time. After writing each test, ensure it passes and that all linting and type checking is correct before writing the next test. This prevents accumulating multiple broken tests and makes debugging easier.
 
 ### Building and Releases
 
@@ -136,15 +145,46 @@ This TDD approach is essential for maintaining the framework's reliability and t
 
 ### Code Style
 
-**ABSOLUTE RULE**: Under NO CIRCUMSTANCES add ANY comments to code. The codebase maintains a strict no-comments policy. Code should be self-documenting through clear naming and structure.
+**ABSOLUTE RULE**: Under NO CIRCUMSTANCES add ANY comments to code. The codebase maintains a strict no-comments policy. Code should be self-documenting through clear naming and structure. **EXCEPTIONS**: JSDoc comments are acceptable for public API documentation, and `// NOOP` comments are acceptable in empty blocks to satisfy linter requirements.
+
+**STRICT TYPE SAFETY RULES**:
+
+Under NO CIRCUMSTANCES can you deviate from these rules except where specified in the rule itself
+
+- **NO TYPE ASSERTIONS**: Never use type assertions (the 'as' keyword) under any circumstances. All type issues must be resolved through proper typing.
+- **NO 'any' TYPE**: The 'any' type is forbidden except in very limited circumstances. You must ask for explicit permission before using 'any' and provide justification for why proper typing cannot be achieved.
+- **NO DOUBLE ASSERTIONS**: Never use 'as unknown as X' except in exceptional circumstances. Always try to find proper typing alternatives first, then ask for permission if no other solution exists.
 
 ### Quality Assurance
 
-**CRITICAL**: After every code change, you MUST run both the linter and type checker:
+**CRITICAL**: After every code change, you MUST ensure all linting, type checking, and formatting issAues are resolved. UNDER NO CIRCUMSTANCES can you proceed unless they have been resolved:
+
+**When working in VSCode/IDE environment:**
+
+1. **Fix Diagnostics**: Address all VSCode diagnostics (red squiggles, yellow warnings) immediately as they appear
+2. **Run Prettier**: Execute `pnpm format` to format all files after everything else is clean
+3. **No Exceptions**: Never consider a change complete until all IDE diagnostics are resolved and formatting is applied
+
+**When working in command-line environment:**
 
 1. **Run Linter**: Execute `pnpm lint` to ensure code style compliance
-2. **Run Type Checker**: Execute `pnpm exec nx run-many -t build` or type-check affected projects
-3. **Fix All Issues**: If any linting or type errors are reported, resolve them immediately
-4. **No Exceptions**: Never consider a change complete until both linter and type checker pass without errors
+2. **Run Type Checker**: Execute `pnpm exec nx run-many -t check-types` to type-check affected projects (NOTE: `:build` only transpiles JavaScript - use `:check-types` for actual TypeScript type checking)
+3. **Run Prettier**: Execute `pnpm format` to format all files after everything else is clean
+4. **Fix All Issues**: If any linting or type errors are reported, resolve them immediately
+5. **No Exceptions**: Never consider a change complete until linter, type checker, and formatter all pass without errors
 
 This ensures code quality and prevents type safety regressions in the strongly-typed framework.
+
+**NOTE**: TS6305 errors in an incremental project are usually caused by upstream packages having build failures. If these are encountered, first fix the upstream errors, then try running type checking again. Once you've done that you should be able to see the real problem
+
+### Git Workflow
+
+**MANDATORY**: Make atomic commits for every single behavioral change:
+
+1. **Atomic Changes**: Each commit should represent one complete, logical change to application behavior
+2. **Immediate Commits**: Commit immediately after each successful change (after linter/type checker pass)
+3. **Clear Messages**: Use descriptive commit messages following conventional commit format
+4. **No Bundling**: Never bundle multiple behavioral changes into a single commit
+5. **Test Integration**: Each commit should leave the codebase in a working, tested state
+
+This granular commit history enables precise change tracking, easier debugging, and more effective code review.

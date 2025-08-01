@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(pnpm exec nx test:*)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm exec nx run-many:*)",
+      "Bash(pnpm exec nx lint:*)",
+      "Bash(pnpm exec nx build:*)",
+      "Bash(pnpm exec nx:*)",
+      "Bash(find:*)",
+      "Bash(pnpm format:*)",
+      "Bash(pnpm exec vitest run:*)",
+      "Bash(timeout:*)",
+      "Bash(prettier:*)",
+      "Bash(pnpm exec prettier:*)",
+      "Bash(pnpm exec vitest:*)",
+      "Bash(pnpm test:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(pntml exec nx lint:*)"
+    ],
+    "deny": []
+  }
+}

@@ -7,6 +7,7 @@ import {
   ExecutionMode,
   type IFullBlocksClient,
   type IBlockRunner,
+  type ITrigger,
 } from '@types';
 import { ExecutionAbortedError } from '@errors';
 
@@ -511,5 +512,44 @@ describe('automation.run', () => {
     }
 
     expect.assertions(5);
+  });
+});
+
+describe('automation.addNext', () => {
+  it('should handle single action (not array) in then clause', async () => {
+    const mockRunQueue = mock<RunQueue>();
+    when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
+
+    const singleAction = mock<Action<string, string>>();
+    const automation = new Automation({
+      name: 'Test automation',
+      then: singleAction,
+    });
+
+    const mockNextNode = mock<Action<string, string>>();
+    automation.addNext(mockNextNode);
+
+    expect(singleAction.addNext).toHaveBeenCalledWith(mockNextNode);
+  });
+
+  it('should handle single trigger (not array) in linkContainedNodes', async () => {
+    const mockRunQueue = mock<RunQueue>();
+    when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
+
+    const singleAction = mock<Action<string, string>>();
+    const mockTrigger = mock<ITrigger>();
+    const automation = new Automation({
+      name: 'Test automation',
+      then: singleAction,
+      when: mockTrigger,
+    });
+
+    const hass = mock<IFullBlocksClient>();
+    const mqtt = mock<IMQTTConnection>();
+
+    await automation.initialise(hass, mqtt);
+
+    expect(automation.children).toHaveLength(1);
+    expect(automation.children[0]).toBe(mockTrigger);
   });
 });

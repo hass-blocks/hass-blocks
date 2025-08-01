@@ -353,4 +353,162 @@ describe('executor', () => {
       expect(result.output).toEqual('bif');
     }
   });
+
+  it('should handle executor abort and reject finished promise', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'test-action',
+      type: 'action',
+    });
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    const finishedPromise = executor.finished();
+    executor.abort();
+
+    await expect(finishedPromise).rejects.toThrow('Execution');
+  });
+
+  it('should abort execution when block fails', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'failing-action',
+      type: 'action',
+    });
+    const testError = new Error('Block execution failed');
+
+    when(action.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenReject(testError);
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    void executor.run();
+
+    await expect(executor.finished()).rejects.toThrow('Execution');
+  });
+
+  it('should execute blocks in parallel mode', async () => {
+    const actionOne = mock<Block<string, string>>();
+    const actionTwo = mock<Block<string, string>>();
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    when(actionOne.run)
+      .calledWith({
+        hass,
+        input,
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
+      .thenResolve({
+        continue: true,
+        outputType: 'block',
+        output: 'result-one',
+      });
+
+    when(actionTwo.run)
+      .calledWith({
+        hass,
+        input,
+        events,
+        triggerId,
+        runner: expect.anything(),
+      })
+      .thenResolve({
+        continue: true,
+        outputType: 'block',
+        output: 'result-two',
+      });
+
+    const executor = new Executor(
+      [actionOne, actionTwo],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Parallel,
+    );
+
+    void executor.run();
+    const results = await executor.finished();
+
+    expect(results).toHaveLength(2);
+    expect(results[0]?.success).toBe(true);
+    expect(results[1]?.success).toBe(true);
+  });
+
+  it('should return result immediately if already finished', async () => {
+    const action = mock<Block<string, string>>();
+
+    when(action.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenResolve({
+        continue: true,
+        outputType: 'block',
+        output: 'completed',
+      });
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    void executor.run();
+    await executor.finished();
+
+    const result = await executor.finished();
+
+    expect(result[0]?.success).toBe(true);
+    if (result[0]?.continue) {
+      expect(result[0].output).toBe('completed');
+    }
+  });
 });

@@ -55,6 +55,13 @@ export class TestHassClient implements IHomeAssistant {
 
   async fireEvent(message: HomeAssistantEvent) {
     await Promise.all(this.eventCallbacks.map((callback) => callback(message)));
+    return {
+      context: {
+        id: 'foo',
+        parent_id: null,
+        user_id: 'foo',
+      },
+    };
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

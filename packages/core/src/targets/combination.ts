@@ -23,22 +23,17 @@ export class Combination<T extends ReadonlyArray<IEntity | IArea | IDevice>>
     return this.theTargets.reduce<ITargetIds>((accum, target) => {
       const entities = [
         ...(accum.entity_id ?? []),
-        ...(('entity_id' in target.targetIds
-          ? target.targetIds.entity_id
-          : []) ?? []),
+        ...('entity_id' in target.targetIds ? target.targetIds.entity_id : []),
       ];
 
       const areas = [
         ...(accum.area_id ?? []),
-        ...(('area_id' in target.targetIds ? target.targetIds.area_id : []) ??
-          []),
+        ...('area_id' in target.targetIds ? target.targetIds.area_id : []),
       ];
 
       const devices = [
         ...(accum.device_id ?? []),
-        ...(('device_id' in target.targetIds
-          ? target.targetIds.device_id
-          : []) ?? []),
+        ...('device_id' in target.targetIds ? target.targetIds.device_id : []),
       ];
 
       return {

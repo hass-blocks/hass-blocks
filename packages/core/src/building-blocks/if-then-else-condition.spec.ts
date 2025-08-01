@@ -180,4 +180,125 @@ describe('ifThenElseCondition.constructor', () => {
 
     expect(assertion.id).toEqual('foo-id');
   });
+
+  it('should throw error when triggerId is not provided', async () => {
+    expect.assertions(1);
+
+    const mockAssertion = mock<Assertion<string, boolean>>();
+    const mockThenBlock = mock<Block<boolean, boolean>>();
+    const mockElseBlock = mock<Block<boolean, boolean>>();
+    const events = mock<EventBus>();
+    const hass = mock<IHass>();
+    const runner = mock<IBlockRunner>();
+
+    const condition = when(mockAssertion, {
+      then: mockThenBlock,
+      else: mockElseBlock,
+    });
+
+    const context = {
+      runner,
+      hass,
+      input: 'foo',
+      events,
+    };
+
+    await expect(condition.run(context)).rejects.toThrow('Trigger id');
+  });
+
+  it('should throw AssertionError when assertion does not return conditional result', async () => {
+    expect.assertions(1);
+
+    const mockAssertion = mock<Assertion<string, boolean>>();
+    mockAssertion.run.mockResolvedValue({
+      outputType: 'block',
+      continue: true,
+      output: false,
+    });
+
+    const mockThenBlock = mock<Block<boolean, boolean>>();
+    const mockElseBlock = mock<Block<boolean, boolean>>();
+    const events = mock<EventBus>();
+    const hass = mock<IHass>();
+    const runner = mock<IBlockRunner>();
+
+    const condition = when(mockAssertion, {
+      then: mockThenBlock,
+      else: mockElseBlock,
+    });
+
+    await expect(
+      condition.run({
+        runner,
+        hass,
+        input: 'foo',
+        events,
+        triggerId: 'test-trigger',
+      }),
+    ).rejects.toThrow(
+      `Block in the 'assertion' property must return a conditional result`,
+    );
+  });
+
+  it('should throw error when events is not provided', async () => {
+    expect.assertions(1);
+
+    const mockAssertion = mock<Assertion<string, boolean>>();
+    const mockThenBlock = mock<Block<boolean, boolean>>();
+    const mockElseBlock = mock<Block<boolean, boolean>>();
+    const hass = mock<IHass>();
+    const runner = mock<IBlockRunner>();
+
+    const condition = when(mockAssertion, {
+      then: mockThenBlock,
+      else: mockElseBlock,
+    });
+
+    const context = {
+      runner,
+      hass,
+      input: 'foo',
+    };
+
+    await expect(condition.run(context)).rejects.toThrow(
+      'Event bus must be initialised!',
+    );
+  });
+
+  it('should call addNext method correctly on assertion and branches', () => {
+    const mockAssertion = mock<Assertion<string, boolean>>();
+    const mockThenBlock = mock<Block<boolean, boolean>>();
+    const mockElseBlock = mock<Block<boolean, boolean>>();
+    const mockNextNode = mock<Block<boolean, boolean>>();
+
+    const condition = when(mockAssertion, {
+      then: mockThenBlock,
+      else: mockElseBlock,
+    });
+
+    condition.addNext(mockNextNode);
+
+    expect(mockAssertion.addNext).toHaveBeenCalledWith(mockThenBlock);
+    expect(mockAssertion.addNext).toHaveBeenCalledWith(mockElseBlock);
+    expect(mockThenBlock.addNext).toHaveBeenCalledWith(mockNextNode);
+    expect(mockElseBlock.addNext).toHaveBeenCalledWith(mockNextNode);
+  });
+
+  it('should handle case when addNext is called without next node', () => {
+    const mockAssertion = mock<Assertion<string, boolean>>();
+    const mockThenBlock = mock<Block<boolean, boolean>>();
+    const mockElseBlock = mock<Block<boolean, boolean>>();
+
+    const condition = when(mockAssertion, {
+      then: mockThenBlock,
+      else: mockElseBlock,
+    });
+
+    condition.addNext();
+
+    expect(mockAssertion.addNext).toHaveBeenCalledWith(mockThenBlock);
+    expect(mockAssertion.addNext).toHaveBeenCalledWith(mockElseBlock);
+    expect(mockThenBlock.addNext).toHaveBeenCalledWith(undefined);
+    expect(mockElseBlock.addNext).toHaveBeenCalledWith(undefined);
+  });
 });

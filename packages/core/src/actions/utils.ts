@@ -32,7 +32,7 @@ export const waitMinutes = (minutes: number) =>
  */
 export const waitSeconds = (seconds: number) =>
   action<Pass, Pass>({
-    name: `Wait ${seconds} minutes`,
+    name: `Wait ${seconds} seconds`,
 
     callback: async ({ input }) => {
       await waitInSeconds(seconds);
@@ -55,11 +55,6 @@ export const waitUntilState = (
   state: string,
   timeout?: number,
 ) => {
-  if (!target.targetIds) {
-    throw new HassBlocksError(
-      `waitUntilState needs target to supply entity ids`,
-    );
-  }
   const waitForState = async (
     target: string,
     client: IHass,
@@ -113,11 +108,6 @@ export const waitUntilStateIsNot = (
   state: string,
   timeout?: number,
 ) => {
-  if (!target.targetIds) {
-    throw new HassBlocksError(
-      `waitUntilStateIsNot needs target to supply entity ids`,
-    );
-  }
   const waitForState = async (
     target: string,
     client: IHass,

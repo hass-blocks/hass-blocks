@@ -241,3 +241,18 @@ describe('concurrently.run', () => {
     expect.assertions(5);
   });
 });
+
+describe('concurrently.addNext', () => {
+  it('should call addNext on all child actions when addNext is called', () => {
+    const mockActionOne = mock<Action<string, string>>();
+    const mockActionTwo = mock<Action<string, string>>();
+    const mockNextNode = mock<Action<string, string>>();
+
+    const theBlock = concurrently(mockActionOne, mockActionTwo);
+
+    theBlock.addNext(mockNextNode);
+
+    expect(mockActionOne.addNext).toHaveBeenCalledWith(mockNextNode);
+    expect(mockActionTwo.addNext).toHaveBeenCalledWith(mockNextNode);
+  });
+});

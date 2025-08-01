@@ -19,7 +19,7 @@ export default defineConfig(() => ({
     coverage: {
       include: ['src/**/*.ts'],
       exclude: [
-        'src/index.ts',
+        '**/index.ts',
         'src/test-support/**/*',
         'src/tests/**/*',
         'src/**/*test-d.ts',

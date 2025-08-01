@@ -7,6 +7,7 @@ import { EventBus, loadPlugins, getConfig } from '@core';
 
 import { BlocksClient } from './blocks-client.ts';
 import { LazyMqtt } from './lazy-mqtt.ts';
+import { createDefaultLogger } from './create-default-logger.ts';
 
 /**
  * @public
@@ -54,18 +55,7 @@ export const initialiseBlocks = async (
 
   const { logger, plugins, client } = theArgs;
 
-  const theLogger: ILogger = logger ?? {
-    trace: () => {
-      // NOOP
-    },
-    debug: () => {
-      // NOOP
-    },
-    info: (message) => console.log(`😀 ${message}`),
-    warn: (message) => console.log(`😔 ${message}`),
-    error: (message) => console.log(`😡 ${message}`),
-    fatal: (message) => console.log(`💀 ${message}`),
-  };
+  const theLogger: ILogger = logger ?? createDefaultLogger();
 
   bus.subscribe((event) => {
     if (event.eventType === 'log-event') {

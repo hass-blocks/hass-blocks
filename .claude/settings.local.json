@@ -17,7 +17,8 @@
       "Bash(pnpm exec vitest:*)",
       "Bash(pnpm test:*)",
       "mcp__ide__getDiagnostics",
-      "Bash(pntml exec nx lint:*)"
+      "Bash(pntml exec nx lint:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

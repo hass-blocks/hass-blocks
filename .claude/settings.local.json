@@ -18,7 +18,8 @@
       "Bash(pnpm test:*)",
       "mcp__ide__getDiagnostics",
       "Bash(pntml exec nx lint:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(pnpm exec tsc:*)"
     ],
     "deny": []
   }

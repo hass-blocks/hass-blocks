@@ -43,9 +43,13 @@ Note, you should ask me before installing any packages
 
 ## Development Practises
 
+### Review
+
+When you have finished making all changes, review all the code you have written and make sure it matches these standards, just in case you've m issed something
+
 ### Code Coverage
 
-We aim to achieve 100% code coverage. To check the coverage of a given package, add the `--coverage` flag to the `test` target. This will generate a report in the terminal, but it will also provide a comprehensive HTML report in the project directory under `./test-output/vitest/coverage`
+We aim to achieve 100% code coverage. To check the coverage of a given package, add the `--coverage` flag to the `test` target. This will generate a report in the terminal, but it will also provide a comprehensive HTML report in the project directory under `./test-output/vitest/coverage`. If the vite config doesn't have a threshold, add one based on the current coverage. If it does, but its lower than the current coverage, update it
 
 ### API Changes
 
@@ -53,6 +57,7 @@ We aim to achieve 100% code coverage. To check the coverage of a given package, 
 
 ### Code Style
 
+- Changing absolute imports specified by a tsconfig path mapping to relative imports is usually not the right thing to do. Often when an absolute path isn't available in a test file its because the paths property of the `tsconfig.spec.json` doesn't match the `tsconfig.lib.json`
 - Never use type assertions (the 'as' keyword) under any circumstances. All type issues must be resolved through proper typing.
 - The 'any' type is forbidden except in very limited circumstances. You must ask for explicit permission before using 'any' and provide justification for why proper typing cannot be achieved
 - Never use 'as unknown as X' except in exceptional circumstances. Always try to find proper typing alternatives first, then ask for permission if no other solution exists
@@ -68,7 +73,9 @@ When executing in a VSCode environment, the editor will provide you with diagnos
 
 ### Testing
 
-- No tests should be written for barrel files
+- Tests should not test private implementation details, if you have to do a type assertion in order to get at something, you probably don't want to test it
+- If TypeScript says a case is impossible, then its impossible and we shouldn't be testing it - this might mean we need to change the implementation
+- No tests should be written for barrel files. If the coverage report includes them, change the vite settings to exclude them from the report
 - Code MUST be written using strict red/green refactor style TDD; write a test to specifiy the requested behaviour, write the smallest amount of code that will make that test pass, then refactor the code if needed
 - Tests SHOULD be written one at a time, to ensure that everything is working before proceeding
 - Test files usually follow the pattern `*.spec.ts` or `*.test.ts`

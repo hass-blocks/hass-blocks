@@ -14,6 +14,7 @@ import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
  */
 export type ServiceCallArgs<P> = {
   target?: ITarget;
+  ignoreBlockInput?: boolean;
   params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
 };
 
@@ -33,11 +34,11 @@ class ServiceCall<P> extends Action<
       name: serviceConfig.name,
       callback: async ({ hass, input }) => {
         const { target: inputTarget, ...restInput } = input ?? {};
-        const target = this.serviceConfig.target ?? inputTarget;
+        const target = serviceConfig.target ?? inputTarget;
 
         const serviceData = {
           ...serviceConfig.params.service_data,
-          ...restInput,
+          ...(!serviceConfig.ignoreBlockInput ? restInput : {}),
         };
 
         const addServiceData =
@@ -90,6 +91,7 @@ class ServiceCall<P> extends Action<
 export const serviceCall = <P>(serviceConfig: {
   name: string;
   target?: ITarget;
+  ignoreBlockInput?: boolean;
   params: Omit<CallServiceCommand<P>, 'id' | 'type'>;
 }): Block<Partial<P> | undefined, void> => {
   return new ServiceCall<P>(serviceConfig);

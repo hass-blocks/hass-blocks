@@ -8,11 +8,15 @@ import {
   assertion,
   automation,
   concurrently,
+  loop,
+  sequence,
   serviceCall,
   when,
 } from '@building-blocks';
 import { trigger } from '@core';
 import { entity } from '@targets';
+import { iterating } from 'src/assertions/iterating.ts';
+import { IEntity } from '@types';
 
 const advanceTimersByTime = (time: number) => {
   vi.advanceTimersByTime(time);
@@ -837,7 +841,6 @@ describe('Advanced Building Block Combinations', () => {
       trigger: { emergency: true },
     });
 
-    // Emergency response: Execute all safety measures simultaneously
     const emergencyResponse = automation({
       name: 'Emergency response system',
       when: emergencyTrigger,
@@ -896,103 +899,75 @@ describe('Advanced Building Block Combinations', () => {
     });
   });
 
-  // Service calls would need to support dynamically injecting targets for this to work
+  test('Complex loop with dynamic entity combinations', async () => {
+    const { blocks, hass } = await initialiseTestBlocks({
+      states: advancedStates,
+      services: advancedServices,
+    });
 
-  // test('Complex loop with dynamic entity combinations', async () => {
-  //   const { blocks, hass } = await initialiseTestBlocks({
-  //     states: advancedStates,
-  //     services: advancedServices,
-  //   });
+    const cleaningTrigger = trigger({
+      name: 'Weekly cleaning schedule',
+      trigger: { cleaning_day: true },
+    });
 
-  //   const cleaningTrigger = trigger({
-  //     name: 'Weekly cleaning schedule',
-  //     trigger: { cleaning_day: true },
-  //   });
+    const cleaningRoutine = automation({
+      name: 'Automated cleaning routine',
+      when: cleaningTrigger,
+      then: [
+        loop({
+          name: 'Room by room cleaning prep',
+          while: iterating(
+            entity('light.living_room'),
+            entity('light.bedroom'),
+            entity('light.kitchen'),
+          ),
+          then: sequence(
+            action<{ value: IEntity; index: number; list: IEntity[] }>({
+              name: 'Map iterator output',
+              callback: ({ input }) => ({ target: input.value }),
+            }),
+            serviceCall({
+              name: 'Turn on room light for cleaning',
+              params: { domain: 'light', service: 'turn_on' },
+            }),
+          ),
+        }),
+        serviceCall({
+          name: 'Start vacuum cleaning',
+          ignoreBlockInput: true,
+          target: entity('vacuum.robot'),
+          params: { domain: 'vacuum', service: 'start' },
+        }),
+      ],
+    });
 
-  //   const iterateEntities = () => {
-  //     const roomEntities = [
-  //       entity('light.living_room'),
-  //       entity('light.bedroom'),
-  //       entity('light.kitchen'),
-  //     ];
+    await blocks.registry.registerAutomation(cleaningRoutine);
+    hass.fireTrigger({ cleaning_day: true });
 
-  //     let index = 0;
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'light',
+      service: 'turn_on',
+      target: { entity_id: ['light.living_room'] },
+    });
 
-  //     return assertion<
-  //       void,
-  //       { index: number; entity: IEntity<`light.${string}`> | undefined }
-  //     >({
-  //       name: 'Loop through entities',
-  //       predicate: () => {
-  //         const entity = roomEntities[index];
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'light',
+      service: 'turn_on',
+      target: { entity_id: ['light.bedroom'] },
+    });
 
-  //         const result = {
-  //           result: Boolean(entity),
-  //           output: {
-  //             entity,
-  //             index,
-  //           },
-  //         };
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'light',
+      service: 'turn_on',
+      target: { entity_id: ['light.kitchen'] },
+    });
 
-  //         index++;
-
-  //         return result;
-  //       },
-  //     });
-  //   };
-
-  //   const entityRemaining = iterateEntities();
-
-  //   // Loop through all rooms and turn lights on/off for cleaning
-  //   const cleaningRoutine = automation({
-  //     name: 'Automated cleaning routine',
-  //     when: cleaningTrigger,
-  //     then: [
-  //       loop({
-  //         name: 'Room by room cleaning prep',
-  //         while: entityRemaining,
-  //         do: serviceCall({
-  //           name: 'Turn on room light for cleaning',
-  //           target: roomLight,
-  //           params: { domain: 'light', service: 'turn_on' },
-  //         }),
-  //       }),
-  //       serviceCall({
-  //         name: 'Start vacuum cleaning',
-  //         target: entity('vacuum.robot'),
-  //         params: { domain: 'vacuum', service: 'start' },
-  //       }),
-  //     ],
-  //   });
-
-  //   await blocks.registry.registerAutomation(cleaningRoutine);
-  //   hass.fireTrigger({ cleaning_day: true });
-
-  //   // All room lights should be turned on via loop
-  //   await expect(hass).toHaveHadServiceCallWithParams({
-  //     domain: 'light',
-  //     service: 'turn_on',
-  //     target: { entity_id: ['light.living_room'] },
-  //   });
-
-  //   await expect(hass).toHaveHadServiceCallWithParams({
-  //     domain: 'light',
-  //     service: 'turn_on',
-  //     target: { entity_id: ['light.bedroom'] },
-  //   });
-
-  //   await expect(hass).toHaveHadServiceCallWithParams({
-  //     domain: 'light',
-  //     service: 'turn_on',
-  //     target: { entity_id: ['light.kitchen'] },
-  //   });
-
-  //   await expect(hass).toHaveHadServiceCallWithParams({
-  //     domain: 'vacuum',
-  //     service: 'start',
-  //     target: { entity_id: ['vacuum.robot'] },
-  //   });
-  // });
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'vacuum',
+      service: 'start',
+      target: { entity_id: ['vacuum.robot'] },
+    });
+  });
 });
 
 // describe('Real-World Scenario Simulations', () => {

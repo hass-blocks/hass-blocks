@@ -13,7 +13,7 @@ import { assertion } from '@building-blocks';
  * loop({
  *  name: 'Loop through numbers',
  *  while: iterating(1, 2),
- *  do: action<{ value: number | undefined }>({
+ *  then: action<{ value: number | undefined }>({
  *    name: 'test action',
  *    callback: (input) => {
  *      console.log(input);

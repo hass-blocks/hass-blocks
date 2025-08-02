@@ -373,3 +373,140 @@ describe('block.destroy async', () => {
     expect(mockChild.destroy).toHaveBeenCalled();
   });
 });
+
+describe('block.toJson circular reference handling', () => {
+  class TestBlock extends Block {
+    public override name = 'test-block';
+    public override type = 'test-type';
+    public override run(): BlockOutput<void> {
+      return { continue: true, output: undefined, outputType: 'block' };
+    }
+  }
+
+  it('should gracefully handle simple circular reference without stack overflow', () => {
+    const blockA = new TestBlock('block-a', []);
+    const blockB = new TestBlock('block-b', []);
+
+    blockA.addChild(blockB);
+    blockB.addChild(blockA);
+
+    const result = blockA.toJson();
+
+    expect(result).toEqual({
+      id: 'block-a',
+      name: 'test-block',
+      type: 'test-type',
+      children: [
+        {
+          id: 'block-b',
+          name: 'test-block',
+          type: 'test-type',
+          children: [
+            {
+              id: 'block-a',
+              name: 'test-block',
+              type: 'test-type',
+              children: [],
+              circularReference: true,
+            },
+          ],
+        },
+      ],
+    });
+  });
+
+  it('should gracefully handle complex circular reference chain without stack overflow', () => {
+    const blockA = new TestBlock('block-a', []);
+    const blockB = new TestBlock('block-b', []);
+    const blockC = new TestBlock('block-c', []);
+
+    blockA.addChild(blockB);
+    blockB.addChild(blockC);
+    blockC.addChild(blockA);
+
+    const result = blockA.toJson();
+
+    expect(result).toEqual({
+      id: 'block-a',
+      name: 'test-block',
+      type: 'test-type',
+      children: [
+        {
+          id: 'block-b',
+          name: 'test-block',
+          type: 'test-type',
+          children: [
+            {
+              id: 'block-c',
+              name: 'test-block',
+              type: 'test-type',
+              children: [
+                {
+                  id: 'block-a',
+                  name: 'test-block',
+                  type: 'test-type',
+                  children: [],
+                  circularReference: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    });
+  });
+
+  it('should gracefully handle self-referencing block without stack overflow', () => {
+    const block = new TestBlock('self-ref', []);
+    block.addChild(block);
+
+    const result = block.toJson();
+
+    expect(result).toEqual({
+      id: 'self-ref',
+      name: 'test-block',
+      type: 'test-type',
+      children: [
+        {
+          id: 'self-ref',
+          name: 'test-block',
+          type: 'test-type',
+          children: [],
+          circularReference: true,
+        },
+      ],
+    });
+  });
+
+  it('should handle deep chain without circular reference', () => {
+    const blockA = new TestBlock('block-a', []);
+    const blockB = new TestBlock('block-b', []);
+    const blockC = new TestBlock('block-c', []);
+
+    blockA.addChild(blockB);
+    blockB.addChild(blockC);
+
+    const result = blockA.toJson();
+
+    expect(result).toEqual({
+      id: 'block-a',
+      name: 'test-block',
+      type: 'test-type',
+      children: [
+        {
+          id: 'block-b',
+          name: 'test-block',
+          type: 'test-type',
+          children: [
+            {
+              id: 'block-c',
+              name: 'test-block',
+              type: 'test-type',
+              children: [],
+            },
+          ],
+        },
+      ],
+    });
+  });
+});

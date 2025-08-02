@@ -18,11 +18,19 @@ export class BlockLifecyleManager<TInput = unknown, TOutput = unknown> {
     T extends HassBlocksEvent & { eventType: ET },
   >(type: ET, event: Omit<T, 'id' | 'timestamp' | 'eventType'>) {
     this.events.emit(type, event);
-    this.events.emit('log-event', {
-      level: 'trace',
-      module: 'executor',
-      message: JSON.stringify({ type, event }),
-    });
+    try {
+      this.events.emit('log-event', {
+        level: 'trace',
+        module: 'executor',
+        message: JSON.stringify({ type, event }),
+      });
+    } catch {
+      this.events.emit('log-event', {
+        level: 'trace',
+        module: 'executor',
+        message: `[Circular structure detected] ${type}: ${this.executionId}`,
+      });
+    }
   }
 
   private getEventArgs() {

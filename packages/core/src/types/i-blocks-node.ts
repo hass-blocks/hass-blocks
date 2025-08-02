@@ -28,4 +28,9 @@ export interface IBlocksNode {
    * The parameters that were passed with the block
    */
   params?: Record<string, unknown>;
+
+  /**
+   * Indicates that this node was a circular reference and was truncated
+   */
+  circularReference?: boolean;
 }

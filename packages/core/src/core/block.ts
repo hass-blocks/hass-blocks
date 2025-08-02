@@ -61,12 +61,37 @@ export abstract class Block<I = void, O = void>
    * A JSON representation of the block. Used for websocket and rest serialisation
    */
   public toJson(): IBlocksNode {
-    return {
-      children: this.children.map((child) => child.toJson()),
+    return this.toJsonWithVisited(new Set());
+  }
+
+  private toJsonWithVisited(visited: Set<string>): IBlocksNode {
+    if (visited.has(this.id)) {
+      return {
+        children: [],
+        type: this.type,
+        id: this.id,
+        name: this.name,
+        circularReference: true,
+      };
+    }
+
+    visited.add(this.id);
+
+    const result: IBlocksNode = {
+      children: this.children.map((child) =>
+        'toJsonWithVisited' in child &&
+        typeof child.toJsonWithVisited === 'function'
+          ? child.toJsonWithVisited(visited)
+          : child.toJson(),
+      ),
       type: this.type,
       id: this.id,
       name: this.name,
     };
+
+    visited.delete(this.id);
+
+    return result;
   }
 
   /**

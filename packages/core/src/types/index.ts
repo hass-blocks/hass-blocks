@@ -24,6 +24,7 @@ export type { ISerialisable } from './i-serialiseble.ts';
 export type { IRunContext } from './i-run-context.ts';
 export type { IBlockRunner } from './i-block-runner.ts';
 export type { IAddable } from './i-addable.ts';
+export type { IDestroyable } from './i-destroyable.ts';
 
 export type {
   LifeCycleEvent,

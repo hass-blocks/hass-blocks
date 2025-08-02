@@ -512,14 +512,99 @@ describe('executor', () => {
     }
   });
 
-  it('should handle empty sequence and create result with success true', async () => {
+  it('should throw error when trying to create executor with empty sequence', () => {
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    expect(() => {
+      new Executor(
+        [],
+        hass,
+        events,
+        triggerId,
+        input,
+        BlockExecutionMode.Sequence,
+      );
+    }).toThrow('Cannot create executor with empty sequence');
+  });
+
+  it('should not leak internal event listeners when finished promise rejects', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'test-action',
+      type: 'action',
+    });
+
+    when(action.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenResolve({
+        continue: true,
+        outputType: 'block',
+        output: 'result',
+      });
+
+    const hass = mock<IHass>();
+    const events = new EventBus();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    const finishedPromise = executor.finished();
+
+    executor.abort();
+
+    try {
+      await finishedPromise;
+    } catch {
+      // NOOP
+    }
+
+    const internalBus = executor['bus'];
+    const abortedListeners = internalBus.listenerCount('executor-aborted');
+    const finishedListeners = internalBus.listenerCount('executor-finished');
+
+    expect(abortedListeners).toBe(0);
+    expect(finishedListeners).toBe(0);
+  });
+
+  it('should handle non-Error types consistently in block execution', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'failing-action',
+      type: 'action',
+    });
+
+    when(action.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenReject('string error');
+
     const hass = mock<IHass>();
     const events = mock<EventBus>();
     const triggerId = 'trigger-id';
     const input = 'test-input';
 
     const executor = new Executor(
-      [],
+      [action],
       hass,
       events,
       triggerId,
@@ -528,9 +613,181 @@ describe('executor', () => {
     );
 
     void executor.run();
-    const result = await executor.finished();
 
-    expect(result).toHaveLength(1);
-    expect(result[0]?.success).toBe(true);
+    await expect(executor.finished()).rejects.toThrow('Execution');
+  });
+
+  it('should clean up event listeners when destroy is called', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'Action',
+      type: 'action',
+      run: vi.fn().mockResolvedValue({
+        continue: true,
+        output: 'test-output',
+        outputType: 'block',
+      }),
+    });
+
+    const hass = mock<IHass>();
+    const events = mock<EventBus>();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    expect(executor.getListenerCount('executor-finished')).toBe(0);
+    expect(executor.getListenerCount('executor-aborted')).toBe(0);
+
+    // Start execution but don't wait for it to complete
+    void executor.run();
+    void executor.finished(); // This adds listeners
+
+    // Check that listeners were added
+    expect(executor.getListenerCount('executor-finished')).toBeGreaterThan(0);
+    expect(executor.getListenerCount('executor-aborted')).toBeGreaterThan(0);
+
+    // Destroy should clean up all listeners
+    await executor.destroy();
+
+    expect(executor.getListenerCount('executor-finished')).toBe(0);
+    expect(executor.getListenerCount('executor-aborted')).toBe(0);
+  });
+
+  it('should reject when finished is called before run and executor-finished is emitted', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'Action',
+      type: 'action',
+    });
+
+    const hass = mock<IHass>();
+    const events = new EventBus();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    const promise = executor.finished();
+
+    const internalBus = executor['bus'];
+    internalBus.emit('executor-finished');
+
+    await expect(promise).rejects.toThrow(
+      'Sequence finished without a result. This is probably a programming error',
+    );
+  });
+
+  it('should abort execution while block is running', async () => {
+    const action = mock<Block<string, string>>({
+      name: 'Action',
+      type: 'action',
+    });
+
+    let resolveBlockExecution!: (value: BlockOutput<string>) => void;
+    const blockExecutionPromise = new Promise<BlockOutput<string>>(
+      (resolve) => {
+        resolveBlockExecution = resolve;
+      },
+    );
+
+    when(action.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenReturn(blockExecutionPromise);
+
+    const hass = mock<IHass>();
+    const events = new EventBus();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [action],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    const runPromise = executor.run();
+    const finishedPromise = executor.finished();
+
+    executor.abort();
+
+    resolveBlockExecution({
+      continue: true,
+      outputType: 'block',
+      output: 'result',
+    });
+
+    await expect(finishedPromise).rejects.toThrow("Execution '' was aborted");
+
+    try {
+      await runPromise;
+    } catch {
+      // Expected to throw due to abort
+    }
+  });
+
+  it('should throw ExecutionAbortedError when trying to execute blocks after being aborted', async () => {
+    const actionOne = mock<Block<string, string>>({
+      name: 'Action1',
+      type: 'action',
+    });
+    const actionTwo = mock<Block<string, string>>({
+      name: 'Action2',
+      type: 'action',
+    });
+
+    when(actionOne.run)
+      .calledWith({
+        hass: expect.anything(),
+        input: 'test-input',
+        events: expect.anything(),
+        triggerId: 'trigger-id',
+        runner: expect.anything(),
+      })
+      .thenResolve({
+        continue: true,
+        outputType: 'block',
+        output: 'first-result',
+      });
+
+    const hass = mock<IHass>();
+    const events = new EventBus();
+    const triggerId = 'trigger-id';
+    const input = 'test-input';
+
+    const executor = new Executor(
+      [actionOne, actionTwo],
+      hass,
+      events,
+      triggerId,
+      input,
+      BlockExecutionMode.Sequence,
+    );
+
+    void executor.run();
+    executor.abort();
+
+    await expect(executor.finished()).rejects.toThrow('was aborted');
   });
 });

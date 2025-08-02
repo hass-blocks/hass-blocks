@@ -23,7 +23,7 @@ type Output<O> = (BlockOutput<O> & { success: boolean }) | undefined;
  */
 export class Executor<I, O> implements Runnable {
   private executionQueue: Queue<BlockLifecyleManager>;
-  private bus = new EventEmitter();
+  protected bus = new EventEmitter();
   private result: Output<O>[] | undefined;
 
   private aborted = false;
@@ -37,6 +37,10 @@ export class Executor<I, O> implements Runnable {
     private executionMode?: BlockExecutionMode,
     private parent?: Block<unknown, unknown>,
   ) {
+    if (sequence.length === 0) {
+      throw new Error('Cannot create executor with empty sequence');
+    }
+
     const queueItems = sequence.map(
       (block) => new BlockLifecyleManager(events, triggerId, block, parent),
     );
@@ -49,21 +53,30 @@ export class Executor<I, O> implements Runnable {
   ): Promise<T> {
     const result = promiseFunction();
     return await new Promise<T>((accept, reject) => {
+      let cleanedUp = false;
+
+      const cleanup = () => {
+        if (!cleanedUp) {
+          this.bus.off(EXECUTOR_ABORTED, waitForAbortCallback);
+          cleanedUp = true;
+        }
+      };
+
       const waitForAbortCallback = () => {
+        cleanup();
         reject(new ExecutionAbortedError('Sequence was aborted'));
-        this.bus.off(EXECUTOR_ABORTED, waitForAbortCallback);
       };
 
       result
         .then((result) => {
-          this.bus.off(EXECUTOR_ABORTED, waitForAbortCallback);
+          cleanup();
           accept(result);
         })
         .catch((error: unknown) => {
-          if (error instanceof Error) {
-            this.bus.off(EXECUTOR_ABORTED, waitForAbortCallback);
-            reject(error);
-          }
+          cleanup();
+          const errorInstance =
+            error instanceof Error ? error : new Error(String(error));
+          reject(errorInstance);
         });
 
       this.bus.on(EXECUTOR_ABORTED, waitForAbortCallback);
@@ -111,15 +124,14 @@ export class Executor<I, O> implements Runnable {
 
       return { ...result, success: true };
     } catch (error) {
-      if (error instanceof Error) {
-        if (error instanceof ExecutionAbortedError) {
-          lifecycleManager.aborted();
-        } else {
-          lifecycleManager.failed(error);
-        }
-        return { continue: false, success: false };
+      const errorInstance =
+        error instanceof Error ? error : new Error(String(error));
+      if (errorInstance instanceof ExecutionAbortedError) {
+        lifecycleManager.aborted();
+      } else {
+        lifecycleManager.failed(errorInstance);
       }
-      throw error;
+      return { continue: false, success: false };
     }
   }
 
@@ -152,12 +164,8 @@ export class Executor<I, O> implements Runnable {
     this.emitPendingMessages();
 
     while (this.executionQueue.length > 0) {
-      const popResult = this.executionQueue.pop();
-      if (!popResult) {
-        // This should never happen!
-        continue;
-      }
-      const blockManager = popResult;
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      const blockManager = this.executionQueue.pop()!;
 
       const lastResultPromise = this.executeBlock(
         blockManager,
@@ -186,8 +194,13 @@ export class Executor<I, O> implements Runnable {
       if (this.result) {
         accept(this.result);
       } else {
-        const finishedCallback = () => {
+        const cleanup = () => {
           this.bus.off(EXECUTOR_FINISHED, finishedCallback);
+          this.bus.off(EXECUTOR_ABORTED, abortedCallback);
+        };
+
+        const finishedCallback = () => {
+          cleanup();
           if (this.result) {
             accept(this.result);
           } else {
@@ -200,7 +213,7 @@ export class Executor<I, O> implements Runnable {
         };
 
         const abortedCallback = () => {
-          this.bus.off(EXECUTOR_ABORTED, abortedCallback);
+          cleanup();
           reject(new ExecutionAbortedError(this.parent?.name ?? ''));
         };
 
@@ -213,5 +226,13 @@ export class Executor<I, O> implements Runnable {
   public abort() {
     this.aborted = true;
     this.bus.emit(EXECUTOR_ABORTED);
+  }
+
+  public async destroy(): Promise<void> {
+    this.bus.removeAllListeners();
+  }
+
+  public getListenerCount(event: string): number {
+    return this.bus.listenerCount(event);
   }
 }

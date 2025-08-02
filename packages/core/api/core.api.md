@@ -49,13 +49,7 @@ config: IAssertionConfig<TInput, TOutput>,
 ) => Block<TInput, TOutput>;
 
 // @public
-export const automation: <
-const TSequence extends readonly Block<unknown, unknown>[],
-TInput = GetSequenceInput<TSequence>,
-TOutput = GetSequenceOutput<TSequence>,
->(
-config: IAutomationConfig<TSequence, TInput, TOutput>,
-) => Block<TInput, TOutput>;
+export const automation: <const TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>>(config: IAutomationConfig<TSequence, TInput, TOutput>) => Block<TInput, TOutput>;
 
 // @public
 export interface AutomationRegistered
@@ -72,25 +66,20 @@ export interface BaseHassBlocksEvent<T extends string> {
 }
 
 // @public
-export abstract class Block<I = void, O = void>
-implements IBlock<I, O>, IMutableNode
-    {
+export abstract class Block<I = void, O = void> implements IBlock<I, O>, IMutableNode {
     constructor(
-    id: string,
-    targets: ITarget[] | undefined,
-    _trigger?: (ITrigger | ITrigger[]) | undefined,
-    );
+    id: string, targets: ITarget[] | undefined,
+    _trigger?: (ITrigger | ITrigger[]) | undefined);
     addChild(...node: IMutableNode[]): void;
     addNext(node?: IMutableNode): void;
     readonly children: IMutableNode[];
+    destroy(): void;
     protected hasTrigger(): boolean;
     readonly id: string;
     initialise(client: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
     linkNodes(...nodes: IMutableNode[]): void;
     abstract readonly name: string;
-    abstract run(
-    context: IRunContext<I>,
-    ): Promise<BlockOutput<O>> | BlockOutput<O>;
+    abstract run(context: IRunContext<I>): Promise<BlockOutput<O>> | BlockOutput<O>;
     toJson(): IBlocksNode;
     get trigger(): ITrigger | ITrigger[];
     set trigger(trigger: ITrigger | ITrigger[]);
@@ -432,17 +421,9 @@ export interface IAssertionConfig<TInput, TOutput> extends IBaseBlockConfig {
 }
 
 // @public
-export interface IAutomationConfig<
-TSequence extends readonly Block<unknown, unknown>[],
-TInput = GetSequenceInput<TSequence>,
-TOutput = GetSequenceOutput<TSequence>,
-> extends IBaseBlockConfig {
+export interface IAutomationConfig<TSequence extends readonly Block<unknown, unknown>[], TInput = GetSequenceInput<TSequence>, TOutput = GetSequenceOutput<TSequence>> extends IBaseBlockConfig {
     mode?: ExecutionMode;
-    then:
-    | (BlockRetainType<TSequence> &
-    TSequence &
-    ValidateSequence<TInput, TOutput, TSequence>)
-    | Block<TInput, TOutput>;
+    then: (BlockRetainType<TSequence> & TSequence & ValidateSequence<TInput, TOutput, TSequence>) | Block<TInput, TOutput>;
     when?: ITrigger | ITrigger[];
 }
 
@@ -507,6 +488,11 @@ export interface ICallServiceParams {
 }
 
 // @public
+export interface IDestroyable {
+    destroy(): void;
+}
+
+// @public
 export interface IDevice extends ITarget {
     targetIds: {
         device_id: string[];
@@ -535,16 +521,12 @@ I extends `${string}.${string}` = `${string}.${string}`,
 
 // @public
 export interface IEventBus {
-    emit<
-    ET extends HassBlocksEvent['eventType'],
-    T extends HassBlocksEvent & {
+    emit<ET extends HassBlocksEvent['eventType'], T extends HassBlocksEvent & {
         eventType: ET;
-    },
-    >(
-    type: ET,
-    event?: Omit<T, 'id' | 'timestamp' | 'eventType'>,
-    ): void;
+    }>(type: ET, event?: Omit<T, 'id' | 'timestamp' | 'eventType'>): void;
+    readonly listenerCount: number;
     subscribe(callback: (event: HassBlocksEvent) => void): void;
+    unsubscribe(callback: (event: HassBlocksEvent) => void): void;
 }
 
 // @public
@@ -566,17 +548,9 @@ TElseOutput,
 export interface IFullBlocksClient extends IHass {
     getAutomations(): (IBlocksNode & ISerialisable)[];
     loadStates(): Promise<void>;
-    onStateChanged(
-    id: string,
-    callback: (event: StateChangedEvent) => void,
-    ): Promise<void>;
-    registerAutomation(
-    ...automation: (IMutableNode & ITriggerable)[]
-    ): Promise<void>;
-    registerTrigger(
-    trigger: Record<string, unknown>,
-    callback: (event: unknown) => void | Promise<void>,
-    ): Promise<void>;
+    onStateChanged(id: string, callback: (event: StateChangedEvent) => void): Promise<() => void>;
+    registerAutomation(...automation: (IMutableNode & ITriggerable)[]): Promise<void>;
+    registerTrigger(trigger: Record<string, unknown>, callback: (event: unknown) => void | Promise<void>): Promise<void>;
 }
 
 // @public
@@ -616,10 +590,7 @@ extends IBaseBlockConfig {
 }
 
 // @public
-export type IMutableNode = IBlocksNode &
-ISerialisable &
-IInitialisable &
-IAddable;
+export type IMutableNode = IBlocksNode & ISerialisable & IInitialisable & IAddable & IDestroyable;
 
 // @public
 export const initialiseBlocks: (

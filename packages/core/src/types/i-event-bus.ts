@@ -25,4 +25,16 @@ export interface IEventBus {
    * @param callback - callback that is executed when an event is received
    */
   subscribe(callback: (event: HassBlocksEvent) => void): void;
+
+  /**
+   * Unsubscribe from the event bus
+   *
+   * @param callback - callback to remove from the event bus
+   */
+  unsubscribe(callback: (event: HassBlocksEvent) => void): void;
+
+  /**
+   * Get the number of listeners currently subscribed to the event bus
+   */
+  readonly listenerCount: number;
 }

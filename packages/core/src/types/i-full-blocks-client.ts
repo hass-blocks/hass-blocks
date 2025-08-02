@@ -44,9 +44,10 @@ export interface IFullBlocksClient extends IHass {
    *
    * @param id - The id to listen for
    * @param callback - Callback that will fire when the state changess
+   * @returns A function to unsubscribe from state changes
    */
   onStateChanged(
     id: string,
     callback: (event: StateChangedEvent) => void,
-  ): Promise<void>;
+  ): Promise<() => void>;
 }

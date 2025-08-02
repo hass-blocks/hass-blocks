@@ -35,6 +35,8 @@ export class BlocksClient implements IFullBlocksClient {
   private services: Record<string, Record<string, Service>> | undefined;
   private _automations: IMutableNode[] = [];
   private stateChangedCallback: StateChangedCallback | undefined;
+  private entityCallbacks = new Map<string, Set<StateChangedCallback>>();
+  private refreshInterval: NodeJS.Timeout | undefined;
 
   public constructor(
     private client: IHomeAssistant,
@@ -47,11 +49,9 @@ export class BlocksClient implements IFullBlocksClient {
    * call this if you need to remove non existant entities from cache
    */
   public async loadStates() {
-    const states = await this.client.getStates();
-    const statesMap = new Map<string, HassEntity>();
-    states.forEach((state) => statesMap.set(state.entity_id, state));
-    this.states = statesMap;
+    await this.refreshStatesFromHomeAssistant();
     await this.attachStateChangeListenerIfNotAttached();
+    this.startPeriodicRefresh();
   }
 
   public getStates(): Map<string, HassEntity> {
@@ -190,16 +190,28 @@ export class BlocksClient implements IFullBlocksClient {
           event.event_type === 'state_changed'
         ) {
           this.states.set(event.data.entity_id, event.data.new_state);
+
+          const entityCallbacks = this.entityCallbacks.get(
+            event.data.entity_id,
+          );
+          if (entityCallbacks) {
+            this.bus.emit('log-event', {
+              message: `Recieved ${event.event_type} - ${event}`,
+              level: 'trace',
+              module: 'core',
+            });
+            entityCallbacks.forEach((cb) => cb(event));
+          }
         }
       };
+      await this.client.on(this.stateChangedCallback);
     }
-    await this.client.on(this.stateChangedCallback);
   }
 
   public async onStateChanged(
     id: string,
     callback: (event: StateChangedEvent) => void,
-  ) {
+  ): Promise<() => void> {
     try {
       if (!this.states) {
         await this.loadStates();
@@ -211,22 +223,27 @@ export class BlocksClient implements IFullBlocksClient {
         );
       }
 
-      await this.client.on(
-        (event: HomeAssistantEvent | TriggerEventMessage['event']) => {
-          if (
-            'event_type' in event &&
-            event.event_type === 'state_changed' &&
-            event.data.entity_id === id
-          ) {
-            this.bus.emit('log-event', {
-              message: `Recieved ${event.event_type} - ${event}`,
-              level: 'trace',
-              module: 'core',
-            });
-            callback(event);
+      if (!this.entityCallbacks.has(id)) {
+        this.entityCallbacks.set(id, new Set());
+      }
+
+      const wrappedCallback: StateChangedCallback = (event) => {
+        if ('event_type' in event && event.event_type === 'state_changed') {
+          callback(event as StateChangedEvent);
+        }
+      };
+
+      this.entityCallbacks.get(id)?.add(wrappedCallback);
+
+      return () => {
+        const callbacks = this.entityCallbacks.get(id);
+        if (callbacks) {
+          callbacks.delete(wrappedCallback);
+          if (callbacks.size === 0) {
+            this.entityCallbacks.delete(id);
           }
-        },
-      );
+        }
+      };
     } catch (error) {
       if (error instanceof Error) {
         this.bus.emit('generalFailure', {
@@ -234,6 +251,52 @@ export class BlocksClient implements IFullBlocksClient {
           error,
         });
       }
+      return () => {
+        // NOOP
+      };
     }
+  }
+
+  private async refreshStatesFromHomeAssistant() {
+    const states = await this.client.getStates();
+    const statesMap = new Map<string, HassEntity>();
+    states.forEach((state) => statesMap.set(state.entity_id, state));
+    this.states = statesMap;
+  }
+
+  private startPeriodicRefresh() {
+    if (!this.refreshInterval) {
+      this.refreshInterval = setInterval(
+        async () => {
+          try {
+            await this.refreshStatesFromHomeAssistant();
+          } catch (error) {
+            this.bus.emit('log-event', {
+              message: `Failed to refresh states: ${error}`,
+              module: 'core',
+              level: 'error',
+            });
+          }
+        },
+        5 * 60 * 1000,
+      );
+    }
+  }
+
+  public async shutdown() {
+    if (this.refreshInterval) {
+      clearInterval(this.refreshInterval);
+      this.refreshInterval = undefined;
+    }
+    this.entityCallbacks.clear();
+
+    for (const automation of this._automations) {
+      await automation.destroy();
+    }
+    this._automations = [];
+  }
+
+  public getEntityCallbacksSize(): number {
+    return this.entityCallbacks.size;
   }
 }

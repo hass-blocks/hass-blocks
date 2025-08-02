@@ -65,6 +65,7 @@ export type {
   IMutableNode,
   IInitialisable,
   IAddable,
+  IDestroyable,
   HassContext,
   BlockFailed,
   IFullBlocksClient,

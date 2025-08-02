@@ -26,4 +26,12 @@ export class EventBus implements IEventBus {
   public subscribe(callback: (event: HassBlocksEvent) => void) {
     this.bus.on(AUTOMATION_EVENT, callback);
   }
+
+  public unsubscribe(callback: (event: HassBlocksEvent) => void) {
+    this.bus.off(AUTOMATION_EVENT, callback);
+  }
+
+  public get listenerCount(): number {
+    return this.bus.listenerCount(AUTOMATION_EVENT);
+  }
 }

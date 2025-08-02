@@ -147,6 +147,37 @@ describe('BlocksClient', () => {
     expect(userCallback).toHaveBeenCalledWith(stateChangedEvent);
   });
 
+  it('should prevent memory leaks by not accumulating listeners on multiple onStateChanged calls', async () => {
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+
+    const existingEntity = {
+      entity_id: 'light.living_room',
+      state: 'off',
+      attributes: {},
+      last_changed: '2023-01-01T00:00:00Z',
+      last_reported: '2023-01-01T00:00:00Z',
+      last_updated: '2023-01-01T00:00:00Z',
+      context: { id: 'test', parent_id: null, user_id: 'test-user' },
+    };
+    when(mockClient.getStates).calledWith().thenResolve([existingEntity]);
+
+    mockClient.on.mockResolvedValue('subscription-id');
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+
+    await client.loadStates();
+
+    const callback1 = vi.fn();
+    const callback2 = vi.fn();
+
+    await client.onStateChanged('light.living_room', callback1);
+    await client.onStateChanged('light.living_room', callback2);
+
+    expect(mockClient.on).toHaveBeenCalledTimes(1);
+  });
+
   it('should get state by string id', async () => {
     const mockClient = mock<IHomeAssistant>();
     const mockBus = mock<IEventBus>();
@@ -425,5 +456,251 @@ describe('BlocksClient', () => {
     await client.loadStates();
 
     expect(() => client.getState('nonexistent.entity')).toThrow();
+  });
+
+  it('should periodically refresh states every 5 minutes', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+    mockClient.on.mockResolvedValue('subscription-id');
+
+    const initialStates = [
+      {
+        entity_id: 'light.test',
+        state: 'on',
+        attributes: {},
+        last_changed: '',
+        last_reported: '',
+        last_updated: '',
+        context: { id: '', parent_id: null, user_id: '' },
+      },
+    ];
+
+    const updatedStates = [
+      {
+        entity_id: 'light.test',
+        state: 'off',
+        attributes: {},
+        last_changed: '',
+        last_reported: '',
+        last_updated: '',
+        context: { id: '', parent_id: null, user_id: '' },
+      },
+      {
+        entity_id: 'light.new',
+        state: 'on',
+        attributes: {},
+        last_changed: '',
+        last_reported: '',
+        last_updated: '',
+        context: { id: '', parent_id: null, user_id: '' },
+      },
+    ];
+
+    mockClient.getStates
+      .mockResolvedValueOnce(initialStates)
+      .mockResolvedValueOnce(updatedStates)
+      .mockResolvedValue([]);
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+    await client.loadStates();
+
+    expect(client.getStates().size).toBe(1);
+    expect(client.getState('light.test')).toBe('on');
+
+    vi.advanceTimersByTime(5 * 60 * 1000);
+    await vi.waitFor(() => {
+      expect(mockClient.getStates).toHaveBeenCalledTimes(2);
+    });
+
+    expect(client.getStates().size).toBe(2);
+    expect(client.getState('light.test')).toBe('off');
+    expect(client.getState('light.new')).toBe('on');
+
+    await client.shutdown();
+    vi.useRealTimers();
+  });
+
+  it('should clear periodic refresh timer on shutdown', async () => {
+    vi.useFakeTimers();
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+
+    when(mockClient.getStates).calledWith().thenResolve([]);
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+    await client.loadStates();
+
+    await client.shutdown();
+
+    vi.advanceTimersByTime(5 * 60 * 1000);
+    await vi.runAllTimersAsync();
+
+    expect(mockClient.getStates).toHaveBeenCalledTimes(1);
+
+    vi.useRealTimers();
+  });
+
+  it('should allow unsubscribing from state changes', async () => {
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+
+    const existingEntity = {
+      entity_id: 'light.living_room',
+      state: 'off',
+      attributes: {},
+      last_changed: '2023-01-01T00:00:00Z',
+      last_reported: '2023-01-01T00:00:00Z',
+      last_updated: '2023-01-01T00:00:00Z',
+      context: { id: 'test', parent_id: null, user_id: 'test-user' },
+    };
+    when(mockClient.getStates).calledWith().thenResolve([existingEntity]);
+
+    let eventCallback: (event: StateChangedEvent) => void = vi.fn();
+    mockClient.on.mockImplementation(
+      vi.fn().mockImplementation((callback) => {
+        eventCallback = callback;
+        return Promise.resolve('test-id');
+      }),
+    );
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+
+    const userCallback = vi.fn();
+    const unsubscribe = await client.onStateChanged(
+      'light.living_room',
+      userCallback,
+    );
+
+    const stateChangedEvent: StateChangedEvent = {
+      event_type: 'state_changed',
+      time_fired: '2023-01-01T00:00:01Z',
+      origin: 'LOCAL',
+      context: { id: 'event-context', parent_id: null, user_id: 'test-user' },
+      data: {
+        entity_id: 'light.living_room',
+        new_state: {
+          entity_id: 'light.living_room',
+          state: 'on',
+          attributes: {},
+          last_changed: '2023-01-01T00:00:01Z',
+          last_reported: '2023-01-01T00:00:01Z',
+          last_updated: '2023-01-01T00:00:01Z',
+          context: { id: 'test2', parent_id: null, user_id: 'test-user' },
+        },
+        old_state: existingEntity,
+      },
+    };
+
+    eventCallback(stateChangedEvent);
+    expect(userCallback).toHaveBeenCalledWith(stateChangedEvent);
+
+    (await unsubscribe)();
+
+    userCallback.mockClear();
+    eventCallback(stateChangedEvent);
+    expect(userCallback).not.toHaveBeenCalled();
+  });
+
+  it('should clean up entity callbacks map when last callback is removed', async () => {
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+
+    const existingEntity = {
+      entity_id: 'light.living_room',
+      state: 'off',
+      attributes: {},
+      last_changed: '2023-01-01T00:00:00Z',
+      last_reported: '2023-01-01T00:00:00Z',
+      last_updated: '2023-01-01T00:00:00Z',
+      context: { id: 'test', parent_id: null, user_id: 'test-user' },
+    };
+    when(mockClient.getStates).calledWith().thenResolve([existingEntity]);
+    mockClient.on.mockResolvedValue('subscription-id');
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+
+    const callback1 = vi.fn();
+    const callback2 = vi.fn();
+
+    const unsubscribe1 = await client.onStateChanged(
+      'light.living_room',
+      callback1,
+    );
+    const unsubscribe2 = await client.onStateChanged(
+      'light.living_room',
+      callback2,
+    );
+
+    expect(client.getEntityCallbacksSize()).toBe(1);
+
+    unsubscribe1();
+    expect(client.getEntityCallbacksSize()).toBe(1);
+
+    unsubscribe2();
+    expect(client.getEntityCallbacksSize()).toBe(0);
+  });
+
+  it('should handle errors during periodic state refresh', async () => {
+    vi.useFakeTimers({ shouldAdvanceTime: true });
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+    mockClient.on.mockResolvedValue('subscription-id');
+
+    mockClient.getStates
+      .mockResolvedValueOnce([])
+      .mockRejectedValue(new Error('Network error'));
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+    await client.loadStates();
+
+    vi.advanceTimersByTime(5 * 60 * 1000);
+
+    await vi.waitFor(
+      () => {
+        expect(mockClient.getStates).toHaveBeenCalledTimes(2);
+      },
+      { timeout: 1000 },
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, 10));
+
+    expect(mockBus.emit).toHaveBeenCalledWith('log-event', {
+      message: 'Failed to refresh states: Error: Network error',
+      module: 'core',
+      level: 'error',
+    });
+
+    await client.shutdown();
+    vi.useRealTimers();
+  });
+
+  it('should destroy all automations during shutdown', async () => {
+    const mockClient = mock<IHomeAssistant>();
+    const mockBus = mock<IEventBus>();
+    const mockMqtt = mock<IMQTTConnection>();
+    const mockTrigger = mock<{ attachToClient: () => Promise<void> }>();
+    const mockAutomation = mock<IMutableNode & ITriggerable>({
+      name: 'Test Automation',
+      trigger: mockTrigger,
+      destroy: vi.fn(),
+      initialise: vi.fn().mockResolvedValue(undefined),
+      toJson: vi.fn().mockReturnValue({ name: 'Test Automation' }),
+    });
+
+    when(mockClient.getStates).calledWith().thenResolve([]);
+
+    const client = new BlocksClient(mockClient, mockBus, mockMqtt);
+    await client.registerAutomation(mockAutomation);
+
+    await client.shutdown();
+
+    expect(mockAutomation.destroy).toHaveBeenCalled();
+    expect(client.getAutomations()).toHaveLength(0);
   });
 });

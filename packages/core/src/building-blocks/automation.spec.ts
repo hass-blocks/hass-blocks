@@ -1,7 +1,13 @@
 import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
-import { RunQueue, BlockExecutionMode, type EventBus, Executor } from '@core';
+import {
+  RunQueue,
+  BlockExecutionMode,
+  type EventBus,
+  Executor,
+  Block,
+} from '@core';
 import {
   type IHass,
   ExecutionMode,
@@ -626,5 +632,21 @@ describe('automation.addNext', () => {
     }
 
     expect.assertions(4);
+  });
+
+  it('should shutdown run queue when automation is destroyed', async () => {
+    const mockRunQueue = mock<RunQueue>({
+      shutdown: vi.fn(),
+    });
+    when(vi.mocked(RunQueue)).calledWith().thenReturn(mockRunQueue);
+
+    const automation = new Automation({
+      name: 'Test Automation',
+      then: mock<Block<void, void>>(),
+    });
+
+    await automation.destroy();
+
+    expect(mockRunQueue.shutdown).toHaveBeenCalled();
   });
 });

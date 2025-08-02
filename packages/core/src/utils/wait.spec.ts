@@ -6,26 +6,30 @@ afterEach(() => {
 });
 
 describe('waitInSeconds', () => {
-  it('should wait for specified number of seconds', async () => {
+  it('should use setTimeout not setInterval to avoid memory leaks', async () => {
     vi.useFakeTimers();
+    const setTimeoutSpy = vi.spyOn(global, 'setTimeout');
     const setIntervalSpy = vi.spyOn(global, 'setInterval');
 
     waitInSeconds(2);
 
-    expect(setIntervalSpy).toHaveBeenCalledWith(expect.any(Function), 2000);
+    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 2000);
+    expect(setIntervalSpy).not.toHaveBeenCalled();
 
     vi.useRealTimers();
   });
 });
 
 describe('waitInMinutes', () => {
-  it('should wait for specified number of minutes', async () => {
+  it('should use setTimeout not setInterval to avoid memory leaks', async () => {
     vi.useFakeTimers();
+    const setTimeoutSpy = vi.spyOn(global, 'setTimeout');
     const setIntervalSpy = vi.spyOn(global, 'setInterval');
 
     waitInMinutes(1);
 
-    expect(setIntervalSpy).toHaveBeenCalledWith(expect.any(Function), 60000);
+    expect(setTimeoutSpy).toHaveBeenCalledWith(expect.any(Function), 60000);
+    expect(setIntervalSpy).not.toHaveBeenCalled();
 
     vi.useRealTimers();
   });

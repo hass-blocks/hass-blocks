@@ -8,12 +8,16 @@ export class RunQueue {
 
   private current: { abort: () => void } | undefined;
 
+  private running = true;
+
   public constructor() {
     void this.startLoop();
   }
 
   public enqueue(runnable: Runnable) {
-    this.queue.push(runnable);
+    if (this.running) {
+      this.queue.push(runnable);
+    }
   }
 
   public abortAll() {
@@ -24,9 +28,14 @@ export class RunQueue {
     }
   }
 
+  public shutdown() {
+    this.running = false;
+    this.abortAll();
+  }
+
   private async startLoop() {
-    while (true) {
-      while (this.queue.length > 0) {
+    while (this.running) {
+      while (this.queue.length > 0 && this.running) {
         try {
           const runnable = this.queue.pop();
           this.current = runnable;
@@ -40,7 +49,9 @@ export class RunQueue {
         }
       }
 
-      await this.wait();
+      if (this.running) {
+        await this.wait();
+      }
     }
   }
 

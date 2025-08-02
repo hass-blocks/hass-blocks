@@ -82,6 +82,10 @@ export class Trigger implements IMutableNode {
     };
   }
 
+  public async destroy(): Promise<void> {
+    // NOOP
+  }
+
   public async attachToClient(
     client: IFullBlocksClient,
     block: Block<unknown, unknown>,

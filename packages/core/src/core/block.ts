@@ -156,4 +156,13 @@ export abstract class Block<I = void, O = void>
   public abstract run(
     context: IRunContext<I>,
   ): Promise<BlockOutput<O>> | BlockOutput<O>;
+
+  /**
+   * Clean up any resources held by this block
+   */
+  public async destroy(): Promise<void> {
+    for (const child of this.children) {
+      await child.destroy();
+    }
+  }
 }

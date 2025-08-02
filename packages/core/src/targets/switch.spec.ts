@@ -61,6 +61,31 @@ describe('Switch', () => {
     });
     expect(mockMqttSwitch.initialise).toHaveBeenCalled();
   });
+
+  it('should handle edge case where split results in undefined identifier', async () => {
+    const testSwitch = new Switch({
+      id: 'switch.' as `switch.${string}`,
+      create: true,
+      friendlyName: 'Edge Case Switch',
+    });
+    const mockHass = mock<IFullBlocksClient>();
+    const mockMqtt = mock<IMQTTConnection>();
+    const mockMqttSwitch = mock<MqttSwitch>({
+      initialise: vi.fn(),
+    });
+    vi.mocked(MqttSwitch).mockReturnValue(mockMqttSwitch);
+
+    await testSwitch.initialise(mockHass, mockMqtt);
+
+    expect(MqttSwitch).toHaveBeenCalledWith(mockMqtt, {
+      friendlyName: 'Edge Case Switch',
+      discoveryPrefix: 'homeassistant',
+      context: 'blocks',
+      deviceClass: 'switch',
+      uniqueId: '',
+    });
+    expect(mockMqttSwitch.initialise).toHaveBeenCalled();
+  });
 });
 
 describe('toggle factory function', () => {

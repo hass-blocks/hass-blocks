@@ -117,8 +117,9 @@ export class Automation<
       throw new Error('You must supply a trigger id');
     }
 
+    let executor: Executor<TInput, TOutput> | undefined;
     try {
-      const executor = new Executor<TInput, TOutput>(
+      executor = new Executor<TInput, TOutput>(
         [
           ...(Array.isArray(this.config.then)
             ? this.config.then
@@ -161,7 +162,16 @@ export class Automation<
         return { continue: false };
       }
       throw error;
+    } finally {
+      if (executor) {
+        executor.destroy();
+      }
     }
+  }
+
+  public override async destroy(): Promise<void> {
+    this.runQueue.shutdown();
+    await super.destroy();
   }
 }
 

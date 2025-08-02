@@ -28,4 +28,13 @@ describe('Trigger', () => {
     expect(mockTarget1.initialise).toHaveBeenCalledWith(mockClient, mockMqtt);
     expect(mockTarget2.initialise).toHaveBeenCalledWith(mockClient, mockMqtt);
   });
+
+  it('should handle destroy method call', async () => {
+    const trigger = new Trigger({
+      name: 'test trigger',
+      trigger: { type: 'state' },
+    });
+
+    await expect(trigger.destroy()).resolves.not.toThrow();
+  });
 });

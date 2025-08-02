@@ -1,6 +1,6 @@
 import { mock } from 'vitest-mock-extended';
 
-import type { BlockOutput, ITrigger, ITarget } from '@types';
+import type { BlockOutput, ITrigger, ITarget, IMutableNode } from '@types';
 import type { IFullBlocksClient } from '@types';
 import { HassBlocksError } from '@errors';
 
@@ -86,6 +86,26 @@ describe('block.addNext', () => {
     foo.addNext(bar);
 
     expect(foo.children).toContain(bar);
+  });
+
+  it('should not add anything when node is undefined', () => {
+    class Foo extends Block {
+      public override name = 'test-block';
+      public override type = 'foo-type';
+      public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
+        throw new Error();
+      }
+      public constructor() {
+        super('foo-id', undefined);
+      }
+    }
+
+    const foo = new Foo();
+    const initialChildrenLength = foo.children.length;
+
+    foo.addNext(undefined);
+
+    expect(foo.children.length).toBe(initialChildrenLength);
   });
 });
 
@@ -177,5 +197,179 @@ describe('block.hasTrigger', () => {
 
     const foo = new Foo();
     expect(foo.testHasTrigger()).toBe(true);
+  });
+
+  it('should return false when trigger array is empty', () => {
+    class Foo extends Block {
+      public override name = 'test-block';
+      public override type = 'foo-type';
+      public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
+        throw new Error();
+      }
+      public constructor() {
+        super('foo-id', undefined, []);
+      }
+      public testHasTrigger() {
+        return this.hasTrigger();
+      }
+    }
+
+    const foo = new Foo();
+    expect(foo.testHasTrigger()).toBe(false);
+  });
+
+  it('should return true when single trigger is provided', () => {
+    const mockTrigger = mock<ITrigger>();
+
+    class Foo extends Block {
+      public override name = 'test-block';
+      public override type = 'foo-type';
+      public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
+        throw new Error();
+      }
+      public constructor() {
+        super('foo-id', undefined, mockTrigger);
+      }
+      public testHasTrigger() {
+        return this.hasTrigger();
+      }
+    }
+
+    const foo = new Foo();
+    expect(foo.testHasTrigger()).toBe(true);
+  });
+
+  it('should return false when no trigger is provided', () => {
+    class Foo extends Block {
+      public override name = 'test-block';
+      public override type = 'foo-type';
+      public override run(): BlockOutput<void> | Promise<BlockOutput<void>> {
+        throw new Error();
+      }
+      public constructor() {
+        super('foo-id', undefined);
+      }
+      public testHasTrigger() {
+        return this.hasTrigger();
+      }
+    }
+
+    const foo = new Foo();
+    expect(foo.testHasTrigger()).toBe(false);
+  });
+
+  it('should recursively destroy all children when destroy is called', async () => {
+    const mockChild1 = mock<IMutableNode>({
+      destroy: vi.fn().mockResolvedValue(undefined),
+    });
+    const mockChild2 = mock<IMutableNode>({
+      destroy: vi.fn().mockResolvedValue(undefined),
+    });
+    const mockChildWithoutDestroy = mock<IMutableNode>({
+      destroy: vi.fn().mockResolvedValue(undefined),
+    });
+
+    class TestBlock extends Block {
+      public override name = 'test-block';
+      public override type = 'test-type';
+      public override run(): BlockOutput<void> {
+        return { continue: true, output: undefined, outputType: 'block' };
+      }
+    }
+
+    const block = new TestBlock('test-id', []);
+    block.addChild(mockChild1, mockChild2, mockChildWithoutDestroy);
+
+    await block.destroy();
+
+    expect(mockChild1.destroy).toHaveBeenCalled();
+    expect(mockChild2.destroy).toHaveBeenCalled();
+    expect(mockChildWithoutDestroy.destroy).toHaveBeenCalled();
+  });
+});
+
+describe('block.linkNodes', () => {
+  it('should link nodes together in sequence', () => {
+    class TestBlock extends Block {
+      public override name = 'test-block';
+      public override type = 'test-type';
+      public override run(): BlockOutput<void> {
+        return { continue: true, output: undefined, outputType: 'block' };
+      }
+      public testLinkNodes(...nodes: IMutableNode[]) {
+        this.linkNodes(...nodes);
+      }
+    }
+
+    const node1 = mock<IMutableNode>();
+    const node2 = mock<IMutableNode>();
+    const node3 = mock<IMutableNode>();
+
+    const block = new TestBlock('test-id', []);
+    block.testLinkNodes(node1, node2, node3);
+
+    expect(node1.addNext).toHaveBeenCalledWith(node2);
+    expect(node2.addNext).toHaveBeenCalledWith(node3);
+    expect(node3.addNext).toHaveBeenCalledWith();
+  });
+
+  it('should handle single node by calling addNext with undefined', () => {
+    class TestBlock extends Block {
+      public override name = 'test-block';
+      public override type = 'test-type';
+      public override run(): BlockOutput<void> {
+        return { continue: true, output: undefined, outputType: 'block' };
+      }
+      public testLinkNodes(...nodes: IMutableNode[]) {
+        this.linkNodes(...nodes);
+      }
+    }
+
+    const node1 = mock<IMutableNode>();
+
+    const block = new TestBlock('test-id', []);
+    block.testLinkNodes(node1);
+
+    expect(node1.addNext).toHaveBeenCalledWith();
+  });
+});
+
+describe('block.destroy async', () => {
+  it('should return a promise when destroy is called', async () => {
+    class TestBlock extends Block {
+      public override name = 'test-block';
+      public override type = 'test-type';
+      public override run(): BlockOutput<void> {
+        return { continue: true, output: undefined, outputType: 'block' };
+      }
+    }
+
+    const block = new TestBlock('test-id', []);
+
+    const result = block.destroy();
+
+    expect(result).toBeInstanceOf(Promise);
+    await result;
+  });
+
+  it('should await async destroy on children', async () => {
+    const mockChild = mock<IMutableNode>({
+      destroy: vi.fn().mockResolvedValue(undefined),
+    });
+
+    class TestBlock extends Block {
+      public override name = 'test-block';
+      public override type = 'test-type';
+      public override run(): BlockOutput<void> {
+        return { continue: true, output: undefined, outputType: 'block' };
+      }
+    }
+
+    const block = new TestBlock('test-id', []);
+    block.addChild(mockChild);
+
+    await block.destroy();
+
+    expect(mockChild.destroy).toHaveBeenCalled();
   });
 });

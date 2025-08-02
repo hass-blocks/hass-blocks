@@ -90,7 +90,9 @@ describe('Entity', () => {
     });
     mockHass.onStateChanged.mockImplementation((_entityId, callback) => {
       stateChangeCallback = callback;
-      return Promise.resolve();
+      return Promise.resolve(() => {
+        // NOOP
+      });
     });
     const mockMqtt = mock<IMQTTConnection>();
 

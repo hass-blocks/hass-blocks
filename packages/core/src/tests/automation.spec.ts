@@ -3,7 +3,14 @@ import type { Service, State } from '@hass-blocks/hass-ts';
 import type { Pass } from '@sequence-validator';
 
 import { initialiseTestBlocks } from '@test-support';
-import { action, assertion, automation, serviceCall } from '@building-blocks';
+import {
+  action,
+  assertion,
+  automation,
+  concurrently,
+  serviceCall,
+  when,
+} from '@building-blocks';
 import { trigger } from '@core';
 import { entity } from '@targets';
 
@@ -628,3 +635,540 @@ describe('Complex Automation Orchestration', () => {
     });
   });
 });
+
+describe('Advanced Building Block Combinations', () => {
+  const advancedStates: State[] = [
+    mock({ entity_id: 'sensor.motion_living_room', state: 'off' }),
+    mock({ entity_id: 'sensor.motion_bedroom', state: 'off' }),
+    mock({ entity_id: 'sensor.motion_kitchen', state: 'off' }),
+    mock({ entity_id: 'light.living_room', state: 'off' }),
+    mock({ entity_id: 'light.bedroom', state: 'off' }),
+    mock({ entity_id: 'light.kitchen', state: 'off' }),
+    mock({ entity_id: 'media_player.living_room_tv', state: 'off' }),
+    mock({ entity_id: 'climate.house', state: 'heat' }),
+    mock({ entity_id: 'sensor.outdoor_temp', state: '15' }),
+    mock({ entity_id: 'binary_sensor.washing_machine', state: 'off' }),
+    mock({ entity_id: 'switch.notification_led', state: 'off' }),
+    mock({ entity_id: 'lock.front_door', state: 'locked' }),
+    mock({ entity_id: 'cover.garage_door', state: 'closed' }),
+    mock({ entity_id: 'vacuum.robot', state: 'docked' }),
+  ];
+
+  const advancedServices: Record<string, Record<string, Service>> = {
+    light: {
+      turn_on: {
+        name: 'Turn On',
+        description: 'Turn light on',
+        response: { optional: true },
+        fields: {},
+      },
+      turn_off: {
+        name: 'Turn Off',
+        description: 'Turn light off',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    media_player: {
+      turn_on: {
+        name: 'Turn On',
+        description: 'Turn on media player',
+        response: { optional: true },
+        fields: {},
+      },
+      turn_off: {
+        name: 'Turn Off',
+        description: 'Turn off media player',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    climate: {
+      set_temperature: {
+        name: 'Set Temperature',
+        description: 'Set thermostat temperature',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    switch: {
+      turn_on: {
+        name: 'Turn On',
+        description: 'Turn switch on',
+        response: { optional: true },
+        fields: {},
+      },
+      turn_off: {
+        name: 'Turn Off',
+        description: 'Turn switch off',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    lock: {
+      lock: {
+        name: 'Lock',
+        description: 'Lock the door',
+        response: { optional: true },
+        fields: {},
+      },
+      unlock: {
+        name: 'Unlock',
+        description: 'Unlock the door',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    cover: {
+      open_cover: {
+        name: 'Open Cover',
+        description: 'Open the cover',
+        response: { optional: true },
+        fields: {},
+      },
+      close_cover: {
+        name: 'Close Cover',
+        description: 'Close the cover',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+    vacuum: {
+      start: {
+        name: 'Start',
+        description: 'Start vacuum',
+        response: { optional: true },
+        fields: {},
+      },
+      return_to_base: {
+        name: 'Return to Base',
+        description: 'Return vacuum to base',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+  };
+
+  test('Nested conditional logic with multiple assertion gates', async () => {
+    const { blocks, hass } = await initialiseTestBlocks({
+      states: advancedStates,
+      services: advancedServices,
+    });
+
+    const motionTrigger = trigger({
+      name: 'Motion detected anywhere',
+      trigger: { motion: true },
+    });
+
+    const isWeekday = assertion({
+      name: 'Is weekday',
+      predicate: () => {
+        const day = new Date().getDay();
+        return day >= 1 && day <= 5; // Monday to Friday
+      },
+    });
+
+    const isDaytime = assertion({
+      name: 'Is daytime',
+      predicate: () => {
+        const hour = new Date().getHours();
+        return hour >= 6 && hour <= 18;
+      },
+    });
+
+    const isTemperatureLow = assertion({
+      name: 'Temperature is low',
+      predicate: () => true, // Simulated condition
+    });
+
+    const smartHomeSystem = automation({
+      name: 'Smart conditional home system',
+      when: motionTrigger,
+      then: [
+        isWeekday,
+        when(isDaytime, {
+          then: serviceCall({
+            name: 'Turn on living room lights',
+            target: entity('light.living_room'),
+            params: { domain: 'light', service: 'turn_on' },
+          }),
+          else: serviceCall({
+            name: 'Turn on bedroom lights',
+            target: entity('light.bedroom'),
+            params: { domain: 'light', service: 'turn_on' },
+          }),
+        }),
+        isTemperatureLow,
+        serviceCall({
+          name: 'Increase temperature',
+          target: entity('climate.house'),
+          params: { domain: 'climate', service: 'set_temperature' },
+        }),
+      ],
+    });
+
+    await blocks.registry.registerAutomation(smartHomeSystem);
+
+    // Test daytime scenario (6-18h)
+    vi.setSystemTime(new Date('2024-01-01T10:00:00')); // Monday 10 AM
+    hass.fireTrigger({ motion: true });
+
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'light',
+      service: 'turn_on',
+      target: { entity_id: ['light.living_room'] },
+    });
+
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'climate',
+      service: 'set_temperature',
+      target: { entity_id: ['climate.house'] },
+    });
+  });
+
+  test('Concurrent execution with executeConcurrently block', async () => {
+    const { blocks, hass } = await initialiseTestBlocks({
+      states: advancedStates,
+      services: advancedServices,
+    });
+
+    const emergencyTrigger = trigger({
+      name: 'Emergency protocol activated',
+      trigger: { emergency: true },
+    });
+
+    // Emergency response: Execute all safety measures simultaneously
+    const emergencyResponse = automation({
+      name: 'Emergency response system',
+      when: emergencyTrigger,
+      then: [
+        concurrently(
+          serviceCall({
+            name: 'Turn on all lights',
+            target: entity('light.living_room'),
+            params: { domain: 'light', service: 'turn_on' },
+          }),
+          serviceCall({
+            name: 'Lock all doors',
+            target: entity('lock.front_door'),
+            params: { domain: 'lock', service: 'lock' },
+          }),
+          serviceCall({
+            name: 'Open garage for escape route',
+            target: entity('cover.garage_door'),
+            params: { domain: 'cover', service: 'open_cover' },
+          }),
+          serviceCall({
+            name: 'Turn on emergency LED',
+            target: entity('switch.notification_led'),
+            params: { domain: 'switch', service: 'turn_on' },
+          }),
+        ),
+      ],
+    });
+
+    await blocks.registry.registerAutomation(emergencyResponse);
+    hass.fireTrigger({ emergency: true });
+
+    // All emergency measures should be triggered concurrently
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'light',
+      service: 'turn_on',
+      target: { entity_id: ['light.living_room'] },
+    });
+
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'lock',
+      service: 'lock',
+      target: { entity_id: ['lock.front_door'] },
+    });
+
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'cover',
+      service: 'open_cover',
+      target: { entity_id: ['cover.garage_door'] },
+    });
+
+    await expect(hass).toHaveHadServiceCallWithParams({
+      domain: 'switch',
+      service: 'turn_on',
+      target: { entity_id: ['switch.notification_led'] },
+    });
+  });
+
+  // Service calls would need to support dynamically injecting targets for this to work
+
+  // test('Complex loop with dynamic entity combinations', async () => {
+  //   const { blocks, hass } = await initialiseTestBlocks({
+  //     states: advancedStates,
+  //     services: advancedServices,
+  //   });
+
+  //   const cleaningTrigger = trigger({
+  //     name: 'Weekly cleaning schedule',
+  //     trigger: { cleaning_day: true },
+  //   });
+
+  //   const iterateEntities = () => {
+  //     const roomEntities = [
+  //       entity('light.living_room'),
+  //       entity('light.bedroom'),
+  //       entity('light.kitchen'),
+  //     ];
+
+  //     let index = 0;
+
+  //     return assertion<
+  //       void,
+  //       { index: number; entity: IEntity<`light.${string}`> | undefined }
+  //     >({
+  //       name: 'Loop through entities',
+  //       predicate: () => {
+  //         const entity = roomEntities[index];
+
+  //         const result = {
+  //           result: Boolean(entity),
+  //           output: {
+  //             entity,
+  //             index,
+  //           },
+  //         };
+
+  //         index++;
+
+  //         return result;
+  //       },
+  //     });
+  //   };
+
+  //   const entityRemaining = iterateEntities();
+
+  //   // Loop through all rooms and turn lights on/off for cleaning
+  //   const cleaningRoutine = automation({
+  //     name: 'Automated cleaning routine',
+  //     when: cleaningTrigger,
+  //     then: [
+  //       loop({
+  //         name: 'Room by room cleaning prep',
+  //         while: entityRemaining,
+  //         do: serviceCall({
+  //           name: 'Turn on room light for cleaning',
+  //           target: roomLight,
+  //           params: { domain: 'light', service: 'turn_on' },
+  //         }),
+  //       }),
+  //       serviceCall({
+  //         name: 'Start vacuum cleaning',
+  //         target: entity('vacuum.robot'),
+  //         params: { domain: 'vacuum', service: 'start' },
+  //       }),
+  //     ],
+  //   });
+
+  //   await blocks.registry.registerAutomation(cleaningRoutine);
+  //   hass.fireTrigger({ cleaning_day: true });
+
+  //   // All room lights should be turned on via loop
+  //   await expect(hass).toHaveHadServiceCallWithParams({
+  //     domain: 'light',
+  //     service: 'turn_on',
+  //     target: { entity_id: ['light.living_room'] },
+  //   });
+
+  //   await expect(hass).toHaveHadServiceCallWithParams({
+  //     domain: 'light',
+  //     service: 'turn_on',
+  //     target: { entity_id: ['light.bedroom'] },
+  //   });
+
+  //   await expect(hass).toHaveHadServiceCallWithParams({
+  //     domain: 'light',
+  //     service: 'turn_on',
+  //     target: { entity_id: ['light.kitchen'] },
+  //   });
+
+  //   await expect(hass).toHaveHadServiceCallWithParams({
+  //     domain: 'vacuum',
+  //     service: 'start',
+  //     target: { entity_id: ['vacuum.robot'] },
+  //   });
+  // });
+});
+
+// describe('Real-World Scenario Simulations', () => {
+//   test('Smart morning routine with cascading wake-up sequence', async () => {
+//     const { blocks, hass } = await initialiseTestBlocks({
+//       states: advancedStates,
+//       services: advancedServices,
+//     });
+
+//     const alarmTrigger = trigger({
+//       name: 'Morning alarm triggered',
+//       trigger: { alarm_time: '07:00' },
+//     });
+
+//     const isWeekend = assertion({
+//       name: 'Is weekend',
+//       predicate: () => {
+//         const day = new Date().getDay();
+//         return day === 0 || day === 6; // Sunday or Saturday
+//       },
+//     });
+
+//     // Smart morning routine that adapts to weekday vs weekend
+//     const morningRoutine = automation({
+//       name: 'Adaptive morning wake-up routine',
+//       when: alarmTrigger,
+//       then: [
+//         ifThenElseCondition({
+//           name: 'Weekend vs weekday routine',
+//           condition: isWeekend,
+//           then: [
+//             // Weekend: Gentle wake-up
+//             serviceCall({
+//               name: 'Gentle bedroom lighting',
+//               target: entity('light.bedroom'),
+//               params: { domain: 'light', service: 'turn_on' },
+//             }),
+//           ],
+//           else: [
+//             // Weekday: Full routine
+//             serviceCall({
+//               name: 'Turn on bedroom lights',
+//               target: entity('light.bedroom'),
+//               params: { domain: 'light', service: 'turn_on' },
+//             }),
+//             serviceCall({
+//               name: 'Turn on living room TV for news',
+//               target: entity('media_player.living_room_tv'),
+//               params: { domain: 'media_player', service: 'turn_on' },
+//             }),
+//             serviceCall({
+//               name: 'Set comfortable temperature',
+//               target: entity('climate.house'),
+//               params: { domain: 'climate', service: 'set_temperature' },
+//             }),
+//           ],
+//         }),
+//       ],
+//     });
+
+//     await blocks.registry.registerAutomation(morningRoutine);
+
+//     // Test weekday scenario
+//     vi.setSystemTime(new Date('2024-01-01T07:00:00')); // Monday
+//     hass.fireTrigger({ alarm_time: '07:00' });
+
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'light',
+//       service: 'turn_on',
+//       target: { entity_id: ['light.bedroom'] },
+//     });
+
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'media_player',
+//       service: 'turn_on',
+//       target: { entity_id: ['media_player.living_room_tv'] },
+//     });
+
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'climate',
+//       service: 'set_temperature',
+//       target: { entity_id: ['climate.house'] },
+//     });
+//   });
+
+//   test('Intelligent home departure detection and automation', async () => {
+//     const { blocks, hass } = await initialiseTestBlocks({
+//       states: advancedStates,
+//       services: advancedServices,
+//     });
+
+//     const departureTrigger = trigger({
+//       name: 'All occupants left home',
+//       trigger: { occupancy: 'away' },
+//     });
+
+//     const hasLaundryRunning = assertion({
+//       name: 'Washing machine is running',
+//       predicate: ({ hass: hassState }) => {
+//         const state = hassState.getState('binary_sensor.washing_machine');
+//         return state === 'on';
+//       },
+//     });
+
+//     // Smart departure routine with conditional appliance management
+//     const departureAutomation = automation({
+//       name: 'Intelligent departure management',
+//       when: departureTrigger,
+//       then: [
+//         concurrently(
+//           serviceCall({
+//             name: 'Turn off all lights',
+//             target: entity('light.living_room'),
+//             params: { domain: 'light', service: 'turn_off' },
+//           }),
+//           serviceCall({
+//             name: 'Lock front door',
+//             target: entity('lock.front_door'),
+//             params: { domain: 'lock', service: 'lock' },
+//           }),
+//           serviceCall({
+//             name: 'Turn off media players',
+//             target: entity('media_player.living_room_tv'),
+//             params: { domain: 'media_player', service: 'turn_off' },
+//           }),
+//         ),
+//         when({
+//           name: 'Conditional appliance management',
+//           condition: hasLaundryRunning,
+//           then: [
+//             // Keep some systems on if laundry is running
+//             serviceCall({
+//               name: 'Keep notification LED on',
+//               target: entity('switch.notification_led'),
+//               params: { domain: 'switch', service: 'turn_on' },
+//             }),
+//           ],
+//           else: [
+//             // Full shutdown if no active appliances
+//             serviceCall({
+//               name: 'Turn off notification LED',
+//               target: entity('switch.notification_led'),
+//               params: { domain: 'switch', service: 'turn_off' },
+//             }),
+//           ],
+//         }),
+//       ],
+//     });
+
+//     await blocks.registry.registerAutomation(departureAutomation);
+//     hass.fireTrigger({ occupancy: 'away' });
+
+//     // Verify departure actions
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'light',
+//       service: 'turn_off',
+//       target: { entity_id: ['light.living_room'] },
+//     });
+
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'lock',
+//       service: 'lock',
+//       target: { entity_id: ['lock.front_door'] },
+//     });
+
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'media_player',
+//       service: 'turn_off',
+//       target: { entity_id: ['media_player.living_room_tv'] },
+//     });
+
+//     // Should turn off LED since washing machine is off in test states
+//     await expect(hass).toHaveHadServiceCallWithParams({
+//       domain: 'switch',
+//       service: 'turn_off',
+//       target: { entity_id: ['switch.notification_led'] },
+//     });
+//   });
+// });

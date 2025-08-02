@@ -43,6 +43,10 @@ Note, you should ask me before installing any packages
 
 ## Development Practises
 
+### Code Coverage
+
+We aim to achieve 100% code coverage. To check the coverage of a given package, add the `--coverage` flag to the `test` target. This will generate a report in the terminal, but it will also provide a comprehensive HTML report in the project directory under `./test-output/vitest/coverage`
+
 ### API Changes
 
 - Periodically, you'll need to run the `generate-api` target - if it reports any changes, let me know

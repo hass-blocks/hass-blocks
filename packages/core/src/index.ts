@@ -136,4 +136,10 @@ export {
   sendRemoteCommands,
 } from '@actions';
 
-export { stateIs, stateIsNot, gate, entityExists } from '@assertions';
+export {
+  stateIs,
+  stateIsNot,
+  gate,
+  entityExists,
+  iterating,
+} from '@assertions';

@@ -12,7 +12,19 @@ export default defineConfig(() => ({
     include: ['src/lib/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     reporters: ['default'],
     coverage: {
-      include: ['src/lib/*.ts'],
+      thresholds: {
+        lines: 100,
+        functions: 100,
+        statements: 100,
+        branches: 100,
+      },
+      include: ['src/lib/**/*.ts'],
+      exclude: [
+        '**/index.ts',
+        '**/types/**/*.ts',
+        '**/websocket-client/messages/**/*.ts',
+        '**/websocket-message.ts',
+      ],
       reportsDirectory: './test-output/vitest/coverage',
       provider: 'v8' as const,
     },

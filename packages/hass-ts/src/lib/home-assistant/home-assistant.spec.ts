@@ -156,6 +156,39 @@ describe('The client', () => {
 
       expect(result).toEqual(entries);
     });
+
+    it('handles multiple query parameters including dates', async () => {
+      const mockRestClient = mock<RestClient>();
+      const entries: LogBookEntry[] = [
+        {
+          when: '2023-01-01T00:00:00.000Z',
+          name: 'Test Entry',
+          message: 'Something happened',
+          entity_id: 'sensor.test',
+          domain: 'sensor',
+          context_user_id: null,
+        },
+      ];
+
+      const endTime = new Date('2023-01-02T00:00:00.000Z');
+      const startTime = new Date('2023-01-01T00:00:00.000Z');
+
+      when(mockRestClient.get)
+        .calledWith(
+          '/logbook/2023-01-01T00:00:00.000Z?entity=sensor.test&end_time=2023-01-02T00:00:00.000Z',
+        )
+        .thenResolve(entries);
+
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
+
+      const result = await client.getLogbook({
+        entity: 'sensor.test',
+        timestamp: startTime,
+        endTime,
+      });
+
+      expect(result).toEqual(entries);
+    });
   });
 
   describe('getHistory', () => {
@@ -224,6 +257,24 @@ describe('The client', () => {
         timestamp,
         minimalResponse: true,
         noAttributes: true,
+      });
+
+      expect(result).toEqual(states);
+    });
+
+    it('handles simple filterEntityId parameter correctly', async () => {
+      const mockRestClient = mock<RestClient>();
+      const states = mock<State[][]>();
+      const filterEntityId = ['sensor.test'];
+
+      when(mockRestClient.get)
+        .calledWith('/history/period?filter_entity_id=sensor.test')
+        .thenResolve(states);
+
+      const client = new HomeAssistant(mock(), mockRestClient, mock());
+
+      const result = await client.getHistory({
+        filterEntityId,
       });
 
       expect(result).toEqual(states);
@@ -986,6 +1037,118 @@ describe('The client', () => {
       vi.advanceTimersByTime(400);
 
       expect(callback).toHaveBeenCalledWith(message.event);
+    });
+  });
+
+  describe('fireEvent', () => {
+    it('sends the correct command and returns the result', async () => {
+      const mockWebsocketClient = mock<WebsocketClient>();
+      const mockRestClient = mock<RestClient>();
+      const logger = mock<Logger>();
+
+      const expectedResult = { context: { id: 'test-context-id' } };
+      when(mockWebsocketClient.sendCommand)
+        .calledWith({
+          type: 'fire_event',
+          event_type: 'test_event',
+          event_data: { foo: 'bar' },
+        })
+        .thenResolve({
+          id: 1,
+          type: 'result',
+          success: true,
+          result: expectedResult,
+        });
+
+      const client = new HomeAssistant(
+        mockWebsocketClient,
+        mockRestClient,
+        logger,
+      );
+
+      const result = await client.fireEvent({
+        event_type: 'test_event',
+        event_data: { foo: 'bar' },
+      });
+
+      expect(result).toEqual(expectedResult);
+    });
+  });
+
+  describe('Symbol.asyncDispose', () => {
+    it('calls close when Symbol.asyncDispose is invoked', async () => {
+      const mockWebsocketClient = mock<WebsocketClient>();
+      const mockRestClient = mock<RestClient>();
+      const logger = mock<Logger>();
+
+      const client = new HomeAssistant(
+        mockWebsocketClient,
+        mockRestClient,
+        logger,
+      );
+
+      const closeSpy = vi.spyOn(client, 'close').mockResolvedValue();
+
+      await client[Symbol.asyncDispose]();
+
+      expect(closeSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe('on with invalid arguments', () => {
+    it('uses empty callback when both arguments are invalid types', async () => {
+      const mockWebsocketClient = mock<WebsocketClient>();
+      const mockRestClient = mock<RestClient>();
+      const logger = mock<Logger>();
+
+      const testId = 1;
+      const listenerId = 'listener-123';
+
+      when(mockWebsocketClient.sendCommand)
+        .calledWith({ type: 'subscribe_events' })
+        .thenResolve({
+          id: testId,
+          type: 'result',
+          success: true,
+          result: {},
+        });
+
+      let capturedCallback: ((message: MessageFromServer) => void) | undefined;
+      when(mockWebsocketClient.addMessageListener)
+        .calledWith(expect.any(Function))
+        .thenDo((callback) => {
+          capturedCallback = callback;
+          return listenerId;
+        });
+
+      const client = new HomeAssistant(
+        mockWebsocketClient,
+        mockRestClient,
+        logger,
+      );
+
+      // Call with invalid types - should trigger empty callback
+      // Using non-function/non-string types to trigger fallback case
+      await (client as any).on(
+        123, // number instead of string or function
+        'not-a-function', // string instead of function
+      );
+
+      // Verify the empty callback was used by calling it
+      expect(capturedCallback).toBeDefined();
+
+      // Call the captured callback to ensure it doesn't throw
+      const testMessage: MessageFromServer = {
+        id: testId,
+        type: 'event',
+        event: mockEventData,
+      };
+
+      expect(() => {
+        if (capturedCallback) {
+          capturedCallback(testMessage);
+        }
+      }).not.toThrow();
     });
   });
 });

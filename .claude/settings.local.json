@@ -19,7 +19,9 @@
       "mcp__ide__getDiagnostics",
       "Bash(pntml exec nx lint:*)",
       "Bash(grep:*)",
-      "Bash(pnpm exec tsc:*)"
+      "Bash(pnpm exec tsc:*)",
+      "mcp__nx-mcp__nx_project_details",
+      "mcp__nx-mcp__nx_current_running_tasks_details"
     ],
     "deny": []
   }

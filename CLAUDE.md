@@ -19,16 +19,10 @@ Because this repo is an NX monorepo, it is divided into 'projects' (a folder wit
 - `@hass-blocks/typed-socket-client` - a package which allows you to create a backend based on socket.io, with with handlers and clients that preserves strong typing across the API boundary
 - `@hass-blocks/websocket-plugin` - a plugin for Hass Blocks that creates a websocket server to allow interaction with Hass Blocks along with a react hook that can communicate with that server
 
-## Commands Useful in Development
-
-The targets against each of the above packages can be executed like this
-
-`pnpm exec nx run <project>:<target>`
-
-The repo contains a custom NX plugin which provides the following targets for most projects:
+You can use the NX mcp server to interact with them. The relevant targets are:
 
 - `test` - for running all unit tests associated with a project
-- `typecheck` - for checking TypeScript types associated with a project
+- `check-types` - for checking TypeScript types associated with a project
 - `lint` - for running eslint against a project
 - `generate-api` - for generating the .d.ts rollup, generating an API report and warning if the API of a package has changed
 - `build` - for transpiling the TypeScript source code into executable JavaScript
@@ -102,3 +96,5 @@ When executing in a VSCode environment, the editor will provide you with diagnos
 
 - When using `vi.mock()` at the top level of a test file, always add `vi.resetAllMocks()` in an `afterEach` hook to prevent mock state pollution
 - use `vi.mock('package')` without factory functions - Vitest automatically mocks all exports. Only use factory functions when you need specific mock implementations. Then use `vi.mocked()` directly on imported functions to configure behavior
+
+IMPORTANT - ALWAYS CONSISELY SUMMARISE BEHAVIOURAL RULES FROM THIS DOCUMENT YOU ARE EXPECTED TO FOLLOW AFTER EACH RESPONSE

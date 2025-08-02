@@ -17,7 +17,10 @@ export type ServiceCallArgs<P> = {
   params: Omit<CallServiceCommand<P>, 'id' | 'type' | 'target'>;
 };
 
-class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
+class ServiceCall<P> extends Action<
+  (Partial<P> & { target?: ITarget }) | undefined,
+  void
+> {
   public override type = 'service-call';
 
   public constructor(
@@ -29,11 +32,12 @@ class ServiceCall<P> extends Action<Partial<P> | undefined, void> {
       ...(serviceConfig.target ? { targets: [serviceConfig.target] } : {}),
       name: serviceConfig.name,
       callback: async ({ hass, input }) => {
-        const { target } = this.serviceConfig;
+        const { target: inputTarget, ...restInput } = input ?? {};
+        const target = this.serviceConfig.target ?? inputTarget;
 
         const serviceData = {
           ...serviceConfig.params.service_data,
-          ...input,
+          ...restInput,
         };
 
         const addServiceData =

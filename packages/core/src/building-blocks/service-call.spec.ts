@@ -2,11 +2,17 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 import { when } from 'vitest-when';
 
-import type { IFullBlocksClient, IBlockRunner, IHass } from '@types';
+import {
+  type IFullBlocksClient,
+  type IBlockRunner,
+  type IHass,
+  ITarget,
+} from '@types';
 import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 import { BlockValidationError } from '@errors';
 
 import { serviceCall } from './service-call.ts';
+import { entity } from '@targets';
 
 vi.mock('@errors');
 
@@ -37,6 +43,85 @@ describe('serviceCall', () => {
     });
 
     expect(service.type).toBe('service-call');
+  });
+
+  it('should use target supplied in the params', async () => {
+    const mockHass = mock<IHass>();
+    const mockRunner = mock<IBlockRunner>();
+    const target = entity('light.living_room');
+
+    when(mockHass.callService)
+      .calledWith({
+        domain: 'light',
+        service: 'turn_on',
+        target: {
+          entity_id: ['light.living_room'],
+        },
+      })
+      .thenResolve([]);
+
+    const service = serviceCall({
+      name: 'Turn on light',
+      params: {
+        domain: 'light',
+        service: 'turn_on',
+      },
+      target: target,
+    });
+
+    await service.run({
+      hass: mockHass,
+      input: undefined,
+      runner: mockRunner,
+    });
+
+    expect(mockHass.callService).toHaveBeenCalledWith({
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: ['light.living_room'],
+      },
+    });
+  });
+
+  it('should allow target to be inserted by block input', async () => {
+    expect.assertions(1);
+
+    const mockHass = mock<IHass>();
+    const mockRunner = mock<IBlockRunner>();
+    const target = entity('light.living_room');
+
+    when(mockHass.callService)
+      .calledWith({
+        domain: 'light',
+        service: 'turn_on',
+        target: {
+          entity_id: ['light.living_room'],
+        },
+      })
+      .thenResolve([]);
+
+    const service = serviceCall({
+      name: 'Turn on light',
+      params: {
+        domain: 'light',
+        service: 'turn_on',
+      },
+    });
+
+    await service.run({
+      hass: mockHass,
+      input: { target },
+      runner: mockRunner,
+    });
+
+    expect(mockHass.callService).toHaveBeenCalledWith({
+      domain: 'light',
+      service: 'turn_on',
+      target: {
+        entity_id: ['light.living_room'],
+      },
+    });
   });
 
   it('should call service without target', async () => {

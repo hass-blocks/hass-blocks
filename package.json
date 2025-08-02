@@ -8,7 +8,7 @@
     "prepare": "husky",
     "format": "prettier --write .",
     "check-style": "prettier --check .",
-    "test": "pnpm exec nx affected -t test",
+    "test": "pnpm exec nx affected -t test --coverage",
     "lint": "pnpm exec nx affected -t lint",
     "build": "pnpm exec nx affected -t build",
     "e2e-test": "pnpm exec nx affected -t e2e-test",

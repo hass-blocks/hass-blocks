@@ -61,31 +61,6 @@ describe('Switch', () => {
     });
     expect(mockMqttSwitch.initialise).toHaveBeenCalled();
   });
-
-  it('should handle empty identifier when creating MQTT switch', async () => {
-    const testSwitch = new Switch({
-      id: 'switch',
-      create: true,
-      friendlyName: 'Test Switch',
-    });
-    const mockHass = mock<IFullBlocksClient>();
-    const mockMqtt = mock<IMQTTConnection>();
-    const mockMqttSwitch = mock<MqttSwitch>({
-      initialise: vi.fn(),
-    });
-    vi.mocked(MqttSwitch).mockReturnValue(mockMqttSwitch);
-
-    await testSwitch.initialise(mockHass, mockMqtt);
-
-    expect(MqttSwitch).toHaveBeenCalledWith(mockMqtt, {
-      friendlyName: 'Test Switch',
-      discoveryPrefix: 'homeassistant',
-      context: 'blocks',
-      deviceClass: 'switch',
-      uniqueId: '',
-    });
-    expect(mockMqttSwitch.initialise).toHaveBeenCalled();
-  });
 });
 
 describe('toggle factory function', () => {

@@ -40,6 +40,8 @@ expect.extend({
     } catch {
       return {
         pass: false,
+        actual: received.getServiceCalls(),
+        expected: params,
         message: () =>
           `service call with params ${paramsString} was${isNot ? '' : ' not'} recieved`,
       };

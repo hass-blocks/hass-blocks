@@ -2,7 +2,7 @@ import { assertion } from '@building-blocks';
 /**
  * Use with the loop block to iterate through a list. Will return
  * an assertion that returns the next item in the list each time it is executed
- * then sets continue to false on the last execution
+ * then sets the assertion result to false on the last execution
  *
  * @param list - a list of items you want to iterate through
  * @returns
@@ -23,10 +23,10 @@ import { assertion } from '@building-blocks';
  * ```
  *
  */
-export const iterating = <TType>(...list: TType[]) => {
+export const iterating = <TType extends unknown[]>(...list: TType) => {
   let index = 0;
 
-  return assertion({
+  return assertion<void, { value: TType[number]; index: number; list: TType }>({
     name: 'Iterate list',
     predicate: () => {
       const result = {

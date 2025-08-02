@@ -85,7 +85,7 @@ describe('the iterate block', () => {
     }
   });
 
-  it('supplies the last item in the sequence the third time around and marks the result as continue', async () => {
+  it('supplies fourth time around and marks the result as continue', async () => {
     const mockHass = mock<IHass>();
     const mockRunner = mock<IBlockRunner>();
     const theBlock = iterating(1, 2, 3);

@@ -19,7 +19,7 @@ Because this repo is an NX monorepo, it is divided into 'projects' (a folder wit
 - `@hass-blocks/typed-socket-client` - a package which allows you to create a backend based on socket.io, with with handlers and clients that preserves strong typing across the API boundary
 - `@hass-blocks/websocket-plugin` - a plugin for Hass Blocks that creates a websocket server to allow interaction with Hass Blocks along with a react hook that can communicate with that server
 
-You can use the NX mcp server to interact with them. The relevant targets are:
+You MUST use the NX mcp server to interact with them. The relevant targets are:
 
 - `test` - for running all unit tests associated with a project
 - `check-types` - for checking TypeScript types associated with a project
@@ -35,66 +35,17 @@ If you want to install packages, you can use the following commands
 
 Note, you should ask me before installing any packages
 
-## Development Practises
+## Behavioural Rules
 
-### Review
-
-When you have finished making all changes, review all the code you have written and make sure it matches these standards, just in case you've m issed something
-
-### Code Coverage
-
-We aim to achieve 100% code coverage. To check the coverage of a given package, add the `--coverage` flag to the `test` target. This will generate a report in the terminal, but it will also provide a comprehensive HTML report in the project directory under `./test-output/vitest/coverage`. If the vite config doesn't have a threshold, add one based on the current coverage. If it does, but its lower than the current coverage, update it
-
-### API Changes
-
-- Periodically, you'll need to run the `generate-api` target - if it reports any changes, let me know
-
-### Code Style
-
-- Changing absolute imports specified by a tsconfig path mapping to relative imports is usually not the right thing to do. Often when an absolute path isn't available in a test file its because the paths property of the `tsconfig.spec.json` doesn't match the `tsconfig.lib.json`
-- Never use type assertions (the 'as' keyword) under any circumstances. All type issues must be resolved through proper typing.
-- The 'any' type is forbidden except in very limited circumstances. You must ask for explicit permission before using 'any' and provide justification for why proper typing cannot be achieved
-- Never use 'as unknown as X' except in exceptional circumstances. Always try to find proper typing alternatives first, then ask for permission if no other solution exists
-- Under NO CIRCUMSTANCES add ANY comments to code. The codebase maintains a strict no-comments policy. Code should be self-documenting through clear naming and structure. **EXCEPTIONS**: JSDoc comments are acceptable for public API documentation, and `// NOOP` comments are acceptable in empty blocks to satisfy linter requirements.
-
-### Autoformatting
-
-You can also run `pnpm exec nx format` to format all code in the codebase with prettier. Human devs have IDEs that autoformat code on every save. You MUST do the same by running the this command each time you make a change.
-
-### Linting and other diagnostics
-
-When executing in a VSCode environment, the editor will provide you with diagnostic feedback in the form of eslint and TypeScript errors. Any violations reported (either warnings or errors) MUST be fixed before proceeding
-
-### Testing
-
-- Tests should not test private implementation details, if you have to do a type assertion in order to get at something, you probably don't want to test it
-- If TypeScript says a case is impossible, then its impossible and we shouldn't be testing it - this might mean we need to change the implementation
-- No tests should be written for barrel files. If the coverage report includes them, change the vite settings to exclude them from the report
-- Code MUST be written using strict red/green refactor style TDD; write a test to specifiy the requested behaviour, write the smallest amount of code that will make that test pass, then refactor the code if needed
+- YOU MUST write all code using a strict TDD based red/green refactor approach
+- YOU MUST always fix any diagnostics reported by the editor before proceeding to write new code
+- YOU MUST NOT add comments to code for any reason other than 'NOOP' comments for empty blocks, eslint ignore comments, or TSDoc comments
+- YOU MUST format all code you write using the NX MCP server after each change
+- Tests MUST NOT test private implementation details, if you have to do a type assertion in order to get at something, you probably don't want to test it
 - Tests SHOULD be written one at a time, to ensure that everything is working before proceeding
-- Test files usually follow the pattern `*.spec.ts` or `*.test.ts`
-- There are also type level tests following the pattern `*.test.d.ts`
-
-#### Hooks
-
 - Hooks MUST be placed at the global scope of a test file
 - Hooks SHOULD be used sparingly and only for test hygiene - clearing mock states, cleaning up resources (servers, timers, etc.). Everything else needed for a test should be created within the test itself for clarity and isolation
-
-### Assertions
-
 - When placing assertions inside 'if' blocks, you MUST use `expect.assertions(<number>)` to prevent false positives from skipped assertions
-
-### Test State
-
-- You MUST NOT put mutable state in the global scope of test files unless it is absolutely essential. Create mocks and variables inside individual tests or test hooks to maintain test isolation
-
-### Structure
-
-- Tests MUST NOT be nested further than one describe/it
-
-### Mocking
-
-- When using `vi.mock()` at the top level of a test file, always add `vi.resetAllMocks()` in an `afterEach` hook to prevent mock state pollution
-- use `vi.mock('package')` without factory functions - Vitest automatically mocks all exports. Only use factory functions when you need specific mock implementations. Then use `vi.mocked()` directly on imported functions to configure behavior
-
-IMPORTANT - ALWAYS CONSISELY SUMMARISE BEHAVIOURAL RULES FROM THIS DOCUMENT YOU ARE EXPECTED TO FOLLOW AFTER EACH RESPONSE
+- You MUST NOT put mutable state in the global scope of test files unless it is absolutely essential.
+- When using `vi.mock()` at the top level of a test file, YOU MUST add `vi.resetAllMocks()` in an `afterEach` hook to prevent mock state pollution
+- You MUST always concisely summarise these behavioural rules after each response

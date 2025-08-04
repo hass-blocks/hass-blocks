@@ -7,9 +7,19 @@
   "containerEnv": {
     "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
   },
+  "postCreateCommand": "sudo chown -R vscode:vscode /home/vscode && sudo chmod -R 755 /home/vscode",
   "customizations": {
     "vscode": {
-      "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode"],
+      "extensions": [
+        "timonwong.shellcheck",
+        "esbenp.prettier-vscode",
+        "vscodevim.vim"
+      ],
+      "files.watcherExclude": {
+        "**/node_modules/**": true,
+        "**/dist/**": true,
+        "**/.nx/**": true
+      },
       "settings": {
         "terminal.integrated.profiles.linux": {
           "zsh": {
@@ -24,8 +34,14 @@
       }
     }
   },
+  "features": {
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
+  },
   "mounts": [
     "type=volume,target=/var/lib/docker",
-    "type=volume,target=/mnt/supervisor"
+    "type=volume,target=/mnt/supervisor",
+    "type=bind,source=${localWorkspaceFolder}/hass-blocks-integration,target=/config/custom_components/hass_blocks",
+    "type=bind,source=${localWorkspaceFolder}/hass-blocks-integration/test_config,target=/config",
+    "type=volume,source=claude-settings,target=/home/vscode/.claude"
   ]
 }

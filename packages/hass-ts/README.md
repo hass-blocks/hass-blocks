@@ -91,6 +91,10 @@ When running as a Home Assistant add-on, no configuration is needed. The client 
 #### Entity Management
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Get all entities
 const entities = await client.getEntities();
 
@@ -104,6 +108,10 @@ const state = await client.getState('sensor.temperature');
 #### Service Calls
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Basic service call
 await client.callService({
   domain: 'light',
@@ -131,6 +139,10 @@ const response = await client.callService({
 #### Event Handling
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Listen to all events
 const allEventsId = await client.on((event) => {
   console.log('Event received:', event.event_type);
@@ -150,6 +162,10 @@ client.off(allEventsId);
 #### System Information
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Get Home Assistant configuration
 const config = await client.getConfig();
 
@@ -169,6 +185,10 @@ const panels = await client.getPanels();
 #### History and Logs
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Get entity history
 const history = await client.getHistory({
   filterEntityId: ['sensor.temperature'],
@@ -236,19 +256,28 @@ await client.on('state_changed', async (event) => {
 ### Service Discovery
 
 ```typescript
+import { getConfig, initialiseHass, type Service } from '@hass-blocks/hass-ts';
+
+const client = await initialiseHass(getConfig());
+
 // Get all available services for a domain
 const services = await client.getServices();
-const lightServices = services.light;
+const lightServices = services['light'];
 
-Object.entries(lightServices).forEach(([serviceName, service]) => {
-  console.log(`${serviceName}: ${service.description}`);
-  console.log('Fields:', Object.keys(service.fields));
-});
+if (lightServices) {
+  Object.entries(lightServices).forEach(([serviceName, service]) => {
+    const typedService = service as Service;
+    console.log(`${serviceName}: ${typedService.description}`);
+    console.log('Fields:', Object.keys(typedService.fields));
+  });
+}
 ```
 
 ### Resource Cleanup
 
 ```typescript
+import { getConfig, initialiseHass } from '@hass-blocks/hass-ts';
+
 // Use async disposal (Node.js 20+)
 {
   await using client = await initialiseHass(getConfig());
@@ -261,27 +290,6 @@ try {
   // Use client...
 } finally {
   await client.close();
-}
-```
-
-## Error Handling
-
-The client includes custom error types for better error handling:
-
-```typescript
-import { HassHttpError, ErrorResponseError } from '@hass-blocks/hass-ts';
-
-try {
-  await client.callService({
-    domain: 'invalid',
-    service: 'invalid',
-  });
-} catch (error) {
-  if (error instanceof HassHttpError) {
-    console.error('HTTP Error:', error.status, error.message);
-  } else if (error instanceof ErrorResponseError) {
-    console.error('API Error:', error.code, error.message);
-  }
 }
 ```
 

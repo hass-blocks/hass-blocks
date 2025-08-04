@@ -13,9 +13,10 @@ import {
   serviceCall,
   when,
 } from '@building-blocks';
+import { waitMinutes, waitSeconds } from '@actions';
 import { trigger } from '@core';
-import { entity } from '@targets';
-import { iterating } from 'src/assertions/iterating.ts';
+import { entity, combine } from '@targets';
+import { iterating } from '@assertions';
 import { IEntity } from '@types';
 
 const advanceTimersByTime = (time: number) => {
@@ -1248,5 +1249,89 @@ describe('Real-World Scenario Simulations', () => {
       service: 'turn_off',
       target: { entity_id: ['switch.notification_led'] },
     });
+  });
+});
+
+test('Delayed lighting automation using waitSeconds and waitMinutes', async () => {
+  const testStates: State[] = [
+    mock({ entity_id: 'light.living_room', state: 'off' }),
+    mock({ entity_id: 'light.bedroom', state: 'off' }),
+    mock({ entity_id: 'light.kitchen', state: 'off' }),
+  ];
+
+  const testServices: Record<string, Record<string, Service>> = {
+    light: {
+      turn_on: {
+        name: 'Turn On',
+        description: 'Turn light on',
+        response: { optional: true },
+        fields: {},
+      },
+      turn_off: {
+        name: 'Turn Off',
+        description: 'Turn light off',
+        response: { optional: true },
+        fields: {},
+      },
+    },
+  };
+
+  const { blocks, hass } = await initialiseTestBlocks({
+    states: testStates,
+    services: testServices,
+  });
+
+  const motionTrigger = trigger({
+    name: 'Motion detected in hallway',
+    trigger: { motion: 'detected' },
+  });
+
+  const delayedLightingAutomation = automation({
+    name: 'Delayed hallway lighting',
+    when: motionTrigger,
+    then: [
+      serviceCall({
+        name: 'Turn on hallway light immediately',
+        target: entity('light.living_room'),
+        params: { domain: 'light', service: 'turn_on' },
+      }),
+      waitSeconds(5),
+      serviceCall({
+        name: 'Turn on bedroom light after 5 seconds',
+        target: entity('light.bedroom'),
+        params: { domain: 'light', service: 'turn_on' },
+      }),
+      waitMinutes(2),
+      serviceCall({
+        name: 'Turn off all lights after 2 minutes',
+        target: combine(entity('light.living_room'), entity('light.bedroom')),
+        params: { domain: 'light', service: 'turn_off' },
+      }),
+    ],
+  });
+
+  await blocks.registry.registerAutomation(delayedLightingAutomation);
+  hass.fireTrigger({ motion: 'detected' });
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: { entity_id: ['light.living_room'] },
+  });
+
+  await advanceTimersByTime(5000);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_on',
+    target: { entity_id: ['light.bedroom'] },
+  });
+
+  await advanceTimersByTime(120000);
+
+  await expect(hass).toHaveHadServiceCallWithParams({
+    domain: 'light',
+    service: 'turn_off',
+    target: { entity_id: ['light.living_room', 'light.bedroom'] },
   });
 });

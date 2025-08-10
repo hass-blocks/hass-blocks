@@ -4,6 +4,7 @@
  * @packageDocumentation
  */
 export { initialiseHass, getConfig } from '@initialise';
+export { HassHttpError, ErrorResponseError, HassTsError } from '@errors';
 
 export type {
   CallServiceCommand,

@@ -63,8 +63,9 @@
       "automaticFromRef": true
     },
     "projectsRelationship": "independent",
-    "projects": ["packages/*"],
+    "projects": ["packages/*", "!packages/code-block-extractor"],
     "version": {
+      "preVersionCommand": "pnpm dlx nx run-many -t build",
       "conventionalCommits": true,
       "fallbackCurrentVersionResolver": "disk",
       "preserveLocalDependencyProtocols": false

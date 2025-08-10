@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/schema",
+  "version": 2,
+  "title": "Verify TypeScript in Markdown Documents",
+  "description": "Extract TypeScript from markdown and compile it with tsc",
+  "type": "object",
+  "properties": {
+    "markdownFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "A list of markdown files to check"
+    },
+    "tsconfigPath": {
+      "type": "string",
+      "description": "The TypeScript configuration file for the project"
+    }
+  },
+  "required": ["tsconfigPath"]
+}

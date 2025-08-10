@@ -13,6 +13,7 @@ import {
   generateApiExecutor,
   generateDocModelExecutor,
   buildExecutor,
+  verifyDocsExecutor,
 } from './executors';
 import {
   executorTarget,
@@ -95,6 +96,20 @@ async function createNodesInternal(
       })
     : {};
 
+  const libFile = join(projectRoot, `tsconfig.lib.json`);
+
+  const verifyDocsExecutorTarget = tsconfigFile
+    ? executorTarget({
+        name: 'verify-docs',
+        executor: verifyDocsExecutor,
+        productionInputsOnly: true,
+        options: {
+          tsconfigPath: libFile,
+          markdownFiles: [`${projectRoot}/README.md`],
+        },
+      })
+    : {};
+
   const targetExports = generateExports(exports);
 
   const generateApiTarget = targetExports
@@ -134,5 +149,6 @@ async function createNodesInternal(
     ...generateApiTarget,
     ...docModelTarget,
     ...buildTarget,
+    ...verifyDocsExecutorTarget,
   });
 }

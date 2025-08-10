@@ -112,7 +112,7 @@
     "typedoc-material-theme": "^1.4.0",
     "typedoc-plugin-pages": "^1.1.0",
     "typescript": "~5.8.3",
-    "typescript-docs-verifier": "2.5.3",
+    "typescript-docs-verifier": "3.0.1",
     "typescript-eslint": "8.19.0",
     "unionfs": "^4.5.4",
     "uuid": "11.1.0",

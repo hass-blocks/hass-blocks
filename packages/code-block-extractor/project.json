@@ -1,0 +1,37 @@
+{
+  "name": "@hass-blocks/code-block-extractor",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/code-block-extractor/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:swc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/code-block-extractor/dist",
+        "main": "packages/code-block-extractor/src/index.ts",
+        "tsConfig": "packages/code-block-extractor/tsconfig.lib.json",
+        "skipTypeCheck": true,
+        "stripLeadingPaths": true
+      }
+    },
+    "generate-types": {
+      "executor": "@hass-blocks/publisher:generate-types",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "projectFolder": "packages/code-block-extractor"
+      }
+    },
+    "doc-model": {
+      "dependsOn": ["typecheck"],
+      "executor": "@hass-blocks/publisher:doc-model",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "mainEntrypointFile": "packages/code-block-extractor/dist/index.d.ts",
+        "projectFolder": "packages/code-block-extractor",
+        "docModelFolder": "apps/docs-site/models"
+      }
+    }
+  }
+}

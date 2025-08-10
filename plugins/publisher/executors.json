@@ -19,6 +19,11 @@
       "implementation": "./src/executors/doc-model/executor",
       "schema": "./src/executors/doc-model/schema.json",
       "description": "doc-model executor"
+    },
+    "verify-docs": {
+      "implementation": "./src/executors/verify-docs/executor",
+      "schema": "./src/executors/verify-docs/schema.json",
+      "description": "verify-docs executor"
     }
   }
 }

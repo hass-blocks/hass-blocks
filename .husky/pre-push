@@ -1,1 +1,1 @@
-pnpm exec nx affected --targets=lint,generate-types,test,build --base=remotes/origin/main
+pnpm exec nx affected --targets=lint,check-types,test,build --base=remotes/origin/main

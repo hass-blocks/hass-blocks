@@ -1,43 +1,13 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "allow": [
-      "Bash(pnpm exec nx test:*)",
-      "Bash(pnpm lint:*)",
-      "Bash(pnpm exec nx run-many:*)",
-      "Bash(pnpm exec nx lint:*)",
-      "Bash(pnpm exec nx build:*)",
-      "Bash(pnpm exec nx:*)",
-      "Bash(find:*)",
-      "Bash(pnpm format:*)",
-      "Bash(pnpm exec vitest run:*)",
-      "Bash(timeout:*)",
-      "Bash(prettier:*)",
-      "Bash(pnpm exec prettier:*)",
-      "Bash(pnpm exec vitest:*)",
-      "Bash(pnpm test:*)",
-      "mcp__ide__getDiagnostics",
-      "Bash(pntml exec nx lint:*)",
-      "Bash(grep:*)",
-      "Bash(pnpm exec tsc:*)",
-      "mcp__nx-mcp__nx_project_details",
-      "mcp__nx-mcp__nx_current_running_tasks_details",
-      "mcp__nx-mcp__nx_workspace",
-      "Bash(ls:*)",
-      "Bash(mkdir:*)",
-      "Bash(npm exec nx test:*)",
-      "Bash(dmesg:*)",
-      "Bash(top:*)",
-      "mcp__playwright__browser_navigate",
-      "mcp__playwright__browser_snapshot",
-      "mcp__playwright__browser_click",
-      "mcp__playwright__browser_type",
-      "mcp__playwright__browser_wait_for",
-      "Bash(docker logs:*)",
-      "mcp__playwright__browser_install",
-      "mcp__playwright__browser_take_screenshot",
-      "Bash(git add:*)"
-    ],
+    "allow": ["Bash(curl:*)", "mcp__vscode-dev-tools__find_usages"],
     "deny": []
+  },
+  "hooks": {},
+  "mcpServers": {
+    "vscode-dev-tools": {
+      "url": "http://localhost:8008/sse"
+    }
   }
 }

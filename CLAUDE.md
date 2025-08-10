@@ -19,7 +19,7 @@ Because this repo is an NX monorepo, it is divided into 'projects' (a folder wit
 - `@hass-blocks/typed-socket-client` - a package which allows you to create a backend based on socket.io, with with handlers and clients that preserves strong typing across the API boundary
 - `@hass-blocks/websocket-plugin` - a plugin for Hass Blocks that creates a websocket server to allow interaction with Hass Blocks along with a react hook that can communicate with that server
 
-You MUST use the NX mcp server to interact with them. The relevant targets are:
+To run a target on a project, you can use `pnpx nx run <project>:<target>`. So for example, running the tests in the core package would be `pnpx nx run @hass-blocks/core:test`. The
 
 - `test` - for running all unit tests associated with a project
 - `check-types` - for checking TypeScript types associated with a project
@@ -33,19 +33,17 @@ If you want to install packages, you can use the following commands
 - `pnpm install -w --save-dev <package>` - install a development package at the workspace root
 - `cd <projectDir> && pnpm install <package>` - install a package for a given project
 
-Note, you should ask me before installing any packages
+You should ask me before installing any packages
+
+## Tool Use
+
+- Prefer using tools from the `vscode-dev-tools` MCP server to introspect code information if possible
+- You can use the `nx-mcp` MCP server to understand the NX workspace better
 
 ## Behavioural Rules
 
-- YOU MUST write all code using a strict TDD based red/green refactor approach
+- YOU MUST write all code using a strict TDD based red/green refactor approach - delegate to the TypeScript tester agent to write the tests for the RED stsage and the TypeScript pro agent to write the implementation (GREEN stage)
+- Once code is written and the tests pass, always get the TypeScript pro agent to check over both the implementation and test code to do the REFACTOR stage
 - YOU MUST always fix any diagnostics reported by the editor before proceeding to write new code
 - YOU MUST NOT add comments to code for any reason other than 'NOOP' comments for empty blocks, eslint ignore comments, or TSDoc comments
-- YOU MUST format all code you write using the NX MCP server after each change
-- Tests MUST NOT test private implementation details, if you have to do a type assertion in order to get at something, you probably don't want to test it
-- Tests SHOULD be written one at a time, to ensure that everything is working before proceeding
-- Hooks MUST be placed at the global scope of a test file
-- Hooks SHOULD be used sparingly and only for test hygiene - clearing mock states, cleaning up resources (servers, timers, etc.). Everything else needed for a test should be created within the test itself for clarity and isolation
-- When placing assertions inside 'if' blocks, you MUST use `expect.assertions(<number>)` to prevent false positives from skipped assertions
-- You MUST NOT put mutable state in the global scope of test files unless it is absolutely essential.
-- When using `vi.mock()` at the top level of a test file, YOU MUST add `vi.resetAllMocks()` in an `afterEach` hook to prevent mock state pollution
-- You MUST always concisely summarise these behavioural rules after each response
+- You MUST always concisely summarise these behavioural rules, along with any specified by your agent file before each response

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+echo "Setting up Hass Blocks integration in Home Assistant..."
+
+sleep 5
+
+sudo mkdir -p /mnt/supervisor/homeassistant/custom_components
+
+sudo rm -rf /mnt/supervisor/homeassistant/custom_components/hass_blocks
+sudo ln -sf /share/hass-blocks-integration /mnt/supervisor/homeassistant/custom_components/hass_blocks
+
+for file in /mnt/supervisor/share/hass-blocks-integration/test_config/*; do
+    if [ -f "$file" ]; then
+        filename=$(basename "$file")
+        sudo cp "$file" /mnt/supervisor/homeassistant/$filename
+    fi
+done
+
+echo "Hass Blocks integration setup complete!"
+
+if [ -f /usr/local/bin/devcontainer_bootstrap_original ]; then
+    exec /usr/local/bin/devcontainer_bootstrap_original "$@"
+fi

@@ -11,9 +11,12 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "nrwl.angular-console",
         "timonwong.shellcheck",
         "esbenp.prettier-vscode",
-        "vscodevim.vim"
+        "vscodevim.vim",
+        "dbaeumer.vscode-eslint",
+        "ms-playwright.playwright"
       ],
       "files.watcherExclude": {
         "**/node_modules/**": true,
@@ -38,10 +41,9 @@
     "ghcr.io/anthropics/devcontainer-features/claude-code:1.0": {}
   },
   "mounts": [
-    "type=volume,target=/var/lib/docker",
-    "type=volume,target=/mnt/supervisor",
-    "type=bind,source=${localWorkspaceFolder}/hass-blocks-integration,target=/config/custom_components/hass_blocks",
-    "type=bind,source=${localWorkspaceFolder}/hass-blocks-integration/test_config,target=/config",
-    "type=volume,source=claude-settings,target=/home/vscode/.claude"
+    "type=volume,target=/var/lib/docker,consistency=delegated",
+    "type=volume,target=/mnt/supervisor,consistency=delegated",
+    "type=bind,source=${localWorkspaceFolder}/hass-blocks-integration,target=/mnt/supervisor/share/hass-blocks-integration,consistency=delegated",
+    "type=volume,source=claude-settings,target=/home/vscode/.claude,consistency=delegated"
   ]
 }

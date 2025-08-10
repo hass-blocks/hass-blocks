@@ -1,7 +1,28 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
   "permissions": {
-    "allow": ["Bash(curl:*)", "mcp__vscode-dev-tools__find_usages"],
+    "allow": [
+      "Bash(curl:*)",
+      "mcp__vscode-dev-tools__find_usages",
+      "mcp__nx-mcp__nx_workspace",
+      "mcp__nx-mcp__nx_project_details",
+      "Bash(pnpx nx run:*)",
+      "Bash(node:*)",
+      "Bash(npx tsx:*)",
+      "mcp__vscode-dev-tools__get_hover_info",
+      "mcp__nx-mcp__nx_generators",
+      "mcp__nx-mcp__nx_generator_schema",
+      "Bash(rm:*)",
+      "Bash(pnpm run test:*)",
+      "Bash(pnpm run:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpx vitest:*)",
+      "Bash(grep:*)",
+      "Bash(pnpx nx test:*)",
+      "mcp__vscode-dev-tools__rename",
+      "Bash(mv:*)",
+      "Bash(pnpx nx:*)"
+    ],
     "deny": []
   },
   "hooks": {},

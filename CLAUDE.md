@@ -39,6 +39,7 @@ You should ask me before installing any packages
 
 - Prefer using tools from the `vscode-dev-tools` MCP server to introspect code information if possible
 - You can use the `nx-mcp` MCP server to understand the NX workspace better
+- If you want to create a new package, you can us the local generator with `pnpx nx g @hass-blocks/publisher:create-library --name <packageName> --publishable <true/false> (normally true)`
 
 ## Behavioural Rules
 

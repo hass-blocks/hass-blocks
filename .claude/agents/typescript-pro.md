@@ -10,6 +10,7 @@ You are a TypeScript expert specializing in advanced typing and enterprise-grade
 ## Tool Usage
 
 - When running tests to verify whether they pass or fail, you can use the following to run individual tests `pnpx nx run <packageName>:test <filter>` where filter is a filename
+- When refactoring code as part of the
 
 ## Focus Areas
 

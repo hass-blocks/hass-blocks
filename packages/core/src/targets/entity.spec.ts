@@ -3,7 +3,6 @@ import { mock } from 'vitest-mock-extended';
 
 import type { HassEntity, IFullBlocksClient } from '@types';
 import type { StateChangedEvent } from '@hass-blocks/hass-ts';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 import { Entity, entity } from './entity.ts';
 
@@ -42,14 +41,31 @@ describe('Entity', () => {
 
   it('should initialize successfully and provide current state', async () => {
     const testEntity = new Entity('light.living_room');
-    const mockMqtt = mock<IMQTTConnection>();
     const mockEntity = mock<HassEntity>();
     const mockHass = mock<IFullBlocksClient>({
       getEntity: vi.fn().mockReturnValue(mockEntity),
       onStateChanged: vi.fn().mockResolvedValue(undefined),
     });
 
-    await testEntity.initialise(mockHass, mockMqtt);
+    await testEntity.initialise(mockHass);
+
+    expect(mockHass.getEntity).toHaveBeenCalledWith('light.living_room');
+    expect(mockHass.onStateChanged).toHaveBeenCalledWith(
+      'light.living_room',
+      expect.any(Function),
+    );
+    expect(testEntity.currentState).toBe(mockEntity);
+  });
+
+  it('should initialize with only hass parameter (no mqtt parameter)', async () => {
+    const testEntity = new Entity('light.living_room');
+    const mockEntity = mock<HassEntity>();
+    const mockHass = mock<IFullBlocksClient>({
+      getEntity: vi.fn().mockReturnValue(mockEntity),
+      onStateChanged: vi.fn().mockResolvedValue(undefined),
+    });
+
+    await testEntity.initialise(mockHass);
 
     expect(mockHass.getEntity).toHaveBeenCalledWith('light.living_room');
     expect(mockHass.onStateChanged).toHaveBeenCalledWith(
@@ -61,7 +77,6 @@ describe('Entity', () => {
 
   it('should rethrow original error when initialization fails with generic error', async () => {
     const testEntity = new Entity('light.invalid');
-    const mockMqtt = mock<IMQTTConnection>();
     const originalError = new Error('Entity not found');
     const mockHass = mock<IFullBlocksClient>({
       getEntity: vi.fn().mockImplementation(() => {
@@ -70,7 +85,7 @@ describe('Entity', () => {
       onStateChanged: vi.fn().mockResolvedValue(undefined),
     });
 
-    await expect(testEntity.initialise(mockHass, mockMqtt)).rejects.toThrow(
+    await expect(testEntity.initialise(mockHass)).rejects.toThrow(
       'Entity not found',
     );
   });
@@ -94,9 +109,7 @@ describe('Entity', () => {
         // NOOP
       });
     });
-    const mockMqtt = mock<IMQTTConnection>();
-
-    await testEntity.initialise(mockHass, mockMqtt);
+    await testEntity.initialise(mockHass);
 
     const newStateEvent: StateChangedEvent = {
       event_type: 'state_changed',

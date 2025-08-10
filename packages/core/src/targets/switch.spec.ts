@@ -1,13 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 
+import type { IHomeAssistant } from '@hass-blocks/hass-ts';
 import type { IFullBlocksClient } from '@types';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
-import { MqttSwitch } from '@hass-blocks/hass-mqtt';
 
 import { Switch, toggle } from './switch.ts';
-
-vi.mock('@hass-blocks/hass-mqtt');
 
 afterEach(() => {
   vi.resetAllMocks();
@@ -30,61 +27,56 @@ describe('Switch', () => {
         .mockReturnValue({ entity_id: 'switch.living_room', state: 'off' }),
       onStateChanged: vi.fn(),
     });
-    const mockMqtt = mock<IMQTTConnection>();
 
-    await testSwitch.initialise(mockHass, mockMqtt);
+    await testSwitch.initialise(mockHass);
 
     expect(mockHass.getEntity).toHaveBeenCalledWith('switch.living_room');
   });
 
-  it('should create MQTT switch when create is true', async () => {
+  it('should create entity using fireEvent when create is true', async () => {
     const testSwitch = new Switch({
       id: 'switch.living_room',
       create: true,
       friendlyName: 'Living Room Switch',
     });
-    const mockHass = mock<IFullBlocksClient>();
-    const mockMqtt = mock<IMQTTConnection>();
-    const mockMqttSwitch = mock<MqttSwitch>({
-      initialise: vi.fn(),
+    const mockHass = mock<IHomeAssistant>({
+      fireEvent: vi.fn(),
     });
-    vi.mocked(MqttSwitch).mockReturnValue(mockMqttSwitch);
 
-    await testSwitch.initialise(mockHass, mockMqtt);
+    await testSwitch.initialise(mockHass);
 
-    expect(MqttSwitch).toHaveBeenCalledWith(mockMqtt, {
-      friendlyName: 'Living Room Switch',
-      discoveryPrefix: 'homeassistant',
-      context: 'blocks',
-      deviceClass: 'switch',
-      uniqueId: 'living_room',
+    expect(mockHass.fireEvent).toHaveBeenCalledWith({
+      event_type: 'hass_blocks_create_entity',
+      event_data: {
+        entity_id: 'switch.living_room',
+        entity_type: 'switch',
+        state: 'off',
+        name: 'Living Room Switch',
+      },
     });
-    expect(mockMqttSwitch.initialise).toHaveBeenCalled();
   });
 
-  it('should handle edge case where split results in undefined identifier', async () => {
+  it('should create entity with empty identifier when split results in undefined', async () => {
     const testSwitch = new Switch({
       id: 'switch.' as `switch.${string}`,
       create: true,
       friendlyName: 'Edge Case Switch',
     });
-    const mockHass = mock<IFullBlocksClient>();
-    const mockMqtt = mock<IMQTTConnection>();
-    const mockMqttSwitch = mock<MqttSwitch>({
-      initialise: vi.fn(),
+    const mockHass = mock<IHomeAssistant>({
+      fireEvent: vi.fn(),
     });
-    vi.mocked(MqttSwitch).mockReturnValue(mockMqttSwitch);
 
-    await testSwitch.initialise(mockHass, mockMqtt);
+    await testSwitch.initialise(mockHass);
 
-    expect(MqttSwitch).toHaveBeenCalledWith(mockMqtt, {
-      friendlyName: 'Edge Case Switch',
-      discoveryPrefix: 'homeassistant',
-      context: 'blocks',
-      deviceClass: 'switch',
-      uniqueId: '',
+    expect(mockHass.fireEvent).toHaveBeenCalledWith({
+      event_type: 'hass_blocks_create_entity',
+      event_data: {
+        entity_id: 'switch.',
+        entity_type: 'switch',
+        state: 'off',
+        name: 'Edge Case Switch',
+      },
     });
-    expect(mockMqttSwitch.initialise).toHaveBeenCalled();
   });
 });
 

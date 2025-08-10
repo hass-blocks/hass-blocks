@@ -23,7 +23,8 @@
       "@types": ["./src/types/index.ts"],
       "@actions": ["./src/actions/index.ts"],
       "@assertions": ["./src/assertions/index.ts"],
-      "@utils": ["./src/utils/index.ts"]
+      "@utils": ["./src/utils/index.ts"],
+      "@entities": ["./src/entities/index.ts"]
     }
   },
   "include": [

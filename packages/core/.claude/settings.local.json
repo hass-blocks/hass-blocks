@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pnpx nx run:*)",
+      "Bash(pnpx tsc:*)",
+      "Bash(pnpm nx run:*)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}

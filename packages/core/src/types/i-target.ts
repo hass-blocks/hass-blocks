@@ -1,6 +1,5 @@
 import type { ITargetIds } from './i-target-ids.ts';
 import type { IFullBlocksClient } from './i-full-blocks-client.ts';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -17,9 +16,8 @@ export interface ITarget {
    * Called by the framework to validate that this target exists
    * and is operational
    * @param hass - an initialised Home Assistant instance
-   * @param mqtt - an initialised connection to the Home Assistant MQTT broker
    */
-  initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection): Promise<void>;
+  initialise(hass: IFullBlocksClient): Promise<void>;
 
   /**
    * Render a string version of this target

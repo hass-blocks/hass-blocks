@@ -2,7 +2,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 
 import type { IEntity, IArea, IDevice, IFullBlocksClient } from '@types';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 import { Combination, combine } from './combination.ts';
 
@@ -48,7 +47,6 @@ describe('Combination', () => {
 
   it('should initialize all targets when initialise is called', async () => {
     const mockHass = mock<IFullBlocksClient>();
-    const mockMqtt = mock<IMQTTConnection>();
     const mockEntity = mock<IEntity>({
       targetIds: { entity_id: ['light.living_room'] },
       initialise: vi.fn().mockResolvedValue(undefined),
@@ -60,10 +58,10 @@ describe('Combination', () => {
 
     const combination = new Combination(mockEntity, mockArea);
 
-    await combination.initialise(mockHass, mockMqtt);
+    await combination.initialise(mockHass);
 
-    expect(mockEntity.initialise).toHaveBeenCalledWith(mockHass, mockMqtt);
-    expect(mockArea.initialise).toHaveBeenCalledWith(mockHass, mockMqtt);
+    expect(mockEntity.initialise).toHaveBeenCalledWith(mockHass);
+    expect(mockArea.initialise).toHaveBeenCalledWith(mockHass);
   });
 
   it('should handle targets with empty or missing targetIds', () => {

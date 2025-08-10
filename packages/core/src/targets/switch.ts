@@ -1,6 +1,6 @@
 import type { IFullBlocksClient, IEntity } from '@types';
+import type { IHomeAssistant } from '@hass-blocks/hass-ts';
 import { Entity } from './entity.ts';
-import { type IMQTTConnection, MqttSwitch } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -23,8 +23,7 @@ export interface SwitchConfig<TId extends `switch.${string}`> {
  * @public
  *
  * When the 'create' parameter is supplied as true, this entity
- * will try to create a new switch in Home Assisstant so long as there is
- * an initialised MQTT connection
+ * will try to create a new switch in Home Assistant using the entities framework
  */
 export interface SwitchConfigForCreation<TId extends `switch.${string}`> {
   /**
@@ -47,8 +46,6 @@ export interface SwitchConfigForCreation<TId extends `switch.${string}`> {
  * A switch entity
  */
 export class Switch<TId extends `switch.${string}`> extends Entity<TId> {
-  private mqttSwitch: MqttSwitch | undefined;
-
   public constructor(
     private config: SwitchConfig<TId> | SwitchConfigForCreation<TId>,
   ) {
@@ -61,22 +58,27 @@ export class Switch<TId extends `switch.${string}`> extends Entity<TId> {
     };
   }
 
+  public override async initialise(hass: IHomeAssistant): Promise<void>;
+  public override async initialise(hass: IFullBlocksClient): Promise<void>;
   public override async initialise(
-    hass: IFullBlocksClient,
-    mqtt: IMQTTConnection,
+    hass: IFullBlocksClient | IHomeAssistant,
   ): Promise<void> {
     if (this.config.create) {
-      const [, identifier] = this.config.id.split('.');
-      this.mqttSwitch = new MqttSwitch(mqtt, {
-        friendlyName: this.config.friendlyName,
-        discoveryPrefix: 'homeassistant',
-        context: 'blocks',
-        deviceClass: 'switch',
-        uniqueId: identifier ?? '',
-      });
-      this.mqttSwitch.initialise();
+      if ('fireEvent' in hass) {
+        await hass.fireEvent({
+          event_type: 'hass_blocks_create_entity',
+          event_data: {
+            entity_id: this.config.id,
+            entity_type: 'switch',
+            state: 'off',
+            name: this.config.friendlyName,
+          },
+        });
+      }
     } else {
-      await super.initialise(hass, mqtt);
+      if ('getEntity' in hass && 'onStateChanged' in hass) {
+        await super.initialise(hass);
+      }
     }
   }
 }

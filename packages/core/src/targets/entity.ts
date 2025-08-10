@@ -1,7 +1,6 @@
 import type { HassEntity, IEntity, IFullBlocksClient } from '@types';
 
 import { EntityDoesNotExistError } from '@errors';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -40,11 +39,7 @@ export class Entity<I extends `${string}.${string}`> implements IEntity<I> {
     return this.name;
   }
 
-  public async initialise(
-    hass: IFullBlocksClient,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    _mqtt: IMQTTConnection,
-  ): Promise<void> {
+  public async initialise(hass: IFullBlocksClient): Promise<void> {
     try {
       this._currentState = hass.getEntity(this.theId);
       hass.onStateChanged(this.theId, (event) => {

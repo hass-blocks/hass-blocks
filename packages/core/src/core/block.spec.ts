@@ -171,8 +171,8 @@ describe('block.initialise with targets', () => {
 
     await foo.initialise(client, mqtt);
 
-    expect(mockTarget1.initialise).toHaveBeenCalledWith(client, mqtt);
-    expect(mockTarget2.initialise).toHaveBeenCalledWith(client, mqtt);
+    expect(mockTarget1.initialise).toHaveBeenCalledWith(client);
+    expect(mockTarget2.initialise).toHaveBeenCalledWith(client);
   });
 });
 

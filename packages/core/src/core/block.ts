@@ -141,9 +141,7 @@ export abstract class Block<I = void, O = void>
         async (action) => await action.initialise(client, mqtt),
       );
 
-      await mapAsync(this.targets, async (target) =>
-        target.initialise(client, mqtt),
-      );
+      await mapAsync(this.targets, async (target) => target.initialise(client));
     } catch (error) {
       EntityDoesNotExistError.RethrowWithNewPath(error, this.name);
     }

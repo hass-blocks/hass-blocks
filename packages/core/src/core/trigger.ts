@@ -12,7 +12,6 @@ import type {
   IEventBus,
 } from '@types';
 import { mapAsync, md5 } from '@utils';
-import type { IMQTTConnection } from '@hass-blocks/hass-mqtt';
 
 /**
  * @public
@@ -63,10 +62,8 @@ export class Trigger implements IMutableNode {
     this.addChild(node);
   }
 
-  public async initialise(hass: IFullBlocksClient, mqtt: IMQTTConnection) {
-    await mapAsync(this.config.targets, (target) =>
-      target.initialise(hass, mqtt),
-    );
+  public async initialise(hass: IFullBlocksClient) {
+    await mapAsync(this.config.targets, (target) => target.initialise(hass));
   }
 
   public get children(): IBlocksNode[] {

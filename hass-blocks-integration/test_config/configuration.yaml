@@ -1,0 +1,47 @@
+# Home Assistant Configuration for Hass Blocks Integration Testing
+# This configuration file enables the hass_blocks custom integration
+
+# Configure the hass_blocks integration
+hass_blocks:
+
+# Basic Home Assistant configuration
+homeassistant:
+  name: Hass Blocks Test
+  latitude: 40.7128
+  longitude: -74.0060
+  elevation: 10
+  unit_system: metric
+  time_zone: America/New_York
+
+# Enable the frontend
+frontend:
+
+# Enable configuration via the UI
+config:
+
+# Enable logging
+logger:
+  default: info
+  logs:
+    custom_components.hass_blocks: debug
+
+# Enable the HTTP component
+http:
+
+# Enable system health checks
+system_health:
+
+# Enable the history component
+history:
+
+# Recorder to store events
+recorder:
+
+# Enable automation engine
+automation: !include automations.yaml
+
+# Enable script engine
+script: !include scripts.yaml
+
+# Enable scene engine
+scene: !include scenes.yaml

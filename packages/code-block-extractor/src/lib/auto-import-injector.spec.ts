@@ -62,7 +62,6 @@ describe('AutoImportInjector', () => {
       });
       const injector = new AutoImportInjector(config);
 
-      // This test validates that the configuration is stored, not testing private internals
       expect(injector).toBeDefined();
     });
   });
@@ -185,19 +184,16 @@ describe('AutoImportInjector', () => {
         createMockFileSystem();
         const injector = new AutoImportInjector(createConfig());
 
-        // First call
         await injector.injectMissingImports(
           'const result = testFunction();',
           'test-package',
           './test-package',
         );
 
-        // Mock file system changes to verify cache is used
         mockFs({
           '/test/package.json': JSON.stringify({ name: 'changed' }),
         });
 
-        // Second call should still work with cached exports
         const result = await injector.injectMissingImports(
           'const result2 = testFunction();',
           'test-package',
@@ -257,7 +253,6 @@ describe('AutoImportInjector', () => {
           './test-package',
         );
 
-        // Should still attempt to process - TypeScript compiler handles syntax errors gracefully
         expect(result).toBeDefined();
       });
 
@@ -276,7 +271,6 @@ describe('AutoImportInjector', () => {
           './test-package',
         );
 
-        // Should succeed but with empty exports (no symbols to import)
         expect(result.success).toBe(true);
         expect(result.injectedSymbols).toEqual([]);
       });
@@ -564,7 +558,6 @@ describe('AutoImportInjector', () => {
         );
 
         expect(result.success).toBe(true);
-        // Should only inject symbols that exist in the package
         expect(result.injectedSymbols).toEqual(
           expect.arrayContaining(['testFunction', 'TestClass', 'TestType']),
         );

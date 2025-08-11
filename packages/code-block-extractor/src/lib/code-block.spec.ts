@@ -176,10 +176,7 @@ describe('CodeBlock', () => {
 
       const results = codeBlock.allCheckResults;
 
-      // TypeScript should prevent this, but we can verify at runtime
       expect(results).toBeInstanceOf(Map);
-      // The returned type is ReadonlyMap, so we can't call set() on it
-      // This test verifies the getter returns the expected type
       expect(typeof results.get).toBe('function');
       expect(typeof results.has).toBe('function');
       expect(typeof results.size).toBe('number');
@@ -275,15 +272,12 @@ describe('CodeBlock', () => {
       const successResult = createSuccessResult();
       const checkerName = 'test-checker';
 
-      // Store a failure first
       codeBlock.storeCheckResult(checkerName, failureResult);
       expect(codeBlock.failedCheckResults.size).toBe(1);
 
-      // Overwrite with a success
       codeBlock.storeCheckResult(checkerName, successResult);
       expect(codeBlock.failedCheckResults.size).toBe(0);
 
-      // Overwrite back to a failure
       const newFailureResult = createFailureResult('New failure');
       codeBlock.storeCheckResult(checkerName, newFailureResult);
       expect(codeBlock.failedCheckResults.size).toBe(1);
@@ -311,18 +305,15 @@ describe('CodeBlock', () => {
         ['style-checker', createFailureResult('Style violation')],
       ];
 
-      // Store all results
       results.forEach(([name, result]) => {
         codeBlock.storeCheckResult(name, result);
       });
 
-      // Verify all results are stored
       expect(codeBlock.allCheckResults.size).toBe(5);
       results.forEach(([name, result]) => {
         expect(codeBlock.allCheckResults.get(name)).toBe(result);
       });
 
-      // Verify only failed results are returned by failedCheckResults
       const failedResults = codeBlock.failedCheckResults;
       expect(failedResults.size).toBe(3);
       expect(failedResults.has('syntax-checker')).toBe(true);

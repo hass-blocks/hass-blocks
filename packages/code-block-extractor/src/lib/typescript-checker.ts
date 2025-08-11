@@ -190,7 +190,6 @@ export class TypeScriptChecker extends Checker {
       }
     }
 
-    // Auto-inject missing imports for symbols exported by the package
     try {
       const resolvedPath = this.resolveEntryPoint(packageJson);
       if (resolvedPath) {
@@ -204,11 +203,8 @@ export class TypeScriptChecker extends Checker {
         if (autoImportResult.success && autoImportResult.code) {
           transformedContent = autoImportResult.code;
         }
-        // If auto-import fails, we continue with the original content
-        // This is an enhancement, not a breaking requirement
       }
     } catch (error) {
-      // Log but don't fail - auto-import is an enhancement
       console.warn(
         'Auto-import injection failed:',
         error instanceof Error ? error.message : 'Unknown error',

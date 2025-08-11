@@ -60,18 +60,14 @@ export class AutoImportInjector {
     resolvedImportPath: string,
   ): Promise<IAutoImportResult> {
     try {
-      // 1. Identify unresolved symbols in the code
       const unresolvedSymbols = this.identifyUnresolvedSymbols(code);
 
-      // 2. Get what the package exports
       const packageExports = await this.getPackageExports();
 
-      // 3. Find symbols that need to be imported
       const symbolsToImport = unresolvedSymbols.filter((symbol) =>
         packageExports.has(symbol),
       );
 
-      // 4. If no symbols to import, return original code
       if (symbolsToImport.length === 0) {
         return {
           success: true,
@@ -80,7 +76,6 @@ export class AutoImportInjector {
         };
       }
 
-      // 5. Inject the imports
       const codeWithImports = this.injectImports(
         code,
         symbolsToImport,
@@ -109,7 +104,6 @@ export class AutoImportInjector {
    * @returns Array of unresolved symbol names
    */
   private identifyUnresolvedSymbols(code: string): string[] {
-    // Create a temporary source file
     const sourceFile = ts.createSourceFile(
       'temp.ts',
       code,
@@ -117,17 +111,15 @@ export class AutoImportInjector {
       true,
     );
 
-    // Create a minimal compiler host
     const defaultHost = ts.createCompilerHost(this.config.compilerOptions);
     const host: ts.CompilerHost = {
       getSourceFile: (fileName) => {
         if (fileName === 'temp.ts') return sourceFile;
-        // For lib files, delegate to default host
         return defaultHost.getSourceFile(fileName, ts.ScriptTarget.Latest);
       },
       writeFile: () => {
         /* NOOP */
-      }, // No-op
+      },
       getCurrentDirectory: () => process.cwd(),
       getDirectories: ts.sys.getDirectories,
       fileExists: (fileName) =>
@@ -143,7 +135,6 @@ export class AutoImportInjector {
         defaultHost.getDefaultLibFileName(options),
     };
 
-    // Create program and get diagnostics
     const program = ts.createProgram(
       ['temp.ts'],
       this.config.compilerOptions,
@@ -151,19 +142,16 @@ export class AutoImportInjector {
     );
     const diagnostics = ts.getPreEmitDiagnostics(program);
 
-    // Extract unresolved symbol names from "Cannot find name" errors
     const unresolvedSymbols = diagnostics
-      .filter((diagnostic) => diagnostic.code === 2304) // TS2304: Cannot find name
+      .filter((diagnostic) => diagnostic.code === 2304)
       .map((diagnostic) => this.extractSymbolNameFromDiagnostic(diagnostic))
       .filter((name): name is string => name !== null);
 
-    // Filter out symbols that are already imported
     const existingImports = this.extractExistingImports(code);
     const filteredSymbols = unresolvedSymbols.filter(
       (symbol) => !existingImports.has(symbol),
     );
 
-    // Remove duplicates
     return Array.from(new Set(filteredSymbols));
   }
 
@@ -180,7 +168,6 @@ export class AutoImportInjector {
       diagnostic.messageText,
       '\n',
     );
-    // Message format: "Cannot find name 'SymbolName'."
     const match = message.match(/Cannot find name '([^']+)'/);
     return match?.[1] ?? null;
   }
@@ -213,12 +200,10 @@ export class AutoImportInjector {
           });
         }
 
-        // Handle default imports: import foo from 'module'
         if (node.importClause.name) {
           importedSymbols.add(node.importClause.name.text);
         }
 
-        // Handle namespace imports: import * as foo from 'module'
         if (
           node.importClause.namedBindings &&
           ts.isNamespaceImport(node.importClause.namedBindings)
@@ -260,7 +245,6 @@ export class AutoImportInjector {
           const entryExports = this.extractExportsFromCode(entryCode);
           entryExports.forEach((exp) => exports.add(exp));
         } catch {
-          // Skip invalid/missing entry points
           continue;
         }
       }
@@ -331,7 +315,6 @@ export class AutoImportInjector {
     const exports: string[] = [];
 
     const visit = (node: ts.Node) => {
-      // export const/let/var declarations
       if (ts.isVariableStatement(node) && this.hasExportModifier(node)) {
         node.declarationList.declarations.forEach((decl) => {
           if (ts.isIdentifier(decl.name)) {
@@ -340,7 +323,6 @@ export class AutoImportInjector {
         });
       }
 
-      // export function declarations
       if (
         ts.isFunctionDeclaration(node) &&
         this.hasExportModifier(node) &&
@@ -349,7 +331,6 @@ export class AutoImportInjector {
         exports.push(node.name.text);
       }
 
-      // export class declarations
       if (
         ts.isClassDeclaration(node) &&
         this.hasExportModifier(node) &&
@@ -358,17 +339,14 @@ export class AutoImportInjector {
         exports.push(node.name.text);
       }
 
-      // export interface declarations
       if (ts.isInterfaceDeclaration(node) && this.hasExportModifier(node)) {
         exports.push(node.name.text);
       }
 
-      // export type declarations
       if (ts.isTypeAliasDeclaration(node) && this.hasExportModifier(node)) {
         exports.push(node.name.text);
       }
 
-      // export { foo, bar } declarations
       if (
         ts.isExportDeclaration(node) &&
         node.exportClause &&
@@ -422,7 +400,6 @@ export class AutoImportInjector {
       true,
     );
 
-    // Create the import statement
     const importStatement = ts.factory.createImportDeclaration(
       undefined, // modifiers
       ts.factory.createImportClause(
@@ -441,7 +418,6 @@ export class AutoImportInjector {
       ts.factory.createStringLiteral(importPath),
     );
 
-    // Transform the source file to add the import
     const transformer: ts.TransformerFactory<ts.SourceFile> = () => {
       return (sourceFile) => {
         const existingImports = sourceFile.statements.filter(
@@ -451,7 +427,6 @@ export class AutoImportInjector {
           (stmt) => !ts.isImportDeclaration(stmt),
         );
 
-        // Insert new import after existing imports
         const newStatements = [
           ...existingImports,
           importStatement,
@@ -477,7 +452,6 @@ export class AutoImportInjector {
       .printFile(transformedSourceFile)
       .replace(/"/g, "'"); // Convert double quotes to single quotes for consistency
 
-    // Clean up
     result.dispose();
 
     return transformedCode;

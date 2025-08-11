@@ -27,6 +27,7 @@ function createMockChecker(name = 'MockChecker'): MockProxy<Checker> {
 describe('checkCodeBlocks', () => {
   describe('file processing', () => {
     it('should read markdown files and create MarkdownFile instances', async () => {
+      expect.assertions(5);
       const mockContent = '# Test\n\n```typescript\nconst x = 42;\n```';
       vi.mocked(fs.readFile).mockResolvedValue(mockContent);
 
@@ -35,15 +36,17 @@ describe('checkCodeBlocks', () => {
         checkers: [],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files: result } = await checkCodeBlocks(settings);
 
       expect(vi.mocked(fs.readFile)).toHaveBeenCalledWith(
         '/path/to/test.md',
         'utf-8',
       );
       expect(result).toHaveLength(1);
-      expect(result[0]).toBeInstanceOf(MarkdownFile);
-      expect(result[0].codeBlocks).toHaveLength(1);
+      if (result[0]) {
+        expect(result[0]).toBeInstanceOf(MarkdownFile);
+        expect(result[0].codeBlocks).toHaveLength(1);
+      }
     });
 
     it('should process multiple markdown files', async () => {
@@ -56,7 +59,7 @@ describe('checkCodeBlocks', () => {
         checkers: [],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files: result } = await checkCodeBlocks(settings);
 
       expect(vi.mocked(fs.readFile)).toHaveBeenCalledTimes(2);
       expect(vi.mocked(fs.readFile)).toHaveBeenCalledWith(
@@ -73,6 +76,7 @@ describe('checkCodeBlocks', () => {
     });
 
     it('should handle empty markdown files', async () => {
+      expect.assertions(2);
       vi.mocked(fs.readFile).mockResolvedValue('');
 
       const settings: ICodeBlocksCheckerSettings = {
@@ -80,10 +84,12 @@ describe('checkCodeBlocks', () => {
         checkers: [],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files: result } = await checkCodeBlocks(settings);
 
       expect(result).toHaveLength(1);
-      expect(result[0].codeBlocks).toHaveLength(0);
+      if (result[0]) {
+        expect(result[0].codeBlocks).toHaveLength(0);
+      }
     });
   });
 
@@ -95,6 +101,7 @@ describe('checkCodeBlocks', () => {
     });
 
     it('should add all code blocks to each checker', async () => {
+      expect.assertions(6);
       const checker1 = createMockChecker('Checker1');
       const checker2 = createMockChecker('Checker2');
 
@@ -108,13 +115,17 @@ describe('checkCodeBlocks', () => {
       expect(checker1.addCodeBlock).toHaveBeenCalledTimes(1);
       expect(checker2.addCodeBlock).toHaveBeenCalledTimes(1);
 
-      const addedBlock = vi.mocked(checker1.addCodeBlock).mock.calls[0][0];
-      expect(addedBlock).toBeInstanceOf(CodeBlock);
-      expect(addedBlock.language).toBe('typescript');
-      expect(addedBlock.content).toBe('const x = 42;');
+      const firstCall = vi.mocked(checker1.addCodeBlock).mock.calls[0];
+      if (firstCall) {
+        const addedBlock = firstCall[0];
+        expect(addedBlock).toBeInstanceOf(CodeBlock);
+        expect(addedBlock.language).toBe('typescript');
+        expect(addedBlock.content).toBe('const x = 42;');
+      }
     });
 
     it('should add code blocks from multiple files to each checker', async () => {
+      expect.assertions(3);
       vi.mocked(fs.readFile)
         .mockResolvedValueOnce('```js\ncode1\n```')
         .mockResolvedValueOnce('```ts\ncode2\n```');
@@ -129,8 +140,10 @@ describe('checkCodeBlocks', () => {
 
       expect(checker.addCodeBlock).toHaveBeenCalledTimes(2);
       const calls = vi.mocked(checker.addCodeBlock).mock.calls;
-      expect(calls[0][0].content).toBe('code1');
-      expect(calls[1][0].content).toBe('code2');
+      if (calls[0] && calls[1]) {
+        expect(calls[0][0].content).toBe('code1');
+        expect(calls[1][0].content).toBe('code2');
+      }
     });
 
     it('should call checkAll on each checker', async () => {
@@ -149,6 +162,7 @@ describe('checkCodeBlocks', () => {
     });
 
     it('should handle checkers with no code blocks to process', async () => {
+      expect.assertions(4);
       vi.mocked(fs.readFile).mockResolvedValue('# No code blocks here');
 
       const checker = createMockChecker();
@@ -157,12 +171,14 @@ describe('checkCodeBlocks', () => {
         checkers: [checker],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files: result } = await checkCodeBlocks(settings);
 
       expect(checker.addCodeBlock).not.toHaveBeenCalled();
       expect(checker.checkAll).toHaveBeenCalledTimes(1);
       expect(result).toHaveLength(1);
-      expect(result[0].codeBlocks).toHaveLength(0);
+      if (result[0]) {
+        expect(result[0].codeBlocks).toHaveLength(0);
+      }
     });
   });
 
@@ -198,6 +214,7 @@ describe('checkCodeBlocks', () => {
 
   describe('return value', () => {
     it('should return MarkdownFile instances with processed code blocks', async () => {
+      expect.assertions(5);
       const markdownContent = `# Test
 
 \`\`\`typescript
@@ -221,17 +238,22 @@ function add(a, b) {
         checkers: [checker],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files: result } = await checkCodeBlocks(settings);
 
       expect(result).toHaveLength(1);
       const markdownFile = result[0];
-      expect(markdownFile).toBeInstanceOf(MarkdownFile);
-      expect(markdownFile.codeBlocks).toHaveLength(2);
-      expect(markdownFile.codeBlocks[0].language).toBe('typescript');
-      expect(markdownFile.codeBlocks[1].language).toBe('javascript');
+      if (markdownFile) {
+        expect(markdownFile).toBeInstanceOf(MarkdownFile);
+        expect(markdownFile.codeBlocks).toHaveLength(2);
+        if (markdownFile.codeBlocks[0] && markdownFile.codeBlocks[1]) {
+          expect(markdownFile.codeBlocks[0].language).toBe('typescript');
+          expect(markdownFile.codeBlocks[1].language).toBe('javascript');
+        }
+      }
     });
 
     it('should maintain file path information in returned MarkdownFile instances', async () => {
+      expect.assertions(1);
       vi.mocked(fs.readFile).mockResolvedValue('```js\ntest\n```');
 
       const filePath = '/path/to/specific/file.md';
@@ -240,9 +262,11 @@ function add(a, b) {
         checkers: [],
       };
 
-      const result = await checkCodeBlocks(settings);
+      const { files } = await checkCodeBlocks(settings);
 
-      expect(result[0].codeBlocks[0].filePath).toBe(filePath);
+      if (files[0] && files[0].codeBlocks[0]) {
+        expect(files[0].codeBlocks[0].filePath).toBe(filePath);
+      }
     });
   });
 

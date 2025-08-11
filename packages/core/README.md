@@ -28,7 +28,7 @@ npm install @hass-blocks/core
 import { initialiseBlocks } from '@hass-blocks/core';
 
 // Initialize with environment-based configuration
-const { registry } = await initialiseBlocks();
+await initialiseBlocks();
 ```
 
 ### 2. Create Your First Automation
@@ -84,9 +84,6 @@ const motionAutomation = automation({
     }),
   ],
 });
-
-// Register the automation
-registry.registerAutomation(motionAutomation);
 ```
 
 ## Configuration
@@ -115,7 +112,7 @@ const customLogger: ILogger = {
   fatal: (msg) => console.log(`[FATAL] ${msg}`),
 };
 
-const { registry } = await initialiseBlocks({
+await initialiseBlocks({
   logger: customLogger,
   plugins: [
     /* custom plugins */
@@ -138,7 +135,7 @@ const customAction = action({
     await hass.callService({
       domain: 'notify',
       service: 'mobile_app_phone',
-      service_data: { message: 'Motion detected!' },
+      data: { message: 'Motion detected!' },
     });
   },
 });
@@ -168,30 +165,28 @@ const toggleLight = serviceCall({
 Control automation flow based on conditions:
 
 ```typescript
-import { assertion, stateIs, entity } from '@hass-blocks/core';
+import { stateIs, entity } from '@hass-blocks/core';
 
 const sun = entity('sun.sun');
 
-const isDarkOutside = assertion({
-  name: 'Check if dark outside',
-  predicate: stateIs(sun, 'below_horizon'),
-});
+// Built-in assertion block
+const isDarkOutside = stateIs(sun, 'below_horizon');
 ```
 
-### Sequences
+### Sequential Execution
 
 Execute multiple blocks in order:
 
 ```typescript
-import { sequence, serviceCall, entity } from '@hass-blocks/core';
+import { automation, serviceCall, entity } from '@hass-blocks/core';
 
 const lights = entity('light.living_room');
 const blinds = entity('cover.blinds');
 const thermostat = entity('climate.thermostat');
 
-const eveningRoutine = sequence({
+const eveningRoutine = automation({
   name: 'Evening routine',
-  blocks: [
+  then: [
     serviceCall({
       name: 'Dim lights',
       params: {
@@ -224,7 +219,7 @@ const eveningRoutine = sequence({
 Execute different blocks based on conditions:
 
 ```typescript
-import { when, stateIs, entity } from '@hass-blocks/core';
+import { when, stateIs, entity, action, serviceCall } from '@hass-blocks/core';
 
 const sun = entity('sun.sun');
 const lights = entity('light.living_room');
@@ -247,27 +242,38 @@ const smartLighting = when(stateIs(sun, 'below_horizon'), {
 Repeat blocks based on conditions:
 
 ```typescript
-import { loop, serviceCall, waitSeconds, entity } from '@hass-blocks/core';
+import {
+  loop,
+  serviceCall,
+  waitSeconds,
+  entity,
+  iterating,
+  automation,
+} from '@hass-blocks/core';
 
 const lights = entity('light.living_room');
 
+// Flash lights 3 times
 const flashLights = loop({
   name: 'Flash lights',
-  condition: ({ iteration }) => iteration < 3,
-  do: [
-    serviceCall({
-      name: 'Turn on',
-      params: { domain: 'light', service: 'turn_on' },
-      target: lights,
-    }),
-    waitSeconds(1),
-    serviceCall({
-      name: 'Turn off',
-      params: { domain: 'light', service: 'turn_off' },
-      target: lights,
-    }),
-    waitSeconds(1),
-  ],
+  while: iterating(1, 2, 3),
+  then: automation({
+    name: 'Flash once',
+    then: [
+      serviceCall({
+        name: 'Turn on',
+        params: { domain: 'light', service: 'turn_on' },
+        target: lights,
+      }),
+      waitSeconds(1),
+      serviceCall({
+        name: 'Turn off',
+        params: { domain: 'light', service: 'turn_off' },
+        target: lights,
+      }),
+      waitSeconds(1),
+    ],
+  }),
 });
 ```
 
@@ -298,9 +304,9 @@ const waitForDoor = waitUntilState(door, 'off');
 import { apiRequest } from '@hass-blocks/core';
 
 const weatherUpdate = apiRequest({
-  name: 'Get weather data',
-  url: 'https://api.weather.com/current',
   method: 'GET',
+  baseUrl: 'https://api.weather.com',
+  path: '/current',
   headers: { Authorization: 'Bearer token' },
 });
 ```
@@ -324,13 +330,12 @@ const lightIsOn = stateIs(lightEntity, 'on');
 const doorNotOpen = stateIsNot(doorEntity, 'on');
 
 // Entity validation
-const sensorExists = entityExists('sensor.temperature');
+const sensorExists = entityExists(entity('sensor.temperature'));
 
-// Complex conditions
-const isWeekend = gate({
-  name: 'Is weekend',
-  callback: () => new Date().getDay() % 6 === 0,
-});
+// Gate utility
+const myGate = gate('My gate');
+// Use myGate.ifGateIsOpen / myGate.ifGateIsClosed (assertions)
+// and myGate.open / myGate.close (actions)
 ```
 
 ## Execution Modes
@@ -338,12 +343,15 @@ const isWeekend = gate({
 Control how automations handle multiple triggers:
 
 ```typescript
-import { automation, ExecutionMode } from '@hass-blocks/core';
+import { automation, ExecutionMode, trigger, action } from '@hass-blocks/core';
 
 const myAutomation = automation({
   name: 'My automation',
-  when: trigger,
-  then: blocks,
+  when: trigger({
+    name: 'Always',
+    trigger: { platform: 'time', at: '00:00:00' },
+  }),
+  then: [action({ name: 'Do something', callback: () => undefined })],
   mode: ExecutionMode.Queue, // Queue, Restart, or Parallel
 });
 ```
@@ -357,25 +365,25 @@ const myAutomation = automation({
 Create reusable target definitions:
 
 ```typescript
-import { entity, area, combine, toggle } from '@hass-blocks/core';
+import { entity, combine, toggle } from '@hass-blocks/core';
 
 // Single entity
 const livingRoomLight = entity('light.living_room');
 
-// Area targeting
-const bedroomLights = area('bedroom', 'light');
-
 // Multiple targets
-const allLights = combine([
+const allLights = combine(
   entity('light.living_room'),
   entity('light.kitchen'),
-  area('bedroom', 'light'),
-]);
+  entity('light.bedroom'),
+);
 
 // Toggle switches
-const smartSwitch = toggle({
-  entityId: 'switch.smart_plug',
-  name: 'Smart Plug',
+const smartSwitch = toggle('switch.smart_plug');
+// Or create via entities framework
+const createdSwitch = toggle({
+  id: 'switch.smart_plug',
+  create: true,
+  friendlyName: 'Smart Plug',
 });
 ```
 
@@ -387,7 +395,8 @@ Hass Blocks provides specific error types for better debugging:
 import { HassBlocksError, ExecutionAbortedError } from '@hass-blocks/core';
 
 try {
-  await registry.registerAutomation(myAutomation);
+  // ... call framework code that may throw
+  throw new ExecutionAbortedError('example');
 } catch (error) {
   if (error instanceof ExecutionAbortedError) {
     console.log('Automation was aborted');
@@ -402,7 +411,9 @@ try {
 Monitor automation execution with the event bus:
 
 ```typescript
-const { registry } = await initialiseBlocks({
+import { initialiseBlocks } from '@hass-blocks/core';
+
+await initialiseBlocks({
   logger: {
     info: (msg) => console.log(msg),
     warn: (msg) => console.warn(msg),
@@ -421,13 +432,12 @@ const { registry } = await initialiseBlocks({
 Extend Hass Blocks with custom functionality:
 
 ```typescript
-import { IBlocksPlugin } from '@hass-blocks/core';
+import { initialiseBlocks, IBlocksPlugin } from '@hass-blocks/core';
 
 const myPlugin: IBlocksPlugin = {
   name: 'My Custom Plugin',
-  version: '1.0.0',
 
-  async load({ client, events, logger }) {
+  async load({ events, logger }) {
     logger.info('Loading my plugin');
 
     // Add custom functionality
@@ -439,7 +449,7 @@ const myPlugin: IBlocksPlugin = {
   },
 };
 
-const { registry } = await initialiseBlocks({
+await initialiseBlocks({
   plugins: [myPlugin],
 });
 ```
@@ -449,10 +459,12 @@ const { registry } = await initialiseBlocks({
 Hass Blocks provides extensive TypeScript support for compile-time validation:
 
 ```typescript
+import { automation, action } from '@hass-blocks/core';
+
 // Type-safe sequence validation
-const validSequence = sequence({
+const validSequence = automation({
   name: 'Valid sequence',
-  blocks: [
+  then: [
     action<void, string>({
       name: 'Get string',
       callback: () => 'hello',
@@ -465,10 +477,11 @@ const validSequence = sequence({
 });
 
 // This would cause a TypeScript error:
-// const invalidSequence = sequence({
-//   blocks: [
-//     action<void, string>({ callback: () => 'hello' }),
-//     action<number, void>({ callback: ({ input }) => console.log(input) })
+// const invalidSequence = automation({
+//   name: 'Invalid',
+//   then: [
+//     action<void, string>({ name: 'a', callback: () => 'hello' }),
+//     action<number, void>({ name: 'b', callback: ({ input }) => console.log(input) })
 //     // Error: string output doesn't match number input
 //   ]
 // });
@@ -481,7 +494,9 @@ const validSequence = sequence({
 Create reusable block factories:
 
 ```typescript
-const createLightToggle = (entityId: string, name: string) => {
+import { entity, serviceCall } from '@hass-blocks/core';
+
+const createLightToggle = (entityId: `${string}.${string}`, name: string) => {
   const lightEntity = entity(entityId);
   return serviceCall({
     name: `Toggle ${name}`,
@@ -500,9 +515,19 @@ const bedroomToggle = createLightToggle('light.bedroom', 'Bedroom');
 ### Conditional Automation
 
 ```typescript
+import {
+  automation,
+  trigger,
+  stateIs,
+  stateIsNot,
+  action,
+  serviceCall,
+  entity,
+  when,
+} from '@hass-blocks/core';
+
 const sun = entity('sun.sun');
 const lights = entity('light.living_room');
-const motionSensor = entity('binary_sensor.motion');
 
 const intelligentLighting = automation({
   name: 'Intelligent lighting',
@@ -516,9 +541,9 @@ const intelligentLighting = automation({
     },
   }),
   then: when(stateIs(sun, 'below_horizon'), {
-    then: sequence({
+    then: automation({
       name: 'Nighttime sequence',
-      blocks: [
+      then: [
         stateIsNot(lights, 'on'), // Only turn on if off
         serviceCall({
           name: 'Turn on lights',
@@ -538,7 +563,7 @@ const intelligentLighting = automation({
 ### Concurrent Operations
 
 ```typescript
-import { concurrently } from '@hass-blocks/core';
+import { concurrently, entity, serviceCall } from '@hass-blocks/core';
 
 const lights = entity('light.living_room');
 const music = entity('media_player.spotify');

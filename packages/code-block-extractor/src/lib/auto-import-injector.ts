@@ -1,5 +1,6 @@
 import fs from 'fs';
 import ts from 'typescript';
+import * as path from 'path';
 
 /**
  * Configuration for auto-import injection
@@ -265,24 +266,21 @@ export class AutoImportInjector {
    * @returns Array of absolute paths to entry point files
    */
   private resolveAllEntryPoints(packageJson: PackageJsonStructure): string[] {
-    const packageDir = require('path').dirname(this.config.packageJsonPath);
+    const packageDir = path.dirname(this.config.packageJsonPath);
     const entryPoints: string[] = [];
 
-    // Add main field
     if (packageJson.main) {
-      entryPoints.push(require('path').resolve(packageDir, packageJson.main));
+      entryPoints.push(path.resolve(packageDir, packageJson.main));
     }
 
-    // Add exports field entries
     if (packageJson.exports) {
       const addExportPath = (exportValue: unknown) => {
         if (typeof exportValue === 'string') {
-          entryPoints.push(require('path').resolve(packageDir, exportValue));
+          entryPoints.push(path.resolve(packageDir, exportValue));
         } else if (typeof exportValue === 'object' && exportValue !== null) {
-          // Handle conditional exports like { "import": "./esm/index.js", "require": "./cjs/index.js" }
           Object.values(exportValue).forEach((value) => {
             if (typeof value === 'string') {
-              entryPoints.push(require('path').resolve(packageDir, value));
+              entryPoints.push(path.resolve(packageDir, value));
             }
           });
         }

@@ -21,7 +21,9 @@
       "Bash(pnpx nx test:*)",
       "mcp__vscode-dev-tools__rename",
       "Bash(mv:*)",
-      "Bash(pnpx nx:*)"
+      "Bash(pnpx nx:*)",
+      "Bash(npx nx run @hass-blocks/code-block-extractor:check-types)",
+      "Bash(npx nx run:*)"
     ],
     "deny": []
   },

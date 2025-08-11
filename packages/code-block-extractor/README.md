@@ -38,10 +38,10 @@ const settings: ICodeBlocksCheckerSettings = {
   checkers: [typeScriptChecker],
 };
 
-const results = await checkCodeBlocks(settings);
+const { files, hasErrors } = await checkCodeBlocks(settings);
 
 // Check for any validation failures
-for (const file of results) {
+for (const file of files) {
   for (const codeBlock of file.codeBlocks) {
     if (codeBlock.failedCheckResults.size > 0) {
       console.log(
@@ -61,7 +61,7 @@ for (const file of results) {
 
 ### Main Entry Point
 
-#### `checkCodeBlocks(settings: ICodeBlocksCheckerSettings): Promise<MarkdownFile[]>`
+#### `checkCodeBlocks(settings: ICodeBlocksCheckerSettings): Promise<{ files: MarkdownFile[]; hasErrors: boolean }>`
 
 The primary function for processing markdown files and running checkers.
 
@@ -71,7 +71,9 @@ The primary function for processing markdown files and running checkers.
 
 **Returns:**
 
-- Promise resolving to an array of `MarkdownFile` instances with processed code blocks
+- Promise resolving to an object containing:
+  - `files`: `MarkdownFile[]` processed from the given markdown paths
+  - `hasErrors`: `boolean` indicating whether any checker failed on any block
 
 ### Core Classes
 
@@ -250,10 +252,10 @@ const settings = {
   ],
 };
 
-const results = await checkCodeBlocks(settings);
+const { files } = await checkCodeBlocks(settings);
 
 // Process results
-for (const markdownFile of results) {
+for (const markdownFile of files) {
   const fileName = markdownFile.codeBlocks[0]?.filePath || 'unknown';
   console.log(`\n📄 ${fileName}`);
 
@@ -313,10 +315,10 @@ class PythonStyleChecker extends Checker {
 ### Working with Check Results
 
 ```typescript
-const results = await checkCodeBlocks(settings);
+const { files } = await checkCodeBlocks(settings);
 
 // Find all failed checks across all files
-const allFailures = results.flatMap((file) =>
+const allFailures = files.flatMap((file) =>
   file.codeBlocks.flatMap((block) =>
     Array.from(block.failedCheckResults.entries()).map(([checker, result]) => ({
       file: block.filePath,
@@ -348,7 +350,7 @@ import { glob } from 'glob';
 async function main() {
   const markdownFiles = await glob('**/*.md', { ignore: 'node_modules/**' });
 
-  const results = await checkCodeBlocks({
+  const { files } = await checkCodeBlocks({
     markdownFiles,
     checkers: [
       // Your custom checkers here
@@ -356,7 +358,7 @@ async function main() {
   });
 
   // Report results and exit with appropriate code
-  const hasErrors = results.some((file) =>
+  const hasErrors = files.some((file) =>
     file.codeBlocks.some((block) => block.failedCheckResults.size > 0),
   );
 

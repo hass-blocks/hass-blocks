@@ -2,11 +2,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as ts from 'typescript';
 import { resolve } from 'resolve.exports';
+import { Checker, CodeBlock, ICheckResult } from '@core';
 import { compile } from './typescript-compiler.ts';
 import { AutoImportInjector } from './auto-import-injector.ts';
-import { Checker } from './checker.ts';
-import { CodeBlock } from './code-block.ts';
-import { ICheckResult } from './check-result.ts';
 
 /** Supported TypeScript language identifiers (case-insensitive) */
 const TYPESCRIPT_LANGUAGE_IDENTIFIERS = ['ts', 'typescript'] as const;

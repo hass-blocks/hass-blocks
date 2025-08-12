@@ -3,7 +3,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib": ["src/lib/index.ts"]
+      "@core": ["src/lib/core/index.ts"],
+      "@checkers": ["src/lib/checkers/index.ts"],
+      "@checkers/typescript": ["src/lib/checkers/typescript/index.ts"]
     },
     "rootDir": "src",
     "outDir": "dist",

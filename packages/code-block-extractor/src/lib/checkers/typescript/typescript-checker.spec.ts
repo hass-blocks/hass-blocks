@@ -2,13 +2,15 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { mockDeep, type MockProxy } from 'vitest-mock-extended';
 import mockFs from 'mock-fs';
 import * as resolveExports from 'resolve.exports';
+
+import { CodeBlock } from '@core';
+
 import { compile } from './typescript-compiler.ts';
 import { AutoImportInjector } from './auto-import-injector.ts';
 import {
   TypeScriptChecker,
   type ITypeScriptCheckerProps,
 } from './typescript-checker.ts';
-import { CodeBlock } from './code-block.ts';
 
 vi.mock('resolve.exports');
 vi.mock('./typescript-compiler.ts');

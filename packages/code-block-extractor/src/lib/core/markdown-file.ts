@@ -1,5 +1,4 @@
 import { CodeBlock } from './code-block.ts';
-import { createCodeBlock } from './code-block-factory.ts';
 
 /**
  * Represents a markdown file and extracts code blocks from its content.
@@ -98,6 +97,6 @@ export class MarkdownFile {
     startLine: number,
     endLine: number,
   ): CodeBlock {
-    return createCodeBlock(language, content, filePath, startLine, endLine);
+    return new CodeBlock(content, filePath, startLine, endLine, language);
   }
 }

@@ -2,6 +2,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist/out-tsc",
+    "baseUrl": ".",
+    "paths": {
+      "@core": ["src/lib/core/index.ts"],
+      "@checkers": ["src/lib/checkers/index.ts"],
+      "@checkers/typescript": ["src/lib/checkers/typescript/index.ts"]
+    },
     "types": [
       "vitest/globals",
       "vitest/importMeta",

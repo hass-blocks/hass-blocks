@@ -1,13 +1,19 @@
 import fs from 'fs';
 import ts from 'typescript';
 import * as path from 'path';
+import { CodeBlock } from '../core/code-block.ts';
+import { IPreprocessor } from '../core/preprocessor.ts';
 
 /**
- * Configuration for auto-import injection
+ * Configuration interface for AutoImportPreprocessor.
  */
-export interface IAutoImportInjectorConfig {
+export interface IAutoImportPreprocessorConfig {
+  /** Name of the package to import symbols from */
+  packageName: string;
   /** Path to the package.json file */
   packageJsonPath: string;
+  /** Resolved import path to use in generated imports */
+  resolvedImportPath: string;
   /** TypeScript compiler options for analysis */
   compilerOptions: ts.CompilerOptions;
 }
@@ -36,26 +42,58 @@ export interface IAutoImportResult {
 }
 
 /**
- * Analyzes TypeScript code and automatically injects missing imports
- * for symbols that are exported by the current package.
+ * Preprocessor that automatically injects missing imports for symbols
+ * that are exported by the current package.
+ *
+ * This preprocessor analyzes TypeScript code and injects import statements
+ * for unresolved symbols that are available in the package exports.
  */
-export class AutoImportInjector {
-  private readonly config: IAutoImportInjectorConfig;
+export class AutoImportPreprocessor implements IPreprocessor {
+  readonly name = 'auto-import-injection';
+
+  private readonly config: IAutoImportPreprocessorConfig;
   private packageExportsCache: Set<string> | null = null;
 
-  constructor(config: IAutoImportInjectorConfig) {
+  constructor(config: IAutoImportPreprocessorConfig) {
     this.config = config;
+  }
+
+  /**
+   * Preprocesses a code block by injecting missing imports.
+   *
+   * @param codeBlock The code block to preprocess
+   * @returns A promise that resolves to the processed code block
+   */
+  async preprocess(codeBlock: CodeBlock): Promise<CodeBlock> {
+    try {
+      const result = await this.injectMissingImports(
+        codeBlock.content,
+        this.config.packageName,
+        this.config.resolvedImportPath,
+      );
+
+      if (
+        this.wasCodeTransformed(result, codeBlock.content) &&
+        result.code !== undefined
+      ) {
+        return this.createTransformedCodeBlock(result.code, codeBlock);
+      }
+
+      return codeBlock;
+    } catch {
+      return codeBlock;
+    }
   }
 
   /**
    * Analyzes the code and injects missing imports for symbols exported by the package.
    *
    * @param code - The TypeScript code to analyze
-   * @param packageName - Name of the package to import from
+   * @param _packageName - Name of the package to import from
    * @param resolvedImportPath - Resolved path to import from
    * @returns Result with injected code or error
    */
-  async injectMissingImports(
+  private async injectMissingImports(
     code: string,
     _packageName: string,
     resolvedImportPath: string,
@@ -118,9 +156,7 @@ export class AutoImportInjector {
         if (fileName === 'temp.ts') return sourceFile;
         return defaultHost.getSourceFile(fileName, ts.ScriptTarget.Latest);
       },
-      writeFile: () => {
-        /* NOOP */
-      },
+      writeFile: () => undefined,
       getCurrentDirectory: () => process.cwd(),
       getDirectories: ts.sys.getDirectories,
       fileExists: (fileName) =>
@@ -191,7 +227,6 @@ export class AutoImportInjector {
 
     const visit = (node: ts.Node) => {
       if (ts.isImportDeclaration(node) && node.importClause) {
-        // Handle named imports: import { foo, bar } from 'module'
         if (
           node.importClause.namedBindings &&
           ts.isNamedImports(node.importClause.namedBindings)
@@ -399,15 +434,15 @@ export class AutoImportInjector {
     );
 
     const importStatement = ts.factory.createImportDeclaration(
-      undefined, // modifiers
+      undefined,
       ts.factory.createImportClause(
-        false, // not type-only
-        undefined, // no default import
+        false,
+        undefined,
         ts.factory.createNamedImports(
           symbolsToImport.map((symbol) =>
             ts.factory.createImportSpecifier(
-              false, // not type-only
-              undefined, // no property name (same as exported name)
+              false,
+              undefined,
               ts.factory.createIdentifier(symbol),
             ),
           ),
@@ -448,10 +483,48 @@ export class AutoImportInjector {
     }
     const transformedCode = printer
       .printFile(transformedSourceFile)
-      .replace(/"/g, "'"); // Convert double quotes to single quotes for consistency
+      .replace(/"/g, "'");
 
     result.dispose();
 
     return transformedCode;
+  }
+
+  /**
+   * Determines if the code was successfully transformed.
+   *
+   * @param result The injection result
+   * @param originalContent The original code content
+   * @returns True if the code was successfully transformed
+   */
+  private wasCodeTransformed(
+    result: { success: boolean; code?: string },
+    originalContent: string,
+  ): boolean {
+    return (
+      result.success &&
+      result.code !== undefined &&
+      result.code !== originalContent
+    );
+  }
+
+  /**
+   * Creates a new CodeBlock with transformed content.
+   *
+   * @param transformedCode The transformed code content
+   * @param originalBlock The original code block
+   * @returns A new CodeBlock with the transformed content
+   */
+  private createTransformedCodeBlock(
+    transformedCode: string,
+    originalBlock: CodeBlock,
+  ): CodeBlock {
+    return new CodeBlock(
+      transformedCode,
+      originalBlock.filePath,
+      originalBlock.startLine,
+      originalBlock.endLine,
+      originalBlock.language,
+    );
   }
 }

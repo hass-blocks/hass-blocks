@@ -1,5 +1,6 @@
 import { CodeBlock } from './code-block.ts';
 import { ICheckResult } from './check-result.ts';
+import { IPreprocessor } from './preprocessor.ts';
 
 /**
  * Abstract base class for code block checkers.
@@ -7,9 +8,11 @@ import { ICheckResult } from './check-result.ts';
 export abstract class Checker {
   private readonly _codeBlocks: CodeBlock[] = [];
   private readonly _name: string;
+  private readonly _preprocessors: IPreprocessor[];
 
-  constructor(name: string) {
+  constructor(name: string, preprocessors: IPreprocessor[] = []) {
     this._name = name;
+    this._preprocessors = preprocessors;
   }
 
   /**
@@ -28,6 +31,7 @@ export abstract class Checker {
 
   /**
    * Adds a code block to this checker if it can be checked.
+   * @param codeBlock The code block to add
    */
   addCodeBlock(codeBlock: CodeBlock): void {
     if (this.canCheck(codeBlock)) {
@@ -37,21 +41,53 @@ export abstract class Checker {
 
   /**
    * Checks all stored code blocks and stores the results.
+   * @throws Error if checking any code block fails
    */
   async checkAll(): Promise<void> {
     for (const codeBlock of this._codeBlocks) {
-      const result = await this.check(codeBlock);
-      codeBlock.storeCheckResult(this._name, result);
+      try {
+        const result = await this.check(codeBlock);
+        codeBlock.storeCheckResult(this._name, result);
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error ? error.message : 'Unknown error';
+        const failureResult: ICheckResult = {
+          success: false,
+          message: `Failed to check code block: ${errorMessage}`,
+        };
+        codeBlock.storeCheckResult(this._name, failureResult);
+      }
     }
   }
 
   /**
    * Determines if this checker can check the given code block.
+   * @param codeBlock The code block to evaluate
+   * @returns True if this checker can process the code block
    */
   abstract canCheck(codeBlock: CodeBlock): boolean;
 
   /**
    * Checks a single code block and returns the result.
+   * Applies all preprocessors in sequence before calling the concrete check implementation.
+   * @param codeBlock The code block to check
+   * @returns A promise that resolves to the check result
    */
-  abstract check(codeBlock: CodeBlock): Promise<ICheckResult>;
+  async check(codeBlock: CodeBlock): Promise<ICheckResult> {
+    let processedBlock = codeBlock;
+
+    for (const preprocessor of this._preprocessors) {
+      processedBlock = await preprocessor.preprocess(processedBlock);
+    }
+
+    return this.performCheck(processedBlock);
+  }
+
+  /**
+   * Performs the actual check on the (potentially preprocessed) code block.
+   * Subclasses should implement this method instead of check.
+   * @param codeBlock The preprocessed code block to check
+   * @returns A promise that resolves to the check result
+   */
+  protected abstract performCheck(codeBlock: CodeBlock): Promise<ICheckResult>;
 }

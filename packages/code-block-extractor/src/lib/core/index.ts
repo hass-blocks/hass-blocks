@@ -8,3 +8,4 @@ export type {
   ICheckResultFailure,
 } from './check-result.ts';
 export type { ICodeBlocksCheckerSettings } from './code-blocks-checker-settings.ts';
+export type { IPreprocessor } from './preprocessor.ts';

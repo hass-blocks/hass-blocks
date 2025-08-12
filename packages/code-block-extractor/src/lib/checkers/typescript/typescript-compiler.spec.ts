@@ -44,8 +44,6 @@ describe('compile', () => {
         type: 'tsx',
       });
 
-      // JSX might produce diagnostics about React not being imported,
-      // but should not crash the compilation
       expect(result).toBeDefined();
       expect(typeof result.hasError).toBe('boolean');
       expect(Array.isArray(result.diagnostics)).toBe(true);
@@ -133,11 +131,7 @@ describe('compile', () => {
 
       expect(result.hasError).toBe(true);
       expect(result.diagnostics.length).toBeGreaterThan(0);
-      expect(
-        result.diagnostics.some(
-          (d) => d.code === 2304, // "Cannot find name" error
-        ),
-      ).toBe(true);
+      expect(result.diagnostics.some((d) => d.code === 2304)).toBe(true);
     });
   });
 
@@ -145,7 +139,6 @@ describe('compile', () => {
     it('should use provided compiler options for target version', async () => {
       const codeWithModernFeatures = 'const obj = { ...{}, prop: 1 };';
 
-      // Test with ES5 target (should not allow spread)
       const es5Options = {
         target: ts.ScriptTarget.ES5,
         module: ts.ModuleKind.CommonJS,
@@ -158,10 +151,6 @@ describe('compile', () => {
         type: 'ts',
       });
 
-      // ES5 target might generate diagnostics about unsupported features
-      // but the key is that it processes with ES5 settings
-
-      // Test with ES2020 target (should allow spread)
       const es2020Options = {
         target: ts.ScriptTarget.ES2020,
         module: ts.ModuleKind.CommonJS,
@@ -174,7 +163,6 @@ describe('compile', () => {
         type: 'ts',
       });
 
-      // Both should process without crashing
       expect(es5Result).toBeDefined();
       expect(es2020Result).toBeDefined();
       expect(typeof es5Result.hasError).toBe('boolean');
@@ -194,7 +182,6 @@ describe('compile', () => {
         type: 'ts',
       });
 
-      // Should complete without error regardless of working directory
       expect(result).toBeDefined();
       expect(typeof result.hasError).toBe('boolean');
     });
@@ -231,8 +218,6 @@ describe('compile', () => {
         type: 'tsx',
       });
 
-      // JSX might produce diagnostics about React not being imported,
-      // but should not crash the compilation
       expect(result).toBeDefined();
       expect(typeof result.hasError).toBe('boolean');
       expect(Array.isArray(result.diagnostics)).toBe(true);
@@ -348,7 +333,6 @@ describe('compile', () => {
       expect(Array.isArray(result.diagnostics)).toBe(true);
       expect(result.diagnostics).toBeInstanceOf(Array);
 
-      // Each diagnostic should have expected structure
       if (result.diagnostics.length > 0) {
         const diagnostic = result.diagnostics[0];
         expect(diagnostic).toHaveProperty('messageText');
@@ -362,7 +346,6 @@ describe('compile', () => {
     it('should respect noImplicitAny setting', async () => {
       const implicitAnyCode = 'function test(param) { return param; }';
 
-      // Without noImplicitAny
       const lenientResult = await compile({
         code: implicitAnyCode,
         compilerOptions: {
@@ -373,7 +356,6 @@ describe('compile', () => {
         type: 'ts',
       });
 
-      // With noImplicitAny
       const strictResult = await compile({
         code: implicitAnyCode,
         compilerOptions: {
@@ -384,17 +366,14 @@ describe('compile', () => {
         type: 'ts',
       });
 
-      // Strict mode should have more errors than lenient mode
       expect(strictResult.diagnostics.length).toBeGreaterThanOrEqual(
         lenientResult.diagnostics.length,
       );
 
       if (strictResult.hasError) {
-        expect(
-          strictResult.diagnostics.some(
-            (d) => d.code === 7006, // Parameter implicitly has 'any' type
-          ),
-        ).toBe(true);
+        expect(strictResult.diagnostics.some((d) => d.code === 7006)).toBe(
+          true,
+        );
       }
     });
   });

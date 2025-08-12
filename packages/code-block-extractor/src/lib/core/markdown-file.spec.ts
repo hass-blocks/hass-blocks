@@ -65,14 +65,14 @@ Some text after.`;
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.content).toBe(
-        'const message = "hello world";\nconsole.log(message);',
-      );
-      expect(blocks[0]!.filePath).toBe('/docs/example.md');
-      expect(blocks[0]!.startLine).toBe(5);
-      expect(blocks[0]!.endLine).toBe(7);
-      expect(blocks[0]!.language).toBe('typescript');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'const message = "hello world";\nconsole.log(message);',
+        filePath: '/docs/example.md',
+        startLine: 5,
+        endLine: 7,
+        language: 'typescript',
+      });
     });
 
     it('should return CodeBlock instance for single ts code block with correct filePath', () => {
@@ -89,12 +89,14 @@ interface User {
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.content).toBe('interface User {\n  name: string;\n}');
-      expect(blocks[0]!.filePath).toBe('/src/types.md');
-      expect(blocks[0]!.startLine).toBe(3);
-      expect(blocks[0]!.endLine).toBe(6);
-      expect(blocks[0]!.language).toBe('ts');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'interface User {\n  name: string;\n}',
+        filePath: '/src/types.md',
+        startLine: 3,
+        endLine: 6,
+        language: 'ts',
+      });
     });
 
     it('should return CodeBlock instance for javascript language', () => {
@@ -109,10 +111,12 @@ const user = { name: "John" };
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.filePath).toBe('/docs/js-example.md');
-      expect(blocks[0]!.content).toBe('const user = { name: "John" };');
-      expect(blocks[0]!.language).toBe('javascript');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'const user = { name: "John" };',
+        filePath: '/docs/js-example.md',
+        language: 'javascript',
+      });
     });
 
     it('should return CodeBlock instance for js language', () => {
@@ -127,10 +131,12 @@ const user = { name: "John" };
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.filePath).toBe('/docs/js-example.md');
-      expect(blocks[0]!.content).toBe('const user = { name: "John" };');
-      expect(blocks[0]!.language).toBe('js');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'const user = { name: "John" };',
+        filePath: '/docs/js-example.md',
+        language: 'js',
+      });
     });
 
     it('should return CodeBlock instances for different languages with correct filePath', () => {
@@ -153,15 +159,19 @@ def hello():
 
       expect(blocks).toHaveLength(2);
 
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.filePath).toBe('/docs/multi-lang.md');
-      expect(blocks[0]!.content).toBe('def hello():\n    print("world")');
-      expect(blocks[0]!.language).toBe('python');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'def hello():\n    print("world")',
+        filePath: '/docs/multi-lang.md',
+        language: 'python',
+      });
 
-      expect(blocks[1]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[1]!.filePath).toBe('/docs/multi-lang.md');
-      expect(blocks[1]!.content).toBe('{\n  "name": "example"\n}');
-      expect(blocks[1]!.language).toBe('json');
+      expect(blocks[1]).toBeInstanceOf(CodeBlock);
+      expect(blocks[1]).toMatchObject({
+        content: '{\n  "name": "example"\n}',
+        filePath: '/docs/multi-lang.md',
+        language: 'json',
+      });
     });
 
     it('should return CodeBlock instances for mixed code blocks', () => {
@@ -188,20 +198,26 @@ const x: number = 5;
 
       expect(blocks).toHaveLength(3);
 
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.filePath).toBe('/docs/mixed.md');
-      expect(blocks[0]!.content).toBe('type User = { name: string };');
-      expect(blocks[0]!.language).toBe('typescript');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'type User = { name: string };',
+        filePath: '/docs/mixed.md',
+        language: 'typescript',
+      });
 
-      expect(blocks[1]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[1]!.filePath).toBe('/docs/mixed.md');
-      expect(blocks[1]!.content).toBe('const user = { name: "John" };');
-      expect(blocks[1]!.language).toBe('javascript');
+      expect(blocks[1]).toBeInstanceOf(CodeBlock);
+      expect(blocks[1]).toMatchObject({
+        content: 'const user = { name: "John" };',
+        filePath: '/docs/mixed.md',
+        language: 'javascript',
+      });
 
-      expect(blocks[2]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[2]!.filePath).toBe('/docs/mixed.md');
-      expect(blocks[2]!.content).toBe('const x: number = 5;');
-      expect(blocks[2]!.language).toBe('ts');
+      expect(blocks[2]).toBeInstanceOf(CodeBlock);
+      expect(blocks[2]).toMatchObject({
+        content: 'const x: number = 5;',
+        filePath: '/docs/mixed.md',
+        language: 'ts',
+      });
     });
 
     it('should return CodeBlock instance for code blocks without language specification', () => {
@@ -217,12 +233,14 @@ const y = 10;
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.content).toBe('const x = 5;\nconst y = 10;');
-      expect(blocks[0]!.filePath).toBe('/docs/no-lang.md');
-      expect(blocks[0]!.startLine).toBe(3);
-      expect(blocks[0]!.endLine).toBe(5);
-      expect(blocks[0]!.language).toBe('');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'const x = 5;\nconst y = 10;',
+        filePath: '/docs/no-lang.md',
+        startLine: 3,
+        endLine: 5,
+        language: '',
+      });
     });
 
     it('should handle complex markdown with mixed content and multiple code blocks', () => {
@@ -285,28 +303,34 @@ That's all for now!`;
 
       expect(blocks).toHaveLength(4);
 
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.filePath).toBe('/docs/api.md');
-      expect(blocks[0]!.content).toBe(`import { Client } from './client';
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        filePath: '/docs/api.md',
+        content: `import { Client } from './client';
 
 const client = new Client({
   url: 'http://localhost:3000'
-});`);
-      expect(blocks[0]!.startLine).toBe(8);
-      expect(blocks[0]!.endLine).toBe(13);
+});`,
+        startLine: 8,
+        endLine: 13,
+      });
 
-      expect(blocks[1]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[1]!.filePath).toBe('/docs/api.md');
+      expect(blocks[1]).toBeInstanceOf(CodeBlock);
+      expect(blocks[1]).toMatchObject({
+        filePath: '/docs/api.md',
+      });
 
-      expect(blocks[2]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[2]!.filePath).toBe('/docs/api.md');
+      expect(blocks[2]).toBeInstanceOf(CodeBlock);
+      expect(blocks[2]).toMatchObject({
+        filePath: '/docs/api.md',
+      });
 
-      expect(blocks[3]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[3]!.filePath).toBe('/docs/api.md');
-      expect(blocks[3]!.content).toBe(
-        'type Config = {\n  advanced: boolean;\n};',
-      );
-      expect(blocks[3]!.language).toBe('ts');
+      expect(blocks[3]).toBeInstanceOf(CodeBlock);
+      expect(blocks[3]).toMatchObject({
+        filePath: '/docs/api.md',
+        content: 'type Config = {\n  advanced: boolean;\n};',
+        language: 'ts',
+      });
     });
 
     it('should correctly calculate line numbers for multiple blocks', () => {
@@ -334,13 +358,17 @@ Final line`;
 
       expect(blocks).toHaveLength(2);
 
-      expect(blocks[0]!.filePath).toBe('/docs/lines.md');
-      expect(blocks[0]!.startLine).toBe(4);
-      expect(blocks[0]!.endLine).toBe(6);
+      expect(blocks[0]).toMatchObject({
+        filePath: '/docs/lines.md',
+        startLine: 4,
+        endLine: 6,
+      });
 
-      expect(blocks[1]!.filePath).toBe('/docs/lines.md');
-      expect(blocks[1]!.startLine).toBe(12);
-      expect(blocks[1]!.endLine).toBe(14);
+      expect(blocks[1]).toMatchObject({
+        filePath: '/docs/lines.md',
+        startLine: 12,
+        endLine: 14,
+      });
     });
 
     it('should handle empty code blocks correctly', () => {
@@ -359,15 +387,19 @@ Final line`;
 
       expect(blocks).toHaveLength(2);
 
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.content).toBe('');
-      expect(blocks[0]!.filePath).toBe('/docs/empty.md');
-      expect(blocks[0]!.language).toBe('typescript');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: '',
+        filePath: '/docs/empty.md',
+        language: 'typescript',
+      });
 
-      expect(blocks[1]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[1]!.content).toBe('');
-      expect(blocks[1]!.filePath).toBe('/docs/empty.md');
-      expect(blocks[1]!.language).toBe('javascript');
+      expect(blocks[1]).toBeInstanceOf(CodeBlock);
+      expect(blocks[1]).toMatchObject({
+        content: '',
+        filePath: '/docs/empty.md',
+        language: 'javascript',
+      });
     });
 
     it('should ignore inline code and only extract fenced code blocks', () => {
@@ -390,10 +422,12 @@ More \`inline\` code here.`;
       const blocks = extractor.codeBlocks;
 
       expect(blocks).toHaveLength(1);
-      expect(blocks[0]!).toBeInstanceOf(CodeBlock);
-      expect(blocks[0]!.content).toBe('const realCode = true;');
-      expect(blocks[0]!.filePath).toBe('/docs/inline.md');
-      expect(blocks[0]!.language).toBe('typescript');
+      expect(blocks[0]).toBeInstanceOf(CodeBlock);
+      expect(blocks[0]).toMatchObject({
+        content: 'const realCode = true;',
+        filePath: '/docs/inline.md',
+        language: 'typescript',
+      });
     });
 
     it('should verify that all instances have the correct filePath from constructor', () => {

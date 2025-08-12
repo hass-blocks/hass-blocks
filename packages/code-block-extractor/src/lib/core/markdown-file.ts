@@ -42,15 +42,15 @@ export class MarkdownFile {
         let content = '';
         i++;
 
-        while (
-          i < lines.length &&
-          lines[i] !== undefined &&
-          !lines[i]!.startsWith('```')
-        ) {
+        while (i < lines.length) {
+          const currentLine = lines[i];
+          if (currentLine === undefined || currentLine.startsWith('```')) {
+            break;
+          }
           if (content) {
             content += '\n';
           }
-          content += lines[i]!;
+          content += currentLine;
           i++;
         }
 
